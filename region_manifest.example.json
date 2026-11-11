@@ -1,0 +1,13 @@
+{
+  "id": "gale",
+  "name": "Gale Crater",
+  "mission_context": "Curiosity exploration corridor and lower Mount Sharp; exact AOI pending audit",
+  "coordinate_system": {"latitude_type":"planetocentric", "longitude_direction":"east", "longitude_range":"0-360", "projected_crs":"pending-source-validation"},
+  "view_center": {"latitude": -4.59, "longitude_east":137.44, "status":"illustrative-map-center-not-target-coordinate"},
+  "data_status":"illustrative",
+  "dataset_version":"unverified-demo-v0",
+  "layers":[{"id":"terrain","type":"elevation","availability":"pending","source_id":null,"observation_date":null,"spatial_resolution_m":null,"coverage":null,"limitations":"DEM footprint/source-resolution not audited"}],
+  "targets":[],
+  "routing":{"enabled":false,"reason":"No audited DEM/hazard coverage or approved routing threshold policy","eligibility_dataset_id":null,"policy_version":null},
+  "source_references":[]
+}
