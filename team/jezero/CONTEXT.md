@@ -276,3 +276,52 @@ all along); asset regenerated (same 3,502 points, 42.785 km); `dataset_version` 
 `jezero-traverse-v4`. Also confirmed empirically: this MapLibre version clamps zoom
 *up* so the viewport stays inside `setMaxBounds`, so the effective initial zoom is
 ~12.1 rather than the configured `initial_zoom` 10.
+
+## CTX basemap integration (feat/jezero-map)
+
+The map now shows real Mars imagery under the traverse line.
+
+- **Product**: Murray Lab CTX global mosaic **beta01** (uncontrolled, near-global,
+  ~5 m/px), served by Esri as a tiled MapServer
+  (`astro.arcgis.com/arcgis/rest/services/OnMars/CTX/MapServer`). All imagery is
+  publicly released via the NASA PDS; the Murray Lab grants free use of beta01 with
+  credit. Registered as source `jezero-ctx-esri` alongside the CTX archive anchor.
+- **Tiling-scheme problem and solution**: the service uses an *equirectangular
+  planetary* grid (origin −180/90, 512 px tiles, level *L* = 0.3515625/2^L deg/px,
+  GCS `Mars_2000_Sphere`), which MapLibre's Web-Mercator raster source cannot consume
+  directly. Solution: **derived self-hosted tiles** —
+  `team/jezero/basemap/prepare_ctx_basemap.mjs` (pure Node + zlib, no image
+  dependencies) downloads the source tiles over the supported extent and resamples
+  them into **351 standard 256 px Web-Mercator XYZ tiles**,
+  `public/maps/jezero/ctx-tiles/{z}/{x}/{y}.png`, zooms 5–14 (~8.2 MB), nearest-
+  neighbour from source level *L* = z−2, no radiometric processing. Same-origin tiles
+  also keep the app offline-capable and free of runtime third-party requests.
+- **Datum cross-check (important)**: the mosaic's `Mars_2000_Sphere` GCS means
+  geodetic == planetocentric latitude there — independently validating the
+  planetocentric display-latitude convention the traverse asset uses. Both layers now
+  share one convention; the residual planetocentric-vs-geodetic-on-ellipsoid caveat
+  (~0.1–0.2°) stays documented pending the PPPCS ellipsoid review.
+- **Service defect (second one)**: ~20 source tiles in this window serve **corrupt
+  zlib streams** (truncated final IDAT, "unexpected end of file" on every retry — the
+  declared chunk lengths exceed the served bytes). The prepare script retries and
+  falls back to the coarser level, so coverage is complete (`samples_without_source:
+  0`) with a small softer-than-native patch at zoom 11. Documented in the source
+  register; could be folded into the same PDS/Esri feedback email as the PLACES
+  planetodetic defect.
+- **Layer**: `jezero-optical` (previously pending "Optical imagery") is now the
+  **available** "CTX basemap": kind optical, evidence Observed, raster-tiles rendering,
+  default visible at 100%, attribution NASA/JPL/MSSS · Caltech Murray Lab · Esri.
+  It mounts first, so the traverse overlay paints above it. Terrain and geology
+  layers remain pending (CTX imagery is **not** a DEM).
+- **Gates/state**: `data_status` → `raster_audited` (first audited raster); routing
+  still disabled and `terrain_coverage` still `unknown` — imagery is not terrain-
+  safety evidence, so the readiness posture is unchanged. `dataset_version` →
+  `jezero-ctx-basemap-v5`.
+- **Coordinated shared-test change**: `tests/mission.test.ts` readiness guard updated
+  — data_status may now be `raster_audited`, but no fixture may claim
+  `terrain_coverage: audited`, available layers must still be Observed evidence, and
+  routing/targets guards are unchanged (same semantics, same coordinated-exception
+  review class as the earlier adaptations).
+
+**Visual verification**: headless probe screenshot shows the CTX crater-floor imagery
+with the recorded traverse above it, both legend chips and combined attribution.

@@ -1,30 +1,35 @@
 import type { ScientificLayer } from "@/lib/contracts/region";
 
 // Region-owned content. Pending values are deliberately explicit.
-// Only the recorded rover traverse has a selected, audited product so far;
-// it renders as a display-grade GeoJSON overlay (see config display_transform).
+// The recorded traverse (observed overlay) and the CTX basemap (observed
+// optical imagery, self-hosted derived tiles) are the integrated products;
+// see config display_transform notes for both derivations.
 export const layers = [
   {
     id: "jezero-optical",
     type: "Optical imagery",
-    display_name: "Optical imagery",
+    display_name: "CTX basemap",
     kind: "optical",
-    availability: "pending",
-    source_id: "jezero-hirise-archive",
+    availability: "available",
+    source_id: "jezero-ctx-esri",
     observation_date: null,
-    spatial_resolution_m: null,
-    coverage: null,
+    spatial_resolution_m: 5,
+    coverage:
+      "Murray Lab CTX global mosaic (beta01) over the Jezero exploration area: derived display tiles cover 77.137-77.543 E, 18.352-18.570 N (Web-Mercator XYZ, zooms 5-14), from the equirectangular source service.",
     limitations:
-      "Requires selecting a specific HiRISE or CTX product over the exploration area (archive anchors jezero-hirise-archive / jezero-ctx-archive are registered), reviewing its CRS, latitude/longitude convention, actual footprint, nodata and effective resolution, and preparing a reviewed Mars display transform before any tiles are served.",
-    evidence: "Unavailable",
-    attribution: null,
+      "Uncontrolled beta mosaic (seams, varying illumination between orbits; not radiometrically calibrated). Display-grade: tiles nearest-neighbour resampled from the service's equirectangular grid by team/jezero/basemap/prepare_ctx_basemap.mjs; a small area samples a coarser level where the service serves corrupt tiles (~20 source tiles). Imagery basemap only - not a DEM, not geology and not terrain-safety evidence. Alignment shares the region display-transform caveats (planetocentric latitude; the mosaic's Mars_2000_Sphere datum makes geodetic == planetocentric there).",
+    evidence: "Observed",
+    attribution:
+      "NASA/JPL/MSSS · Caltech Murray Lab CTX global mosaic (beta01) · tiled service hosted by Esri",
     rendering: {
-      kind: "unavailable",
-      reason:
-        "No specific Jezero optical product has been selected, audited or prepared for display.",
+      kind: "raster-tiles",
+      tiles: ["/maps/jezero/ctx-tiles/{z}/{x}/{y}.png"],
+      tile_size: 256,
+      min_zoom: 5,
+      max_zoom: 14,
     },
-    default_visible: false,
-    default_opacity: 70,
+    default_visible: true,
+    default_opacity: 100,
     legend: null,
   },
   {

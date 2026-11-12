@@ -33,7 +33,7 @@ export const config = {
     visualization: {
       status: "available",
       reason:
-        "Recorded-traverse display asset with a reviewed, documented display transform and supported extent.",
+        "Recorded-traverse display asset and CTX basemap tiles with a reviewed, documented display transform and supported extent.",
     },
     initial_zoom: 10,
     supported_extent: {
@@ -47,17 +47,14 @@ export const config = {
       method: "mars-geographic-to-maplibre-display",
       source_id: "jezero-m2020-places",
       notes:
-        "Review 2026-11-12, Jezero region owner. Asset public/maps/jezero/perseverance-traverse.geojson derived from PLACES data_localizations/best_interp.csv v16.0 (33,458 rows, sols 0-1897) by team/jezero/traverse/build_traverse.mjs; coordinates are copied, never recomputed: [east longitude 0-360, planetocentric latitude]. All Jezero longitudes are <180E, so the shared east-to-display wrap is an identity here. The shared renderer feeds display latitude to Web Mercator (Earth-sphere tile math; MapLibre distances/scales remain forbidden). ALIGNMENT: the product's planetodetic_latitude column is defective (constant 18.346169209 across release 16, verified in best_interp.csv and best_tactical.csv), so planetocentric latitude is supplied as display latitude; Web Mercator interprets it as geodetic and the planetocentric/geodetic distinction at 18.4-18.5N is ~0.1-0.2 deg, so alignment against any georeferenced basemap is PENDING SIS (PPPCS) ellipsoid review - the asset is display-grade, not survey-grade. NODATA: rows with -9999 lat/lon dropped (0 rows in v16.0); consecutive duplicate positions collapsed; release 16 omits ROVER,n,0 entries bundle-wide per release notes (station points recovered from identical SITE entries). PROVENANCE/CROSS-CHECK: approximate recorded path 42.785 km for sols 14-1897 (through 2026-06-21), consistent with the NASA odometer statement (45.22 km by 2026-10-11); product radius column 3,391,924-3,392,721 m; areoid-relative elevation -2,586 to -1,786 m. Decimation: display vertices thinned to ~10 m spacing (3,502 of 32,978 points). supported_extent and view_center use the same planetocentric convention as the asset, so bounds/center/asset registration is internally consistent.",
+        "Review 2026-11-12, Jezero region owner. Asset public/maps/jezero/perseverance-traverse.geojson derived from PLACES data_localizations/best_interp.csv v16.0 (33,458 rows, sols 0-1897) by team/jezero/traverse/build_traverse.mjs; coordinates are copied, never recomputed: [east longitude 0-360, planetocentric latitude]. All Jezero longitudes are <180E, so the shared east-to-display wrap is an identity here. The shared renderer feeds display latitude to Web Mercator (Earth-sphere tile math; MapLibre distances/scales remain forbidden). ALIGNMENT: the product's planetodetic_latitude column is defective (constant 18.346169209 across release 16, verified in best_interp.csv and best_tactical.csv), so planetocentric latitude is supplied as display latitude; Web Mercator interprets it as geodetic and the planetocentric/geodetic distinction at 18.4-18.5N is ~0.1-0.2 deg, so alignment against any georeferenced basemap is PENDING SIS (PPPCS) ellipsoid review - the asset is display-grade, not survey-grade. NODATA: rows with -9999 lat/lon dropped (0 rows in v16.0); consecutive duplicate positions collapsed; release 16 omits ROVER,n,0 entries bundle-wide per release notes (station points recovered from identical SITE entries). PROVENANCE/CROSS-CHECK: approximate recorded path 42.785 km for sols 14-1897 (through 2026-06-21), consistent with the NASA odometer statement (45.22 km by 2026-10-11); product radius column 3,391,924-3,392,721 m; areoid-relative elevation -2,586 to -1,786 m. Decimation: display vertices thinned to ~10 m spacing (3,502 of 32,978 points). supported_extent and view_center use the same planetocentric convention as the asset, so bounds/center/asset registration is internally consistent. BASEMAP (v5): /maps/jezero/ctx-tiles/ derived from the Murray Lab CTX global mosaic beta01 (Esri tiled service, source jezero-ctx-esri) by team/jezero/basemap/prepare_ctx_basemap.mjs - 351 self-hosted 256 px Web-Mercator XYZ tiles, zooms 5-14, nearest-neighbour resampled from the service's equirectangular grid (level L=z-2), no radiometric processing; ~20 corrupt source tiles (truncated zlib streams, a service-side defect) are covered from a coarser level. The mosaic's GCS is Mars_2000_Sphere (sphere datum: geodetic == planetocentric), which INDEPENDENTLY VALIDATES the planetocentric display-latitude convention used by the traverse asset - both layers share one convention. Residual alignment caveat (planetocentric vs geodetic-on-ellipsoid, ~0.1-0.2 deg) remains documented pending the PPPCS ellipsoid review; visual cross-check of traverse-over-basemap alignment is part of ongoing review.",
     },
   },
-  data_status: "metadata_verified",
-  // v4: traverse display asset corrected to planetocentric latitude in the
-  // emitted coordinates (the v3 asset had accidentally emitted the product's
-  // defective constant planetodetic column, placing the line below the
-  // supported-extent viewport and invisible). Found via renderer isolation:
-  // a standalone MapLibre probe painted the same asset, while a live app
-  // state probe showed correct layer/camera wiring.
-  dataset_version: "jezero-traverse-v4",
+  data_status: "raster_audited",
+  // v5: CTX basemap (Murray Lab beta01 via the Esri tiled service) audited and
+  // integrated as derived self-hosted display tiles -> raster_audited. Routing
+  // stays disabled: imagery is not a DEM and terrain_coverage remains unknown.
+  dataset_version: "jezero-ctx-basemap-v5",
   routing: {
     enabled: false,
     reason:
@@ -240,6 +237,30 @@ export const config = {
       ],
       limitations: [
         "Archive anchor only; no specific Jezero product has been selected or reviewed.",
+      ],
+    },
+    {
+      id: "jezero-ctx-esri",
+      title:
+        "Murray Lab CTX global mosaic (beta01) - Esri tiled web service",
+      url: "https://astro.arcgis.com/arcgis/rest/services/OnMars/CTX/MapServer",
+      agency:
+        "NASA/JPL-Caltech/MSSS · Caltech Murray Lab · Esri (tiled service hosting)",
+      instrument: "CTX (Context Camera)",
+      product_id: "beta01",
+      acquisition_date: null,
+      sol: null,
+      native_resolution_m: 5,
+      processing_notes: [
+        "Uncontrolled near-global CTX mosaic; imagery publicly released via the NASA Planetary Data System; Murray Lab grants free use of beta01 with credit NASA/JPL/MSSS/The Murray Lab.",
+        "Service tiling scheme: equirectangular planetary grid (origin -180/90, 512 px tiles, level L resolution 0.3515625/2^L deg/px, levels 0-17), GCS Mars_2000_Sphere (sphere datum, so geodetic == planetocentric latitude).",
+        "Display tiles /maps/jezero/ctx-tiles/{z}/{x}/{y}.png derived by team/jezero/basemap/prepare_ctx_basemap.mjs: 351 standard Web-Mercator XYZ 256 px grayscale tiles, zooms 5-14, covering the supported extent + 0.05 deg margin, nearest-neighbour resampled from source levels L=z-2; no radiometric processing.",
+        "Service defect (documented): 20 source tiles in this window serve corrupt zlib streams (truncated final IDAT); affected pixels were sampled from the coarser level, so a small part of the mosaic is softer than native.",
+      ],
+      limitations: [
+        "Uncontrolled beta mosaic: seams, varying illumination and viewing geometry between orbits; not radiometrically calibrated.",
+        "Display-grade resampled tiles, not survey-grade; not a DEM and not terrain-safety evidence.",
+        "Service-internal defect: ~20 corrupt source tiles in this window (see processing notes); coverage completed from a coarser level.",
       ],
     },
   ],

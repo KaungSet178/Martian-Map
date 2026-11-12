@@ -17,15 +17,13 @@ test("all region fixtures obey shared contract and cannot imply scientific readi
   for (const id of regionIds) {
     const region = regionSchema.parse(regions[id]);
     assert.equal(region.routing.enabled, false);
-    // Data status may not claim audited rasters, and any available layer may
-    // only be an Observed overlay (e.g. a recorded rover traverse); neither
-    // implies routing, terrain safety or mission feasibility.
-    assert.notEqual(region.data_status, "raster_audited");
+    // Audited rasters may exist (e.g. a basemap), but imagery is not a DEM:
+    // no fixture may claim audited terrain coverage, which together with
+    // disabled routing keeps every region scientifically not-ready.
+    assert.notEqual(region.capabilities.terrain_coverage.status, "audited");
     assert.ok(
       region.layers.every(
-        (l) =>
-          l.availability !== "available" ||
-          (l.evidence === "Observed" && l.kind === "overlay"),
+        (l) => l.availability !== "available" || l.evidence === "Observed",
       ),
     );
     assert.ok(
