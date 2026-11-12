@@ -1,5 +1,6 @@
 import { test, expect, type Page } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
+import { jezero } from "@/regions/jezero";
 
 for (const [width, height] of [
   [1440, 900],
@@ -90,7 +91,7 @@ test("mission JSON round trip preserves legacy v1 IDs and unknown URL region is 
   const mission = JSON.parse(buffer.toString());
   expect(mission.schema_version).toBe(1);
   expect(mission.target_ids).toEqual(["jezero-objective-1"]);
-  expect(mission.dataset_version).toBe("shared-ui-fixture-v1");
+  expect(mission.dataset_version).toBe(jezero.dataset_version);
   await page
     .getByLabel("Import mission JSON", { exact: true })
     .setInputFiles({

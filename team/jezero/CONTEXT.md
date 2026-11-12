@@ -104,3 +104,84 @@ No fabricated oxygen/battery/time/radiation values or operational certification.
 
 First release is 2D pre-mission planning: no 3D, live tracking, EVA rehearsal or new
 offline route computation. Preserve the existing responsive mission-console design.
+
+## Source research notes (Phase 2, feat/jezero-map)
+
+Verified against live archives on 2026-11-12 and registered in
+`regions/jezero/config.ts` (`dataset_version: jezero-sources-v2`):
+
+- `jezero-mission-context` — NASA Perseverance location map (existing). Enriched with
+  the page's own About-This-Map statement: HiRISE-derived high-resolution base map of the
+  initial exploration area, ESA Mars Express HRSC regional color map, and a mission DEM
+  statement. Still contextual only.
+- `jezero-m2020-places` — Mars 2020 Rover PLACES Bundle, PDS Geosciences Node
+  (`urn-nasa-pds-mars2020_rover_places`, release 16 covers sols 0–1897 through
+  2026-06-21). This is the traverse-geometry source: downloadable localizations exist,
+  but per-product verification of site-frame vs cartographic coordinates is still
+  required before any display use. No geometry is asserted in the module yet.
+- `jezero-meda-environment` — MEDA archive, PDS Atmospheres Node
+  (`mars2020_meda`, DOI 10.17189/1522849, certified). Historical point observations
+  (CSV); linked to the `jezero-environment-context` contextual dataset, which remains
+  `unavailable` because no products or exposure models are integrated.
+- `jezero-m2020-sample-dossier` — Sample Dossier Bundle, PDS Geosciences Node. Bundle
+  URN/products still to be confirmed during target-evidence selection.
+- `jezero-hirise-archive` / `jezero-ctx-archive` — verified PDS archive anchors
+  (hirise-pds.lpl.arizona.edu/PDS; pds-imaging.jpl.nasa.gov MRO volumes). No specific
+  Jezero product selected yet; optical/terrain layers stay pending.
+
+Considered but NOT registered (could not be verified this session): Murray Lab global
+CTX mosaic (site unreachable) and a USGS Jezero geologic map (catalog search returned no
+parseable result). Revisit during layer work; do not register unverifiable URLs.
+
+Region-level gates intentionally unchanged: `data_status` stays `illustrative`,
+coordinates stay null, `routing.enabled` stays false. Bumping `data_status` or
+`dataset_version` again requires reviewed product/coordinate evidence.
+
+## Target enrichment notes (Phase 3, feat/jezero-map)
+
+`jezero-objective-1/2/3` IDs are unchanged (saved-plan compatibility). Each now has a
+documented geological significance, a clearer description/goal/activity, and `source_ids`
+linked into the register:
+
+- objective-1 (delta sediments) and objective-2 (carbonates) reference
+  `jezero-mission-context` + `jezero-m2020-mission-overview` (Farley et al. 2020,
+  DOI 10.1007/s11214-020-00762-y — new source record, DOI verified live and cited on the
+  MEDA archive page).
+- objective-3 (sample context) references `jezero-m2020-sample-dossier` +
+  `jezero-m2020-places`, with an explicit statement that proposed astronaut sampling is
+  not a completed observation.
+
+All three remain `evidence: "Scenario"`, `verification: "scenario"`, coordinates null,
+`coordinate_verified: false`, routing unavailable — published interpretations describe
+units, not verified stop locations. `dataset_version` was already bumped to
+`jezero-sources-v2` this session; no further bump (targets stayed Scenario, no saved-plan
+semantics changed).
+
+## Layer provenance notes (Phase 4, feat/jezero-map)
+
+All three layers stay `pending` with `rendering.kind: "unavailable"` (no audited Jezero
+product exists yet); they now expose provenance anchors:
+
+- `jezero-optical` → `source_id: jezero-hirise-archive`; limitations spell out the exact
+  path to availability: select a specific HiRISE/CTX product, audit CRS/convention/
+  footprint/nodata/resolution, prepare a reviewed display transform.
+- `jezero-terrain` → `source_id: jezero-hirise-archive`; limitations note the mission's
+  rover-driving DEM statement (NASA page) is not a selected public product, and a DEM is
+  not route evidence.
+- `jezero-geology` → `source_id` stays null (no registered product; USGS/university
+  Jezero geologic maps still need location and verification before registration).
+
+`index.ts` needed no change; the named `jezero` export still validates through
+`regionSchema`.
+
+## Verification notes (Phase 6, feat/jezero-map)
+
+- `npm run lint`, `npm run typecheck`, `npm test` (12/12), `npm run build`,
+  `npm run test:e2e` (16/16) all pass after the Phase 2–4 changes.
+- One **shared test file** was touched and must be called out for review:
+  `tests/browser/planner.spec.ts` asserted the literal `shared-ui-fixture-v1` dataset
+  version in the mission JSON round-trip test. The documented version bump to
+  `jezero-sources-v2` changed what a correct round trip carries, so the test now expects
+  `jezero.dataset_version` (same assertion semantics, version derived from the region
+  manifest instead of a pinned string). This is the coordinated shared-change exception
+  required by the version bump; reviewed together in the PR.
