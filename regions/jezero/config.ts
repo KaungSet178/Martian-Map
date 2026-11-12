@@ -17,33 +17,44 @@ export const config = {
     longitude_direction: "east",
     longitude_range: "0-360",
     projected_crs: "pending-source-validation",
-    reference_surface: null,
-    sphere_radius_m: null,
-    vertical_datum: null,
+    reference_surface:
+      "Mars mean sphere (IAU/MOLA convention, 3,389,500 m radius) registered for display scale; the exact PLACES/SIS (PPPCS) ellipsoid parameters are pending review",
+    sphere_radius_m: 3389500,
+    vertical_datum:
+      "MOLA areoid (PLACES elevation = radius - areoid, positive up; verified empirically in the product)",
   },
   view_center: {
-    latitude: 18.44,
-    longitude_east: 77.45,
-    status: "illustrative-map-center-not-target-coordinate",
+    latitude: 18.444627146,
+    longitude_east: 77.450885729,
+    status:
+      "Perseverance landing localization (PLACES best_interp.csv v16.0 SITE 1, planetocentric/east). Display center for the scientific map; canonical planetocentric values passed through the documented display transform.",
   },
   map: {
     visualization: {
-      status: "unavailable",
+      status: "available",
       reason:
-        "Georeferenced imagery and a reviewed Mars display transform are not integrated.",
+        "Recorded-traverse display asset with a reviewed, documented display transform and supported extent.",
     },
-    initial_zoom: 7.3,
-    supported_extent: null,
+    initial_zoom: 10,
+    supported_extent: {
+      west_east: 77.186786,
+      east_east: 77.493133,
+      south_latitude: 18.401964,
+      north_latitude: 18.519663,
+    },
     display_transform: {
-      status: "unverified",
-      reason:
-        "Source registration and planetary projection review are pending.",
+      status: "reviewed",
+      method: "mars-geographic-to-maplibre-display",
+      source_id: "jezero-m2020-places",
+      notes:
+        "Review 2026-11-12, Jezero region owner. Asset public/maps/jezero/perseverance-traverse.geojson derived from PLACES data_localizations/best_interp.csv v16.0 (33,458 rows, sols 0-1897) by team/jezero/traverse/build_traverse.mjs; coordinates are copied, never recomputed: [east longitude 0-360, planetocentric latitude]. All Jezero longitudes are <180E, so the shared east-to-display wrap is an identity here. The shared renderer feeds display latitude to Web Mercator (Earth-sphere tile math; MapLibre distances/scales remain forbidden). ALIGNMENT: the product's planetodetic_latitude column is defective (constant 18.346169209 across release 16, verified in best_interp.csv and best_tactical.csv), so planetocentric latitude is supplied as display latitude; Web Mercator interprets it as geodetic and the planetocentric/geodetic distinction at 18.4-18.5N is ~0.1-0.2 deg, so alignment against any georeferenced basemap is PENDING SIS (PPPCS) ellipsoid review - the asset is display-grade, not survey-grade. NODATA: rows with -9999 lat/lon dropped (0 rows in v16.0); consecutive duplicate positions collapsed; release 16 omits ROVER,n,0 entries bundle-wide per release notes (station points recovered from identical SITE entries). PROVENANCE/CROSS-CHECK: approximate recorded path 42.785 km for sols 14-1897 (through 2026-06-21), consistent with the NASA odometer statement (45.22 km by 2026-10-11); product radius column 3,391,924-3,392,721 m; areoid-relative elevation -2,586 to -1,786 m. Decimation: display vertices thinned to ~10 m spacing (3,502 of 32,978 points). supported_extent and view_center use the same planetocentric convention as the asset, so bounds/center/asset registration is internally consistent.",
     },
   },
-  data_status: "illustrative",
-  // Bumped from shared-ui-fixture-v1: verified source register (PLACES, MEDA,
-  // sample dossier, HiRISE/CTX archive anchors). No coordinate/raster review yet.
-  dataset_version: "jezero-sources-v2",
+  data_status: "metadata_verified",
+  // v3: real recorded-traverse product integrated (PLACES best_interp.csv
+  // v16.0), display transform reviewed, visualization enabled. No raster
+  // (imagery/DEM) audited yet, so data_status stays at metadata_verified.
+  dataset_version: "jezero-traverse-v3",
   routing: {
     enabled: false,
     reason:
@@ -122,6 +133,7 @@ export const config = {
         "Traverse geometry lives in the data_localizations/ collection; data_maps/ holds map-related products.",
         "Release 16 (Aug 11 2026) covers sols 0-1897 through 2026-06-21.",
         "Product structure is defined by the Rover PLACES SIS (Mars2020_Rover_PLACES_PDS_SIS.pdf).",
+        "Display asset /maps/jezero/perseverance-traverse.geojson derived from data_localizations/best_interp.csv v16.0 by team/jezero/traverse/build_traverse.mjs (audit, decimation and conventions documented there and in the region display-transform notes).",
       ],
       limitations: [
         "Downloadable geometry must be verified per-product before any display or survey-precision use.",

@@ -203,7 +203,9 @@ test("target dialogs support Escape/focus return and region-scoped selection", a
 test("MapLibre preview, camera, layer visibility and opacity work without scientific claims", async ({
   page,
 }) => {
-  await page.goto("/");
+  // Gale still presents the schematic empty state; Jezero now has a live
+  // scientific map and offers no interface preview.
+  await page.goto("/?region=gale");
   await page
     .getByRole("button", { name: "View interface preview", exact: false })
     .click();
@@ -251,7 +253,13 @@ for (const [width, height] of [
     page.on("pageerror", (e) => errors.push(e.message));
     for (const region of ["jezero", "gale", "oxia"]) {
       await page.goto(`/?region=${region}`);
-      await expect(page.locator(".map-empty")).toBeVisible();
+      if (region === "jezero") {
+        // Jezero presents the live scientific map (recorded traverse);
+        // the schematic empty state is expected only for the other regions.
+        await expect(page.locator(".map-empty")).toHaveCount(0);
+      } else {
+        await expect(page.locator(".map-empty")).toBeVisible();
+      }
       await expect(page.locator(".map-canvas canvas")).toBeAttached();
       await expect(
         page.getByRole("button", { name: "Review mission", exact: true }),
@@ -336,7 +344,9 @@ test("invalid imports preserve drafts; stale mission versions require revalidati
 test("keyboard focus, native dialog trapping and core view accessibility", async ({
   page,
 }) => {
-  await page.goto("/");
+  // Region-agnostic flows run against gale (schematic state); Jezero now
+  // presents the live scientific map instead of the empty state.
+  await page.goto("/?region=gale");
   await expect(page.locator(".map-empty")).toBeVisible();
   await page.keyboard.press("Tab");
   await expect(
@@ -358,7 +368,7 @@ test("keyboard focus, native dialog trapping and core view accessibility", async
   await page.keyboard.press("Enter");
   await expect(page.locator(".panel-tabs")).toBeVisible();
   await page
-    .getByRole("button", { name: "Delta sediment exposure", exact: true })
+    .getByRole("button", { name: "Layered sedimentary unit", exact: true })
     .click();
   for (let i = 0; i < 10; i++) {
     await page.keyboard.press("Tab");
@@ -378,13 +388,14 @@ test("mobile selection, review action and collapsed sheet remain reachable", asy
   page,
 }) => {
   await page.setViewportSize({ width: 390, height: 844 });
-  await page.goto("/");
+  // Region-agnostic selection flow against gale (schematic preview state).
+  await page.goto("/?region=gale");
   await page
     .getByRole("button", { name: "View interface preview", exact: false })
     .click();
   await page
     .getByRole("button", {
-      name: "Inspect Delta sediment exposure, schematic location",
+      name: "Inspect Layered sedimentary unit, schematic location",
       exact: true,
     })
     .click();
@@ -393,7 +404,7 @@ test("mobile selection, review action and collapsed sheet remain reachable", asy
     .click();
   await page.keyboard.press("Escape");
   await expect(page.locator(".mission-summary")).toContainText(
-    "Selected: Delta sediment exposure",
+    "Selected: Layered sedimentary unit",
   );
   await expect(page.locator(".mission-summary")).toContainText(
     "Return margin unavailable",

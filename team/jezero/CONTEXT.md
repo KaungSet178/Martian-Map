@@ -185,3 +185,66 @@ product exists yet); they now expose provenance anchors:
   `jezero.dataset_version` (same assertion semantics, version derived from the region
   manifest instead of a pinned string). This is the coordinated shared-change exception
   required by the version bump; reviewed together in the PR.
+
+## Shared-test adaptations (data ingestion phase)
+
+Three shared-test assertions were fixture-pinned to the old "no available layers /
+illustrative" state and were adapted to follow the manifest, preserving each test's
+original semantics (still guarded by the schema's own visualization/routing gates):
+
+- `tests/mission.test.ts` ("cannot imply scientific readiness"): data_status may no
+  longer claim `raster_audited`; any available layer must be an Observed overlay
+  (recorded-traverse class); routing disabled and null/verified-false targets unchanged.
+- `tests/regions.test.ts` (registry): `getAvailableLayers` must return the manifest's
+  available layers instead of a hardcoded empty list (gale/oxia still yield []).
+- `tests/regions.test.ts` (synthetic renderer): mounted-source count now derives from
+  the synthetic region's layer count, and the preview-visibility tail assertion targets
+  the last layer instead of a hardcoded index/name.
+- `tests/browser/planner.spec.ts`: Jezero no longer shows the schematic empty state, so
+  preview/empty-state flows were retargeted to gale (region-agnostic semantics kept,
+  gale's own target titles used); the responsive loop now asserts the live scientific
+  map for Jezero (`.map-empty` absent, canvas attached) and the empty state for
+  gale/oxia. The post-loop preview checks still run on oxia.
+
+## Recorded-traverse integration (data ingestion phase, feat/jezero-map)
+
+First real product integrated; the Jezero scientific map is now live in the shared
+frontend. All of this came from the downloadable PDS product, not from tracing images.
+
+- **Product**: PLACES `data_localizations/best_interp.csv` v16.0 (33,458 rows, sols
+  0–1897, acquisition 2021-02-18 → 2026-06-21), fetched from the bundle and audited
+  locally. The PDS4 label documents 28 columns including planetocentric latitude, east
+  longitude, elevation, areoid, radius and sol.
+- **Derivation**: `team/jezero/traverse/build_traverse.mjs` copies coordinates (never
+  recomputes), drops `-9999` nodata rows (0 found), collapses consecutive duplicates
+  (covers the release-16 `ROVER,n,0` elimination via identical SITE entries), decimates
+  display vertices to ~10 m (3,502 of 32,978 points), and emits
+  `public/maps/jezero/perseverance-traverse.geojson` (78 KB) with full provenance
+  properties.
+- **Cross-check**: approximate path length **42.785 km** for sols 14–1897 is consistent
+  with NASA's odometer statement (45.22 km by 2026-10-11; release data ends 2026-06-21).
+  Elevation range −2,586 → −1,786 m areoid-relative matches Jezero relief.
+- **Product defect found**: `planetodetic_latitude` is constant (18.346169209) across
+  every row of release 16, verified in both `best_interp.csv` and `best_tactical.csv`.
+  The column is unusable and its implied ellipsoid cannot be verified from the product.
+  PDS release notes invite error reports — worth sending to geosci@wunder.wustl.edu.
+- **Display decision**: display coordinates are [east longitude, planetocentric
+  latitude] copied from the product. Web Mercator interprets latitude as geodetic
+  (~0.1–0.2° distinction at Jezero), so the asset is display-grade pending the SIS
+  (PPPCS) ellipsoid review; documented in `map.display_transform.notes`.
+- **Config updates**: `map.visualization` available; reviewed
+  `mars-geographic-to-maplibre-display` transform (source `jezero-m2020-places`);
+  supported extent 77.1868–77.4931 E, 18.4020–18.5197 N (same convention as the asset);
+  view center = PLACES SITE 1 landing localization (18.444627, 77.450886 E) with
+  provenance status; `reference_surface` (Mars mean sphere, 3,389,500 m display-scale
+  metadata) and `vertical_datum` (MOLA areoid; elevation = radius − areoid, verified
+  empirically) recorded; `projected_crs` stays pending (the CSV northing/easting define
+  a mission-local equidistant-cylindrical-style projection whose parameters still need
+  the SIS — do not route on a partial decode).
+- **Layer**: new `jezero-traverse-recorded` (kind overlay, evidence **Observed**,
+  available, `/maps/jezero/` GeoJSON line, attribution to PDS PLACES bundle, legend,
+  default visible). The three pending imagery/terrain/geology layers are unchanged.
+- **Version/state**: `dataset_version` → `jezero-traverse-v3`; `data_status` →
+  `metadata_verified` (real product audited at metadata level; no raster audited, so
+  not raster_audited). Routing stays disabled — a recorded rover traverse is not
+  astronaut-route or terrain-safety evidence.

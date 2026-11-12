@@ -17,13 +17,22 @@ test("all region fixtures obey shared contract and cannot imply scientific readi
   for (const id of regionIds) {
     const region = regionSchema.parse(regions[id]);
     assert.equal(region.routing.enabled, false);
-    assert.equal(region.data_status, "illustrative");
+    // Data status may not claim audited rasters, and any available layer may
+    // only be an Observed overlay (e.g. a recorded rover traverse); neither
+    // implies routing, terrain safety or mission feasibility.
+    assert.notEqual(region.data_status, "raster_audited");
+    assert.ok(
+      region.layers.every(
+        (l) =>
+          l.availability !== "available" ||
+          (l.evidence === "Observed" && l.kind === "overlay"),
+      ),
+    );
     assert.ok(
       region.targets.every(
         (t) => t.coordinates === null && !t.coordinate_verified,
       ),
     );
-    assert.ok(region.layers.every((l) => l.availability !== "available"));
   }
 });
 test("individual stop moves preserve membership and boundaries", () => {

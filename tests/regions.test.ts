@@ -39,7 +39,10 @@ test("registry resolves every region, typed metadata and safe unknown IDs", () =
     assert.equal(getRegion(region.id), region);
     assert.ok(regionSchema.safeParse(region).success);
     assert.equal(getTargets(region.id), region.targets);
-    assert.deepEqual(getAvailableLayers(region.id), []);
+    assert.deepEqual(
+      getAvailableLayers(region.id),
+      region.layers.filter((l) => l.availability === "available"),
+    );
     assert.equal(getMapConfig(region.id), region.map);
     assert.equal(getRegionEvidence(region.id), region.source_references);
     assert.equal(getRegionCapabilities(region.id), region.capabilities);
@@ -182,7 +185,7 @@ test("declarative renderer mounts only current regional sources and cleans them 
   const map = fake as unknown as MapInstance;
   const region = syntheticMap();
   const cleanup = mountRegionLayers(map, region);
-  assert.equal(layers.size, 3);
+  assert.equal(layers.size, region.layers.length);
   let state = updateLayerState(region, {}, region.layers[1].id, {
     visible: true,
     opacity: 35,
@@ -201,9 +204,10 @@ test("declarative renderer mounts only current regional sources and cleans them 
     ),
   );
   applyLayerStates(map, region, state, true);
-  assert.deepEqual(calls.at(-2), [
+  const layoutCalls = calls.filter((c) => c[0] === "layout");
+  assert.deepEqual(layoutCalls.at(-1), [
     "layout",
-    "region-jezero-geology",
+    `region-${region.layers.at(-1)!.id}`,
     "visibility",
     "none",
   ]);
