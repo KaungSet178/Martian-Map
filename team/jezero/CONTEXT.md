@@ -248,3 +248,31 @@ frontend. All of this came from the downloadable PDS product, not from tracing i
   `metadata_verified` (real product audited at metadata level; no raster audited, so
   not raster_audited). Routing stays disabled — a recorded rover traverse is not
   astronaut-route or terrain-safety evidence.
+
+## Blank-map diagnosis and fix (feat/jezero-map)
+
+The v3 integration passed every gate and a headless app probe (canvas mounted, GeoJSON
+HTTP 200, no console errors) yet painted nothing. Pixel-scan of a probe screenshot
+showed a uniform background: the line was not rendered at all, not merely faint.
+Isolation then found the cause in two steps:
+
+1. **Renderer isolation**: a standalone page (copy of MapLibre UMD + the same style,
+   source, layer and camera) painted the line correctly — MapLibre, the worker, WebGL
+   and the asset delivery were all healthy, so the fault was in the asset itself, not
+   the renderer or app wiring.
+2. **Live app state probe** (temporary `window.__jezeroMap` hook, removed after): layer
+   `visible`, correct color/width/opacity, source loaded, camera clamped by
+   `supported_extent` maxBounds to zoom ~12.1 (viewport 18.402–18.520 N) — all correct.
+
+Root cause: **the v3 build script emitted the product's defective
+`planetodetic_latitude` column (constant 18.346169) into the output coordinates**
+instead of the varying planetocentric latitude, despite the audit having already
+flagged that column. The line sat at 18.346 N — below the supported extent's southern
+edge (18.402 N) — so the maxBounds-clamped viewport could never show it.
+
+Fix: `build_traverse.mjs` now emits `planetocentric_latitude` in the output
+coordinates (consistent with the documented display convention, which it had claimed
+all along); asset regenerated (same 3,502 points, 42.785 km); `dataset_version` →
+`jezero-traverse-v4`. Also confirmed empirically: this MapLibre version clamps zoom
+*up* so the viewport stays inside `setMaxBounds`, so the effective initial zoom is
+~12.1 rather than the configured `initial_zoom` 10.

@@ -184,7 +184,7 @@ const feature = {
     type: "LineString",
     coordinates: kept.map((p) => [
       +p.lon.toFixed(6),
-      +p.latD.toFixed(6),
+      +p.latC.toFixed(6),
     ]),
   },
 };

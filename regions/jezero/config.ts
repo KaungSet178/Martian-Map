@@ -51,10 +51,13 @@ export const config = {
     },
   },
   data_status: "metadata_verified",
-  // v3: real recorded-traverse product integrated (PLACES best_interp.csv
-  // v16.0), display transform reviewed, visualization enabled. No raster
-  // (imagery/DEM) audited yet, so data_status stays at metadata_verified.
-  dataset_version: "jezero-traverse-v3",
+  // v4: traverse display asset corrected to planetocentric latitude in the
+  // emitted coordinates (the v3 asset had accidentally emitted the product's
+  // defective constant planetodetic column, placing the line below the
+  // supported-extent viewport and invisible). Found via renderer isolation:
+  // a standalone MapLibre probe painted the same asset, while a live app
+  // state probe showed correct layer/camera wiring.
+  dataset_version: "jezero-traverse-v4",
   routing: {
     enabled: false,
     reason:
