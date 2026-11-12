@@ -1,8 +1,8 @@
 # Marswalk frontend prototype — Design System v2
 
-Open `frontend_prototype_v2.html` in a desktop or mobile browser. No development server or external dependencies are required.
+Open `frontend_prototype.html` in a desktop or mobile browser. No development server or external dependencies are required. This historical standalone prototype is retained as a design reference; the shared application now runs from the repository root with `npm run dev`.
 
-## Based on supplied `DESIGN (1).md`
+## Based on supplied `DESIGN.md`
 
 - Dark mission-console theme using exact color tokens.
 - Geist/IBM Plex Mono naming with system fallback (no font files distributed).

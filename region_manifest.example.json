@@ -1,13 +1,236 @@
 {
   "id": "gale",
   "name": "Gale Crater",
-  "mission_context": "Curiosity exploration corridor and lower Mount Sharp; exact AOI pending audit",
-  "coordinate_system": {"latitude_type":"planetocentric", "longitude_direction":"east", "longitude_range":"0-360", "projected_crs":"pending-source-validation"},
-  "view_center": {"latitude": -4.59, "longitude_east":137.44, "status":"illustrative-map-center-not-target-coordinate"},
-  "data_status":"illustrative",
-  "dataset_version":"unverified-demo-v0",
-  "layers":[{"id":"terrain","type":"elevation","availability":"pending","source_id":null,"observation_date":null,"spatial_resolution_m":null,"coverage":null,"limitations":"DEM footprint/source-resolution not audited"}],
-  "targets":[],
-  "routing":{"enabled":false,"reason":"No audited DEM/hazard coverage or approved routing threshold policy","eligibility_dataset_id":null,"policy_version":null},
-  "source_references":[]
+  "mission_context": "Curiosity · Lower Mount Sharp",
+  "region_status": "exploration",
+  "scientific_context": {
+    "mission": "NASA · Curiosity",
+    "question": "How do clay-to-sulfate transitions record changing water conditions?"
+  },
+  "coordinate_system": {
+    "body": "Mars",
+    "latitude_type": "planetocentric",
+    "longitude_direction": "east",
+    "longitude_range": "0-360",
+    "projected_crs": "pending-source-validation",
+    "reference_surface": null,
+    "sphere_radius_m": null,
+    "vertical_datum": null
+  },
+  "view_center": {
+    "latitude": -4.59,
+    "longitude_east": 137.44,
+    "status": "illustrative-map-center-not-target-coordinate"
+  },
+  "map": {
+    "visualization": {
+      "status": "unavailable",
+      "reason": "Georeferenced imagery and a reviewed Mars display transform are not integrated."
+    },
+    "initial_zoom": 7.3,
+    "supported_extent": null,
+    "display_transform": {
+      "status": "unverified",
+      "reason": "Source registration and planetary projection review are pending."
+    }
+  },
+  "data_status": "illustrative",
+  "dataset_version": "shared-ui-fixture-v1",
+  "layers": [
+    {
+      "id": "gale-optical",
+      "type": "Optical imagery",
+      "display_name": "Optical imagery",
+      "kind": "optical",
+      "availability": "pending",
+      "source_id": null,
+      "observation_date": null,
+      "spatial_resolution_m": null,
+      "coverage": null,
+      "limitations": "Georeferenced orbital imagery and its planetary transform have not been integrated.",
+      "evidence": "Unavailable",
+      "attribution": null,
+      "rendering": {
+        "kind": "unavailable",
+        "reason": "Georeferenced orbital imagery and its planetary transform have not been integrated."
+      },
+      "default_visible": false,
+      "default_opacity": 70,
+      "legend": null
+    },
+    {
+      "id": "gale-terrain",
+      "type": "Terrain & slope",
+      "display_name": "Terrain & slope",
+      "kind": "topography",
+      "availability": "pending",
+      "source_id": null,
+      "observation_date": null,
+      "spatial_resolution_m": null,
+      "coverage": null,
+      "limitations": "Requires audited DEM, resolution, valid-data footprint and documented derivation.",
+      "evidence": "Unavailable",
+      "attribution": null,
+      "rendering": {
+        "kind": "unavailable",
+        "reason": "Requires audited DEM, resolution, valid-data footprint and documented derivation."
+      },
+      "default_visible": false,
+      "default_opacity": 70,
+      "legend": null
+    },
+    {
+      "id": "gale-geology",
+      "type": "Geology & mineralogy",
+      "display_name": "Geology & mineralogy",
+      "kind": "geology",
+      "availability": "pending",
+      "source_id": null,
+      "observation_date": null,
+      "spatial_resolution_m": null,
+      "coverage": null,
+      "limitations": "Requires published map products, classification legends and coverage verification.",
+      "evidence": "Unavailable",
+      "attribution": null,
+      "rendering": {
+        "kind": "unavailable",
+        "reason": "Requires published map products, classification legends and coverage verification."
+      },
+      "default_visible": false,
+      "default_opacity": 70,
+      "legend": null
+    }
+  ],
+  "targets": [
+    {
+      "id": "gale-objective-1",
+      "region_id": "gale",
+      "title": "Layered sedimentary unit",
+      "description": "Investigate how sedimentary layers could record environmental change.",
+      "scientific_goal": "Investigate how sedimentary layers could record environmental change.",
+      "geological_significance": null,
+      "priority_category": "Unranked scenario objective",
+      "coordinates": null,
+      "coordinate_reference": {
+        "body": "Mars",
+        "latitude_type": "planetocentric",
+        "longitude_direction": "east",
+        "longitude_range": "0-360"
+      },
+      "coordinate_verified": false,
+      "source_ids": [],
+      "activity": "Propose observations of bedding and stratigraphic relationships.",
+      "evidence": "Scenario",
+      "verification": "scenario",
+      "routing_eligibility": {
+        "status": "unavailable",
+        "reason": "Target coordinates and source evidence require verification."
+      }
+    },
+    {
+      "id": "gale-objective-2",
+      "region_id": "gale",
+      "title": "Clay-to-sulfate transition",
+      "description": "Compare mineralogical context relevant to Mars’s climate history.",
+      "scientific_goal": "Compare mineralogical context relevant to Mars’s climate history.",
+      "geological_significance": null,
+      "priority_category": "Unranked scenario objective",
+      "coordinates": null,
+      "coordinate_reference": {
+        "body": "Mars",
+        "latitude_type": "planetocentric",
+        "longitude_direction": "east",
+        "longitude_range": "0-360"
+      },
+      "coordinate_verified": false,
+      "source_ids": [],
+      "activity": "Plan comparative observations after source and location verification.",
+      "evidence": "Scenario",
+      "verification": "scenario",
+      "routing_eligibility": {
+        "status": "unavailable",
+        "reason": "Target coordinates and source evidence require verification."
+      }
+    },
+    {
+      "id": "gale-objective-3",
+      "region_id": "gale",
+      "title": "Sulfate-bearing outcrop",
+      "description": "Investigate a proposed objective about changing water conditions.",
+      "scientific_goal": "Investigate a proposed objective about changing water conditions.",
+      "geological_significance": null,
+      "priority_category": "Unranked scenario objective",
+      "coordinates": null,
+      "coordinate_reference": {
+        "body": "Mars",
+        "latitude_type": "planetocentric",
+        "longitude_direction": "east",
+        "longitude_range": "0-360"
+      },
+      "coordinate_verified": false,
+      "source_ids": [],
+      "activity": "Document bedding and erosion patterns at a future verified site.",
+      "evidence": "Scenario",
+      "verification": "scenario",
+      "routing_eligibility": {
+        "status": "unavailable",
+        "reason": "Target coordinates and source evidence require verification."
+      }
+    }
+  ],
+  "contextual_datasets": [
+    {
+      "id": "gale-environment-context",
+      "name": "Historical REMS / RAD context",
+      "evidence": "Unavailable",
+      "availability": {
+        "status": "unavailable",
+        "reason": "No applicable observation products or exposure models are integrated."
+      },
+      "source_ids": [],
+      "limitations": "Historical rover observations are not mission forecasts or astronaut dose models."
+    }
+  ],
+  "routing": {
+    "enabled": false,
+    "reason": "Audited terrain, hazard coverage and an approved routing policy are not connected.",
+    "eligibility_dataset_id": null,
+    "policy_version": null
+  },
+  "capabilities": {
+    "terrain_coverage": {
+      "status": "unknown",
+      "reason": "No terrain footprint has been audited.",
+      "source_id": null
+    },
+    "experimental_routing": {
+      "status": "unavailable",
+      "reason": "No experimental planning service is connected."
+    },
+    "validated_routing": {
+      "status": "unavailable",
+      "reason": "Terrain, hazards and policy require scientific review."
+    },
+    "mission_feasibility": {
+      "status": "unavailable",
+      "reason": "Six supported assessments and applicable models are required."
+    }
+  },
+  "source_references": [
+    {
+      "id": "gale-mission-context",
+      "title": "Gale Crater mission context",
+      "url": "https://science.nasa.gov/mission/msl-curiosity/location-map/",
+      "agency": "NASA",
+      "instrument": null,
+      "product_id": null,
+      "acquisition_date": null,
+      "sol": null,
+      "native_resolution_m": null,
+      "processing_notes": [],
+      "limitations": [
+        "Mission context only; does not verify scenario objectives."
+      ]
+    }
+  ]
 }
