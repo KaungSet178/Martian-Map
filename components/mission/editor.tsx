@@ -127,7 +127,12 @@ export function MissionEditor({
                 <span className="stop-number mono">{index + 1}</span>
                 <div className="stop-copy">
                   <strong>{target.title}</strong>
-                  <span>Scenario · Location unverified</span>
+                  <span>
+                    {target.evidence} ·{" "}
+                    {target.coordinate_verified
+                      ? "Location verified"
+                      : "Location unverified"}
+                  </span>
                   <div className="stop-actions">
                     <button
                       className="icon-button"

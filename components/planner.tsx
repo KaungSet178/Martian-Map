@@ -22,7 +22,12 @@ import {
   CircleHelp,
 } from "lucide-react";
 import { regionIdSchema, type RegionId } from "@/lib/contracts/region";
-import { regions, regionIds, regionPresentation } from "@/lib/fixtures/regions";
+import { regions, regionIds } from "@/lib/regions/registry";
+import {
+  updateLayerState,
+  type LayerStates,
+  type LayerState,
+} from "@/lib/map/region-layers";
 import {
   newMission,
   parseMission,
@@ -78,6 +83,7 @@ export function Planner() {
   const [contours, setContours] = useState(true);
   const [markers, setMarkers] = useState(true);
   const [opacity, setOpacity] = useState(70);
+  const [layerStates, setLayerStates] = useState<LayerStates>({});
   const [message, setMessage] = useState("");
   const [storageError, setStorageError] = useState("");
   const [saved, setSaved] = useState<Mission[]>([]);
@@ -424,7 +430,7 @@ export function Planner() {
               <>
                 <details className="science-question">
                   <summary>The science question</summary>
-                  <p>{regionPresentation[regionId].question}</p>
+                  <p>{region.scientific_context.question}</p>
                 </details>
                 <TargetCatalog
                   region={region}
@@ -453,6 +459,13 @@ export function Planner() {
             )}
             {panel === "layers" && (
               <LayerManager
+                region={region}
+                layerStates={layerStates}
+                onLayerChange={(id: string, change: Partial<LayerState>) =>
+                  setLayerStates((current) =>
+                    updateLayerState(region, current, id, change),
+                  )
+                }
                 preview={preview}
                 setPreview={setPreview}
                 contours={contours}
@@ -510,6 +523,7 @@ export function Planner() {
           contours={contours}
           showMarkers={markers}
           opacity={opacity}
+          layerStates={layerStates}
         />
       </main>
       <footer className="app-status">
@@ -547,12 +561,12 @@ export function Planner() {
                 onClick={() => changeRegion(id)}
               >
                 <span className="eyebrow">
-                  {regionPresentation[id].mission}
+                  {regions[id].scientific_context.mission}
                 </span>
                 <h3>{regions[id].name}</h3>
-                <p>{regionPresentation[id].question}</p>
+                <p>{regions[id].scientific_context.question}</p>
                 <Badge>
-                  {id === "oxia"
+                  {regions[id].region_status === "planned"
                     ? "Planned mission area"
                     : "Exploration context"}
                 </Badge>
@@ -562,10 +576,14 @@ export function Planner() {
               </button>
             ))}
           </div>
-          <Notice title="Scientific map integration pending">
-            No source-verified orbital image, target coordinates or routing
-            coverage is bundled for any region.
-          </Notice>
+          {regionIds.every(
+            (id) => regions[id].map.visualization.status === "unavailable",
+          ) && (
+            <Notice title="Scientific map integration pending">
+              No source-verified orbital image, target coordinates or routing
+              coverage is bundled for any region.
+            </Notice>
+          )}
         </Dialog>
       )}
       {modal === "saved" && (

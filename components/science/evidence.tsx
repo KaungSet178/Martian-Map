@@ -3,6 +3,11 @@
 import { ArrowUpRight } from "lucide-react";
 import { type RegionManifest } from "@/lib/contracts/region";
 import { Badge, Notice, EvidenceBadge } from "@/components/ui/primitives";
+import {
+  layerState,
+  type LayerStates,
+  type LayerState,
+} from "@/lib/map/region-layers";
 
 export function EvidenceDetails({ region }: { region: RegionManifest }) {
   return (
@@ -10,17 +15,24 @@ export function EvidenceDetails({ region }: { region: RegionManifest }) {
       <div className="section-intro">
         <span className="eyebrow">Data register</span>
         <h2>Know the evidence</h2>
-        <p>{region.name} · Shared UI fixtures</p>
+        <p>
+          {region.name} ·{" "}
+          {region.data_status === "illustrative"
+            ? "Shared UI fixtures"
+            : region.data_status}
+        </p>
       </div>
-      <Notice title="Scientific integration pending">
-        Mission references provide context. They are not integrated imagery,
-        target observations, or approved route evidence.
-      </Notice>
+      {region.data_status === "illustrative" && (
+        <Notice title="Scientific integration pending">
+          Mission references provide context. They are not integrated imagery,
+          target observations, or approved route evidence.
+        </Notice>
+      )}
       <dl className="metadata">
         <div>
           <dt>Data status</dt>
           <dd>
-            <EvidenceBadge value="Scenario" />
+            <Badge>{region.data_status}</Badge>
           </dd>
         </div>
         <div>
@@ -37,15 +49,18 @@ export function EvidenceDetails({ region }: { region: RegionManifest }) {
         </div>
         <div>
           <dt>Projected Mars CRS</dt>
-          <dd>Pending source validation</dd>
+          <dd>{region.coordinate_system.projected_crs}</dd>
         </div>
         <div>
           <dt>Coverage / resolution</dt>
-          <dd>Unavailable / unaudited</dd>
+          <dd>
+            {region.capabilities.terrain_coverage.status} ·{" "}
+            {region.capabilities.terrain_coverage.reason}
+          </dd>
         </div>
         <div>
           <dt>Routing policy / models</dt>
-          <dd>Not connected</dd>
+          <dd>{region.capabilities.validated_routing.reason}</dd>
         </div>
       </dl>
       <h3>Mission references</h3>
@@ -61,28 +76,58 @@ export function EvidenceDetails({ region }: { region: RegionManifest }) {
           <ArrowUpRight size={16} aria-hidden="true" />
         </a>
       ))}
-      <h3>Unavailable scientific products</h3>
+      <h3>Scientific products</h3>
       {region.layers.map((layer) => (
         <div className="data-product" key={layer.id}>
           <div className="section-heading">
-            <strong>{layer.type}</strong>
-            <Badge>Pending</Badge>
+            <strong>{layer.display_name}</strong>
+            <Badge>{layer.availability}</Badge>
           </div>
           <p>{layer.limitations}</p>
           <p className="supporting">
-            Source product, acquisition date, processing, resolution and
-            footprint: unavailable.
+            Source: {layer.source_id ?? "unavailable"} · Date:{" "}
+            {layer.observation_date ?? "unavailable"} · Resolution:{" "}
+            {layer.spatial_resolution_m === null
+              ? "unavailable"
+              : `${layer.spatial_resolution_m} m`}{" "}
+            · Coverage: {layer.coverage ?? "unavailable"}
           </p>
         </div>
       ))}
-      <div className="data-product">
-        <strong>Atmosphere, thermal and radiation context</strong>
-        <p>
-          No applicable products or engineering models are integrated.
-          Historical rover observations, if added, must retain their date,
-          instrument and measurement location.
-        </p>
-      </div>
+      {region.contextual_datasets.map((dataset) => (
+        <div className="data-product" key={dataset.id}>
+          <strong>{dataset.name}</strong>
+          <p>{dataset.availability.reason}</p>
+          <p>{dataset.limitations}</p>
+        </div>
+      ))}
+      <h3>Source provenance</h3>
+      {region.source_references.map((source) => (
+        <dl className="metadata" key={source.id}>
+          <div>
+            <dt>{source.title}</dt>
+            <dd>
+              {source.agency ?? "Agency unavailable"} ·{" "}
+              {source.instrument ?? "Instrument unavailable"}
+            </dd>
+          </div>
+          <div>
+            <dt>Product / acquisition</dt>
+            <dd>
+              {source.product_id ?? "Unavailable"} ·{" "}
+              {source.acquisition_date ?? "Date unavailable"}
+              {source.sol !== null && ` · Sol ${source.sol}`}
+            </dd>
+          </div>
+          <div>
+            <dt>Processing and limitations</dt>
+            <dd>
+              {[...source.processing_notes, ...source.limitations].join(" ") ||
+                "Unavailable"}
+            </dd>
+          </div>
+        </dl>
+      ))}
       <h3>Evidence vocabulary</h3>
       <dl className="evidence-vocabulary">
         {Object.entries({
@@ -104,6 +149,9 @@ export function EvidenceDetails({ region }: { region: RegionManifest }) {
 }
 
 export function LayerManager({
+  region,
+  layerStates,
+  onLayerChange,
   preview,
   setPreview,
   contours,
@@ -114,6 +162,9 @@ export function LayerManager({
   setOpacity,
   onEvidence,
 }: {
+  region: RegionManifest;
+  layerStates: LayerStates;
+  onLayerChange: (id: string, change: Partial<LayerState>) => void;
   preview: boolean;
   setPreview: (v: boolean) => void;
   contours: boolean;
@@ -134,10 +185,80 @@ export function LayerManager({
           controls.
         </p>
       </div>
-      <Notice title="No scientific layers connected">
-        Optical imagery, terrain, geology and coverage masks are pending.
-        Unknown terrain is not safe terrain.
-      </Notice>
+      {region.map.visualization.status === "unavailable" ? (
+        <Notice title="No scientific layers connected">
+          Optical imagery, terrain, geology and coverage masks are pending.
+          Unknown terrain is not safe terrain.
+        </Notice>
+      ) : (
+        region.layers
+          .filter((l) => l.availability === "available")
+          .map((layer) => {
+            const state = layerState(region, layerStates, layer.id);
+            return (
+              <div key={layer.id} className="data-product">
+                <label className="check-row">
+                  <input
+                    type="checkbox"
+                    checked={state.visible}
+                    onChange={(e) =>
+                      onLayerChange(layer.id, { visible: e.target.checked })
+                    }
+                  />
+                  {layer.display_name}
+                  <EvidenceBadge value={layer.evidence} />
+                </label>
+                {state.visible && (
+                  <>
+                    <label
+                      className="field-label"
+                      htmlFor={`opacity-${layer.id}`}
+                    >
+                      {layer.display_name} opacity{" "}
+                      <span className="mono">{state.opacity}%</span>
+                    </label>
+                    <input
+                      id={`opacity-${layer.id}`}
+                      type="range"
+                      min="0"
+                      max="100"
+                      value={state.opacity}
+                      onChange={(e) =>
+                        onLayerChange(layer.id, {
+                          opacity: Number(e.target.value),
+                        })
+                      }
+                    />
+                    {layer.legend && (
+                      <div className="legend-detail">
+                        <strong>
+                          {layer.legend.title}
+                          {layer.legend.units ? ` (${layer.legend.units})` : ""}
+                        </strong>
+                        {layer.legend.items.map((item) => (
+                          <p key={item.label}>
+                            <span
+                              aria-hidden="true"
+                              style={{
+                                backgroundColor: item.color,
+                                width: 16,
+                                height: 12,
+                              }}
+                            />
+                            {item.label}
+                          </p>
+                        ))}
+                      </div>
+                    )}
+                    <p className="supporting">
+                      {layer.attribution} · {layer.limitations}
+                    </p>
+                  </>
+                )}
+              </div>
+            );
+          })
+      )}
       <h3>Interface preview</h3>
       <p className="supporting">
         Demonstration controls below affect schematic artwork only.

@@ -2,7 +2,7 @@
 
 import { ArrowUpRight, Check, Plus } from "lucide-react";
 import type { RegionManifest, Target } from "@/lib/contracts/region";
-import { Badge, Notice } from "@/components/ui/primitives";
+import { Badge, Notice, EvidenceBadge } from "@/components/ui/primitives";
 
 export function TargetCatalog({
   region,
@@ -26,9 +26,11 @@ export function TargetCatalog({
           Explore a science question, then add objectives to your draft mission.
         </p>
       </div>
-      <Notice title="Scenario objectives">
-        Concepts only. Source products and verified locations are pending.
-      </Notice>
+      {region.targets.some((t) => t.evidence === "Scenario") && (
+        <Notice title="Scenario objectives">
+          Concepts only. Source products and verified locations are pending.
+        </Notice>
+      )}
       <div className="target-list">
         {region.targets.map((target) => (
           <article
@@ -37,7 +39,7 @@ export function TargetCatalog({
           >
             <div className="target-heading">
               <span className="diamond" />
-              <Badge tone="science">Scenario</Badge>
+              <EvidenceBadge value={target.evidence} />
               <span className="supporting">
                 {stops.includes(target.id)
                   ? `Stop ${stops.indexOf(target.id) + 1}`
@@ -53,7 +55,11 @@ export function TargetCatalog({
             </button>
             <p>{target.scientific_goal}</p>
             <div className="target-actions">
-              <span className="supporting">Location unverified</span>
+              <span className="supporting">
+                {target.coordinate_verified
+                  ? "Location verified"
+                  : "Location unverified"}
+              </span>
               <button
                 className="small-button"
                 aria-label={`${stops.includes(target.id) ? "Remove" : "Add"} ${target.title}`}
@@ -89,34 +95,56 @@ export function TargetDetails({
   return (
     <>
       <div className="inline-labels">
-        <Badge tone="science">Scenario objective</Badge>
-        <Badge>Location unverified</Badge>
+        <EvidenceBadge value={target.evidence} />
+        <Badge>
+          {target.coordinate_verified
+            ? "Location verified"
+            : "Location unverified"}
+        </Badge>
       </div>
       <p className="lead">{target.scientific_goal}</p>
       <h3>Proposed field activity</h3>
       <p>{target.activity}</p>
-      <Notice title="Not a routable waypoint">
-        No verified target coordinates or target-specific observations are
-        connected. You can save this concept in a draft mission.
-      </Notice>
+      {target.routing_eligibility.status === "unavailable" && (
+        <Notice title="Not a routable waypoint">
+          {target.routing_eligibility.reason} You can save this concept in a
+          draft mission.
+        </Notice>
+      )}
+      {target.coordinates && target.coordinate_verified && (
+        <p className="mono">
+          {target.coordinates.latitude}° planetocentric ·{" "}
+          {target.coordinates.longitude_east}° E
+        </p>
+      )}
+      {target.geological_significance && (
+        <p>{target.geological_significance}</p>
+      )}
       <h3>Supporting evidence</h3>
-      <p>
-        Target source products, dates, resolution and mapped coverage are
-        unavailable. The reference below provides mission context only; it does
-        not verify this proposed target.
-      </p>
-      {region.source_references.map((source) => (
-        <a
-          className="source-link"
-          key={source.id}
-          href={source.url}
-          target="_blank"
-          rel="noreferrer"
-        >
-          {source.title}
-          <ArrowUpRight size={16} aria-hidden="true" />
-        </a>
-      ))}
+      {!target.source_ids.length && (
+        <p>
+          Target source products, dates, resolution and mapped coverage are
+          unavailable. The reference below provides mission context only; it
+          does not verify this proposed target.
+        </p>
+      )}
+      {region.source_references
+        .filter(
+          (source) =>
+            !target.source_ids.length || target.source_ids.includes(source.id),
+        )
+        .map((source) => (
+          <a
+            className="source-link"
+            key={source.id}
+            href={source.url}
+            target="_blank"
+            rel="noreferrer"
+          >
+            {source.title}
+            <ArrowUpRight size={16} aria-hidden="true" />
+          </a>
+        ))}
       <button className={added ? "full" : "primary full"} onClick={onToggle}>
         {added ? "Remove objective from mission" : "Add objective to mission"}
       </button>

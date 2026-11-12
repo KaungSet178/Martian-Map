@@ -70,12 +70,16 @@ export function missionIssues(
       issues.push("Document the recovery assumption for a one-way mission.");
   }
   if (
-    mission.target_ids.some(
-      (id) => !region.targets.find((t) => t.id === id)?.coordinate_verified,
-    )
+    mission.target_ids.some((id) => {
+      const target = region.targets.find((t) => t.id === id);
+      return (
+        !target?.coordinate_verified ||
+        target.routing_eligibility.status !== "available"
+      );
+    })
   )
     issues.push(
-      "Selected objectives need verified target coordinates before routing.",
+      "Selected objectives need verified target coordinates and routing eligibility before routing.",
     );
   if (mission.dataset_version !== region.dataset_version)
     issues.push(

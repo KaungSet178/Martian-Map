@@ -2,7 +2,19 @@
 
 import { useEffect, useRef, useState } from "react";
 import type { Map as MapInstance, Marker } from "maplibre-gl";
-import type { FeatureCollection } from "geojson";
+import {
+  schematicContours,
+  previewCamera,
+  previewPositions,
+} from "@/lib/map/preview";
+import {
+  applyLayerStates,
+  mountRegionLayers,
+  layerState,
+  toDisplayCoordinates,
+  displayBounds,
+  type LayerStates,
+} from "@/lib/map/region-layers";
 import {
   Crosshair,
   Layers,
@@ -29,29 +41,8 @@ type Props = {
   contours: boolean;
   showMarkers: boolean;
   opacity: number;
+  layerStates: LayerStates;
 };
-
-function schematicContours(): FeatureCollection {
-  return {
-    type: "FeatureCollection",
-    features: Array.from({ length: 35 }, (_, row) => ({
-      type: "Feature",
-      properties: { major: row % 5 === 0 },
-      geometry: {
-        type: "LineString",
-        coordinates: Array.from({ length: 90 }, (_, col) => {
-          const x = (col - 45) * 0.065;
-          return [
-            x,
-            (row - 17) * 0.15 +
-              Math.sin(x * 2.3 + row * 0.16) * 0.16 +
-              Math.cos(x * 1.1) * 0.3,
-          ];
-        }),
-      },
-    })),
-  };
-}
 
 export default function MapWorkspace({
   region,
@@ -67,12 +58,19 @@ export default function MapWorkspace({
   contours,
   showMarkers,
   opacity,
+  layerStates,
 }: Props) {
   const container = useRef<HTMLDivElement>(null);
   const map = useRef<MapInstance | null>(null);
   const markers = useRef<Marker[]>([]);
   const [ready, setReady] = useState(false);
   const [failed, setFailed] = useState(false);
+  const scientificMap = region.map.visualization.status === "available";
+  const activeLayers = region.layers.filter(
+    (l) =>
+      l.availability === "available" &&
+      layerState(region, layerStates, l.id).visible,
+  );
 
   useEffect(() => {
     let disposed = false;
@@ -137,9 +135,49 @@ export default function MapWorkspace({
   }, []);
 
   useEffect(() => {
+    if (!ready || !map.current) return;
+    return mountRegionLayers(map.current, region);
+  }, [ready, region]);
+
+  useEffect(() => {
+    if (!ready || !map.current) return;
+    applyLayerStates(map.current, region, layerStates, preview);
+  }, [ready, region, layerStates, preview]);
+
+  useEffect(() => {
+    if (!ready || !map.current) return;
+    map.current.setMaxBounds(
+      !preview && scientificMap && region.map.supported_extent
+        ? displayBounds(region.map.supported_extent)
+        : null,
+    );
+    map.current.jumpTo(
+      preview || !scientificMap
+        ? previewCamera
+        : {
+            center: toDisplayCoordinates(region.view_center),
+            zoom: region.map.initial_zoom,
+            bearing: 0,
+          },
+    );
+  }, [ready, region, preview, scientificMap]);
+
+  useEffect(() => {
     const instance = map.current;
     if (!ready || !instance) return;
-    instance.getCanvas().setAttribute("tabindex", preview ? "0" : "-1");
+    instance
+      .getCanvas()
+      .setAttribute("tabindex", preview || scientificMap ? "0" : "-1");
+    instance
+      .getCanvas()
+      .setAttribute(
+        "aria-label",
+        preview
+          ? "Schematic preview canvas. Not a scientific map."
+          : scientificMap
+            ? `${region.name} scientific map. Display coordinates only; no Earth distance calculations.`
+            : "Schematic preview canvas. No georeferenced scientific map is connected.",
+      );
     if (!instance.getSource("schematic")) {
       instance.addSource("schematic", {
         type: "geojson",
@@ -169,52 +207,72 @@ export default function MapWorkspace({
       instance.keyboard,
       instance.touchZoomRotate,
     ]) {
-      if (preview) handler.enable();
+      if (preview || scientificMap) handler.enable();
       else handler.disable();
     }
     instance.dragRotate.disable();
-  }, [ready, preview, contours, opacity]);
+  }, [ready, preview, contours, opacity, scientificMap, region.name]);
 
   useEffect(() => {
     let disposed = false;
     markers.current.forEach((m) => m.remove());
     markers.current = [];
-    if (!ready || !preview || !showMarkers || !map.current) return;
-    const positions: [number, number][] = [
-      [-0.5, -0.05],
-      [0.12, 0.65],
-      [0.5, 0.1],
-    ];
+    if (
+      !ready ||
+      (!preview && !scientificMap) ||
+      (preview && !showMarkers) ||
+      !map.current
+    )
+      return;
     import("maplibre-gl").then(({ Marker }) => {
       if (disposed || !map.current) return;
-      markers.current = region.targets.map((target, i) => {
-        const button = document.createElement("button");
-        button.className = `science-marker ${selected === target.id ? "inspected" : ""} ${stops.includes(target.id) ? "added" : ""}`;
-        button.setAttribute(
-          "aria-label",
-          `Inspect ${target.title}, schematic location`,
-        );
-        button.setAttribute("aria-pressed", String(selected === target.id));
-        const label = document.createElement("span");
-        label.textContent = stops.includes(target.id)
-          ? String(stops.indexOf(target.id) + 1)
-          : "◇";
-        button.append(label);
-        button.onclick = () => onInspect(target.id);
-        return new Marker({ element: button })
-          .setLngLat(positions[i % positions.length])
-          .addTo(map.current!);
-      });
+      markers.current = region.targets
+        .filter((target) =>
+          preview
+            ? target.evidence === "Scenario"
+            : target.coordinate_verified && target.coordinates !== null,
+        )
+        .map((target, i) => {
+          const button = document.createElement("button");
+          button.className = `science-marker ${selected === target.id ? "inspected" : ""} ${stops.includes(target.id) ? "added" : ""}`;
+          button.setAttribute(
+            "aria-label",
+            `Inspect ${target.title}, ${preview ? "schematic location" : "verified location"}`,
+          );
+          button.setAttribute("aria-pressed", String(selected === target.id));
+          const label = document.createElement("span");
+          label.textContent = stops.includes(target.id)
+            ? String(stops.indexOf(target.id) + 1)
+            : "◇";
+          button.append(label);
+          button.onclick = () => onInspect(target.id);
+          return new Marker({ element: button })
+            .setLngLat(
+              preview
+                ? previewPositions[i % previewPositions.length]
+                : toDisplayCoordinates(target.coordinates!),
+            )
+            .addTo(map.current!);
+        });
     });
     return () => {
       disposed = true;
       markers.current.forEach((m) => m.remove());
     };
-  }, [ready, preview, showMarkers, region, selected, stops, onInspect]);
+  }, [
+    ready,
+    preview,
+    showMarkers,
+    region,
+    selected,
+    stops,
+    onInspect,
+    scientificMap,
+  ]);
 
   return (
     <section
-      className={`map-workspace ${preview ? "preview" : ""}`}
+      className={`map-workspace ${preview ? "preview" : ""} ${scientificMap ? "scientific" : ""}`}
       aria-label={`${region.name} map workspace`}
     >
       <div className="map-canvas" ref={container} data-testid="map-canvas" />
@@ -231,7 +289,7 @@ export default function MapWorkspace({
           )}
           <div>
             <span className="eyebrow">
-              {region.id === "oxia"
+              {region.region_status === "planned"
                 ? "Planned mission area"
                 : "Exploration region"}
             </span>
@@ -250,7 +308,7 @@ export default function MapWorkspace({
           <span>Schematic geometry · not Mars imagery</span>
           <button onClick={() => setPreview(false)}>Exit preview</button>
         </div>
-      ) : (
+      ) : !scientificMap ? (
         <div className="map-empty">
           <div className="map-empty-icon">
             <MapIcon size={28} strokeWidth={1.3} />
@@ -269,12 +327,12 @@ export default function MapWorkspace({
             Preview uses schematic artwork, without calculated routes.
           </span>
         </div>
-      )}
+      ) : null}
       <div className="map-navigation" aria-label="Map controls">
         <button
           className="icon-button"
           onClick={() => map.current?.resetNorth({ duration: 0 })}
-          disabled={!preview || !ready || failed}
+          disabled={(!preview && !scientificMap) || !ready || failed}
           aria-label="Reset map north"
         >
           <ArrowUp size={18} />
@@ -284,7 +342,7 @@ export default function MapWorkspace({
           <button
             className="icon-button"
             onClick={() => map.current?.zoomIn({ duration: 0 })}
-            disabled={!preview || !ready || failed}
+            disabled={(!preview && !scientificMap) || !ready || failed}
             aria-label="Zoom map in"
           >
             <Plus size={20} />
@@ -292,7 +350,7 @@ export default function MapWorkspace({
           <button
             className="icon-button"
             onClick={() => map.current?.zoomOut({ duration: 0 })}
-            disabled={!preview || !ready || failed}
+            disabled={(!preview && !scientificMap) || !ready || failed}
             aria-label="Zoom map out"
           >
             <Minus size={20} />
@@ -301,9 +359,17 @@ export default function MapWorkspace({
         <button
           className="icon-button"
           onClick={() =>
-            map.current?.jumpTo({ center: [0, 0], zoom: 7.3, bearing: 0 })
+            map.current?.jumpTo(
+              preview || !scientificMap
+                ? previewCamera
+                : {
+                    center: toDisplayCoordinates(region.view_center),
+                    zoom: region.map.initial_zoom,
+                    bearing: 0,
+                  },
+            )
           }
-          disabled={!preview || !ready || failed}
+          disabled={(!preview && !scientificMap) || !ready || failed}
           aria-label="Reset map view"
         >
           <Crosshair size={20} />
@@ -323,7 +389,10 @@ export default function MapWorkspace({
             </>
           ) : (
             <>
-              <span className="status-dot" /> No active scientific layers
+              <span className="status-dot" />{" "}
+              {activeLayers.length
+                ? activeLayers.map((l) => l.display_name).join(" · ")
+                : "No active scientific layers"}
             </>
           )}
         </button>
@@ -334,7 +403,12 @@ export default function MapWorkspace({
       <div className="map-attribution">
         {preview
           ? "Schematic interface artwork · no observations or routes"
-          : "No NASA / ESA imagery displayed"}
+          : scientificMap
+            ? activeLayers
+                .map((l) => l.attribution)
+                .filter(Boolean)
+                .join(" · ")
+            : "No NASA / ESA imagery displayed"}
       </div>
     </section>
   );

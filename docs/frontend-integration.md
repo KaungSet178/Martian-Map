@@ -12,21 +12,24 @@ The historical HTML prototype remains unchanged as reference material.
 - `components/mission/` contains the ordered editor, route-readiness/feasibility views and printable/downloadable brief.
 - `components/ui/` contains the accessible native dialog, badges, notices and download helper.
 - `lib/contracts/region.ts` provides runtime-validated shared manifest types using the existing team field names/enums.
-- `lib/fixtures/regions.ts` contains clearly labeled shared-interface scenarios. These are **not regional science packages**. Targets have null coordinates, false coordinate verification and no target-specific source IDs.
+- `regions/{gale,jezero,oxia}/` independently own config, targets, layers and validated manifest exports. Current content remains clearly labeled scenarios with null target coordinates and no target-specific source IDs. `lib/regions/registry.ts` is the shared lookup API; the centralized fixture module was removed.
 - `lib/mission/` validates versioned saved plans, stop ordering, imports and route prerequisites.
 - `lib/api/planning.ts` is an explicit unavailable-service boundary. No request is sent to a nonexistent backend and no path/resource result is synthesized.
 
 No files on `feat/gale-map`, `feat/jezero-map` or `feat/oxia-map` were changed or merged.
 Regional owners can supply verified manifests separately. This PR does not approve
-any regional scientific content or alter the existing team contract.
+any regional scientific content. The updated TEAM_CONTRACT.md and regional handoffs
+now describe the actual module interface and file ownership.
 
 ## Manifest conventions
 
 The TypeScript schema follows TEAM_CONTRACT.md and the example manifest: stable
 region/layer/target IDs, availability enums, data status, dataset version, source
-references and explicit routing eligibility. References use `{ id, title, url }`
-at the client boundary; this object shape formalizes the previously unspecified
-array item shape without renaming existing manifest fields.
+references and explicit routing eligibility. Source records preserve id/title/url
+plus agency, instrument, product, acquisition/sol, native resolution, processing and
+limitations. The canonical schemas also separate display registration, terrain
+coverage, experimental routing, validated routing and full feasibility. See
+[the region guide](REGION_DEVELOPMENT_GUIDE.md) for exact field names and examples.
 
 Coordinates use `{ latitude, longitude_east }`, planetocentric latitude and
 east-positive longitude in 0–360°. The renderer **does not place provisional region

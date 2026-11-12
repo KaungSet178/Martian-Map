@@ -1,6 +1,109 @@
 import { test, expect, type Page } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 
+for (const [width, height] of [
+  [1440, 900],
+  [1024, 768],
+  [768, 1024],
+  [390, 844],
+]) {
+  test(`registry-driven region switching keeps catalogs and evidence isolated at ${width}px`, async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width, height });
+    await page.goto("/?region=jezero");
+    await expand(page);
+    await page
+      .getByRole("button", { name: "Add Delta sediment exposure", exact: true })
+      .click();
+    await page
+      .getByLabel("Mission region", { exact: true })
+      .selectOption("gale");
+    await expand(page);
+    await expect(page.locator(".target-list")).toContainText(
+      "Layered sedimentary unit",
+    );
+    await expect(page.locator(".target-list")).not.toContainText(
+      "Delta sediment exposure",
+    );
+    await expect(page.locator(".mission-summary")).toContainText(
+      "0 objectives",
+    );
+    await page.getByRole("button", { name: "Layers", exact: true }).click();
+    await page
+      .getByRole("button", {
+        name: "View scientific data register",
+        exact: true,
+      })
+      .click();
+    await expect(page.locator(".panel-scroll")).toContainText(
+      "Gale Crater mission context",
+    );
+    await expect(
+      page.getByRole("heading", { name: "Scientific products", exact: true }),
+    ).toBeVisible();
+    await expect(page.locator(".panel-scroll")).not.toContainText(
+      "Jezero Crater mission context",
+    );
+    await page
+      .getByLabel("Mission region", { exact: true })
+      .selectOption("oxia");
+    await expect(page.locator(".map-location")).toContainText(
+      "Planned mission area",
+    );
+    await expand(page);
+    await expect(page.locator(".target-list")).toContainText(
+      "Clay-rich bedrock study",
+    );
+    await expect(page.locator(".mission-summary")).toContainText(
+      "0 objectives",
+    );
+    await page
+      .getByLabel("Mission region", { exact: true })
+      .selectOption("jezero");
+    await expect(page.locator(".mission-summary")).toContainText("1 objective");
+    await page.screenshot({
+      path: `output/playwright/architecture-switch-${width}.png`,
+    });
+  });
+}
+
+test("mission JSON round trip preserves legacy v1 IDs and unknown URL region is safe", async ({
+  page,
+}) => {
+  await page.goto("/?region=unknown");
+  await expect(page.locator(".map-location h1")).toHaveText("Jezero Crater");
+  await page
+    .getByRole("button", { name: "Add Delta sediment exposure", exact: true })
+    .click();
+  await page
+    .getByRole("button", { name: "Open saved missions", exact: true })
+    .click();
+  const downloaded = page.waitForEvent("download");
+  await page
+    .getByRole("button", { name: "Export draft JSON", exact: true })
+    .click();
+  const stream = await (await downloaded).createReadStream();
+  const chunks: Buffer[] = [];
+  for await (const chunk of stream!) chunks.push(Buffer.from(chunk));
+  const buffer = Buffer.concat(chunks);
+  const mission = JSON.parse(buffer.toString());
+  expect(mission.schema_version).toBe(1);
+  expect(mission.target_ids).toEqual(["jezero-objective-1"]);
+  expect(mission.dataset_version).toBe("shared-ui-fixture-v1");
+  await page
+    .getByLabel("Import mission JSON", { exact: true })
+    .setInputFiles({
+      name: "roundtrip.json",
+      mimeType: "application/json",
+      buffer,
+    });
+  await expect(page.locator(".itinerary li")).toHaveCount(1);
+  await expect(page.locator(".itinerary li")).toContainText(
+    "Delta sediment exposure",
+  );
+});
+
 async function expand(page: Page) {
   const handle = page.getByRole("button", { name: /^Plan ·/ });
   if (await handle.isVisible()) await handle.click();

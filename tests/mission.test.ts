@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { regions, regionIds } from "@/lib/fixtures/regions";
+import { regions, regionIds } from "@/lib/regions/registry";
 import { overallStatus, regionSchema } from "@/lib/contracts/region";
 import {
   newMission,

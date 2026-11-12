@@ -23,7 +23,7 @@ function briefHtml(
     mission.target_ids
       .map((id) => {
         const t = region.targets.find((t) => t.id === id)!;
-        return `<li><strong>${escape(t.title)}</strong> — Scenario; location unverified.<br>${escape(t.activity)}</li>`;
+        return `<li><strong>${escape(t.title)}</strong> — ${escape(t.evidence)}; location ${t.coordinate_verified ? "verified" : "unverified"}.<br>${escape(t.activity)}</li>`;
       })
       .join("") || "<li>None selected</li>"
   }</ol><h2>Six mandatory assessments</h2><ul>${assessments.map((a) => `<li>${a}: Unverified — required evidence unavailable.</li>`).join("")}</ul><h2>Map, route and resource results</h2><p>Map and coverage: not integrated. Route geometry, distance, slope, time, oxygen, battery, radiation and return margin: unavailable. No schematic preview artwork is exported as evidence.</p><h2>Versions and provenance</h2><p>Mission schema: ${mission.schema_version}. Saved dataset: ${escape(mission.dataset_version)}. Current dataset: ${escape(region.dataset_version)}. Models: none connected. Coordinates: planetocentric latitude, east-positive longitude 0–360°; local Mars projection unverified.</p><p>${escape(region.routing.reason)}</p><h2>Mission context references</h2><p>These references do not verify scenario targets.</p><ul>${region.source_references.map((s) => `<li><a href="${escape(s.url)}">${escape(s.title)}</a></li>`).join("")}</ul></body></html>`;
@@ -103,7 +103,12 @@ export function MissionBrief({
               <li key={id}>
                 <strong>{target.title}</strong>
                 <p>{target.activity}</p>
-                <p className="supporting">Scenario · Location unverified</p>
+                <p className="supporting">
+                  {target.evidence} ·{" "}
+                  {target.coordinate_verified
+                    ? "Location verified"
+                    : "Location unverified"}
+                </p>
               </li>
             );
           })}

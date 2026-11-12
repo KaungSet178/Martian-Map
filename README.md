@@ -39,6 +39,19 @@ mismatch requires revalidation. Exported briefs explicitly document unavailable 
 See [frontend integration notes](docs/frontend-integration.md),
 [UI/UX audit](docs/ui-ux-audit.md), and [verification report](docs/redesign-verification.md).
 
+## Parallel regional development
+
+Regional content lives independently in `regions/gale/`, `regions/jezero/` and
+`regions/oxia/`, each with config, targets, layers and a validated manifest export.
+The frontend resolves these through `lib/regions/registry.ts`. Canonical runtime
+schemas and inferred TypeScript types remain in `lib/contracts/`; the persisted
+mission schema remains v1 in `lib/mission/model.ts`.
+
+Read [TEAM_CONTRACT.md](TEAM_CONTRACT.md) and the practical
+[region development guide](docs/REGION_DEVELOPMENT_GUIDE.md) before regional work.
+The [architecture report](docs/architecture-restructuring.md) describes ownership,
+interfaces and current regression results. The earlier redesign report is historical.
+
 ## Original project handoff
 
 NASA Space Apps Challenge · Shared working handoff (11 November 2026)

@@ -613,7 +613,7 @@ input[type="radio"] {
   position: absolute;
   inset: 0;
 }
-.map-workspace:not(.preview)::after {
+.map-workspace:not(.preview):not(.scientific)::after {
   content: "";
   position: absolute;
   inset: 0;
