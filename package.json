@@ -1,0 +1,45 @@
+{
+  "name": "marswalk-planner",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "predev": "node scripts/prepare-map-worker.mjs",
+    "prebuild": "node scripts/prepare-map-worker.mjs",
+    "dev": "next dev --hostname 127.0.0.1",
+    "build": "next build",
+    "start": "next start --hostname 127.0.0.1",
+    "lint": "eslint .",
+    "typecheck": "next typegen && tsc --noEmit",
+    "test": "tsx --test tests/mission.test.ts",
+    "test:e2e": "playwright test"
+  },
+  "dependencies": {
+    "@fontsource/geist": "5.3.0",
+    "@fontsource/ibm-plex-mono": "5.3.0",
+    "lucide-react": "^0.577.0",
+    "maplibre-gl": "6.18.0",
+    "next": "16.4.6",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.11.1",
+    "@playwright/test": "1.65.0",
+    "@types/node": "^22.19.0",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "eslint": "^9.39.0",
+    "eslint-config-next": "16.4.6",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
+  },
+  "engines": {
+    "node": ">=20.9.0"
+  },
+  "overrides": {
+    "@typescript-eslint/typescript-estree": {
+      "minimatch": "11.0.8"
+    }
+  }
+}
