@@ -22,7 +22,7 @@ import {
   Globe2,
   CircleHelp,
 } from "lucide-react";
-import { regionIdSchema, type RegionId } from "@/lib/contracts/region";
+import { regionIdSchema, type RegionId, type MarsGeographicCoordinates } from "@/lib/contracts/region";
 import { regions, regionIds } from "@/lib/regions/registry";
 import {
   updateLayerState,
@@ -55,6 +55,10 @@ import {
   syncWaypointPlanWithMission,
 } from "@/lib/mission/waypoint-bridge";
 import {
+  addWaypoint,
+  createWaypoint,
+  type MarsWaypoint,
+  type WaypointRole,
   moveWaypoint,
   removeWaypoint,
   updateWaypoint,
@@ -115,15 +119,122 @@ export function Planner() {
 
   const [planSubView, setPlanSubView] = useState<"objectives" | "waypoints">("objectives");
   const [editingWaypointId, setEditingWaypointId] = useState<string | null>(null);
+  const [isPlacingOnMap, setIsPlacingOnMap] = useState(false);
+  const [selectedWaypointId, setSelectedWaypointId] = useState<string | null>(null);
 
   const activePlan = useMemo(
     () => initWaypointPlanFromMission(mission, region),
     [mission, region],
   );
 
+  const updateMission = useCallback(
+    (change: Partial<Mission>) => {
+      setMission((m) => {
+        const nextMission: Mission = { ...m, ...change };
+        if (!change.waypoint_plan) {
+          nextMission.waypoint_plan = syncWaypointPlanWithMission(nextMission, region);
+        }
+        return nextMission;
+      });
+      setDirty(true);
+      setMessage(
+        "Draft updated. Route and feasibility results remain unavailable.",
+      );
+    },
+    [region],
+  );
+
   const inspect = useCallback((id: string) => {
     setSelected(id);
     setModal("target");
+  }, []);
+
+  const handlePlaceWaypoint = useCallback(
+    (coords: MarsGeographicCoordinates) => {
+      const isFirst = activePlan.waypoints.length === 0;
+      const role: WaypointRole = isFirst ? "base" : "intermediate";
+      const defaultLabel = isFirst
+        ? "Base Camp"
+        : `Waypoint ${activePlan.waypoints.length + 1}`;
+      const newWp = createWaypoint({
+        coordinates: coords,
+        role,
+        label: defaultLabel,
+        provenance: "user_planning_input",
+      });
+      const updatedPlan = addWaypoint(activePlan, newWp);
+      const updatedMission = syncMissionWithWaypointPlan(
+        mission,
+        updatedPlan,
+        region,
+      );
+      updateMission(updatedMission);
+      setSelectedWaypointId(newWp.id);
+      setMessage(
+        `${isFirst ? "Base Camp" : newWp.label} placed at ${coords.latitude >= 0 ? "+" : ""}${coords.latitude.toFixed(4)}°N, ${coords.longitude_east.toFixed(4)}°E.`,
+      );
+    },
+    [activePlan, mission, region, updateMission],
+  );
+
+  const handleWaypointAdd = useCallback(
+    (waypoint: MarsWaypoint, index?: number) => {
+      const updatedPlan = addWaypoint(activePlan, waypoint, index);
+      const updatedMission = syncMissionWithWaypointPlan(
+        mission,
+        updatedPlan,
+        region,
+      );
+      updateMission(updatedMission);
+      setSelectedWaypointId(waypoint.id);
+      setMessage(`Added waypoint "${waypoint.label || waypoint.id}".`);
+    },
+    [activePlan, mission, region, updateMission],
+  );
+
+  const handleSelectWaypoint = useCallback(
+    (id: string) => {
+      setSelectedWaypointId(id);
+      setPanel("plan");
+      setExpanded(true);
+      setCollapsed(false);
+      setPlanSubView("waypoints");
+      const wp = activePlan.waypoints.find((w) => w.id === id);
+      if (wp) {
+        setMessage(`Selected waypoint: ${wp.label || wp.id}`);
+      }
+    },
+    [activePlan.waypoints],
+  );
+
+  const handlePlacementError = useCallback((err: string) => {
+    setMessage(err);
+  }, []);
+
+  const handleRequestMapPlacement = useCallback(() => {
+    if (region.map.visualization.status !== "available") {
+      setMessage(
+        "Interactive map placement requires georeferenced scientific map coverage.",
+      );
+      return;
+    }
+    setIsPlacingOnMap((prev) => {
+      const next = !prev;
+      if (next) {
+        setExpanded(false);
+      }
+      setMessage(
+        next
+          ? "Waypoint placement active. Click on the map to place a waypoint. Press Escape to cancel."
+          : "Waypoint placement canceled.",
+      );
+      return next;
+    });
+  }, [region.map.visualization.status]);
+
+  const handleCancelPlacement = useCallback(() => {
+    setIsPlacingOnMap(false);
+    setMessage("Waypoint placement canceled.");
   }, []);
 
   useEffect(() => {
@@ -181,6 +292,8 @@ export function Planner() {
     setSelected(null);
     setModal(null);
     setPreview(false);
+    setIsPlacingOnMap(false);
+    setSelectedWaypointId(null);
     setPanel("science");
     setPlanSubView("objectives");
     setEditingWaypointId(null);
@@ -188,19 +301,6 @@ export function Planner() {
     history.replaceState(null, "", `?region=${id}`);
     setMessage(
       `${regions[id].name} opened. Regional drafts are retained during this session.`,
-    );
-  }
-  function updateMission(change: Partial<Mission>) {
-    setMission((m) => {
-      const nextMission: Mission = { ...m, ...change };
-      if (!change.waypoint_plan) {
-        nextMission.waypoint_plan = syncWaypointPlanWithMission(nextMission, region);
-      }
-      return nextMission;
-    });
-    setDirty(true);
-    setMessage(
-      "Draft updated. Route and feasibility results remain unavailable.",
     );
   }
   function toggleStop(id: string) {
@@ -265,6 +365,8 @@ export function Planner() {
       setMission(validated);
       setSelected(null);
       setPreview(false);
+      setIsPlacingOnMap(false);
+      setSelectedWaypointId(null);
       setModal(null);
       setPanel("plan");
       setPlanSubView("objectives");
@@ -516,7 +618,13 @@ export function Planner() {
                   <WaypointEditor
                     plan={activePlan}
                     regionName={region.name}
+                    hasScientificMap={region.map.visualization.status === "available"}
                     editingWaypointId={editingWaypointId}
+                    selectedWaypointId={selectedWaypointId}
+                    isPlacingOnMap={isPlacingOnMap}
+                    onRequestMapPlacement={handleRequestMapPlacement}
+                    onSelectWaypoint={handleSelectWaypoint}
+                    onWaypointAdd={handleWaypointAdd}
                     onPlanNameChange={(name) => {
                       const updatedPlan = { ...activePlan, name };
                       const updatedMission = syncMissionWithWaypointPlan(
@@ -691,6 +799,13 @@ export function Planner() {
           showMarkers={markers}
           opacity={opacity}
           layerStates={layerStates}
+          plan={activePlan}
+          isPlacingOnMap={isPlacingOnMap}
+          onPlaceWaypoint={handlePlaceWaypoint}
+          onCancelPlacement={handleCancelPlacement}
+          selectedWaypointId={selectedWaypointId}
+          onSelectWaypoint={handleSelectWaypoint}
+          onPlacementError={handlePlacementError}
         />
       </main>
       <footer className="app-status">

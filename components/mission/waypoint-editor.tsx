@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import {
   Compass,
   Crosshair,
@@ -8,14 +9,18 @@ import {
   Home,
   Flag,
   Info,
+  MapPin,
+  Plus,
 } from "lucide-react";
 import type {
   WaypointPlan,
   MarsWaypoint,
+  WaypointRole,
   TrajectoryMode,
 } from "@/lib/mission/waypoint-planning";
 import {
   validateWaypointPlan,
+  createWaypoint,
   GEOMETRIC_TRAJECTORY_LABEL,
 } from "@/lib/mission/waypoint-planning";
 import { Badge, Notice } from "@/components/ui/primitives";
@@ -34,12 +39,16 @@ export interface WaypointEditorProps {
   plan: WaypointPlan;
   /** Display name of the active exploration region (optional context). */
   regionName?: string;
+  /** Whether the active region has reviewed georeferenced scientific map coverage. */
+  hasScientificMap?: boolean;
   /** Whether the editor is in read-only mode. */
   readOnly?: boolean;
   /** Whether the interactive map placement tool is currently armed. */
   isPlacingOnMap?: boolean;
   /** Optional ID of the waypoint currently undergoing inline label editing. */
   editingWaypointId?: string | null;
+  /** Optional ID of the currently selected/inspected waypoint. */
+  selectedWaypointId?: string | null;
   /** Callback invoked when the user updates the plan title. */
   onPlanNameChange?: (name: string) => void;
   /** Callback invoked when the trajectory mode toggles between round_trip and one_way. */
@@ -66,6 +75,130 @@ export interface WaypointEditorProps {
   onRequestMapPlacement?: () => void;
   /** Callback requesting navigation to the science catalog. */
   onExploreScience?: () => void;
+  /** Callback invoked when a waypoint item is selected. */
+  onSelectWaypoint?: (waypointId: string) => void;
+}
+
+// ---------------------------------------------------------------------------
+// Manual Coordinate Entry Subcomponent (Stateful)
+// ---------------------------------------------------------------------------
+
+export interface ManualCoordinateEntryProps {
+  onWaypointAdd: (waypoint: MarsWaypoint, index?: number) => void;
+  waypointsLength: number;
+}
+
+export function ManualCoordinateEntry({
+  onWaypointAdd,
+  waypointsLength,
+}: ManualCoordinateEntryProps) {
+  const [manualLat, setManualLat] = useState("");
+  const [manualLon, setManualLon] = useState("");
+  const [manualLabel, setManualLabel] = useState("");
+  const [manualError, setManualError] = useState("");
+
+  return (
+    <details className="manual-coordinates-card" data-testid="manual-coordinates-card">
+      <summary className="manual-coordinates-summary">
+        <MapPin size={16} aria-hidden="true" />
+        <span>Enter coordinates manually</span>
+      </summary>
+      <form
+        className="manual-coordinates-form"
+        onSubmit={(e) => {
+          e.preventDefault();
+          const lat = parseFloat(manualLat);
+          const lon = parseFloat(manualLon);
+          if (!Number.isFinite(lat) || lat < -90 || lat > 90) {
+            setManualError("Latitude must be a valid number between -90° and +90°.");
+            return;
+          }
+          if (!Number.isFinite(lon) || lon < 0 || lon > 360) {
+            setManualError("Longitude must be a valid East-positive angle between 0° and 360°.");
+            return;
+          }
+          setManualError("");
+          const isFirst = waypointsLength === 0;
+          const role: WaypointRole = isFirst ? "base" : "intermediate";
+          const defaultLabel = isFirst ? "Base Camp" : `Waypoint ${waypointsLength + 1}`;
+          const newWp = createWaypoint({
+            coordinates: {
+              latitude: Number(lat.toFixed(6)),
+              longitude_east: Number(lon.toFixed(6)),
+            },
+            role,
+            label: manualLabel.trim() || defaultLabel,
+            provenance: "user_planning_input",
+          });
+          onWaypointAdd(newWp);
+          setManualLat("");
+          setManualLon("");
+          setManualLabel("");
+        }}
+      >
+        <div className="manual-inputs-grid">
+          <div>
+            <label className="field-label" htmlFor="manual-coord-lat">
+              Latitude (°N/S) <span className="required-star">*</span>
+            </label>
+            <input
+              id="manual-coord-lat"
+              type="number"
+              step="any"
+              min="-90"
+              max="90"
+              value={manualLat}
+              onChange={(e) => setManualLat(e.target.value)}
+              placeholder="-4.6500"
+              required
+            />
+          </div>
+          <div>
+            <label className="field-label" htmlFor="manual-coord-lon">
+              East Longitude (°E) <span className="required-star">*</span>
+            </label>
+            <input
+              id="manual-coord-lon"
+              type="number"
+              step="any"
+              min="0"
+              max="360"
+              value={manualLon}
+              onChange={(e) => setManualLon(e.target.value)}
+              placeholder="137.4000"
+              required
+            />
+          </div>
+          <div>
+            <label className="field-label" htmlFor="manual-coord-label">
+              Waypoint label (optional)
+            </label>
+            <input
+              id="manual-coord-label"
+              type="text"
+              maxLength={100}
+              value={manualLabel}
+              onChange={(e) => setManualLabel(e.target.value)}
+              placeholder={waypointsLength === 0 ? "Base Camp" : `Waypoint ${waypointsLength + 1}`}
+            />
+          </div>
+        </div>
+        {manualError && (
+          <p className="supporting manual-error" role="alert">
+            {manualError}
+          </p>
+        )}
+        <button
+          type="submit"
+          className="file-button add-manual-btn"
+          data-testid="add-manual-waypoint-btn"
+        >
+          <Plus size={16} aria-hidden="true" />
+          <span>Add waypoint</span>
+        </button>
+      </form>
+    </details>
+  );
 }
 
 // ---------------------------------------------------------------------------
@@ -75,12 +208,15 @@ export interface WaypointEditorProps {
 export function WaypointEditor({
   plan,
   regionName,
+  hasScientificMap = true,
   readOnly = false,
   isPlacingOnMap = false,
   editingWaypointId = null,
+  selectedWaypointId = null,
   onPlanNameChange,
   onModeChange,
   onRecoveryAssumptionChange,
+  onWaypointAdd,
   onWaypointRemove,
   onWaypointMove,
   onWaypointUpdate,
@@ -90,6 +226,7 @@ export function WaypointEditor({
   onSetDestination,
   onRequestMapPlacement,
   onExploreScience,
+  onSelectWaypoint,
 }: WaypointEditorProps) {
   // Validate plan rules using pure M2 validation engine
   const validation = validateWaypointPlan(plan);
@@ -273,7 +410,13 @@ export function WaypointEditor({
               type="button"
               className={`file-button map-placement-button ${isPlacingOnMap ? "active-placement" : ""}`}
               onClick={onRequestMapPlacement}
+              disabled={!hasScientificMap}
               aria-pressed={isPlacingOnMap}
+              title={
+                !hasScientificMap
+                  ? "Map placement requires georeferenced scientific map coverage."
+                  : undefined
+              }
               data-testid="toggle-map-placement-btn"
             >
               <Crosshair size={17} aria-hidden="true" />
@@ -295,6 +438,21 @@ export function WaypointEditor({
         </div>
       )}
 
+      {/* Notice when map placement is unavailable for this region */}
+      {!readOnly && !hasScientificMap && (
+        <p className="supporting" role="note" data-testid="placement-unavailable-note">
+          Map placement requires georeferenced scientific map coverage. Use manual coordinate entry below.
+        </p>
+      )}
+
+      {/* Manual Coordinate Entry for Accessibility & Non-Mouse Users */}
+      {!readOnly && onWaypointAdd && (
+        <ManualCoordinateEntry
+          onWaypointAdd={onWaypointAdd}
+          waypointsLength={waypoints.length}
+        />
+      )}
+
       {/* Itinerary Section Heading */}
       <div className="section-heading">
         <h3>Ordered surface stops</h3>
@@ -308,6 +466,7 @@ export function WaypointEditor({
         plan={plan}
         readOnly={readOnly}
         editingWaypointId={editingWaypointId}
+        selectedWaypointId={selectedWaypointId}
         onWaypointRemove={onWaypointRemove}
         onWaypointMove={onWaypointMove}
         onWaypointUpdate={onWaypointUpdate}
@@ -316,6 +475,7 @@ export function WaypointEditor({
         onSetOrigin={onSetOrigin}
         onSetDestination={onSetDestination}
         onExploreScience={onExploreScience}
+        onSelectWaypoint={onSelectWaypoint}
       />
 
       {/* Scenario Resource Preferences */}
