@@ -1,0 +1,4 @@
+# Offline scientific investigation only; no frontend runtime dependencies.
+-r requirements-g3-2.txt
+rasterio==1.5.2
+pyproj==3.8.0

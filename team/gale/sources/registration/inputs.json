@@ -1,0 +1,246 @@
+{
+  "baseline_commit": "8e0bc7763e7564253c40211773e5f71138e8657f",
+  "prior_scientific_baseline": "d2d6c05",
+  "source_receipts": {
+    "pds_csv": {
+      "path": "output/gale-research/places.csv",
+      "url": "https://planetarydata.jpl.nasa.gov/img/data/msl/msl_places/data_localizations/localized_interp.csv",
+      "bytes": 11755643,
+      "sha256": "09d4474e64aec6e788efdb4ec24a906f487fe1a58e26dd4431847c94d385faec"
+    },
+    "pds_band": {
+      "path": "output/registration-investigation/pds-band.bin",
+      "url": "https://planetarydata.jpl.nasa.gov/img/data/msl/msl_places/data_maps/msl_orbital_map.img",
+      "range": [
+        936105120,
+        964143519
+      ],
+      "row": 34720,
+      "height": 1040,
+      "width": 26960,
+      "bytes": 28038400,
+      "sha256": "3ac0fa72f4e096b3ad33e1029e59b1c69422e2b60f0f6e5c0523ea9d5d87bc78",
+      "response_headers": {
+        "Server": "nginx",
+        "Date": "Fri, 13 Nov 2026 14:08:30 GMT",
+        "Content-Length": "28038400",
+        "Connection": "keep-alive",
+        "Last-Modified": "Sat, 01 Aug 2026 15:39:03 GMT",
+        "ETag": "\"5c1cf320-657fe1ac9b3c0\"",
+        "Content-Security-Policy": "frame-ancestors 'self'",
+        "X-Frame-Options": "SAMEORIGIN",
+        "Strict-Transport-Security": "max-age=31536000; includeSubdomains; preload",
+        "Access-Control-Allow-Origin": "*",
+        "Content-Range": "bytes 936105120-964143519/1545401120"
+      },
+      "purpose": "Native contiguous band for area-averaged image comparison; original coordinates only; no fitted correction."
+    }
+  },
+  "ctx_inputs": {
+    "output/gale-research/wmts/8/134/451.png": {
+      "sha256": "26478dde504dcbbad39fb2c3d798b62c86b70663bc6c5322d4c9c228a7e5e7ee",
+      "bytes": 59691,
+      "url": "https://trek.nasa.gov/tiles/Mars/EQ/Gale_CTX_BlockAdj_dd/1.0.0/default/default028mm/8/134/451.png"
+    },
+    "output/gale-research/wmts/7/67/225.png": {
+      "sha256": "30d7bd397245d3c153a848332b6ef5b9f29c131d25f81ebef5f37e4613fdaf1a",
+      "bytes": 61226,
+      "url": "https://trek.nasa.gov/tiles/Mars/EQ/Gale_CTX_BlockAdj_dd/1.0.0/default/default028mm/7/67/225.png"
+    },
+    "output/gale-research/wmts/6/33/112.png": {
+      "sha256": "85837f99c5123ce1451bf45d2a70c75540b9aecf4d9f4c4f3fc75bafa99640c8",
+      "bytes": 59493,
+      "url": "https://trek.nasa.gov/tiles/Mars/EQ/Gale_CTX_BlockAdj_dd/1.0.0/default/default028mm/6/33/112.png"
+    },
+    "output/gale-research/wmts/5/16/56.png": {
+      "sha256": "4259b4795443cb22c12515e5c386bb67878396f5d827419f74440b50a41e2e8c",
+      "bytes": 24793,
+      "url": "https://trek.nasa.gov/tiles/Mars/EQ/Gale_CTX_BlockAdj_dd/1.0.0/default/default028mm/5/16/56.png"
+    },
+    "output/gale-research/wmts/4/8/28.png": {
+      "sha256": "1f4a98ef316666d22e34701c0dc14fda597daabe5428c557ce7a2c8123544daa",
+      "bytes": 9443,
+      "url": "https://trek.nasa.gov/tiles/Mars/EQ/Gale_CTX_BlockAdj_dd/1.0.0/default/default028mm/4/8/28.png"
+    },
+    "output/gale-research/wmts/12/2152/7221.png": {
+      "sha256": "9cd593d3c02b1c52a5264c65370da24a9ad7453254863da113e4137a3a013aa4",
+      "bytes": 43614,
+      "url": "https://trek.nasa.gov/tiles/Mars/EQ/Gale_CTX_BlockAdj_dd/1.0.0/default/default028mm/12/2152/7221.png"
+    },
+    "output/gale-research/wmts/12/2153/7221.png": {
+      "sha256": "480e6396be1c771ac62c254b8e45a8bf84470cd247356c6cdf22684676a365cc",
+      "bytes": 42746,
+      "url": "https://trek.nasa.gov/tiles/Mars/EQ/Gale_CTX_BlockAdj_dd/1.0.0/default/default028mm/12/2153/7221.png"
+    },
+    "output/gale-research/wmts/12/2154/7221.png": {
+      "sha256": "4669d4468b0fe531c89f1f93d9c87a81b608eaacb55fff26c89785bc86b9ba70",
+      "bytes": 46742,
+      "url": "https://trek.nasa.gov/tiles/Mars/EQ/Gale_CTX_BlockAdj_dd/1.0.0/default/default028mm/12/2154/7221.png"
+    },
+    "output/gale-research/wmts/12/2155/7221.png": {
+      "sha256": "e0b19f417f35e96e5be1a68dc8b320089737f0e891a794fbc20e1c557d8f82a4",
+      "bytes": 46944,
+      "url": "https://trek.nasa.gov/tiles/Mars/EQ/Gale_CTX_BlockAdj_dd/1.0.0/default/default028mm/12/2155/7221.png"
+    },
+    "output/gale-research/wmts/12/2156/7221.png": {
+      "sha256": "af1ed5c18d2a35304b42bab01ddf8e1628ecd6a0f22576810b86acaa24f975f0",
+      "bytes": 48439,
+      "url": "https://trek.nasa.gov/tiles/Mars/EQ/Gale_CTX_BlockAdj_dd/1.0.0/default/default028mm/12/2156/7221.png"
+    },
+    "output/gale-research/wmts/12/2157/7221.png": {
+      "sha256": "004130c025492941e4793eea4b966d35eaa4a0028aa8b5151a6f06e8c0bf09b3",
+      "bytes": 47969,
+      "url": "https://trek.nasa.gov/tiles/Mars/EQ/Gale_CTX_BlockAdj_dd/1.0.0/default/default028mm/12/2157/7221.png"
+    },
+    "output/gale-research/wmts/12/2152/7222.png": {
+      "sha256": "268c05a0106bf732888fbe96db35075b25a8b941a75fa86d7106683834d3df38",
+      "bytes": 44992,
+      "url": "https://trek.nasa.gov/tiles/Mars/EQ/Gale_CTX_BlockAdj_dd/1.0.0/default/default028mm/12/2152/7222.png"
+    },
+    "output/gale-research/wmts/12/2153/7222.png": {
+      "sha256": "d937b542aab371b40c31338f92b76903bcc46ff4010dd03fc3cac73302b02561",
+      "bytes": 43874,
+      "url": "https://trek.nasa.gov/tiles/Mars/EQ/Gale_CTX_BlockAdj_dd/1.0.0/default/default028mm/12/2153/7222.png"
+    },
+    "output/gale-research/wmts/12/2154/7222.png": {
+      "sha256": "39c7866ed5b155744a66542cb11495612dd20f112a4fcf4715a475e618cc4c77",
+      "bytes": 49033,
+      "url": "https://trek.nasa.gov/tiles/Mars/EQ/Gale_CTX_BlockAdj_dd/1.0.0/default/default028mm/12/2154/7222.png"
+    },
+    "output/gale-research/wmts/12/2155/7222.png": {
+      "sha256": "ad5fa14ac42729f3667e2c86613e0643f185391fe2f967512ddb51f44f622f61",
+      "bytes": 47090,
+      "url": "https://trek.nasa.gov/tiles/Mars/EQ/Gale_CTX_BlockAdj_dd/1.0.0/default/default028mm/12/2155/7222.png"
+    },
+    "output/gale-research/wmts/12/2156/7222.png": {
+      "sha256": "daff899e44cf844727af3ea88251b5d83e1c013923ec7add0b541da2e1e86a38",
+      "bytes": 47988,
+      "url": "https://trek.nasa.gov/tiles/Mars/EQ/Gale_CTX_BlockAdj_dd/1.0.0/default/default028mm/12/2156/7222.png"
+    },
+    "output/gale-research/wmts/12/2157/7222.png": {
+      "sha256": "8ab0908b09ae9a0850d904fdba813874d6fb3199fe67fb81b4dc45ab692081b4",
+      "bytes": 45880,
+      "url": "https://trek.nasa.gov/tiles/Mars/EQ/Gale_CTX_BlockAdj_dd/1.0.0/default/default028mm/12/2157/7222.png"
+    },
+    "output/gale-research/wmts/12/2152/7223.png": {
+      "sha256": "9255b1f1f2ea07dd1403cdb535220f2d6a6a7376f238fa470509b63c32aaaf44",
+      "bytes": 44753,
+      "url": "https://trek.nasa.gov/tiles/Mars/EQ/Gale_CTX_BlockAdj_dd/1.0.0/default/default028mm/12/2152/7223.png"
+    },
+    "output/gale-research/wmts/12/2153/7223.png": {
+      "sha256": "ce78f64ce780e962c5cb6113599ba6dd30bb8d5427b1cc7b81b1c2b81d9fbfcd",
+      "bytes": 44400,
+      "url": "https://trek.nasa.gov/tiles/Mars/EQ/Gale_CTX_BlockAdj_dd/1.0.0/default/default028mm/12/2153/7223.png"
+    },
+    "output/gale-research/wmts/12/2154/7223.png": {
+      "sha256": "57124f9e0430425ea0495c3a33ccf998ffc8bf016ab53c2733c64c710e551908",
+      "bytes": 46850,
+      "url": "https://trek.nasa.gov/tiles/Mars/EQ/Gale_CTX_BlockAdj_dd/1.0.0/default/default028mm/12/2154/7223.png"
+    },
+    "output/gale-research/wmts/12/2155/7223.png": {
+      "sha256": "eaedc77d912ddf582d9b97a497279980de85cc84c641edd107bbc13c5837e435",
+      "bytes": 46733,
+      "url": "https://trek.nasa.gov/tiles/Mars/EQ/Gale_CTX_BlockAdj_dd/1.0.0/default/default028mm/12/2155/7223.png"
+    },
+    "output/gale-research/wmts/12/2156/7223.png": {
+      "sha256": "998fdf2b853ea6a0c4e0174a47b60d8337fb5dbd5d66b9e01698f36c60f7549d",
+      "bytes": 46012,
+      "url": "https://trek.nasa.gov/tiles/Mars/EQ/Gale_CTX_BlockAdj_dd/1.0.0/default/default028mm/12/2156/7223.png"
+    },
+    "output/gale-research/wmts/12/2157/7223.png": {
+      "sha256": "88c48ed5c6a71844112ea7841183fb9e9969e67313fa00046260be1ff063ee18",
+      "bytes": 48357,
+      "url": "https://trek.nasa.gov/tiles/Mars/EQ/Gale_CTX_BlockAdj_dd/1.0.0/default/default028mm/12/2157/7223.png"
+    },
+    "output/gale-research/wmts/11/1076/3610.png": {
+      "sha256": "9fb33da14673b392afcbd44604e852bd37b7ff76a144c5369900a8d9b78d145b",
+      "bytes": 50364,
+      "url": "https://trek.nasa.gov/tiles/Mars/EQ/Gale_CTX_BlockAdj_dd/1.0.0/default/default028mm/11/1076/3610.png"
+    },
+    "output/gale-research/wmts/11/1077/3610.png": {
+      "sha256": "f6dc4247e9908595cd117ad0e83ccc63e12403833fa896ab6644f7acf571461f",
+      "bytes": 54853,
+      "url": "https://trek.nasa.gov/tiles/Mars/EQ/Gale_CTX_BlockAdj_dd/1.0.0/default/default028mm/11/1077/3610.png"
+    },
+    "output/gale-research/wmts/11/1078/3610.png": {
+      "sha256": "1023b7e5e5e8db8ecf82192c4bd7c7fdfd830f9c382f59da7310dfef6d76ee06",
+      "bytes": 59167,
+      "url": "https://trek.nasa.gov/tiles/Mars/EQ/Gale_CTX_BlockAdj_dd/1.0.0/default/default028mm/11/1078/3610.png"
+    },
+    "output/gale-research/wmts/11/1076/3611.png": {
+      "sha256": "9f16f1e3587bfb144da85a8307cad02c212d946bfb1c8491aa006d93c5a38ceb",
+      "bytes": 49917,
+      "url": "https://trek.nasa.gov/tiles/Mars/EQ/Gale_CTX_BlockAdj_dd/1.0.0/default/default028mm/11/1076/3611.png"
+    },
+    "output/gale-research/wmts/11/1077/3611.png": {
+      "sha256": "0b99ece17d129b706dc9588c51a63ab6a8219044be143aa5a5763e9135ce518b",
+      "bytes": 55314,
+      "url": "https://trek.nasa.gov/tiles/Mars/EQ/Gale_CTX_BlockAdj_dd/1.0.0/default/default028mm/11/1077/3611.png"
+    },
+    "output/gale-research/wmts/11/1078/3611.png": {
+      "sha256": "9a45335df79002f838dc47a94c15f49bd296ec5167845db3bde3e26a2bbd2e42",
+      "bytes": 55514,
+      "url": "https://trek.nasa.gov/tiles/Mars/EQ/Gale_CTX_BlockAdj_dd/1.0.0/default/default028mm/11/1078/3611.png"
+    },
+    "output/gale-research/wmts/10/538/1805.png": {
+      "sha256": "45f5e26b7e50e96e2283631f16b55754364f8d1f1ed53392e4b26f8bdf0a899f",
+      "bytes": 54927,
+      "url": "https://trek.nasa.gov/tiles/Mars/EQ/Gale_CTX_BlockAdj_dd/1.0.0/default/default028mm/10/538/1805.png"
+    },
+    "output/gale-research/wmts/10/539/1805.png": {
+      "sha256": "8a8e23be0613cb777bd9e50b6f405169851089662b52da205a0452d531aca5b9",
+      "bytes": 63262,
+      "url": "https://trek.nasa.gov/tiles/Mars/EQ/Gale_CTX_BlockAdj_dd/1.0.0/default/default028mm/10/539/1805.png"
+    },
+    "output/gale-research/wmts/9/269/902.png": {
+      "sha256": "0466a234baf0fb0a964c1eb1999118b250ea714b81126d726128eb78b5edfad7",
+      "bytes": 60333,
+      "url": "https://trek.nasa.gov/tiles/Mars/EQ/Gale_CTX_BlockAdj_dd/1.0.0/default/default028mm/9/269/902.png"
+    }
+  },
+  "source_metadata": {
+    "trek-config.json": {
+      "sha256": "0bcadd7ccfd21216d21486c0a630efaff444c8fe02bb51db58b88e44c9fd4079",
+      "bytes": 10233
+    },
+    "trek-ctx-abstract.html": {
+      "sha256": "bbb5bfdc09a07d2164c752ac7b1fd2a6289779b51a104109918888c2e63ef5da",
+      "bytes": 803
+    },
+    "usgs-ortho-decoded.html": {
+      "sha256": "fa0d3750bade498ea66d5b2749d851f1aee6f98b26b190a9a08ca81df5a1551d",
+      "bytes": 28231
+    },
+    "mission-checkpoints.csv": {
+      "sha256": "649d31c53f2b576453058aa5d8baaaa84c08d208366193f673aa94933c3491a3",
+      "bytes": 1903
+    },
+    "pds-map-headers.bin": {
+      "sha256": "81ded7b66186227996dcee435265e615af1600ed26b4e0b7b563be000671b24f",
+      "bytes": 53920
+    }
+  },
+  "metadata_urls": {
+    "trek-config.json": "https://trek.nasa.gov/tiles/apidoc/config/config.json",
+    "trek-ctx-abstract.html": "https://trek.nasa.gov/mars/TrekWS/rest/cat/abstract?label=Gale_CTX_BlockAdj_dd",
+    "usgs-ortho-decoded.html": "https://astrogeology.usgs.gov/search/map/mars_msl_gale_merged_orthophoto_mosaic_25cm"
+  },
+  "unavailable_metadata": {
+    "url": "https://trek.nasa.gov/mars/TrekWS/rest/cat/metadata/fgdc/html?label=Gale_CTX_BlockAdj_dd",
+    "http_status": 200,
+    "body_bytes": 0,
+    "meaning": "No exact-layer control-network or native projection provenance retrieved; absence is not evidence of a particular source error."
+  },
+  "declared_label_hashes": {
+    "team/gale/sources/capabilities.xml": "ec61c61162ea6f588666c4acb5d38303016f96175ffa1a0e68b62727ba96e5d2",
+    "team/gale/sources/map-label.xml": "aeee1005e7606833fd8d1c4d99d48dbbc9053a6ba80547728c77651f5d212560",
+    "team/gale/sources/g3-2/pds-dem.xml": "e54efee1e91a8a5f8877789843c452fda33c9f4f17e3ca5fbf949be1cc7ac809",
+    "team/gale/sources/g3-2/pds-dem-headers.bin": "4bf930da14fe7edbcd3c2981cb1488a2898d426bde9be3b0ecb63a985de5237d"
+  },
+  "m1_files_sha256": {
+    "lib/map/geodesy.ts": "7baea2286ce890481c37aa8357f1fd0c1c4c55df3371b54b9b58880634efdc93",
+    "tests/geodesy.test.ts": "ffb28e9d365a0c3657abb99f34cb949a586dbdc034aaa0e5794a436fe94b16d6",
+    "docs/MARS_GEODESY_REPORT.md": "aced2d60a7bf007ab73ab36b6f8858cfdcbdbc056b1be9e65c928c18f5b4a3fc",
+    "docs/MARSWALK_TRANSFORMATION_AUDIT.md": "3391109f254aab759dd50a56d39ad589a03734af24588811032474c97704a8bc"
+  }
+}

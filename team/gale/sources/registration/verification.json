@@ -1,0 +1,12 @@
+{
+  "scientific_python_tests": 10,
+  "unit_contract_and_m1_tests": 77,
+  "playwright_tests": 39,
+  "mobile_original_reproductions_failed": 3,
+  "mobile_settled_repetitions_passed": 3,
+  "lint": "pass",
+  "typescript": "pass",
+  "production_build": "pass",
+  "scientific_assets_changed": false,
+  "m1_files_changed": false
+}

@@ -1,0 +1,349 @@
+{
+  "baseline_commit": "8e0bc7763e7564253c40211773e5f71138e8657f",
+  "scientific_geometry_changed": false,
+  "operational_sampling_enabled": false,
+  "route_safety_enabled": false,
+  "coordinates": {
+    "map_origin_step": [
+      8141038.0,
+      -271514.0,
+      0.25
+    ],
+    "dem_origin_step": [
+      8141037.49279,
+      -271513.07519,
+      1.0
+    ],
+    "gdal_dem_transform": [
+      1.0,
+      0.0,
+      8141037.49279,
+      0.0,
+      -1.0,
+      -271513.07519
+    ],
+    "gdal_map_transform": [
+      0.25,
+      0.0,
+      8141038.0,
+      0.0,
+      -0.25,
+      -271514.0
+    ],
+    "mission_rows": 49194,
+    "residual_order": [
+      "east_m",
+      "north_m",
+      "map_sample_px",
+      "map_line_px",
+      "dem_sample_px",
+      "dem_line_px"
+    ],
+    "max_abs_residual": [
+      0.000528351403772831,
+      0.0005295972805470228,
+      0.006000001729262294,
+      0.006000000110361725,
+      0.005210000872693854,
+      0.005190000031234376
+    ],
+    "p95_abs_residual": [
+      0.0004734418354928493,
+      0.0004745620652101933,
+      0.0059999997920385795,
+      0.005999999986670446,
+      0.004789999723470828,
+      0.004810000010365911
+    ],
+    "proj_vs_spherical_formula_max_abs_m": [
+      0.0,
+      0.0
+    ],
+    "representative_mission_checkpoints": [
+      {
+        "sol": "0",
+        "site": "1",
+        "drive": "0",
+        "pose": "0",
+        "northing": "-272039.268",
+        "easting": "8146811.223",
+        "planetocentric_latitude": "-4.589466996",
+        "planetodetic_latitude": "-4.643738049",
+        "longitude": "137.441632997",
+        "map_pixel_sample": "23092.89",
+        "map_pixel_line": "2101.07",
+        "dem_pixel_sample": "5773.73",
+        "dem_pixel_line": "526.19"
+      },
+      {
+        "sol": "504",
+        "site": "25",
+        "drive": "6",
+        "pose": "-1",
+        "northing": "-274161.533",
+        "easting": "8144952.424",
+        "planetocentric_latitude": "-4.625270893",
+        "planetodetic_latitude": "-4.679961595",
+        "longitude": "137.410273932",
+        "map_pixel_sample": "15657.70",
+        "map_pixel_line": "10590.13",
+        "dem_pixel_sample": "3914.93",
+        "dem_pixel_line": "2648.46"
+      },
+      {
+        "sol": "997",
+        "site": "48",
+        "drive": "1536",
+        "pose": "-1",
+        "northing": "-276710.067",
+        "easting": "8142566.261",
+        "planetocentric_latitude": "-4.668266198",
+        "planetodetic_latitude": "-4.723460724",
+        "longitude": "137.370017922",
+        "map_pixel_sample": "6113.04",
+        "map_pixel_line": "20784.27",
+        "dem_pixel_sample": "1528.77",
+        "dem_pixel_line": "5196.99"
+      },
+      {
+        "sol": "1500",
+        "site": "58",
+        "drive": "2142",
+        "pose": "-1",
+        "northing": "-278577.558",
+        "easting": "8141668.646",
+        "planetocentric_latitude": "-4.699771908",
+        "planetodetic_latitude": "-4.755335541",
+        "longitude": "137.354874606",
+        "map_pixel_sample": "2522.58",
+        "map_pixel_line": "28254.23",
+        "dem_pixel_sample": "631.15",
+        "dem_pixel_line": "7064.48"
+      },
+      {
+        "sol": "2300",
+        "site": "73",
+        "drive": "1950",
+        "pose": "-1",
+        "northing": "-280326.465",
+        "easting": "8143117.105",
+        "planetocentric_latitude": "-4.729277020",
+        "planetodetic_latitude": "-4.785186260",
+        "longitude": "137.379310998",
+        "map_pixel_sample": "8316.42",
+        "map_pixel_line": "35249.86",
+        "dem_pixel_sample": "2079.61",
+        "dem_pixel_line": "8813.39"
+      },
+      {
+        "sol": "3000",
+        "site": "84",
+        "drive": "2358",
+        "pose": "-1",
+        "northing": "-280609.557",
+        "easting": "8144251.865",
+        "planetocentric_latitude": "-4.734052962",
+        "planetodetic_latitude": "-4.790018139",
+        "longitude": "137.398455075",
+        "map_pixel_sample": "12855.46",
+        "map_pixel_line": "36382.23",
+        "dem_pixel_sample": "3214.37",
+        "dem_pixel_line": "9096.48"
+      },
+      {
+        "sol": "3974",
+        "site": "105",
+        "drive": "406",
+        "pose": "-1",
+        "northing": "-283124.030",
+        "easting": "8144613.227",
+        "planetocentric_latitude": "-4.776473634",
+        "planetodetic_latitude": "-4.832935584",
+        "longitude": "137.404551468",
+        "map_pixel_sample": "14300.91",
+        "map_pixel_line": "46440.12",
+        "dem_pixel_sample": "3575.73",
+        "dem_pixel_line": "11610.95"
+      }
+    ],
+    "published_landing_comparison": {
+      "reference": "https://ntrs.nasa.gov/citations/20130011617",
+      "published_lat_lon": [
+        -4.5895,
+        137.4417
+      ],
+      "east_north_difference_m": [
+        -3.9588479126471605,
+        1.9563021170889985
+      ],
+      "local_separation_m": 4.415834549527153,
+      "limitation": "Rounded independent publication, same mission context; not independent surveyed truth or a fine CTX tie point."
+    },
+    "incorrect_oblate_latitude_conversion_north_error_m": -3314.003304905602,
+    "half_native_pixel_m": {
+      "map": 0.125,
+      "dem": 0.5
+    },
+    "interpretation": "Coordinate/pixel consistency to rounding precision, not ground positional accuracy. No new geological target or image control coordinates."
+  },
+  "ctx_pipeline": {
+    "xyz_tiles": 32,
+    "compared_opaque_pixels": 1249591,
+    "mismatching_rgba_pixels": 0,
+    "method": "WMTS XML dimensions/top-left versus XYZ inverse angular Mercator pixel centers. Independent of prepare_g1.py; no production sampler imported.",
+    "interpretation": "Checks software fidelity to published tile grid, not native source georeferencing or surface accuracy."
+  },
+  "area_comparison": {
+    "native_window": {
+      "row": 34720,
+      "height": 1040,
+      "column": 6400,
+      "width": 4000
+    },
+    "reference": "PDS orthophoto area mean, 40x40 native pixels",
+    "analysis_grid_projected_m": 10,
+    "zero_dn_sensitivity": {
+      "native_zero_pixels": 60,
+      "conservative_supported_cells": 2592,
+      "total_cells": 2600,
+      "policy": "No zero-DN special value is declared in PDS4 label. Conservatively exclude every block containing zero for searches; record unmasked NCC for sensitivity, not a new DEM validity mask.",
+      "all_cells_zero_shift_ncc": -0.2542188349304347
+    },
+    "shape": [
+      26,
+      100
+    ],
+    "search": {
+      "east_north_radius_projected_m": 300,
+      "step_m": 10,
+      "hypotheses": 3721
+    },
+    "results": [
+      {
+        "columns": [
+          0,
+          100
+        ],
+        "zero_shift_ncc": -0.24937435204802325,
+        "unapplied_best_ncc_east_north_projected_m": [
+          0.4083340719022963,
+          -70,
+          -260
+        ]
+      },
+      {
+        "columns": [
+          0,
+          33
+        ],
+        "zero_shift_ncc": -0.4999921295007564,
+        "unapplied_best_ncc_east_north_projected_m": [
+          0.6734744208137293,
+          140,
+          -250
+        ]
+      },
+      {
+        "columns": [
+          33,
+          66
+        ],
+        "zero_shift_ncc": 0.11450105229082719,
+        "unapplied_best_ncc_east_north_projected_m": [
+          0.41521616008166823,
+          190,
+          -100
+        ]
+      },
+      {
+        "columns": [
+          66,
+          100
+        ],
+        "zero_shift_ncc": -0.3356365607367921,
+        "unapplied_best_ncc_east_north_projected_m": [
+          0.43191333703555573,
+          170,
+          -250
+        ]
+      },
+      {
+        "columns": [
+          0,
+          66
+        ],
+        "zero_shift_ncc": -0.2279213703221526,
+        "unapplied_best_ncc_east_north_projected_m": [
+          0.5486846574343436,
+          40,
+          -170
+        ]
+      }
+    ],
+    "training_columns": [
+      0,
+      66
+    ],
+    "holdout_columns": [
+      66,
+      100
+    ],
+    "holdout_ncc_at_training_winner": 0.22209098357171939,
+    "zero_shift_gradient_magnitude_ncc": 0.02768651116289509,
+    "unrelated_window_checks": [
+      {
+        "ctx_offset_east_north_projected_m": [
+          0,
+          1000
+        ],
+        "ncc": 0.28301346140059747,
+        "heldout_ncc": 0.18213051105549402
+      },
+      {
+        "ctx_offset_east_north_projected_m": [
+          0,
+          -1000
+        ],
+        "ncc": -0.09243857570960097,
+        "heldout_ncc": -0.21672392626796408
+      },
+      {
+        "ctx_offset_east_north_projected_m": [
+          1000,
+          0
+        ],
+        "ncc": 0.26145296528586304,
+        "heldout_ncc": -0.08689768254037471
+      },
+      {
+        "ctx_offset_east_north_projected_m": [
+          -1000,
+          0
+        ],
+        "ncc": -0.10456455311890046,
+        "heldout_ncc": 0.12059419962920433
+      }
+    ],
+    "interpretation": "All offsets are diagnostic sampling hypotheses only. No geometry or app asset is shifted. Limited strip geometry, correlated pixels, photometry, differing products and selection of maxima prevent survey interpretation."
+  },
+  "coordinate_namespace_check": {
+    "wmts_identifier": "urn:ogc:def:crs:EPSG::104905",
+    "trek_catalog_identifier": "urn:ogc:def:crs:IAU2000::104905",
+    "installed_esri_104905_name": "GCS_Mars_2000",
+    "installed_esri_axes_m": [
+      3396190.0,
+      3376200.0
+    ],
+    "installed_epsg_104905_available": false,
+    "decision": "Do not substitute authorities or infer an oblate latitude transform from this ambiguous service identifier."
+  },
+  "software": {
+    "python": "3.13.7",
+    "numpy": "2.4.6",
+    "rasterio": "1.5.2",
+    "gdal": "3.12.2",
+    "pyproj": "3.8.0",
+    "proj": "9.8.1"
+  },
+  "conclusion": "No evidence-supported coordinate correction. Declared PDS CRS and published tile processing are internally consistent; exact CTX native control provenance and local image tie remain unverified. Correlation maxima are not control points."
+}

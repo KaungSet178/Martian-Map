@@ -1,0 +1,225 @@
+{
+  "moon":{
+    "trekInfo":{
+      "tabName": "Moon Trek API",
+      "trekName": "Moon Trek",
+      "trekTitle": "Moon Trek",
+      "trekSubtitle": "WMTS Layer Services",
+      "url": "http://trek.nasa.gov/moon/"
+    },
+    "backgroundImage":{
+      "url": "assets/moon.jpg"
+    },
+    "samples":{
+      "sample1":"https://trek.nasa.gov/tiles/Moon/EQ/LRO_WAC_Mosaic_Global_303ppd_v02/1.0.0/default/default028mm/0/0/0.jpg",
+      "sample2":"https://trek.nasa.gov/tiles/Moon/EQ/LRO_WAC_Mosaic_Global_303ppd_v02/1.0.0/default/default028mm/0/0/1.jpg"
+    },
+    "projections":{
+      "northpole":"urn:ogc:def:crs:IAU2000::30118",
+      "equirectangular":"urn:ogc:def:crs:EPSG::104903",
+      "southpole":"urn:ogc:def:crs:IAU2000::30120"
+    },
+    "service_endpoints": {
+      "_listVisibleLayersUrl": "https://trek.nasa.gov/moon/TrekServices/ws/index/PROJECTIONTYPE/listVisibleLayers?proj=PROJECTION&start=0&rows=2147483647",
+      "listVisibleLayersUrl": "https://trek.nasa.gov/moon/TrekServices/ws/index/PROJECTIONTYPE/searchItems?start=0&rows=2147483647&facetKeys=itemType%7CproductCat2%7CserviceTypes%7CthumbnailURLDir&facetValues=product%7C-%28DEM%20ConfidenceRaw%20Slope%29%7CMosaic%7C%5B%2A%20TO%20%2A%5D",
+      "getLayerServiceUrl": "https://trek.nasa.gov/moon/TrekServices/ws/index/getLayerServices?uuid=",
+      "getAbstractUrl": "https://trek.nasa.gov/moon/TrekWS/rest/cat/abstract?label=",
+      "getMetadataUrl": "https://trek.nasa.gov/moon/TrekWS/rest/cat/metadata/fgdc/html?label="
+    },
+    "services": {
+      "show_metadata": true,
+      "show_wmts": true,
+      "show_abstract": true
+    }
+  },
+  "mars":{
+    "trekInfo":{
+      "tabName": "Mars Trek API",
+      "trekName": "Mars Trek",
+      "trekTitle": "Mars Trek",
+      "trekSubtitle": "WMTS Layer Services",
+      "url": "https://trek.nasa.gov/mars/"
+    },
+    "backgroundImage":{
+      "url": "assets/mars.jpg"
+    },
+    "samples":{
+      "sample1":"https://trek.nasa.gov/tiles/Mars/EQ/Mars_MGS_MOLA_ClrShade_merge_global_463m/1.0.0/default/default028mm/0/0/0.jpg",
+      "sample2":"https://trek.nasa.gov/tiles/Mars/EQ/Mars_MGS_MOLA_ClrShade_merge_global_463m/1.0.0/default/default028mm/0/0/1.jpg"
+    },
+    "projections":{
+      "northpole":"urn:ogc:def:crs:IAU2000::49918",
+      "equirectangular":"urn:ogc:def:crs:IAU2000::104905",
+      "southpole":"urn:ogc:def:crs:IAU2000::49920"
+    },
+    "service_endpoints": {
+      "__listVisibleLayersUrl": "https://trek.nasa.gov/mars/TrekServices/ws/index/PROJECTIONTYPE/listVisibleLayers?proj=PROJECTION&start=0&rows=2147483647",
+      "_listVisibleLayersUrl": "https://trek.nasa.gov/mars/TrekServices/ws/index/PROJECTIONTYPE/searchItems?proj=PROJECTION&start=0&rows=2147483647&facetKeys=itemType|productType|serviceTypes&facetValues=product|-(DEM%20ConfidenceRaw)|Mosaic",
+      "listVisibleLayersUrl": "https://trek.nasa.gov/mars/TrekServices/ws/index/PROJECTIONTYPE/searchItems?start=0&rows=2147483647&facetKeys=itemType%7CproductCat2%7CserviceTypes%7CthumbnailURLDir&facetValues=product%7C-%28DEM%20ConfidenceRaw%20Slope%29%7CMosaic%7C%5B%2A%20TO%20%2A%5D",
+      "getLayerServiceUrl": "https://trek.nasa.gov/mars/TrekServices/ws/index/getLayerServices?uuid=",
+      "getAbstractUrl": "https://trek.nasa.gov/mars/TrekWS/rest/cat/abstract?label=",
+      "getMetadataUrl": "https://trek.nasa.gov/mars/TrekWS/rest/cat/metadata/fgdc/html?label="
+    },
+    "services": {
+      "show_metadata": true,
+      "show_wmts": true,
+      "show_abstract": true
+    }
+  },
+  "titan":{
+    "trekInfo":{
+      "tabName": "Titan Trek API",
+      "trekName": "Titan Trek",
+      "trekTitle": "Titan Trek",
+      "trekSubtitle": "WMTS Layer Services",
+      "url": "https://titantrekbeta.jpl.nasa.gov"
+    },
+    "backgroundImage":{
+      "url": "assets/titan.jpg"
+    },
+    "samples":{
+      "sample1":"https://trektiles.jpl.nasa.gov/trektiles/Titan/EQ/Titan_global_32ppd_ColorRatio_v2/1.0.0/default/default028mm/0/0/0.png",
+      "sample2":"https://trektiles.jpl.nasa.gov/trektiles/Titan/EQ/Titan_global_32ppd_ColorRatio_v2/1.0.0/default/default028mm/0/0/1.png"
+    },
+    "projections":{
+      "equirectangular":"urn:ogc:def:crs:EPSG::60620"
+    },
+    "service_endpoints": {
+      "listVisibleLayersUrl" : "https://trek.nasa.gov/titan/TrekServices/ws/index/PROJECTIONTYPE/listVisibleLayers?proj=PROJECTION&start=0&rows=2147483647",
+      "getLayerServiceUrl": "https://trek.nasa.gov/titan/TrekServices/ws/index/getLayerServices?uuid=",
+      "getAbstractUrl": "https://trek.nasa.gov/titan/TrekServices/TrekWS/rest/cat/abstract?label=",
+      "getMetadataUrl": "https://trek.nasa.gov/titan/TrekServices/rest/cat/metadata/fgdc/html?label="
+    },
+    "services": {
+      "show_metadata": false,
+      "show_wmts": true,
+      "show_abstract": false
+    }
+  },
+  "vesta":{
+    "trekInfo":{
+      "tabName": "Vesta Trek API",
+      "trekName": "Vesta Trek",
+      "trekTitle": "Vesta Trek",
+      "trekSubtitle": "WMTS Layer Services",
+      "url": "http://trek.nasa.gov/vesta/"
+    },
+    "backgroundImage":{
+      "url": "assets/vesta.jpg"
+    },
+    "samples":{
+      "sample1":"https://trek.nasa.gov/tiles/Vesta/EQ/Vesta_Dawn_GRaND_ClrIronCorrectedCounts_Global_2ppd/1.0.0/default/default028mm/0/0/0.jpg",
+      "sample2":"https://trek.nasa.gov/tiles/Vesta/EQ/Vesta_Dawn_GRaND_ClrIronCorrectedCounts_Global_2ppd/1.0.0/default/default028mm/0/0/1.jpg"
+    },
+    "projections":{
+      "northpole":"urn:ogc:def:crs:trek::vesta_np",
+      "equirectangular":"urn:ogc:def:crs:EPSG::2000004Ω",
+      "southpole":"urn:ogc:def:crs:trek::vesta_sp"
+    },
+    "service_endpoints": {
+      "listVisibleLayersUrl": "https://trek.nasa.gov/vesta/TrekServices/ws/index/PROJECTIONTYPE/listVisibleLayers?proj=PROJECTION&start=0&rows=2147483647",
+      "getLayerServiceUrl": "https://trek.nasa.gov/vesta/TrekServices/ws/index/getLayerServices?uuid=",
+      "getAbstractUrl": "https://trek.nasa.gov/vesta/TrekWS/rest/cat/abstract?label=",
+      "getMetadataUrl": "https://trek.nasa.gov/vesta/TrekWS/rest/cat/metadata/fgdc/html?label="
+    },
+    "services": {
+      "show_metadata": true,
+      "show_wmts": true,
+      "show_abstract": true
+    }
+  },
+  "ceres":{
+    "trekInfo":{
+      "tabName": "Ceres Trek API",
+      "trekName": "Ceres Trek",
+      "trekTitle": "Ceres Trek",
+      "trekSubtitle": "WMTS Layer Services",
+      "url": "http://trek.nasa.gov/ceres/"
+    },
+    "backgroundImage":{
+      "url": "assets/ceres.jpg"
+    },
+    "samples":{
+      "sample1":"https://trek.nasa.gov/tiles/Ceres/EQ/Ceres_Dawn_FC_HAMO_ClrShade_DLR_Global_60ppd_Oct2016/1.0.0/default/default028mm/0/0/0.jpg",
+      "sample2":"https://trek.nasa.gov/tiles/Ceres/EQ/Ceres_Dawn_FC_HAMO_ClrShade_DLR_Global_60ppd_Oct2016/1.0.0/default/default028mm/0/0/1.jpg"
+    },
+    "projections": {
+      "equirectangular": "urn:ogc:def:crs:trek::ceres",
+      "northpole": "urn:ogc:def:crs:trek::ceres_np",
+      "southpole": "urn:ogc:def:crs:trek::ceres_sp"
+    },
+    "service_endpoints": {
+      "listVisibleLayersUrl": "https://trek.nasa.gov/ceres/TrekServices/ws/index/PROJECTIONTYPE/listVisibleLayers?proj=PROJECTION&start=0&rows=2147483647",
+      "getLayerServiceUrl": "https://trek.nasa.gov/ceres/TrekServices/ws/index/getLayerServices?uuid=",
+      "getAbstractUrl": "https://trek.nasa.gov/ceres/TrekWS/rest/cat/abstract?label=",
+      "getMetadataUrl": "https://trek.nasa.gov/ceres/TrekWS/rest/cat/metadata/fgdc/html?label="
+    },
+    "services": {
+      "show_metadata": true,
+      "show_wmts": true,
+      "show_abstract": true
+    }
+  },
+  "mercury":{
+    "trekInfo":{
+      "tabName": "Mercury Trek API",
+      "trekName": "Mercury Trek",
+      "trekTitle": "Mercury Trek",
+      "trekSubtitle": "WMTS Layer Services",
+      "url": "http://trek.nasa.gov/mercury/"
+    },
+    "backgroundImage":{
+      "url": "assets/mercury.jpg"
+    },
+    "samples":{
+      "sample1":"https://trek.nasa.gov/tiles/Mercury/EQ/Mercury_MESSENGER_MDIS_Basemap_EnhancedColor_Mosaic_Global_665m/1.0.0/default/default028mm/0/0/0.jpg",
+      "sample2":"https://trek.nasa.gov/tiles/Mercury/EQ/Mercury_MESSENGER_MDIS_Basemap_EnhancedColor_Mosaic_Global_665m/1.0.0/default/default028mm/0/0/1.jpg"
+    },
+    "projections": {
+      "equirectangular": "urn:ogc:def:crs:IAU2000::19900",
+      "northpole": "urn:ogc:def:crs:IAU2000::19918",
+      "southpole": "urn:ogc:def:crs:IAU2000::19920"
+    },
+    "service_endpoints": {
+      "listVisibleLayersUrl": "https://trek.nasa.gov/mercury/TrekServices/ws/index/PROJECTIONTYPE/listVisibleLayers?proj=PROJECTION&start=0&rows=2147483647",
+      "getLayerServiceUrl": "https://trek.nasa.gov/mercury/TrekServices/ws/index/getLayerServices?uuid=",
+      "getAbstractUrl": "https://trek.nasa.gov/mercury/TrekWS/rest/cat/abstract?label=",
+      "getMetadataUrl": "https://trek.nasa.gov/mercury/TrekWS/rest/cat/metadata/fgdc/html?label="
+    },
+    "services": {
+      "show_metadata": true,
+      "show_wmts": true,
+      "show_abstract": true
+    }
+  },
+  "icyMoon":{
+    "trekInfo":{
+      "tabName": "Icy Moons Trek API",
+      "trekName": "Icy Moons Trek",
+      "trekTitle": "Icy Moons Trek",
+      "trekSubtitle": "WMTS Layer Services",
+      "url": "http://trek.nasa.gov/icymoons/"
+    },
+    "backgroundImage":{
+      "url": "assets/icyMoons.jpg"
+    },
+    "samples":{
+      "sample1":"https://trek.nasa.gov/tiles/Mercury/EQ/Mercury_MESSENGER_MDIS_Basemap_EnhancedColor_Mosaic_Global_665m/1.0.0/default/default028mm/0/0/0.jpg",
+      "sample2":"https://trek.nasa.gov/tiles/Mercury/EQ/Mercury_MESSENGER_MDIS_Basemap_EnhancedColor_Mosaic_Global_665m/1.0.0/default/default028mm/0/0/1.jpg"
+    },
+    "projections": {
+
+    },
+    "service_endpoints": {
+      "listVisibleLayersUrl": "https://trek.nasa.gov/icyMoon/TrekServices/ws/index/PROJECTIONTYPE/listVisibleLayers?proj=PROJECTION&start=0&rows=2147483647",
+      "getLayerServiceUrl": "https://trek.nasa.gov/icyMoon/TrekServices/ws/index/getLayerServices?uuid=",
+      "getAbstractUrl": "https://trek.nasa.gov/icyMoon/TrekWS/rest/cat/abstract?label=",
+      "getMetadataUrl": "https://trek.nasa.gov/icyMoon/TrekWS/rest/cat/metadata/fgdc/html?label="
+    },
+    "services": {
+      "show_metadata": false,
+      "show_wmts": false,
+      "show_abstract": false
+    }
+  }
+}

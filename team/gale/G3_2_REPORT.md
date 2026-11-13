@@ -2,6 +2,11 @@
 
 Baseline: `5eee968`, branch `feat/gale-map`. Dataset: `gale-g3-2-v1`.
 
+Follow-up: [focused registration investigation](REGISTRATION_INVESTIGATION.md)
+qualifies the earlier translation diagnostic. Internal grids and tile mapping are
+consistent, but image-search maxima are unstable and precise CTX registration
+remains unverified. No correction was applied; the G3.2 data below is preserved.
+
 Elevation, hillshade and slope are available as three optional **independent
 native-coordinate DEM views**. Each starts at 100% opacity and fits the audited
 subset. G1 imagery/traverse, G2 photographs and target records, G3.1 geology and
@@ -76,7 +81,8 @@ not precise local registration. The new local check compares 4,096 independently
 georeferenced PDS orthophoto samples against the **committed CTX display tiles**,
 with no transformation. Pearson DN agreement is −0.198. A diagnostic translation
 search after smoothing improves a central patch to about 0.840 at row +12 / column
-+3 of a 16.15 m sample grid. This suggests substantial mismatch; it is **not** an
++3 of a 16.15 m sample grid. This triggered the follow-up investigation, which
+does not establish a unique or measured physical translation; it is **not** an
 accepted transformation or survey offset, and no correction was applied. Other
 historical corridor windows also failed direct-match checks. Photometric differences
 complicate correlation, so these diagnostics cannot certify an exact displacement.

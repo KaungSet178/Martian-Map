@@ -1,0 +1,26 @@
+{
+  "url": "https://planetarydata.jpl.nasa.gov/img/data/msl/msl_places/data_maps/msl_orbital_map.img",
+  "range": [
+    936105120,
+    964143519
+  ],
+  "row": 34720,
+  "height": 1040,
+  "width": 26960,
+  "bytes": 28038400,
+  "sha256": "3ac0fa72f4e096b3ad33e1029e59b1c69422e2b60f0f6e5c0523ea9d5d87bc78",
+  "response_headers": {
+    "Server": "nginx",
+    "Date": "Fri, 13 Nov 2026 14:08:30 GMT",
+    "Content-Length": "28038400",
+    "Connection": "keep-alive",
+    "Last-Modified": "Sat, 01 Aug 2026 15:39:03 GMT",
+    "ETag": "\"5c1cf320-657fe1ac9b3c0\"",
+    "Content-Security-Policy": "frame-ancestors 'self'",
+    "X-Frame-Options": "SAMEORIGIN",
+    "Strict-Transport-Security": "max-age=31536000; includeSubdomains; preload",
+    "Access-Control-Allow-Origin": "*",
+    "Content-Range": "bytes 936105120-964143519/1545401120"
+  },
+  "purpose": "Native contiguous band for area-averaged image comparison; original coordinates only; no fitted correction."
+}

@@ -117,7 +117,7 @@
         "interpretation": "Suggests positional mismatch, not an accepted transform, survey offset or correction. No shift applied."
       }
     },
-    "interpretation": "Low/negative local DN agreement does not validate alignment. A smoothed translation diagnostic on the central 32 x 32 patch peaks at row+12,column+3 of a 16.15 m sample grid (score about0.84), suggesting substantial mismatch. This is NOT an accepted transformation, survey offset estimate or applied correction. Other corridor windows also failed direct-match checks. No precise CTX/DEM co-registration claim.",
+    "interpretation": "Historical G3.2 DN searches suggested a possible mismatch. Follow-up area-averaged comparisons have unstable maxima and weak held-out agreement; no unique cause or quantified physical shift is established. The prior translation diagnostic is not an accepted transformation or survey offset. No correction applied. Precise local CTX co-registration remains unverified; see REGISTRATION_INVESTIGATION.md.",
     "rendering_policy": "Retain original published coordinates; full opacity by default, explicit mismatch warning in coverage and limitations. User-controlled opacity is exploratory only. Independent native-CRS elevation/slope visualization remains useful; no coincident fine-feature interpretation.",
     "review_file": "team/gale/sources/g3-2/aoi-registration-review.json"
   },
@@ -212,5 +212,14 @@
     "g2_photo_and_g3_1_geometry_integrity": "pass",
     "reproducible_tile_and_coverage_hashes": "pass",
     "scientific_alignment_gate": "precise local CTX co-registration not verified; no corrective transformation applied"
+  },
+  "registration_follow_up": {
+    "report": "team/gale/REGISTRATION_INVESTIGATION.md",
+    "measurements": "team/gale/sources/registration/measurements.json",
+    "baseline": "8e0bc77",
+    "finding": "No source correction supported. Declared PDS grids and CTX tile conversion are internally consistent; exact CTX native control lineage and precise local image tie remain unverified. Prior translation maxima are not surveyed offsets.",
+    "scientific_assets_changed": false,
+    "operational_sampling_enabled": false,
+    "route_safety_enabled": false
   }
 }

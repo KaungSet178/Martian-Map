@@ -190,3 +190,22 @@ routing and mission/resource calculations remain unsupported. Target locations
 and boundaries unchanged. G1/G2/G3.1 assets preserved. Optional raster bounds,
 focus and nearest sampling preserve legacy manifests; see report for shared
 contract handoff. No G3.3/G4 features started.
+
+## Focused registration investigation - 13 November 2026
+
+Read [REGISTRATION_INVESTIGATION.md](REGISTRATION_INVESTIGATION.md) and the
+separate [390px regression report](MOBILE_DEM_REGRESSION.md). Baseline `8e0bc77`
+includes the three M1 geodesy cherry-picks, all preserved without edits.
+
+No evidence-supported georeferencing correction: all 1,249,591 audited opaque CTX
+pixels reproduce source mapping exactly; PDS labels, GDAL/PROJ and 49,194 mission
+rows agree to rounding. This is internal consistency, not ground accuracy. The
+area-averaged image comparison has unstable search winners and weak held-out
+agreement. Exact Trek control lineage and precise local registration remain
+unverified; prior high correlation peaks must not be treated as measured shifts.
+
+All scientific geometry/assets and app behavior unchanged. Operational sampling,
+terrain-aware routing, elevation profiles, safety/feasibility calculations and
+mineralogy remain out of scope. The separate mobile pixel failure was reproduced
+and traced to an opacity-transition baseline race. The test waits for rendered
+stability; original thresholds and production renderer are preserved.

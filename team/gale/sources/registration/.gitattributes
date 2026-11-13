@@ -1,0 +1,5 @@
+# Scientific receipts and upstream metadata retain their exact bytes.
+*.json -text
+*.csv -text
+*.html -text whitespace=-blank-at-eol,cr-at-eol
+*.bin binary

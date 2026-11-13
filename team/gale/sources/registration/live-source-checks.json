@@ -1,0 +1,53 @@
+{
+  "review_date": "2026-11-13",
+  "ctx_tiles": [
+    {
+      "url": "https://trek.nasa.gov/tiles/Mars/EQ/Gale_CTX_BlockAdj_dd/1.0.0/default/default028mm/12/2155/7222.png",
+      "bytes": 47090,
+      "sha256": "ad5fa14ac42729f3667e2c86613e0643f185391fe2f967512ddb51f44f622f61",
+      "matches_pinned_g1_input": true
+    },
+    {
+      "url": "https://trek.nasa.gov/tiles/Mars/EQ/Gale_CTX_BlockAdj_dd/1.0.0/default/default028mm/12/2154/7222.png",
+      "bytes": 49033,
+      "sha256": "39c7866ed5b155744a66542cb11495612dd20f112a4fcf4715a475e618cc4c77",
+      "matches_pinned_g1_input": true
+    }
+  ],
+  "pds_map_headers": {
+    "url": "https://planetarydata.jpl.nasa.gov/img/data/msl/msl_places/data_maps/msl_orbital_map.img",
+    "range": [
+      0,
+      53919
+    ],
+    "bytes": 53920,
+    "sha256": "81ded7b66186227996dcee435265e615af1600ed26b4e0b7b563be000671b24f"
+  },
+  "note": "Live checks confirm sampled endpoint content only, not native geodetic control or full-mosaic immutability.",
+  "live_label_checks": [
+    {
+      "name": "trek-capabilities.xml",
+      "url": "https://trek.nasa.gov/tiles/Mars/EQ/Gale_CTX_BlockAdj_dd/1.0.0/WMTSCapabilities.xml",
+      "bytes": 8333,
+      "sha256": "ec61c61162ea6f588666c4acb5d38303016f96175ffa1a0e68b62727ba96e5d2",
+      "pinned_path": "team/gale/sources/capabilities.xml",
+      "matches_pinned_source": true
+    },
+    {
+      "name": "pds-dem.xml",
+      "url": "https://planetarydata.jpl.nasa.gov/img/data/msl/msl_places/data_maps/msl_orbital_dem.xml",
+      "bytes": 15523,
+      "sha256": "e54efee1e91a8a5f8877789843c452fda33c9f4f17e3ca5fbf949be1cc7ac809",
+      "pinned_path": "team/gale/sources/g3-2/pds-dem.xml",
+      "matches_pinned_source": true
+    },
+    {
+      "name": "pds-map.xml",
+      "url": "https://planetarydata.jpl.nasa.gov/img/data/msl/msl_places/data_maps/msl_orbital_map.xml",
+      "bytes": 15844,
+      "sha256": "aeee1005e7606833fd8d1c4d99d48dbbc9053a6ba80547728c77651f5d212560",
+      "pinned_path": "team/gale/sources/map-label.xml",
+      "matches_pinned_source": true
+    }
+  ]
+}

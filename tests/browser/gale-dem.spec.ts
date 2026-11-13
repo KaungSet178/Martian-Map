@@ -24,6 +24,22 @@ async function pixels(page: Page) {
   },png.toString("base64"));
 }
 
+// MapLibre 6.18 defaults to a 300 ms paint transition. A screenshot taken
+// immediately after setting opacity=0 can still contain almost all DEM color.
+// Measure a stable rendered baseline; keep the original >100 pixel assertion.
+async function settledPixels(page: Page) {
+  let previous = await pixels(page);
+  let stable = 0;
+  await expect.poll(async () => {
+    const current = await pixels(page);
+    stable = current.colored === previous.colored && Math.abs(current.mean-previous.mean) < .001
+      ? stable+1 : 0;
+    previous = current;
+    return stable;
+  }, { intervals: [150] }).toBeGreaterThanOrEqual(2);
+  return previous;
+}
+
 for(const [width,height] of [[1440,900],[1024,768],[768,1024],[390,844]]) {
   test(`real DEM views, uncertainty, opacity and isolation at ${width}px`, async({page}) => {
     await page.setViewportSize({width,height});
@@ -54,7 +70,7 @@ for(const [width,height] of [[1440,900],[1024,768],[768,1024],[390,844]]) {
       await expect(product.locator(".legend-detail")).toContainText(["MOLA areoid","315°","degrees (°)"][i]);
       const opacity=page.getByLabel(new RegExp(`${name} opacity`));
       await expect(opacity).toHaveValue("100");
-      await opacity.fill("0"); const baseline=await pixels(page);
+      await opacity.fill("0"); const baseline=await settledPixels(page);
       await opacity.fill("100");
       if(i!==1) await expect.poll(async()=> (await pixels(page)).colored).toBeGreaterThan(baseline.colored+100);
       else await expect.poll(async()=>Math.abs((await pixels(page)).mean-baseline.mean)).toBeGreaterThan(.1);
