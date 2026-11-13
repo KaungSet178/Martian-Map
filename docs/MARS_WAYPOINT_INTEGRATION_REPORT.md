@@ -61,7 +61,7 @@ flowchart TD
 - `app/globals.css`: Added scoped design-token-compliant styles for waypoint cards, leg metrics, distance summary grid, and validation notices.
 - `tests/waypoint-bridge.test.ts`: 10 unit tests validating dual-model synchronization, unverified target handling, regional isolation, and persistence round-trip.
 - `tests/waypoint-planning.test.ts`: 33 unit tests for M2 immutable operations and validation.
-- `tests/waypoint-ui.test.ts`: 15 component markup and callback tests.
+- `tests/waypoint-ui.test.ts`: 21 component markup, formatting helper, and callback interaction tests.
 - `tests/browser/waypoint-integration.spec.ts`: E2E Playwright tests across desktop (1440px), tablet (768px), and mobile (390px) viewports with Axe accessibility checks.
 - Documentation: Added `MARS_WAYPOINT_PLANNING_REPORT.md`, `MARS_WAYPOINT_UI_INTEGRATION_PLAN.md`, and `MARS_WAYPOINT_UI_COMPONENTS_REPORT.md`.
 
