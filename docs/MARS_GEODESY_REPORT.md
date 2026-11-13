@@ -56,17 +56,23 @@ $$\frac{\Delta s}{s} \approx \frac{R_0 - R_{\text{local}}(\phi, \alpha)}{R_{\tex
 
 Because this is a **fractional ratio**, it does **not** scale down with shorter route lengths. Even for a short $2\text{ km}$ traverse, if the traverse is conducted near the poles or along a north-south meridian at high latitudes, the spherical approximation carries a persistent fractional error of up to $\sim 0.6\%\text{--}0.9\%$ relative to an ellipsoidal geodesic.
 
-#### Operational Context at EVA Scales
-While route length does not eliminate the ellipsoidal model discrepancy, the spherical model is nevertheless scientifically acceptable for pre-mission EVA planning for the following quantified reasons:
+#### Operational Context and Model Distinctions
+It is critical to maintain a clear scientific separation between reference-surface geometric discrepancies and terrain-following distance effects:
 
-1. **Topographic Relief Dominance:** On Mars, regional and localized topographic slopes introduce 3D path length increments that are substantially larger than the $\sim 0.6\%$ ellipsoidal discrepancy:
-   - A moderate $10^\circ$ slope increases path length over horizontal distance by $\frac{1}{\cos 10^\circ} - 1 \approx +1.54\%$.
-   - A $20^\circ$ slope increases path length by $\frac{1}{\cos 20^\circ} - 1 \approx +6.42\%$.
-   - Climbing the Aeolis Mons (Mount Sharp) mound in Gale Crater involves vertical ascents of $> 2\text{ km}$, where slope geometry dwarfs the ellipsoidal correction.
-2. **DEM Horizontal Resolution:** High-resolution orbital elevation models (CTX at $\sim 20\text{ m/px}$, HRSC at $\sim 50\text{ m/px}$) have grid cell uncertainties that equal or exceed the ellipsoidal discrepancy across localized sub-kilometre traverses.
-3. **Terrain Roughness:** Sub-pixel boulders, sand ripples, and regolith scree introduce actual walking traverse tortuosity of $5\%\text{--}25\%$ over any orbital 2D path.
+1. **Geometric Reference Model Discrepancies:**
+   - Discrepancies between the spherical model ($\mathcal{R}_0 = 3{,}396{,}190\text{ m}$) and an ellipsoidal geodesic depend strictly on the **chosen mathematical reference datum, latitude ($\phi$), and azimuth ($\alpha$)**.
+   - These geometric discrepancies exist independently of whether the underlying surface is mountainous, hilly, or planar. At high latitudes, the reference sphere introduces a fractional discrepancy up to $\sim 0.6\%\text{--}0.9\%$ along meridional trajectories relative to an ellipsoidal datum.
 
-Therefore, the spherical model is retained, with the strict qualification that outputs are labeled:  
+2. **Terrain-Following and Traversability Effects:**
+   - Real-world surface traverse distances depend on **measured elevation** (topographic relief derived from co-registered digital elevation models) and **actual surface traversability** (micro-roughness, boulder distributions, sand dunes, scree, and slope hazards).
+   - In regions with steep inclines (such as crater rims or the slopes of Mount Sharp), 3D slope integration along a DEM path will increase the integrated surface distance relative to horizontal separation. Conversely, across smooth, low-relief plains, slope-induced path expansion is minimal.
+   - Surface traversability also requires navigating around localized impassable obstacles, which adds path sinuosity that cannot be derived from a universal percentage or assumed constant.
+
+3. **Separation of Concerns:**
+   - Topographic effects do not "cancel out" or universally dominate geometric model discrepancies; they represent distinct physical and mathematical phenomena.
+   - `lib/map/geodesy.ts` provides only the horizontal great-circle arc length on the reference sphere. It makes no assumptions regarding local slopes, surface roughness, or micro-topography.
+
+Therefore, the spherical model is retained strictly as a geometric baseline for spherical reference coordinates, with outputs explicitly labeled:  
 **"Geometric surface distance — spherical Mars approximation ($\mathcal{R} = 3{,}396{,}190\text{ m}$)"**.
 
 ---
