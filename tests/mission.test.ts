@@ -21,9 +21,16 @@ test("all region fixtures obey shared contract and cannot imply scientific readi
     // no fixture may claim audited terrain coverage, which together with
     // disabled routing keeps every region scientifically not-ready.
     assert.notEqual(region.capabilities.terrain_coverage.status, "audited");
+    // Available layers must carry non-hypothetical evidence: a direct
+    // observation/published record ("Observed") or a published scientific
+    // classification ("Interpreted" - e.g. a USGS published geologic map).
+    // Derived/Modeled/Scenario content stays out of the live map controls.
     assert.ok(
       region.layers.every(
-        (l) => l.availability !== "available" || l.evidence === "Observed",
+        (l) =>
+          l.availability !== "available" ||
+          l.evidence === "Observed" ||
+          l.evidence === "Interpreted",
       ),
     );
     assert.ok(

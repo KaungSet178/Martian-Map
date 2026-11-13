@@ -15,3 +15,8 @@ next-env.d.ts
 # (see team/jezero/CONTEXT.md) - never committed.
 team/jezero/terrain/*.tif
 team/jezero/downloads/
+# Geology: SIM 3464 GIS database (Nili.gdb + rasters) and the fetched vector
+# source layers stay local; scripts/reports/tiles are tracked.
+team/jezero/geology/downloads/
+team/jezero/geology/sim3464_database/
+team/jezero/geology/source/
