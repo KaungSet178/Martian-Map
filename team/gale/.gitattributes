@@ -1,0 +1,3 @@
+# Original scientific metadata snapshots: retain upstream bytes and whitespace
+# so SHA-256 provenance remains reproducible on Windows and Unix checkouts.
+sources/*.xml -text whitespace=-blank-at-eol,cr-at-eol
