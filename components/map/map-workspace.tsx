@@ -13,6 +13,14 @@ import {
   toDisplayCoordinates,
   type LayerStates,
 } from "@/lib/map/region-layers";
+import {
+  mountTrajectoryLayers,
+  updateTrajectoryData,
+  fromDisplayCoordinates,
+  isCoordinateWithinExtent,
+} from "@/lib/map/waypoint-layers";
+import { formatCoordinates } from "@/components/mission/waypoint-itinerary";
+import type { WaypointPlan } from "@/lib/mission/waypoint-planning";
 import { fitOverview } from "@/lib/map/camera";
 import {
   Crosshair,
@@ -23,7 +31,7 @@ import {
   Map as MapIcon,
   PanelLeftOpen,
 } from "lucide-react";
-import type { RegionManifest } from "@/lib/contracts/region";
+import type { RegionManifest, MarsGeographicCoordinates } from "@/lib/contracts/region";
 import { Badge } from "@/components/ui/primitives";
 
 type Props = {
@@ -41,6 +49,13 @@ type Props = {
   showMarkers: boolean;
   opacity: number;
   layerStates: LayerStates;
+  plan?: WaypointPlan;
+  isPlacingOnMap?: boolean;
+  onPlaceWaypoint?: (coords: MarsGeographicCoordinates) => void;
+  onCancelPlacement?: () => void;
+  selectedWaypointId?: string | null;
+  onSelectWaypoint?: (id: string) => void;
+  onPlacementError?: (error: string) => void;
 };
 
 export default function MapWorkspace({
@@ -58,10 +73,19 @@ export default function MapWorkspace({
   showMarkers,
   opacity,
   layerStates,
+  plan,
+  isPlacingOnMap = false,
+  onPlaceWaypoint,
+  onCancelPlacement,
+  selectedWaypointId = null,
+  onSelectWaypoint,
+  onPlacementError,
 }: Props) {
   const container = useRef<HTMLDivElement>(null);
   const map = useRef<MapInstance | null>(null);
   const markers = useRef<Marker[]>([]);
+  const waypointMarkers = useRef<Marker[]>([]);
+  const markerElements = useRef<Map<string, HTMLButtonElement>>(new Map());
   const overview = useRef(true);
   const previousLayers = useRef<{ region: string; visible: Set<string> } | null>(null);
   const [ready, setReady] = useState(false);
@@ -318,12 +342,197 @@ export default function MapWorkspace({
     scientificMap,
   ]);
 
+  // Trajectory layers mounting & updates
+  useEffect(() => {
+    if (!ready || !map.current) return;
+    return mountTrajectoryLayers(map.current);
+  }, [ready, region]);
+
+  useEffect(() => {
+    if (!ready || !map.current || !plan) return;
+    updateTrajectoryData(map.current, plan);
+  }, [ready, region, plan]);
+
+  const selectedWaypointIdRef = useRef(selectedWaypointId);
+  useEffect(() => {
+    selectedWaypointIdRef.current = selectedWaypointId;
+  }, [selectedWaypointId]);
+
+  // Waypoint DOM markers
+  useEffect(() => {
+    let disposed = false;
+    const currentMarkers = waypointMarkers.current;
+    const currentElements = markerElements.current;
+    currentMarkers.forEach((m) => m.remove());
+    waypointMarkers.current = [];
+
+    if (
+      !ready ||
+      (!preview && !scientificMap) ||
+      !map.current ||
+      !plan?.waypoints ||
+      plan.waypoints.length === 0
+    ) {
+      return;
+    }
+
+    import("maplibre-gl").then(({ Marker }) => {
+      if (disposed || !map.current) return;
+      waypointMarkers.current = (plan.waypoints || []).map((wp, i) => {
+        const button = document.createElement("button");
+        button.type = "button";
+        const isSelected = selectedWaypointIdRef.current === wp.id;
+        button.className = `map-waypoint-marker ${wp.role} ${isSelected ? "selected" : ""}`;
+        button.setAttribute("data-testid", "map-waypoint-marker");
+        button.setAttribute("data-waypoint-id", wp.id);
+        button.setAttribute("data-role", wp.role);
+        const roleLabel =
+          wp.role === "base"
+            ? "Base Camp"
+            : wp.role === "destination" || wp.role === "recovery_endpoint"
+              ? "Destination"
+              : wp.role === "science_stop"
+                ? "Science Stop"
+                : `Waypoint ${i + 1}`;
+        button.setAttribute(
+          "aria-label",
+          `${roleLabel}: ${wp.label || "Waypoint"} (${formatCoordinates(wp.coordinates)})`,
+        );
+        button.setAttribute("aria-pressed", String(isSelected));
+
+        const glyph = document.createElement("span");
+        glyph.className = "marker-glyph";
+        if (wp.role === "base") {
+          glyph.textContent = "⌂";
+        } else if (wp.role === "destination" || wp.role === "recovery_endpoint") {
+          glyph.textContent = "⚑";
+        } else if (wp.role === "science_stop") {
+          glyph.textContent = "◇";
+        } else {
+          glyph.textContent = String(i + 1);
+        }
+        button.appendChild(glyph);
+
+        button.onclick = (e) => {
+          e.stopPropagation();
+          onSelectWaypoint?.(wp.id);
+        };
+
+        currentElements.set(wp.id, button);
+
+        return new Marker({ element: button })
+          .setLngLat(toDisplayCoordinates(wp.coordinates))
+          .addTo(map.current!);
+      });
+    });
+
+    return () => {
+      disposed = true;
+      currentMarkers.forEach((m) => m.remove());
+      waypointMarkers.current = [];
+      currentElements.clear();
+    };
+  }, [
+    ready,
+    preview,
+    scientificMap,
+    plan?.waypoints,
+    onSelectWaypoint,
+  ]);
+
+  // Sync selected state on existing waypoint marker buttons without remounting
+  useEffect(() => {
+    markerElements.current.forEach((button, id) => {
+      const isSelected = selectedWaypointId === id;
+      button.classList.toggle("selected", isSelected);
+      button.setAttribute("aria-pressed", String(isSelected));
+    });
+  }, [selectedWaypointId]);
+
+  // Cursor style when in placement mode
+  useEffect(() => {
+    const canvas = map.current?.getCanvas();
+    if (!canvas) return;
+    if (isPlacingOnMap) {
+      canvas.style.cursor = "crosshair";
+    } else {
+      canvas.style.cursor = "";
+    }
+  }, [isPlacingOnMap, ready]);
+
+  // Callback refs to avoid rebuilding map click listener on state changes
+  const onPlaceWaypointRef = useRef(onPlaceWaypoint);
+  const onPlacementErrorRef = useRef(onPlacementError);
+
+  useEffect(() => {
+    onPlaceWaypointRef.current = onPlaceWaypoint;
+    onPlacementErrorRef.current = onPlacementError;
+  }, [onPlaceWaypoint, onPlacementError]);
+
+  // Interactive map click for waypoint placement
+  useEffect(() => {
+    const instance = map.current;
+    if (!ready || !instance || !isPlacingOnMap) return;
+
+    const handleClick = (e: { lngLat: { lng: number; lat: number } }) => {
+      const coords = fromDisplayCoordinates(e.lngLat);
+      if (!isCoordinateWithinExtent(coords, region.map.supported_extent)) {
+        const ext = region.map.supported_extent;
+        const extentStr = ext
+          ? `${ext.west_east.toFixed(3)}°E–${ext.east_east.toFixed(3)}°E, ${ext.south_latitude.toFixed(3)}°S–${ext.north_latitude.toFixed(3)}°S`
+          : "Scientific map coverage not available";
+        onPlacementErrorRef.current?.(
+          `Coordinates outside reviewed scientific footprint (${extentStr}).`,
+        );
+        return;
+      }
+      onPlaceWaypointRef.current?.(coords);
+    };
+
+    instance.on("click", handleClick);
+    return () => {
+      instance.off("click", handleClick);
+    };
+  }, [ready, isPlacingOnMap, region]);
+
+  // Escape key cancels placement mode
+  useEffect(() => {
+    if (!isPlacingOnMap) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        e.preventDefault();
+        onCancelPlacement?.();
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isPlacingOnMap, onCancelPlacement]);
+
   return (
     <section
-      className={`map-workspace ${preview ? "preview" : ""} ${scientificMap ? "scientific" : ""}`}
+      className={`map-workspace ${preview ? "preview" : ""} ${scientificMap ? "scientific" : ""} ${isPlacingOnMap ? "placing-mode" : ""}`}
       aria-label={`${region.name} map workspace`}
     >
       <div className="map-canvas" ref={container} data-testid="map-canvas" />
+      {isPlacingOnMap && (
+        <div className="placement-banner" role="status" aria-live="polite" data-testid="placement-banner">
+          <div className="placement-banner-content">
+            <Crosshair size={18} className="pulse-icon" aria-hidden="true" />
+            <span>
+              <strong>Waypoint placement active</strong> — Click within scientific map footprint to place {(!plan?.waypoints || plan.waypoints.length === 0) ? "Base Camp" : "a waypoint"}. Press Escape to cancel.
+            </span>
+          </div>
+          <button
+            type="button"
+            className="placement-cancel-btn"
+            onClick={onCancelPlacement}
+            aria-label="Cancel map placement"
+            data-testid="cancel-placement-btn"
+          >
+            Cancel
+          </button>
+        </div>
+      )}
       <div className="map-topline">
         <div className="map-location">
           {collapsed && (
@@ -441,6 +650,15 @@ export default function MapWorkspace({
             </>
           )}
         </button>
+        {plan?.waypoints && plan.waypoints.length >= 2 && (
+          <span
+            className="trajectory-legend mono"
+            data-testid="trajectory-legend"
+            title="Spherical Mars approximation (R = 3,396,190 m)"
+          >
+            Proposed geometric trajectory — spherical Mars approximation (R = 3,396,190 m)
+          </span>
+        )}
         <span className="map-scale mono">
           Scale unavailable<span>{scientificMap && !preview ? "Source footprint only" : "Not georeferenced"}</span>
         </span>

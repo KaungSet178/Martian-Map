@@ -124,6 +124,8 @@ export interface WaypointItineraryProps {
   readOnly?: boolean;
   /** Optional ID of the waypoint currently undergoing inline label editing. */
   editingWaypointId?: string | null;
+  /** Optional ID of the currently selected/inspected waypoint. */
+  selectedWaypointId?: string | null;
   /** Callback invoked when a waypoint is removed by ID. */
   onWaypointRemove?: (waypointId: string) => void;
   /** Callback invoked when a waypoint position moves by delta (+1 or -1). */
@@ -140,6 +142,8 @@ export interface WaypointItineraryProps {
   onSetDestination?: (waypoint: MarsWaypoint) => void;
   /** Callback invoked when the user requests science target selection. */
   onExploreScience?: () => void;
+  /** Callback invoked when a waypoint item is selected. */
+  onSelectWaypoint?: (waypointId: string) => void;
 }
 
 // ---------------------------------------------------------------------------
@@ -150,6 +154,7 @@ export function WaypointItinerary({
   plan,
   readOnly = false,
   editingWaypointId = null,
+  selectedWaypointId = null,
   onWaypointRemove,
   onWaypointMove,
   onWaypointUpdate,
@@ -158,6 +163,7 @@ export function WaypointItinerary({
   onSetOrigin,
   onSetDestination,
   onExploreScience,
+  onSelectWaypoint,
 }: WaypointItineraryProps) {
   // Compute geometric trajectory dynamically from pure M2 engine
   const trajectory: ProposedGeometricTrajectory = generateGeometricTrajectory(plan);
@@ -195,11 +201,18 @@ export function WaypointItinerary({
           const isOrigin = index === 0;
           const isLast = index === waypoints.length - 1;
           const isEditing = editingWaypointId === wp.id;
+          const isSelected = selectedWaypointId === wp.id;
           const legToNext: TrajectorySegment | null =
             index < trajectory.segments.length ? trajectory.segments[index] : null;
 
           return (
-            <li key={wp.id} className="waypoint-list-item" data-testid={`waypoint-item-${wp.id}`}>
+            <li
+              key={wp.id}
+              className={`waypoint-list-item ${isSelected ? "selected-waypoint" : ""}`}
+              data-testid={`waypoint-item-${wp.id}`}
+              data-selected={isSelected ? "true" : undefined}
+              onClick={() => onSelectWaypoint?.(wp.id)}
+            >
               {/* Waypoint Sequence Node */}
               <div className="waypoint-node">
                 <span

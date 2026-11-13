@@ -2196,6 +2196,259 @@ input[type="radio"] {
   }
 }
 
+/* ==========================================================================
+   Interactive Map Waypoint Placement & Trajectory Visualization (M3)
+   ========================================================================== */
+
+.map-workspace.placing-mode .map-canvas,
+.map-workspace.placing-mode .map-canvas canvas {
+  cursor: crosshair !important;
+}
+
+.placement-banner {
+  position: absolute;
+  top: 84px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 25;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  background: rgba(9, 17, 31, 0.95);
+  border: 1px solid var(--color-route);
+  border-radius: 8px;
+  padding: 8px 14px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(89, 227, 250, 0.25);
+  width: calc(100% - 32px);
+  max-width: 540px;
+  box-sizing: border-box;
+  animation: banner-slide-down 0.2s ease-out;
+}
+
+@media (max-width: 900px) {
+  .placement-banner {
+    top: auto;
+    bottom: 64px;
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+}
+
+.placement-banner-content {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--color-text);
+  line-height: 1.4;
+}
+
+.placement-banner-content strong {
+  color: var(--color-route);
+}
+
+.placement-banner .pulse-icon {
+  color: var(--color-route);
+  animation: pulse-ring 2s infinite;
+  flex-shrink: 0;
+}
+
+.placement-cancel-btn {
+  min-height: 32px;
+  padding: 4px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: 6px;
+  background: var(--color-surface-raised);
+  border: 1px solid var(--color-control-border);
+  color: var(--color-text);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background-color 0.15s, border-color 0.15s;
+}
+
+.placement-cancel-btn:hover {
+  background: #2a3c54;
+  border-color: #98b0cc;
+}
+
+/* Map Waypoint Markers */
+.map-waypoint-marker {
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 700;
+  font-family: "IBM Plex Mono", monospace;
+  cursor: pointer;
+  border: 2px solid;
+  z-index: 5;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+  transition: transform 0.15s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.15s;
+}
+
+.map-waypoint-marker .marker-glyph {
+  position: relative;
+  pointer-events: none;
+  display: inline-block;
+}
+
+/* Base Camp */
+.map-waypoint-marker.base {
+  border-radius: 7px;
+  background: #0d2838;
+  border-color: var(--color-route);
+  color: var(--color-route);
+}
+
+/* Science Stop */
+.map-waypoint-marker.science_stop {
+  border-radius: 4px;
+  transform: rotate(45deg);
+  background: #241738;
+  border-color: var(--color-science);
+  color: var(--color-science);
+}
+
+.map-waypoint-marker.science_stop .marker-glyph {
+  transform: rotate(-45deg);
+}
+
+/* Intermediate Turn Point */
+.map-waypoint-marker.intermediate {
+  border-radius: 50%;
+  background: #112033;
+  border-color: #8da4be;
+  color: #f0f5fc;
+}
+
+/* Destination / Recovery Endpoint */
+.map-waypoint-marker.destination,
+.map-waypoint-marker.recovery_endpoint {
+  border-radius: 7px;
+  background: #362208;
+  border-color: var(--color-caution);
+  color: var(--color-caution);
+}
+
+/* Marker Hover & Focus */
+.map-waypoint-marker:hover,
+.map-waypoint-marker:focus-visible {
+  transform: scale(1.15);
+  box-shadow: 0 0 0 3px var(--color-route), 0 4px 12px rgba(0, 0, 0, 0.8);
+  z-index: 15;
+}
+
+.map-waypoint-marker.science_stop:hover,
+.map-waypoint-marker.science_stop:focus-visible {
+  transform: rotate(45deg) scale(1.15);
+}
+
+/* Marker Selected State */
+.map-waypoint-marker.selected {
+  transform: scale(1.22);
+  box-shadow: 0 0 0 4px var(--color-route), 0 0 16px rgba(89, 227, 250, 0.6);
+  z-index: 20;
+}
+
+.map-waypoint-marker.science_stop.selected {
+  transform: rotate(45deg) scale(1.22);
+}
+
+/* Trajectory Legend / Scientific Disclaimer */
+.trajectory-legend {
+  font-size: 11px;
+  color: var(--color-route);
+  background: rgba(9, 17, 31, 0.85);
+  padding: 2px 8px;
+  border-radius: 4px;
+  border: 1px solid rgba(89, 227, 250, 0.35);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 360px;
+}
+
+/* Selected Waypoint in Itinerary */
+.waypoint-list-item.selected-waypoint {
+  border-color: var(--color-route);
+  box-shadow: 0 0 0 1px var(--color-route), 0 4px 14px rgba(89, 227, 250, 0.15);
+  background: rgba(89, 227, 250, 0.04);
+}
+
+/* Manual Coordinates Card in WaypointEditor */
+.manual-coordinates-card {
+  margin-top: 14px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 10px 14px;
+  transition: border-color 0.15s;
+}
+
+.manual-coordinates-card[open] {
+  border-color: var(--color-control-border);
+}
+
+.manual-coordinates-summary {
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-route);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  user-select: none;
+}
+
+.manual-coordinates-summary:hover {
+  text-decoration: underline;
+}
+
+.manual-coordinates-form {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.manual-inputs-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.manual-inputs-grid > div:last-child {
+  grid-column: 1 / -1;
+}
+
+.manual-error {
+  color: var(--color-critical);
+  font-size: 12px;
+  margin: 0;
+}
+
+.add-manual-btn {
+  align-self: flex-start;
+  margin-top: 4px;
+}
+
+@keyframes pulse-ring {
+  0% { opacity: 0.6; transform: scale(0.96); }
+  50% { opacity: 1; transform: scale(1.04); }
+  100% { opacity: 0.6; transform: scale(0.96); }
+}
+
+@keyframes banner-slide-down {
+  from { opacity: 0; transform: translate(-50%, -10px); }
+  to { opacity: 1; transform: translate(-50%, 0); }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
