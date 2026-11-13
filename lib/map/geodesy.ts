@@ -186,6 +186,17 @@ export function marsInitialBearing(
   validateCoordinate(a, "a");
   validateCoordinate(b, "b");
 
+  // Polar singularities: at either geographic pole, "North" has no directional
+  // meaning (all meridians converge), so forward initial bearing from a pole
+  // is geometrically undefined.
+  if (Math.abs(a.latitude) === 90) {
+    return NaN;
+  }
+
+  // Heading directly to a geographic pole:
+  if (b.latitude === 90) return 0;
+  if (b.latitude === -90) return 180;
+
   const lat1 = toRad(a.latitude);
   const lat2 = toRad(b.latitude);
   const dLon = toRad(b.longitude_east - a.longitude_east);
@@ -236,6 +247,15 @@ export function marsInterpolate(
     throw new RangeError(`Interpolation fraction t must be finite; received ${t}`);
   }
 
+  // Fast path for coincident points: unambiguous geodesic.
+  if (
+    (a.latitude === b.latitude && a.longitude_east === b.longitude_east) ||
+    (a.latitude === 90 && b.latitude === 90) ||
+    (a.latitude === -90 && b.latitude === -90)
+  ) {
+    return { latitude: a.latitude, longitude_east: a.longitude_east };
+  }
+
   // Convert to unit-sphere Cartesian.
   const lat1 = toRad(a.latitude);
   const lon1 = toRad(a.longitude_east);
@@ -255,28 +275,30 @@ export function marsInterpolate(
 
   // Central angle via dot product (clamped for numerical safety).
   const dot = Math.min(1, Math.max(-1, ax * bx + ay * by + az * bz));
+
+  // Antipodal points: infinitely many great-circle arcs connect them.
+  // The geodesic is ambiguous. Never return an arbitrary or silent interpolation.
+  if (dot <= -1 + 1e-12) {
+    throw new RangeError(
+      "Great-circle interpolation is undefined for antipodal points: infinitely many geodesics exist",
+    );
+  }
+
+  // Near coincidence after floating-point vector projection:
+  if (dot >= 1 - 1e-15) {
+    return { latitude: a.latitude, longitude_east: a.longitude_east };
+  }
+
   const omega = Math.acos(dot);
   const sinOmega = Math.sin(omega);
 
-  let rx: number, ry: number, rz: number;
+  const sa = Math.sin((1 - t) * omega) / sinOmega;
+  const sb = Math.sin(t * omega) / sinOmega;
+  let rx = sa * ax + sb * bx;
+  let ry = sa * ay + sb * by;
+  let rz = sa * az + sb * bz;
 
-  if (sinOmega < 1e-12) {
-    // Points are coincident or nearly antipodal — fall back to linear blend.
-    // For coincident points this correctly returns the common location.
-    // For truly antipodal points the shortest arc is undefined; the linear
-    // blend produces a deterministic but arbitrary intermediate result.
-    rx = ax + t * (bx - ax);
-    ry = ay + t * (by - ay);
-    rz = az + t * (bz - az);
-  } else {
-    const sa = Math.sin((1 - t) * omega) / sinOmega;
-    const sb = Math.sin(t * omega) / sinOmega;
-    rx = sa * ax + sb * bx;
-    ry = sa * ay + sb * by;
-    rz = sa * az + sb * bz;
-  }
-
-  // Normalise back to the unit sphere (guards against drift).
+  // Normalise back to the unit sphere (guards against numerical drift).
   const norm = Math.sqrt(rx * rx + ry * ry + rz * rz);
   rx /= norm;
   ry /= norm;

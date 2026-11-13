@@ -95,29 +95,34 @@ describe("marsDistance", () => {
 
   // -- Known angular separations -------------------------------------------
 
-  it("1° of latitude at the equator ≈ π/180 × R", () => {
-    // Independent: 1° arc on a great circle = R × π/180
-    const expected = R * Math.PI / 180; // 59 274.977… m
+  it("1° of latitude at the equator ≈ π/180 × R = 59,274.6975 m", () => {
+    // Independent analytical value:
+    // 1° = π/180 rad. d = 3,396,190 * π / 180 = 59,274.6975233... m
+    const expected = R * Math.PI / 180;
     const actual = marsDistance(c(0, 0), c(1, 0));
-    assertApprox(actual, expected, 1e-10, 0.01, "1° lat");
+    assertApprox(actual, 59_274.6975, 0, 1e-4, "1° lat benchmark 59,274.6975 m");
+    assertApprox(actual, expected, 1e-12, 1e-6, "1° lat vs analytical");
   });
 
-  it("1° of longitude at the equator ≈ π/180 × R", () => {
+  it("1° of longitude at the equator ≈ π/180 × R = 59,274.6975 m", () => {
     const expected = R * Math.PI / 180;
     const actual = marsDistance(c(0, 0), c(0, 1));
-    assertApprox(actual, expected, 1e-10, 0.01, "1° lon at equator");
+    assertApprox(actual, 59_274.6975, 0, 1e-4, "1° lon benchmark 59,274.6975 m");
+    assertApprox(actual, expected, 1e-12, 1e-6, "1° lon vs analytical");
   });
 
-  it("90° angular separation (pole to equator)", () => {
-    // North pole (90, 0) to equator (0, 0): central angle = π/2
-    const expected = R * Math.PI / 2; // 5 333 730.… m
+  it("90° angular separation (pole to equator) ≈ 5,334,722.7771 m", () => {
+    // North pole (90, 0) to equator (0, 0): central angle = π/2 rad
+    // d = 3,396,190 * π / 2 = 5,334,722.77709756... m
+    const expected = R * Math.PI / 2;
     const actual = marsDistance(c(90, 0), c(0, 0));
-    assertApprox(actual, expected, 1e-10, 0.1, "quarter circumference");
+    assertApprox(actual, 5_334_722.7771, 0, 1e-4, "90° arc benchmark 5,334,722.7771 m");
+    assertApprox(actual, expected, 1e-12, 1e-6, "90° arc vs analytical");
   });
 
   it("180° angular separation (pole to pole)", () => {
     // North pole to south pole: central angle = π
-    const expected = R * Math.PI; // half circumference
+    const expected = R * Math.PI; // half circumference = 10,669,445.554... m
     const actual = marsDistance(c(90, 0), c(-90, 0));
     assertApprox(actual, expected, 1e-10, 0.1, "half circumference");
   });
@@ -132,12 +137,13 @@ describe("marsDistance", () => {
 
   // -- Antimeridian (0° / 360° boundary) -----------------------------------
 
-  it("antimeridian crossing: lon 359° to lon 1° ≈ 2° arc at equator", () => {
-    // The angular separation in longitude is min(|359-1|, 360-|359-1|) = 2°
-    // At the equator this is a great-circle distance = R × 2 × π/180
+  it("antimeridian crossing: lon 359° to lon 1° ≈ 2° arc at equator = 118,549.3950 m", () => {
+    // Angular separation = 2° = π/90 rad.
+    // d = 3,396,190 * π / 90 = 118,549.3950466... m
     const expected = R * 2 * Math.PI / 180;
     const actual = marsDistance(c(0, 359), c(0, 1));
-    assertApprox(actual, expected, 1e-10, 0.01, "antimeridian 2° at equator");
+    assertApprox(actual, 118_549.3950, 0, 1e-4, "2° equatorial arc benchmark 118,549.3950 m");
+    assertApprox(actual, expected, 1e-12, 1e-6, "2° arc vs analytical");
   });
 
   it("antimeridian crossing: lon 0.5° to lon 359.5° ≈ 1° arc at equator", () => {
@@ -157,18 +163,18 @@ describe("marsDistance", () => {
 
   // -- Non-trivial independently computed case -----------------------------
 
-  it("Gale Crater center to Jezero Crater center", () => {
-    // Gale: lat ≈ -5.4°, lon ≈ 137.8° E
-    // Jezero: lat ≈ 18.38°, lon ≈ 77.58° E
-    // Independent haversine calculation:
-    //   dLat = 23.78° = 0.41504 rad
-    //   dLon = -60.22° = -1.05101 rad
-    //   a = sin²(0.20752) + cos(-0.09425)·cos(0.32078)·sin²(-0.52550)
-    //     = 0.042242 + 0.99556 × 0.94913 × 0.25148
-    //     = 0.042242 + 0.23766 = 0.28039 (approx)
-    //   c = 2·asin(√0.28039) = 2·asin(0.52953) = 2 × 0.55797 = 1.11594 rad
-    //   d = R × 1.11594 ≈ 3,789,884 m
-    // We compute with more precision below:
+  it("Gale Crater center to Jezero Crater center ≈ 3,789,056.38 m", () => {
+    // Gale: lat = -5.4°, lon = 137.8° E
+    // Jezero: lat = 18.38°, lon = 77.58° E
+    // Independent analytical haversine:
+    //   phi1 = -5.4° = -0.0942477796 rad
+    //   phi2 = 18.38° = 0.3207915160 rad
+    //   dLat = 23.78° = 0.4150392956 rad
+    //   dLon = -60.22° = -1.0510244787 rad
+    //   h = sin²(dLat/2) + cos(phi1) * cos(phi2) * sin²(dLon/2)
+    //     = 0.0424564887 + 0.9447837096 * 0.2517835161 = 0.2803374350
+    //   centralAngle = 2 * asin(sqrt(h)) = 1.1156791458 rad
+    //   d = 3,396,190 * 1.1156791458 = 3,789,056.381057668 m
     const a_ = c(-5.4, 137.8);
     const b_ = c(18.38, 77.58);
     const dLat = (18.38 - (-5.4)) * Math.PI / 180;
@@ -180,7 +186,8 @@ describe("marsDistance", () => {
       Math.cos(lat1) * Math.cos(lat2) * Math.sin(dLon / 2) ** 2;
     const expected = R * 2 * Math.asin(Math.sqrt(hv));
     const actual = marsDistance(a_, b_);
-    assertApprox(actual, expected, 1e-9, 1, "Gale-Jezero");
+    assertApprox(actual, 3_789_056.38, 0, 0.01, "Gale-Jezero benchmark 3,789,056.38 m");
+    assertApprox(actual, expected, 1e-12, 1e-6, "Gale-Jezero vs analytical");
   });
 
   // -- Input validation ----------------------------------------------------
@@ -240,6 +247,26 @@ describe("marsInitialBearing", () => {
     assertApprox(b, 270, 0, 1e-6, "due west");
   });
 
+  it("bearing from North Pole → NaN (polar singularity)", () => {
+    assert.ok(Number.isNaN(marsInitialBearing(c(90, 0), c(0, 45))));
+    assert.ok(Number.isNaN(marsInitialBearing(c(90, 100), c(80, 100))));
+  });
+
+  it("bearing from South Pole → NaN (polar singularity)", () => {
+    assert.ok(Number.isNaN(marsInitialBearing(c(-90, 0), c(0, 45))));
+    assert.ok(Number.isNaN(marsInitialBearing(c(-90, 100), c(-80, 100))));
+  });
+
+  it("bearing to North Pole → 0° (due north)", () => {
+    const b = marsInitialBearing(c(0, 45), c(90, 0));
+    assertApprox(b, 0, 0, 1e-6, "to North Pole");
+  });
+
+  it("bearing to South Pole → 180° (due south)", () => {
+    const b = marsInitialBearing(c(0, 45), c(-90, 0));
+    assertApprox(b, 180, 0, 1e-6, "to South Pole");
+  });
+
   it("coincident points → NaN", () => {
     assert.ok(Number.isNaN(marsInitialBearing(c(45, 100), c(45, 100))));
   });
@@ -247,6 +274,8 @@ describe("marsInitialBearing", () => {
   it("antipodal points → NaN", () => {
     // (0, 0) and (0, 180) are antipodal on a sphere
     assert.ok(Number.isNaN(marsInitialBearing(c(0, 0), c(0, 180))));
+    // (45, 10) and (-45, 190) are antipodal
+    assert.ok(Number.isNaN(marsInitialBearing(c(45, 10), c(-45, 190))));
   });
 
   it("result is in [0, 360)", () => {
@@ -309,6 +338,33 @@ describe("marsInterpolate", () => {
     assertCoordApprox(marsInterpolate(p, p, 0), p, 1e-10, "coincident t=0");
     assertCoordApprox(marsInterpolate(p, p, 0.5), p, 1e-10, "coincident t=0.5");
     assertCoordApprox(marsInterpolate(p, p, 1), p, 1e-10, "coincident t=1");
+  });
+
+  it("antipodal points throw RangeError (ambiguous geodesic)", () => {
+    // Equator antipodal
+    assert.throws(
+      () => marsInterpolate(c(0, 0), c(0, 180), 0.5),
+      RangeError,
+    );
+    // General antipodal
+    assert.throws(
+      () => marsInterpolate(c(45, 10), c(-45, 190), 0.5),
+      RangeError,
+    );
+    // Poles
+    assert.throws(
+      () => marsInterpolate(c(90, 0), c(-90, 0), 0.5),
+      RangeError,
+    );
+  });
+
+  it("nearly antipodal points (179.9° separation) interpolate successfully", () => {
+    // Non-antipodal points have a unique shortest great-circle arc
+    const a = c(0, 0);
+    const b = c(0, 179.9);
+    const mid = marsInterpolate(a, b, 0.5);
+    assertApprox(mid.latitude, 0, 0, 1e-6, "nearly antipodal lat");
+    assertApprox(mid.longitude_east, 89.95, 0, 1e-4, "nearly antipodal lon");
   });
 
   it("result longitude is in [0, 360)", () => {
@@ -438,5 +494,27 @@ describe("marsResamplePath", () => {
     assertCoordApprox(result[result.length - 1], c(0, 10.001), 1e-6, "last");
     // Must have more than 3 points (the long segment gets subdivided)
     assert.ok(result.length > 3, `expected > 3 points, got ${result.length}`);
+  });
+
+  it("resamples across multiple unequal-length segments with endpoint and distance fidelity", () => {
+    // Seg 1: ~59 km (1° lat), Seg 2: ~118 m (0.002° lon), Seg 3: ~178 km (3° lon)
+    const waypoints = [
+      c(0, 0),
+      c(1, 0),       // ~59,275 m
+      c(1, 0.002),   // ~118 m
+      c(1, 3.002),   // ~177,794 m
+    ];
+    const step = 20_000; // 20 km
+    const resampled = marsResamplePath(waypoints, step);
+
+    // Endpoints exactly preserved
+    assertCoordApprox(resampled[0], waypoints[0], 1e-10, "start");
+    assertCoordApprox(resampled[resampled.length - 1], waypoints[3], 1e-6, "end");
+
+    // All original vertices should be present in the output
+    // Distance fidelity within 0.05%
+    const origDist = marsPathDistance(waypoints);
+    const resampDist = marsPathDistance(resampled);
+    assertApprox(resampDist, origDist, 0.0005, 1, "unequal segments distance fidelity");
   });
 });
