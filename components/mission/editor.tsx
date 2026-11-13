@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowDown, ArrowUp, X, MapPin, CornerDownLeft } from "lucide-react";
+import { ArrowDown, ArrowUp, X, MapPin, CornerDownLeft, Compass } from "lucide-react";
 import type { RegionManifest } from "@/lib/contracts/region";
 import { moveStop, type Mission } from "@/lib/mission/model";
 import { Badge, Notice } from "@/components/ui/primitives";
@@ -10,11 +10,13 @@ export function MissionEditor({
   region,
   onChange,
   onScience,
+  onSwitchToWaypoints,
 }: {
   mission: Mission;
   region: RegionManifest;
   onChange: (change: Partial<Mission>) => void;
   onScience: () => void;
+  onSwitchToWaypoints?: () => void;
 }) {
   return (
     <>
@@ -23,6 +25,18 @@ export function MissionEditor({
         <h2>Build the field plan</h2>
         <p>Arrange objectives and document your return assumptions.</p>
       </div>
+      {onSwitchToWaypoints && (
+        <button
+          type="button"
+          className="file-button"
+          onClick={onSwitchToWaypoints}
+          style={{ marginBottom: "1rem", width: "100%", justifyContent: "center" }}
+          data-testid="switch-to-waypoints-btn"
+        >
+          <Compass size={17} aria-hidden="true" />
+          <span>Switch to Geometric Waypoints View</span>
+        </button>
+      )}
       <label className="field-label" htmlFor="mission-name">
         Mission name
       </label>

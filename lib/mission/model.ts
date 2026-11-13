@@ -4,6 +4,10 @@ import {
   regionIdSchema,
   type RegionManifest,
 } from "@/lib/contracts/region";
+import {
+  waypointPlanSchema,
+  type WaypointPlan,
+} from "@/lib/mission/waypoint-planning";
 
 export const missionSchema = z.object({
   schema_version: z.literal(1),
@@ -23,8 +27,10 @@ export const missionSchema = z.object({
   dataset_version: z.string().max(200),
   model_versions: z.record(z.string(), z.string()),
   saved_at: z.iso.datetime().nullable(),
+  waypoint_plan: waypointPlanSchema.optional(),
 });
 export type Mission = z.infer<typeof missionSchema>;
+export type { WaypointPlan };
 export const STORAGE_KEY = "marswalk.missions.v1";
 
 export function newMission(region: RegionManifest): Mission {
@@ -96,6 +102,11 @@ export function parseMission(value: unknown, region: RegionManifest): Mission {
   ) {
     throw new Error(
       "This plan contains unknown region or objective IDs. Its source catalog is required before opening.",
+    );
+  }
+  if (mission.waypoint_plan && mission.waypoint_plan.region_id !== region.id) {
+    throw new Error(
+      "This plan contains waypoints from a different exploration region. Regional state must remain strictly isolated.",
     );
   }
   return mission;

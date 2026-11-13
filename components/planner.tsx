@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 import {
   useCallback,
   useEffect,
+  useMemo,
   useRef,
   useState,
   useSyncExternalStore,
@@ -47,6 +48,20 @@ import { EvidenceDetails, LayerManager } from "@/components/science/evidence";
 import { MissionEditor } from "@/components/mission/editor";
 import { RouteComparison } from "@/components/mission/analysis";
 import { MissionBrief } from "@/components/mission/brief";
+import { WaypointEditor } from "@/components/mission/waypoint-editor";
+import {
+  initWaypointPlanFromMission,
+  syncMissionWithWaypointPlan,
+  syncWaypointPlanWithMission,
+} from "@/lib/mission/waypoint-bridge";
+import {
+  moveWaypoint,
+  removeWaypoint,
+  updateWaypoint,
+  setOrigin,
+  setDestination,
+  setTrajectoryMode,
+} from "@/lib/mission/waypoint-planning";
 
 const MapWorkspace = dynamic(() => import("@/components/map/map-workspace"), {
   ssr: false,
@@ -97,6 +112,15 @@ export function Planner() {
   const region = regions[regionId];
   const target = region.targets.find((t) => t.id === selected);
   const stale = mission.dataset_version !== region.dataset_version;
+
+  const [planSubView, setPlanSubView] = useState<"objectives" | "waypoints">("objectives");
+  const [editingWaypointId, setEditingWaypointId] = useState<string | null>(null);
+
+  const activePlan = useMemo(
+    () => initWaypointPlanFromMission(mission, region),
+    [mission, region],
+  );
+
   const inspect = useCallback((id: string) => {
     setSelected(id);
     setModal("target");
@@ -158,6 +182,8 @@ export function Planner() {
     setModal(null);
     setPreview(false);
     setPanel("science");
+    setPlanSubView("objectives");
+    setEditingWaypointId(null);
     setExpanded(false);
     history.replaceState(null, "", `?region=${id}`);
     setMessage(
@@ -165,7 +191,13 @@ export function Planner() {
     );
   }
   function updateMission(change: Partial<Mission>) {
-    setMission((m) => ({ ...m, ...change }));
+    setMission((m) => {
+      const nextMission: Mission = { ...m, ...change };
+      if (!change.waypoint_plan) {
+        nextMission.waypoint_plan = syncWaypointPlanWithMission(nextMission, region);
+      }
+      return nextMission;
+    });
     setDirty(true);
     setMessage(
       "Draft updated. Route and feasibility results remain unavailable.",
@@ -235,6 +267,8 @@ export function Planner() {
       setPreview(false);
       setModal(null);
       setPanel("plan");
+      setPlanSubView("objectives");
+      setEditingWaypointId(null);
       setExpanded(true);
       setCollapsed(false);
       setDirty(true);
@@ -444,12 +478,143 @@ export function Planner() {
               </>
             )}
             {panel === "plan" && (
-              <MissionEditor
-                mission={mission}
-                region={region}
-                onChange={updateMission}
-                onScience={() => showPanel("science")}
-              />
+              <>
+                <div
+                  className="segmented"
+                  style={{ marginBottom: "1rem" }}
+                  role="tablist"
+                  aria-label="Planning views sub-navigation"
+                >
+                  <button
+                    type="button"
+                    role="tab"
+                    aria-selected={planSubView === "objectives"}
+                    className={planSubView === "objectives" ? "active" : ""}
+                    onClick={() => setPlanSubView("objectives")}
+                  >
+                    Science Objectives ({mission.target_ids.length})
+                  </button>
+                  <button
+                    type="button"
+                    role="tab"
+                    aria-selected={planSubView === "waypoints"}
+                    className={planSubView === "waypoints" ? "active" : ""}
+                    onClick={() => setPlanSubView("waypoints")}
+                  >
+                    Surface Waypoints ({activePlan.waypoints.length})
+                  </button>
+                </div>
+                {planSubView === "objectives" ? (
+                  <MissionEditor
+                    mission={mission}
+                    region={region}
+                    onChange={updateMission}
+                    onScience={() => showPanel("science")}
+                    onSwitchToWaypoints={() => setPlanSubView("waypoints")}
+                  />
+                ) : (
+                  <WaypointEditor
+                    plan={activePlan}
+                    regionName={region.name}
+                    editingWaypointId={editingWaypointId}
+                    onPlanNameChange={(name) => {
+                      const updatedPlan = { ...activePlan, name };
+                      const updatedMission = syncMissionWithWaypointPlan(
+                        mission,
+                        updatedPlan,
+                        region,
+                      );
+                      updateMission(updatedMission);
+                    }}
+                    onModeChange={(mode, recoveryAssumption) => {
+                      const updatedPlan = setTrajectoryMode(
+                        activePlan,
+                        mode,
+                        recoveryAssumption,
+                      );
+                      const updatedMission = syncMissionWithWaypointPlan(
+                        mission,
+                        updatedPlan,
+                        region,
+                      );
+                      updateMission(updatedMission);
+                    }}
+                    onRecoveryAssumptionChange={(recoveryAssumption) => {
+                      const updatedPlan = {
+                        ...activePlan,
+                        recovery_assumption: recoveryAssumption,
+                      };
+                      const updatedMission = syncMissionWithWaypointPlan(
+                        mission,
+                        updatedPlan,
+                        region,
+                      );
+                      updateMission(updatedMission);
+                    }}
+                    onWaypointMove={(waypointId, delta) => {
+                      const updatedPlan = moveWaypoint(
+                        activePlan,
+                        waypointId,
+                        delta,
+                      );
+                      const updatedMission = syncMissionWithWaypointPlan(
+                        mission,
+                        updatedPlan,
+                        region,
+                      );
+                      updateMission(updatedMission);
+                    }}
+                    onWaypointRemove={(waypointId) => {
+                      const updatedPlan = removeWaypoint(
+                        activePlan,
+                        waypointId,
+                      );
+                      const updatedMission = syncMissionWithWaypointPlan(
+                        mission,
+                        updatedPlan,
+                        region,
+                      );
+                      updateMission(updatedMission);
+                    }}
+                    onWaypointUpdate={(waypointId, patch) => {
+                      const updatedPlan = updateWaypoint(
+                        activePlan,
+                        waypointId,
+                        patch,
+                      );
+                      const updatedMission = syncMissionWithWaypointPlan(
+                        mission,
+                        updatedPlan,
+                        region,
+                      );
+                      updateMission(updatedMission);
+                    }}
+                    onStartEditing={(waypointId) =>
+                      setEditingWaypointId(waypointId)
+                    }
+                    onStopEditing={() => setEditingWaypointId(null)}
+                    onSetOrigin={(waypoint) => {
+                      const updatedPlan = setOrigin(activePlan, waypoint);
+                      const updatedMission = syncMissionWithWaypointPlan(
+                        mission,
+                        updatedPlan,
+                        region,
+                      );
+                      updateMission(updatedMission);
+                    }}
+                    onSetDestination={(waypoint) => {
+                      const updatedPlan = setDestination(activePlan, waypoint);
+                      const updatedMission = syncMissionWithWaypointPlan(
+                        mission,
+                        updatedPlan,
+                        region,
+                      );
+                      updateMission(updatedMission);
+                    }}
+                    onExploreScience={() => showPanel("science")}
+                  />
+                )}
+              </>
             )}
             {panel === "compare" && (
               <RouteComparison
