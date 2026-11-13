@@ -250,7 +250,13 @@ for (const [width, height] of [
     page.on("pageerror", (e) => errors.push(e.message));
     for (const region of ["jezero", "gale", "oxia"]) {
       await page.goto(`/?region=${region}`);
-      await expect(page.locator(".map-empty")).toBeVisible();
+      if (region === "oxia") {
+        // Oxia presents the live scientific map (CTX basemap); the schematic
+        // empty state is expected only for regions without integrated data.
+        await expect(page.locator(".map-empty")).toHaveCount(0);
+      } else {
+        await expect(page.locator(".map-empty")).toBeVisible();
+      }
       await expect(page.locator(".map-canvas canvas")).toBeAttached();
       await expect(
         page.getByRole("button", { name: "Review mission", exact: true }),
@@ -267,6 +273,9 @@ for (const [width, height] of [
         path: `output/playwright/redesign-${region}-${width}.png`,
       });
     }
+    // The schematic preview only exists for regions without a scientific
+    // map; Oxia (the last loop region) now has one, so check it on Gale.
+    await page.goto("/?region=gale");
     await page
       .getByRole("button", { name: "View interface preview", exact: false })
       .click();

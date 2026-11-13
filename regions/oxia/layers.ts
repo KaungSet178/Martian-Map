@@ -5,24 +5,28 @@ export const layers = [
   {
     id: "oxia-optical",
     type: "Optical imagery",
-    display_name: "Optical imagery",
+    display_name: "CTX basemap",
     kind: "optical",
-    availability: "pending",
-    source_id: null,
+    availability: "available",
+    source_id: "oxia-ctx-esri",
     observation_date: null,
-    spatial_resolution_m: null,
-    coverage: null,
+    spatial_resolution_m: 5,
+    coverage:
+      "Murray Lab CTX global mosaic (beta01) over the published Oxia Planum map area, 17.11-19.15 N, 334.60-336.60 E (Fawdon et al. 2024): 841 derived display tiles, Web-Mercator XYZ, zooms 5-12.",
     limitations:
-      "Georeferenced orbital imagery and its planetary transform have not been integrated.",
-    evidence: "Unavailable",
-    attribution: null,
+      "Uncontrolled beta mosaic (seams, varying illumination; not radiometrically calibrated). Display-grade: nearest-neighbour resampled to ~20 m display pixels at the top zoom (12), coarser than CTX native ~5 m; closer zooms enlarge the z12 tiles. No independent registration check against HiRISE yet. Imagery only, not a DEM, geology or terrain-safety evidence.",
+    evidence: "Observed",
+    attribution:
+      "NASA/JPL/MSSS · Caltech Murray Lab CTX global mosaic (beta01) · tiled service hosted by Esri",
     rendering: {
-      kind: "unavailable",
-      reason:
-        "Georeferenced orbital imagery and its planetary transform have not been integrated.",
+      kind: "raster-tiles",
+      tiles: ["/maps/oxia/ctx-tiles/{z}/{x}/{y}.png"],
+      tile_size: 256,
+      min_zoom: 5,
+      max_zoom: 12,
     },
-    default_visible: false,
-    default_opacity: 70,
+    default_visible: true,
+    default_opacity: 100,
     legend: null,
   },
   {

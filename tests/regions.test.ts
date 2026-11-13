@@ -39,7 +39,10 @@ test("registry resolves every region, typed metadata and safe unknown IDs", () =
     assert.equal(getRegion(region.id), region);
     assert.ok(regionSchema.safeParse(region).success);
     assert.equal(getTargets(region.id), region.targets);
-    assert.deepEqual(getAvailableLayers(region.id), []);
+    assert.deepEqual(
+      getAvailableLayers(region.id),
+      region.layers.filter((l) => l.availability === "available"),
+    );
     assert.equal(getMapConfig(region.id), region.map);
     assert.equal(getRegionEvidence(region.id), region.source_references);
     assert.equal(getRegionCapabilities(region.id), region.capabilities);
@@ -210,8 +213,15 @@ test("declarative renderer mounts only current regional sources and cleans them 
   cleanup();
   assert.equal(layers.size, 0);
   assert.equal(sources.size, 0);
-  mountRegionLayers(map, getRegion("oxia")!);
-  assert.equal(sources.size, 0);
+  // Oxia mounts one source per available rendered layer (CTX basemap).
+  const oxia = getRegion("oxia")!;
+  mountRegionLayers(map, oxia);
+  assert.equal(
+    sources.size,
+    oxia.layers.filter(
+      (l) => l.availability === "available" && l.rendering.kind !== "unavailable",
+    ).length,
+  );
 });
 test("Mars east-longitude display conversion and extents never infer Earth distances", () => {
   assert.deepEqual(

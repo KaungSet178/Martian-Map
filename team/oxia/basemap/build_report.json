@@ -1,0 +1,40 @@
+{
+  "source": "https://astro.arcgis.com/arcgis/rest/services/OnMars/CTX/MapServer/tile",
+  "source_product": "Murray Lab CTX global mosaic beta01 (uncontrolled)",
+  "credit": "NASA/JPL/MSSS/Caltech Murray Lab; tiled service hosted by Esri",
+  "output_scheme": "Web-Mercator XYZ, 256 px grayscale PNG",
+  "zoom_range": [
+    5,
+    12
+  ],
+  "source_levels_used": [
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "output_tiles_written": 841,
+  "output_bytes": 21128976,
+  "source_tiles_fetched_ok": 262,
+  "source_tiles_missing": 0,
+  "samples_without_source": 0,
+  "reprojection": "nearest-neighbour from the equirectangular source grid",
+  "extent_east_0_360": {
+    "west": 334.6,
+    "east": 336.6,
+    "south": 17.11,
+    "north": 19.15
+  },
+  "extent_display_lon": {
+    "west": -25.399999999999977,
+    "east": -23.399999999999977,
+    "south": 17.11,
+    "north": 19.15
+  },
+  "margin_deg": 0,
+  "generated_at": "2026-11-13T19:42:32.287Z"
+}

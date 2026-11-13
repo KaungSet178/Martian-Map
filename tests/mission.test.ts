@@ -17,13 +17,27 @@ test("all region fixtures obey shared contract and cannot imply scientific readi
   for (const id of regionIds) {
     const region = regionSchema.parse(regions[id]);
     assert.equal(region.routing.enabled, false);
-    assert.equal(region.data_status, "illustrative");
+    // Audited rasters may exist (e.g. a basemap), but imagery is not a DEM:
+    // no fixture may claim audited terrain coverage, which together with
+    // disabled routing keeps every region scientifically not-ready.
+    assert.notEqual(region.capabilities.terrain_coverage.status, "audited");
+    // Available layers must carry non-hypothetical evidence: a direct
+    // observation/published record ("Observed") or a published scientific
+    // classification ("Interpreted" - e.g. a USGS published geologic map).
+    // Derived/Modeled/Scenario content stays out of the live map controls.
+    assert.ok(
+      region.layers.every(
+        (l) =>
+          l.availability !== "available" ||
+          l.evidence === "Observed" ||
+          l.evidence === "Interpreted",
+      ),
+    );
     assert.ok(
       region.targets.every(
         (t) => t.coordinates === null && !t.coordinate_verified,
       ),
     );
-    assert.ok(region.layers.every((l) => l.availability !== "available"));
   }
 });
 test("individual stop moves preserve membership and boundaries", () => {
