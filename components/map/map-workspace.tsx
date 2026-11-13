@@ -317,7 +317,10 @@ export default function MapWorkspace({
             ? String(stops.indexOf(target.id) + 1)
             : "◇";
           button.append(label);
-          button.onclick = () => onInspect(target.id);
+          button.onclick = (e) => {
+            e.stopPropagation();
+            onInspect(target.id);
+          };
           return new Marker({ element: button })
             .setLngLat(
               preview
@@ -361,10 +364,12 @@ export default function MapWorkspace({
   // Waypoint DOM markers
   useEffect(() => {
     let disposed = false;
-    const currentMarkers = waypointMarkers.current;
-    const currentElements = markerElements.current;
-    currentMarkers.forEach((m) => m.remove());
-    waypointMarkers.current = [];
+    const markersRef = waypointMarkers;
+    const elementsRef = markerElements;
+
+    markersRef.current.forEach((m) => m.remove());
+    markersRef.current = [];
+    elementsRef.current.clear();
 
     if (
       !ready ||
@@ -378,7 +383,12 @@ export default function MapWorkspace({
 
     import("maplibre-gl").then(({ Marker }) => {
       if (disposed || !map.current) return;
-      waypointMarkers.current = (plan.waypoints || []).map((wp, i) => {
+      // Ensure any previously attached markers are purged before mounting new set
+      markersRef.current.forEach((m) => m.remove());
+      markersRef.current = [];
+      elementsRef.current.clear();
+
+      markersRef.current = (plan.waypoints || []).map((wp, i) => {
         const button = document.createElement("button");
         button.type = "button";
         const isSelected = selectedWaypointIdRef.current === wp.id;
@@ -418,7 +428,7 @@ export default function MapWorkspace({
           onSelectWaypoint?.(wp.id);
         };
 
-        currentElements.set(wp.id, button);
+        elementsRef.current.set(wp.id, button);
 
         return new Marker({ element: button })
           .setLngLat(toDisplayCoordinates(wp.coordinates))
@@ -428,9 +438,9 @@ export default function MapWorkspace({
 
     return () => {
       disposed = true;
-      currentMarkers.forEach((m) => m.remove());
-      waypointMarkers.current = [];
-      currentElements.clear();
+      markersRef.current.forEach((m) => m.remove());
+      markersRef.current = [];
+      elementsRef.current.clear();
     };
   }, [
     ready,
@@ -469,12 +479,37 @@ export default function MapWorkspace({
     onPlacementErrorRef.current = onPlacementError;
   }, [onPlaceWaypoint, onPlacementError]);
 
-  // Interactive map click for waypoint placement
+  // Interactive map click for waypoint placement with event safeguards
   useEffect(() => {
     const instance = map.current;
     if (!ready || !instance || !isPlacingOnMap) return;
 
-    const handleClick = (e: { lngLat: { lng: number; lat: number } }) => {
+    const handleClick = (e: {
+      lngLat: { lng: number; lat: number };
+      originalEvent?: MouseEvent | TouchEvent;
+    }) => {
+      // 1. Event-target safeguard: Suppress if click landed on an existing marker,
+      // navigation control, or overlay banner
+      const target = e.originalEvent?.target as HTMLElement | null;
+      if (
+        target &&
+        (target.closest(".maplibregl-ctrl") ||
+          target.closest(".maplibregl-marker") ||
+          target.closest(".map-waypoint-marker") ||
+          target.closest(".science-marker") ||
+          target.closest(".placement-banner"))
+      ) {
+        return;
+      }
+
+      // 2. Regional safeguard: Suppress if region lacks verified scientific map coverage
+      if (region.map.visualization.status !== "available") {
+        onPlacementErrorRef.current?.(
+          "Interactive map placement requires georeferenced scientific map coverage.",
+        );
+        return;
+      }
+
       const coords = fromDisplayCoordinates(e.lngLat);
       if (!isCoordinateWithinExtent(coords, region.map.supported_extent)) {
         const ext = region.map.supported_extent;
@@ -486,6 +521,7 @@ export default function MapWorkspace({
         );
         return;
       }
+
       onPlaceWaypointRef.current?.(coords);
     };
 

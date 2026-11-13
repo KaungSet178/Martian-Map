@@ -20,6 +20,26 @@ export const TRAJECTORY_CASING_LAYER_ID = "waypoint-trajectory-casing";
 export const TRAJECTORY_OUTBOUND_LAYER_ID = "waypoint-trajectory-outbound";
 export const TRAJECTORY_RETURN_LAYER_ID = "waypoint-trajectory-return";
 
+/**
+ * Default maximum physical arc spacing in meters between densified trajectory vertices.
+ * Default is 100 meters, ensuring high-fidelity depiction of great-circle curves on Mars.
+ */
+export const DEFAULT_MAX_STEP_METERS = 100;
+
+/**
+ * Maximum number of interpolation steps allowed per trajectory segment.
+ *
+ * Complexity Limit Rationale:
+ * At the default 100 m spacing, this limit allows continuous single-leg traverses
+ * up to 100 km (100,000 m). Trajectory segments requiring more steps than this limit
+ * represent excessive single-leg traverses that cannot be safely densified on the main thread
+ * without risking animation stutter or memory bloat.
+ *
+ * When a segment exceeds this limit, the system does NOT silently clamp steps or degrade precision;
+ * instead, it returns an explicit `status: "unsupported"` result with diagnostic metrics.
+ */
+export const MAX_SEGMENT_INTERPOLATION_STEPS = 1000;
+
 // ---------------------------------------------------------------------------
 // Coordinate Conversion & Validation Functions
 // ---------------------------------------------------------------------------
@@ -90,21 +110,143 @@ export function isCoordinateWithinExtent(
 }
 
 // ---------------------------------------------------------------------------
-// Trajectory GeoJSON Construction
+// Trajectory Densification & GeoJSON Construction
 // ---------------------------------------------------------------------------
+
+export interface DensifiedSegmentSuccess {
+  status: "supported";
+  /** Subsegments split across the antimeridian display boundary (180° / -180°) */
+  coordinates: [number, number][][];
+  stepCount: number;
+  stepLengthMeters: number;
+}
+
+export interface DensifiedSegmentFailure {
+  status: "unsupported";
+  reason: string;
+  requiredSteps: number;
+  maxSteps: number;
+}
+
+export type DensifiedSegmentResult =
+  | DensifiedSegmentSuccess
+  | DensifiedSegmentFailure;
+
+/**
+ * Densifies a spherical great-circle segment between two Mars coordinates, respecting
+ * the configured maximum step spacing and complexity limit.
+ *
+ * Guarantees:
+ * - Great-circle geometry via spherical linear interpolation (slerp).
+ * - Exact endpoint preservation: first coordinate is exactly `toDisplayCoordinates(from)`,
+ *   final coordinate is exactly `toDisplayCoordinates(to)`.
+ * - Configured maximum spacing: every step is <= maxStepMeters.
+ * - Complexity limit: returns explicit `status: "unsupported"` if required steps exceed maxSteps.
+ * - Antimeridian seam split: splits coordinates into multiple LineStrings if longitude jumps > 180°.
+ */
+export function densifyTrajectorySegment(
+  from: MarsGeographicCoordinates,
+  to: MarsGeographicCoordinates,
+  distanceMeters: number,
+  maxStepMeters: number = DEFAULT_MAX_STEP_METERS,
+  maxSteps: number = MAX_SEGMENT_INTERPOLATION_STEPS,
+): DensifiedSegmentResult {
+  if (distanceMeters <= 0) {
+    const pt = toDisplayCoordinates(from);
+    return {
+      status: "supported",
+      coordinates: [[pt, pt]],
+      stepCount: 1,
+      stepLengthMeters: 0,
+    };
+  }
+
+  if (maxStepMeters <= 0 || !Number.isFinite(maxStepMeters)) {
+    throw new TypeError(
+      `maxStepMeters must be a positive finite number; received ${maxStepMeters}`,
+    );
+  }
+
+  const requiredSteps = Math.ceil(distanceMeters / maxStepMeters);
+
+  if (requiredSteps > maxSteps) {
+    return {
+      status: "unsupported",
+      reason: `Traverse segment length (${distanceMeters.toFixed(1)} m) requires ${requiredSteps} steps at max ${maxStepMeters} m spacing, exceeding the complexity limit of ${maxSteps} steps.`,
+      requiredSteps,
+      maxSteps,
+    };
+  }
+
+  const numSteps = Math.max(1, requiredSteps);
+  const stepLength = distanceMeters / numSteps;
+  const segmentCoords: [number, number][] = [];
+
+  for (let step = 0; step <= numSteps; step++) {
+    const t = step / numSteps;
+    const pt =
+      step === 0
+        ? from
+        : step === numSteps
+          ? to
+          : marsInterpolate(from, to, t);
+    segmentCoords.push(toDisplayCoordinates(pt));
+  }
+
+  const subSegments = splitAntimeridianCoords(segmentCoords);
+
+  return {
+    status: "supported",
+    coordinates: subSegments,
+    stepCount: numSteps,
+    stepLengthMeters: stepLength,
+  };
+}
+
+export interface TrajectoryFeatureProperties {
+  kind: "outbound" | "return";
+  from_id: string;
+  to_id: string;
+  distance_m: number;
+  initial_bearing_deg: number;
+  disclaimer: string;
+  status: "supported" | "unsupported";
+  step_count?: number;
+  step_length_m?: number;
+  unsupported_reason?: string;
+}
+
+export interface TrajectoryGeoJSONCollection
+  extends GeoJSON.FeatureCollection<GeoJSON.LineString> {
+  unsupported_segments?: Array<{
+    segment_index: number;
+    from_id: string;
+    to_id: string;
+    distance_m: number;
+    reason: string;
+  }>;
+}
 
 /**
  * Builds a GeoJSON FeatureCollection representing the densified spherical
  * great-circle trajectories for both outbound and return segments.
  *
+ * Guarantees:
+ * - Independent segment processing: an unsupported or invalid segment does not
+ *   prevent rendering of unrelated valid segments.
+ * - Explicit complexity limits: segments exceeding `maxStepsPerSegment` are not silently
+ *   degraded; instead, they are recorded in `unsupported_segments`.
+ *
  * @param plan Active WaypointPlan
  * @param maxStepMeters Maximum arc step in meters for slerp densification (default 100 m)
+ * @param maxStepsPerSegment Maximum allowed interpolation steps per segment (default 1000)
  */
 export function buildTrajectoryGeoJSON(
   plan: WaypointPlan,
-  maxStepMeters = 100,
-): GeoJSON.FeatureCollection<GeoJSON.LineString> {
-  const emptyCollection: GeoJSON.FeatureCollection<GeoJSON.LineString> = {
+  maxStepMeters = DEFAULT_MAX_STEP_METERS,
+  maxStepsPerSegment = MAX_SEGMENT_INTERPOLATION_STEPS,
+): TrajectoryGeoJSONCollection {
+  const emptyCollection: TrajectoryGeoJSONCollection = {
     type: "FeatureCollection",
     features: [],
   };
@@ -113,32 +255,50 @@ export function buildTrajectoryGeoJSON(
     return emptyCollection;
   }
 
+  let trajectory;
   try {
-    const trajectory = generateGeometricTrajectory(plan);
-    const features: GeoJSON.Feature<GeoJSON.LineString>[] = [];
+    trajectory = generateGeometricTrajectory(plan);
+  } catch {
+    return emptyCollection;
+  }
 
-    for (const segment of trajectory.segments) {
-      const from = segment.from_coordinates;
-      const to = segment.to_coordinates;
-      const dist = segment.surface_distance_m;
+  const features: GeoJSON.Feature<GeoJSON.LineString, TrajectoryFeatureProperties>[] = [];
+  const unsupportedSegments: Array<{
+    segment_index: number;
+    from_id: string;
+    to_id: string;
+    distance_m: number;
+    reason: string;
+  }> = [];
 
-      if (dist === 0) continue;
+  for (const segment of trajectory.segments) {
+    const from = segment.from_coordinates;
+    const to = segment.to_coordinates;
+    const dist = segment.surface_distance_m;
 
-      // Calculate number of interpolation steps
-      const numSteps = Math.max(1, Math.min(100, Math.ceil(dist / maxStepMeters)));
-      const segmentCoords: [number, number][] = [];
+    if (dist === 0) continue;
 
-      for (let step = 0; step <= numSteps; step++) {
-        const t = step / numSteps;
-        const pt = step === 0 ? from : step === numSteps ? to : marsInterpolate(from, to, t);
-        const displayPt = toDisplayCoordinates(pt);
-        segmentCoords.push(displayPt);
+    try {
+      const densified = densifyTrajectorySegment(
+        from,
+        to,
+        dist,
+        maxStepMeters,
+        maxStepsPerSegment,
+      );
+
+      if (densified.status === "unsupported") {
+        unsupportedSegments.push({
+          segment_index: segment.segment_index,
+          from_id: segment.from_waypoint_id,
+          to_id: segment.to_waypoint_id,
+          distance_m: dist,
+          reason: densified.reason,
+        });
+        continue;
       }
 
-      // Detect antimeridian split if display longitudes jump by more than 180°
-      const subSegments = splitAntimeridianCoords(segmentCoords);
-
-      for (const coords of subSegments) {
+      for (const coords of densified.coordinates) {
         if (coords.length >= 2) {
           features.push({
             type: "Feature",
@@ -149,6 +309,9 @@ export function buildTrajectoryGeoJSON(
               distance_m: segment.surface_distance_m,
               initial_bearing_deg: segment.initial_bearing_deg,
               disclaimer: GEOMETRIC_TRAJECTORY_LABEL,
+              status: "supported",
+              step_count: densified.stepCount,
+              step_length_m: densified.stepLengthMeters,
             },
             geometry: {
               type: "LineString",
@@ -157,16 +320,30 @@ export function buildTrajectoryGeoJSON(
           });
         }
       }
+    } catch (segmentErr) {
+      unsupportedSegments.push({
+        segment_index: segment.segment_index,
+        from_id: segment.from_waypoint_id,
+        to_id: segment.to_waypoint_id,
+        distance_m: dist,
+        reason:
+          segmentErr instanceof Error
+            ? segmentErr.message
+            : "Unknown interpolation error",
+      });
     }
-
-    return {
-      type: "FeatureCollection",
-      features,
-    };
-  } catch {
-    // If interpolation fails (e.g. edge-case singularity), fail safe with empty collection
-    return emptyCollection;
   }
+
+  const result: TrajectoryGeoJSONCollection = {
+    type: "FeatureCollection",
+    features,
+  };
+
+  if (unsupportedSegments.length > 0) {
+    result.unsupported_segments = unsupportedSegments;
+  }
+
+  return result;
 }
 
 /**

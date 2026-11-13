@@ -4,6 +4,9 @@ import {
   fromDisplayCoordinates,
   isCoordinateWithinExtent,
   buildTrajectoryGeoJSON,
+  densifyTrajectorySegment,
+  DEFAULT_MAX_STEP_METERS,
+  MAX_SEGMENT_INTERPOLATION_STEPS,
 } from "@/lib/map/waypoint-layers";
 import {
   createWaypoint,
@@ -253,5 +256,163 @@ describe("buildTrajectoryGeoJSON", () => {
     assert.equal(outbound.length, 2);
     assert.equal(returnLeg.length, 1);
     assert.equal(returnLeg[0].properties?.to_id, "wp-1");
+  });
+
+  test("segment isolation: an unsupported long segment does not hide valid segments", () => {
+    // Gale Crater to distant point (segment 2 is >150 km, exceeding limit), then back to nearby
+    const wp1 = createWaypoint({
+      id: "wp-valid-1",
+      coordinates: { latitude: -4.7, longitude_east: 137.4 },
+      role: "base",
+      provenance: "user_planning_input",
+    });
+    const wp2 = createWaypoint({
+      id: "wp-valid-2",
+      coordinates: { latitude: -4.72, longitude_east: 137.42 }, // ~2.5 km from wp1
+      role: "intermediate",
+      provenance: "user_planning_input",
+    });
+    const wp3 = createWaypoint({
+      id: "wp-long-3",
+      coordinates: { latitude: -1.0, longitude_east: 137.42 }, // ~220 km from wp2 (exceeds 1000 steps at 100m)
+      role: "intermediate",
+      provenance: "user_planning_input",
+    });
+    const wp4 = createWaypoint({
+      id: "wp-valid-4",
+      coordinates: { latitude: -1.02, longitude_east: 137.42 }, // ~1.2 km from wp3
+      role: "destination",
+      provenance: "user_planning_input",
+    });
+
+    let plan = createWaypointPlan({
+      name: "Mixed Segment Plan",
+      region_id: "gale",
+      mode: "one_way",
+      recovery_assumption: "Rendezvous",
+    });
+    plan = addWaypoint(plan, wp1);
+    plan = addWaypoint(plan, wp2);
+    plan = addWaypoint(plan, wp3);
+    plan = addWaypoint(plan, wp4);
+
+    const geojson = buildTrajectoryGeoJSON(plan, 100, 1000);
+
+    // Segment 1 (wp1 -> wp2) is ~2.5 km -> supported
+    // Segment 2 (wp2 -> wp3) is ~220 km -> unsupported (exceeds 1000 steps)
+    // Segment 3 (wp3 -> wp4) is ~1.2 km -> supported
+    // Valid segments MUST be rendered!
+    assert.equal(geojson.features.length, 2);
+    assert.equal(geojson.features[0].properties?.from_id, "wp-valid-1");
+    assert.equal(geojson.features[0].properties?.to_id, "wp-valid-2");
+    assert.equal(geojson.features[1].properties?.from_id, "wp-long-3");
+    assert.equal(geojson.features[1].properties?.to_id, "wp-valid-4");
+
+    // Unsupported segment must be recorded in unsupported_segments with reason
+    assert.ok(geojson.unsupported_segments);
+    assert.equal(geojson.unsupported_segments.length, 1);
+    assert.equal(geojson.unsupported_segments[0].from_id, "wp-valid-2");
+    assert.equal(geojson.unsupported_segments[0].to_id, "wp-long-3");
+    assert.ok(
+      geojson.unsupported_segments[0].reason.includes("exceeding the complexity limit"),
+    );
+  });
+});
+
+describe("densifyTrajectorySegment — Numerical & Geometric Verification", () => {
+  const pOrigin = { latitude: 0, longitude_east: 0 };
+  const p500m = { latitude: 0.008436, longitude_east: 0 }; // ~500 m due North on Mars (59,274.7 m/deg)
+  const p10km = { latitude: 0.168705, longitude_east: 0 }; // ~10,000 m
+  const p20km = { latitude: 0.337410, longitude_east: 0 }; // ~20,000 m
+  const p50km = { latitude: 0.843526, longitude_east: 0 }; // ~50,000 m
+  const p150km = { latitude: 2.530578, longitude_east: 0 }; // ~150,000 m
+
+  test("short segment (< 1 km): preserves exact endpoints and respects <= 100m step length", () => {
+    const res = densifyTrajectorySegment(pOrigin, p500m, 500, DEFAULT_MAX_STEP_METERS, MAX_SEGMENT_INTERPOLATION_STEPS);
+    assert.equal(res.status, "supported");
+    if (res.status === "supported") {
+      assert.equal(res.stepCount, 5); // 500 / 100 = 5 steps
+      assert.ok(res.stepLengthMeters <= 100);
+      assert.equal(res.coordinates.length, 1);
+      const coords = res.coordinates[0];
+      assert.equal(coords.length, 6); // 5 steps + 1 = 6 vertices
+
+      // Exact endpoints preserved
+      assert.equal(coords[0][0], 0);
+      assert.equal(coords[0][1], 0);
+      assert.equal(coords[coords.length - 1][0], 0);
+      assert.equal(coords[coords.length - 1][1], p500m.latitude);
+    }
+  });
+
+  test("10 km segment: exactly 100 steps, step length <= 100m", () => {
+    const res = densifyTrajectorySegment(pOrigin, p10km, 10000, 100, 1000);
+    assert.equal(res.status, "supported");
+    if (res.status === "supported") {
+      assert.equal(res.stepCount, 100);
+      assert.ok(res.stepLengthMeters <= 100);
+      const coords = res.coordinates[0];
+      assert.equal(coords.length, 101);
+      assert.equal(coords[0][1], 0);
+      assert.equal(coords[coords.length - 1][1], p10km.latitude);
+    }
+  });
+
+  test("20 km segment: 200 steps, step length <= 100m (not clamped to 100 steps)", () => {
+    const res = densifyTrajectorySegment(pOrigin, p20km, 20000, 100, 1000);
+    assert.equal(res.status, "supported");
+    if (res.status === "supported") {
+      // Must have 200 steps to satisfy <= 100m requirement!
+      assert.equal(res.stepCount, 200);
+      assert.ok(res.stepLengthMeters <= 100);
+      assert.equal(res.stepLengthMeters, 100);
+      const coords = res.coordinates[0];
+      assert.equal(coords.length, 201);
+      assert.equal(coords[0][1], 0);
+      assert.equal(coords[coords.length - 1][1], p20km.latitude);
+    }
+  });
+
+  test("50 km segment within 1000-step limit: 500 steps, status=supported", () => {
+    const res = densifyTrajectorySegment(pOrigin, p50km, 50000, 100, 1000);
+    assert.equal(res.status, "supported");
+    if (res.status === "supported") {
+      assert.equal(res.stepCount, 500);
+      assert.ok(res.stepLengthMeters <= 100);
+    }
+  });
+
+  test("longer segment (150 km) exceeding 1000 steps: returns explicit unsupported result", () => {
+    const res = densifyTrajectorySegment(pOrigin, p150km, 150000, 100, 1000);
+    assert.equal(res.status, "unsupported");
+    if (res.status === "unsupported") {
+      assert.equal(res.requiredSteps, 1500);
+      assert.equal(res.maxSteps, 1000);
+      assert.ok(res.reason.includes("exceeding the complexity limit"));
+      assert.ok(res.reason.includes("1500"));
+    }
+  });
+
+  test("custom complexity limit enforcement (20 km with maxSteps=100 returns unsupported)", () => {
+    const res = densifyTrajectorySegment(pOrigin, p20km, 20000, 100, 100);
+    assert.equal(res.status, "unsupported");
+    if (res.status === "unsupported") {
+      assert.equal(res.requiredSteps, 200);
+      assert.equal(res.maxSteps, 100);
+    }
+  });
+
+  test("antimeridian crossing segment: splits into multiple LineString vertex sets", () => {
+    const westOfSeam = { latitude: 0, longitude_east: 179.9 };
+    const eastOfSeam = { latitude: 0, longitude_east: 180.1 };
+    // Distance across 0.2° arc at equator is ~11.85 km
+    const res = densifyTrajectorySegment(westOfSeam, eastOfSeam, 11855, 100, 1000);
+    assert.equal(res.status, "supported");
+    if (res.status === "supported") {
+      // Must split into 2 subsegments to avoid horizontal cord across map
+      assert.equal(res.coordinates.length, 2);
+      assert.ok(res.coordinates[0].length >= 2);
+      assert.ok(res.coordinates[1].length >= 2);
+    }
   });
 });

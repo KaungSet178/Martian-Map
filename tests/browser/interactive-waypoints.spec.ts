@@ -169,3 +169,110 @@ test("Jezero Crater disables interactive map placement with clear explanation", 
   const manualCard = page.getByTestId("manual-coordinates-card");
   await expect(manualCard).toBeVisible();
 });
+
+test("placement safeguards: dragging, zooming, marker clicks, and controls do not create waypoints", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 1024, height: 768 });
+  await page.goto("/?region=gale");
+
+  const mapCanvas = page.locator(".map-canvas");
+  await expect(mapCanvas).toBeVisible();
+
+  // Navigate to Plan -> Surface Waypoints tab
+  await page.getByRole("button", { name: /^Plan/ }).click();
+  await page.getByRole("tab", { name: /Surface Waypoints/ }).click();
+
+  const placeBtn = page.getByTestId("toggle-map-placement-btn");
+  await expect(placeBtn).toBeVisible();
+  await placeBtn.click();
+
+  const banner = page.getByTestId("placement-banner");
+  await expect(banner).toBeVisible();
+
+  const canvas = page.locator(".map-canvas canvas");
+  await expect(canvas).toBeVisible();
+  const canvasBox = await canvas.boundingBox();
+  expect(canvasBox).not.toBeNull();
+  if (!canvasBox) return;
+
+  const markers = page.getByTestId("map-waypoint-marker");
+  await expect(markers).toHaveCount(0);
+
+  // 1. Mouse Dragging Safeguard: dragging the map must NOT place a waypoint
+  const startX = canvasBox.x + canvasBox.width * 0.4;
+  const startY = canvasBox.y + canvasBox.height * 0.4;
+  await page.mouse.move(startX, startY);
+  await page.mouse.down();
+  await page.mouse.move(startX + 80, startY + 80, { steps: 5 });
+  await page.mouse.up();
+  await page.waitForTimeout(200);
+  await expect(markers).toHaveCount(0);
+
+  // 2. Map Control Click Safeguard: clicking navigation controls must NOT place a waypoint
+  const zoomIn = page.locator(".maplibregl-ctrl-zoom-in");
+  if (await zoomIn.isVisible()) {
+    await zoomIn.click();
+    await page.waitForTimeout(200);
+    await expect(markers).toHaveCount(0);
+  }
+
+  // 3. Normal Click: Places exactly 1 waypoint
+  const clickX = canvasBox.x + canvasBox.width * 0.5;
+  const clickY = canvasBox.y + canvasBox.height * 0.5 - 25;
+  await page.mouse.click(clickX, clickY);
+  await expect(markers).toHaveCount(1);
+
+  // 4. Marker Click Safeguard: Clicking the existing marker must select it, NOT create a second waypoint
+  await markers.first().click({ force: true });
+  await page.waitForTimeout(200);
+  await expect(markers).toHaveCount(1);
+  await expect(markers.first()).toHaveClass(/selected/);
+
+  // 5. Escape Key Safeguard: Pressing Escape disarms placement mode
+  await page.keyboard.press("Escape");
+  await expect(banner).toHaveCount(0);
+});
+
+test("mobile touch safeguards at 390px: touch tap places waypoint within footprint", async ({
+  browser,
+}) => {
+  const context = await browser.newContext({
+    viewport: { width: 390, height: 844 },
+    hasTouch: true,
+  });
+  const page = await context.newPage();
+  await page.goto("/?region=gale");
+
+  const mapCanvas = page.locator(".map-canvas");
+  await expect(mapCanvas).toBeVisible();
+
+  // Open planning panel
+  const handle = page.getByRole("button", { name: /^Plan ·/ });
+  if (await handle.isVisible()) await handle.click();
+
+  await page.getByRole("button", { name: /^Plan/ }).click();
+  await page.getByRole("tab", { name: /Surface Waypoints/ }).click();
+
+  const placeBtn = page.getByTestId("toggle-map-placement-btn");
+  await expect(placeBtn).toBeVisible();
+  await placeBtn.click();
+
+  const banner = page.getByTestId("placement-banner");
+  await expect(banner).toBeVisible();
+
+  const canvas = page.locator(".map-canvas canvas");
+  const canvasBox = await canvas.boundingBox();
+  expect(canvasBox).not.toBeNull();
+  if (!canvasBox) return;
+
+  const markers = page.getByTestId("map-waypoint-marker");
+  await expect(markers).toHaveCount(0);
+
+  // Touch tap on mobile canvas places 1 waypoint
+  const startX = canvasBox.x + canvasBox.width * 0.5;
+  const startY = canvasBox.y + canvasBox.height * 0.5 - 25;
+  await page.touchscreen.tap(startX, startY);
+  await expect(markers).toHaveCount(1);
+  await context.close();
+});
