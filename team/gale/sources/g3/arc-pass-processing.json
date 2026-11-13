@@ -1,0 +1,92 @@
+{
+  "input_sha256": "783f052b5bb5eb7b478e66ce6c972816f8adc0e154be0176bc817b14cd7e8a24",
+  "input_crs_wkt": "PROJCRS[\"Mars2000_Equidistant_Cylindrical_clon0\",BASEGEOGCRS[\"GCS_Mars_2000_Sphere\",DATUM[\"Mars_2000_(Sphere)\",ELLIPSOID[\"Mars_2000_Sphere_IAU_IAG\",3396190,0,LENGTHUNIT[\"metre\",1]],ID[\"ESRI\",106971]],PRIMEM[\"Reference_Meridian\",0,ANGLEUNIT[\"Degree\",0.0174532925199433]]],CONVERSION[\"unnamed\",METHOD[\"Equidistant Cylindrical (Spherical)\",ID[\"EPSG\",1029]],PARAMETER[\"Longitude of natural origin\",0,ANGLEUNIT[\"Degree\",0.0174532925199433],ID[\"EPSG\",8802]],PARAMETER[\"False easting\",0,LENGTHUNIT[\"metre\",1],ID[\"EPSG\",8806]],PARAMETER[\"False northing\",0,LENGTHUNIT[\"metre\",1],ID[\"EPSG\",8807]]],CS[Cartesian,2],AXIS[\"easting\",east,ORDER[1],LENGTHUNIT[\"metre\",1,ID[\"EPSG\",9001]]],AXIS[\"northing\",north,ORDER[2],LENGTHUNIT[\"metre\",1,ID[\"EPSG\",9001]]]]",
+  "input_layer": "map_unit_polygons_v2",
+  "feature_count": 53,
+  "unit_counts": {
+    "F1": 5,
+    "R": 21,
+    "MSg": 7,
+    "F3": 16,
+    "F2": 1,
+    "mF1R": 2,
+    "S": 1
+  },
+  "native_bounds_m": [
+    8144734.477600001,
+    -283870.8426000001,
+    8144998.632300001,
+    -283649.2681
+  ],
+  "coordinate_checks": [
+    {
+      "projected_m": [
+        8144734.477600001,
+        -283870.8426000001
+      ],
+      "geographic_degrees": [
+        137.4065970458571,
+        -4.789072816244821
+      ],
+      "independent_inverse": [
+        137.4065970458571,
+        -4.789072816244822
+      ]
+    },
+    {
+      "projected_m": [
+        8144998.632300001,
+        -283649.2681
+      ],
+      "geographic_degrees": [
+        137.4110534954222,
+        -4.785334720408685
+      ],
+      "independent_inverse": [
+        137.4110534954222,
+        -4.785334720408685
+      ]
+    },
+    {
+      "projected_m": [
+        8144866.554950001,
+        -283760.05535000004
+      ],
+      "geographic_degrees": [
+        137.40882527063965,
+        -4.787203768326754
+      ],
+      "independent_inverse": [
+        137.40882527063965,
+        -4.787203768326754
+      ]
+    }
+  ],
+  "invalid": 0,
+  "empty": 0,
+  "normalized_duplicates": 0,
+  "overlap_area_m2": 0.0001719896899885498,
+  "unmapped_inside_boundary_m2": 2.6848013144980585,
+  "outside_boundary_m2": 0.0,
+  "processing": "Preserve all XY vertices, rings and attributes Unit/source OBJECTID. Omit constant zero Z. No simplification, repair, clipping or fitted shift.",
+  "omitted_layers": [
+    "Contacts_draft",
+    "boundary_box",
+    "contacts_final",
+    "troughs",
+    "ridges",
+    "profile_lines"
+  ],
+  "output": "public/maps/gale/arc-pass-geology.geojson",
+  "output_bytes": 240690,
+  "output_sha256": "d182c9291450f77fd07fef4fbdb979d23df45e65c6665fb02dd7df08f2748dce",
+  "tool_versions": {
+    "pyogrio": "0.13.0",
+    "gdal": [
+      3,
+      12,
+      4
+    ],
+    "shapely": "2.2.0"
+  }
+}

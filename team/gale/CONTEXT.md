@@ -151,3 +151,24 @@ Gediz Gazetteer nomenclature geometry exists but is not equated with geological
 deposits or sample sites. Optional shared fields preserve Jezero/Oxia manifests
 and mission v1 IDs. Future available polygons require regional contract review.
 No G3/G4 work has begun.
+
+## Milestone G3.1 - 13 November 2026
+
+Gale now uses `gale-g3-1-v1`. Read [G3_1_REPORT.md](G3_1_REPORT.md),
+[geological evidence register](G3_GEOLOGY_EVIDENCE_REGISTER.json), and
+[shared renderer handoff](G3_1_CONTRACT_REVIEW.md).
+
+Arc Pass geological units are available as an optional interpreted overlay:
+53 source polygons, seven exact Unit codes, about 264 x 222 m inside current CTX
+coverage. Source: Joel Davis (2025), Figshare DOI 10.6084/m9.figshare.30401788.v1,
+CC BY 4.0, associated Davis et al. (2026) JGR paper. Source FileGDB and processing
+are pinned and audited. Default opacity 45%; enabling fits the source footprint.
+CTX remains coarse at close zoom; absolute contact accuracy is unspecified.
+
+All catalog target coordinates/boundaries remain unverified; this small mapped
+area is not all Gediz Vallis. G1/G2 data and original traverse are preserved.
+Meyer clay-sulfate supplementary shapefiles were inspected but not render-validated.
+Optional shared categorical/extent fields preserve older regional manifests;
+historical context overlays can now coexist with one thematic layer. Coordinate
+future shared features through the handoff. G3.2/G3.3 and other enhancements are
+not started.

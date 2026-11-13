@@ -1,0 +1,218 @@
+[
+  {
+    "file": "Distinctive Orbital Layer Boundary.shp",
+    "type": "LineString",
+    "count": 23,
+    "invalid": 0,
+    "empty": 0,
+    "bounds_native": [
+      137.24320223487072,
+      -4.879231118212624,
+      137.4488602614241,
+      -4.718551383610702
+    ],
+    "crs": "GEOGCS[\"Mars_2000_(Sphere)\",DATUM[\"Mars_2000_(Sphere)\",SPHEROID[\"Mars_2000_(Sphere)\",3396190,0,AUTHORITY[\"ESRI\",\"107971\"]],AUTHORITY[\"ESRI\",\"106971\"]],PRIMEM[\"Reference_Meridian\",0,AUTHORITY[\"ESRI\",\"108900\"]],UNIT[\"degree\",0.0174532925199433,AUTHORITY[\"EPSG\",\"9122\"]],AXIS[\"Latitude\",NORTH],AXIS[\"Longitude\",EAST],AUTHORITY[\"ESRI\",\"104971\"]]",
+    "native_geographic_envelope": [
+      [
+        137.24320223487072,
+        137.4488602614241
+      ],
+      [
+        -4.879231118212624,
+        -4.718551383610702
+      ]
+    ],
+    "fields": [
+      "Id"
+    ]
+  },
+  {
+    "file": "Marker Bed Line.shp",
+    "type": "LineString",
+    "count": 37,
+    "invalid": 0,
+    "empty": 0,
+    "bounds_native": [
+      137.1961771241523,
+      -5.014690745086455,
+      137.44109203479763,
+      -4.742766459651023
+    ],
+    "crs": "GEOGCS[\"Mars_2000_(Sphere)\",DATUM[\"Mars_2000_(Sphere)\",SPHEROID[\"Mars_2000_(Sphere)\",3396190,0,AUTHORITY[\"ESRI\",\"107971\"]],AUTHORITY[\"ESRI\",\"106971\"]],PRIMEM[\"Reference_Meridian\",0,AUTHORITY[\"ESRI\",\"108900\"]],UNIT[\"degree\",0.0174532925199433,AUTHORITY[\"EPSG\",\"9122\"]],AXIS[\"Latitude\",NORTH],AXIS[\"Longitude\",EAST],AUTHORITY[\"ESRI\",\"104971\"]]",
+    "native_geographic_envelope": [
+      [
+        137.1961771241523,
+        137.44109203479763
+      ],
+      [
+        -5.014690745086455,
+        -4.742766459651023
+      ]
+    ],
+    "fields": [
+      "Id"
+    ]
+  },
+  {
+    "file": "Marker Bed Polygon.shp",
+    "type": "Polygon Z",
+    "count": 28,
+    "invalid": 0,
+    "empty": 0,
+    "bounds_native": [
+      137.20987032492144,
+      -4.942014039101593,
+      137.44173520023355,
+      -4.745185779930068
+    ],
+    "crs": "GEOGCS[\"Mars_2000_(Sphere)\",DATUM[\"Mars_2000_(Sphere)\",SPHEROID[\"Mars_2000_(Sphere)\",3396190,0,AUTHORITY[\"ESRI\",\"107971\"]],AUTHORITY[\"ESRI\",\"106971\"]],PRIMEM[\"Reference_Meridian\",0,AUTHORITY[\"ESRI\",\"108900\"]],UNIT[\"degree\",0.0174532925199433,AUTHORITY[\"EPSG\",\"9122\"]],AXIS[\"Latitude\",NORTH],AXIS[\"Longitude\",EAST],AUTHORITY[\"ESRI\",\"104971\"]]",
+    "native_geographic_envelope": [
+      [
+        137.20987032492144,
+        137.44173520023355
+      ],
+      [
+        -4.942014039101593,
+        -4.745185779930068
+      ]
+    ],
+    "fields": [
+      "Id"
+    ]
+  },
+  {
+    "file": "Other Orbital Layer Boundaries.shp",
+    "type": "LineString Z",
+    "count": 670,
+    "invalid": 0,
+    "empty": 0,
+    "bounds_native": [
+      137.17629096898202,
+      -4.994484635512038,
+      137.5520487039421,
+      -4.6504382413380085
+    ],
+    "crs": "GEOGCS[\"Mars_2000_(Sphere)\",DATUM[\"Mars_2000_(Sphere)\",SPHEROID[\"Mars_2000_(Sphere)\",3396190,0,AUTHORITY[\"ESRI\",\"107971\"]],AUTHORITY[\"ESRI\",\"106971\"]],PRIMEM[\"Reference_Meridian\",0,AUTHORITY[\"ESRI\",\"108900\"]],UNIT[\"degree\",0.0174532925199433,AUTHORITY[\"EPSG\",\"9122\"]],AXIS[\"Latitude\",NORTH],AXIS[\"Longitude\",EAST],AUTHORITY[\"ESRI\",\"104971\"]]",
+    "native_geographic_envelope": [
+      [
+        137.17629096898202,
+        137.5520487039421
+      ],
+      [
+        -4.994484635512038,
+        -4.6504382413380085
+      ]
+    ],
+    "fields": [
+      "Id"
+    ]
+  },
+  {
+    "file": "Pediments.shp",
+    "type": "Polygon Z",
+    "count": 104,
+    "invalid": 0,
+    "empty": 0,
+    "bounds_native": [
+      137.19629074192437,
+      -4.850685508556296,
+      137.47366652177016,
+      -4.663286413619119
+    ],
+    "crs": "GEOGCS[\"Mars_2000_(Sphere)\",DATUM[\"Mars_2000_(Sphere)\",SPHEROID[\"Mars_2000_(Sphere)\",3396190,0,AUTHORITY[\"ESRI\",\"107971\"]],AUTHORITY[\"ESRI\",\"106971\"]],PRIMEM[\"Reference_Meridian\",0,AUTHORITY[\"ESRI\",\"108900\"]],UNIT[\"degree\",0.0174532925199433,AUTHORITY[\"EPSG\",\"9122\"]],AXIS[\"Latitude\",NORTH],AXIS[\"Longitude\",EAST],AUTHORITY[\"ESRI\",\"104971\"]]",
+    "native_geographic_envelope": [
+      [
+        137.19629074192437,
+        137.47366652177016
+      ],
+      [
+        -4.850685508556296,
+        -4.663286413619119
+      ]
+    ],
+    "fields": [
+      "Id"
+    ]
+  },
+  {
+    "file": "Rover Traverse in Carolyn Shoemaker fm.shp",
+    "type": "LineString",
+    "count": 290,
+    "invalid": 0,
+    "empty": 0,
+    "bounds_native": [
+      8143107.240041866,
+      -281088.37299999874,
+      8145102.807538402,
+      -280297.96388028655
+    ],
+    "crs": "PROJCS[\"Equirectangular\",GEOGCS[\"unknown\",DATUM[\"unknown\",SPHEROID[\"Unknown\",3396190,0]],PRIMEM[\"Greenwich\",0],UNIT[\"Degree\",0.0174532925199433]],PROJECTION[\"Equirectangular\"],PARAMETER[\"central_meridian\",0],PARAMETER[\"false_easting\",0],PARAMETER[\"false_northing\",0],UNIT[\"metre\",1,AUTHORITY[\"EPSG\",\"9001\"]],AXIS[\"Easting\",EAST],AXIS[\"Northing\",NORTH]]",
+    "native_geographic_envelope": [
+      [
+        137.3791445640035,
+        137.41281099470527
+      ],
+      [
+        -4.742130871093481,
+        -4.728796191158565
+      ]
+    ],
+    "fields": [
+      "Id"
+    ]
+  },
+  {
+    "file": "Rover Traverse in Mirador fm.shp",
+    "type": "LineString",
+    "count": 134,
+    "invalid": 0,
+    "empty": 0,
+    "bounds_native": [
+      8143904.0479999995,
+      -282008.80399999995,
+      8144498.910999998,
+      -281088.37299999874
+    ],
+    "crs": "PROJCS[\"Equirectangular\",GEOGCS[\"unknown\",DATUM[\"unknown\",SPHEROID[\"Unknown\",3396190,0]],PRIMEM[\"Greenwich\",0],UNIT[\"Degree\",0.0174532925199433]],PROJECTION[\"Equirectangular\"],PARAMETER[\"central_meridian\",0],PARAMETER[\"false_easting\",0],PARAMETER[\"false_northing\",0],UNIT[\"metre\",1,AUTHORITY[\"EPSG\",\"9001\"]],AXIS[\"Easting\",EAST],AXIS[\"Northing\",NORTH]]",
+    "native_geographic_envelope": [
+      [
+        137.392587196213,
+        137.40262289483067
+      ],
+      [
+        -4.757659098793662,
+        -4.742130871093481
+      ]
+    ],
+    "fields": [
+      "Id"
+    ]
+  },
+  {
+    "file": "Rover Traverse in Stimson fm.shp",
+    "type": "LineString",
+    "count": 32,
+    "invalid": 0,
+    "empty": 0,
+    "bounds_native": [
+      8143190.526999999,
+      -281513.5520881577,
+      8143911.018469086,
+      -280749.3265020261
+    ],
+    "crs": "PROJCS[\"Equirectangular\",GEOGCS[\"unknown\",DATUM[\"unknown\",SPHEROID[\"Unknown\",3396190,0]],PRIMEM[\"Greenwich\",0],UNIT[\"Degree\",0.0174532925199433]],PROJECTION[\"Equirectangular\"],PARAMETER[\"central_meridian\",0],PARAMETER[\"false_easting\",0],PARAMETER[\"false_northing\",0],UNIT[\"metre\",1,AUTHORITY[\"EPSG\",\"9001\"]],AXIS[\"Easting\",EAST],AXIS[\"Northing\",NORTH]]",
+    "native_geographic_envelope": [
+      [
+        137.380549665364,
+        137.39270479224263
+      ],
+      [
+        -4.749303899483745,
+        -4.736410951597658
+      ]
+    ],
+    "fields": [
+      "Id"
+    ]
+  }
+]

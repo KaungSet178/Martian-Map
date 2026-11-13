@@ -27,9 +27,65 @@ import {
   mountRegionLayers,
   toDisplayCoordinates,
   updateLayerState,
+  fillColor,
 } from "@/lib/map/region-layers";
 import { fitOverview } from "@/lib/map/camera";
 import { photographSchema } from "@/lib/contracts/science";
+
+test("Arc Pass asset preserves all source classifications and audited geometry identity", () => {
+  const gale = getRegion("gale")!;
+  const layer = gale.layers.find((item) => item.id === "gale-geology")!;
+  const report = JSON.parse(readFileSync("team/gale/sources/g3/arc-pass-processing.json", "utf8"));
+  const bytes = readFileSync(report.output);
+  assert.equal(createHash("sha256").update(bytes).digest("hex"), report.output_sha256);
+  const geojson = JSON.parse(bytes.toString());
+  assert.equal(geojson.features.length, 53);
+  assert.equal(new Set(geojson.features.map((feature: { id: number }) => feature.id)).size, 53);
+  const counts: Record<string, number> = {};
+  for (const feature of geojson.features) {
+    const code = feature.properties.Unit;
+    counts[code] = (counts[code] ?? 0) + 1;
+    assert.equal(feature.id, feature.properties.source_objectid);
+    assert.equal(feature.geometry.type, "MultiPolygon");
+    for (const polygon of feature.geometry.coordinates)
+      for (const ring of polygon) {
+        assert.deepEqual(ring[0], ring.at(-1));
+        for (const coordinate of ring) {
+          assert.equal(coordinate.length, 2);
+          assert.ok(coordinate[0] > 137.4065 && coordinate[0] < 137.4111);
+          assert.ok(coordinate[1] > -4.7891 && coordinate[1] < -4.7853);
+        }
+      }
+  }
+  assert.deepEqual(counts, report.unit_counts);
+  assert.deepEqual(new Set(Object.keys(counts)), new Set(layer.legend!.items.map((item) => item.value)));
+  const expression = fillColor(layer) as unknown[];
+  assert.deepEqual(expression.slice(0, 2), ["match", ["get", "Unit"]]);
+  for (const item of layer.legend!.items) assert.equal(expression[expression.indexOf(item.value)+1], item.color);
+  assert.ok(gale.targets.every((target) => !target.coordinate_verified && target.coordinates === null));
+});
+
+test("categorical layer contracts reject missing or duplicate legend values and preserve legacy manifests", () => {
+  const gale = getRegion("gale")!;
+  const layer = gale.layers.find((item) => item.id === "gale-geology")!;
+  for (const legend of [null, { ...layer.legend, items: [] },
+    { ...layer.legend, items: [layer.legend!.items[0], layer.legend!.items[0]] }]) {
+    assert.equal(regionSchema.safeParse({ ...gale, layers: [{ ...layer, legend }] }).success, false);
+  }
+  for (const region of listRegions()) {
+    const legacy = { ...region, layers: region.layers.map((item) => {
+      if (item.rendering.kind !== "geojson") return item;
+      const { category_property, focus_extent, max_zoom, ...rendering } = item.rendering;
+      void category_property; void focus_extent; void max_zoom;
+      return { ...item, rendering };
+    }) };
+    assert.ok(regionSchema.safeParse(legacy).success);
+  }
+  const state = updateLayerState(gale, {}, "gale-geology", { visible: true });
+  assert.equal(state["gale-geology"].visible, true);
+  assert.notEqual(state["gale-traverse-recorded"]?.visible, false);
+  assert.notEqual(state["gale-optical"]?.visible, false);
+});
 
 test("optional photo evidence preserves legacy manifests and cannot promote an area to a point", () => {
   const gale = getRegion("gale")!;

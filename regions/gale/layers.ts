@@ -1,4 +1,5 @@
 import type { ScientificLayer } from "@/lib/contracts/region";
+import { geologyLegend } from "./geology-legend";
 
 // Gale G1: source-backed content; unknown values remain explicit.
 export const layers = [
@@ -51,24 +52,34 @@ export const layers = [
   },
   {
     "id": "gale-geology",
-    "type": "Geology & mineralogy",
-    "display_name": "Geology & mineralogy",
+    "type": "Geological mapping",
+    "display_name": "Arc Pass geological units",
     "kind": "geology",
-    "availability": "pending",
-    "source_id": "gale-geology-publication",
+    "availability": "available",
+    "source_id": "gale-arc-pass-geology",
     "observation_date": null,
     "spatial_resolution_m": null,
-    "coverage": null,
-    "limitations": "USGS-listed Glen Torridon stratigraphic study located. Published interpretation supports the catalog; registered GIS contacts, coverage and categorical legend are not ingested. No invented mineral raster.",
-    "evidence": "Unavailable",
-    "attribution": null,
+    "coverage": "Arc Pass only: 137.406597..137.411053 E, -4.789073..-4.785335 N; about 264 x 222 m. Outside the source footprint is unmapped, not a missing or safe unit. Opening the layer fits this mapped area.",
+    "limitations": "Davis (2025) source Unit codes preserved; interpreted photogeology, not terrain safety or mineral abundance. Digitized at 1:250 on HiRISE; CTX context is much coarser and becomes pixelated at close zoom. Absolute positional accuracy is unspecified; tiny source topology gaps remain. Not the whole Gediz Vallis or a boundary for any catalog target.",
+    "evidence": "Interpreted",
+    "attribution": "Joel Davis (2025), Figshare, CC BY 4.0; Davis et al. (2026), JGR Planets; display conversion by Marswalk",
     "rendering": {
-      "kind": "unavailable",
-      "reason": "Requires published map products, classification legends and coverage verification."
+      "kind": "geojson",
+      "url": "/maps/gale/arc-pass-geology.geojson",
+      "geometry": "fill",
+      "color": "#647C9A",
+      "category_property": "Unit",
+      "max_zoom": 18,
+      "focus_extent": {
+        "west_east": 137.4065970458571,
+        "east_east": 137.4110534954222,
+        "south_latitude": -4.789072816244821,
+        "north_latitude": -4.785334720408685
+      }
     },
     "default_visible": false,
-    "default_opacity": 70,
-    "legend": null
+    "default_opacity": 45,
+    "legend": geologyLegend
   },
   {
     "id": "gale-traverse-recorded",

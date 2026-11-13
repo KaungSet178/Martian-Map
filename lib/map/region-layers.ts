@@ -1,4 +1,4 @@
-import type { Map as MapInstance } from "maplibre-gl";
+import type { Map as MapInstance, ExpressionSpecification } from "maplibre-gl";
 import type {
   RegionManifest,
   MarsGeographicCoordinates,
@@ -6,6 +6,14 @@ import type {
 
 export type LayerState = { visible: boolean; opacity: number };
 export type LayerStates = Record<string, LayerState>;
+export function fillColor(layer: RegionManifest["layers"][number]): string | ExpressionSpecification {
+  const render = layer.rendering;
+  if (render.kind !== "geojson") return "#647C9A";
+  const items = layer.legend?.items;
+  if (!render.category_property || !items?.length) return render.color;
+  return ["match", ["get", render.category_property], items[0].value!, items[0].color,
+    ...items.slice(1).flatMap((item) => [item.value!, item.color]), render.color];
+}
 export function displayBounds(
   extent: NonNullable<RegionManifest["map"]["supported_extent"]>,
 ): [[number, number], [number, number]] {
@@ -54,9 +62,9 @@ export function updateLayerState(
     ...states,
     [id]: { ...layerState(region, states, id), ...change },
   };
-  if (change.visible && layer.kind !== "optical") {
+  if (change.visible && layer.kind !== "optical" && layer.kind !== "overlay") {
     for (const other of region.layers.filter(
-      (l) => l.id !== id && l.kind !== "optical",
+      (l) => l.id !== id && l.kind !== "optical" && l.kind !== "overlay",
     ))
       next[other.id] = {
         ...layerState(region, next, other.id),
@@ -124,7 +132,10 @@ export function mountRegionLayers(
           type: "fill",
           source: id,
           layout: { visibility: "none" },
-          paint: { "fill-color": render.color },
+          paint: {
+            "fill-color": fillColor(layer),
+            ...(render.category_property ? { "fill-outline-color": "#111D30" } : {}),
+          },
         });
       if (render.geometry === "circle")
         map.addLayer({

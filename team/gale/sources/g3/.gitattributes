@@ -1,0 +1,4 @@
+# Preserve scientific source/audit snapshot bytes across Windows/Unix checkouts.
+*.json -text whitespace=-blank-at-eol,cr-at-eol
+*.xml -text whitespace=-blank-at-eol,cr-at-eol
+*.txt -text whitespace=-blank-at-eol,cr-at-eol

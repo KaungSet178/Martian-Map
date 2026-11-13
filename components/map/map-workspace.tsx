@@ -63,6 +63,7 @@ export default function MapWorkspace({
   const map = useRef<MapInstance | null>(null);
   const markers = useRef<Marker[]>([]);
   const overview = useRef(true);
+  const previousLayers = useRef<{ region: string; visible: Set<string> } | null>(null);
   const [ready, setReady] = useState(false);
   const [failed, setFailed] = useState(false);
   const scientificMap = region.map.visualization.status === "available";
@@ -157,7 +158,7 @@ export default function MapWorkspace({
     map.current.setMaxZoom(
       scientificMap
         ? Math.max(10, ...region.layers.flatMap((layer) =>
-            layer.availability === "available" && layer.rendering.kind === "raster-tiles"
+            layer.availability === "available" && layer.rendering.kind !== "unavailable" && layer.rendering.max_zoom !== undefined
               ? [layer.rendering.max_zoom]
               : [],
           ))
@@ -165,6 +166,25 @@ export default function MapWorkspace({
     );
     resetView();
   }, [ready, region, scientificMap, resetView]);
+
+  useEffect(() => {
+    if (!ready || !map.current || !container.current) return;
+    const visible = new Set(region.layers.filter((layer) =>
+      layerState(region, layerStates, layer.id).visible).map((layer) => layer.id));
+    const previous = previousLayers.current;
+    previousLayers.current = { region: region.id, visible };
+    if (preview || previous?.region !== region.id) return;
+    const revealed = region.layers.find((layer) =>
+      layer.availability === "available" && visible.has(layer.id) && !previous.visible.has(layer.id) &&
+      layer.rendering.kind === "geojson" && layer.rendering.focus_extent);
+    if (revealed?.rendering.kind === "geojson" && revealed.rendering.focus_extent) {
+      // Explicitly opening a small mapped area uses the same contained fit as
+      // the regional overview. Opacity changes and resize never re-trigger it.
+      overview.current = false;
+      fitOverview(map.current, { ...region, map: { ...region.map,
+        supported_extent: revealed.rendering.focus_extent } }, container.current, false);
+    }
+  }, [ready, region, layerStates, preview]);
 
   useEffect(() => {
     if (!ready || !container.current || !map.current) return;

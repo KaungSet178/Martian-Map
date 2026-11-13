@@ -236,7 +236,8 @@ export function LayerManager({
                           {layer.legend.units ? ` (${layer.legend.units})` : ""}
                         </strong>
                         {layer.legend.items.map((item) => (
-                          <p key={item.label}>
+                          <div key={item.label}>
+                            <p>
                             <span
                               aria-hidden="true"
                               style={{
@@ -246,13 +247,16 @@ export function LayerManager({
                               }}
                             />
                             {item.label}
-                          </p>
+                            </p>
+                            {item.description && <p className="supporting">{item.description}</p>}
+                          </div>
                         ))}
                       </div>
                     )}
                     <p className="supporting">
                       {layer.attribution} · {layer.limitations}
                     </p>
+                    {layer.coverage && <p className="supporting">Coverage: {layer.coverage}</p>}
                   </>
                 )}
               </div>

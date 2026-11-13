@@ -1,6 +1,6 @@
 import type { RegionConfig } from "@/lib/contracts/region";
 
-// Gale G2: source-backed content; unknown values remain explicit.
+// Gale G3.1: source-backed content; unknown values remain explicit.
 export const config = {
   "id": "gale",
   "name": "Gale Crater",
@@ -46,7 +46,7 @@ export const config = {
     }
   },
   "data_status": "metadata_verified",
-  "dataset_version": "gale-g2-v1",
+  "dataset_version": "gale-g3-1-v1",
   "contextual_datasets": [
     {
       "id": "gale-environment-context",
@@ -101,6 +101,27 @@ export const config = {
     }
   },
   "source_references": [
+    {
+      "id": "gale-arc-pass-geology",
+      "title": "Davis - Arc Pass photogeological GIS, v1",
+      "url": "https://doi.org/10.6084/m9.figshare.30401788.v1",
+      "agency": "Joel Davis author archive / Figshare; associated peer-reviewed JGR study",
+      "instrument": "HiRISE, Mastcam and Navcam mapping basis",
+      "product_id": "Geomap.gdb.zip; Figshare file 58896958; map_unit_polygons_v2",
+      "acquisition_date": null,
+      "sol": null,
+      "native_resolution_m": null,
+      "processing_notes": [
+        "Published 2025-10-20; associated paper DOI 10.1029/2025JE009538 (2026), figure 17. Publication dates are not acquisition dates. Mapping digitized at 1:250 on HiRISE with rover observations.",
+        "53 source polygons, seven unmodified Unit codes. Mars 2000 sphere R=3396190 m, equirectangular lon_0=0, lat_ts=0, zero offsets. Inverse checked against independent spherical formula and PDS centric reference. No Earth geodesy, simplification, clipping, shifting or topology repair. Constant zero Z omitted, no elevation inferred.",
+        "Full source archive, hashes, audit and reproducible workflow: team/gale/G3_GEOLOGY_EVIDENCE_REGISTER.json and prepare_g3_geology.py. Source classifications retained; colors are Marswalk display styling."
+      ],
+      "limitations": [
+        "CC BY 4.0: Joel Davis (2025), GIS Shapefiles of Arc Pass, Mars, DOI 10.6084/m9.figshare.30401788.v1; cite associated Davis et al. (2026) paper.",
+        "Small Arc Pass footprint, not a validated geological boundary for all Gediz Vallis or any precise sampling target. Absolute positional uncertainty unspecified; CTX is coarser than source mapping. Source gaps and overlaps preserved; no terrain safety, mineral abundance, routing or feasibility inference.",
+        "Source abbreviations MSg, R and S remain unexpanded pending full legend semantics review. Draft contacts, profiles and auxiliary linework are not rendered."
+      ]
+    },
     {
       "id": "gale-mission-context",
       "title": "Gale Crater mission context",

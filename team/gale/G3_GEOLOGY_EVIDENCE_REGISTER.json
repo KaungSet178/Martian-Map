@@ -1,0 +1,662 @@
+{
+  "milestone": "G3.1",
+  "review_date": "2026-11-13",
+  "baseline_commit": "f102e81",
+  "dataset_version": "gale-g3-1-v1",
+  "policy": "Publication, downloadable product, inspected file and render-validated layer are separate evidence stages. No invented geometry, no target verification upgrade.",
+  "selected_candidate": "arc-pass-davis-v1",
+  "rendering_enabled": true,
+  "candidates": [
+    {
+      "id": "arc-pass-davis-v1",
+      "title": "GIS Shapefiles of Arc Pass, Mars",
+      "publishing_organization": "Author archive / Figshare; associated peer-reviewed JGR Planets study",
+      "authors": "Joel Davis; associated paper Davis and coauthors",
+      "publication_year": 2025,
+      "source_url": "https://doi.org/10.6084/m9.figshare.30401788.v1",
+      "persistent_identifier": "10.6084/m9.figshare.30401788.v1",
+      "product_id": "Figshare 30401788 v1; file 58896958",
+      "product_type": "Photogeological polygons and linework",
+      "geological_units": [
+        "F1",
+        "R",
+        "MSg",
+        "F3",
+        "F2",
+        "mF1R",
+        "S"
+      ],
+      "file_format": "ZIP containing ESRI File Geodatabase (not standalone .shp despite title)",
+      "actual_download_availability": "Downloaded 94,771 bytes; published MD5 matches; ZIP integrity passed.",
+      "coordinate_reference_system": "PROJCS[\"Mars2000_Equidistant_Cylindrical_clon0\",GEOGCS[\"GCS_Mars_2000_Sphere\",DATUM[\"Mars_2000_(Sphere)\",SPHEROID[\"Mars_2000_Sphere_IAU_IAG\",3396190,0],AUTHORITY[\"ESRI\",\"106971\"]],PRIMEM[\"Reference_Meridian\",0],UNIT[\"Degree\",0.0174532925199433]],PROJECTION[\"Equirectangular\"],PARAMETER[\"central_meridian\",0],PARAMETER[\"false_easting\",0],PARAMETER[\"false_northing\",0],UNIT[\"metre\",1,AUTHORITY[\"EPSG\",\"9001\"]],AXIS[\"Easting\",EAST],AXIS[\"Northing\",NORTH]]",
+      "longitude_convention": "East-positive, 0\u2013360 at source footprint; longitude wrap to signed display is identity at 137 E.",
+      "latitude_convention": "Source sphere: planetocentric/planetographic coincide on the sphere; adopted planetocentric display independently checked against explicit PDS centric localizations and map label.",
+      "projection_parameters": {
+        "method": "Spherical equirectangular",
+        "radius_m": 3396190,
+        "central_meridian_degrees": 0,
+        "standard_parallel_degrees": 0,
+        "false_easting_m": 0,
+        "false_northing_m": 0,
+        "units": "metres; default standard parallel zero independently checked against spherical inverse"
+      },
+      "nominal_scale_or_native_resolution": "Published figure 17: digitized at 1:250 on HiRISE; scale is not positional accuracy.",
+      "geographic_footprint": {
+        "native_m": [
+          8144734.477600001,
+          -283870.8426000001,
+          8144998.632300001,
+          -283649.2681
+        ],
+        "geographic_wsen": [
+          137.4065970458571,
+          -4.789072816244821,
+          137.4110534954222,
+          -4.785334720408685
+        ],
+        "area_m2": 58527.26077382739
+      },
+      "observation_or_mapping_basis": "HiRISE mapping augmented by Mastcam/Navcam observations; paper DOI 10.1029/2025JE009538 (2026), figure 17.",
+      "processing_requirements": "Read OpenFileGDB; validate; inverse project on Mars sphere; preserve Unit and source OBJECTID; discard constant zero Z without asserting elevation; no simplification, clipping or boundary repair.",
+      "uncertainty_and_limitations": [
+        "Only Arc Pass; not a whole Gediz Vallis or formation boundary.",
+        "Seven source Unit codes retained; no unverified expansion of abbreviations. Display palette is Marswalk styling, not original published colors.",
+        "Absolute registration uncertainty unspecified; CTX is much coarser than the mapping.",
+        "Tiny source topology gaps/overlaps preserved; no hazard inference."
+      ],
+      "attribution_requirements": "Joel Davis (2025), Figshare, CC BY 4.0; cite associated Davis et al. (2026) paper.",
+      "maplibre_suitability": "Validated 53-feature categorical GeoJSON in the shared renderer. Source Unit values exactly match legend; opacity and focus extent browser-checked; no target or mission verification upgrade.",
+      "verification_status": "validated_for_interpreted_app_display_only",
+      "file_integrity": {
+        "filename": "Geomap.gdb.zip",
+        "download_url": "https://ndownloader.figshare.com/files/58896958",
+        "bytes": 94771,
+        "sha256": "783f052b5bb5eb7b478e66ce6c972816f8adc0e154be0176bc817b14cd7e8a24",
+        "published_md5": "b2988eb07e8c664589c9e5fd8429fdb0",
+        "zip_members": 83,
+        "zip_crc_test": "passed"
+      },
+      "geometry_validation": {
+        "feature_count": 53,
+        "invalid": 0,
+        "empty": 0,
+        "missing": 0,
+        "duplicate_wkb": 0,
+        "overlap_area_m2": 0.0001719896899885498,
+        "unmapped_inside_boundary_m2": 2.6848013144980585,
+        "outside_boundary_m2": 0.0,
+        "z_range": [
+          0.0,
+          0.0
+        ]
+      },
+      "evidence_stages": {
+        "published_interpretation_or_catalog": true,
+        "downloaded_scientific_file": true,
+        "local_gis_inspected": true,
+        "app_render_validated": true
+      },
+      "source_legend_limitations": "Codes are authoritative attributes. F1/F2/F3 and mixed-facies context are described in the associated paper. MSg/R/S remain unexpanded pending independent semantic review. Palette is display styling."
+    },
+    {
+      "id": "fedo-gt-map",
+      "title": "Geologic map of the Glen Torridon region, Gale crater, Mars",
+      "publishing_organization": "Author archive / Zenodo; USGS-listed companion study",
+      "authors": "Christopher Fedo and coauthors",
+      "publication_year": 2022,
+      "source_url": "https://zenodo.org/records/7041712",
+      "persistent_identifier": "10.5281/zenodo.7041712",
+      "product_id": "Fedo_et_al_JGR-P_2022_Glen_Torridon_Gale_Mars.jpeg",
+      "product_type": "Stratigraphic map illustration",
+      "geological_units": [
+        "Murray formation members",
+        "Carolyn Shoemaker formation members",
+        "Stimson formation"
+      ],
+      "file_format": "JPEG",
+      "actual_download_availability": "Downloaded 1,441,303 bytes; published MD5 matches.",
+      "coordinate_reference_system": "No embedded CRS, geotransform, GCPs or RPCs; corner numbers alone do not define a registered raster.",
+      "longitude_convention": "See CRS findings; no Earth GPS interpretation.",
+      "latitude_convention": "See CRS findings; unknowns are not silently resolved.",
+      "projection_parameters": null,
+      "nominal_scale_or_native_resolution": "No georeferenced pixel resolution validated.",
+      "geographic_footprint": {
+        "published_corners_wsen": [
+          137.3767,
+          -4.7383,
+          137.3919,
+          -4.7206
+        ],
+        "conventions": "Repository corner labels are lon/lat; full source coordinate model not declared in JPEG."
+      },
+      "observation_or_mapping_basis": "Rover/HiRISE stratigraphic mapping; JGR paper 10.1029/2022JE007408.",
+      "processing_requirements": "Requires author georeferenced GIS or registration metadata; do not trace the JPEG.",
+      "uncertainty_and_limitations": [
+        "Raster contains annotations and map furniture. No categorical GIS attributes."
+      ],
+      "attribution_requirements": "Fedo and coauthors, Zenodo CC BY 4.0.",
+      "maplibre_suitability": "Not suitable as registered map overlay in this release.",
+      "verification_status": "downloaded_image_not_georeferenced",
+      "evidence_stages": {
+        "published_interpretation_or_catalog": true,
+        "downloaded_scientific_file": true,
+        "local_gis_inspected": false,
+        "app_render_validated": false
+      },
+      "file_integrity": {
+        "original_filename": "Fedo_et_al_JGR-P_2022_Glen_Torridon_Gale_Mars.jpeg",
+        "bytes": 1441303,
+        "sha256": "5986ea19864077c451103947a878b009747a08c9a52aa8762b80b000bd27a383",
+        "md5": "3680ecae18020dc367c95151370411b1",
+        "published_md5_matches": true,
+        "download_url": "https://zenodo.org/api/records/7041712/files/Fedo_et_al_JGR-P_2022_Glen_Torridon_Gale_Mars.jpeg/content"
+      }
+    },
+    {
+      "id": "hughes-gt-geomorphology",
+      "title": "Geomorphic map of Glen Torridon in Gale crater, Mars",
+      "publishing_organization": "Washington University research repository",
+      "authors": "Madison Hughes",
+      "publication_year": 2022,
+      "source_url": "https://doi.org/10.7936/0cyw-3n10",
+      "persistent_identifier": "10.7936/0cyw-3n10",
+      "product_id": "Repository legacy data/95; DOI resolves to data.library.wustl.edu/record/91",
+      "product_type": "Geomorphic mapping",
+      "geological_units": [
+        "Glen Torridon geomorphic units; local attribute table unavailable"
+      ],
+      "file_format": "Unknown actual GIS format",
+      "actual_download_availability": "Legacy catalog and DataCite metadata retrieved. DOI destination returned empty HTTP 202; Chromium returned HTTP 403. No scientific file downloaded.",
+      "coordinate_reference_system": "Unverified; linked USGS basemap does not prove the product CRS.",
+      "longitude_convention": "See CRS findings; no Earth GPS interpretation.",
+      "latitude_convention": "See CRS findings; unknowns are not silently resolved.",
+      "projection_parameters": null,
+      "nominal_scale_or_native_resolution": "Unverified",
+      "geographic_footprint": null,
+      "observation_or_mapping_basis": "Published research catalog describes GT mapping.",
+      "processing_requirements": "Obtain original files, CRS, source legend, license and footprint; perform file-level audit.",
+      "uncertainty_and_limitations": [
+        "Do not claim GIS format or readiness from a listing."
+      ],
+      "attribution_requirements": "Catalog states CC BY 4.0; confirm accompanying notices when files become accessible.",
+      "maplibre_suitability": "Potentially suitable after actual file validation.",
+      "verification_status": "catalog_only_file_unavailable",
+      "evidence_stages": {
+        "published_interpretation_or_catalog": true,
+        "downloaded_scientific_file": false,
+        "local_gis_inspected": false,
+        "app_render_validated": false
+      }
+    },
+    {
+      "id": "meyer-transition-gis",
+      "title": "Supplemental Material: Geological context and significance of the clay-sulfate transition region in Mount Sharp",
+      "publishing_organization": "GSA / Figshare; USGS-listed study",
+      "authors": "Melissa J. Meyer and coauthors",
+      "publication_year": 2024,
+      "source_url": "https://doi.org/10.1130/GSAB.S.25938268",
+      "persistent_identifier": "10.1130/GSAB.S.25938268",
+      "product_id": "B37355_DataFileS1-C1.zip; file 46707988",
+      "product_type": "Mapped boundaries, marker bed, pediments and formation-tagged rover segments",
+      "geological_units": [
+        "Distinctive Orbital Layer Boundary",
+        "Other Orbital Layer Boundaries",
+        "Marker Bed Polygon",
+        "Pediments",
+        "Formation-specific rover segments"
+      ],
+      "file_format": "ESRI Shapefile bundle",
+      "actual_download_availability": "Downloaded 902,756 bytes; published MD5 matches; eight readable shapefiles.",
+      "coordinate_reference_system": "Per-file WKT preserved in team/gale/sources/g3/meyer-gis-inspection.json.",
+      "longitude_convention": "Native geographic shapefiles: X east-positive longitude near 137 degrees, Y latitude near -4 degrees; projected rover-segment files use easting/northing metres. Do not mix them.",
+      "latitude_convention": "Mars sphere: centric/graphic coincide; not Earth coordinates. Independent image registration remains unreviewed for this bundle.",
+      "projection_parameters": "Spherical geographic / equirectangular; not Earth EPSG:4326.",
+      "nominal_scale_or_native_resolution": "Study scale/resolution not independently established for every sublayer.",
+      "geographic_footprint": {
+        "per_file": "See meyer-gis-inspection.json; some extend beyond the current CTX pack."
+      },
+      "observation_or_mapping_basis": "Orbiter/rover study; primary DOI 10.1130/B37355.1; supplemental 2024, article volume year 2025.",
+      "processing_requirements": "Per-layer frame and attribute/legend/registration review; no repurposing rover segments as formation polygons.",
+      "uncertainty_and_limitations": [
+        "All GIS fields are Id only; formation identity is carried by selected filenames, not polygons encompassing formations.",
+        "Not a complete clay/sulfate abundance map. Source region-boundary semantics and image alignment not fully audited in G3.1."
+      ],
+      "attribution_requirements": "Meyer and coauthors, GSA supplemental archive CC BY 4.0.",
+      "maplibre_suitability": "Promising follow-up; not selected instead of the fully inspected small categorical Arc Pass map.",
+      "verification_status": "local_files_inspected_not_render_validated",
+      "evidence_stages": {
+        "published_interpretation_or_catalog": true,
+        "downloaded_scientific_file": true,
+        "local_gis_inspected": true,
+        "app_render_validated": false
+      },
+      "file_integrity": {
+        "original_filename": "B37355_DataFileS1-C1.zip",
+        "bytes": 902756,
+        "sha256": "2b7481c2941860ebf7d5cd5f07d537ae04cff8a63bffe43af24c4ca8ba26ab77",
+        "md5": "ed004ba6b8ca3f4b0e9acd605da1c033",
+        "published_md5_matches": true,
+        "download_url": "https://ndownloader.figshare.com/files/46707988"
+      }
+    },
+    {
+      "id": "usgs-mars-sim3292",
+      "title": "Geologic Map of Mars",
+      "publishing_organization": "U.S. Geological Survey",
+      "authors": "K.L. Tanaka, J.A. Skinner Jr., J.M. Dohm, R.P. Irwin III, E.J. Kolb, C.M. Fortezzo, T. Platz, G.G. Michael, T.M. Hare",
+      "publication_year": 2014,
+      "source_url": "https://pubs.usgs.gov/sim/3292/",
+      "persistent_identifier": "10.3133/sim3292; interactive map 10.5066/P9PBKSGE",
+      "product_id": "SIM 3292",
+      "product_type": "Global geological units",
+      "geological_units": [
+        "Global chronostratigraphic units, not rover-scale formations"
+      ],
+      "file_format": "File geodatabase / shapefiles; ArcGIS feature service",
+      "actual_download_availability": "790 MB database download listed; metadata/readme and official service definition retrieved. Full database not downloaded.",
+      "coordinate_reference_system": "Official feature service: Robinson, Mars 2000 sphere, R=3396190 m.",
+      "longitude_convention": "See CRS findings; no Earth GPS interpretation.",
+      "latitude_convention": "See CRS findings; unknowns are not silently resolved.",
+      "projection_parameters": {
+        "method": "Robinson",
+        "central_meridian_degrees": 0,
+        "false_easting_m": 0,
+        "false_northing_m": 0,
+        "units": "metres"
+      },
+      "nominal_scale_or_native_resolution": "1:20,000,000; metadata states generally 40 km minimum unit width and 100 km minimum line length.",
+      "geographic_footprint": "Global Mars",
+      "observation_or_mapping_basis": "MOLA/THEMIS and other orbital observations.",
+      "processing_requirements": "Reproject using Mars sphere and subset, if a future global context view needs it.",
+      "uncertainty_and_limitations": [
+        "Grossly too coarse for Arc Pass or GT formation/sampling boundaries."
+      ],
+      "attribution_requirements": "Tanaka et al. (2014), USGS SIM 3292; public-domain USGS data notices.",
+      "maplibre_suitability": "Technically possible; scientifically unsuitable as detailed corridor geology.",
+      "verification_status": "registered_service_metadata_only_not_selected",
+      "evidence_stages": {
+        "published_interpretation_or_catalog": true,
+        "downloaded_scientific_file": false,
+        "local_gis_inspected": false,
+        "app_render_validated": false
+      }
+    },
+    {
+      "id": "thomson-western-aeolis",
+      "title": "1:60,000 Scale Geologic Mapping of Gale Crater, Mars",
+      "publishing_organization": "Planetary Geologic Mappers meeting / author research",
+      "authors": "B.J. Thomson, I.E. Ettenborough, D.L. Buczkowski, C.M. Weitz",
+      "publication_year": 2024,
+      "source_url": "https://www.hou.usra.edu/meetings/pgm2024/pdf/7022.pdf",
+      "persistent_identifier": null,
+      "product_id": "PGM 2024 abstract 7022",
+      "product_type": "Progress report / map figure",
+      "geological_units": [
+        "Western Aeolis Mons units; sulfate-bearing extension"
+      ],
+      "file_format": "PDF abstract",
+      "actual_download_availability": "Public abstract located; no associated downloadable GIS product verified.",
+      "coordinate_reference_system": "Unverified for actual files.",
+      "longitude_convention": "See CRS findings; no Earth GPS interpretation.",
+      "latitude_convention": "See CRS findings; unknowns are not silently resolved.",
+      "projection_parameters": null,
+      "nominal_scale_or_native_resolution": "Reported mapping scale 1:60,000; no GIS audit.",
+      "geographic_footprint": "Western central mound; quantitative file footprint unavailable.",
+      "observation_or_mapping_basis": "Orbital mapping progress report.",
+      "processing_requirements": "Find released GIS and validate source CRS, coverage, legend and registration.",
+      "uncertainty_and_limitations": [
+        "A progress report and figure do not establish a downloadable final product."
+      ],
+      "attribution_requirements": "Cite authors/meeting; file-specific reuse notices unreviewed.",
+      "maplibre_suitability": "Pending actual product.",
+      "verification_status": "publication_only",
+      "evidence_stages": {
+        "published_interpretation_or_catalog": true,
+        "downloaded_scientific_file": false,
+        "local_gis_inspected": false,
+        "app_render_validated": false
+      }
+    },
+    {
+      "id": "gediz-nomenclature",
+      "title": "Gediz Vallis Gazetteer feature",
+      "publishing_organization": "USGS / IAU WGPSN",
+      "authors": "IAU WGPSN / USGS",
+      "publication_year": 2017,
+      "source_url": "https://planetarynames.wr.usgs.gov/Feature/15571",
+      "persistent_identifier": null,
+      "product_id": "Feature 15571",
+      "product_type": "Named-feature extent",
+      "geological_units": [
+        "Named valley, not geological classification"
+      ],
+      "file_format": "WKT at source",
+      "actual_download_availability": "WKT/center available; already reviewed as nomenclature in G2.",
+      "coordinate_reference_system": "Planetocentric, east-positive, 0\u2013360; control network UNKNOWN.",
+      "longitude_convention": "See CRS findings; no Earth GPS interpretation.",
+      "latitude_convention": "See CRS findings; unknowns are not silently resolved.",
+      "projection_parameters": null,
+      "nominal_scale_or_native_resolution": "No geological map scale.",
+      "geographic_footprint": {
+        "rounded_wsen": [
+          137.38,
+          -4.91,
+          137.48,
+          -4.77
+        ]
+      },
+      "observation_or_mapping_basis": "Planetary nomenclature.",
+      "processing_requirements": "Keep separate from geological deposits and sampling targets.",
+      "uncertainty_and_limitations": [
+        "Does not supply a source-defined geological legend or deposit-contact validation."
+      ],
+      "attribution_requirements": "USGS/IAU Gazetteer.",
+      "maplibre_suitability": "Rejected for geological overlay semantics.",
+      "verification_status": "available_wrong_product_semantics",
+      "evidence_stages": {
+        "published_interpretation_or_catalog": true,
+        "downloaded_scientific_file": false,
+        "local_gis_inspected": false,
+        "app_render_validated": false
+      }
+    }
+  ],
+  "coordinate_and_topology_checks": {
+    "coordinate_checks": [
+      {
+        "projected_m": [
+          8144734.477600001,
+          -283870.8426000001
+        ],
+        "pyproj_degrees": [
+          137.4065970458571,
+          -4.789072816244821
+        ],
+        "independent_spherical_inverse": [
+          137.4065970458571,
+          -4.789072816244822
+        ],
+        "difference_degrees": [
+          0.0,
+          8.881784197001252e-16
+        ]
+      },
+      {
+        "projected_m": [
+          8144998.632300001,
+          -283649.2681
+        ],
+        "pyproj_degrees": [
+          137.4110534954222,
+          -4.785334720408685
+        ],
+        "independent_spherical_inverse": [
+          137.4110534954222,
+          -4.785334720408685
+        ],
+        "difference_degrees": [
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "projected_m": [
+          8144866.554950001,
+          -283760.05535000004
+        ],
+        "pyproj_degrees": [
+          137.40882527063965,
+          -4.787203768326754
+        ],
+        "independent_spherical_inverse": [
+          137.40882527063965,
+          -4.787203768326754
+        ],
+        "difference_degrees": [
+          0.0,
+          0.0
+        ]
+      }
+    ],
+    "sum_area_m2": 58527.26094581708,
+    "union_area_m2": 58527.26077382739,
+    "overlap_area_m2": 0.0001719896899885498,
+    "boundary_area_m2": 58529.945575141894,
+    "unmapped_inside_boundary_m2": 2.6848013144980585,
+    "outside_boundary_m2": 0.0,
+    "z_range": [
+      0.0,
+      0.0
+    ],
+    "pds_context_crosscheck": [
+      {
+        "sol": 4191,
+        "site": "107",
+        "drive": "1952",
+        "pose": "-1",
+        "easting_m": 8144900.549,
+        "northing_m": -283664.735,
+        "longitude_east": 137.409398771,
+        "planetocentric_latitude": -4.785595656
+      },
+      {
+        "sol": 4321,
+        "site": "109",
+        "drive": "1128",
+        "pose": "-1",
+        "easting_m": 8144770.136,
+        "northing_m": -283736.637,
+        "longitude_east": 137.407198625,
+        "planetocentric_latitude": -4.786808687
+      },
+      {
+        "sol": 4326,
+        "site": "109",
+        "drive": "1494",
+        "pose": "-1",
+        "easting_m": 8144759.378,
+        "northing_m": -283699.828,
+        "longitude_east": 137.407017131,
+        "planetocentric_latitude": -4.786187697
+      }
+    ]
+  },
+  "independent_reference": {
+    "url": "https://planetarydata.jpl.nasa.gov/img/data/msl/msl_places/data_maps/msl_orbital_map.img",
+    "label_sha256": "aeee1005e7606833fd8d1c4d99d48dbbc9053a6ba80547728c77651f5d212560",
+    "range": [
+      1306562480,
+      1334789599
+    ],
+    "bytes": 28227120,
+    "sha256": "c3a36a647924e3af6653123cc973868a4d623e9a1ce67caddb04aacc838c2722",
+    "pixel_window": {
+      "c0": 14705,
+      "c1": 15923,
+      "r0": 48461,
+      "r1": 49508
+    },
+    "pixel_size_m": 0.25,
+    "origin_m": [
+      8141038,
+      -271514
+    ],
+    "method": "Source-defined inverse mapping only; no fitted shift or warping."
+  },
+  "selected_processing_audit": {
+    "input_sha256": "783f052b5bb5eb7b478e66ce6c972816f8adc0e154be0176bc817b14cd7e8a24",
+    "input_crs_wkt": "PROJCRS[\"Mars2000_Equidistant_Cylindrical_clon0\",BASEGEOGCRS[\"GCS_Mars_2000_Sphere\",DATUM[\"Mars_2000_(Sphere)\",ELLIPSOID[\"Mars_2000_Sphere_IAU_IAG\",3396190,0,LENGTHUNIT[\"metre\",1]],ID[\"ESRI\",106971]],PRIMEM[\"Reference_Meridian\",0,ANGLEUNIT[\"Degree\",0.0174532925199433]]],CONVERSION[\"unnamed\",METHOD[\"Equidistant Cylindrical (Spherical)\",ID[\"EPSG\",1029]],PARAMETER[\"Longitude of natural origin\",0,ANGLEUNIT[\"Degree\",0.0174532925199433],ID[\"EPSG\",8802]],PARAMETER[\"False easting\",0,LENGTHUNIT[\"metre\",1],ID[\"EPSG\",8806]],PARAMETER[\"False northing\",0,LENGTHUNIT[\"metre\",1],ID[\"EPSG\",8807]]],CS[Cartesian,2],AXIS[\"easting\",east,ORDER[1],LENGTHUNIT[\"metre\",1,ID[\"EPSG\",9001]]],AXIS[\"northing\",north,ORDER[2],LENGTHUNIT[\"metre\",1,ID[\"EPSG\",9001]]]]",
+    "input_layer": "map_unit_polygons_v2",
+    "feature_count": 53,
+    "unit_counts": {
+      "F1": 5,
+      "R": 21,
+      "MSg": 7,
+      "F3": 16,
+      "F2": 1,
+      "mF1R": 2,
+      "S": 1
+    },
+    "native_bounds_m": [
+      8144734.477600001,
+      -283870.8426000001,
+      8144998.632300001,
+      -283649.2681
+    ],
+    "coordinate_checks": [
+      {
+        "projected_m": [
+          8144734.477600001,
+          -283870.8426000001
+        ],
+        "geographic_degrees": [
+          137.4065970458571,
+          -4.789072816244821
+        ],
+        "independent_inverse": [
+          137.4065970458571,
+          -4.789072816244822
+        ]
+      },
+      {
+        "projected_m": [
+          8144998.632300001,
+          -283649.2681
+        ],
+        "geographic_degrees": [
+          137.4110534954222,
+          -4.785334720408685
+        ],
+        "independent_inverse": [
+          137.4110534954222,
+          -4.785334720408685
+        ]
+      },
+      {
+        "projected_m": [
+          8144866.554950001,
+          -283760.05535000004
+        ],
+        "geographic_degrees": [
+          137.40882527063965,
+          -4.787203768326754
+        ],
+        "independent_inverse": [
+          137.40882527063965,
+          -4.787203768326754
+        ]
+      }
+    ],
+    "invalid": 0,
+    "empty": 0,
+    "normalized_duplicates": 0,
+    "overlap_area_m2": 0.0001719896899885498,
+    "unmapped_inside_boundary_m2": 2.6848013144980585,
+    "outside_boundary_m2": 0.0,
+    "processing": "Preserve all XY vertices, rings and attributes Unit/source OBJECTID. Omit constant zero Z. No simplification, repair, clipping or fitted shift.",
+    "omitted_layers": [
+      "Contacts_draft",
+      "boundary_box",
+      "contacts_final",
+      "troughs",
+      "ridges",
+      "profile_lines"
+    ],
+    "output": "public/maps/gale/arc-pass-geology.geojson",
+    "output_bytes": 240690,
+    "output_sha256": "d182c9291450f77fd07fef4fbdb979d23df45e65c6665fb02dd7df08f2748dce",
+    "tool_versions": {
+      "pyogrio": "0.13.0",
+      "gdal": [
+        3,
+        12,
+        4
+      ],
+      "shapely": "2.2.0"
+    }
+  },
+  "software_validation": {
+    "eslint": "passed",
+    "typescript": "passed",
+    "production_build": "passed",
+    "unit_contract_tests": {
+      "passed": 19,
+      "failed": 0
+    },
+    "browser_tests": {
+      "passed": 35,
+      "failed": 0
+    },
+    "viewports": [
+      [
+        1440,
+        900
+      ],
+      [
+        1024,
+        768
+      ],
+      [
+        768,
+        1024
+      ],
+      [
+        390,
+        844
+      ]
+    ],
+    "limits": "Software rendering and source-consistency checks are not survey control, geological peer review, hazard validation or operational approval."
+  },
+  "source_and_audit_artifacts": [
+    {
+      "path": "team/gale/sources/g3/arc-pass-gis-inspection.json",
+      "bytes": 26850,
+      "sha256": "19f75c2cd1143aa1c3e5398d2754b363f3fffca050dad811f5dc2fd6341671e7"
+    },
+    {
+      "path": "team/gale/sources/g3/arc-pass-processing.json",
+      "bytes": 2865,
+      "sha256": "bbe787180e670004353946aa3d3d6af4c1d644799b62e2248bf47639f30f38ca"
+    },
+    {
+      "path": "team/gale/sources/g3/arc-pass-source-metadata.json",
+      "bytes": 2567,
+      "sha256": "e4fea4048bdf04db2976babfe9cbe405df4010b03ea974c839df6984954c34b7"
+    },
+    {
+      "path": "team/gale/sources/g3/fedo-source-metadata.json",
+      "bytes": 6954,
+      "sha256": "d19459b5083e8e7d444c0497278d98511b37b9f52befb76b91efc32f1fcbcf33"
+    },
+    {
+      "path": "team/gale/sources/g3/Geomap.gdb.zip",
+      "bytes": 94771,
+      "sha256": "783f052b5bb5eb7b478e66ce6c972816f8adc0e154be0176bc817b14cd7e8a24"
+    },
+    {
+      "path": "team/gale/sources/g3/hughes-doi-metadata.json",
+      "bytes": 4792,
+      "sha256": "3136765eb66e66abe504c7ec37f6fe8aaed5c0b13d97d88f243eb0b648610b03"
+    },
+    {
+      "path": "team/gale/sources/g3/meyer-gis-inspection.json",
+      "bytes": 7218,
+      "sha256": "34e50db74d20ea74726725a90440f3c5ddf1e135e0e0c2b8e69647c3ab86d524"
+    },
+    {
+      "path": "team/gale/sources/g3/meyer-source-metadata.json",
+      "bytes": 5329,
+      "sha256": "dbb6b0754b397b0dce2ea23795e05d796d406ecd90eae62072f27ae4c504083b"
+    },
+    {
+      "path": "team/gale/sources/g3/usgs-global-metadata.xml",
+      "bytes": 14721,
+      "sha256": "38806845cae2354e4ab65c55f57819d3e001b3865aceb5a24426efd5412683f8"
+    },
+    {
+      "path": "team/gale/sources/g3/usgs-global-readme.txt",
+      "bytes": 5580,
+      "sha256": "702c8d8dd705a7746dad2b47a36f85fd850cc44939388ccc5f8e636369731aeb"
+    }
+  ]
+}

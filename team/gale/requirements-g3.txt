@@ -1,0 +1,6 @@
+# Offline scientific audit tools only; not Next.js runtime dependencies.
+numpy==2.4.6
+pyogrio==0.13.0
+pyproj==3.8.0
+shapely==2.2.0
+Pillow==12.3.0

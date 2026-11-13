@@ -4,6 +4,7 @@ import {
   availabilitySchema,
   coordinatesSchema,
   coordinateReferenceSchema,
+  geographicExtentSchema,
   evidenceSchema,
   regionIdSchema,
 } from "./primitives";
@@ -37,6 +38,9 @@ export const renderingSchema = z.discriminatedUnion("kind", [
     url: assetUrlSchema,
     geometry: z.enum(["line", "fill", "circle"]),
     color: z.string().regex(/^#[0-9a-fA-F]{6}$/),
+    category_property: z.string().min(1).optional(),
+    focus_extent: geographicExtentSchema.optional(),
+    max_zoom: z.number().min(0).max(22).optional(),
   }),
 ]);
 export const layerSchema = z
@@ -64,12 +68,20 @@ export const layerSchema = z
           z.object({
             label: z.string(),
             color: z.string().regex(/^#[0-9a-fA-F]{6}$/),
+            value: z.string().min(1).optional(),
+            description: z.string().min(1).optional(),
           }),
         ),
       })
       .nullable(),
   })
   .superRefine((l, ctx) => {
+    if (l.rendering.kind === "geojson" && l.rendering.category_property) {
+      const items = l.legend?.items ?? [];
+      if (l.rendering.geometry !== "fill" || !items.length ||
+          items.some((item) => !item.value) || new Set(items.map((item) => item.value)).size !== items.length)
+        ctx.addIssue({ code: "custom", message: "Categorical fills require a legend with unique source values" });
+    }
     if (
       l.availability === "available" &&
       (l.rendering.kind === "unavailable" ||
