@@ -1,0 +1,2 @@
+# Preserve the retrieved upstream page byte for byte, including its whitespace.
+usgs-catalogue.html -text -diff
