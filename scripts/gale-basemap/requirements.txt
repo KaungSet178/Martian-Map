@@ -1,0 +1,2 @@
+# Offline audit dependencies; no browser/runtime dependency.
+-r ../../team/gale/requirements-registration.txt
