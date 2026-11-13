@@ -320,7 +320,9 @@ export function Planner() {
             Research interface
             <span className="supporting">
               {online
-                ? "Scientific data pending"
+                ? region.map.visualization.status === "available"
+                  ? "Map available · Planning unverified"
+                  : "Scientific data pending"
                 : "Offline · Local plans available"}
             </span>
           </span>

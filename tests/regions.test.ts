@@ -39,7 +39,7 @@ test("registry resolves every region, typed metadata and safe unknown IDs", () =
     assert.equal(getRegion(region.id), region);
     assert.ok(regionSchema.safeParse(region).success);
     assert.equal(getTargets(region.id), region.targets);
-    assert.deepEqual(getAvailableLayers(region.id), []);
+    assert.deepEqual(getAvailableLayers(region.id), region.layers.filter((l) => l.availability === "available"));
     assert.equal(getMapConfig(region.id), region.map);
     assert.equal(getRegionEvidence(region.id), region.source_references);
     assert.equal(getRegionCapabilities(region.id), region.capabilities);
@@ -62,7 +62,7 @@ test("region modules own their content without importing other regions or UI", (
   assert.doesNotMatch(planner, /fixtures\/regions|regionPresentation/);
 });
 test("validation rejects foreign records, duplicate IDs and missing scientific lineage", () => {
-  const base = getRegion("gale")!;
+  const base = getRegion("oxia")!;
   assert.equal(
     regionSchema.safeParse({
       ...base,

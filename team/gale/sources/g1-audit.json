@@ -1,0 +1,119 @@
+{
+  "dataset_version": "gale-g1-v1",
+  "inputs": {
+    "capabilities.xml": {
+      "url": "https://trek.nasa.gov/tiles/Mars/EQ/Gale_CTX_BlockAdj_dd/1.0.0/WMTSCapabilities.xml",
+      "sha256": "ec61c61162ea6f588666c4acb5d38303016f96175ffa1a0e68b62727ba96e5d2"
+    },
+    "places.csv": {
+      "url": "https://planetarydata.jpl.nasa.gov/img/data/msl/msl_places/data_localizations/localized_interp.csv",
+      "sha256": "09d4474e64aec6e788efdb4ec24a906f487fe1a58e26dd4431847c94d385faec"
+    },
+    "places-label.xml": {
+      "url": "https://planetarydata.jpl.nasa.gov/img/data/msl/msl_places/data_localizations/localized_interp.csv.xml",
+      "sha256": "61ddff862a3e4d6d583fc3cd688ccad8fb258bda77c793d569a88fbbf778d8e0"
+    },
+    "map-label.xml": {
+      "url": "https://planetarydata.jpl.nasa.gov/img/data/msl/msl_places/data_maps/msl_orbital_map.xml",
+      "sha256": "aeee1005e7606833fd8d1c4d99d48dbbc9053a6ba80547728c77651f5d212560"
+    },
+    "traverse.json": {
+      "url": "https://mars.nasa.gov/mmgis-maps/MSL/Layers/json/MSL_traverse.json",
+      "sha256": "972c0815c4f1fafcf198d1aedded66434af3a9d175b8a09673fcd21a0b1b0a43"
+    },
+    "waypoints.json": {
+      "url": "https://mars.nasa.gov/mmgis-maps/MSL/Layers/json/MSL_waypoints.json",
+      "sha256": "10f8498f76df252c90f07ef9688f18440ef8e1e94a681531cc076d7a46b47bd3"
+    }
+  },
+  "aoi": {
+    "basis": "Exact PDS msl_orbital_map v42.0 published bounds; display extent, not terrain eligibility",
+    "bounds_wsen": [
+      137.3442352329006,
+      -4.822361175063087,
+      137.4579431096443,
+      -4.580605407446296
+    ]
+  },
+  "registration": {
+    "method": "Pearson DN correlation at 96 x 128 independently georeferenced PDS image samples; no image warping or fitted shifts",
+    "correlations": {
+      "planetocentric": 0.49641607141927657,
+      "planetographic": 0.16352982321666343
+    },
+    "range_bytes_downloaded": 2588160,
+    "conclusion": "Trek angular raster matches planetocentric latitude, despite ambiguous EPSG::104905 identifier. No ellipsoid latitude conversion applied.",
+    "limitation": "Coarse independent registration diagnostic; not a quantified horizontal accuracy or survey certification."
+  },
+  "traverse": {
+    "pds_csv_rows": 49315,
+    "pds_rover_rows": 49194,
+    "nasa_features": 1316,
+    "source_lines": 1320,
+    "vertices": 27008,
+    "companion_waypoint_sol_range": [
+      3,
+      5070
+    ],
+    "pds_matched_endpoints_within_1e_5_degree": 1277,
+    "no_synthetic_connections": true,
+    "extent_note": "Latest NASA geometry can extend beyond the older PDS map footprint; shared camera limits clip it. Display footprint is not claimed as full latest traverse coverage."
+  },
+  "tiles": {
+    "count": 32,
+    "bytes": 1169334,
+    "zoom_range": [
+      5,
+      13
+    ],
+    "source_matrix": "level z-1, 2^(L+1) columns x 2^L rows, 256px, origin -180/90",
+    "resampling": "nearest neighbor, pixel centers, no radiometric changes; outside exact AOI transparent",
+    "opaque_pixel_count": 1249591,
+    "max_zoom_mars_equatorial_sample_spacing_m": 10.175176195330733,
+    "missing_samples_inside_aoi": 0
+  },
+  "not_validated": [
+    "target point coordinates",
+    "hazards",
+    "terrain quality masks",
+    "EVA routing",
+    "suit resources",
+    "radiation",
+    "mission feasibility"
+  ],
+  "output_sha256": {
+    "ctx-tiles/10/902/525.png": "19f8dd469b588d7cebf17df4ffc82940f02cead55745560ed1c13f67744cdfee",
+    "ctx-tiles/11/1805/1050.png": "5ff119e3f3b5510a315d05255999bc2cf689b53a151438db095f366aad838fb4",
+    "ctx-tiles/11/1805/1051.png": "4d25dcd25a1be7a2223a7de1251cdbb33f6aa957b5c2c07d1cf978f88a94aaa4",
+    "ctx-tiles/12/3610/2100.png": "d2fa5fb9bd0975529f88e3bab599242c94d7f7e0bda129b3c94c7019ec070721",
+    "ctx-tiles/12/3610/2101.png": "b0a9da77c11443030dba496d299afb15d3ba9cc66458e11d3513e81ddfb5d4c1",
+    "ctx-tiles/12/3610/2102.png": "edc01753a7981a4a0e67d4791a6f376d52680ec1e6ecfa56192ec44aa034a3a6",
+    "ctx-tiles/12/3611/2100.png": "ee5ae9e0dd3c670cb166eedc4075bca6689373fd847ab331345c87c413628ebc",
+    "ctx-tiles/12/3611/2101.png": "ea39845178a565eda434b9c81d9577d594d9fa4d048b7f5a060a2e0d77d13c32",
+    "ctx-tiles/12/3611/2102.png": "f3c7f139b9ed306144f58fd509db695ff75dbdc65579ea5948da0e6555a3d98d",
+    "ctx-tiles/13/7221/4200.png": "22b301f18a691b78ab1eaad630d9f7e825512308102332481ca60e73ec22914a",
+    "ctx-tiles/13/7221/4201.png": "d0acc158fb147a614f871d91ff823669f2907fd25a88b42c68a8f7ce76aa375e",
+    "ctx-tiles/13/7221/4202.png": "04903c7157a3c27c614ffe94b52f70be44843995f0143d3dac3bedb0e6cff9ae",
+    "ctx-tiles/13/7221/4203.png": "c67470e005f1e9c7a34e17c4904fade76c2ac291d4e93b7364260a4cca8a5c45",
+    "ctx-tiles/13/7221/4204.png": "8fb3b63510ebd917e0df7b2c4f1db1bd5d24ab6c363037077dc58846aa6c195b",
+    "ctx-tiles/13/7221/4205.png": "203fe6ff0b61e8a77ed040e52fcfaa2c09e90c38b699ab5d0d10779112ec1aa4",
+    "ctx-tiles/13/7222/4200.png": "d7099c1f5d67a8141809df9d13b9c87a301a19266e92580553371ca5931d5074",
+    "ctx-tiles/13/7222/4201.png": "eb228807a902712e6917de27be626ca4aebff68caa97c84a2e2375a66baca4e1",
+    "ctx-tiles/13/7222/4202.png": "8fc9dae47c6f21de0c00a06aaaf25cb3080e164fae3e5d9320c2dbddd8c1e883",
+    "ctx-tiles/13/7222/4203.png": "4c0e36c0dcb36e2f487bf8c6555ee4449bba08defc8c5a0b84a14fbe1d189741",
+    "ctx-tiles/13/7222/4204.png": "690e7769d56f81133ace5735d0b70fe1ad12902b28dbdf5c50970e76a4bc1c88",
+    "ctx-tiles/13/7222/4205.png": "bc148a52da8891e112df1c0ceee17d111109d39ba6afb70d145a9818100307c6",
+    "ctx-tiles/13/7223/4200.png": "38fce83bcc97a1eaaf1a09c374396cacc6836fc1835cf09567c04fc3d9f25de9",
+    "ctx-tiles/13/7223/4201.png": "e61d0080bc8f624db0351bc3a86698e0ecde9a286e50c596d3a96cc129f92fb2",
+    "ctx-tiles/13/7223/4202.png": "4d48037c5808eea6ac80d66a33d5687b862cd60571ef21c4ddf96a0d1f14a106",
+    "ctx-tiles/13/7223/4203.png": "008ab2cfe5492a0e0cbf3893a289d7d62673505c1720430d68c8d399da04f4c5",
+    "ctx-tiles/13/7223/4204.png": "07ee2f4b64bc3b212b5c2006397a125f5257c63de1dd8e28e835348dbdd1f611",
+    "ctx-tiles/13/7223/4205.png": "c310201509fa999561fde8dbf96b94bf701b8e073adfc9661f1da9540d1004ae",
+    "ctx-tiles/5/28/16.png": "c9d7a2a5b9146f4d018e56d75869e68e1eaa7d18a6fa69dcdae55ed45def22f0",
+    "ctx-tiles/6/56/32.png": "009de195c7c103b2cbcb394026dd52425514b41b8baec9290276017f18c96f24",
+    "ctx-tiles/7/112/65.png": "dea33dbf808a97800e08894dce6a2a3558cb83b62913af4fa589b0b6950d615e",
+    "ctx-tiles/8/225/131.png": "82c750d83b4d3a5b7a1f03951cf90f7e96f47c70a89cbea2b12fd190a094ef32",
+    "ctx-tiles/9/451/262.png": "e7c8e434947063f634e18574c3f32dc82787559744c61daa3a933f333329046c",
+    "curiosity-traverse.geojson": "dda7e422880bc44d21efe62fecc87057b3bd7cbe9718b32be723b8719373a5cf"
+  }
+}

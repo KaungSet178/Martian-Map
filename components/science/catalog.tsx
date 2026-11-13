@@ -28,7 +28,8 @@ export function TargetCatalog({
       </div>
       {region.targets.some((t) => t.evidence === "Scenario") && (
         <Notice title="Scenario objectives">
-          Concepts only. Source products and verified locations are pending.
+          Hypothetical activities are labeled Scenario. Published science
+          context does not establish a verified waypoint location.
         </Notice>
       )}
       <div className="target-list">

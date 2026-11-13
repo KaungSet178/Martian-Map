@@ -643,6 +643,20 @@ input[type="radio"] {
   gap: 16px;
   max-width: 75%;
 }
+.scientific:not(.preview) .map-location {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  padding: 12px 16px;
+}
+.scientific:not(.preview) .map-attribution {
+  background: var(--color-bg);
+  border-radius: 4px;
+  padding: 4px 8px;
+  right: 24px;
+  width: fit-content;
+  max-width: calc(100% - 48px);
+}
 .map-location h1 {
   font-size: 32px;
 }

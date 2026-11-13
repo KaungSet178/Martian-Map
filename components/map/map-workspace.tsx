@@ -146,6 +146,15 @@ export default function MapWorkspace({
 
   useEffect(() => {
     if (!ready || !map.current) return;
+    map.current.setMaxZoom(
+      scientificMap
+        ? Math.max(10, ...region.layers.flatMap((layer) =>
+            layer.availability === "available" && layer.rendering.kind === "raster-tiles"
+              ? [layer.rendering.max_zoom]
+              : [],
+          ))
+        : 10,
+    );
     map.current.setMaxBounds(
       !preview && scientificMap && region.map.supported_extent
         ? displayBounds(region.map.supported_extent)
@@ -397,7 +406,7 @@ export default function MapWorkspace({
           )}
         </button>
         <span className="map-scale mono">
-          Scale unavailable<span>Not georeferenced</span>
+          Scale unavailable<span>{scientificMap && !preview ? "Mars display coordinates" : "Not georeferenced"}</span>
         </span>
       </div>
       <div className="map-attribution">

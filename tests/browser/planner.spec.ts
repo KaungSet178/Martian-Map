@@ -250,7 +250,11 @@ for (const [width, height] of [
     page.on("pageerror", (e) => errors.push(e.message));
     for (const region of ["jezero", "gale", "oxia"]) {
       await page.goto(`/?region=${region}`);
-      await expect(page.locator(".map-empty")).toBeVisible();
+      if (region === "gale") {
+        await expect(page.locator(".map-empty")).toHaveCount(0);
+      } else {
+        await expect(page.locator(".map-empty")).toBeVisible();
+      }
       await expect(page.locator(".map-canvas canvas")).toBeAttached();
       await expect(
         page.getByRole("button", { name: "Review mission", exact: true }),
@@ -450,3 +454,54 @@ test("offline saved plans and downloadable brief remain useful", async ({
   await page.pdf({ path: "output/playwright/mission-brief.pdf", format: "A4" });
   await context.setOffline(false);
 });
+
+for (const [width, height] of [[1440, 900], [1024, 768], [768, 1024], [390, 844]]) {
+  test(`Gale G1 imagery, recorded traverse, evidence and layer controls at ${width}px`, async ({ page }) => {
+    await page.setViewportSize({ width, height });
+    const failures: string[] = [];
+    const assets: string[] = [];
+    page.on("response", (response) => {
+      if (response.url().includes("/maps/gale/")) {
+        assets.push(response.url());
+        if (!response.ok()) failures.push(`${response.status()} ${response.url()}`);
+      }
+    });
+    page.on("pageerror", (error) => failures.push(error.message));
+    await page.goto("/?region=gale");
+    await expect(page.locator(".map-location h1")).toHaveText("Gale Crater");
+    await expect(page.locator(".map-empty")).toHaveCount(0);
+    await expect(page.getByLabel("Zoom map in", { exact: true })).toBeEnabled();
+    await expect.poll(() => assets.some((url) => url.endsWith("curiosity-traverse.geojson"))).toBe(true);
+    await expect.poll(() => assets.some((url) => url.includes("ctx-tiles"))).toBe(true);
+    await expect(page.locator(".map-attribution")).toContainText("NASA/JPL-Caltech/MSSS");
+    await expect(page.locator(".science-marker")).toHaveCount(0);
+    await expect(page.locator(".map-scale")).toContainText("Mars display coordinates");
+    await page.getByLabel("Zoom map in", { exact: true }).click();
+    await page.getByLabel("Reset map view", { exact: true }).click();
+    await page.getByRole("button", { name: "Layers", exact: true }).click();
+    await expand(page);
+    const optical = page.getByRole("checkbox", { name: /Gale CTX orbital mosaic/ });
+    const traverse = page.getByRole("checkbox", { name: /Recorded Curiosity traverse/ });
+    await expect(optical).toBeChecked();
+    await expect(traverse).toBeChecked();
+    await page.getByLabel(/Gale CTX orbital mosaic opacity/).fill("55");
+    await expect(page.getByLabel(/Gale CTX orbital mosaic opacity/)).toHaveValue("55");
+    await traverse.uncheck();
+    await expect(page.locator(".map-attribution")).not.toContainText("PDS localization");
+    await traverse.check();
+    await page.getByLabel(/Gale CTX orbital mosaic opacity/).fill("100");
+    await page.getByRole("button", { name: "View scientific data register", exact: true }).click();
+    await expect(page.locator(".panel-scroll")).toContainText("gale-g1-v1");
+    await expect(page.locator(".panel-scroll")).toContainText("1 m output grid does not imply uniform 1 m");
+    await page.getByRole("button", { name: "Science", exact: true }).click();
+    await page.getByRole("button", { name: "Glen Torridon", exact: true }).click();
+    await expect(page.getByRole("dialog")).toContainText("Location unverified");
+    await expect(page.getByRole("dialog").getByRole("link", { name: "NASA - Curiosity on the Clay Unit" })).toHaveAttribute("href", "https://science.nasa.gov/photojournal/curiosity-on-the-clay-unit/");
+    await page.keyboard.press("Escape");
+    if (width < 768) await page.getByRole("button", { name: "Collapse planning panel", exact: true }).click();
+    await expect(page.locator(".map-failure")).toHaveCount(0);
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+    await page.screenshot({ path: `output/playwright/gale-g1-${width}.png` });
+    expect(failures).toEqual([]);
+  });
+}

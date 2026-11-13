@@ -104,3 +104,25 @@ No fabricated oxygen/battery/time/radiation values or operational certification.
 
 First release is 2D pre-mission planning: no 3D, live tracking, EVA rehearsal or new
 offline route computation. Preserve the existing responsive mission-console design.
+
+
+## Milestone G1 - 13 November 2026
+
+Gale scientific map exploration is implemented on `feat/gale-map`, dataset
+`gale-g1-v1`. Read [G1_REPORT.md](G1_REPORT.md) for the source inventory, exact
+published AOI, projection audit, science catalog, reproduction and limitations.
+
+- Available: NASA Trek Gale CTX display tiles; NASA recorded Curiosity traverse
+  with independent PDS planetocentric/east coordinate cross-check.
+- Pending: USGS merged DEM subset/quality audit, registered geology, precise
+  scientific target geometry, historical REMS/RAD measurements.
+- No precise target markers, hazard inference, EVA routes or numeric resource
+  estimates. Six feasibility checks remain Unverified.
+- Original objective IDs and mission schema v1 preserved. Scientific changes
+  require dataset-version updates. Current display registration is not a terrain
+  eligibility or navigation-safety review.
+
+Development used an isolated worktree after the main working directory was
+switched externally to Jezero. The initial Gale edits in that checkout were
+backed up, hash-compared and restored; no teammate changes were discarded.
+Only the Gale branch is to be committed/pushed. Do not merge automatically.
