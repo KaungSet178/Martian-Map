@@ -1,6 +1,6 @@
 import type { RegionConfig } from "@/lib/contracts/region";
 
-// Gale G1: source-backed content; unknown values remain explicit.
+// Gale G2: source-backed content; unknown values remain explicit.
 export const config = {
   "id": "gale",
   "name": "Gale Crater",
@@ -46,7 +46,7 @@ export const config = {
     }
   },
   "data_status": "metadata_verified",
-  "dataset_version": "gale-g1-v1",
+  "dataset_version": "gale-g2-v1",
   "contextual_datasets": [
     {
       "id": "gale-environment-context",
@@ -216,7 +216,7 @@ export const config = {
       "native_resolution_m": null,
       "processing_notes": [],
       "limitations": [
-        "Supporting photograph and science context; no georeferenced polygon or exact sampling point. Source page provides credited imagery; no image copied into the app."
+        "Supporting photograph and science context; no georeferenced polygon or exact sampling point. G2 integrates the credited NASA browse rendition with its photograph provenance record."
       ]
     },
     {
@@ -374,6 +374,116 @@ export const config = {
       ],
       "limitations": [
         "Third-party copyright notices and product-specific restrictions must be respected."
+      ]
+    },
+    {
+      "id": "gale-photo-source-glen",
+      "title": "NASA photograph - PIA23047",
+      "url": "https://science.nasa.gov/photojournal/curiosity-on-the-clay-unit/",
+      "agency": "NASA/JPL-Caltech/MSSS",
+      "instrument": "Curiosity Mastcam",
+      "product_id": "PIA23047",
+      "acquisition_date": "2019-02-10",
+      "sol": 2316,
+      "native_resolution_m": null,
+      "processing_notes": [
+        "NASA-provided 1328px browse rendition. Source does not specify a color-calibration method; none is asserted here.",
+        "Local browse image copied without local cropping, enhancement or resampling; exact rendition URL and SHA-256 in team/gale/G2_EVIDENCE_REGISTER.json."
+      ],
+      "limitations": [
+        "Ground-level browse photograph, not a georeferenced map or verified feature coordinate.",
+        "The depicted formation and the observer location must not be treated as interchangeable."
+      ]
+    },
+    {
+      "id": "gale-photo-source-ridge",
+      "title": "NASA photograph - PIA21851",
+      "url": "https://science.nasa.gov/photojournal/looking-up-at-layers-of-vera-rubin-ridge-on-sol-1790/",
+      "agency": "NASA/JPL-Caltech/MSSS",
+      "instrument": "Curiosity Mastcam, right camera",
+      "product_id": "PIA21851",
+      "acquisition_date": "2017-08-19",
+      "sol": 1790,
+      "native_resolution_m": null,
+      "processing_notes": [
+        "NASA panorama of 13 images, white-balanced for an Earth daylight appearance; NASA-provided 1536px browse rendition. Black mosaic margins retained.",
+        "Local browse image copied without local cropping, enhancement or resampling; exact rendition URL and SHA-256 in team/gale/G2_EVIDENCE_REGISTER.json."
+      ],
+      "limitations": [
+        "Ground-level browse photograph, not a georeferenced map or verified feature coordinate.",
+        "The depicted formation and the observer location must not be treated as interchangeable."
+      ]
+    },
+    {
+      "id": "gale-photo-source-sulfate",
+      "title": "NASA photograph - PIA26551",
+      "url": "https://science.nasa.gov/photojournal/curiosity-looks-downslope-from-the-sulfate-unit/",
+      "agency": "NASA/JPL-Caltech/MSSS",
+      "instrument": "Curiosity Mastcam",
+      "product_id": "PIA26551",
+      "acquisition_date": "2025-02-07",
+      "sol": 4447,
+      "native_resolution_m": null,
+      "processing_notes": [
+        "NASA color adjustment for Earth-like lighting; NASA-provided 1536px browse rendition. Panorama seams and margins retained.",
+        "Local browse image copied without local cropping, enhancement or resampling; exact rendition URL and SHA-256 in team/gale/G2_EVIDENCE_REGISTER.json."
+      ],
+      "limitations": [
+        "Ground-level browse photograph, not a georeferenced map or verified feature coordinate.",
+        "The depicted formation and the observer location must not be treated as interchangeable."
+      ]
+    },
+    {
+      "id": "gale-photo-source-navcam",
+      "title": "NASA photograph - NLB_781532029EDR_F1091446NCAM00379M_",
+      "url": "https://science.nasa.gov/blog/sols-4327-4328-on-the-road-again/",
+      "agency": "NASA/JPL-Caltech",
+      "instrument": "Curiosity Left Navigation Camera",
+      "product_id": "NLB_781532029EDR_F1091446NCAM00379M_",
+      "acquisition_date": "2024-10-07",
+      "sol": 4326,
+      "native_resolution_m": null,
+      "processing_notes": [
+        "NASA-hosted 1024px browse image, associated with raw-image identifier NLB_781532029EDR_F1091446NCAM00379M_. Acquisition time 01:16:16 UTC is stated by NASA; no additional calibration is claimed.",
+        "Local browse image copied without local cropping, enhancement or resampling; exact rendition URL and SHA-256 in team/gale/G2_EVIDENCE_REGISTER.json."
+      ],
+      "limitations": [
+        "Ground-level browse photograph, not a georeferenced map or verified feature coordinate.",
+        "The depicted formation and the observer location must not be treated as interchangeable."
+      ]
+    },
+    {
+      "id": "gale-usgs-sulfate-study",
+      "title": "USGS - Clay-sulfate transition, deposition and diagenesis",
+      "url": "https://www.usgs.gov/publications/geological-context-and-significance-clay-sulfate-transition-region-mount-sharp-gale",
+      "agency": "USGS publication record; Meyer and coauthors",
+      "instrument": null,
+      "product_id": "10.1130/B37355.1",
+      "acquisition_date": null,
+      "sol": null,
+      "native_resolution_m": null,
+      "processing_notes": [
+        "Orbiter/rover synthesis: depositional and later alteration processes both contribute to mineral transitions. USGS page date 2024-06-28; publication year field 2025. Neither is an image acquisition date."
+      ],
+      "limitations": [
+        "Publication context only. No independently validated georeferenced unit-boundary product integrated; orbital mineral signatures must not be equated with all visible bedrock or primary depositional conditions."
+      ]
+    },
+    {
+      "id": "gale-gediz-gazetteer",
+      "title": "USGS/IAU Gazetteer - Gediz Vallis, Feature 15571",
+      "url": "https://planetarynames.wr.usgs.gov/Feature/15571",
+      "agency": "USGS / IAU WGPSN",
+      "instrument": null,
+      "product_id": "Gazetteer Feature 15571",
+      "acquisition_date": null,
+      "sol": null,
+      "native_resolution_m": null,
+      "processing_notes": [
+        "Named feature center and WKT polygon are published in planetocentric, east-positive 0-360 coordinates. Center -4.85 N, 137.44 E is nomenclature reference metadata, not a precise sampling point."
+      ],
+      "limitations": [
+        "Control network is UNKNOWN on the source page. Nomenclature extent is not a validated geological deposit boundary. Geometry is recorded in the evidence audit only and is not rendered or converted to a waypoint."
       ]
     }
   ]

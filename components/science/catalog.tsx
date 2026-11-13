@@ -3,6 +3,7 @@
 import { ArrowUpRight, Check, Plus } from "lucide-react";
 import type { RegionManifest, Target } from "@/lib/contracts/region";
 import { Badge, Notice, EvidenceBadge } from "@/components/ui/primitives";
+import { PhotographEvidence } from "./photograph";
 
 export function TargetCatalog({
   region,
@@ -97,6 +98,7 @@ export function TargetDetails({
     <>
       <div className="inline-labels">
         <EvidenceBadge value={target.evidence} />
+        {target.feature_kind === "geological_area" && <Badge>Geological area</Badge>}
         <Badge>
           {target.coordinate_verified
             ? "Location verified"
@@ -104,6 +106,20 @@ export function TargetDetails({
         </Badge>
       </div>
       <p className="lead">{target.scientific_goal}</p>
+      {target.location_notes && (
+        <section aria-label="Location evidence">
+          <h3>Location evidence</h3>
+          <p>{target.location_notes}</p>
+          {target.boundary && <p className="supporting">Boundary unavailable: {target.boundary.reason}</p>}
+        </section>
+      )}
+      {!!target.photographs?.length && (
+        <section aria-label="Ground-level photographs">
+          <h3>Ground-level photographs</h3>
+          <p className="supporting">Photographic association does not verify a target location or geological boundary.</p>
+          {target.photographs.map((photo) => <PhotographEvidence key={photo.id} photo={photo} />)}
+        </section>
+      )}
       <h3>Proposed field activity</h3>
       <p>{target.activity}</p>
       {target.routing_eligibility.status === "unavailable" && (

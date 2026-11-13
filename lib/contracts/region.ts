@@ -83,6 +83,7 @@ export const regionSchema = z
       ...r.targets,
       ...r.contextual_datasets,
       ...r.source_references,
+      ...r.targets.flatMap((t) => t.photographs ?? []),
     ];
     if (new Set(records.map((x) => x.id)).size !== records.length)
       issue("IDs must be unique within a region");
@@ -92,6 +93,7 @@ export const regionSchema = z
       issue("Targets cannot belong to a different region");
     const refs = [
       ...r.targets.flatMap((t) => t.source_ids),
+      ...r.targets.flatMap((t) => (t.photographs ?? []).map((photo) => photo.source_id)),
       ...r.layers.flatMap((l) => (l.source_id ? [l.source_id] : [])),
       ...r.contextual_datasets.flatMap((d) => d.source_ids),
     ];
@@ -99,6 +101,11 @@ export const regionSchema = z
       issue(
         "Every referenced source must exist in this region's source register",
       );
+    for (const photo of r.targets.flatMap((t) => t.photographs ?? [])) {
+      const source = r.source_references.find((s) => s.id === photo.source_id);
+      if (source && (source.url !== photo.source_url || source.product_id !== photo.product_id))
+        issue("Photographic product and URL must match its registered source");
+    }
     if (
       r.map.visualization.status === "available" &&
       (r.map.display_transform.status !== "reviewed" ||

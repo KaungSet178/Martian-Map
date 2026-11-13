@@ -98,6 +98,27 @@ export const layerSchema = z
       });
   });
 export type ScientificLayer = z.infer<typeof layerSchema>;
+export const photographSchema = z.object({
+  id: z.string().min(1),
+  source_id: z.string().min(1),
+  product_id: z.string().min(1),
+  source_url: z.url().refine((url) => url.startsWith("https://")),
+  image_url: assetUrlSchema,
+  width: z.number().int().positive(),
+  height: z.number().int().positive(),
+  alt: z.string().min(1),
+  acquisition_date: z.iso.date().nullable(),
+  sol: z.number().int().nonnegative().nullable(),
+  instrument: z.string().min(1),
+  caption: z.string().min(1),
+  attribution: z.string().min(1),
+  association: z.string().min(1),
+  processing: z.string().min(1),
+  limitations: z.array(z.string().min(1)).min(1),
+}).refine((photo) => photo.acquisition_date !== null || photo.sol !== null, {
+  message: "Photographic evidence requires an acquisition date or Sol",
+});
+export type Photograph = z.infer<typeof photographSchema>;
 export const targetSchema = z
   .object({
     id: z.string().min(1),
@@ -115,8 +136,20 @@ export const targetSchema = z
     evidence: evidenceSchema,
     verification: z.enum(["scenario", "pending", "verified"]),
     routing_eligibility: availabilitySchema,
+    // Optional additions: existing regional manifests and mission v1 IDs stay
+    // valid. Photos establish evidence/association, never target coordinates.
+    feature_kind: z.enum(["geological_area", "observation_site", "sampling_site", "scenario_objective"]).optional(),
+    location_notes: z.string().min(1).optional(),
+    boundary: z.object({ status: z.literal("unavailable"), reason: z.string().min(1) }).optional(),
+    photographs: z.array(photographSchema).max(8).optional(),
   })
   .superRefine((t, ctx) => {
+    if (t.feature_kind === "geological_area" && t.coordinates !== null) {
+      ctx.addIssue({ code: "custom", message: "Geological areas cannot be represented as precise point waypoints" });
+    }
+    if (t.photographs?.some((photo) => !t.source_ids.includes(photo.source_id))) {
+      ctx.addIssue({ code: "custom", message: "Photographs must reference supporting target sources" });
+    }
     if (
       (t.coordinate_verified ||
         t.verification === "verified" ||

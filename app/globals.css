@@ -873,6 +873,26 @@ input[type="radio"] {
 .section-heading h3 {
   margin: 0;
 }
+.target-photograph {
+  margin: 20px 0 28px;
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  overflow: hidden;
+}
+.target-photograph img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  background: var(--color-bg);
+}
+.target-photograph figcaption {
+  padding: 16px;
+  overflow-wrap: anywhere;
+}
+.target-photograph details {
+  margin-top: 16px;
+}
 .direction-fieldset {
   border: 0;
   padding: 0;

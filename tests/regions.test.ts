@@ -1,6 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
+import { createHash } from "node:crypto";
 import type { Map as MapInstance } from "maplibre-gl";
 import {
   listRegions,
@@ -28,6 +29,79 @@ import {
   updateLayerState,
 } from "@/lib/map/region-layers";
 import { fitOverview } from "@/lib/map/camera";
+import { photographSchema } from "@/lib/contracts/science";
+
+test("optional photo evidence preserves legacy manifests and cannot promote an area to a point", () => {
+  const gale = getRegion("gale")!;
+  const area = gale.targets.find((target) => target.id === "gale-glen-torridon")!;
+  for (const region of listRegions()) {
+    const legacy = {
+      ...region,
+      targets: region.targets.map(({ feature_kind, location_notes, boundary, photographs, ...target }) => {
+        void feature_kind; void location_notes; void boundary; void photographs;
+        return target;
+      }),
+    };
+    assert.ok(regionSchema.safeParse(legacy).success);
+  }
+  assert.equal(targetSchema.safeParse({
+    ...area, coordinates: { latitude: -4.85, longitude_east: 137.44 },
+    coordinate_verified: true, verification: "verified",
+  }).success, false);
+  assert.equal(targetSchema.safeParse({ ...area, coordinate_verified: true }).success, false);
+  for (const target of gale.targets.filter((target) => target.photographs?.length)) {
+    assert.equal(target.feature_kind, "geological_area");
+    assert.equal(target.coordinates, null);
+    assert.equal(target.coordinate_verified, false);
+    assert.equal(target.routing_eligibility.status, "unavailable");
+    assert.equal(target.boundary?.status, "unavailable");
+  }
+});
+
+test("photographs require acquisition metadata, local source lineage and consistent product identity", () => {
+  const gale = getRegion("gale")!;
+  const target = gale.targets.find((target) => target.photographs?.length)!;
+  const photo = target.photographs![0];
+  for (const invalid of [
+    { ...photo, acquisition_date: null, sol: null },
+    { ...photo, acquisition_date: "2019-02-31" },
+    { ...photo, attribution: "" },
+    { ...photo, association: "" },
+    { ...photo, limitations: [] },
+    { ...photo, image_url: "javascript:alert(1)" },
+  ]) assert.equal(photographSchema.safeParse(invalid).success, false);
+  for (const replacement of [
+    { ...photo, source_id: "jezero-source" },
+    { ...photo, id: "oxia-photo" },
+    { ...photo, source_url: "https://science.nasa.gov/unrelated/" },
+    { ...photo, product_id: "UNRELATED" },
+  ]) assert.equal(regionSchema.safeParse({
+    ...gale,
+    targets: [{ ...target, photographs: [replacement] }],
+  }).success, false);
+  assert.equal(regionSchema.safeParse({
+    ...gale, targets: [{ ...target, photographs: [photo, photo] }],
+  }).success, false);
+});
+
+test("committed NASA browse assets match the reviewed evidence register without local image alteration", () => {
+  const register = JSON.parse(readFileSync("team/gale/G2_EVIDENCE_REGISTER.json", "utf8"));
+  const photos = getRegion("gale")!.targets.flatMap((target) => target.photographs ?? []);
+  for (const photo of photos) {
+    const audited = Object.values(register.photographs).find((entry) =>
+      (entry as { product_id: string }).product_id === photo.product_id,
+    ) as { asset_audit: { sha256: string; bytes: number; width: number; height: number } };
+    assert.ok(audited, `${photo.product_id} needs an audit record`);
+    const bytes = readFileSync(`public${photo.image_url}`);
+    assert.equal(createHash("sha256").update(bytes).digest("hex"), audited.asset_audit.sha256);
+    assert.equal(bytes.length, audited.asset_audit.bytes);
+    assert.equal(photo.width, audited.asset_audit.width);
+    assert.equal(photo.height, audited.asset_audit.height);
+  }
+  for (const id of ["jezero", "oxia"]) {
+    assert.ok(getRegion(id)!.targets.every((target) => !target.photographs?.length));
+  }
+});
 
 test("registry resolves every region, typed metadata and safe unknown IDs", () => {
   assert.deepEqual(

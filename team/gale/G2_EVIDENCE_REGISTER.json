@@ -1,0 +1,550 @@
+{
+  "milestone": "G2",
+  "review_date": "2026-11-13",
+  "baseline_commit": "6a773a5",
+  "dataset_version": "gale-g2-v1",
+  "policy": "Source-documented context and photographic association are independent of geometry verification. No coordinates inferred from photos or rover locations.",
+  "canonical_coordinate_reference": {
+    "body": "Mars",
+    "latitude_type": "planetocentric",
+    "longitude_direction": "east",
+    "longitude_range": "0-360"
+  },
+  "photographs": {
+    "glen": {
+      "id": "gale-photo-pia23047",
+      "source_id": "gale-photo-source-glen",
+      "product_id": "PIA23047",
+      "source_url": "https://science.nasa.gov/photojournal/curiosity-on-the-clay-unit/",
+      "image_url": "/photos/gale/PIA23047.jpg",
+      "width": 1328,
+      "height": 1184,
+      "alt": "Layered tan bedrock beside Curiosity in Glen Torridon.",
+      "acquisition_date": "2019-02-10",
+      "sol": 2316,
+      "instrument": "Curiosity Mastcam",
+      "caption": "Layered bedrock photographed during the Glen Torridon exploration campaign.",
+      "attribution": "NASA/JPL-Caltech/MSSS",
+      "association": "NASA explicitly associates this observation with Glen Torridon; it is not an independently located sampling point.",
+      "processing": "NASA-provided 1328px browse rendition. Source does not specify a color-calibration method; none is asserted here.",
+      "limitations": [
+        "Ground-level browse photograph, not a georeferenced map or verified feature coordinate.",
+        "The depicted formation and the observer location must not be treated as interchangeable."
+      ],
+      "asset_audit": {
+        "product_id": "PIA23047",
+        "image_url": "/photos/gale/PIA23047.jpg",
+        "download_url": "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia23/pia23047/PIA23047.jpg?w=1328",
+        "width": 1328,
+        "height": 1184,
+        "bytes": 202852,
+        "sha256": "ce9ec36fe39ea536a13b677dc56fcef0f1859316d92df2b4c03cd15e17d8d27d",
+        "source_page_sha256": "a2eb7b84794ac935f4f01f2b7b17c90844d84b5478a20c4b37fe938ed5a07e76"
+      }
+    },
+    "ridge": {
+      "id": "gale-photo-pia21851",
+      "source_id": "gale-photo-source-ridge",
+      "product_id": "PIA21851",
+      "source_url": "https://science.nasa.gov/photojournal/looking-up-at-layers-of-vera-rubin-ridge-on-sol-1790/",
+      "image_url": "/photos/gale/PIA21851.jpg",
+      "width": 1536,
+      "height": 221,
+      "alt": "Wide panorama of stratified rocks on the lower Vera Rubin Ridge.",
+      "acquisition_date": "2017-08-19",
+      "sol": 1790,
+      "instrument": "Curiosity Mastcam, right camera",
+      "caption": "Sedimentary layering in Vera Rubin Ridge, observed remotely before the ridge ascent.",
+      "attribution": "NASA/JPL-Caltech/MSSS",
+      "association": "The NASA description identifies the ridge as the subject. The rover was north of it; the camera position is not the ridge location.",
+      "processing": "NASA panorama of 13 images, white-balanced for an Earth daylight appearance; NASA-provided 1536px browse rendition. Black mosaic margins retained.",
+      "limitations": [
+        "Ground-level browse photograph, not a georeferenced map or verified feature coordinate.",
+        "The depicted formation and the observer location must not be treated as interchangeable."
+      ],
+      "asset_audit": {
+        "product_id": "PIA21851",
+        "image_url": "/photos/gale/PIA21851.jpg",
+        "download_url": "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia21/pia21851/PIA21851.jpg?w=1536",
+        "width": 1536,
+        "height": 221,
+        "bytes": 57171,
+        "sha256": "6f31e4408c61faf01944d55f008501c80df0b5b508fa6e682a8a12df603bc655",
+        "source_page_sha256": "5af123973381f069f92872465d98b865fe5e787ce0f336a355fc0e62a5d1f5ce"
+      }
+    },
+    "sulfate": {
+      "id": "gale-photo-pia26551",
+      "source_id": "gale-photo-source-sulfate",
+      "product_id": "PIA26551",
+      "source_url": "https://science.nasa.gov/photojournal/curiosity-looks-downslope-from-the-sulfate-unit/",
+      "image_url": "/photos/gale/PIA26551.jpg",
+      "width": 1536,
+      "height": 251,
+      "alt": "Panoramic downslope view of Mount Sharp terrain and the distant Gale rim.",
+      "acquisition_date": "2025-02-07",
+      "sol": 4447,
+      "instrument": "Curiosity Mastcam",
+      "caption": "A downslope view across Gale Crater during Curiosity exploration of the sulfate-bearing unit.",
+      "attribution": "NASA/JPL-Caltech/MSSS",
+      "association": "NASA places the observer in the sulfate-bearing unit. This view does not establish the mineralogy or boundary of every visible surface.",
+      "processing": "NASA color adjustment for Earth-like lighting; NASA-provided 1536px browse rendition. Panorama seams and margins retained.",
+      "limitations": [
+        "Ground-level browse photograph, not a georeferenced map or verified feature coordinate.",
+        "The depicted formation and the observer location must not be treated as interchangeable."
+      ],
+      "asset_audit": {
+        "product_id": "PIA26551",
+        "image_url": "/photos/gale/PIA26551.jpg",
+        "download_url": "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia26/pia26551/PIA26551.jpg?w=1536",
+        "width": 1536,
+        "height": 251,
+        "bytes": 79403,
+        "sha256": "3ce1ff0f5f2dadf655c1503f1e98064d38157b07b590393f5387913194d8cccb",
+        "source_page_sha256": "438983768705380c81f1b85e8439308cf917c5d85ed60e8e5374cc37c9dc6526"
+      }
+    },
+    "navcam": {
+      "id": "gale-photo-nlb_781532029edr_f1091446ncam00379m_",
+      "source_id": "gale-photo-source-navcam",
+      "product_id": "NLB_781532029EDR_F1091446NCAM00379M_",
+      "source_url": "https://science.nasa.gov/blog/sols-4327-4328-on-the-road-again/",
+      "image_url": "/photos/gale/NLB_781532029EDR_F1091446NCAM00379M_.jpg",
+      "width": 1024,
+      "height": 1024,
+      "alt": "Grayscale Navcam view of rocky terrain and distant Gediz Vallis deposits.",
+      "acquisition_date": "2024-10-07",
+      "sol": 4326,
+      "instrument": "Curiosity Left Navigation Camera",
+      "caption": "Surface textures and a view toward Gediz Vallis deposits from the adjacent sulfate-bearing terrain.",
+      "attribution": "NASA/JPL-Caltech",
+      "association": "NASA mission commentary identifies channel deposits in the view after Curiosity left Gediz Vallis; this is a remote observation, not a located channel sampling site.",
+      "processing": "NASA-hosted 1024px browse image, associated with raw-image identifier NLB_781532029EDR_F1091446NCAM00379M_. Acquisition time 01:16:16 UTC is stated by NASA; no additional calibration is claimed.",
+      "limitations": [
+        "Ground-level browse photograph, not a georeferenced map or verified feature coordinate.",
+        "The depicted formation and the observer location must not be treated as interchangeable."
+      ],
+      "asset_audit": {
+        "product_id": "NLB_781532029EDR_F1091446NCAM00379M_",
+        "image_url": "/photos/gale/NLB_781532029EDR_F1091446NCAM00379M_.jpg",
+        "download_url": "https://science.nasa.gov/wp-content/uploads/2024/10/https-mars-nasa-gov-msl-raw-images-proj-msl-redops-ods-surface-sol-04326-opgs-edr-ncam-nlb-781532029edr-f1091446ncam00379m-.jpg?w=1024",
+        "width": 1024,
+        "height": 1024,
+        "bytes": 366100,
+        "sha256": "4d85e2027f1914f044919962f38655b193508a42472b895abbee869fb7f76322",
+        "source_page_sha256": "6d45cfdb2301a6bff98815ff8f7b11e3349e1504ce6d073b47eb5e560c6d0625"
+      }
+    }
+  },
+  "areas": [
+    {
+      "target_id": "gale-glen-torridon",
+      "name": "Glen Torridon",
+      "feature_kind": "geological_area",
+      "source_ids": [
+        "gale-glen-torridon-reference",
+        "gale-geology-publication",
+        "gale-photo-source-glen"
+      ],
+      "scientific_significance": "Compare mudstone and sandstone facies and evidence for changing lake and river environments.",
+      "context_status": "documented_in_authoritative_sources",
+      "point_coordinates": null,
+      "boundary_geometry": null,
+      "geometry_status": "unverified",
+      "source_crs": "Selected photographs have image/camera coordinates, not a declared georeferenced feature CRS. No validated area geometry product integrated.",
+      "coverage": "Named geological area only; no quantitative boundary or pixel-resolution claim.",
+      "observation_context": "NASA explicitly associates this observation with Glen Torridon; it is not an independently located sampling point.",
+      "observation_or_sampling_site": "The entry is a region/unit/channel, not the camera position, an individual outcrop or a sampled point.",
+      "location_notes": "Published sources document this science area and the associated observation. A precise point and a validated georeferenced boundary remain unavailable. Photographs and rover localizations are not used to infer either.",
+      "boundary_availability": "No source geometry with reviewed coordinates, CRS, coverage and registration has been validated for this catalog entry.",
+      "point_availability": "No independently verified observation or sampling point selected for this geological area.",
+      "renderer_compatibility": "Photographs display in shared target details; they are not MapLibre layers. No geometry enters MapLibre. Future boundaries require documented Mars CRS conversion, geometry/coverage/registration review and shared contract coordination."
+    },
+    {
+      "target_id": "gale-vera-rubin-ridge",
+      "name": "Vera Rubin Ridge",
+      "feature_kind": "geological_area",
+      "source_ids": [
+        "gale-vera-rubin",
+        "gale-geology-publication",
+        "gale-photo-source-ridge"
+      ],
+      "scientific_significance": "Investigate how iron mineralogy, rock resistance and alteration relate to stratigraphy.",
+      "context_status": "documented_in_authoritative_sources",
+      "point_coordinates": null,
+      "boundary_geometry": null,
+      "geometry_status": "unverified",
+      "source_crs": "Selected photographs have image/camera coordinates, not a declared georeferenced feature CRS. No validated area geometry product integrated.",
+      "coverage": "Named geological area only; no quantitative boundary or pixel-resolution claim.",
+      "observation_context": "The NASA description identifies the ridge as the subject. The rover was north of it; the camera position is not the ridge location.",
+      "observation_or_sampling_site": "The entry is a region/unit/channel, not the camera position, an individual outcrop or a sampled point.",
+      "location_notes": "Published sources document this science area and the associated observation. A precise point and a validated georeferenced boundary remain unavailable. Photographs and rover localizations are not used to infer either.",
+      "boundary_availability": "No source geometry with reviewed coordinates, CRS, coverage and registration has been validated for this catalog entry.",
+      "point_availability": "No independently verified observation or sampling point selected for this geological area.",
+      "renderer_compatibility": "Photographs display in shared target details; they are not MapLibre layers. No geometry enters MapLibre. Future boundaries require documented Mars CRS conversion, geometry/coverage/registration review and shared contract coordination."
+    },
+    {
+      "target_id": "gale-sulfate-units",
+      "name": "Sulfate-bearing geological units",
+      "feature_kind": "geological_area",
+      "source_ids": [
+        "gale-clay-sulfate",
+        "gale-photo-source-sulfate",
+        "gale-usgs-sulfate-study"
+      ],
+      "scientific_significance": "Test how sulfate mineralogy relates to changing water chemistry, deposition and alteration.",
+      "context_status": "documented_in_authoritative_sources",
+      "point_coordinates": null,
+      "boundary_geometry": null,
+      "geometry_status": "unverified",
+      "source_crs": "Selected photographs have image/camera coordinates, not a declared georeferenced feature CRS. No validated area geometry product integrated.",
+      "coverage": "Named geological area only; no quantitative boundary or pixel-resolution claim.",
+      "observation_context": "NASA places the observer in the sulfate-bearing unit. This view does not establish the mineralogy or boundary of every visible surface.",
+      "observation_or_sampling_site": "The entry is a region/unit/channel, not the camera position, an individual outcrop or a sampled point.",
+      "location_notes": "Published sources document this science area and the associated observation. A precise point and a validated georeferenced boundary remain unavailable. Photographs and rover localizations are not used to infer either.",
+      "boundary_availability": "No source geometry with reviewed coordinates, CRS, coverage and registration has been validated for this catalog entry.",
+      "point_availability": "No independently verified observation or sampling point selected for this geological area.",
+      "renderer_compatibility": "Photographs display in shared target details; they are not MapLibre layers. No geometry enters MapLibre. Future boundaries require documented Mars CRS conversion, geometry/coverage/registration review and shared contract coordination."
+    },
+    {
+      "target_id": "gale-gediz-vallis",
+      "name": "Gediz Vallis",
+      "feature_kind": "geological_area",
+      "source_ids": [
+        "gale-gediz-vallis-reference",
+        "gale-photo-source-navcam",
+        "gale-gediz-gazetteer"
+      ],
+      "scientific_significance": "Compare channel/debris relationships with the older Mount Sharp strata and later water activity.",
+      "context_status": "documented_in_authoritative_sources",
+      "point_coordinates": null,
+      "boundary_geometry": null,
+      "geometry_status": "unverified",
+      "source_crs": "USGS/IAU nomenclature geometry explicitly planetocentric / +East / 0-360; control network UNKNOWN. NASA photograph is not a georeferenced feature product.",
+      "coverage": "Named geological area only; no quantitative boundary or pixel-resolution claim.",
+      "observation_context": "NASA mission commentary identifies channel deposits in the view after Curiosity left Gediz Vallis; this is a remote observation, not a located channel sampling site.",
+      "observation_or_sampling_site": "The entry is a region/unit/channel, not the camera position, an individual outcrop or a sampled point.",
+      "location_notes": "NASA documents the channel and associated observations. The USGS/IAU Gazetteer publishes a named-feature center and extent, with an unknown control network. These are not a precise sampling site or validated geological-deposit boundary. No point or polygon is rendered.",
+      "boundary_availability": "A USGS/IAU nomenclature polygon is available, but its unknown control network and applicability to geological deposits have not been validated. It remains unavailable as map geometry.",
+      "point_availability": "No independently verified observation or sampling point selected for this geological area.",
+      "renderer_compatibility": "Photographs display in shared target details; they are not MapLibre layers. No geometry enters MapLibre. Future boundaries require documented Mars CRS conversion, geometry/coverage/registration review and shared contract coordination.",
+      "nomenclature_reference": {
+        "source_id": "gale-gediz-gazetteer",
+        "feature_id": 15571,
+        "latitude_type": "planetocentric",
+        "longitude_direction": "east",
+        "longitude_range": "0-360",
+        "center_latitude": -4.85,
+        "center_longitude_east": 137.44,
+        "rounded_limits": {
+          "north": -4.77,
+          "south": -4.91,
+          "east": 137.48,
+          "west": 137.38
+        },
+        "control_network": "UNKNOWN",
+        "wkt_available_at_source": true,
+        "purpose": "Nomenclature only; not a target point, deposit boundary, sampling site or accuracy claim. Source rounded limits are not exact polygon extrema."
+      }
+    }
+  ],
+  "source_references": [
+    {
+      "id": "gale-places",
+      "title": "PDS - Curiosity localized/interpolated rover positions",
+      "url": "https://planetarydata.jpl.nasa.gov/img/data/msl/msl_places/data_localizations/localized_interp.csv.xml",
+      "agency": "NASA/JPL-Caltech - PDS Imaging Node",
+      "instrument": null,
+      "product_id": "urn:nasa:pds:msl_places:data_localizations:localized_interp::42.0",
+      "acquisition_date": "2012-08-06T05:18:39Z/2026-04-17T00:19:01Z",
+      "sol": null,
+      "native_resolution_m": null,
+      "processing_notes": [
+        "CSV in the same directory: localized_interp.csv. Explicit planetocentric_latitude and longitude retained; ROVER frames with nonnegative sol, source file order, separate site/drive groups, no synthetic connections or decimation.",
+        "Current PDS4 archive replaces MSLPLC_1XXX. Original label and CSV SHA-256 in team/gale/sources/g1-audit.json."
+      ],
+      "limitations": [
+        "Historical localized/interpolated rover positions, sols 0-4868. Not a live location, astronaut route or evidence of safe terrain. Decimal precision is not positional accuracy."
+      ]
+    },
+    {
+      "id": "gale-places-sis",
+      "title": "PDS - Curiosity PLACES interface specification",
+      "url": "https://planetarydata.jpl.nasa.gov/img/data/msl/msl_places/document/PLACES_PDS_SIS.pdf",
+      "agency": "NASA/JPL-Caltech - PDS Imaging Node",
+      "instrument": null,
+      "product_id": "JPL D-78442, release 1.3 Rev A, 2016-07-01",
+      "acquisition_date": null,
+      "sol": null,
+      "native_resolution_m": null,
+      "processing_notes": [],
+      "limitations": [
+        "Describes older PDS3 layout; current PDS4 labels and release notes control product metadata."
+      ]
+    },
+    {
+      "id": "gale-glen-torridon-reference",
+      "title": "NASA - Curiosity on the Clay Unit",
+      "url": "https://science.nasa.gov/photojournal/curiosity-on-the-clay-unit/",
+      "agency": "NASA/JPL-Caltech/MSSS",
+      "instrument": "Curiosity Mastcam",
+      "product_id": "PIA23047",
+      "acquisition_date": "2019-02-10",
+      "sol": 2316,
+      "native_resolution_m": null,
+      "processing_notes": [],
+      "limitations": [
+        "Supporting photograph and science context; no georeferenced polygon or exact sampling point. G2 integrates the credited NASA browse rendition with its photograph provenance record."
+      ]
+    },
+    {
+      "id": "gale-vera-rubin",
+      "title": "NASA - Vera Rubin Ridge hematite investigation",
+      "url": "https://science.nasa.gov/blog/sols-1734-1735-gazing-longingly-towards-vera-rubin-ridge/",
+      "agency": "NASA",
+      "instrument": "MRO orbital observations / Curiosity Mastcam",
+      "product_id": null,
+      "acquisition_date": null,
+      "sol": null,
+      "native_resolution_m": null,
+      "processing_notes": [],
+      "limitations": [
+        "Science narrative supports hematite investigation; no precise target geometry registered."
+      ]
+    },
+    {
+      "id": "gale-clay-sulfate",
+      "title": "NASA - Climate clues on Mount Sharp",
+      "url": "https://science.nasa.gov/resource/nasas-curiosity-finds-climate-clues-on-a-martian-mountain/",
+      "agency": "NASA/JPL-Caltech",
+      "instrument": null,
+      "product_id": null,
+      "acquisition_date": null,
+      "sol": null,
+      "native_resolution_m": null,
+      "processing_notes": [],
+      "limitations": [
+        "Published science context and historical planned-route illustration. No vector geology or target coordinates extracted from images."
+      ]
+    },
+    {
+      "id": "gale-gediz-vallis-reference",
+      "title": "NASA - Gediz Vallis channel panorama and interpretation",
+      "url": "https://science.nasa.gov/resource/curiosity-takes-a-360-degree-view-of-gediz-vallis-channel/",
+      "agency": "NASA/JPL-Caltech/MSSS",
+      "instrument": "Curiosity Mastcam",
+      "product_id": "PIA26363",
+      "acquisition_date": "2024-06-19",
+      "sol": 4220,
+      "native_resolution_m": null,
+      "processing_notes": [],
+      "limitations": [
+        "Earth-lighting color adjustment. Panorama and published interpretation, not verified point geometry; debris-flow vs other mechanisms retain uncertainty. Source-linked image not copied."
+      ]
+    },
+    {
+      "id": "gale-geology-publication",
+      "title": "USGS - Glen Torridon stratigraphy and geological mapping",
+      "url": "https://www.usgs.gov/publications/geology-and-stratigraphic-correlation-murray-and-carolyn-shoemaker-formations-across",
+      "agency": "USGS / Fedo et al.",
+      "instrument": null,
+      "product_id": "10.1029/2022JE007408",
+      "acquisition_date": null,
+      "sol": null,
+      "native_resolution_m": null,
+      "processing_notes": [
+        "2022 study describes mapped stratigraphic contacts and lacustrine/fluvial transitions across Glen Torridon and Vera Rubin Ridge."
+      ],
+      "limitations": [
+        "Compatible GIS contacts, CRS, categorical legend and coverage not ingested; no geology overlay enabled."
+      ]
+    },
+    {
+      "id": "gale-pds-mission",
+      "title": "PDS - Curiosity instrument and RAD archive inventory",
+      "url": "https://pds-geosciences.wustl.edu/missions/msl/",
+      "agency": "NASA PDS Geosciences / PPI Nodes",
+      "instrument": "Curiosity RAD",
+      "product_id": null,
+      "acquisition_date": null,
+      "sol": null,
+      "native_resolution_m": null,
+      "processing_notes": [],
+      "limitations": [
+        "Archive entry points only; no radiation series, applicable shielding or astronaut dose model."
+      ]
+    },
+    {
+      "id": "gale-image-policy",
+      "title": "NASA/JPL image-use and attribution policy",
+      "url": "https://www.jpl.nasa.gov/jpl-image-use-policy/",
+      "agency": "NASA/JPL-Caltech",
+      "instrument": null,
+      "product_id": null,
+      "acquisition_date": null,
+      "sol": null,
+      "native_resolution_m": null,
+      "processing_notes": [],
+      "limitations": [
+        "Retain credits and third-party notices; no NASA/JPL endorsement or logo permission implied. Product restrictions take precedence."
+      ]
+    },
+    {
+      "id": "gale-nasa-media-policy",
+      "title": "NASA images and media usage guidelines",
+      "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "agency": "NASA",
+      "instrument": null,
+      "product_id": null,
+      "acquisition_date": null,
+      "sol": null,
+      "native_resolution_m": null,
+      "processing_notes": [
+        "Educational/informational use with source credit under NASA media guidelines. NASA Trek API publishes WMTS access for clients. No NASA/JPL logo or endorsement is used."
+      ],
+      "limitations": [
+        "Third-party copyright notices and product-specific restrictions must be respected."
+      ]
+    },
+    {
+      "id": "gale-photo-source-glen",
+      "title": "NASA photograph - PIA23047",
+      "url": "https://science.nasa.gov/photojournal/curiosity-on-the-clay-unit/",
+      "agency": "NASA/JPL-Caltech/MSSS",
+      "instrument": "Curiosity Mastcam",
+      "product_id": "PIA23047",
+      "acquisition_date": "2019-02-10",
+      "sol": 2316,
+      "native_resolution_m": null,
+      "processing_notes": [
+        "NASA-provided 1328px browse rendition. Source does not specify a color-calibration method; none is asserted here.",
+        "Local browse image copied without local cropping, enhancement or resampling; exact rendition URL and SHA-256 in team/gale/G2_EVIDENCE_REGISTER.json."
+      ],
+      "limitations": [
+        "Ground-level browse photograph, not a georeferenced map or verified feature coordinate.",
+        "The depicted formation and the observer location must not be treated as interchangeable."
+      ]
+    },
+    {
+      "id": "gale-photo-source-ridge",
+      "title": "NASA photograph - PIA21851",
+      "url": "https://science.nasa.gov/photojournal/looking-up-at-layers-of-vera-rubin-ridge-on-sol-1790/",
+      "agency": "NASA/JPL-Caltech/MSSS",
+      "instrument": "Curiosity Mastcam, right camera",
+      "product_id": "PIA21851",
+      "acquisition_date": "2017-08-19",
+      "sol": 1790,
+      "native_resolution_m": null,
+      "processing_notes": [
+        "NASA panorama of 13 images, white-balanced for an Earth daylight appearance; NASA-provided 1536px browse rendition. Black mosaic margins retained.",
+        "Local browse image copied without local cropping, enhancement or resampling; exact rendition URL and SHA-256 in team/gale/G2_EVIDENCE_REGISTER.json."
+      ],
+      "limitations": [
+        "Ground-level browse photograph, not a georeferenced map or verified feature coordinate.",
+        "The depicted formation and the observer location must not be treated as interchangeable."
+      ]
+    },
+    {
+      "id": "gale-photo-source-sulfate",
+      "title": "NASA photograph - PIA26551",
+      "url": "https://science.nasa.gov/photojournal/curiosity-looks-downslope-from-the-sulfate-unit/",
+      "agency": "NASA/JPL-Caltech/MSSS",
+      "instrument": "Curiosity Mastcam",
+      "product_id": "PIA26551",
+      "acquisition_date": "2025-02-07",
+      "sol": 4447,
+      "native_resolution_m": null,
+      "processing_notes": [
+        "NASA color adjustment for Earth-like lighting; NASA-provided 1536px browse rendition. Panorama seams and margins retained.",
+        "Local browse image copied without local cropping, enhancement or resampling; exact rendition URL and SHA-256 in team/gale/G2_EVIDENCE_REGISTER.json."
+      ],
+      "limitations": [
+        "Ground-level browse photograph, not a georeferenced map or verified feature coordinate.",
+        "The depicted formation and the observer location must not be treated as interchangeable."
+      ]
+    },
+    {
+      "id": "gale-photo-source-navcam",
+      "title": "NASA photograph - NLB_781532029EDR_F1091446NCAM00379M_",
+      "url": "https://science.nasa.gov/blog/sols-4327-4328-on-the-road-again/",
+      "agency": "NASA/JPL-Caltech",
+      "instrument": "Curiosity Left Navigation Camera",
+      "product_id": "NLB_781532029EDR_F1091446NCAM00379M_",
+      "acquisition_date": "2024-10-07",
+      "sol": 4326,
+      "native_resolution_m": null,
+      "processing_notes": [
+        "NASA-hosted 1024px browse image, associated with raw-image identifier NLB_781532029EDR_F1091446NCAM00379M_. Acquisition time 01:16:16 UTC is stated by NASA; no additional calibration is claimed.",
+        "Local browse image copied without local cropping, enhancement or resampling; exact rendition URL and SHA-256 in team/gale/G2_EVIDENCE_REGISTER.json."
+      ],
+      "limitations": [
+        "Ground-level browse photograph, not a georeferenced map or verified feature coordinate.",
+        "The depicted formation and the observer location must not be treated as interchangeable."
+      ]
+    },
+    {
+      "id": "gale-usgs-sulfate-study",
+      "title": "USGS - Clay-sulfate transition, deposition and diagenesis",
+      "url": "https://www.usgs.gov/publications/geological-context-and-significance-clay-sulfate-transition-region-mount-sharp-gale",
+      "agency": "USGS publication record; Meyer and coauthors",
+      "instrument": null,
+      "product_id": "10.1130/B37355.1",
+      "acquisition_date": null,
+      "sol": null,
+      "native_resolution_m": null,
+      "processing_notes": [
+        "Orbiter/rover synthesis: depositional and later alteration processes both contribute to mineral transitions. USGS page date 2024-06-28; publication year field 2025. Neither is an image acquisition date."
+      ],
+      "limitations": [
+        "Publication context only. No independently validated georeferenced unit-boundary product integrated; orbital mineral signatures must not be equated with all visible bedrock or primary depositional conditions."
+      ]
+    },
+    {
+      "id": "gale-gediz-gazetteer",
+      "title": "USGS/IAU Gazetteer - Gediz Vallis, Feature 15571",
+      "url": "https://planetarynames.wr.usgs.gov/Feature/15571",
+      "agency": "USGS / IAU WGPSN",
+      "instrument": null,
+      "product_id": "Gazetteer Feature 15571",
+      "acquisition_date": null,
+      "sol": null,
+      "native_resolution_m": null,
+      "processing_notes": [
+        "Named feature center and WKT polygon are published in planetocentric, east-positive 0-360 coordinates. Center -4.85 N, 137.44 E is nomenclature reference metadata, not a precise sampling point."
+      ],
+      "limitations": [
+        "Control network is UNKNOWN on the source page. Nomenclature extent is not a validated geological deposit boundary. Geometry is recorded in the evidence audit only and is not rendered or converted to a waypoint."
+      ]
+    }
+  ],
+  "geometry_audit": [
+    {
+      "source_url": "https://planetarydata.jpl.nasa.gov/img/data/msl/msl_places/data_localizations/localized_interp.csv.xml",
+      "result": "PDS PLACES v42.0 explicitly describes planetocentric/east rover localizations. These are observer positions, not coordinates of photographed geological features. Not used as target coordinates."
+    },
+    {
+      "source_url": "https://an.rsl.wustl.edu/help/Content/Using%20the%20Notebook/Main%20sections/Mission/Science%20targets%20table.htm",
+      "result": "PDS Analyst Notebook documents MSL target easting/northing/elevation and local XYZ in meters. No individual point record with reviewed local frame, transform, uncertainty and association for these four area entries has been exported or integrated."
+    },
+    {
+      "source_url": "https://an.rsl.wustl.edu/help/Content/Using%20the%20Notebook/Concepts%20and%20deep%20dive/Targets.htm",
+      "result": "PDS explains image-defined feature targets, aliases and target-definition Sol versus observation Sol; warns of movement-related uncertainty. A feature target must be reviewed separately from its observer and from a larger region."
+    },
+    {
+      "source_url": "https://www.usgs.gov/publications/geology-and-stratigraphic-correlation-murray-and-carolyn-shoemaker-formations-across",
+      "result": "USGS publication describes mapped geological contacts across GT and VRR. No machine-readable georeferenced contacts were retrieved and validated in G2. Figure availability does not authorize tracing or inventing polygons."
+    },
+    {
+      "source_url": "https://www.usgs.gov/publications/geological-context-and-significance-clay-sulfate-transition-region-mount-sharp-gale",
+      "result": "USGS publication verifies regional geological interpretation, including diagenetic complexity. No validated unit-boundary GIS integrated."
+    },
+    {
+      "source_url": "https://planetarynames.wr.usgs.gov/Feature/15571",
+      "result": "Gediz Vallis has published center, rounded limits and WKT extent. Available nomenclature geometry, not yet suitable for a geological-deposit map; control network UNKNOWN."
+    },
+    {
+      "source_url": "https://openscholarship.wustl.edu/data/95/",
+      "result": "Additional research lead: Hughes (2022), geomorphic map of Glen Torridon, DOI 10.7936/0cyw-3n10, CC BY 4.0 in indexed catalog. Current repository redirect could not be opened in the web audit. File geometry, CRS and coverage unreviewed; not integrated or treated as NASA/USGS/PDS-validated data."
+    }
+  ]
+}

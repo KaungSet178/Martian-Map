@@ -137,3 +137,17 @@ pack. Mobile map and planning sheet share visible height; ResizeObserver refits
 an overview and preserves deliberate user navigation. All 33 G1 display-asset
 hashes remain unchanged. Initial-view wording supersedes the older G1 report's
 camera-clipping description; scientific provenance and dataset version remain.
+
+## Milestone G2 - 13 November 2026
+
+Gale now uses `gale-g2-v1`. Read [G2_REPORT.md](G2_REPORT.md), the
+[evidence register](G2_EVIDENCE_REGISTER.json), and
+[shared contract review](G2_CONTRACT_REVIEW.md).
+
+Four geological-area entries have verified NASA photographic associations and
+full provenance. Precise feature coordinates and suitable geological boundaries
+remain unverified; all remain non-routable, with no new markers or polygons.
+Gediz Gazetteer nomenclature geometry exists but is not equated with geological
+deposits or sample sites. Optional shared fields preserve Jezero/Oxia manifests
+and mission v1 IDs. Future available polygons require regional contract review.
+No G3/G4 work has begun.
