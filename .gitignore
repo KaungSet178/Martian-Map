@@ -11,3 +11,7 @@ test-results/
 playwright-report/
 public/generated/
 next-env.d.ts
+# Large source rasters/tiles/caches stay in documented local storage
+# (see team/jezero/CONTEXT.md) - never committed.
+team/jezero/terrain/*.tif
+team/jezero/downloads/

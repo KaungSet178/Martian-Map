@@ -1,0 +1,356 @@
+{
+ "product": "JEZ_hirise_soc_006_DTM_MOLAtopography_DeltaGeoid_1m_Eqc_latTs0_lon0_blend40",
+ "cr_window_lon_deg": [
+  77.22,
+  77.35
+ ],
+ "places_matches_total": 30445,
+ "overall": {
+  "n": 30445,
+  "mean": 0.644,
+  "rms": 1.615,
+  "median": 0.025,
+  "p2": -0.499,
+  "p98": 4.714,
+  "abs_p95": 4.256,
+  "out_gt60m_share": 0,
+  "out_gt300m_share": 0
+ },
+ "inside_cr_window": {
+  "n": 15507,
+  "mean": 1.283,
+  "rms": 2.255,
+  "median": 0.164,
+  "p2": -0.549,
+  "p98": 4.875,
+  "abs_p95": 4.637,
+  "out_gt60m_share": 0,
+  "out_gt300m_share": 0
+ },
+ "outside_cr_window": {
+  "n": 14938,
+  "mean": -0.02,
+  "rms": 0.191,
+  "median": -0.014,
+  "p2": -0.446,
+  "p98": 0.411,
+  "abs_p95": 0.402,
+  "out_gt60m_share": 0,
+  "out_gt300m_share": 0
+ },
+ "lon_bins_0p02deg": [
+  {
+   "lon_bin_deg": "77.24",
+   "n": 3386,
+   "mean": 3.432,
+   "rms": 3.631,
+   "median": 3.747,
+   "p2": 0.405,
+   "p98": 4.936,
+   "abs_p95": 4.727,
+   "out_gt60m_share": 0,
+   "out_gt300m_share": 0
+  },
+  {
+   "lon_bin_deg": "77.26",
+   "n": 2864,
+   "mean": 2.884,
+   "rms": 3.419,
+   "median": 3.544,
+   "p2": -0.337,
+   "p98": 5.088,
+   "abs_p95": 4.941,
+   "out_gt60m_share": 0,
+   "out_gt300m_share": 0
+  },
+  {
+   "lon_bin_deg": "77.28",
+   "n": 2457,
+   "mean": -0.066,
+   "rms": 0.295,
+   "median": -0.064,
+   "p2": -0.712,
+   "p98": 0.586,
+   "abs_p95": 0.614,
+   "out_gt60m_share": 0,
+   "out_gt300m_share": 0
+  },
+  {
+   "lon_bin_deg": "77.30",
+   "n": 2820,
+   "mean": -0.008,
+   "rms": 0.205,
+   "median": -0.002,
+   "p2": -0.502,
+   "p98": 0.441,
+   "abs_p95": 0.451,
+   "out_gt60m_share": 0,
+   "out_gt300m_share": 0
+  },
+  {
+   "lon_bin_deg": "77.32",
+   "n": 1913,
+   "mean": -0.073,
+   "rms": 0.266,
+   "median": -0.036,
+   "p2": -0.814,
+   "p98": 0.397,
+   "abs_p95": 0.547,
+   "out_gt60m_share": 0,
+   "out_gt300m_share": 0
+  },
+  {
+   "lon_bin_deg": "77.34",
+   "n": 3318,
+   "mean": 0.101,
+   "rms": 0.36,
+   "median": 0.051,
+   "p2": -0.565,
+   "p98": 0.902,
+   "abs_p95": 0.792,
+   "out_gt60m_share": 0,
+   "out_gt300m_share": 0
+  },
+  {
+   "lon_bin_deg": "77.36",
+   "n": 1824,
+   "mean": 0.022,
+   "rms": 0.193,
+   "median": 0.004,
+   "p2": -0.308,
+   "p98": 0.714,
+   "abs_p95": 0.336,
+   "out_gt60m_share": 0,
+   "out_gt300m_share": 0
+  },
+  {
+   "lon_bin_deg": "77.38",
+   "n": 1596,
+   "mean": -0.011,
+   "rms": 0.243,
+   "median": -0.006,
+   "p2": -0.545,
+   "p98": 0.496,
+   "abs_p95": 0.495,
+   "out_gt60m_share": 0,
+   "out_gt300m_share": 0
+  },
+  {
+   "lon_bin_deg": "77.40",
+   "n": 4325,
+   "mean": -0.051,
+   "rms": 0.17,
+   "median": -0.03,
+   "p2": -0.443,
+   "p98": 0.253,
+   "abs_p95": 0.364,
+   "out_gt60m_share": 0,
+   "out_gt300m_share": 0
+  },
+  {
+   "lon_bin_deg": "77.42",
+   "n": 804,
+   "mean": -0.051,
+   "rms": 0.147,
+   "median": -0.054,
+   "p2": -0.326,
+   "p98": 0.231,
+   "abs_p95": 0.289,
+   "out_gt60m_share": 0,
+   "out_gt300m_share": 0
+  },
+  {
+   "lon_bin_deg": "77.44",
+   "n": 4583,
+   "mean": -0.009,
+   "rms": 0.132,
+   "median": -0.003,
+   "p2": -0.337,
+   "p98": 0.237,
+   "abs_p95": 0.263,
+   "out_gt60m_share": 0,
+   "out_gt300m_share": 0
+  },
+  {
+   "lon_bin_deg": "77.46",
+   "n": 555,
+   "mean": -0.039,
+   "rms": 0.13,
+   "median": -0.039,
+   "p2": -0.263,
+   "p98": 0.272,
+   "abs_p95": 0.261,
+   "out_gt60m_share": 0,
+   "out_gt300m_share": 0
+  }
+ ],
+ "sol_bins_500": [
+  {
+   "sol_bin": "pre-landing",
+   "n": 81,
+   "mean": 0.857,
+   "rms": 1.93,
+   "median": 0.006,
+   "p2": -0.206,
+   "p98": 5.066,
+   "abs_p95": 4.689,
+   "out_gt60m_share": 0,
+   "out_gt300m_share": 0
+  },
+  {
+   "sol_bin": "0",
+   "n": 7858,
+   "mean": -0.027,
+   "rms": 0.147,
+   "median": -0.014,
+   "p2": -0.407,
+   "p98": 0.242,
+   "abs_p95": 0.304,
+   "out_gt60m_share": 0,
+   "out_gt300m_share": 0
+  },
+  {
+   "sol_bin": "500",
+   "n": 8303,
+   "mean": 0.02,
+   "rms": 0.265,
+   "median": -0.006,
+   "p2": -0.491,
+   "p98": 0.748,
+   "abs_p95": 0.584,
+   "out_gt60m_share": 0,
+   "out_gt300m_share": 0
+  },
+  {
+   "sol_bin": "1000",
+   "n": 10196,
+   "mean": 0.626,
+   "rms": 1.734,
+   "median": 0.023,
+   "p2": -0.597,
+   "p98": 4.94,
+   "abs_p95": 4.737,
+   "out_gt60m_share": 0,
+   "out_gt300m_share": 0
+  },
+  {
+   "sol_bin": "1500",
+   "n": 4007,
+   "mean": 3.291,
+   "rms": 3.451,
+   "median": 3.537,
+   "p2": 0.491,
+   "p98": 4.667,
+   "abs_p95": 4.459,
+   "out_gt60m_share": 0,
+   "out_gt300m_share": 0
+  }
+ ],
+ "strongest_outliers": [],
+ "landing_site_sample": {
+  "lat": 18.444627,
+  "lon": 77.450886,
+  "dtm_value_m": -2569.922,
+  "places_expect_m": -2570
+ },
+ "grid_anomaly_scan": {
+  "sampling": "every 40th row, every 8th column",
+  "valid_cells": 949979,
+  "cells_above_fgdc_max": 45818,
+  "cells_below_fgdc_min": 234,
+  "sentinel_cells": 489171,
+  "above_fgdc_max_extent": {
+   "n": 45818,
+   "lon_min": 77.251411,
+   "lon_p5": 77.258024,
+   "lon_median": 77.277054,
+   "lon_p95": 77.302832,
+   "lon_max": 77.309985
+  },
+  "above_fgdc_max_examples": [
+   {
+    "lon": 77.304587,
+    "lat": 18.582263,
+    "v": -1941.174
+   },
+   {
+    "lon": 77.304722,
+    "lat": 18.582263,
+    "v": -1939.351
+   },
+   {
+    "lon": 77.304857,
+    "lat": 18.582263,
+    "v": -1939.062
+   },
+   {
+    "lon": 77.304992,
+    "lat": 18.582263,
+    "v": -1939.936
+   },
+   {
+    "lon": 77.305127,
+    "lat": 18.582263,
+    "v": -1940.874
+   },
+   {
+    "lon": 77.305262,
+    "lat": 18.582263,
+    "v": -1941.372
+   },
+   {
+    "lon": 77.305397,
+    "lat": 18.582263,
+    "v": -1941.635
+   },
+   {
+    "lon": 77.305532,
+    "lat": 18.582263,
+    "v": -1941.663
+   },
+   {
+    "lon": 77.304857,
+    "lat": 18.581588,
+    "v": -1941.18
+   },
+   {
+    "lon": 77.304992,
+    "lat": 18.581588,
+    "v": -1940.063
+   },
+   {
+    "lon": 77.305127,
+    "lat": 18.581588,
+    "v": -1939.482
+   },
+   {
+    "lon": 77.305262,
+    "lat": 18.581588,
+    "v": -1939.706
+   },
+   {
+    "lon": 77.305397,
+    "lat": 18.581588,
+    "v": -1940.352
+   },
+   {
+    "lon": 77.305532,
+    "lat": 18.581588,
+    "v": -1941.056
+   },
+   {
+    "lon": 77.305667,
+    "lat": 18.581588,
+    "v": -1941.903
+   }
+  ],
+  "sentinel_extent": {
+   "count": 489171,
+   "lon_min": 77.222933,
+   "lon_max": 77.583829,
+   "lat_min": 18.306934,
+   "lat_max": 18.669315
+  },
+  "sentinel_share_in_cr_window": 0.5005
+ }
+}

@@ -37,23 +37,37 @@ export const layers = [
     type: "Terrain & slope",
     display_name: "Terrain & slope",
     kind: "topography",
-    availability: "pending",
-    source_id: "jezero-hirise-archive",
+    availability: "available",
+    source_id: "jezero-usgs-trn-dtm",
     observation_date: null,
-    spatial_resolution_m: null,
-    coverage: null,
+    spatial_resolution_m: 1,
+    coverage:
+      "USGS Mars 2020 TRN HiRISE DTM mosaic (JEZ_hirise_soc_006, 1 m/px, DOI 10.5066/P9REJ9JN) over the Jezero exploration area: derived shaded-elevation display tiles cover 77.2229-77.4931 E, 18.4020-18.5197 N (Web-Mercator XYZ, zooms 5-14, 120 RGBA tiles). Pixels outside the DTM footprint - including the supported extent's west margin, 77.1868-77.2229 E - are transparent (no terrain data there).",
     limitations:
-      "Requires an audited DTM product (e.g. a HiRISE DTM over the delta): audited valid-data footprint, native vs resampled resolution, vertical datum, nodata handling and documented slope derivation. The NASA mission map states a DEM was built for rover driving, but that product has not been selected; any DEM is not astronaut-route evidence.",
-    evidence: "Unavailable",
-    attribution: null,
+      "Display-grade shaded elevation (hypsometric tint x analytic hillshade, sun 315 deg az / 45 deg alt, derived by team/jezero/terrain/build_terrain.mjs from the audited 1 m DTM), NOT the native 1 m posts and NOT a route-safety, hazard or engineering product. Vertical datum: areoid-relative meters, verified against the PLACES traverse (median DTM-PLACES offset +0.025 m, abs P95 4.3 m, 30,445 matched points; team/jezero/terrain/audit_terrain.mjs - all checks pass). Documented caveats: the far-west Jezero_CR stereo component (USGS-documented uncompensated y-parallax) carries a small positive bias (~+3 m mean, abs P95 ~4.9 m in the traverse bins crossing it); the FGDC published value range is understated - sampled values to -1639.971 m are real western-rim terrain confirmed by rover ground truth (PLACES sol 1354: -1786.0 m at 18.4575 N, 77.2685 E, matched within ~5 m). Ramp saturates at -2620/-1770 m (p2-p98 of the coverage); the display shares the region display-transform caveats (planetocentric display latitude on Web Mercator, pending the PPPCS ellipsoid review).",
+    evidence: "Observed",
+    attribution:
+      "USGS Astrogeology Science Center · NASA/MRO HiRISE · Mars 2020 TRN DTM mosaic (DOI 10.5066/P9REJ9JN)",
     rendering: {
-      kind: "unavailable",
-      reason:
-        "Requires audited DEM, resolution, valid-data footprint and documented derivation.",
+      kind: "raster-tiles",
+      tiles: ["/maps/jezero/terrain-tiles/{z}/{x}/{y}.png"],
+      tile_size: 256,
+      min_zoom: 5,
+      max_zoom: 14,
     },
     default_visible: false,
     default_opacity: 70,
-    legend: null,
+    legend: {
+      title: "Elevation (MOLA areoid-relative, hillshaded)",
+      units: "m",
+      items: [
+        { label: "-2620 to -2400", color: "#5081b5" },
+        { label: "-2400 to -2200", color: "#8dafa2" },
+        { label: "-2200 to -2000", color: "#cec390" },
+        { label: "-2000 to -1850", color: "#e7d6ac" },
+        { label: "-1850 to -1770", color: "#f4e9d3" },
+      ],
+    },
   },
   {
     id: "jezero-geology",

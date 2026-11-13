@@ -47,26 +47,29 @@ export const config = {
       method: "mars-geographic-to-maplibre-display",
       source_id: "jezero-m2020-places",
       notes:
-        "Review 2026-11-12, Jezero region owner. Asset public/maps/jezero/perseverance-traverse.geojson derived from PLACES data_localizations/best_interp.csv v16.0 (33,458 rows, sols 0-1897) by team/jezero/traverse/build_traverse.mjs; coordinates are copied, never recomputed: [east longitude 0-360, planetocentric latitude]. All Jezero longitudes are <180E, so the shared east-to-display wrap is an identity here. The shared renderer feeds display latitude to Web Mercator (Earth-sphere tile math; MapLibre distances/scales remain forbidden). ALIGNMENT: the product's planetodetic_latitude column is defective (constant 18.346169209 across release 16, verified in best_interp.csv and best_tactical.csv), so planetocentric latitude is supplied as display latitude; Web Mercator interprets it as geodetic and the planetocentric/geodetic distinction at 18.4-18.5N is ~0.1-0.2 deg, so alignment against any georeferenced basemap is PENDING SIS (PPPCS) ellipsoid review - the asset is display-grade, not survey-grade. NODATA: rows with -9999 lat/lon dropped (0 rows in v16.0); consecutive duplicate positions collapsed; release 16 omits ROVER,n,0 entries bundle-wide per release notes (station points recovered from identical SITE entries). PROVENANCE/CROSS-CHECK: approximate recorded path 42.785 km for sols 14-1897 (through 2026-06-21), consistent with the NASA odometer statement (45.22 km by 2026-10-11); product radius column 3,391,924-3,392,721 m; areoid-relative elevation -2,586 to -1,786 m. Decimation: display vertices thinned to ~10 m spacing (3,502 of 32,978 points). supported_extent and view_center use the same planetocentric convention as the asset, so bounds/center/asset registration is internally consistent. BASEMAP (v5): /maps/jezero/ctx-tiles/ derived from the Murray Lab CTX global mosaic beta01 (Esri tiled service, source jezero-ctx-esri) by team/jezero/basemap/prepare_ctx_basemap.mjs - 351 self-hosted 256 px Web-Mercator XYZ tiles, zooms 5-14, nearest-neighbour resampled from the service's equirectangular grid (level L=z-2), no radiometric processing; ~20 corrupt source tiles (truncated zlib streams, a service-side defect) are covered from a coarser level. The mosaic's GCS is Mars_2000_Sphere (sphere datum: geodetic == planetocentric), which INDEPENDENTLY VALIDATES the planetocentric display-latitude convention used by the traverse asset - both layers share one convention. Residual alignment caveat (planetocentric vs geodetic-on-ellipsoid, ~0.1-0.2 deg) remains documented pending the PPPCS ellipsoid review; visual cross-check of traverse-over-basemap alignment is part of ongoing review.",
+        "Review 2026-11-12, Jezero region owner. Asset public/maps/jezero/perseverance-traverse.geojson derived from PLACES data_localizations/best_interp.csv v16.0 (33,458 rows, sols 0-1897) by team/jezero/traverse/build_traverse.mjs; coordinates are copied, never recomputed: [east longitude 0-360, planetocentric latitude]. All Jezero longitudes are <180E, so the shared east-to-display wrap is an identity here. The shared renderer feeds display latitude to Web Mercator (Earth-sphere tile math; MapLibre distances/scales remain forbidden). ALIGNMENT: the product's planetodetic_latitude column is defective (constant 18.346169209 across release 16, verified in best_interp.csv and best_tactical.csv), so planetocentric latitude is supplied as display latitude; Web Mercator interprets it as geodetic and the planetocentric/geodetic distinction at 18.4-18.5N is ~0.1-0.2 deg, so alignment against any georeferenced basemap is PENDING SIS (PPPCS) ellipsoid review - the asset is display-grade, not survey-grade. NODATA: rows with -9999 lat/lon dropped (0 rows in v16.0); consecutive duplicate positions collapsed; release 16 omits ROVER,n,0 entries bundle-wide per release notes (station points recovered from identical SITE entries). PROVENANCE/CROSS-CHECK: approximate recorded path 42.785 km for sols 14-1897 (through 2026-06-21), consistent with the NASA odometer statement (45.22 km by 2026-10-11); product radius column 3,391,924-3,392,721 m; areoid-relative elevation -2,586 to -1,786 m. Decimation: display vertices thinned to ~10 m spacing (3,502 of 32,978 points). supported_extent and view_center use the same planetocentric convention as the asset, so bounds/center/asset registration is internally consistent. BASEMAP (v5): /maps/jezero/ctx-tiles/ derived from the Murray Lab CTX global mosaic beta01 (Esri tiled service, source jezero-ctx-esri) by team/jezero/basemap/prepare_ctx_basemap.mjs - 351 self-hosted 256 px Web-Mercator XYZ tiles, zooms 5-14, nearest-neighbour resampled from the service's equirectangular grid (level L=z-2), no radiometric processing; ~20 corrupt source tiles (truncated zlib streams, a service-side defect) are covered from a coarser level. The mosaic's GCS is Mars_2000_Sphere (sphere datum: geodetic == planetocentric), which INDEPENDENTLY VALIDATES the planetocentric display-latitude convention used by the traverse asset - both layers share one convention. Residual alignment caveat (planetocentric vs geodetic-on-ellipsoid, ~0.1-0.2 deg) remains documented pending the PPPCS ellipsoid review; visual cross-check of traverse-over-basemap alignment is part of ongoing review. TERRAIN (v6): /maps/jezero/terrain-tiles/ derived from the USGS Mars 2020 TRN HiRISE DTM mosaic (source jezero-usgs-trn-dtm; 1 m/px, equirectangular latTs0/lon0, planetocentric latitude, D_Mars_2000_Sphere r=3,396,190 m) by team/jezero/terrain/build_terrain.mjs - 120 self-hosted 256 px Web-Mercator XYZ RGBA tiles, zooms 5-14, bilinear elevation sampling x analytic hillshade (sun 315 deg az / 45 deg alt), nodata transparent; same planetocentric display-latitude convention as the other two layers (equirectangular map X/Y with the label's radius). Vertical datum verified areoid-relative against PLACES (median DTM-PLACES +0.025 m, abs P95 4.3 m, 30,445 matched points, team/jezero/terrain/audit_terrain.mjs); display-grade only - not the native 1 m posts, not route-safety evidence.",
     },
   },
   data_status: "raster_audited",
-  // v5: CTX basemap (Murray Lab beta01 via the Esri tiled service) audited and
-  // integrated as derived self-hosted display tiles -> raster_audited. Routing
-  // stays disabled: imagery is not a DEM and terrain_coverage remains unknown.
-  dataset_version: "jezero-ctx-basemap-v5",
+  // v6: audited USGS Mars 2020 TRN HiRISE DTM mosaic (1 m/px) integrated as
+  // shaded-elevation display tiles -> jezero-terrain layer available and
+  // terrain_coverage partial (the DTM footprint covers all but the supported
+  // extent's west margin). Routing stays disabled: no hazard coverage and no
+  // approved routing policy are connected.
+  dataset_version: "jezero-terrain-v6",
   routing: {
     enabled: false,
     reason:
-      "Audited terrain, hazard coverage and an approved routing policy are not connected.",
+      "Audited terrain exists, but hazard coverage and an approved routing policy are not connected.",
     eligibility_dataset_id: null,
     policy_version: null,
   },
   capabilities: {
     terrain_coverage: {
-      status: "unknown",
-      reason: "No terrain footprint has been audited.",
-      source_id: null,
+      status: "partial",
+      reason:
+        "USGS Mars 2020 TRN HiRISE DTM mosaic (1 m/px) audited (team/jezero/terrain/audit_terrain.mjs, all checks pass; areoid-relative vertical datum verified against the PLACES traverse, median +0.025 m over 30,445 points). Display tiles cover 77.2229-77.4931 E, 18.4020-18.5197 N (zooms 5-14); the supported extent's west margin (77.1868-77.2229 E) lies outside the DTM footprint and has no terrain data. Terrain presence is not route safety: routing stays disabled pending hazard coverage and an approved policy.",
+      source_id: "jezero-usgs-trn-dtm",
     },
     experimental_routing: {
       status: "unavailable",
@@ -201,6 +204,32 @@ export const config = {
       limitations: [
         "Published interpretation is not coordinate-verified evidence for a specific site.",
         "Does not establish raster coverage or terrain safety.",
+      ],
+    },
+    {
+      id: "jezero-usgs-trn-dtm",
+      title:
+        "USGS Mars 2020 Terrain Relative Navigation HiRISE DTM mosaic (1 m/px)",
+      url: "https://doi.org/10.5066/P9REJ9JN",
+      agency: "USGS Astrogeology Science Center · NASA/MRO HiRISE",
+      instrument: "HiRISE",
+      product_id:
+        "JEZ_hirise_soc_006_DTM_MOLAtopography_DeltaGeoid_1m_Eqc_latTs0_lon0_blend40",
+      acquisition_date: null,
+      sol: null,
+      native_resolution_m: 1,
+      processing_notes: [
+        "Product verified via its DOI landing page, FGDC metadata XML and ISIS label before download; source index https://asc-pds-services.s3.us-west-2.amazonaws.com/mosaic/mars2020_trn/HiRISE/index.html.",
+        "Uncompressed 32-bit float GeoTIFF, 21,400 x 21,488, 1 m/px, equirectangular (latTs0/lon0), planetocentric latitude, east-positive, D_Mars_2000_Sphere r=3,396,190 m; ISIS label UpperLeftCornerX/Y = 4577366.0/1106618.0 m; GDAL nodata tag -3.4028e+38; label footprint 77.2229-77.5840 E, 18.3068-18.6693 N (reproduced exactly by the GeoTIFF georeferencing tags).",
+        "Audit (team/jezero/terrain/audit_terrain.mjs, report team/jezero/terrain/audit_report.json): structure, georeferencing, nodata and value-range checks pass; PLACES cross-check over 30,445 traverse points: median DTM-PLACES +0.025 m, RMS 1.6 m, abs P95 4.3 m - the areoid-relative vertical datum is verified empirically.",
+        "FGDC published value range (-2659.8 to -1942.1 m) is understated: sampled values reach -1639.971 m in a contiguous western-rim band (lon 77.25-77.29 E). Confirmed real terrain by rover ground truth (PLACES sol 1354: -1786.0 m at 18.4575 N, 77.2685 E; DTM matched within ~5 m) - recorded as a documented metadata caveat, not a data defect.",
+        "USGS documents uncompensated y-parallax in the Jezero_CR stereo components of this mosaic; the traverse bins crossing that area show a small positive bias (~+3 m mean, abs P95 ~4.9 m) consistent with the USGS quality warning.",
+        "Display tiles /maps/jezero/terrain-tiles/{z}/{x}/{y}.png derived by team/jezero/terrain/build_terrain.mjs: 120 256 px Web-Mercator XYZ RGBA tiles, zooms 5-14, shaded hypsometric elevation (p2-p98 ramp -2620/-1770 m) x analytic hillshade (sun 315 deg az / 45 deg alt); bilinear sampling; nodata transparent; the large source raster stays in local storage (team/jezero/terrain/, gitignored) and is never committed.",
+      ],
+      limitations: [
+        "Public domain USGS release; cite the product authors via the DOI.",
+        "Display tiles are derived, resampled and hillshaded - not the native 1 m posts; not a route-safety or engineering product.",
+        "The far-west CR stereo component retains a small (~3-5 m) vertical bias per USGS quality notes; values there are display-grade only.",
       ],
     },
     {

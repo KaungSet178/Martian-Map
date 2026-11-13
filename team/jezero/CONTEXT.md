@@ -325,3 +325,72 @@ The map now shows real Mars imagery under the traverse line.
 
 **Visual verification**: headless probe screenshot shows the CTX crater-floor imagery
 with the recorded traverse above it, both legend chips and combined attribution.
+
+## PR #2 (verification pass)
+
+All five gates pass at HEAD (lint, typecheck, test 12/12, build, e2e 16/16). PR #2
+opened from `feat/jezero-map` to `main` with full source/coordinate/test/limitation
+notes and console screenshots (1440/390). Do not merge automatically; awaiting review.
+
+## Terrain (DEM) integration (feat/jezero-map)
+
+The map now carries a real shaded-elevation layer derived from an audited 1 m DTM.
+
+- **Product**: USGS Astrogeology **Mars 2020 Terrain Relative Navigation HiRISE DTM
+  mosaic** `JEZ_hirise_soc_006_DTM_MOLAtopography_DeltaGeoid_1m_Eqc_latTs0_lon0_blend40`
+  (DOI 10.5066/P9REJ9JN, public domain). Verified before download via the product page,
+  ISIS label, FGDC metadata XML and the S3 source index. Uncompressed 32-bit float
+  GeoTIFF, 21,400×21,488, 1 m/px, equirectangular (latTs0/lon0), planetocentric,
+  D_Mars_2000_Sphere r=3,396,190 m, UpperLeftCornerX/Y = 4577366.0/1106618.0 m,
+  GDAL nodata tag −3.4028e+38, footprint 77.2229–77.5840 E / 18.3068–18.6693 N —
+  reproduced exactly by the GeoTIFF georeferencing tags. The 1.71 GB source stays in
+  local storage (`team/jezero/terrain/`, gitignored) and is never committed.
+- **Audit**: `team/jezero/terrain/audit_terrain.mjs` (report `audit_report.json`) —
+  structure, georeferencing, nodata and value-range checks all pass. PLACES
+  cross-check over **30,445 traverse points**: median DTM−PLACES **+0.025 m**, RMS
+  1.6 m, abs P95 **4.3 m** — the areoid-relative vertical datum is verified
+  empirically.
+  - **First audit run falsely failed** its cross-check gates: the script's row cache
+    keyed by row only, feeding every traverse point on a row the first column's
+    elevation. `team/jezero/terrain/diag_terrain.mjs` (+ `scan_region_high.mjs`,
+    `region_high_scan.json`, `diag_report.json`) localized the anomaly to the script,
+    not the data; the bug was fixed and the audit re-run clean. Kept as diagnostic
+    provenance.
+  - **FGDC value range is understated** in the published metadata: sampled values
+    reach −1639.971 m in a contiguous western-rim band (lon 77.25–77.29 E). Confirmed
+    **real terrain** by rover ground truth: PLACES sol 1354 records −1786.0 m at
+    (18.4575 N, 77.2685 E) and the DTM matches within ~5 m. Recorded as a documented
+    metadata caveat, not a data defect.
+  - **Jezero_CR parallax caveat quantified**: the USGS-documented uncompensated
+    y-parallax in the mosaic's CR stereo components shows up as a small positive bias
+    in the traverse bins crossing that area (~+3 m mean, abs P95 ~4.9 m) versus
+    ~0.4 m elsewhere. Display-grade acceptable; documented in the layer limitations.
+- **Display tiles**: `team/jezero/terrain/build_terrain.mjs` (report
+  `build_report.json`) — pure Node TIFF reader, bilinear sampling, **120 self-hosted
+  256 px Web-Mercator XYZ RGBA tiles** at `public/maps/jezero/terrain-tiles/{z}/{x}/{y}.png`,
+  zooms 5–14 (~8 MB). Shaded hypsometric elevation: p2–p98 ramp −2620/−1770 m with a
+  gamma-0.75 low-end expansion × analytic hillshade (sun 315° az / 45° alt); nodata is
+  transparent. Coverage = DTM footprint ∩ supported extent; the supported extent's west
+  margin (77.1868–77.2229 E) lies outside the DTM and stays transparent. Same
+  planetocentric display-latitude convention as the other two layers.
+- **Layer**: `jezero-terrain` ("Terrain & slope") is now **available** — raster-tiles
+  rendering, evidence **Observed** (required by the shared readiness guard for any
+  available layer; the DTM is photogrammetrically measured topography, same
+  reasoning class as the CTX mosaic — flagged here for reviewer attention),
+  spatial_resolution_m 1, hypsometric legend with units, full limitations (not native
+  1 m posts, not route-safety evidence), attribution USGS · NASA/MRO HiRISE · DOI.
+  Default hidden, opacity 70%.
+- **Capability**: `terrain_coverage` → **`partial`** with source
+  `jezero-usgs-trn-dtm` (registered with full provenance). Partial is the honest value:
+  the audited DTM covers all of the supported extent except the west margin. **No
+  shared-test change was needed or made** — the existing guard forbids
+  `terrain_coverage: "audited"` and "partial" passes it; the guard's invariant is
+  intact.
+- **Version/state**: `dataset_version` → `jezero-terrain-v6`; `data_status` stays
+  `raster_audited`; `routing.enabled` stays false (terrain presence is not route
+  safety — no hazard coverage, no approved policy). `map.display_transform` notes
+  extended with the TERRAIN derivation paragraph.
+- **Gates**: lint (0 warnings), typecheck, test 12/12, build, e2e 16/16 — all pass.
+- **Visual verification**: `team/jezero/screenshots/jezero-terrain-1440.png` (terrain
+  over CTX: tan western rim, blue floor, hillshaded relief, legend + attribution) and
+  `jezero-terrain-390.png` (mobile panel with terrain enabled).
