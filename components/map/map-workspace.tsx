@@ -1,10 +1,9 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import type { Map as MapInstance, Marker } from "maplibre-gl";
 import {
   schematicContours,
-  previewCamera,
   previewPositions,
 } from "@/lib/map/preview";
 import {
@@ -12,9 +11,9 @@ import {
   mountRegionLayers,
   layerState,
   toDisplayCoordinates,
-  displayBounds,
   type LayerStates,
 } from "@/lib/map/region-layers";
+import { fitOverview } from "@/lib/map/camera";
 import {
   Crosshair,
   Layers,
@@ -63,9 +62,15 @@ export default function MapWorkspace({
   const container = useRef<HTMLDivElement>(null);
   const map = useRef<MapInstance | null>(null);
   const markers = useRef<Marker[]>([]);
+  const overview = useRef(true);
   const [ready, setReady] = useState(false);
   const [failed, setFailed] = useState(false);
   const scientificMap = region.map.visualization.status === "available";
+  const resetView = useCallback((animate = false) => {
+    if (!map.current || !container.current) return;
+    overview.current = true;
+    fitOverview(map.current, region, container.current, preview, animate);
+  }, [region, preview]);
   const activeLayers = region.layers.filter(
     (l) =>
       l.availability === "available" &&
@@ -74,7 +79,6 @@ export default function MapWorkspace({
 
   useEffect(() => {
     let disposed = false;
-    let observer: ResizeObserver | undefined;
     import("maplibre-gl")
       .then(({ Map, setWorkerUrl }) => {
         if (disposed || !container.current) return;
@@ -89,6 +93,10 @@ export default function MapWorkspace({
             bearing: 0,
             pitch: 0,
             maxPitch: 0,
+            dragPan: true,
+            scrollZoom: true,
+            touchZoomRotate: true,
+            cooperativeGestures: false,
             attributionControl: false,
             renderWorldCopies: false,
             style: {
@@ -117,8 +125,9 @@ export default function MapWorkspace({
           instance.on("error", () => {
             if (!disposed) setFailed(true);
           });
-          observer = new ResizeObserver(() => instance.resize());
-          observer.observe(container.current);
+          instance.on("movestart", (event) => {
+            if (event.originalEvent) overview.current = false;
+          });
         } catch {
           if (!disposed) setFailed(true);
         }
@@ -128,7 +137,6 @@ export default function MapWorkspace({
       });
     return () => {
       disposed = true;
-      observer?.disconnect();
       map.current?.remove();
       map.current = null;
     };
@@ -155,21 +163,29 @@ export default function MapWorkspace({
           ))
         : 10,
     );
-    map.current.setMaxBounds(
-      !preview && scientificMap && region.map.supported_extent
-        ? displayBounds(region.map.supported_extent)
-        : null,
-    );
-    map.current.jumpTo(
-      preview || !scientificMap
-        ? previewCamera
-        : {
-            center: toDisplayCoordinates(region.view_center),
-            zoom: region.map.initial_zoom,
-            bearing: 0,
-          },
-    );
-  }, [ready, region, preview, scientificMap]);
+    resetView();
+  }, [ready, region, scientificMap, resetView]);
+
+  useEffect(() => {
+    if (!ready || !container.current || !map.current) return;
+    let frame = 0;
+    const observer = new ResizeObserver(() => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => {
+        map.current?.resize();
+        // Keep an overview fitted as the visible canvas changes; after a user
+        // navigates, preserve their camera rather than snapping back on resize.
+        if (overview.current) resetView();
+      });
+    });
+    observer.observe(container.current);
+    const title = container.current.parentElement?.querySelector(".map-location");
+    if (title) observer.observe(title);
+    return () => {
+      cancelAnimationFrame(frame);
+      observer.disconnect();
+    };
+  }, [ready, resetView]);
 
   useEffect(() => {
     const instance = map.current;
@@ -220,6 +236,9 @@ export default function MapWorkspace({
       else handler.disable();
     }
     instance.dragRotate.disable();
+    instance.touchZoomRotate.disableRotation();
+    instance.touchPitch.disable();
+    instance.keyboard.disableRotation();
   }, [ready, preview, contours, opacity, scientificMap, region.name]);
 
   useEffect(() => {
@@ -350,7 +369,10 @@ export default function MapWorkspace({
         <div className="zoom-group">
           <button
             className="icon-button"
-            onClick={() => map.current?.zoomIn({ duration: 0 })}
+            onClick={() => {
+              overview.current = false;
+              map.current?.zoomIn({ duration: preview ? 0 : 180 });
+            }}
             disabled={(!preview && !scientificMap) || !ready || failed}
             aria-label="Zoom map in"
           >
@@ -358,7 +380,10 @@ export default function MapWorkspace({
           </button>
           <button
             className="icon-button"
-            onClick={() => map.current?.zoomOut({ duration: 0 })}
+            onClick={() => {
+              overview.current = false;
+              map.current?.zoomOut({ duration: preview ? 0 : 180 });
+            }}
             disabled={(!preview && !scientificMap) || !ready || failed}
             aria-label="Zoom map out"
           >
@@ -367,19 +392,10 @@ export default function MapWorkspace({
         </div>
         <button
           className="icon-button"
-          onClick={() =>
-            map.current?.jumpTo(
-              preview || !scientificMap
-                ? previewCamera
-                : {
-                    center: toDisplayCoordinates(region.view_center),
-                    zoom: region.map.initial_zoom,
-                    bearing: 0,
-                  },
-            )
-          }
+          onClick={() => resetView(true)}
           disabled={(!preview && !scientificMap) || !ready || failed}
-          aria-label="Reset map view"
+          aria-label={scientificMap && !preview ? "Fit exploration region" : "Reset map view"}
+          title={scientificMap && !preview ? "Fit exploration region" : "Reset map view"}
         >
           <Crosshair size={20} />
         </button>
@@ -406,7 +422,7 @@ export default function MapWorkspace({
           )}
         </button>
         <span className="map-scale mono">
-          Scale unavailable<span>{scientificMap && !preview ? "Mars display coordinates" : "Not georeferenced"}</span>
+          Scale unavailable<span>{scientificMap && !preview ? "Source footprint only" : "Not georeferenced"}</span>
         </span>
       </div>
       <div className="map-attribution">

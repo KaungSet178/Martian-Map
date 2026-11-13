@@ -78,12 +78,23 @@ export function mountRegionLayers(
       id = `region-${layer.id}`;
     if (render.kind === "unavailable") continue;
     if (render.kind === "raster-tiles") {
+      // Restrict tile *requests*, not the camera. Sparse regional tile packs do
+      // not contain tiles outside this reviewed display footprint. Dateline-
+      // crossing extents need split source bounds; leave those unbounded here.
+      const bounds = region.map.supported_extent
+        ? displayBounds(region.map.supported_extent)
+        : undefined;
+      const sourceBounds: [number, number, number, number] | undefined =
+        bounds && bounds[1][0] <= 180
+          ? [bounds[0][0], bounds[0][1], bounds[1][0], bounds[1][1]]
+          : undefined;
       map.addSource(id, {
         type: "raster",
         tiles: render.tiles,
         tileSize: render.tile_size,
         minzoom: render.min_zoom,
         maxzoom: render.max_zoom,
+        bounds: sourceBounds,
         attribution: layer.attribution ?? undefined,
       });
       map.addLayer({

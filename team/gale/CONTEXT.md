@@ -126,3 +126,14 @@ Development used an isolated worktree after the main working directory was
 switched externally to Jezero. The initial Gale edits in that checkout were
 backed up, hash-compared and restored; no teammate changes were discarded.
 Only the Gale branch is to be committed/pushed. Do not merge automatically.
+
+
+## Viewport/navigation correction - 13 November 2026
+
+See [VIEWPORT_FIX.md](VIEWPORT_FIX.md) for root causes, behavior checks and
+before/after screenshots. The reviewed footprint now drives initial fit/reset,
+not camera maxBounds. Raster request bounds keep sparse tile requests within the
+pack. Mobile map and planning sheet share visible height; ResizeObserver refits
+an overview and preserves deliberate user navigation. All 33 G1 display-asset
+hashes remain unchanged. Initial-view wording supersedes the older G1 report's
+camera-clipping description; scientific provenance and dataset version remain.

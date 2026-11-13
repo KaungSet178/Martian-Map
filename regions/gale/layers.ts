@@ -79,8 +79,8 @@ export const layers = [
     "source_id": "gale-nasa-traverse",
     "observation_date": null,
     "spatial_resolution_m": null,
-    "coverage": "NASA interactive-map traverse snapshot 2026-11-13, cross-checked against PDS v42.0. Full source geometry retained; the camera is bounded to the older published PDS orbital-map footprint.",
-    "limitations": "Historical recorded line geometry, not live location or an astronaut route. All original line segments and 2D vertices retained; no invented connections. 1277 endpoints independently matched to PDS centric/east positions. Latest segments can fall outside the supported camera footprint. No per-line date supplied; no hazard or terrain-safety claim.",
+    "coverage": "NASA interactive-map traverse snapshot 2026-11-13, cross-checked against PDS v42.0. Full source geometry retained; the initial overview fits the older published PDS orbital-map footprint. Camera navigation is not restricted to imagery coverage.",
+    "limitations": "Historical recorded line geometry, not live location or an astronaut route. All original line segments and 2D vertices retained; no invented connections. 1277 endpoints independently matched to PDS centric/east positions. Latest segments can extend beyond the imagery footprint. No per-line date supplied; no hazard or terrain-safety claim.",
     "evidence": "Observed",
     "attribution": "NASA/JPL-Caltech - Curiosity mission map - PDS localization cross-check",
     "rendering": {

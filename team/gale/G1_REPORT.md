@@ -1,5 +1,8 @@
 # Gale G1: scientific map exploration
 
+Viewport/navigation behavior was subsequently corrected in [VIEWPORT_FIX.md](VIEWPORT_FIX.md).
+The source audit below records the original G1 delivery.
+
 Dataset `gale-g1-v1`, reviewed 13 November 2026. Implementation branch:
 `feat/gale-map`, based on merged shared architecture PR #1 (`b6cc52d`).
 This delivers map exploration and source-backed scientific context. It does not

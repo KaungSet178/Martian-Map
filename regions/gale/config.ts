@@ -30,6 +30,7 @@ export const config = {
       "status": "available",
       "reason": "Source-registered NASA Trek CTX display tiles and NASA recorded Curiosity traverse; documented independent PDS display audit."
     },
+    // Fallback only: reviewed supported_extent drives initial fit and reset.
     "initial_zoom": 11,
     "supported_extent": {
       "west_east": 137.3442352329006,
@@ -352,7 +353,7 @@ export const config = {
       "native_resolution_m": null,
       "processing_notes": [
         "Original LineString/MultiLineString segments and 27008 2D vertices retained. Vertical coordinates and Length properties omitted; no inferred Earth units. 1277 source line endpoints match explicit PDS planetocentric/east coordinates within 0.00001 degree.",
-        "Companion MSL_waypoints.json spans sols 3-5070; that range describes waypoints, not an invented timestamp for every line. Newest geometry can lie outside the older PDS v42.0 camera footprint; full latest traverse coverage is not claimed."
+        "Companion MSL_waypoints.json spans sols 3-5070; that range describes waypoints, not an invented timestamp for every line. Newest geometry can lie outside the older PDS v42.0 initial-view footprint; full latest traverse coverage is not claimed."
       ],
       "limitations": [
         "Historical source snapshot; no live position or astronaut route. PDS localization cross-check establishes display convention, not positional accuracy or hazards. NASA source supplies no per-line timestamp/version; hash identifies the downloaded snapshot."

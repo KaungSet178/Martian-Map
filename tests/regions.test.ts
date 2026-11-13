@@ -27,6 +27,7 @@ import {
   toDisplayCoordinates,
   updateLayerState,
 } from "@/lib/map/region-layers";
+import { fitOverview } from "@/lib/map/camera";
 
 test("registry resolves every region, typed metadata and safe unknown IDs", () => {
   assert.deepEqual(
@@ -230,6 +231,55 @@ test("Mars east-longitude display conversion and extents never infer Earth dista
       [1, 1],
     ],
   );
+});
+
+test("overview fits the reviewed extent without constraining navigation or accumulating padding", () => {
+  const calls: unknown[][] = [];
+  const fake = {
+    stop: () => {},
+    setMaxBounds: (value: unknown) => calls.push(["bounds", value]),
+    setPadding: (value: unknown) => calls.push(["padding", value]),
+    getMaxZoom: () => 13,
+    fitBounds: (...args: unknown[]) => calls.push(["fit", ...args]),
+    jumpTo: (value: unknown) => calls.push(["fallback", value]),
+  } as unknown as MapInstance;
+  const container = {
+    getBoundingClientRect: () => ({ width: 800, height: 600, top: 80, right: 1160, bottom: 680 }),
+    parentElement: {
+      querySelector: (selector: string) => ({
+        getBoundingClientRect: () => selector === ".map-location" ? { bottom: 210 }
+          : selector === ".map-navigation" ? { left: 1092 }
+          : { top: 600 },
+      }),
+    },
+  } as unknown as HTMLElement;
+  const gale = getRegion("gale")!;
+  fitOverview(fake, gale, container, false);
+  fitOverview(fake, gale, container, false);
+  const fits = calls.filter((c) => c[0] === "fit");
+  assert.equal(fits.length, 2);
+  assert.deepEqual(fits[0], fits[1]);
+  assert.deepEqual(fits[0][1], displayBounds(gale.map.supported_extent!));
+  assert.deepEqual(fits[0][2], {
+    padding: { top: 146, bottom: 96, left: 32, right: 84 },
+    maxZoom: 13, bearing: 0, pitch: 0, duration: 0, linear: true, absolutePadding: true,
+  });
+  assert.ok(calls.filter((c) => c[0] === "bounds").every((c) => c[1] === null));
+  // Optional extent fallback uses existing metadata, never invented bounds.
+  fitOverview(fake, { ...gale, map: { ...gale.map, supported_extent: null } }, container, false);
+  assert.equal(calls.at(-1)?.[0], "fallback");
+});
+
+test("regional raster bounds limit sparse tile requests without changing Mars registration", () => {
+  const sources: Array<{ bounds?: number[] }> = [];
+  const map = {
+    addSource: (_id: string, source: { bounds?: number[] }) => sources.push(source),
+    addLayer: () => {},
+  } as unknown as MapInstance;
+  const gale = getRegion("gale")!;
+  mountRegionLayers(map, gale);
+  const b = gale.map.supported_extent!;
+  assert.deepEqual(sources[0].bounds, [b.west_east, b.south_latitude, b.east_east, b.north_latitude]);
 });
 test("backend boundary rejects missing one-way endpoints and incomplete assessments", () => {
   const request = {
