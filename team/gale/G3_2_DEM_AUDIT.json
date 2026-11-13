@@ -1,0 +1,216 @@
+{
+  "milestone": "Gale G3.2",
+  "review_date": "2026-11-13",
+  "decision": "Native-CRS DEM visualization only; precise local CTX co-registration NOT verified. Full-opacity default; no fitted shifts, routing, hazard or safety certification.",
+  "selected": {
+    "label_url": "https://planetarydata.jpl.nasa.gov/img/data/msl/msl_places/data_maps/msl_orbital_dem.xml",
+    "product_id": "urn:nasa:pds:msl_places:data_maps:msl_orbital_dem::42.0",
+    "source_url": "https://planetarydata.jpl.nasa.gov/img/data/msl/msl_places/data_maps/msl_orbital_dem.img",
+    "label_sha256": "e54efee1e91a8a5f8877789843c452fda33c9f4f17e3ca5fbf949be1cc7ac809",
+    "headers_sha256": "4bf930da14fe7edbcd3c2981cb1488a2898d426bde9be3b0ecb63a985de5237d",
+    "native_dimensions": [
+      6741,
+      14331
+    ],
+    "image_offset_bytes": 53928,
+    "sample_type": "IEEE754MSBSingle",
+    "crs": {
+      "projection": "Equirectangular",
+      "radius_m": 3396190,
+      "latitude_type": "planetocentric",
+      "longitude": "east 0-360",
+      "standard_parallel_deg": 0,
+      "central_meridian_deg": 0,
+      "origin_corner_east_north_m": [
+        8141037.49279,
+        -271513.07519
+      ]
+    },
+    "vertical_reference": "MOLA areoid, metres positive up (PLACES SIS section 3.9.3). Not sphere radial height. No datum offset or fitted height bias applied.",
+    "provenance": "Mission-localization DEM described by PLACES SIS section 4.5: USGS HiRISE mosaic with CTX backfill, registered through corresponding orthophotos. Native 1 m grid does not establish uniform 1 m resolving power.",
+    "time_context": "PDS release v42.0 time bounds describe mission archive coverage, not constituent stereo acquisition dates. Per-pixel source/acquisition map unavailable.",
+    "subset": {
+      "source_url": "https://planetarydata.jpl.nasa.gov/img/data/msl/msl_places/data_maps/msl_orbital_dem.img",
+      "product_id": "urn:nasa:pds:msl_places:data_maps:msl_orbital_dem::42.0",
+      "range": [
+        223531560,
+        251843759
+      ],
+      "range_bytes": 28312200,
+      "range_sha256": "928196ff9286b71902ac2d65f3cf7a0e7e44dea1b850a07d377276455debc178",
+      "pixel_window": {
+        "col": 1569,
+        "row": 8288,
+        "width": 1050,
+        "height": 1050
+      },
+      "transform": [
+        1,
+        0,
+        8142606.49279,
+        0,
+        -1,
+        -279801.07519
+      ],
+      "bounds_wsen": [
+        137.3706966549835,
+        -4.738127513507297,
+        137.38841079008452,
+        -4.720413378406276
+      ],
+      "native_post_spacing_m": 1,
+      "valid_count": 1102500,
+      "total_pixels": 1102500,
+      "valid_fraction": 1.0,
+      "min_max_m": [
+        -4237.5146484375,
+        -4056.808837890625
+      ],
+      "source_dtype": "IEEE754MSBSingle",
+      "subset_sha256": "d6cd4fa4e5c1dd7569e3a64c9d81832273f2878d29a22a88e1c0255044ba218a"
+    },
+    "unit_label_caveat": "PDS4 Element_Array unit is the generic DN. The physical metre/areoid interpretation comes from the PLACES SIS section 3.9.3 and section 4.5 DEM definition, not the DN tag. The source has no additional scale or offset; no scaling inferred from image appearance."
+  },
+  "coverage": {
+    "native_valid_pixels": 1102500,
+    "native_total_pixels": 1102500,
+    "analysis_valid_cells": 1600,
+    "extent_wsen": [
+      137.37111842010495,
+      -4.737705748385843,
+      137.38798902496305,
+      -4.7208351435277285
+    ],
+    "support": "Complete rectangle verified from all pixels for this pinned window; no validity claimed beyond it. 25 m exterior ring omitted for full 3 x 3 support.",
+    "anchor": "Historical Sol 2300 rover position used only to choose an AOI, never as photographed-target coordinates. Portions of the historical traverse intersect this window. No science-target locations changed."
+  },
+  "resolution": {
+    "native_post_m": 1,
+    "aggregation_m": 25,
+    "gradient_support_m": 75,
+    "effective_resolution": "Source-dependent HiRISE/CTX mosaic; no per-pixel resolving-power map. 25 m averaging / 75 m gradient support are processing scales, not a guaranteed ground resolving power.",
+    "uncertainty": "Absolute vertical/horizontal error and slope error are not quantitatively certified. Mixed source quality, seams, interpolation and stereo artifacts remain. Coarsening does not prove CTX backfill resolving power or remove all artifacts."
+  },
+  "alignment": {
+    "documentary_reference": "PLACES SIS section 4.5 registers DEM and associated mission orthophotos; G1 audited coordinate convention for CTX. This is not evidence of precise local CTX feature registration.",
+    "direct_local_check": {
+      "method": "64x64 local PDS image samples compared with committed NASA CTX display pixels at unmodified published coordinates. No fitted shifts. This tests display convention, not survey accuracy.",
+      "reference_url": "https://planetarydata.jpl.nasa.gov/img/data/msl/msl_places/data_maps/msl_orbital_map.img",
+      "native_centric_correlation": -0.1977235703666881,
+      "wrong_graphic_hypothesis_correlation": -0.013821879688679158,
+      "samples": 4096,
+      "bytes_downloaded": 260608,
+      "unapplied_translation_diagnostic": {
+        "gaussian_radius_samples": 2,
+        "central_patch": [
+          32,
+          32
+        ],
+        "search_radius_samples": 16,
+        "sample_step_projected_m": 16.153846153846153,
+        "best_correlation_row_column": [
+          0.8404312974058578,
+          12,
+          3
+        ],
+        "zero_shift_correlation": -0.1364022815136027,
+        "interpretation": "Suggests positional mismatch, not an accepted transform, survey offset or correction. No shift applied."
+      }
+    },
+    "interpretation": "Low/negative local DN agreement does not validate alignment. A smoothed translation diagnostic on the central 32 x 32 patch peaks at row+12,column+3 of a 16.15 m sample grid (score about0.84), suggesting substantial mismatch. This is NOT an accepted transformation, survey offset estimate or applied correction. Other corridor windows also failed direct-match checks. No precise CTX/DEM co-registration claim.",
+    "rendering_policy": "Retain original published coordinates; full opacity by default, explicit mismatch warning in coverage and limitations. User-controlled opacity is exploratory only. Independent native-CRS elevation/slope visualization remains useful; no coincident fine-feature interpretation.",
+    "review_file": "team/gale/sources/g3-2/aoi-registration-review.json"
+  },
+  "rejected_candidates": [
+    {
+      "id": "DTEEC_009149_1750_009294_1750_U01",
+      "catalog": "https://www.uahirise.org/dtm/PSP_009149_1750",
+      "reason": "Individual DTM not in mission-controlled mosaic frame; 2304 paired PDS checks: median source-minus-reference +6.21 m, RMSE7.04 m. A translation diagnostic indicates unresolved registration differences. No correction applied; not integrated. Reference mosaic is not independent ground truth.",
+      "record": "team/gale/sources/g3-2/hirise-reference-check.json"
+    },
+    {
+      "id": "MSL_Gale_DEM_Mosaic_1m_v3",
+      "catalog": "https://astrogeology.usgs.gov/search/map/mars_msl_gale_merged_dem_1m",
+      "reason": "Authoritative larger mixed HiRISE/CTX/HRSC/MOLA mosaic, ~3.6 GB. Not downloaded; source QA zones and full valid-pixel coverage unaudited. Selected manageable PDS mission mosaic subset instead."
+    }
+  ],
+  "derivatives": {
+    "processing_record": "team/gale/sources/g3-2/processing-audit.json",
+    "script": "team/gale/prepare_g3_2_dem.py",
+    "math": "team/gale/dem_math.py",
+    "tiles": 39,
+    "tile_bytes": 31744,
+    "numeric_arrays": "Rebuilt into ignored output/g3-2/analysis-values.npz; PNGs encode display colors, not numeric DEMs.",
+    "mask_policy": "Nonfinite/special float posts invalid; every block and all 9 gradient neighbors must be valid. Unsupported outer analysis ring omitted; transparent outside actual support. No filling/interpolation across gaps."
+  },
+  "authoritative_references": [
+    {
+      "url": "https://planetarydata.jpl.nasa.gov/img/data/msl/msl_places/document/PLACES_PDS_SIS.pdf",
+      "context": "JPL D-78442 release1.3 RevA, 2016-07-01; section 3.9 metre metric, section 3.9.3 areoid, section 4.5 orthophoto/DEM provenance. Current PDS4 label controls v42 dimensions/offsets."
+    },
+    {
+      "url": "https://www.uahirise.org/dtm/about.php",
+      "context": "HiRISE stereo provenance, MOLA ties, posts versus effective resolution and known artifacts."
+    }
+  ],
+  "unsupported": [
+    "Whole Gale or whole-traverse terrain coverage",
+    "Precise DEM-to-CTX local co-registration",
+    "Per-pixel effective resolution or quantitative elevation/slope error",
+    "Terrain safety, hazards, trafficability, route optimization or resource calculations",
+    "New target coordinates or target geological boundaries"
+  ],
+  "verification": {
+    "lint": "pass",
+    "typescript": "pass",
+    "production_build": "pass",
+    "unit_contract_tests": {
+      "passed": 21,
+      "failed": 0
+    },
+    "terrain_math_tests": {
+      "passed": 5,
+      "failed": 0
+    },
+    "playwright_chromium": {
+      "passed": 39,
+      "failed": 0,
+      "viewports": [
+        [
+          1440,
+          900
+        ],
+        [
+          1024,
+          768
+        ],
+        [
+          768,
+          1024
+        ],
+        [
+          390,
+          844
+        ]
+      ],
+      "regions": [
+        "gale",
+        "jezero",
+        "oxia"
+      ],
+      "navigation": [
+        "drag",
+        "wheel",
+        "keyboard",
+        "fit/reset",
+        "resize",
+        "touch drag",
+        "pinch"
+      ]
+    },
+    "g1_hashes_preserved": 33,
+    "g2_photo_and_g3_1_geometry_integrity": "pass",
+    "reproducible_tile_and_coverage_hashes": "pass",
+    "scientific_alignment_gate": "precise local CTX co-registration not verified; no corrective transformation applied"
+  }
+}

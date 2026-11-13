@@ -32,6 +32,75 @@ import {
 import { fitOverview } from "@/lib/map/camera";
 import { photographSchema } from "@/lib/contracts/science";
 
+test("DEM derivatives retain audited bytes, bounded support, units and conservative readiness", () => {
+  const gale = getRegion("gale")!;
+  const report = JSON.parse(readFileSync("team/gale/sources/g3-2/processing-audit.json", "utf8"));
+  const audit = JSON.parse(readFileSync("team/gale/G3_2_DEM_AUDIT.json", "utf8"));
+  for (const [path, record] of Object.entries(report.tiles) as [string, { sha256: string; bytes: number }][]) {
+    const bytes = readFileSync(path);
+    assert.equal(createHash("sha256").update(bytes).digest("hex"), record.sha256);
+    assert.equal(bytes.length, record.bytes);
+  }
+  assert.equal(Object.keys(report.tiles).length, 39);
+  assert.ok(report.tile_bytes < 40_000);
+  assert.equal(report.native_valid_pixels, report.native_total_pixels);
+  assert.equal(report.valid_analysis_cells, 1600);
+  assert.equal(report.analysis_grid_m, 25);
+  assert.equal(report.gradient_support_m, 75);
+  assert.match(report.vertical_reference, /MOLA areoid/);
+  assert.match(audit.decision, /NOT verified/);
+  assert.deepEqual(gale.layers.find((l) => l.id === "gale-terrain")!.legend!.items.map((i) => i.color), report.elevation_colors);
+  assert.deepEqual(gale.layers.find((l) => l.id === "gale-slope")!.legend!.items.map((i) => i.color), report.slope_colors);
+  assert.match(gale.layers.find((l) => l.id === "gale-terrain")!.legend!.units!, /MOLA areoid/);
+  assert.match(gale.layers.find((l) => l.id === "gale-slope")!.legend!.units!, /degrees.*not safety/);
+  for (const [path, hash] of [["pds-dem.xml", audit.selected.label_sha256], ["pds-dem-headers.bin", audit.selected.headers_sha256]])
+    assert.equal(createHash("sha256").update(readFileSync(`team/gale/sources/g3-2/${path}`)).digest("hex"), hash);
+  const coverageBytes = readFileSync("public/maps/gale/dem/coverage.geojson");
+  assert.equal(createHash("sha256").update(coverageBytes).digest("hex"), report.coverage_sha256);
+  const coverage = JSON.parse(coverageBytes.toString());
+  const [west, south, east, north] = report.extent_wsen;
+  assert.deepEqual(coverage.features[0].geometry.coordinates[0], [[west,south],[east,south],[east,north],[west,north],[west,south]]);
+  for (const layer of gale.layers.filter((item) => item.kind === "topography")) {
+    assert.equal(layer.availability, "available");
+    assert.equal(layer.evidence, "Derived");
+    assert.equal(layer.default_visible, false);
+    assert.equal(layer.default_opacity, 100);
+    assert.equal(layer.source_id, "gale-pds-dem-subset");
+    assert.match(layer.coverage!, /CTX alignment is unverified/);
+    assert.match(layer.limitations, /not astronaut safety/);
+    assert.equal(layer.rendering.kind, "raster-tiles");
+    if (layer.rendering.kind === "raster-tiles") {
+      assert.deepEqual(layer.rendering.bounds, {west_east:west,south_latitude:south,east_east:east,north_latitude:north});
+      assert.deepEqual(layer.rendering.focus_extent, layer.rendering.bounds);
+      assert.equal(layer.rendering.resampling, "nearest");
+      assert.ok(regionSchema.safeParse({...gale, layers:[{...layer, rendering:{...layer.rendering, bounds:undefined,focus_extent:undefined,resampling:undefined}}]}).success);
+      assert.equal(regionSchema.safeParse({...gale, layers:[{...layer,rendering:{...layer.rendering,resampling:"cubic"}}]}).success,false);
+    }
+  }
+  assert.equal(gale.routing.enabled, false);
+  assert.equal(gale.capabilities.terrain_coverage.status, "partial");
+  for (const id of ["gale-terrain", "gale-hillshade", "gale-slope", "gale-geology"]) {
+    const state = updateLayerState(gale, updateLayerState(gale, {}, "gale-slope", {visible:true}), id, {visible:true});
+    assert.equal(gale.layers.filter((l) => l.kind !== "optical" && l.kind !== "overlay" && (state[l.id]?.visible ?? l.default_visible)).length,1);
+  }
+  for (const id of ["jezero", "oxia"]) assert.ok(getRegion(id)!.layers.every((l) => !l.source_id?.startsWith("gale-")));
+});
+
+test("per-product raster request bounds and nearest resampling preserve legacy defaults", () => {
+  const sources: Record<string, {bounds?: number[]}> = {}, paint: Record<string, unknown> = {};
+  const fake = {
+    addSource: (id: string, source: {bounds?: number[]}) => {sources[id]=source;},
+    addLayer: (layer: {id:string;paint?:unknown}) => {paint[layer.id]=layer.paint;},
+  } as unknown as MapInstance;
+  const gale=getRegion("gale")!;
+  mountRegionLayers(fake,gale);
+  const [w,s,e,n]=JSON.parse(readFileSync("team/gale/sources/g3-2/processing-audit.json","utf8")).extent_wsen;
+  assert.deepEqual(sources["region-gale-terrain"].bounds,[w,s,e,n]);
+  assert.notDeepEqual(sources["region-gale-optical"].bounds,[w,s,e,n]);
+  assert.deepEqual(paint["region-gale-terrain"],{"raster-resampling":"nearest"});
+  assert.deepEqual(paint["region-gale-optical"],{"raster-resampling":"linear"});
+});
+
 test("Arc Pass asset preserves all source classifications and audited geometry identity", () => {
   const gale = getRegion("gale")!;
   const layer = gale.layers.find((item) => item.id === "gale-geology")!;

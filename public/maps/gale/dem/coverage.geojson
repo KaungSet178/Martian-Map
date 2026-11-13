@@ -1,0 +1,43 @@
+{
+  "type": "FeatureCollection",
+  "marswalk_reference": {
+    "body": "Mars",
+    "latitude_type": "planetocentric",
+    "longitude_direction": "east"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "meaning": "Audited DEM derivative support; outside is unaudited, never safe"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              137.37111842010495,
+              -4.737705748385843
+            ],
+            [
+              137.38798902496305,
+              -4.737705748385843
+            ],
+            [
+              137.38798902496305,
+              -4.7208351435277285
+            ],
+            [
+              137.37111842010495,
+              -4.7208351435277285
+            ],
+            [
+              137.37111842010495,
+              -4.737705748385843
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

@@ -176,8 +176,8 @@ export default function MapWorkspace({
     if (preview || previous?.region !== region.id) return;
     const revealed = region.layers.find((layer) =>
       layer.availability === "available" && visible.has(layer.id) && !previous.visible.has(layer.id) &&
-      layer.rendering.kind === "geojson" && layer.rendering.focus_extent);
-    if (revealed?.rendering.kind === "geojson" && revealed.rendering.focus_extent) {
+      layer.rendering.kind !== "unavailable" && layer.rendering.focus_extent);
+    if (revealed && revealed.rendering.kind !== "unavailable" && revealed.rendering.focus_extent) {
       // Explicitly opening a small mapped area uses the same contained fit as
       // the regional overview. Opacity changes and resize never re-trigger it.
       overview.current = false;

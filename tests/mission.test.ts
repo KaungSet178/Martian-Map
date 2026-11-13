@@ -19,7 +19,7 @@ test("all region fixtures obey shared contract and cannot imply scientific readi
     assert.equal(region.routing.enabled, false);
     assert.equal(region.capabilities.validated_routing.status, "unavailable");
     assert.equal(region.capabilities.mission_feasibility.status, "unavailable");
-    assert.equal(region.capabilities.terrain_coverage.status, "unknown");
+    assert.equal(region.capabilities.terrain_coverage.status, id === "gale" ? "partial" : "unknown");
     assert.ok(
       region.targets.every(
         (t) => t.coordinates === null && !t.coordinate_verified,
@@ -27,7 +27,7 @@ test("all region fixtures obey shared contract and cannot imply scientific readi
     );
     if (id === "gale") {
       assert.equal(region.data_status, "metadata_verified");
-      assert.deepEqual(region.layers.filter((l) => l.availability === "available").map((l) => l.id), ["gale-optical", "gale-geology", "gale-traverse-recorded"]);
+      assert.deepEqual(region.layers.filter((l) => l.availability === "available").map((l) => l.id), ["gale-optical", "gale-terrain", "gale-hillshade", "gale-slope", "gale-geology", "gale-traverse-recorded"]);
     } else {
       assert.equal(region.data_status, "illustrative");
       assert.ok(region.layers.every((l) => l.availability !== "available"));

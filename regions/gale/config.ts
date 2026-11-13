@@ -1,6 +1,6 @@
 import type { RegionConfig } from "@/lib/contracts/region";
 
-// Gale G3.1: source-backed content; unknown values remain explicit.
+// Gale G3.2: source-backed content; unknown values remain explicit.
 export const config = {
   "id": "gale",
   "name": "Gale Crater",
@@ -18,7 +18,7 @@ export const config = {
     "projected_crs": "Mars equirectangular, r=3396190 m, lat_ts=0, lon_0=0 (PDS orbital map); no routing grid integrated",
     "reference_surface": "Mars 2000 sphere; PDS orbital map v42.0 axes all 3396.19 km",
     "sphere_radius_m": 3396190,
-    "vertical_datum": "No elevation rendered; PLACES / merged DEM vertical datum requires review before calculations"
+    "vertical_datum": "Rendered PDS DEM subset: metres relative to MOLA areoid, positive up; not radial or ellipsoid height. Absolute error unquantified."
   },
   "view_center": {
     "latitude": -4.701483291254691,
@@ -46,7 +46,7 @@ export const config = {
     }
   },
   "data_status": "metadata_verified",
-  "dataset_version": "gale-g3-1-v1",
+  "dataset_version": "gale-g3-2-v1",
   "contextual_datasets": [
     {
       "id": "gale-environment-context",
@@ -83,9 +83,9 @@ export const config = {
   },
   "capabilities": {
     "terrain_coverage": {
-      "status": "unknown",
-      "reason": "USGS merged DEM metadata located; source-resolution zones and native valid-pixel footprint are not audited or integrated.",
-      "source_id": null
+      "status": "partial",
+      "reason": "Audited native-CRS PDS subset only: 1 km projected square, 25 m aggregation / 75 m gradient support. Mixed effective resolution and local CTX co-registration unverified. No hazard or routing eligibility.",
+      "source_id": "gale-pds-dem-subset"
     },
     "experimental_routing": {
       "status": "unavailable",
@@ -101,6 +101,28 @@ export const config = {
     }
   },
   "source_references": [
+    {
+      "id": "gale-pds-dem-subset",
+      "title": "PDS PLACES v42.0 - bounded orbital DEM subset",
+      "url": "https://planetarydata.jpl.nasa.gov/img/data/msl/msl_places/data_maps/msl_orbital_dem.xml",
+      "agency": "NASA/JPL-Caltech PDS Imaging Node; USGS mission localization",
+      "instrument": "MRO HiRISE / CTX stereo mosaic",
+      "product_id": "urn:nasa:pds:msl_places:data_maps:msl_orbital_dem::42.0",
+      "acquisition_date": null,
+      "sol": null,
+      "native_resolution_m": 1,
+      "processing_notes": [
+        "Native 1 m post spacing, not uniform effective resolution. Equirectangular Mars sphere R=3396190 m, lat_ts=0, lon_0=0; planetocentric latitude / east longitude. Big-endian float32 image; fractional DEM origin retained, not copied from the orthophoto grid.",
+        "MOLA areoid heights, metres positive up (PLACES SIS section 3.9.3). No radius conversion, fitted bias or translation. Bounded 28.31 MB source row range; full raster not downloaded.",
+        "25 x 25 complete-post means, then Horn 3 x 3 gradients (75 m support). East metre spacing corrected by cos(latitude). Slope in degrees; hillshade artificial azimuth315 degrees / altitude45 degrees. No exaggeration or cast shadows.",
+        "All 1,102,500 input posts valid; derived support 40 x 40 cells, outside transparent. Reproduction: team/gale/prepare_g3_2_dem.py; hashes and gate decisions: team/gale/G3_2_DEM_AUDIT.json."
+      ],
+      "limitations": [
+        "Precise local alignment to CTX is NOT verified. Direct mission-orthophoto/CTX check suggests positional mismatch. Published coordinates retained; full-opacity independent views by default. Do not match fine features between products.",
+        "Mixed HiRISE/CTX lineage without per-pixel resolving-power or error map. 25 m analysis grid and 75 m derivative support do not certify effective spatial resolution. Absolute elevation, horizontal and slope error unquantified.",
+        "1 km projected square only, not whole Gale or all rover exploration. Archive release time span is not stereo acquisition time. No hazard, astronaut-safety, routing or resource conclusions."
+      ]
+    },
     {
       "id": "gale-arc-pass-geology",
       "title": "Davis - Arc Pass photogeological GIS, v1",

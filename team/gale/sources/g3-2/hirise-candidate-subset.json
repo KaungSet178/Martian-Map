@@ -1,0 +1,56 @@
+{
+  "source_url": "https://www.uahirise.org/PDS/DTM/PSP/ORB_009100_009199/PSP_009149_1750_PSP_009294_1750/DTEEC_009149_1750_009294_1750_U01.IMG",
+  "product_id": "DTEEC_009149_1750_009294_1750_U01",
+  "range": [
+    69811656,
+    98157455
+  ],
+  "range_bytes": 28345800,
+  "range_sha256": "438cc7c08385127cb4576f90a11bc8cbc414a1460b8675583bef86feee628c81",
+  "header_sha256": "7ba0fcdee74ee6259c23d597e6da405666061dbd5cb2d2836016ff394ec95b33",
+  "pixel_window": {
+    "col": 1012,
+    "row": 2585,
+    "width": 1050,
+    "height": 1050
+  },
+  "native_transform": [
+    1.0117467945795,
+    0.0,
+    -3358.9993580040414,
+    0.0,
+    -1.0117467945795,
+    -277179.16358980455
+  ],
+  "subset_transform": [
+    1.0117467945795,
+    0.0,
+    -2335.1116018895873,
+    0.0,
+    -1.0117467945795,
+    -279794.52905379253
+  ],
+  "crs_wkt": "PROJCRS[\"EQUIRECTANGULAR MARS\",BASEGEOGCRS[\"GCS_MARS\",DATUM[\"D_MARS\",ELLIPSOID[\"MARS_localRadius\",3396190,0,LENGTHUNIT[\"metre\",1,ID[\"EPSG\",9001]]]],PRIMEM[\"Reference_Meridian\",0,ANGLEUNIT[\"degree\",0.0174532925199433,ID[\"EPSG\",9122]]]],CONVERSION[\"unnamed\",METHOD[\"Equidistant Cylindrical (Spherical)\",ID[\"EPSG\",1029]],PARAMETER[\"Latitude of 1st standard parallel\",0,ANGLEUNIT[\"degree\",0.0174532925199433],ID[\"EPSG\",8823]],PARAMETER[\"Longitude of natural origin\",137.41,ANGLEUNIT[\"degree\",0.0174532925199433],ID[\"EPSG\",8802]],PARAMETER[\"False easting\",0,LENGTHUNIT[\"metre\",1],ID[\"EPSG\",8806]],PARAMETER[\"False northing\",0,LENGTHUNIT[\"metre\",1],ID[\"EPSG\",8807]]],CS[Cartesian,2],AXIS[\"easting\",east,ORDER[1],LENGTHUNIT[\"metre\",1,ID[\"EPSG\",9001]]],AXIS[\"northing\",north,ORDER[2],LENGTHUNIT[\"metre\",1,ID[\"EPSG\",9001]]]]",
+  "post_spacing_m": 1.0117467945795,
+  "bounds_wsen": [
+    137.37060525486493,
+    -4.738225160536179,
+    137.38852747427214,
+    -4.720302941128971
+  ],
+  "valid_count": 1102500,
+  "total_pixels": 1102500,
+  "valid_fraction": 1.0,
+  "min_max_m": [
+    -4234.76513671875,
+    -4051.298095703125
+  ],
+  "quantiles_m": [
+    -4224.708989257812,
+    -4210.477099609375,
+    -4143.182373046875,
+    -4075.5815185546876,
+    -4057.854482421875
+  ],
+  "subset_sha256": "c0762355684132a2fff7e5b1efcfcb0cf96f8e3c8ba36d725ac84c8a1ef952ae"
+}

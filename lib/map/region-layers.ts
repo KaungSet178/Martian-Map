@@ -89,8 +89,9 @@ export function mountRegionLayers(
       // Restrict tile *requests*, not the camera. Sparse regional tile packs do
       // not contain tiles outside this reviewed display footprint. Dateline-
       // crossing extents need split source bounds; leave those unbounded here.
-      const bounds = region.map.supported_extent
-        ? displayBounds(region.map.supported_extent)
+      const extent = render.bounds ?? region.map.supported_extent;
+      const bounds = extent
+        ? displayBounds(extent)
         : undefined;
       const sourceBounds: [number, number, number, number] | undefined =
         bounds && bounds[1][0] <= 180
@@ -110,6 +111,7 @@ export function mountRegionLayers(
         type: "raster",
         source: id,
         layout: { visibility: "none" },
+        paint: { "raster-resampling": render.resampling ?? "linear" },
       });
     } else {
       // GeoJSON assets must already use the reviewed display transform.

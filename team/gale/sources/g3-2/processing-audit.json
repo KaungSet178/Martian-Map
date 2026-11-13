@@ -1,0 +1,245 @@
+{
+  "product_id": "urn:nasa:pds:msl_places:data_maps:msl_orbital_dem::42.0",
+  "source_range_sha256": "928196ff9286b71902ac2d65f3cf7a0e7e44dea1b850a07d377276455debc178",
+  "native_grid_m": 1,
+  "native_valid_pixels": 1102500,
+  "native_total_pixels": 1102500,
+  "analysis_grid_m": 25,
+  "gradient_support_m": 75,
+  "valid_analysis_cells": 1600,
+  "effective_resolution": "Source-dependent HiRISE/CTX mosaic; no per-pixel resolving-power map. 25 m averaging / 75 m gradient support are processing scales, not a guaranteed ground resolving power.",
+  "vertical_reference": "Metres relative to MOLA areoid, positive up; not radius or ellipsoid height. Raw source values retained, no fitted bias correction.",
+  "horizontal_reference": "Mars sphere R=3396190 m, planetocentric/east, equirectangular lat_ts=0 lon_0=0. Local east spacing corrected by cos(latitude).",
+  "derivation": "Complete 25x25 native-post means; Horn 3x3 gradients; slope=degrees(atan(hypot(dz/dEast,dz/dNorth))); hillshade=clipped dot(unit terrain normal, artificial NW light).",
+  "sun": {
+    "azimuth_clockwise_from_north_deg": 315,
+    "altitude_deg": 45,
+    "cast_shadows": false
+  },
+  "nodata_policy": "Nonfinite/special float posts invalid; every block and all 9 gradient neighbors must be valid. Unsupported outer analysis ring omitted; transparent outside actual support. No filling/interpolation across gaps.",
+  "extent_wsen": [
+    137.37111842010495,
+    -4.737705748385843,
+    137.38798902496305,
+    -4.7208351435277285
+  ],
+  "elevation_m": {
+    "min": -4231.1134671875,
+    "max": -4061.559616015625,
+    "percentiles_5_50_95": [
+      -4211.0376521875,
+      -4148.35816484375,
+      -4088.057847792969
+    ]
+  },
+  "slope_degrees": {
+    "min": 0.23314479427501406,
+    "max": 20.578444093185492,
+    "percentiles_5_50_95": [
+      2.912304028846821,
+      7.409497001060654,
+      15.071932200718653
+    ]
+  },
+  "hillshade_relative": {
+    "min": 0.5911622865957311,
+    "max": 0.9031443940265909,
+    "percentiles_5_50_95": [
+      0.6979882854893521,
+      0.7812977773804597,
+      0.849651142164707
+    ]
+  },
+  "elevation_breaks_m": [
+    -4200,
+    -4160,
+    -4120,
+    -4080
+  ],
+  "elevation_colors": [
+    "#425A78",
+    "#587E91",
+    "#87A39D",
+    "#BCB29C",
+    "#C8A97E"
+  ],
+  "slope_breaks_degrees": [
+    5,
+    10,
+    15,
+    20
+  ],
+  "slope_colors": [
+    "#526B82",
+    "#71989E",
+    "#AAA7BD",
+    "#B49A88",
+    "#C9BDA0"
+  ],
+  "display": "Angular inverse MapLibre Mercator encoding only; nearest analysis-cell sampling. No Earth distances. Source bounds and alpha preserve coverage; PNGs contain display colors, not numeric DEM values.",
+  "tile_zoom_range": [
+    5,
+    14
+  ],
+  "tile_count": 39,
+  "tile_bytes": 31744,
+  "tiles": {
+    "public/maps/gale/dem/elevation/5/28/16.png": {
+      "sha256": "70a213096a8a3aa52d8b05ee5ff5f8d14305a01d51f9305d2555880a4a2b458c",
+      "bytes": 334
+    },
+    "public/maps/gale/dem/slope/5/28/16.png": {
+      "sha256": "70a213096a8a3aa52d8b05ee5ff5f8d14305a01d51f9305d2555880a4a2b458c",
+      "bytes": 334
+    },
+    "public/maps/gale/dem/hillshade/5/28/16.png": {
+      "sha256": "70a213096a8a3aa52d8b05ee5ff5f8d14305a01d51f9305d2555880a4a2b458c",
+      "bytes": 334
+    },
+    "public/maps/gale/dem/elevation/6/56/32.png": {
+      "sha256": "871a30ee2756ce130f301e9c453bc34d284ee671e9d9c2de56e9e77be67f36fe",
+      "bytes": 343
+    },
+    "public/maps/gale/dem/slope/6/56/32.png": {
+      "sha256": "b38b8e57156e992455d928d851045765b6a26a4de5d62ba9acea6e9769bd39dd",
+      "bytes": 343
+    },
+    "public/maps/gale/dem/hillshade/6/56/32.png": {
+      "sha256": "a3cd45a5dcade03e16cbdb8c7da230eb6c6aeebb9ca2fc225bd7f7fcc97cdd1b",
+      "bytes": 342
+    },
+    "public/maps/gale/dem/elevation/7/112/65.png": {
+      "sha256": "ebab2d960de720f019b921e774fb52d2f0eb2e22bb0ed46541e66b53b227fdb0",
+      "bytes": 359
+    },
+    "public/maps/gale/dem/slope/7/112/65.png": {
+      "sha256": "5be6a014c866750636c4bd7608338a2aa59c6254508f07fdce142607969a0fd8",
+      "bytes": 358
+    },
+    "public/maps/gale/dem/hillshade/7/112/65.png": {
+      "sha256": "64fb5615e3b042541515fdef5f13dfc4b66e6ea5ed93630935b31f662379a20b",
+      "bytes": 354
+    },
+    "public/maps/gale/dem/elevation/8/225/131.png": {
+      "sha256": "7056d4604ddd60c2d2dce43bf040103dde77dffdd3b0fa7dff08e42dce37bab1",
+      "bytes": 395
+    },
+    "public/maps/gale/dem/slope/8/225/131.png": {
+      "sha256": "a34f1b165fe92d3f8588fde5f5eb39e0289f99d3e75506542b39e61e301b04d7",
+      "bytes": 383
+    },
+    "public/maps/gale/dem/hillshade/8/225/131.png": {
+      "sha256": "5042d975d2ac118e7ee5d374a3e43fddeff2ac4434fde9bd79fb6cc110cf8604",
+      "bytes": 386
+    },
+    "public/maps/gale/dem/elevation/9/451/262.png": {
+      "sha256": "83427cbeff4189a8c5007e58375d2cf81ae07e8966261ee9dcf66945e775bb78",
+      "bytes": 414
+    },
+    "public/maps/gale/dem/slope/9/451/262.png": {
+      "sha256": "d535c5515c89d0b0f3e9d652e67b086912995644b687708908a383433e1558d3",
+      "bytes": 467
+    },
+    "public/maps/gale/dem/hillshade/9/451/262.png": {
+      "sha256": "861ca665ae5f6b8902c43bc767e4178a687d020e15aefa8d01e1b083d23517f1",
+      "bytes": 483
+    },
+    "public/maps/gale/dem/elevation/10/902/525.png": {
+      "sha256": "9217b3399e3b15837fbbc855af1a6777ac014959d4997f8fc060475e14b9c76a",
+      "bytes": 463
+    },
+    "public/maps/gale/dem/slope/10/902/525.png": {
+      "sha256": "8511356873347a6024bc671871a3c61aa8eb9da7357b92b5d399feb0769bdddd",
+      "bytes": 605
+    },
+    "public/maps/gale/dem/hillshade/10/902/525.png": {
+      "sha256": "f57802ab6c5073a8f11eb50dea300e82fdd7f61d179f1f3818e483e8703cf8b3",
+      "bytes": 810
+    },
+    "public/maps/gale/dem/elevation/11/1805/1050.png": {
+      "sha256": "61a8def921d5b5dcadf19fd48d631330ab04ba9d9150d3e49587ef9624a77cd9",
+      "bytes": 511
+    },
+    "public/maps/gale/dem/slope/11/1805/1050.png": {
+      "sha256": "3a059a21e85d872631d18382077810446101ce5892ed44b4f5dfd7da6c6ab451",
+      "bytes": 890
+    },
+    "public/maps/gale/dem/hillshade/11/1805/1050.png": {
+      "sha256": "402e6e5ee4d97d18438f4e0cfbc417b6a1b9119ebafdcd0eab3aff9de3730a42",
+      "bytes": 1616
+    },
+    "public/maps/gale/dem/elevation/12/3610/2101.png": {
+      "sha256": "5bf41ba18fd1538e492f022c6677e31f803a50fb1e35fcbdde12da850e37847b",
+      "bytes": 467
+    },
+    "public/maps/gale/dem/slope/12/3610/2101.png": {
+      "sha256": "e516a9b8fe0898821e705aebb107337c62414b789b2a1a9f6dcb758c6aefe548",
+      "bytes": 581
+    },
+    "public/maps/gale/dem/hillshade/12/3610/2101.png": {
+      "sha256": "e38f42189eba7826d9dd03be70832c9509e1049284f872f2f08f4c7aa36c017e",
+      "bytes": 837
+    },
+    "public/maps/gale/dem/elevation/12/3611/2101.png": {
+      "sha256": "3e4c9d2b0066e26c02d2d1774fd5f71a4042e4b69381426743ea2877e56e2a39",
+      "bytes": 635
+    },
+    "public/maps/gale/dem/slope/12/3611/2101.png": {
+      "sha256": "76d857b769b4e1bf937f24ce9b926d9126f03c84bc88e1cab30e155eea827b8f",
+      "bytes": 1163
+    },
+    "public/maps/gale/dem/hillshade/12/3611/2101.png": {
+      "sha256": "cafc72ecd62b652407d461203b6198bc50cd872bc030f7b296a2ff524a6e3e16",
+      "bytes": 2497
+    },
+    "public/maps/gale/dem/elevation/13/7221/4203.png": {
+      "sha256": "709db8f718aa1ad54162d665cf1c3e2d5c7e52bf8d33216ccec7081f1c2ec3ce",
+      "bytes": 543
+    },
+    "public/maps/gale/dem/slope/13/7221/4203.png": {
+      "sha256": "aa824c1a68af51571cfefb07cf2cbbd6da612cbfed26f8f0a5627d919c414739",
+      "bytes": 682
+    },
+    "public/maps/gale/dem/hillshade/13/7221/4203.png": {
+      "sha256": "0c2b099c604ce6458af295a2c6adedd33e5bbc0c5dfca82c18f655f58668b941",
+      "bytes": 983
+    },
+    "public/maps/gale/dem/elevation/13/7222/4203.png": {
+      "sha256": "e15e53e10d219c2c7f72369b9654afc4dd9dba66203d09bab8d787dc001b1b0f",
+      "bytes": 693
+    },
+    "public/maps/gale/dem/slope/13/7222/4203.png": {
+      "sha256": "6f2ae9ab00c5527309206af1cd06a2009ade8b7e0091255ae260b827a4110d4d",
+      "bytes": 1323
+    },
+    "public/maps/gale/dem/hillshade/13/7222/4203.png": {
+      "sha256": "b688a6b8a26a79f2a9348366e4c68b52baabdbf19bb4b6dd17fc354aaa47b3bb",
+      "bytes": 2749
+    },
+    "public/maps/gale/dem/elevation/14/14443/8407.png": {
+      "sha256": "ca9b78f92de4d467f7fb446eaf460829be8b0a07b0c339adc4b923087a75c602",
+      "bytes": 671
+    },
+    "public/maps/gale/dem/slope/14/14443/8407.png": {
+      "sha256": "53ae3308ebf006a2cc17a1bc9bed88fcc8df03f1bbbe8c3c5df2d371c0cd4466",
+      "bytes": 841
+    },
+    "public/maps/gale/dem/hillshade/14/14443/8407.png": {
+      "sha256": "02b315035e6b55616a4bd32f6dd4c3726e9e2d5c455299c5311aefb3c6fdf9c8",
+      "bytes": 1191
+    },
+    "public/maps/gale/dem/elevation/14/14444/8407.png": {
+      "sha256": "181213243abe1aef68dd464c14ace7f02902eaca607e4c2df53d91966131c345",
+      "bytes": 843
+    },
+    "public/maps/gale/dem/slope/14/14444/8407.png": {
+      "sha256": "048fcedfab6b180c23bda9616ddcb20058e7e1baa14ae860e4ef98a579e12a35",
+      "bytes": 1525
+    },
+    "public/maps/gale/dem/hillshade/14/14444/8407.png": {
+      "sha256": "61db6b3410d1cc22ad06f13bcf417ff98cca3c2e47b5046ff05da2324f8d56e1",
+      "bytes": 2996
+    }
+  },
+  "coverage_sha256": "e6fe1fabf440707ab02d1691264cfc48718bd6d734717c59abf76bb586f9ee79"
+}

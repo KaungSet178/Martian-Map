@@ -32,6 +32,10 @@ export const renderingSchema = z.discriminatedUnion("kind", [
     tile_size: z.union([z.literal(256), z.literal(512)]),
     min_zoom: z.number().min(0).max(22),
     max_zoom: z.number().min(0).max(22),
+    // Optional per-product support; omission preserves legacy regional bounds.
+    bounds: geographicExtentSchema.optional(),
+    focus_extent: geographicExtentSchema.optional(),
+    resampling: z.enum(["nearest", "linear"]).optional(),
   }),
   z.object({
     kind: z.literal("geojson"),

@@ -1,5 +1,6 @@
 import type { ScientificLayer } from "@/lib/contracts/region";
 import { geologyLegend } from "./geology-legend";
+import { terrainLayers } from "./terrain-layers";
 
 // Gale G1: source-backed content; unknown values remain explicit.
 export const layers = [
@@ -29,27 +30,7 @@ export const layers = [
     "default_opacity": 100,
     "legend": null
   },
-  {
-    "id": "gale-terrain",
-    "type": "Terrain & slope",
-    "display_name": "Terrain & slope",
-    "kind": "topography",
-    "availability": "pending",
-    "source_id": "gale-merged-dem",
-    "observation_date": null,
-    "spatial_resolution_m": null,
-    "coverage": "Published DEM envelope 137.124167..137.680559 E, -5.098652..-4.129605 N; actual valid pixels and quality zones unaudited.",
-    "limitations": "USGS merged HiRISE/CTX/HRSC/MOLA DEM v3 identified. Its 1 m output grid does not imply uniform 1 m effective resolution. No raster subset, slopes, nodata mask or terrain eligibility integrated; full 3.6 GB file not downloaded.",
-    "evidence": "Unavailable",
-    "attribution": null,
-    "rendering": {
-      "kind": "unavailable",
-      "reason": "Requires audited DEM, resolution, valid-data footprint and documented derivation."
-    },
-    "default_visible": false,
-    "default_opacity": 70,
-    "legend": null
-  },
+  ...terrainLayers,
   {
     "id": "gale-geology",
     "type": "Geological mapping",

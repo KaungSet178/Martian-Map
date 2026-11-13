@@ -1,0 +1,5 @@
+# Preserve original metadata and numerical audits byte-for-byte.
+*.xml -text whitespace=-blank-at-eol,cr-at-eol
+*.lbl -text whitespace=-blank-at-eol,cr-at-eol
+*.json -text whitespace=-blank-at-eol,cr-at-eol
+*.bin binary

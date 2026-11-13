@@ -491,8 +491,9 @@ for (const [width, height] of [[1440, 900], [1024, 768], [768, 1024], [390, 844]
     await traverse.check();
     await page.getByLabel(/Gale CTX orbital mosaic opacity/).fill("100");
     await page.getByRole("button", { name: "View scientific data register", exact: true }).click();
-    await expect(page.locator(".panel-scroll")).toContainText("gale-g3-1-v1");
-    await expect(page.locator(".panel-scroll")).toContainText("1 m output grid does not imply uniform 1 m");
+    await expect(page.locator(".panel-scroll")).toContainText("gale-g3-2-v1");
+    await expect(page.locator(".panel-scroll")).toContainText("processing scales, not guaranteed effective resolution");
+    await expect(page.locator(".panel-scroll")).toContainText("CTX alignment is unverified locally");
     await page.getByRole("button", { name: "Science", exact: true }).click();
     await page.getByRole("button", { name: "Glen Torridon", exact: true }).click();
     await expect(page.getByRole("dialog")).toContainText("Location unverified");

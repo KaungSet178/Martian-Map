@@ -1,0 +1,40 @@
+{
+  "source_url": "https://planetarydata.jpl.nasa.gov/img/data/msl/msl_places/data_maps/msl_orbital_dem.img",
+  "product_id": "urn:nasa:pds:msl_places:data_maps:msl_orbital_dem::42.0",
+  "range": [
+    223531560,
+    251843759
+  ],
+  "range_bytes": 28312200,
+  "range_sha256": "928196ff9286b71902ac2d65f3cf7a0e7e44dea1b850a07d377276455debc178",
+  "pixel_window": {
+    "col": 1569,
+    "row": 8288,
+    "width": 1050,
+    "height": 1050
+  },
+  "transform": [
+    1,
+    0,
+    8142606.49279,
+    0,
+    -1,
+    -279801.07519
+  ],
+  "bounds_wsen": [
+    137.3706966549835,
+    -4.738127513507297,
+    137.38841079008452,
+    -4.720413378406276
+  ],
+  "native_post_spacing_m": 1,
+  "valid_count": 1102500,
+  "total_pixels": 1102500,
+  "valid_fraction": 1.0,
+  "min_max_m": [
+    -4237.5146484375,
+    -4056.808837890625
+  ],
+  "source_dtype": "IEEE754MSBSingle",
+  "subset_sha256": "d6cd4fa4e5c1dd7569e3a64c9d81832273f2878d29a22a88e1c0255044ba218a"
+}

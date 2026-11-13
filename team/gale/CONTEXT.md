@@ -172,3 +172,21 @@ Optional shared categorical/extent fields preserve older regional manifests;
 historical context overlays can now coexist with one thematic layer. Coordinate
 future shared features through the handoff. G3.2/G3.3 and other enhancements are
 not started.
+
+## Milestone G3.2 - 13 November 2026
+
+Dataset `gale-g3-2-v1`: optional real PDS DEM elevation, hillshade and slope views.
+Read [G3_2_REPORT.md](G3_2_REPORT.md) and [scientific audit](G3_2_DEM_AUDIT.json).
+The inspected 1.05 km native window yields a 1 km projected valid support square.
+All native posts are valid; 25 m complete-post averaging and 75 m Horn support
+are processing scales, not guaranteed effective resolution. Heights are metres
+relative to MOLA areoid, positive up. Mixed HiRISE/CTX quality and absolute errors
+remain unquantified. Native coordinates retained without fitted corrections.
+
+**Local CTX co-registration is unverified; direct orthophoto checks suggest a
+positional mismatch.** Layers explicitly state this and open at 100% opacity.
+Independent DEM inspection is available; precise feature comparison, hazards,
+routing and mission/resource calculations remain unsupported. Target locations
+and boundaries unchanged. G1/G2/G3.1 assets preserved. Optional raster bounds,
+focus and nearest sampling preserve legacy manifests; see report for shared
+contract handoff. No G3.3/G4 features started.

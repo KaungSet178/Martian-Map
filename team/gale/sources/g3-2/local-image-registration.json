@@ -1,0 +1,538 @@
+{
+  "method": "64x64 local PDS image samples compared with committed NASA CTX display pixels at unmodified published coordinates. No fitted shifts. This tests display convention, not survey accuracy.",
+  "reference_url": "https://planetarydata.jpl.nasa.gov/img/data/msl/msl_places/data_maps/msl_orbital_map.img",
+  "native_centric_correlation": -0.1977235703666881,
+  "wrong_graphic_hypothesis_correlation": -0.013821879688679158,
+  "samples": 4096,
+  "bytes_downloaded": 260608,
+  "ranges": [
+    {
+      "range": [
+        895455778,
+        895459849
+      ],
+      "bytes": 4072,
+      "sha256": "683fe670d56eb51c70760f61099613522410759fbf4c745fc16071437430e2df"
+    },
+    {
+      "range": [
+        897208178,
+        897212249
+      ],
+      "bytes": 4072,
+      "sha256": "570084991ed3c1be18ccc430f5f617aa091fcad650e9216ea7114b8dc3c8924d"
+    },
+    {
+      "range": [
+        898960578,
+        898964649
+      ],
+      "bytes": 4072,
+      "sha256": "850181d8678ec4a2b48337bd8e975319e785bd68505d95b611662dbc01d6ebb8"
+    },
+    {
+      "range": [
+        900686018,
+        900690089
+      ],
+      "bytes": 4072,
+      "sha256": "790a923eaea8ac8f2e395d7914fb9ff2cec8bccf9661060d95823b07d400e12a"
+    },
+    {
+      "range": [
+        902438418,
+        902442489
+      ],
+      "bytes": 4072,
+      "sha256": "1c063782674206070d6f178b9a18fdbf8f90351381b2a754295aa09dcec794f2"
+    },
+    {
+      "range": [
+        904163858,
+        904167929
+      ],
+      "bytes": 4072,
+      "sha256": "3dd45340582da3a650a68240e6b8b18710b3017b624bd7eacb7540584b6508fe"
+    },
+    {
+      "range": [
+        905916258,
+        905920329
+      ],
+      "bytes": 4072,
+      "sha256": "064816e59feda1a728a06d732be59ae2b23b1d9fef54e5bd1a025d4ac0df1f9d"
+    },
+    {
+      "range": [
+        907668658,
+        907672729
+      ],
+      "bytes": 4072,
+      "sha256": "3ce96923d95a78f2bd916d1c5d4414e6036b61af31083c846527febaccc2e539"
+    },
+    {
+      "range": [
+        909394098,
+        909398169
+      ],
+      "bytes": 4072,
+      "sha256": "ef328e7915b3b07f009ebd5fba0962561b292bb7c3d49b1b57aa7e9ead90a06e"
+    },
+    {
+      "range": [
+        911146498,
+        911150569
+      ],
+      "bytes": 4072,
+      "sha256": "a21a76b3e54dc48032a105bd25e7d45391b16436e441ca323379ac8cadf502b5"
+    },
+    {
+      "range": [
+        912898898,
+        912902969
+      ],
+      "bytes": 4072,
+      "sha256": "1853d355a0925e4d599f01b7eccb0ec3d0c458128daf505ac3e1633ec59e843d"
+    },
+    {
+      "range": [
+        914624338,
+        914628409
+      ],
+      "bytes": 4072,
+      "sha256": "47cb0c25431fc5f4d88c6c218afb8ae7cf20da7199155beeacfac12c66051be9"
+    },
+    {
+      "range": [
+        916376738,
+        916380809
+      ],
+      "bytes": 4072,
+      "sha256": "86edd3cdfabd18c47b810c602c4ff9b74b3e1676e1b8612a46f3a3525f80afc0"
+    },
+    {
+      "range": [
+        918102178,
+        918106249
+      ],
+      "bytes": 4072,
+      "sha256": "489a00dd5534c12eeb413ee767e0c1f7b8e76f8e0e7a28f22466c09bd2127ac9"
+    },
+    {
+      "range": [
+        919854578,
+        919858649
+      ],
+      "bytes": 4072,
+      "sha256": "af002c64ea3ad7c64e2c4566eae2906885b957c2b977a69c88977f553d879a41"
+    },
+    {
+      "range": [
+        921606978,
+        921611049
+      ],
+      "bytes": 4072,
+      "sha256": "f6548f80b8a221051c3df87d68e41b9c622e3ad7247bb6b96a18bf45aae4ad28"
+    },
+    {
+      "range": [
+        923332418,
+        923336489
+      ],
+      "bytes": 4072,
+      "sha256": "fbc43d57a8d1d6b1fb1f0c021481f3cf1a7813e7c2c09b777b31969d04692afc"
+    },
+    {
+      "range": [
+        925084818,
+        925088889
+      ],
+      "bytes": 4072,
+      "sha256": "77fa3e375e490e1f5f5150c429ad75fff6b56a6370f1d23df69129c42afaca56"
+    },
+    {
+      "range": [
+        926810258,
+        926814329
+      ],
+      "bytes": 4072,
+      "sha256": "129cd7d0ac9032d67971f18e3a405b4e009a56f76b36d2f46e07554a326de5af"
+    },
+    {
+      "range": [
+        928562658,
+        928566729
+      ],
+      "bytes": 4072,
+      "sha256": "f00a2592818594d144dd40be6fd709be74e18c318792d789f60316a91373bb16"
+    },
+    {
+      "range": [
+        930315058,
+        930319129
+      ],
+      "bytes": 4072,
+      "sha256": "2ae43f3d5bc0dcde101adc50ca43c86e1b9d6473b83a9cab420dfeb593569d73"
+    },
+    {
+      "range": [
+        932040498,
+        932044569
+      ],
+      "bytes": 4072,
+      "sha256": "b75e0615d58deaa6d98ceebe28ef2c18b111f938fd8cbf7503dc9184b3e02473"
+    },
+    {
+      "range": [
+        933792898,
+        933796969
+      ],
+      "bytes": 4072,
+      "sha256": "37f324dfd781d0814f769969bd54b174238b113b133a2627d62fec24251b218a"
+    },
+    {
+      "range": [
+        935545298,
+        935549369
+      ],
+      "bytes": 4072,
+      "sha256": "35b1fb7f3a3b60c75729810f8efa125befbc228cc69f426ddbe7010559766cf2"
+    },
+    {
+      "range": [
+        937270738,
+        937274809
+      ],
+      "bytes": 4072,
+      "sha256": "d9707a945d0471ce248c4e48396a9e3869ababf513aff107c1dd996a2ed0c306"
+    },
+    {
+      "range": [
+        939023138,
+        939027209
+      ],
+      "bytes": 4072,
+      "sha256": "24d508c4c8805db1073ad7c21f1c2d23b1e76721910e4adf79e10fbda7aa01b7"
+    },
+    {
+      "range": [
+        940748578,
+        940752649
+      ],
+      "bytes": 4072,
+      "sha256": "5740cc509989324fd1f4656820b97d295d5be285b7b28551a7c23a8aa40748e9"
+    },
+    {
+      "range": [
+        942500978,
+        942505049
+      ],
+      "bytes": 4072,
+      "sha256": "1e883c6ee73d1040794397e68de181f649cc1847492d82efbdd7b99e6b776e1a"
+    },
+    {
+      "range": [
+        944253378,
+        944257449
+      ],
+      "bytes": 4072,
+      "sha256": "fae69adaf581be6ed2818b10f827814cad133ae87b9b46ed86c5f4953985066f"
+    },
+    {
+      "range": [
+        945978818,
+        945982889
+      ],
+      "bytes": 4072,
+      "sha256": "82f21d8feab131bcd6d9f324a405a4a523b2ec62a193d3326d7bf48fe4027d3c"
+    },
+    {
+      "range": [
+        947731218,
+        947735289
+      ],
+      "bytes": 4072,
+      "sha256": "156e8a20bfd5d36996d52c4aafc99e5c02c66808d11023f021b31d3e05313ab1"
+    },
+    {
+      "range": [
+        949456658,
+        949460729
+      ],
+      "bytes": 4072,
+      "sha256": "1d26e25db96ef6f27d82f98babac031b6d6fd608106ccfdf733b53c305ebc4fb"
+    },
+    {
+      "range": [
+        951209058,
+        951213129
+      ],
+      "bytes": 4072,
+      "sha256": "3abd5f86d3558cdcd02769c93271fd5f4bba042d5b05cee64ccdbd52a2e60a96"
+    },
+    {
+      "range": [
+        952961458,
+        952965529
+      ],
+      "bytes": 4072,
+      "sha256": "3fff8c1b4fe7a1abac51d750497205df4319c7d7e24386c4aebabc83c67dbb00"
+    },
+    {
+      "range": [
+        954686898,
+        954690969
+      ],
+      "bytes": 4072,
+      "sha256": "ff778df78f75640cfb88e3649ef8c10c8706f2e5d6736b21740e2fc55677bd1c"
+    },
+    {
+      "range": [
+        956439298,
+        956443369
+      ],
+      "bytes": 4072,
+      "sha256": "3414f8664c87529e4a028dd45a96b1e78d984c21d34fce864fcf94f51f7a8579"
+    },
+    {
+      "range": [
+        958191698,
+        958195769
+      ],
+      "bytes": 4072,
+      "sha256": "1cb6715e1e213d13ecdc5beb96caabd9d7c0efde2c574b996ba7af560ff4d33c"
+    },
+    {
+      "range": [
+        959917138,
+        959921209
+      ],
+      "bytes": 4072,
+      "sha256": "37847af0a4fd6af66884c6edb89735a83205d0ba3f86aad9ebd4aca15821cdde"
+    },
+    {
+      "range": [
+        961669538,
+        961673609
+      ],
+      "bytes": 4072,
+      "sha256": "9c9aa724f339f73b2a5a77e6a637307ef5cc1d527ea1821600348e6bcacc77b1"
+    },
+    {
+      "range": [
+        963394978,
+        963399049
+      ],
+      "bytes": 4072,
+      "sha256": "d3694001ef62ff3717016d55f8615ce13fd948df11991412e448d24a763c2ffd"
+    },
+    {
+      "range": [
+        965147378,
+        965151449
+      ],
+      "bytes": 4072,
+      "sha256": "2b66fd49a2394bbbcdc86cc1b4a44339fbdcf96a0f737606d24092f6f7e18e0a"
+    },
+    {
+      "range": [
+        966899778,
+        966903849
+      ],
+      "bytes": 4072,
+      "sha256": "1b60f4e5db269b6fb7e31cc2ef1b95c4518b7816d89fd6e4968e821832e30e20"
+    },
+    {
+      "range": [
+        968625218,
+        968629289
+      ],
+      "bytes": 4072,
+      "sha256": "96d4c8f75cdab98e75173e41a303465c7db6b34650c016b081336fd23bd29e26"
+    },
+    {
+      "range": [
+        970377618,
+        970381689
+      ],
+      "bytes": 4072,
+      "sha256": "417d9b6c898bdab1ee9d07fc40f18b123e74e2186a32b1a8cbd96f81fadf1b0f"
+    },
+    {
+      "range": [
+        972103058,
+        972107129
+      ],
+      "bytes": 4072,
+      "sha256": "12ecc3d7b30eea1c4d68956301f701405137ce92312304bf02edd90f43b7f6c9"
+    },
+    {
+      "range": [
+        973855458,
+        973859529
+      ],
+      "bytes": 4072,
+      "sha256": "4d20469d45b1576cce3214c0bbbf044490b1460e22da14868acbb19ff8883d50"
+    },
+    {
+      "range": [
+        975607858,
+        975611929
+      ],
+      "bytes": 4072,
+      "sha256": "af5caa73ae6f93ee3b8d66d5e0f245b68f94ceabb8a936dad6a2e4523402c9a2"
+    },
+    {
+      "range": [
+        977333298,
+        977337369
+      ],
+      "bytes": 4072,
+      "sha256": "e0a507b5dd9ad7765a1b60f8b599a14a8a6152e939e3dd9edce9628ee7af33ee"
+    },
+    {
+      "range": [
+        979085698,
+        979089769
+      ],
+      "bytes": 4072,
+      "sha256": "285c5c966553ce9a531b872fe70ad6bbc2edf8578bb3bcbaf0bc19291ddd5e13"
+    },
+    {
+      "range": [
+        980838098,
+        980842169
+      ],
+      "bytes": 4072,
+      "sha256": "fb3bc9444ba131a98c88dcac58ae8792a198ec4db841613703225d6311883f54"
+    },
+    {
+      "range": [
+        982563538,
+        982567609
+      ],
+      "bytes": 4072,
+      "sha256": "e2d7ddc9d6008603760e08ecba9c4083f3176f9f60c9332fa80b32f3946a0e89"
+    },
+    {
+      "range": [
+        984315938,
+        984320009
+      ],
+      "bytes": 4072,
+      "sha256": "eb4a9c181d87edb2c4167fdc874f3a907b4dfcb1c26b1dce60ee39676c7a64e0"
+    },
+    {
+      "range": [
+        986041378,
+        986045449
+      ],
+      "bytes": 4072,
+      "sha256": "cf46bbe86d506a2c405f7f8af4b657812c87137ebb3729be9e47f6e8cccedffd"
+    },
+    {
+      "range": [
+        987793778,
+        987797849
+      ],
+      "bytes": 4072,
+      "sha256": "4867ed888c7a3bb53ca2f3ba7a6600c175845dc60b039c89743fe784f1fd5647"
+    },
+    {
+      "range": [
+        989546178,
+        989550249
+      ],
+      "bytes": 4072,
+      "sha256": "60a19de654673e9aba7dc20a4f590a53336afdbee02d6bbb66b318cb53f0311b"
+    },
+    {
+      "range": [
+        991271618,
+        991275689
+      ],
+      "bytes": 4072,
+      "sha256": "7c1690035b4b42d5bff902af1fa7c2bb4a01ec3f58934e2551c2032f5e361944"
+    },
+    {
+      "range": [
+        993024018,
+        993028089
+      ],
+      "bytes": 4072,
+      "sha256": "b92acb503254b8378c369ee74e90e22aef387562a709104cea6a488d1aba20c0"
+    },
+    {
+      "range": [
+        994749458,
+        994753529
+      ],
+      "bytes": 4072,
+      "sha256": "34c5346464e0d396dffb7f75692a8b567349f4abf4a4f393145001eb92197b87"
+    },
+    {
+      "range": [
+        996501858,
+        996505929
+      ],
+      "bytes": 4072,
+      "sha256": "e45480bd50ab6d29a7f923712d5bc8f8d34db5252a3e735a91626288fea72bd5"
+    },
+    {
+      "range": [
+        998254258,
+        998258329
+      ],
+      "bytes": 4072,
+      "sha256": "ee3542d6aed3f9ded9af457b7d35163b0f5225f382fc3ad14e1cba5d15b8de40"
+    },
+    {
+      "range": [
+        999979698,
+        999983769
+      ],
+      "bytes": 4072,
+      "sha256": "a426b6000e7752ac47d96f3691ab2d9a0d7b245fe4b9e0b77e4cd2e80b6240a8"
+    },
+    {
+      "range": [
+        1001732098,
+        1001736169
+      ],
+      "bytes": 4072,
+      "sha256": "48bf38c68165a39cdad1556a41fa7968bcf54b88eb2f6e84dbede1d33161bf0e"
+    },
+    {
+      "range": [
+        1003484498,
+        1003488569
+      ],
+      "bytes": 4072,
+      "sha256": "1e6ac320279fe94dd7704cfe51ed46f012f0dcc88d450ca81d12b19c902f046d"
+    },
+    {
+      "range": [
+        1005209938,
+        1005214009
+      ],
+      "bytes": 4072,
+      "sha256": "ecd28d60c0e6c48467d2c21a0b4ec16552cff6ef23db6b1aacff2542c1e2f9a2"
+    }
+  ],
+  "unapplied_translation_diagnostic": {
+    "gaussian_radius_samples": 2,
+    "central_patch": [
+      32,
+      32
+    ],
+    "search_radius_samples": 16,
+    "sample_step_projected_m": 16.153846153846153,
+    "best_correlation_row_column": [
+      0.8404312974058578,
+      12,
+      3
+    ],
+    "zero_shift_correlation": -0.1364022815136027,
+    "interpretation": "Suggests positional mismatch, not an accepted transform, survey offset or correction. No shift applied."
+  }
+}
