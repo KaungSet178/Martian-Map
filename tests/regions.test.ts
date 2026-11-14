@@ -60,7 +60,7 @@ test("DEM derivatives retain audited bytes, bounded support, units and conservat
   const coverage = JSON.parse(coverageBytes.toString());
   const [west, south, east, north] = report.extent_wsen;
   assert.deepEqual(coverage.features[0].geometry.coordinates[0], [[west,south],[east,south],[east,north],[west,north],[west,south]]);
-  for (const layer of gale.layers.filter((item) => item.kind === "topography")) {
+  for (const layer of gale.layers.filter((item) => item.kind === "topography" && item.source_id === "gale-pds-dem-subset")) {
     assert.equal(layer.availability, "available");
     assert.equal(layer.evidence, "Derived");
     assert.equal(layer.default_visible, false);
@@ -99,6 +99,78 @@ test("per-product raster request bounds and nearest resampling preserve legacy d
   assert.notDeepEqual(sources["region-gale-optical"].bounds,[w,s,e,n]);
   assert.deepEqual(paint["region-gale-terrain"],{"raster-resampling":"nearest"});
   assert.deepEqual(paint["region-gale-optical"],{"raster-resampling":"linear"});
+});
+
+test("G4 regional and global terrain layers preserve multi-resolution hierarchy, audited tiles, and scientific bounds", () => {
+  const gale = getRegion("gale")!;
+  const audit = JSON.parse(readFileSync("team/gale/G4_TERRAIN_AUDIT.json", "utf8"));
+  assert.equal(audit.milestone, "G4");
+  assert.equal(audit.coverage_evaluation.combined_real_data_coverage_pct, 100);
+  assert.equal(audit.coverage_evaluation.fabricated_or_interpolated_pixels_pct, 0);
+
+  // Check regional HRSC 30 m layers
+  const regionalIds = ["gale-regional-elevation", "gale-regional-hillshade", "gale-regional-slope"];
+  for (const id of regionalIds) {
+    const layer = gale.layers.find((l) => l.id === id);
+    assert.ok(layer, `Missing regional layer ${id}`);
+    assert.equal(layer!.availability, "available");
+    assert.equal(layer!.kind, "topography");
+    assert.equal(layer!.source_id, "gale-hrsc-30m");
+    assert.equal(layer!.spatial_resolution_m, 30);
+    assert.equal(layer!.default_visible, false);
+    assert.match(layer!.coverage!, /100% of the Gale overview/);
+    assert.match(layer!.limitations, /not for hazard routing/);
+    assert.equal(layer!.rendering.kind, "raster-tiles");
+    if (layer!.rendering.kind === "raster-tiles") {
+      assert.equal(layer!.rendering.resampling, "nearest");
+      assert.equal(layer!.rendering.min_zoom, 5);
+      assert.equal(layer!.rendering.max_zoom, 13);
+      assert.ok(layer!.rendering.bounds);
+      assert.deepEqual(layer!.rendering.bounds, layer!.rendering.focus_extent);
+    }
+  }
+
+  // Check global HRSC-MOLA 200 m fallback layers
+  const globalIds = ["gale-global-elevation", "gale-global-hillshade", "gale-global-slope"];
+  for (const id of globalIds) {
+    const layer = gale.layers.find((l) => l.id === id);
+    assert.ok(layer, `Missing global layer ${id}`);
+    assert.equal(layer!.availability, "available");
+    assert.equal(layer!.kind, "topography");
+    assert.equal(layer!.source_id, "gale-usgs-200m");
+    assert.equal(layer!.spatial_resolution_m, 200);
+    assert.equal(layer!.default_visible, false);
+    assert.match(layer!.coverage!, /100% real-data coverage/);
+    assert.match(layer!.limitations, /hazards are completely unresolved/);
+    assert.equal(layer!.rendering.kind, "raster-tiles");
+    if (layer!.rendering.kind === "raster-tiles") {
+      assert.equal(layer!.rendering.resampling, "nearest");
+      assert.equal(layer!.rendering.min_zoom, 5);
+      assert.equal(layer!.rendering.max_zoom, 13);
+      assert.ok(layer!.rendering.bounds);
+      assert.deepEqual(layer!.rendering.bounds, layer!.rendering.focus_extent);
+    }
+  }
+
+  // Verify coverage GeoJSON files and hashes
+  const regionalCoverageBytes = readFileSync("public/maps/gale/terrain-regional/coverage.geojson");
+  assert.equal(createHash("sha256").update(regionalCoverageBytes).digest("hex"), audit.regional_hrsc_30m.coverage_sha256);
+  const globalCoverageBytes = readFileSync("public/maps/gale/terrain-global/coverage.geojson");
+  assert.equal(createHash("sha256").update(globalCoverageBytes).digest("hex"), audit.global_usgs_200m.coverage_sha256);
+
+  // Spot-check tile files on disk match audit records
+  const sampleRegionalTiles = Object.entries(audit.regional_hrsc_30m.tiles).slice(0, 10) as [string, { sha256: string; bytes: number }][];
+  for (const [path, record] of sampleRegionalTiles) {
+    const bytes = readFileSync(path);
+    assert.equal(createHash("sha256").update(bytes).digest("hex"), record.sha256);
+    assert.equal(bytes.length, record.bytes);
+  }
+
+  // Radio-like exclusivity across all terrain and geology layers
+  for (const id of [...regionalIds, ...globalIds, "gale-terrain", "gale-geology"]) {
+    const state = updateLayerState(gale, updateLayerState(gale, {}, "gale-regional-slope", { visible: true }), id, { visible: true });
+    assert.equal(gale.layers.filter((l) => l.kind !== "optical" && l.kind !== "overlay" && (state[l.id]?.visible ?? l.default_visible)).length, 1);
+  }
 });
 
 test("Arc Pass asset preserves all source classifications and audited geometry identity", () => {

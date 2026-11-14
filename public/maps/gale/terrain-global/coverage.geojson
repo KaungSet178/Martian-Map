@@ -1,0 +1,49 @@
+{
+  "type": "FeatureCollection",
+  "marswalk_reference": {
+    "body": "Mars",
+    "latitude_type": "planetocentric",
+    "longitude_direction": "east",
+    "resolution_m": 200.0,
+    "dataset": "USGS HRSC-MOLA Blended DEM Global 200m v2 (Fergason et al., 2018)"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "source": "USGS HRSC-MOLA Blended DEM Global 200m",
+        "coverage_percent_overview": 100.0,
+        "resolution_m": 200,
+        "vertical_datum": "Metres relative to MOLA areoid, positive up",
+        "disclaimer": "CTX alignment unverified. Broad 200 m baseline does not resolve hazards or traversability."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              137.10124280653085,
+              -5.096631488181161
+            ],
+            [
+              137.6984647684031,
+              -5.096631488181161
+            ],
+            [
+              137.6984647684031,
+              -4.300335539018134
+            ],
+            [
+              137.10124280653085,
+              -4.300335539018134
+            ],
+            [
+              137.10124280653085,
+              -5.096631488181161
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

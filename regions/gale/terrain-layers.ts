@@ -7,7 +7,25 @@ export const demExtent = {
   east_east: 137.38798902496305,
   north_latitude: -4.7208351435277285,
 };
-const common = {
+
+// Regional HRSC 30 m DTM mosaic bounds (Persaud et al., 2021)
+export const regionalExtent = {
+  west_east: 137.32743882663516,
+  south_latitude: -4.838798324880672,
+  east_east: 137.47471920704652,
+  north_latitude: -4.563976171741976,
+};
+
+// Global HRSC-MOLA 200 m blended DEM fallback bounds (Fergason et al., 2018)
+export const globalExtent = {
+  west_east: 137.10124280653086,
+  south_latitude: -5.096631488181151,
+  east_east: 137.6984647684031,
+  north_latitude: -4.300335539018143,
+};
+
+// --- Local PDS DEM (1 m native, 25 m analysis) ---
+const localCommon = {
   kind: "topography",
   availability: "available",
   source_id: "gale-pds-dem-subset",
@@ -20,7 +38,8 @@ const common = {
   default_visible: false,
   default_opacity: 100,
 } as const;
-const rendering = (kind: string) => ({
+
+const localRendering = (kind: string) => ({
   kind: "raster-tiles" as const,
   tiles: [`/maps/gale/dem/${kind}/{z}/{x}/{y}.png`],
   tile_size: 256 as const,
@@ -30,13 +49,173 @@ const rendering = (kind: string) => ({
   focus_extent: demExtent,
   resampling: "nearest" as const,
 });
+
+// --- Regional HRSC 30 m DTM ---
+const regionalCommon = {
+  kind: "topography",
+  availability: "available",
+  source_id: "gale-hrsc-30m",
+  observation_date: null,
+  spatial_resolution_m: 30,
+  coverage: "Gale HRSC 30 m DTM mosaic (Persaud et al., 2021) covering 100% of the Gale overview exploration footprint (137.344..137.458 E, -4.822..-4.581 N). 158,013 valid analysis cells; outside footprint transparent. CTX alignment is unverified locally: do not match fine features between these products.",
+  limitations: "30 m grid spacing derived from HRSC stereo images H1938_0000, H1927_0000, and H1916_0000 tied to HRSC-MOLA 200 m global DTM. Heights in metres above MOLA areoid. Co-registration against CTX mosaic unverified; not for hazard routing or astronaut safety certification.",
+  evidence: "Derived",
+  attribution: "ESA / DLR / Freie Universität Berlin / NASA / JPL-Caltech · Persaud et al. (2021) · Marswalk DEM derivatives",
+  default_visible: false,
+  default_opacity: 100,
+} as const;
+
+const regionalRendering = (kind: string) => ({
+  kind: "raster-tiles" as const,
+  tiles: [`/maps/gale/terrain-regional/${kind}/{z}/{x}/{y}.png`],
+  tile_size: 256 as const,
+  min_zoom: 5,
+  max_zoom: 13,
+  bounds: regionalExtent,
+  focus_extent: regionalExtent,
+  resampling: "nearest" as const,
+});
+
+// --- Global HRSC-MOLA 200 m Fallback ---
+const globalCommon = {
+  kind: "topography",
+  availability: "available",
+  source_id: "gale-usgs-200m",
+  observation_date: null,
+  spatial_resolution_m: 200,
+  coverage: "USGS HRSC-MOLA Blended DEM Global 200m v2 (Fergason et al., 2018) providing continuous regional elevation fallback across the entire Gale Crater footprint. 100% real-data coverage; outside transparent.",
+  limitations: "200 m grid spacing blending Mars Express HRSC and MGS MOLA elevation observations. Coarse regional baseline; small rocks, boulders, and local rover/suit hazards are completely unresolved. Not for astronaut hazard or safety routing.",
+  evidence: "Derived",
+  attribution: "USGS Astrogeology Science Center · NASA / ESA · Fergason et al. (2018) · Marswalk DEM derivatives",
+  default_visible: false,
+  default_opacity: 100,
+} as const;
+
+const globalRendering = (kind: string) => ({
+  kind: "raster-tiles" as const,
+  tiles: [`/maps/gale/terrain-global/${kind}/{z}/{x}/{y}.png`],
+  tile_size: 256 as const,
+  min_zoom: 5,
+  max_zoom: 13,
+  bounds: globalExtent,
+  focus_extent: globalExtent,
+  resampling: "nearest" as const,
+});
+
 export const terrainLayers = [
+  // --- Regional HRSC 30 m Layers ---
   {
-    ...common,
+    ...regionalCommon,
+    id: "gale-regional-elevation",
+    type: "Elevation",
+    display_name: "Regional HRSC elevation",
+    rendering: regionalRendering("elevation"),
+    legend: {
+      title: "Regional elevation · 30 m grid · CTX alignment unverified",
+      units: "m relative to MOLA areoid, positive up",
+      items: [
+        { label: "Below −4400 m", color: "#425A78", description: "Crater floor and northern plains" },
+        { label: "−4400 to < −4200 m", color: "#587E91", description: "Lower Mount Sharp apron" },
+        { label: "−4200 to < −3900 m", color: "#87A39D", description: "Clay-bearing unit and Vera Rubin ridge" },
+        { label: "−3900 to < −3500 m", color: "#BCB29C", description: "Sulfate-bearing layered strata" },
+        { label: "−3500 m and above", color: "#C8A97E", description: "Upper Mount Sharp flank" },
+      ],
+    },
+  },
+  {
+    ...regionalCommon,
+    id: "gale-regional-hillshade",
+    type: "Hillshade",
+    display_name: "Regional HRSC hillshade",
+    rendering: regionalRendering("hillshade"),
+    legend: {
+      title: "Regional artificial illumination · CTX alignment unverified",
+      units: "relative illumination, 0–1",
+      items: [
+        { label: "Dark · 0", color: "#000000", description: "Light from northwest (315° azimuth), 45° altitude. No cast shadows or vertical exaggeration. Not an optical photograph." },
+        { label: "Bright · 1", color: "#FFFFFF", description: "Horn gradients on 30 m grid with Mars metric spacing." },
+      ],
+    },
+  },
+  {
+    ...regionalCommon,
+    id: "gale-regional-slope",
+    type: "Slope",
+    display_name: "Regional HRSC slope · degrees",
+    rendering: regionalRendering("slope"),
+    legend: {
+      title: "Regional slope · 30 m grid · CTX alignment unverified",
+      units: "degrees (°), not safety classes",
+      items: [
+        { label: "0 to < 5°", color: "#526B82", description: "Horn 3×3 derivative; Mars metre spacing, east distance corrected by cos(planetocentric latitude)." },
+        { label: "5 to < 10°", color: "#71989E" },
+        { label: "10 to < 15°", color: "#AAA7BD" },
+        { label: "15 to < 20°", color: "#B49A88" },
+        { label: "20° and above", color: "#C9BDA0", description: "Classes describe this DEM representation only. Small obstacles and hazards are unresolved. No astronaut safety threshold is assigned." },
+      ],
+    },
+  },
+
+  // --- Global HRSC-MOLA 200 m Fallback Layers ---
+  {
+    ...globalCommon,
+    id: "gale-global-elevation",
+    type: "Elevation",
+    display_name: "Global HRSC–MOLA elevation",
+    rendering: globalRendering("elevation"),
+    legend: {
+      title: "Global elevation · 200 m grid · CTX alignment unverified",
+      units: "m relative to MOLA areoid, positive up",
+      items: [
+        { label: "Below −4400 m", color: "#425A78" },
+        { label: "−4400 to < −4200 m", color: "#587E91" },
+        { label: "−4200 to < −3900 m", color: "#87A39D" },
+        { label: "−3900 to < −3500 m", color: "#BCB29C" },
+        { label: "−3500 m and above", color: "#C8A97E" },
+      ],
+    },
+  },
+  {
+    ...globalCommon,
+    id: "gale-global-hillshade",
+    type: "Hillshade",
+    display_name: "Global HRSC–MOLA hillshade",
+    rendering: globalRendering("hillshade"),
+    legend: {
+      title: "Global artificial illumination · CTX alignment unverified",
+      units: "relative illumination, 0–1",
+      items: [
+        { label: "Dark · 0", color: "#000000", description: "Light from northwest (315° azimuth), 45° altitude." },
+        { label: "Bright · 1", color: "#FFFFFF", description: "Horn gradients on 200 m global grid." },
+      ],
+    },
+  },
+  {
+    ...globalCommon,
+    id: "gale-global-slope",
+    type: "Slope",
+    display_name: "Global HRSC–MOLA slope · degrees",
+    rendering: globalRendering("slope"),
+    legend: {
+      title: "Global slope · 200 m grid · CTX alignment unverified",
+      units: "degrees (°), not safety classes",
+      items: [
+        { label: "0 to < 5°", color: "#526B82" },
+        { label: "5 to < 10°", color: "#71989E" },
+        { label: "10 to < 15°", color: "#AAA7BD" },
+        { label: "15 to < 20°", color: "#B49A88" },
+        { label: "20° and above", color: "#C9BDA0", description: "Broad 200 m slope only; suit-scale hazards completely unresolved." },
+      ],
+    },
+  },
+
+  // --- Existing Local PDS DEM (1 m native, 25 m analysis) ---
+  {
+    ...localCommon,
     id: "gale-terrain",
     type: "Elevation",
     display_name: "Elevation · MOLA areoid",
-    rendering: rendering("elevation"),
+    rendering: localRendering("elevation"),
     legend: {
       title: "Mean elevation · 25 m grid · CTX alignment unverified",
       units: "m relative to MOLA areoid, positive up",
@@ -50,11 +229,11 @@ export const terrainLayers = [
     },
   },
   {
-    ...common,
+    ...localCommon,
     id: "gale-hillshade",
     type: "Hillshade",
     display_name: "DEM hillshade",
-    rendering: rendering("hillshade"),
+    rendering: localRendering("hillshade"),
     legend: {
       title: "Artificial illumination · CTX alignment unverified",
       units: "relative illumination, 0–1",
@@ -65,11 +244,11 @@ export const terrainLayers = [
     },
   },
   {
-    ...common,
+    ...localCommon,
     id: "gale-slope",
     type: "Slope",
     display_name: "DEM slope · degrees",
-    rendering: rendering("slope"),
+    rendering: localRendering("slope"),
     legend: {
       title: "Slope · 75 m support · CTX alignment unverified",
       units: "degrees (°), not safety classes",
