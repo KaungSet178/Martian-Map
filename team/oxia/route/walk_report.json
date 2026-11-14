@@ -1,0 +1,248 @@
+{
+  "title": "Oxia candidate walk: offline analysis",
+  "labels": {
+    "path": "Modeled",
+    "start": "Scenario",
+    "stops": "Interpreted (Mars Trek detection points, ~0.6 km precision)"
+  },
+  "caveat": "Elevation is MOLA (~463 m real detail) interpolated on a 0.01 degree grid: boulders, banks, small craters and short steep slopes are not resolved. The path is not safety-validated and is not an approved route.",
+  "input": {
+    "grid": "public/maps/oxia/elevation-grid.json",
+    "dem": [
+      "MGS MOLA, Global DEM"
+    ],
+    "fetched_at": "2026-11-14T07:12:11.793Z"
+  },
+  "method": {
+    "mars_radius_m": 3396190,
+    "straight_line": "great-circle, bilinear elevation sampled every ~50 m",
+    "astar": "8-connected grid nodes (0.01 deg), move cost = distance x (1 + K x move slope in degrees), K = 0.05; nodes with terrain slope > 20 deg are no-go (56 such nodes in the whole grid); end points joined to nearest nodes by straight connectors",
+    "slope_along_path": "move gradient between successive ~50 m samples of the bilinear MOLA surface"
+  },
+  "interpretation": "The corridor is nearly flat at MOLA scale (max ~1.1 degrees along either path), so no cell comes near the 20 degree no-go limit and terrain does not force a detour. The A* path's extra distance and its few-hundred-metre deviation come from the 0.01 degree (~0.59 km) grid: end points snap to grid nodes and 8-connected moves zig-zag. For this walk the straight great-circle figures are the better distance and time estimate; A* is reported to show that the cost model finds no terrain reason to leave the straight line.",
+  "points": {
+    "start": {
+      "name": "Start (Scenario midpoint)",
+      "lat": 18.195,
+      "lon": 335.825,
+      "evidence": "Scenario"
+    },
+    "obj1": {
+      "name": "oxia-objective-1 Clay-rich bedrock study",
+      "lat": 18.22,
+      "lon": 335.83,
+      "evidence": "Interpreted"
+    },
+    "hydrous": {
+      "name": "CRISM hydrous detection (Mars Trek, FID 773)",
+      "lat": 18.17,
+      "lon": 335.82,
+      "evidence": "Interpreted"
+    }
+  },
+  "legs": [
+    {
+      "from": "Start (Scenario midpoint)",
+      "to": "oxia-objective-1 Clay-rich bedrock study",
+      "straight_line": {
+        "distance_km": 1.508,
+        "ascent_m": 0,
+        "descent_m": 13.4,
+        "max_slope_deg": 1.03,
+        "mean_slope_deg": 0.51,
+        "walking_time_h_at_2kmh": 0.75
+      },
+      "astar_path": {
+        "distance_km": 1.819,
+        "ascent_m": 0,
+        "descent_m": 13.4,
+        "max_slope_deg": 0.96,
+        "mean_slope_deg": 0.42,
+        "walking_time_h_at_2kmh": 0.91,
+        "grid_nodes": 3,
+        "max_deviation_from_straight_m": 332,
+        "extra_distance_vs_straight_m": 311,
+        "path_lat_lon_east": [
+          [
+            18.195,
+            335.825
+          ],
+          [
+            18.2,
+            335.82
+          ],
+          [
+            18.21,
+            335.83
+          ],
+          [
+            18.22,
+            335.83
+          ],
+          [
+            18.22,
+            335.83
+          ]
+        ]
+      }
+    },
+    {
+      "from": "oxia-objective-1 Clay-rich bedrock study",
+      "to": "CRISM hydrous detection (Mars Trek, FID 773)",
+      "straight_line": {
+        "distance_km": 3.017,
+        "ascent_m": 28.6,
+        "descent_m": 0,
+        "max_slope_deg": 1.03,
+        "mean_slope_deg": 0.54,
+        "walking_time_h_at_2kmh": 1.51
+      },
+      "astar_path": {
+        "distance_km": 3.189,
+        "ascent_m": 28.6,
+        "descent_m": 0,
+        "max_slope_deg": 1.09,
+        "mean_slope_deg": 0.51,
+        "walking_time_h_at_2kmh": 1.59,
+        "grid_nodes": 6,
+        "max_deviation_from_straight_m": 332,
+        "extra_distance_vs_straight_m": 172,
+        "path_lat_lon_east": [
+          [
+            18.22,
+            335.83
+          ],
+          [
+            18.22,
+            335.83
+          ],
+          [
+            18.21,
+            335.83
+          ],
+          [
+            18.2,
+            335.82
+          ],
+          [
+            18.19,
+            335.82
+          ],
+          [
+            18.18,
+            335.82
+          ],
+          [
+            18.17,
+            335.82
+          ],
+          [
+            18.17,
+            335.82
+          ]
+        ]
+      }
+    },
+    {
+      "from": "CRISM hydrous detection (Mars Trek, FID 773)",
+      "to": "Start (Scenario midpoint)",
+      "straight_line": {
+        "distance_km": 1.508,
+        "ascent_m": 0,
+        "descent_m": 15.2,
+        "max_slope_deg": 1.02,
+        "mean_slope_deg": 0.58,
+        "walking_time_h_at_2kmh": 0.75
+      },
+      "astar_path": {
+        "distance_km": 2.187,
+        "ascent_m": 6.8,
+        "descent_m": 22.1,
+        "max_slope_deg": 1.09,
+        "mean_slope_deg": 0.76,
+        "walking_time_h_at_2kmh": 1.09,
+        "grid_nodes": 4,
+        "max_deviation_from_straight_m": 409,
+        "extra_distance_vs_straight_m": 679,
+        "path_lat_lon_east": [
+          [
+            18.17,
+            335.82
+          ],
+          [
+            18.17,
+            335.82
+          ],
+          [
+            18.18,
+            335.82
+          ],
+          [
+            18.19,
+            335.82
+          ],
+          [
+            18.2,
+            335.82
+          ],
+          [
+            18.195,
+            335.825
+          ]
+        ]
+      }
+    }
+  ],
+  "totals": {
+    "straight_line": {
+      "distance_km": 6.034,
+      "ascent_m": 28.6,
+      "descent_m": 28.6,
+      "max_slope_deg": 1.03,
+      "mean_slope_deg": 0.54,
+      "walking_time_h_at_2kmh": 3.02
+    },
+    "astar_path": {
+      "distance_km": 7.195,
+      "ascent_m": 35.4,
+      "descent_m": 35.4,
+      "max_slope_deg": 1.09,
+      "mean_slope_deg": 0.56,
+      "walking_time_h_at_2kmh": 3.6
+    }
+  },
+  "nasa_checks_tier2": {
+    "source": "NASA EVA-EXP-0042 Rev B, Exploration EVA System Concept of Operations (Oct 19, 2020); ICES-2025-129 (NTRS 20250001829). Lunar-surface figures; Mars gravity is higher.",
+    "max_radius_from_start": {
+      "limit_km": 2,
+      "page": "p.39",
+      "value_km": 1.508,
+      "within": true
+    },
+    "cumulative_distance": {
+      "limit_km": 16,
+      "page": "p.40",
+      "value_km": 7.195,
+      "within": true
+    },
+    "eva_duration": {
+      "limit_h": 8,
+      "backup_o2_h": 1,
+      "page": "p.36",
+      "walking_time_h": 3.6,
+      "within": true,
+      "note": "walking time only; science stops, ingress/egress not included"
+    },
+    "pace": {
+      "kmh": 2,
+      "page": "p.40"
+    },
+    "slope": {
+      "limit_deg": 20,
+      "pages": "EVA-EXP-0042 p.38; ICES-2025-129 p.7",
+      "max_on_path_deg": 1.09,
+      "within": true
+    }
+  },
+  "generated_at": "2026-11-14T16:38:45.081Z"
+}

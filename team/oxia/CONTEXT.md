@@ -95,6 +95,28 @@ The Mars Trek elevation-profile service sends no CORS header, so the browser app
 call it directly. Live elevation profiles would need a server-side proxy route (shared
 `app/` change, coordinator decision); otherwise use the pre-baked grid.
 
+### Candidate walk (offline analysis)
+
+Not an app feature and not an approved route. Script `team/oxia/route/walk_analysis.mjs`,
+results `team/oxia/route/walk_report.json`. Labels: path = **Modeled**, Start =
+**Scenario** (not stored in region data).
+
+- Start = midpoint of `oxia-objective-1` (18.22 N, 335.83 E) and the CRISM hydrous
+  detection (18.17 N, 335.82 E): 18.195 N, 335.825 E.
+- Legs: Start → objective-1 → hydrous detection → Start, on the MOLA elevation grid,
+  Mars sphere R = 3,396,190 m.
+- Straight great-circle: 1.51 + 3.02 + 1.51 = **6.03 km**, ascent/descent 28.6 m each,
+  max slope 1.03°, mean 0.54°, **3.0 h** walking at 2 km/h.
+- A* (cost = distance × (1 + 0.05 × slope°), cells > 20° no-go): 7.20 km, 3.6 h, max
+  slope 1.09°. The extra 1.2 km and ~330–410 m deviation are grid zig-zag from the
+  0.59 km nodes, not terrain avoidance; nothing in the corridor approaches 20°.
+- NASA tier-2 checks (EVA-EXP-0042 Rev B; lunar figures): farthest point 1.51 km from
+  Start (≤ 2 km, p.39); 6–7 km total (≤ 16 km, p.40); 3.0–3.6 h walking (≤ 8 h EVA +
+  1 h backup O2, p.36; science stops not included); max slope ~1° (≤ 20°, p.38;
+  ICES-2025-129 p.7).
+- Caveat: MOLA (~463 m) does not resolve small hazards; the path is not
+  safety-validated.
+
 ### Unavailable, and why
 
 - **Radiation / weather:** no landed instrument at Oxia and no applicable Mars Trek
