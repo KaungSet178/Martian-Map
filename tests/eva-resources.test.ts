@@ -92,11 +92,39 @@ describe("Marswalk Unified EVA Resource Engine", () => {
     });
 
     it("calculates electrical energy in Wh and scales linearly with duration", () => {
-      // 5.0 hours duration, 140 W power draw:
-      // base energy = 140 W * 5.0 h = 700 Wh
-      // reserve = +25% = 175 Wh
-      // total provision = 875 Wh
-      // capacity = 1000 Wh -> remaining = 125 Wh -> within capacity
+      // 5.0 hours duration, Apollo 15 PLSS (58.0 W documented flight average power draw):
+      // base energy = 58.0 W * 5.0 h = 290 Wh
+      // reserve = +25% = 72.5 Wh
+      // total provision = 362.5 Wh
+      // capacity = 390 Wh -> remaining = 27.5 Wh -> within capacity
+      const route: EVAResourceRouteInput = {
+        regionId: "jezero",
+        routeEvidence: "terrain-derived",
+        distanceMeters: 5000,
+        travelTimeHours: 3.0,
+        scienceStopHours: 2.0,
+        otherActivityHours: 0,
+        roundTripIncluded: true,
+        sourceDatasetIds: ["jezero-dem"],
+        warnings: [],
+      };
+      const config: EVAPlanningConfig = {
+        profileId: "apollo-15-plss",
+        batteryPlanningReservePercent: 25,
+      };
+
+      const result = estimateEVAResources(route, config);
+      assert.equal(result.battery.status, "estimated");
+      assert.equal(result.battery.capacityStatus, "within-configured-capacity");
+      assert.equal(result.battery.baseRequirement, 290);
+      assert.equal(result.battery.configuredReserve, 72.5);
+      assert.equal(result.battery.recommendedProvision, 362.5);
+      assert.equal(result.battery.remainingCapacity, 27.5);
+    });
+
+    it("evaluates battery energy as UNAVAILABLE on BVAD exploration baseline when power load is unconfigured", () => {
+      // BVAD Rev 2 does not specify spacesuit avionics electrical power;
+      // Therefore, battery energy must evaluate to UNAVAILABLE by default rather than inventing a number.
       const route: EVAResourceRouteInput = {
         regionId: "jezero",
         routeEvidence: "terrain-derived",
@@ -114,7 +142,35 @@ describe("Marswalk Unified EVA Resource Engine", () => {
       };
 
       const result = estimateEVAResources(route, config);
-      assert.equal(result.battery.status, "estimated");
+      assert.equal(result.battery.status, "unavailable");
+      assert.equal(result.battery.baseRequirement, null);
+      assert.equal(result.battery.recommendedProvision, null);
+      assert.ok(result.battery.missingInputs.some((m) => m.toLowerCase().includes("electrical load")));
+    });
+
+    it("calculates battery energy on BVAD exploration baseline when user supplies manual electrical load override", () => {
+      // With manual 140 W electrical load override and 1000 Wh battery capacity:
+      // 5.0 h * 140 W = 700 Wh base + 25% (175 Wh) = 875 Wh recommended
+      const route: EVAResourceRouteInput = {
+        regionId: "jezero",
+        routeEvidence: "terrain-derived",
+        distanceMeters: 5000,
+        travelTimeHours: 3.0,
+        scienceStopHours: 2.0,
+        otherActivityHours: 0,
+        roundTripIncluded: true,
+        sourceDatasetIds: ["jezero-dem"],
+        warnings: [],
+      };
+      const config: EVAPlanningConfig = {
+        profileId: "bvad-exploration-baseline",
+        manualElectricalPowerWatts: 140,
+        manualBatteryCapacityWh: 1000,
+        batteryPlanningReservePercent: 25,
+      };
+
+      const result = estimateEVAResources(route, config);
+      assert.equal(result.battery.status, "assumption-dependent");
       assert.equal(result.battery.capacityStatus, "within-configured-capacity");
       assert.equal(result.battery.baseRequirement, 700);
       assert.equal(result.battery.configuredReserve, 175);
@@ -242,14 +298,47 @@ describe("Marswalk Unified EVA Resource Engine", () => {
   // Group 2: Scientific Validity & Model Boundaries
   // -------------------------------------------------------------------------
   describe("Group 2: Scientific Validity & Model Boundaries", () => {
-    it("resolves default and custom profiles via getEVAProfile", () => {
+    it("verifies authoritative NASA document numbers and publication years in citation registry", () => {
+      // BVAD Revision 2: NASA/TP-2015-218570/REV2 published in 2022
+      const bvadO2 = getEVACitation("BVAD-REV2-O2-METABOLIC");
+      assert.ok(bvadO2);
+      assert.equal(bvadO2.documentNumber, "NASA/TP-2015-218570/REV2");
+      assert.equal(bvadO2.publicationYear, 2022);
+      assert.equal(bvadO2.documentedValue, 0.076);
+
+      // Apollo 15 flight report: NASA TN D-8093 published in 1975 (not D-7723)
+      const apolloPower = getEVACitation("APOLLO15-POWER-DRAW");
+      assert.ok(apolloPower);
+      assert.equal(apolloPower.documentNumber, "NASA TN D-8093");
+      assert.equal(apolloPower.publicationYear, 1975);
+      assert.equal(apolloPower.documentedValue, 58.0);
+
+      // Apollo 15 battery: 390 Wh flight qualification usable capacity (-7 PLSS)
+      const apolloBatt = getEVACitation("APOLLO15-BATTERY-CAPACITY");
+      assert.ok(apolloBatt);
+      assert.equal(apolloBatt.documentedValue, 390.0);
+      assert.equal(apolloBatt.documentedUnit, "Wh");
+
+      // NASA-STD-3001 Vol 2 Rev D: 2023
+      const stdO2 = getEVACitation("NASA-STD-3001-O2-METABOLIC");
+      assert.ok(stdO2);
+      assert.equal(stdO2.documentNumber, "NASA-STD-3001 Vol 2 Rev D");
+      assert.equal(stdO2.publicationYear, 2023);
+      assert.equal(stdO2.documentedValue, 0.080);
+    });
+
+    it("verifies rejection of unit-confusion artifact (0.0829 kg/h) and unmodeled BVAD battery specs", () => {
       const bvad = getEVAProfile("bvad-exploration-baseline");
       assert.ok(bvad);
-      assert.equal(bvad.id, "bvad-exploration-baseline");
-      assert.equal(bvad.profileType, "nasa-engineering-reference");
 
-      const unknown = getEVAProfile("non-existent-suit-id");
-      assert.equal(unknown, undefined);
+      // Metabolic rate must be 0.076 kg/h; must NOT be 0.0829 kg/h (the erroneous 1.99 lb/day artifact)
+      assert.equal(bvad.oxygenMetabolicRateKgPerHour, 0.076);
+      assert.notEqual(bvad.oxygenMetabolicRateKgPerHour, 0.0829);
+
+      // BVAD Rev 2 does NOT document spacesuit battery capacity or avionics electrical power;
+      // Profile defaults must be null (unknown) rather than fabricated numbers.
+      assert.equal(bvad.electricalPowerWatts, null);
+      assert.equal(bvad.batteryCapacityWh, null);
     });
 
     it("ensures every referenced numerical constant exists in EVA_DATA_SOURCES", () => {

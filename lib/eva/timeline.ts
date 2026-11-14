@@ -112,6 +112,11 @@ export function calculateEVATimeline(
   if (route.roundTripIncluded) {
     assumptions.push("Route distance and duration already include return closure to base (no double counting).");
   }
+  if (timeContingencyPercent > 0) {
+    assumptions.push(
+      `EVA time contingency buffer configured at +${timeContingencyPercent.toFixed(0)}% (engineering planning allowance; not a NASA flight rule).`,
+    );
+  }
 
   return {
     routeEvidence: route.routeEvidence,

@@ -76,8 +76,10 @@ export function calculateBatteryRequirement(
     electricalPowerWatts = profile.electricalPowerWatts;
     assumptions.push(`Spacesuit electrical load (${electricalPowerWatts.toFixed(0)} W) derived from ${profile.name}.`);
   } else {
-    // Power load unknown (e.g. physiological standard NASA-STD-3001)
-    missingInputs.push("Spacesuit electrical load in Watts (W). Profile defines life-support standard without avionics power draw.");
+    // Power load unknown (e.g. NASA BVAD or physiological standard NASA-STD-3001)
+    missingInputs.push(
+      "Spacesuit electrical load in Watts (W). Selected profile does not specify suit avionics power draw. Enter an electrical load in Planning Settings to estimate battery energy.",
+    );
   }
 
   // 3. Resolve usable battery capacity (Wh)
@@ -120,7 +122,9 @@ export function calculateBatteryRequirement(
     }
 
     assumptions.push(`Energy calculation excludes astronaut metabolic heat; accounts strictly for electrical avionics and pump loads.`);
-    assumptions.push(`Battery contingency reserve configured at +${reservePercent.toFixed(0)}%.`);
+    assumptions.push(
+      `Battery planning reserve allowance configured at +${reservePercent.toFixed(0)}% (engineering planning allowance; not a NASA flight rule).`,
+    );
   }
 
   // 5. Determine capacity status

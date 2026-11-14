@@ -114,6 +114,9 @@ export function calculateCoolingRequirement(
       });
 
       assumptions.push(
+        `Feedwater planning reserve allowance configured at +${reservePercent.toFixed(0)}% (engineering planning allowance; not a NASA flight rule).`,
+      );
+      assumptions.push(
         `Consumptive cooling loss calculated at ${lossRateKgPerHour.toFixed(2)} kg/h (${(lossRateKgPerHour / WATER_DENSITY_KG_PER_LITER).toFixed(2)} L/h) via ${systemType ?? "evaporative"}.`,
       );
       assumptions.push("Does not treat internal liquid cooling garment (LCG) recirculating flow as consumable loss.");

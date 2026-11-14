@@ -92,24 +92,25 @@ The unified resource planner is designed to seamlessly interface with existing m
 
 | Source ID | Document Title | Document Number | Publication Year | Author / Agency | URL |
 |---|---|---|---|---|---|
-| `BVAD-REV2-O2-METABOLIC` | Life Support Baseline Values and Assumptions Document (Rev 2) | NASA/TP-20205011400 | 2021 | NASA Johnson Space Center (Anderson, Ewert, Keener) | [NTRS Citation](https://ntrs.nasa.gov/citations/20210024855) |
-| `BVAD-REV2-O2-LEAKAGE` | Life Support Baseline Values and Assumptions Document (Rev 2) | NASA/TP-20205011400 | 2021 | NASA Johnson Space Center | [NTRS Citation](https://ntrs.nasa.gov/citations/20210024855) |
-| `BVAD-REV2-POWER-EXPLORATION` | Life Support Baseline Values and Assumptions Document (Rev 2) | NASA/TP-20205011400 | 2021 | NASA Johnson Space Center | [NTRS Citation](https://ntrs.nasa.gov/citations/20210024855) |
-| `BVAD-REV2-BATTERY-CAPACITY` | Life Support Baseline Values and Assumptions Document (Rev 2) | NASA/TP-20205011400 | 2021 | NASA Johnson Space Center | [NTRS Citation](https://ntrs.nasa.gov/citations/20210024855) |
-| `BVAD-REV2-WATER-SWME` | Life Support Baseline Values and Assumptions Document (Rev 2) | NASA/TP-20205011400 | 2021 | NASA Johnson Space Center | [NTRS Citation](https://ntrs.nasa.gov/citations/20210024855) |
-| `BVAD-REV2-WATER-CLOSED-LOOP` | Life Support Baseline Values and Assumptions Document (Rev 2) | NASA/TP-20205011400 | 2021 | NASA Johnson Space Center | [NTRS Citation](https://ntrs.nasa.gov/citations/20210024855) |
-| `BVAD-REV2-MAX-DURATION` | Life Support Baseline Values and Assumptions Document (Rev 2) | NASA/TP-20205011400 | 2021 | NASA Johnson Space Center | [NTRS Citation](https://ntrs.nasa.gov/citations/20210024855) |
-| `APOLLO15-O2-METABOLIC` | Apollo Experience Report: Portable Life Support System | NASA TN D-7723 | 1974 | NASA Manned Spacecraft Center | [NTRS Citation](https://ntrs.nasa.gov/citations/19740014878) |
+| `BVAD-REV2-O2-METABOLIC` | Life Support Baseline Values and Assumptions Document (Rev 2) | NASA/TP-2015-218570/REV2 | 2022 | NASA Johnson Space Center (Ewert, Chen, Powell) | [NTRS Citation](https://ntrs.nasa.gov/citations/20210024855) |
+| `BVAD-REV2-O2-LEAKAGE` | Life Support Baseline Values and Assumptions Document (Rev 2) | NASA/TP-2015-218570/REV2 | 2022 | NASA Johnson Space Center (Ewert, Chen, Powell) | [NTRS Citation](https://ntrs.nasa.gov/citations/20210024855) |
+| `BVAD-REV2-POWER-EXPLORATION` | Life Support Baseline Values and Assumptions Document (Rev 2) | NASA/TP-2015-218570/REV2 (Unspecified) | 2022 | NASA Johnson Space Center | [NTRS Citation](https://ntrs.nasa.gov/citations/20210024855) |
+| `BVAD-REV2-BATTERY-CAPACITY` | Life Support Baseline Values and Assumptions Document (Rev 2) | NASA/TP-2015-218570/REV2 (Unspecified) | 2022 | NASA Johnson Space Center | [NTRS Citation](https://ntrs.nasa.gov/citations/20210024855) |
+| `BVAD-REV2-WATER-SWME` | Life Support Baseline Values and Assumptions Document (Rev 2) | NASA/TP-2015-218570/REV2 | 2022 | NASA Johnson Space Center (Ewert, Chen, Powell) | [NTRS Citation](https://ntrs.nasa.gov/citations/20210024855) |
+| `BVAD-REV2-WATER-CLOSED-LOOP` | Life Support Baseline Values and Assumptions Document (Rev 2) | NASA/TP-2015-218570/REV2 | 2022 | NASA Johnson Space Center (Ewert, Chen, Powell) | [NTRS Citation](https://ntrs.nasa.gov/citations/20210024855) |
+| `BVAD-REV2-MAX-DURATION` | Life Support Baseline Values and Assumptions Document (Rev 2) | NASA/TP-2015-218570/REV2 | 2022 | NASA Johnson Space Center (Ewert, Chen, Powell) | [NTRS Citation](https://ntrs.nasa.gov/citations/20210024855) |
+| `APOLLO15-O2-METABOLIC` | Apollo Experience Report: Development of the EMU | NASA TN D-8093 | 1975 | NASA Johnson Space Center (Lutz et al.) | [NTRS Citation](https://ntrs.nasa.gov/citations/19760003073) |
 | `APOLLO15-O2-LEAKAGE` | Apollo Operations Handbook: EMU (Apollo 15–17) | CSD-A-096 | 1971 | NASA MSC Crew Systems Division | NASA Historical Archive |
-| `APOLLO15-O2-CAPACITY` | Apollo Experience Report: Portable Life Support System | NASA TN D-7723 | 1974 | NASA Manned Spacecraft Center | [NTRS Citation](https://ntrs.nasa.gov/citations/19740014878) |
-| `APOLLO15-POWER-DRAW` | Apollo Experience Report: Portable Life Support System | NASA TN D-7723 | 1974 | NASA Manned Spacecraft Center | [NTRS Citation](https://ntrs.nasa.gov/citations/19740014878) |
-| `APOLLO15-BATTERY-CAPACITY` | Apollo Operations Handbook: EMU (Apollo 15–17) | CSD-A-096 | 1971 | NASA MSC Crew Systems Division | NASA Historical Archive |
-| `APOLLO15-WATER-SUBLIMATOR` | Apollo Experience Report: Portable Life Support System | NASA TN D-7723 | 1974 | NASA Manned Spacecraft Center | [NTRS Citation](https://ntrs.nasa.gov/citations/19740014878) |
+| `APOLLO15-O2-CAPACITY` | Apollo Experience Report: Development of the EMU | NASA TN D-8093 | 1975 | NASA Johnson Space Center (Lutz et al.) | [NTRS Citation](https://ntrs.nasa.gov/citations/19760003073) |
+| `APOLLO15-POWER-DRAW` | Apollo Experience Report: Development of the EMU | NASA TN D-8093 | 1975 | NASA Johnson Space Center (Lutz et al.) | [NTRS Citation](https://ntrs.nasa.gov/citations/19760003073) |
+| `APOLLO15-BATTERY-CAPACITY` | Apollo Operations Handbook: EMU (Apollo 15–17) / Apollo Experience Report | CSD-A-096 / NASA TN D-8093 | 1971 | NASA MSC Crew Systems Division | [NTRS Citation](https://ntrs.nasa.gov/citations/19760003073) |
+| `APOLLO15-WATER-SUBLIMATOR` | Apollo Experience Report: Development of the EMU | NASA TN D-8093 | 1975 | NASA Johnson Space Center (Lutz et al.) | [NTRS Citation](https://ntrs.nasa.gov/citations/19760003073) |
 | `APOLLO15-WATER-CAPACITY` | Apollo Operations Handbook: EMU (Apollo 15–17) | CSD-A-096 | 1971 | NASA MSC Crew Systems Division | NASA Historical Archive |
-| `APOLLO15-MAX-DURATION` | Apollo Experience Report: Portable Life Support System | NASA TN D-7723 | 1974 | NASA Manned Spacecraft Center | [NTRS Citation](https://ntrs.nasa.gov/citations/19740014878) |
+| `APOLLO15-MAX-DURATION` | Apollo Experience Report: Development of the EMU | NASA TN D-8093 | 1975 | NASA Johnson Space Center (Lutz et al.) | [NTRS Citation](https://ntrs.nasa.gov/citations/19760003073) |
 | `NASA-STD-3001-O2-METABOLIC` | NASA Space Flight Human-System Standard, Vol 2 | NASA-STD-3001 Vol 2 Rev D | 2023 | NASA OCHMO | [NASA Standards](https://www.nasa.gov/reference/11-0-spacesuits-vol-2/) |
 | `NASA-STD-3001-O2-LEAKAGE` | NASA Space Flight Human-System Standard, Vol 2 | NASA-STD-3001 Vol 2 Rev D | 2023 | NASA OCHMO | [NASA Standards](https://www.nasa.gov/reference/11-0-spacesuits-vol-2/) |
 | `NASA-STD-3001-MAX-DURATION` | NASA Space Flight Human-System Standard, Vol 2 | NASA-STD-3001 Vol 2 Rev D | 2023 | NASA OCHMO | [NASA Standards](https://www.nasa.gov/reference/4-0-human-performance/) |
+| `NASA-STD-3001-RESERVE` | NASA Space Flight Human-System Standard, Vol 2 | NASA-STD-3001 Vol 2 Rev D | 2023 | NASA OCHMO | [NASA Standards](https://www.nasa.gov/reference/11-0-spacesuits-vol-2/) |
 
 ---
 
@@ -117,19 +118,19 @@ The unified resource planner is designed to seamlessly interface with existing m
 
 ### Metabolic & Gas Supply Subsystem
 - **Nominal EVA Metabolic Rate:** $295\text{ W}$ ($1.06\text{ MJ/CM-h}$ or $\sim 1000\text{ BTU/h}$). Source: BVAD Rev 2, Table 4.1.
-- **Metabolic $\text{O}_2$ Consumption Rate:** $0.076\text{ kg/CM-h}$. Source: BVAD Rev 2, Table 4.1 & Table 4-42. Converted directly from SI mass rate.
-- **Apollo Lunar Traverses Average $\text{O}_2$ Consumption:** $0.077\text{ kg/h}$ ($0.170\text{ lb/hr}$). Source: NASA TN D-7723, Table III. Converted from imperial mass ($0.170 \times 0.45359237$).
+- **Metabolic $\text{O}_2$ Consumption Rate:** $0.076\text{ kg/CM-h}$. Source: BVAD Rev 2, Table 4.1 & Table 4-42. (Note: The $0.0829\text{ kg/h}$ figure occasionally cited originates from an erroneous unit confusion dividing $1.99\text{ lb/day}$ by 24 hours assuming kg; $0.076\text{ kg/h}$ is the true BVAD hourly EVA rate).
+- **Apollo Lunar Traverses Average $\text{O}_2$ Consumption:** $0.077\text{ kg/h}$ ($0.170\text{ lb/hr}$). Source: NASA TN D-8093, Table III. Converted from imperial mass ($0.170 \times 0.45359237$).
 - **Allowable Suit Structural Gas Leakage:** $0.005\text{ kg/h}$ (BVAD Rev 2 Table 4.1) / $0.008\text{ kg/h}$ ($\le 100\text{ sccm}$ at $4.3\text{ psid}$, NASA-STD-3001 Vol 2 Sec 11.2).
 
 ### Electrical Power & Energy Subsystem
-- **Modern Exploration PLSS Power Draw:** $140.0\text{ W}$ continuous electrical load (ventilation motor, water pump, avionics, telemetry, HUD). Source: BVAD Rev 2, Section 5.2.
-- **Apollo 15–17 -7 PLSS Electrical Power Draw:** $58.0\text{ W}$ measured flight telemetry average ($3.45\text{ A}$ at $16.8\text{ V dc}$). Source: NASA TN D-7723, Table III.
-- **Exploration Usable Battery Capacity:** $1,000\text{ Wh}$ usable allocation ($1,200\text{ Wh}$ gross nameplate). Source: BVAD Rev 2, Section 5.2.2.
-- **Apollo 15–17 Silver-Zinc Battery Usable Capacity:** $390.0\text{ Wh}$ usable ($25.0\text{ Ah}$ at $16.8\text{ V nominal}$). Source: CSD-A-096, Section 2.1.4.
+- **Modern Exploration PLSS Power Draw:** Unspecified in BVAD Rev 2. General exploration architecture studies estimate $\sim 100\text{ W}$ to $140\text{–}150\text{ W}$. Because BVAD does not document an electrical power standard, baseline profile sets power to `null` (reported as `UNAVAILABLE`), allowing user manual planning entry.
+- **Apollo 15–17 -7 PLSS Electrical Power Draw:** $58.0\text{ W}$ measured flight telemetry average across lunar traverses ($3.45\text{ A}$ at $16.8\text{ V dc}$). Source: NASA TN D-8093, Table III.
+- **Exploration Spacesuit Battery Capacity:** Unspecified in BVAD Rev 2. Sizing allocations ($1,000\text{ Wh}$ usable / $1,200\text{ Wh}$ gross) from advanced lightweight studies are treated as unverified assumptions; profile default is `null` (reported as `CAPACITY-UNKNOWN`) to allow user input.
+- **Apollo 15–17 Silver-Zinc Battery Usable Capacity:** $390.0\text{ Wh}$ usable operational flight qualification rating ($21.4\text{ Ah}$ minimum capability, $360\text{ Wh}$ nominal at $16.8\text{ V}$). Source: CSD-A-096 Section 2.1.4 and NASA TN D-8093. (Note: $279\text{–}315\text{ Wh}$ applied to the earlier Apollo 11–14 -6 PLSS).
 
 ### Thermal Control & Consumptive Cooling Subsystem
-- **Spacesuit Water Membrane Evaporator (SWME) Loss Rate:** $0.57\text{ kg/CM-h}$ ($0.57\text{ L/h}$ at standard water density $\rho = 1.0\text{ kg/L}$). Source: BVAD Rev 2, Table 4.1.
-- **Apollo Porous Plate Sublimator Loss Rate:** $0.57\text{ kg/h}$ ($1.25\text{ lb/hr}$). Source: NASA TN D-7723, Table III. Converted from imperial mass ($1.25 \times 0.45359237 = 0.567\text{ kg/h}$).
+- **Spacesuit Water Membrane Evaporator (SWME) Loss Rate:** $0.57\text{ kg/CM-h}$ ($0.57\text{ L/h}$ at standard water density $\rho = 1.0\text{ kg/L}$). Source: BVAD Rev 2, Table 4.1. (Note: $0.44\text{ kg/h}$ reflects experimental partial-load test conditions; $0.57\text{ kg/h}$ is the standardized baseline table rate).
+- **Apollo Porous Plate Sublimator Loss Rate:** $0.57\text{ kg/h}$ ($1.25\text{ lb/hr}$). Source: NASA TN D-8093, Table III. Converted from imperial mass ($1.25 \times 0.45359237 = 0.567\text{ kg/h}$).
 - **Non-Venting Regenerable Radiator Loss Rate:** $0.00\text{ kg/h}$ (closed regenerative loop). Source: BVAD Rev 2, Section 5.2.3.
 - **Apollo 15–17 Feedwater Tank Capacity:** $5.22\text{ kg}$ ($11.5\text{ lb}$ total across primary and auxiliary bladders). Source: CSD-A-096, Section 2.1.3.
 
@@ -139,8 +140,8 @@ The unified resource planner is designed to seamlessly interface with existing m
 
 | Profile ID | Profile Name | Profile Type | Applicable Tech | Environment | $\text{O}_2$ Rate ($\text{kg/h}$) | Power ($\text{W}$) | Battery ($\text{Wh}$) | Water Rate ($\text{kg/h}$) | Max Duration |
 |---|---|---|---|---|---|---|---|---|---|
-| `bvad-exploration-baseline` | NASA Life Support BVAD Rev 2 Exploration Reference | `nasa-engineering-reference` | xEMU / SWME Evaporator | Surface EVA | $0.076 + 0.005$ | $140.0$ | $1000.0$ | $0.57$ | $8.0\text{ h}$ |
-| `bvad-closed-loop-radiator` | NASA Life Support BVAD Rev 2 Non-Venting Radiator | `nasa-engineering-reference` | Regenerative Radiator / PCM | Surface EVA | $0.076 + 0.005$ | $160.0$ | $1000.0$ | $0.00$ | $8.0\text{ h}$ |
+| `bvad-exploration-baseline` | NASA Life Support BVAD Rev 2 Exploration Reference | `nasa-engineering-reference` | xEMU / SWME Evaporator | Surface EVA | $0.076 + 0.005$ | `null` | `null` | $0.57$ | $8.0\text{ h}$ |
+| `bvad-closed-loop-radiator` | NASA Life Support BVAD Rev 2 Non-Venting Radiator | `nasa-engineering-reference` | Regenerative Radiator / PCM | Surface EVA | $0.076 + 0.005$ | `null` | `null` | $0.00$ | $8.0\text{ h}$ |
 | `apollo-15-plss` | Apollo 15–17 PLSS (A7LB / -7 PLSS) | `historical-hardware` | Apollo EMU / Sublimator | Lunar Vacuum | $0.077 + 0.008$ | $58.0$ | $390.0$ | $0.57$ | $7.5\text{ h}$ |
 | `nasa-std-3001-nominal` | NASA-STD-3001 Vol 2 Human Performance | `nasa-engineering-reference` | Physiological Standard | Surface EVA | $0.080 + 0.008$ | `null` | `null` | `null` | $8.0\text{ h}$ |
 | `user-defined` | User-Defined Custom Assumptions | `user-defined` | Custom Model | Configured | Configurable | Configurable | Configurable | Configurable | Configurable |

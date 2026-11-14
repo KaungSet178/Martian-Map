@@ -126,7 +126,9 @@ export function calculateOxygenRequirement(
     assumptions.push(
       `Calculated from ${durationHours.toFixed(2)} h total EVA duration with ${metabolicRate.toFixed(3)} kg/h metabolic rate and ${effectiveLeakageRate.toFixed(3)} kg/h suit leakage.`,
     );
-    assumptions.push(`Planning reserve allowance configured at +${reservePercent.toFixed(0)}%.`);
+    assumptions.push(
+      `Planning reserve allowance configured at +${reservePercent.toFixed(0)}% (engineering planning allowance; not a NASA flight rule).`,
+    );
   }
 
   // 5. Determine capacity status
