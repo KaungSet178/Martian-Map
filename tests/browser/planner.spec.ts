@@ -15,7 +15,7 @@ for (const [width, height] of [
     await page.goto("/?region=jezero");
     await expand(page);
     await page
-      .getByRole("button", { name: "Add Delta sediment exposure", exact: true })
+      .getByRole("button", { name: "Add Jezero geology and climate record", exact: true })
       .click();
     await page
       .getByLabel("Mission region", { exact: true })
@@ -25,7 +25,7 @@ for (const [width, height] of [
       "Layered sedimentary unit",
     );
     await expect(page.locator(".target-list")).not.toContainText(
-      "Delta sediment exposure",
+      "Jezero geology and climate record",
     );
     await expect(page.locator(".mission-summary")).toContainText(
       "0 objectives",
@@ -75,7 +75,7 @@ test("mission JSON round trip preserves legacy v1 IDs and unknown URL region is 
   await page.goto("/?region=unknown");
   await expect(page.locator(".map-location h1")).toHaveText("Jezero Crater");
   await page
-    .getByRole("button", { name: "Add Delta sediment exposure", exact: true })
+    .getByRole("button", { name: "Add Jezero geology and climate record", exact: true })
     .click();
   await page
     .getByRole("button", { name: "Open saved missions", exact: true })
@@ -101,7 +101,7 @@ test("mission JSON round trip preserves legacy v1 IDs and unknown URL region is 
     });
   await expect(page.locator(".itinerary li")).toHaveCount(1);
   await expect(page.locator(".itinerary li")).toContainText(
-    "Delta sediment exposure",
+    "Jezero geology and climate record",
   );
 });
 
@@ -175,7 +175,7 @@ test("target dialogs support Escape/focus return and region-scoped selection", a
 }) => {
   await page.goto("/");
   const target = page.getByRole("button", {
-    name: "Delta sediment exposure",
+    name: "Jezero geology and climate record",
     exact: true,
   });
   await target.click();
@@ -313,6 +313,125 @@ for (const [width, height] of [
   });
 }
 
+test("imported route candidates draw only reviewed geometry and invalidate on edit", async ({
+  page,
+}) => {
+  const assessments = Object.fromEntries(
+    ["Terrain", "Oxygen", "Battery", "EVA time", "Radiation", "Return / recovery"].map(
+      (name) => [
+        name,
+        { status: "Unverified", reason: "Not evaluated", value: null, unit: null },
+      ],
+    ),
+  );
+  const model = {
+    id: "synthetic-route-model",
+    version: "1",
+    source_ids: ["synthetic-route-source"],
+    assumptions: [],
+    limitations: [],
+  };
+  const result = {
+    status: "candidates",
+    region: "jezero",
+    input_revision: "rev-1",
+    dataset_version: jezero.dataset_version,
+    coverage: {
+      status: "audited",
+      source_ids: ["synthetic-route-source"],
+      limitations: [],
+    },
+    candidates: [
+      {
+        id: "candidate-safest",
+        objective: "safest",
+        validation: "experimental",
+        geometry: [
+          { body: "Mars", crs: "IAU_2015", easting_m: 0, northing_m: 0 },
+          { body: "Mars", crs: "IAU_2015", easting_m: 100, northing_m: 100 },
+        ],
+        display_geometry: [
+          { latitude: 18.4, longitude_east: 77.5 },
+          { latitude: 18.45, longitude_east: 77.6 },
+          { latitude: 18.5, longitude_east: 77.7 },
+        ],
+        identical_to: null,
+        omitted_target_ids: [],
+        models: [model],
+        limitations: [],
+        assessments,
+      },
+      {
+        id: "candidate-fastest",
+        objective: "fastest",
+        validation: "scientifically_reviewed",
+        geometry: [
+          { body: "Mars", crs: "IAU_2015", easting_m: 0, northing_m: 0 },
+          { body: "Mars", crs: "IAU_2015", easting_m: 100, northing_m: 100 },
+        ],
+        identical_to: null,
+        omitted_target_ids: [],
+        models: [model],
+        limitations: [],
+        assessments,
+      },
+      {
+        id: "candidate-science",
+        objective: "science",
+        validation: "scientifically_reviewed",
+        geometry: [
+          { body: "Mars", crs: "IAU_2015", easting_m: 0, northing_m: 0 },
+          { body: "Mars", crs: "IAU_2015", easting_m: 150, northing_m: 120 },
+        ],
+        display_geometry: [
+          { latitude: 18.42, longitude_east: 77.55 },
+          { latitude: 18.48, longitude_east: 77.68 },
+        ],
+        identical_to: null,
+        omitted_target_ids: [],
+        models: [model],
+        limitations: [],
+        assessments,
+      },
+    ],
+  };
+
+  await page.goto("/?region=jezero");
+  await expand(page);
+  await page.getByRole("button", { name: "Review", exact: true }).click();
+  await page.getByLabel("Import route result JSON").setInputFiles({
+    name: "route-result.json",
+    mimeType: "application/json",
+    buffer: Buffer.from(JSON.stringify(result)),
+  });
+
+  await expect(page.locator(".route-candidates")).toContainText("Safest");
+  await expect(page.locator(".route-candidates")).toContainText(
+    "No display geometry · not plotted",
+  );
+  await expect(page.locator(".map-route-status")).toContainText("Safest");
+  await expect(page.locator(".map-route-status")).toContainText("Experimental");
+  await expect(page.locator(".map-route-status")).toContainText("1 alternate");
+
+  await page.getByLabel("Select Fastest route candidate").check();
+  await expect(page.locator(".map-route-status")).toContainText(
+    "No plotted route candidate selected",
+  );
+  await page.getByLabel("Select Science-focused route candidate").check();
+  await expect(page.locator(".map-route-status")).toContainText(
+    "Science-focused",
+  );
+
+  await page.getByRole("button", { name: /^Plan/ }).click();
+  await page.getByLabel("Mission name").fill("Edited field plan");
+  await page.getByRole("button", { name: "Review", exact: true }).click();
+  await expect(page.locator(".route-candidates")).toHaveCount(0);
+  await expect(page.locator(".map-route-status")).toHaveCount(0);
+  await expect(page.locator(".panel-scroll")).toContainText(
+    "Detailed routing unavailable",
+  );
+});
+
 test("invalid imports preserve drafts; stale mission versions require revalidation", async ({
   page,
 }) => {
@@ -433,7 +552,7 @@ test("offline saved plans and downloadable brief remain useful", async ({
 }) => {
   await page.goto("/");
   await page
-    .getByRole("button", { name: "Add Delta sediment exposure", exact: true })
+    .getByRole("button", { name: "Add Jezero geology and climate record", exact: true })
     .click();
   await page.getByRole("button", { name: "Save mission", exact: true }).click();
   await context.setOffline(true);

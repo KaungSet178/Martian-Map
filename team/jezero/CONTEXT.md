@@ -137,7 +137,7 @@ Region-level gates intentionally unchanged: `data_status` stays `illustrative`,
 coordinates stay null, `routing.enabled` stays false. Bumping `data_status` or
 `dataset_version` again requires reviewed product/coordinate evidence.
 
-## Target enrichment notes (Phase 3, feat/jezero-map)
+## Target enrichment notes (Phase 3, feat/jezero-map) - superseded by v9
 
 `jezero-objective-1/2/3` IDs are unchanged (saved-plan compatibility). Each now has a
 documented geological significance, a clearer description/goal/activity, and `source_ids`
@@ -366,11 +366,13 @@ The map now carries a real shaded-elevation layer derived from an audited 1 m DT
     in the traverse bins crossing that area (~+3 m mean, abs P95 ~4.9 m) versus
     ~0.4 m elsewhere. Display-grade acceptable; documented in the layer limitations.
 - **Display tiles**: `team/jezero/terrain/build_terrain.mjs` (report
-  `build_report.json`) — pure Node TIFF reader, bilinear sampling, **120 self-hosted
+  `build_report.json`) — pure Node TIFF reader, bilinear sampling, **193 self-hosted
   256 px Web-Mercator XYZ RGBA tiles** at `public/maps/jezero/terrain-tiles/{z}/{x}/{y}.png`,
-  zooms 5–14 (~8 MB). Shaded hypsometric elevation: p2–p98 ramp −2620/−1770 m with a
+  zooms 5–14 (12,816,609 bytes). Shaded hypsometric elevation: p2–p98 ramp −2620/−1770 m with a
   gamma-0.75 low-end expansion × analytic hillshade (sun 315° az / 45° alt); nodata is
-  transparent. Coverage = DTM footprint ∩ supported extent; the supported extent's west
+  transparent. Tile ranges are computed from the **region extent**, not the DTM
+  footprint, so every tile the clamped viewport can request exists (deep-zoom panning
+  cannot 404); tiles west of the DTM are fully transparent. The supported extent's west
   margin (77.1868–77.2229 E) lies outside the DTM and stays transparent. Same
   planetocentric display-latitude convention as the other two layers.
 - **Layer**: `jezero-terrain` ("Terrain & slope") is now **available** — raster-tiles
@@ -394,3 +396,185 @@ The map now carries a real shaded-elevation layer derived from an audited 1 m DT
 - **Visual verification**: `team/jezero/screenshots/jezero-terrain-1440.png` (terrain
   over CTX: tan western rim, blue floor, hillshaded relief, legend + attribution) and
   `jezero-terrain-390.png` (mobile panel with terrain enabled).
+
+## Five-layer data set from NASA Mars Trek (region v8)
+
+The map now carries exactly five data layers — **CTX, Elevation, Slope, Geological
+units, Thermal** — plus the recorded-traverse overlay. Elevation/Slope come from the
+already-audited local DTM (no download); CTX and Thermal come from NASA Mars Trek;
+Geology is unchanged.
+
+- **Sources verified live (2026-11-14)** on the Mars Trek WMTS REST endpoint
+  `https://trek.nasa.gov/tiles/Mars/EQ/{productLabel}/1.0.0/default/default028mm/{L}/{row}/{col}.png`
+  (GetCapabilities + sample tiles). Grid: 256 px tiles, level 0 = 2×1, level *L*
+  resolution `0.703125/2^L` deg/px, tile span `180/2^L` deg, origin −180/90; products are
+  `Mars_2000_Sphere` (sphere datum ⇒ geodetic == planetocentric). Responses are
+  `image/png` color type 4 (gray+alpha, 8-bit) with `Access-Control-Allow-Origin: *`.
+- **CTX** — `JEZ_ctx_B_soc_008_orthoMosaic_6m_Eqc_latTs0_lon0`, the Mars 2020 TRN
+  **Lander Vision System** ("truth") mosaic: orthorectified on CTX DTMs at ~6 m/px,
+  same SOC_008/SOC_006 controlled family as the audited TRN DTM, footprint
+  77.1605–77.6992 E / 18.2110–18.7212 N (covers the full supported extent), levels 0–13.
+  Registered as source `jezero-mars-trek-ctx-lvs`.
+- **Thermal** — `THEMIS_DayIR_ControlledMosaics_100m_v2_oct2018`, ~100 m/px, levels 0–9.
+  Registered as source `jezero-mars-trek-themis`. Presented as **relative daytime IR
+  brightness only** (qualitative legend, no units): the service exposes no verified
+  radiometric scaling, so no temperature/thermal-inertia/rock-abundance value is
+  asserted. TES thermal inertia (3 km/px) was evaluated and rejected as too coarse.
+- **Build tool** — `team/jezero/basemap/prepare_trek_basemap.mjs` (generic WMTS →
+  Web-Mercator XYZ reprojector, pure Node + zlib): decodes 8-bit PNG color types
+  0/2/4/6, samples nearest-neighbour at source level **`L = z − 1`** (an exact 1:1 match:
+  `0.703125/2^(z−1) == 1.40625/2^z` deg/px), preserves source alpha, retries dropped TLS
+  connections with backoff, falls back to a coarser level for missing tiles, writes RGBA
+  PNG (filter 0) and a JSON report.
+  - `node team/jezero/basemap/prepare_trek_basemap.mjs ctx public/maps/jezero/ctx-lvs-tiles team/jezero/basemap/ctx_lvs_report.json`
+    → **111 tiles, zooms 5–13, 5,950,878 bytes**; 156 source tiles decoded, 13
+    requests outside the mosaic footprint, **0 gaps inside the footprint** (only the
+    western edge column is transparent, west of 77.1605 E — the same west-margin clip
+    the DTM has).
+  - `node team/jezero/basemap/prepare_trek_basemap.mjs thermal public/maps/jezero/thermal-tiles team/jezero/basemap/thermal_report.json`
+    → **7 tiles, zooms 5–9, 525,011 bytes**, 25 source tiles, no gaps.
+  - Note the sampling convention difference from the retired Esri script: 256 px source
+    tiles are 1:1 at `L = z−1`, whereas the 512 px Esri source used `L = z−2`.
+- **Elevation** — the former "Terrain & slope" layer is renamed (id
+  `jezero-terrain` → **`jezero-elevation`**); tiles/derivation unchanged
+  (`terrain-tiles/`, 193 tiles, 12,816,609 bytes, zooms 5–14; ranges now span the
+  region extent so deep-zoom panning cannot request a missing tile).
+- **Slope** — new `team/jezero/terrain/build_slope.mjs` (report
+  `team/jezero/terrain/slope_report.json`), derived from the same audited 1 m DTM, no
+  download: `slope = atan(sqrt((dz/dx)² + (dz/dy)²))`, central differences on the
+  display grid, **Mars** ground spacing `2πR·cos(lat)/(256·2^z)` with
+  R = 3,396,190 m (the hillshade in `build_terrain.mjs` still uses a display-only
+  Earth-sphere constant for shading — that is cosmetic, slope has units, so it uses
+  Mars spacing). **193 tiles, zooms 5–14, 15,122,994 bytes** (ranges span the region
+  extent, not just the DTM footprint, with transparent west-margin tiles), 0–35° ramp,
+  nodata transparent. Sampled distribution over the coverage: **p50 4.4°, p90 15.4°,
+  p98 22.6°** (max 54.4°). Explicit limitation: the measurement baseline is the
+  display pixel (~10 m at z14, ~19 m at z13, ~5 km at z5), so low zooms show a smoothed
+  regional gradient, and slope alone is not bearing strength, rock abundance or
+  trafficability.
+- **Layer list / defaults** — `jezero-optical` (CTX, z5–13, visible 100%), then
+  Elevation (hidden, 70%), Slope (hidden, 70%), Geology (unchanged, hidden, 70%),
+  Thermal (hidden, 70%), then the traverse overlay (visible, 90%). Non-optical layers
+  stay mutually exclusive (radio behaviour in `updateLayerState`), optical layers stack.
+- **Retired assets** — `public/maps/jezero/ctx-tiles/` (351 tiles, 8.2 MB, uncontrolled
+  Murray Lab beta01) was **removed** in v8 and `jezero-ctx-esri` is marked superseded but
+  kept registered. The old derivation script is kept for reference.
+- **Version/state** — `dataset_version` → `jezero-trek-layers-v8`; `data_status` stays
+  `raster_audited`; `routing.enabled` stays false; `terrain_coverage` stays `partial`
+  with the slope note added. Replaced assets: the five layers total **38.4 MB** of
+  committed tiles (CTX 5.95, elevation 12.82, slope 15.12, geology 4.02, thermal 0.53 MB)
+  minus the 8.2 MB retired set ≈ **+30.2 MB net**. The growth is concentrated in the
+  elevation/slope sets whose tile ranges now span the full region extent (region-extent
+  ranges trade ~8.5 MB of extra transparent edge and deeper tiles for 404-free
+  deep-zoom panning).
+- **Coordinated shared changes** (flagged for review):
+  1. `components/map/map-workspace.tsx`: `maxZoom` **10 → 13** so the z11–13 CTX tiles
+     are reachable; `maxBounds` still clamps panning to the supported extent. NOTE: with
+     `maxBounds` active MapLibre auto-raises the initial view to ~13 to fit the bounds,
+     so the map now opens at the deepest CTX detail instead of the old effective ~12.1.
+  2. `components/map/map-workspace.tsx`: removed the **unused, invalid `osm` raster
+     source** that had been added in the uncommitted working tree
+     (`url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"`). A raster source's
+     `url` is a TileJSON endpoint in MapLibre and `{s}` is unsupported there, so the
+     source failed to load, fired the renderer `error` event and permanently set the
+     "Map renderer unavailable" banner (which also disabled the zoom controls). No layer
+     ever referenced it, and Earth OSM imagery is not valid content for a Mars map. The
+     cursor/`wheelZoom`/container-height edits in that working tree are preserved.
+  3. `tests/regions.test.ts`: the renderer mount test hard-coded `region-jezero-geology`
+     as the third layer; it now derives the id from `region.layers[2]` so adding layers
+     no longer breaks a content-independent renderer test (same intent, no relaxed
+     assertion).
+- **Gates (2026-11-14)**: `npm run lint` clean, `npm run typecheck` pass, `npm test`
+  12/12, `npm run build` pass, `npm run test:e2e` **16/16**. No console/page errors in the
+  visual pass.
+- **Visual verification** — `team/jezero/screenshots/verify_layers.mjs` (helper, not a
+  gate): `jezero-layers-1440.png` (default), `jezero-layers-zoom13-1440.png` (z13 CTX
+  detail; the controlled mosaic resolves the delta front, and the traverse overlay sits
+  on it without the old banner), `jezero-elevation-1440.png`, `jezero-slope-1440.png`,
+  `jezero-geology-1440.png` (SIM 3464 unit fills align with the new basemap),
+  `jezero-thermal-1440.png`, `jezero-layers-390.png` (mobile, thermal legend visible).
+- **Known limitation to carry forward**: at z13 the CTX display samples ~10 m/px, so the
+  native ~6 m product is not fully resolved. Extending CTX to z14 with source level L13
+  (+~4.5 MB tiles) is the documented next step, deliberately not taken here to bound the
+  committed tile budget.
+
+## Published Mars 2020 science objectives (region v9)
+
+The three placeholder scenario targets were replaced by the **real, published Mars 2020
+Perseverance science objectives**. Before this change every Jezero target was
+hand-authored: descriptions began "Scenario objective: ...", `evidence` was `"Scenario"`,
+`verification` was `"scenario"`, and `CONTEXT.md` recorded them as enrichment prose rather
+than source-derived objectives. They were never the mission's actual objectives.
+
+- **Source verified live (2026-11-14)**: `https://science.nasa.gov/mission/mars-2020-perseverance/science-objectives/`,
+  now registered as `jezero-m2020-science-objectives`. The page groups the mission into
+  four areas (Geology, Astrobiology, Sample Caching, Preparation for Humans) with numbered
+  sub-objectives. The peer-reviewed mission overview (Farley et al. 2020, DOI
+  10.1007/s11214-020-00762-y) was already registered as `jezero-m2020-mission-overview`.
+- **Five targets** (`regions/jezero/targets.ts`), preserving IDs 1-3 so saved mission v1
+  records keep resolving, plus two new IDs:
+
+  | ID | Title | NASA basis |
+  |---|---|---|
+  | `jezero-objective-1` | Jezero geology and climate record | Geology 1-3 |
+  | `jezero-objective-2` | Ancient habitability assessment | Astrobiology 1 |
+  | `jezero-objective-3` | Sample caching for Mars Sample Return | Sample Caching 1-2 |
+  | `jezero-objective-4` (new) | Biosignature search | Astrobiology 2-3 |
+  | `jezero-objective-5` (new) | Human-exploration preparation | Preparation 1-4 |
+
+- **Honesty rules**: the objective text is real and paraphrased from the published page
+  and mission overview, but **no target coordinate is asserted**. All five stay
+  `coordinates: null`, `coordinate_verified: false`, `verification: "pending"`,
+  `routing_eligibility: unavailable` (reason: published objective, no source-audited
+  coordinate), `priority_category: "Published Mars 2020 science objective - location
+  pending"`. `evidence` changed `"Scenario"` → `"Interpreted"` because the objective
+  content is a published interpretation, not a hypothetical demonstration input. Jezero
+  is a scientific-map region, so null-coordinate targets render no markers; Gale and Oxia
+  keep their scenario targets and UI copy.
+- **Version**: `dataset_version` → `jezero-objectives-v9`, so saved plans show the
+  "Dataset version changed. Revalidate this plan against current evidence." notice.
+- **Tests**: the five e2e references to the old title `"Delta sediment exposure"` now use
+  `"Jezero geology and climate record"`; the round-trip test still asserts
+  `target_ids: ["jezero-objective-1"]`.
+- **Explicitly out of scope**: named rover campaign waypoints, real sample-site
+  coordinates and PLACES/sample-dossier mapping. Those require a separate per-product
+  coordinate audit and must not be inferred from the objective text.
+
+## Route-candidate display (region v9, no backend)
+
+The map can now draw **selected route candidates**, but only from a loaded, versioned
+route result. Nothing is calculated or drawn while routing is unavailable, so Jezero
+still shows no route by default and the Review panel still reports the missing inputs.
+
+- **Contract addition** (`lib/contracts/planning.ts`): candidate results may carry an
+  optional `display_geometry` array of `{ latitude, longitude_east }` (planetocentric
+  latitude, east longitude 0-360). It is **display-only**: the planning service must
+  reproject the same audited route it returned in `geometry`; the client never derives
+  a route from projected coordinates because no Mars projection transform has been
+  reviewed. A candidate without `display_geometry` stays in the comparison list and is
+  reported as "No display geometry · not plotted".
+- **Import rules** (`components/planner.tsx`): the Review panel accepts a JSON
+  `routeResponseSchema` result. A result is accepted only when it is `candidates`, its
+  `region` matches the open region, and its `dataset_version` matches both the current
+  catalog and the open plan. `unavailable` / `error` results and invalid or mismatched
+  files are rejected with an explicit reason. Any mission edit, mission import, or
+  region switch clears the loaded result, so stale geometry can never stay on the map.
+- **Map rendering** (`components/map/map-workspace.tsx`, `lib/map/routes.ts`): the
+  selected candidate is a solid cyan line with a dark casing; other plottable
+  candidates are dashed. The renderer adds/removes one GeoJSON source and three layers
+  from the loaded result only; preview mode and regions without a scientific map draw
+  nothing. A caption names the selected candidate and its validation state
+  (`Experimental` / `Scientifically reviewed`).
+- **Tests**: `tests/regions.test.ts` covers the display conversion (including the
+  >180° east-longitude wrap), the fail-closed path for projected-only candidates and
+  selected feature flags. `tests/browser/planner.spec.ts` imports a synthetic candidate
+  result, checks solid/dashed display and selection, confirms projected-only candidates
+  are not plotted, and confirms a mission edit clears the overlay.
+- **Still required before real use**: a connected planning service, reviewed route
+  geometry and projection, and audited coverage/assessments. The imported fixture in
+  tests is software-test data and is not a real Jezero route.
+- **Visual verification**: `jezero-route-candidates-1440.png` and
+  `jezero-route-selected-science-1440.png` were captured with a synthetic result to
+  verify line styling and the status caption; they are not evidence of a real route.
+
+

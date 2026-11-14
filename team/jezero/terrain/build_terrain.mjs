@@ -11,8 +11,9 @@
 //          1106618.0 m. Elevation values are areoid-relative meters
 //          (cross-checked against the PLACES traverse by audit_terrain.mjs).
 // Output : <outRoot>/{z}/{x}/{y}.png
-//          Standard 256 px Web-Mercator XYZ RGBA tiles for zooms 5-14 over the
-//          DTM footprint intersected with the region supported extent.
+//          Standard 256 px Web-Mercator XYZ RGBA tiles for zooms 5-14 spanning
+//          the region supported extent (plus margin); pixels outside the DTM
+//          footprint are transparent.
 //          Shaded hypsometric tint: elevation color ramp x analytic hillshade.
 //
 // Display transform (display-grade, documented):
@@ -261,23 +262,19 @@ rampMax = Math.ceil(rampMax / 10) * 10;
 samples = null;
 
 // ------------------------------------------------------------------ build tiles
+// Tile ranges are computed from the REGION extent (not the DTM coverage) so
+// every tile the clamped map viewport can request exists; tiles west of the
+// DTM footprint are fully transparent. Missing tiles would otherwise 404 when
+// panning to the supported extent's west margin at deep zoom.
 let tilesWritten = 0, bytesWritten = 0, transparentPx = 0;
 const tileLog = [];
 for (let z = MIN_Z; z <= MAX_Z; z++) {
-  const xMin = Math.floor(((COVERAGE.west - MARGIN_DEG + 180) / 360) * 2 ** z);
-  const xMax = Math.floor(((COVERAGE.east + MARGIN_DEG + 180) / 360) * 2 ** z);
-  const yTop = yIndexFor(z, Math.min(85, COVERAGE.north + MARGIN_DEG));
-  const yBottom = yIndexFor(z, COVERAGE.south - MARGIN_DEG);
+  const xMin = Math.floor(((REGION.west - MARGIN_DEG + 180) / 360) * 2 ** z);
+  const xMax = Math.floor(((REGION.east + MARGIN_DEG + 180) / 360) * 2 ** z);
+  const yTop = yIndexFor(z, Math.min(85, REGION.north + MARGIN_DEG));
+  const yBottom = yIndexFor(z, REGION.south - MARGIN_DEG);
   for (let x = xMin; x <= xMax; x++) {
     for (let y = yTop; y <= yBottom; y++) {
-      // Tile-corner lon/lat bounds (mercator): skip only tiles that do NOT
-      // intersect the coverage box (a tile can be larger than the coverage at
-      // low zoom; per-pixel transparency handles the edges).
-      const lon0 = lonAt(z, x, 0), lon1 = lonAt(z, x + 1, 0);
-      const lat1 = latAt(z, y, 0), lat0 = latAt(z, y + 1, 0);
-      if (lon1 < COVERAGE.west || lon0 > COVERAGE.east) continue;
-      if (lat1 < COVERAGE.south || lat0 > COVERAGE.north) continue;
-
       const out = Buffer.alloc(TILE_PX * TILE_PX * 4);
       // Elevation grid with 1px padding for the hillshade gradient.
       const PAD = 1;

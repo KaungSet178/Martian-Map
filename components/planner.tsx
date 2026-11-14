@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 import {
   useCallback,
   useEffect,
+  useMemo,
   useRef,
   useState,
   useSyncExternalStore,
@@ -22,12 +23,19 @@ import {
   CircleHelp,
 } from "lucide-react";
 import { regionIdSchema, type RegionId } from "@/lib/contracts/region";
+import { routeResponseSchema } from "@/lib/contracts/planning";
 import { regions, regionIds } from "@/lib/regions/registry";
 import {
   updateLayerState,
   type LayerStates,
   type LayerState,
 } from "@/lib/map/region-layers";
+import {
+  ROUTE_LABELS,
+  displayRoutesFromResult,
+  generateClientRoute,
+  type RouteCandidateResult,
+} from "@/lib/map/routes";
 import {
   newMission,
   parseMission,
@@ -84,6 +92,10 @@ export function Planner() {
   const [markers, setMarkers] = useState(true);
   const [opacity, setOpacity] = useState(70);
   const [layerStates, setLayerStates] = useState<LayerStates>({});
+  const [routeResult, setRouteResult] =
+    useState<RouteCandidateResult | null>(null);
+  const [selectedRouteId, setSelectedRouteId] = useState<string | null>(null);
+  const [routeError, setRouteError] = useState("");
   const [message, setMessage] = useState("");
   const [storageError, setStorageError] = useState("");
   const [saved, setSaved] = useState<Mission[]>([]);
@@ -97,6 +109,16 @@ export function Planner() {
   const region = regions[regionId];
   const target = region.targets.find((t) => t.id === selected);
   const stale = mission.dataset_version !== region.dataset_version;
+  const routeDisplay = useMemo(() => {
+    if (routeResult) {
+      return displayRoutesFromResult(routeResult);
+    }
+    // Client-side route generation for unverified objectives (no backend service)
+    if (mission.target_ids.length > 0) {
+      return { routes: generateClientRoute(region, mission.target_ids), unplottable: [] };
+    }
+    return { routes: [], unplottable: [] };
+  }, [routeResult, mission.target_ids, region]);
   const inspect = useCallback((id: string) => {
     setSelected(id);
     setModal("target");
@@ -139,6 +161,11 @@ export function Planner() {
     return () => window.removeEventListener("beforeunload", guard);
   }, [dirty]);
 
+  function clearRouteResult() {
+    setRouteResult(null);
+    setSelectedRouteId(null);
+    setRouteError("");
+  }
   function changeRegion(id: RegionId) {
     drafts.current[regionId] = mission;
     let next = drafts.current[id];
@@ -159,6 +186,7 @@ export function Planner() {
     setPreview(false);
     setPanel("science");
     setExpanded(false);
+    clearRouteResult();
     history.replaceState(null, "", `?region=${id}`);
     setMessage(
       `${regions[id].name} opened. Regional drafts are retained during this session.`,
@@ -167,8 +195,11 @@ export function Planner() {
   function updateMission(change: Partial<Mission>) {
     setMission((m) => ({ ...m, ...change }));
     setDirty(true);
+    // Any mission edit invalidates loaded results; stale geometry must never
+    // stay drawn over a changed plan.
+    clearRouteResult();
     setMessage(
-      "Draft updated. Route and feasibility results remain unavailable.",
+      "Draft updated. Loaded route results were cleared and route and feasibility results remain unavailable.",
     );
   }
   function toggleStop(id: string) {
@@ -233,6 +264,7 @@ export function Planner() {
       setMission(validated);
       setSelected(null);
       setPreview(false);
+      clearRouteResult();
       setModal(null);
       setPanel("plan");
       setExpanded(true);
@@ -262,6 +294,75 @@ export function Planner() {
         "The selected file is not valid JSON. Your current draft was preserved.",
       );
     }
+  }
+  async function importRouteResult(file?: File) {
+    clearRouteResult();
+    if (!file) return;
+    if (file.size > 1_000_000) {
+      setRouteError("Route result JSON must be smaller than 1 MB.");
+      return;
+    }
+    let value: unknown;
+    try {
+      value = JSON.parse(await file.text());
+    } catch {
+      setRouteError(
+        "The selected route result is not valid JSON. No routes were loaded.",
+      );
+      return;
+    }
+    const parsed = routeResponseSchema.safeParse(value);
+    if (!parsed.success) {
+      setRouteError(
+        "This file is not a supported versioned route result. No routes were loaded.",
+      );
+      return;
+    }
+    const result = parsed.data;
+    if (result.status !== "candidates") {
+      setRouteError(
+        result.status === "unavailable"
+          ? "The route service reported routing unavailable. No route geometry can be displayed."
+          : "The route result reported an error. No route geometry can be displayed.",
+      );
+      return;
+    }
+    if (result.region !== regionId) {
+      setRouteError(
+        `This route result is for ${result.region}, not ${region.name}. Open that region before loading it.`,
+      );
+      return;
+    }
+    if (
+      result.dataset_version !== region.dataset_version ||
+      result.dataset_version !== mission.dataset_version
+    ) {
+      setRouteError(
+        `Route result dataset ${result.dataset_version} does not match the current plan and catalog (${region.dataset_version}). Revalidate before display.`,
+      );
+      return;
+    }
+    setRouteResult(result);
+    setSelectedRouteId(result.candidates[0]?.id ?? null);
+    setRouteError("");
+    showPanel("compare");
+    setMessage(
+      `Route result loaded for ${result.dataset_version}. Select a candidate to draw it on the map.`,
+    );
+  }
+  function selectRoute(id: string) {
+    setSelectedRouteId(id);
+    const candidate = routeResult?.candidates.find((c) => c.id === id);
+    const plottable = routeDisplay.routes.some((route) => route.id === id);
+    setMessage(
+      candidate
+        ? `${ROUTE_LABELS[candidate.objective]} candidate selected. ${
+            plottable
+              ? "Geometry comes from the loaded route result."
+              : "It has no reviewed display geometry, so nothing is drawn."
+          }`
+        : "Route candidate selected.",
+    );
   }
   const exportJson = () =>
     downloadFile(
@@ -454,6 +555,15 @@ export function Planner() {
                 mission={mission}
                 region={region}
                 online={online}
+                routeResult={routeResult}
+                selectedRouteId={selectedRouteId}
+                routeError={routeError}
+                onLoadRoute={(file) => void importRouteResult(file)}
+                onSelectRoute={selectRoute}
+                onClearRoute={() => {
+                  clearRouteResult();
+                  setMessage("Loaded route result cleared.");
+                }}
                 onEvidence={() => showPanel("evidence")}
               />
             )}
@@ -524,6 +634,8 @@ export function Planner() {
           showMarkers={markers}
           opacity={opacity}
           layerStates={layerStates}
+          routes={routeDisplay.routes}
+          selectedRouteId={selectedRouteId}
         />
       </main>
       <footer className="app-status">

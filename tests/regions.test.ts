@@ -13,6 +13,7 @@ import {
 } from "@/lib/regions/registry";
 import {
   regionSchema,
+  assessments,
   type RegionManifest,
   targetSchema,
 } from "@/lib/contracts/region";
@@ -20,6 +21,10 @@ import {
   routeRequestSchema,
   routeResponseSchema,
 } from "@/lib/contracts/planning";
+import {
+  displayRoutesFromResult,
+  routeFeatureCollection,
+} from "@/lib/map/routes";
 import {
   applyLayerStates,
   displayBounds,
@@ -199,7 +204,7 @@ test("declarative renderer mounts only current regional sources and cleans them 
     calls.some(
       (c) =>
         c[0] === "layout" &&
-        c[1] === "region-jezero-geology" &&
+        c[1] === `region-${region.layers[2].id}` &&
         c[3] === "visible",
     ),
   );
@@ -274,6 +279,104 @@ test("backend boundary rejects missing one-way endpoints and incomplete assessme
       region: "gale",
       candidates: [{ assessments: { Terrain: { status: "Feasible" } } }],
     }).success,
+    false,
+  );
+});
+
+test("route result geometry is display-only and fails closed without it", () => {
+  const result = routeResponseSchema.parse({
+    status: "candidates",
+    region: "jezero",
+    input_revision: "rev-1",
+    dataset_version: "synthetic-software-test",
+    coverage: {
+      status: "audited",
+      source_ids: ["synthetic-software-test-source"],
+      limitations: [],
+    },
+    candidates: [
+      {
+        id: "candidate-display",
+        objective: "safest",
+        validation: "experimental",
+        geometry: [
+          { body: "Mars", crs: "IAU_2015", easting_m: 0, northing_m: 0 },
+          { body: "Mars", crs: "IAU_2015", easting_m: 1, northing_m: 1 },
+        ],
+        display_geometry: [
+          { latitude: 18.4, longitude_east: 77.5 },
+          { latitude: 18.5, longitude_east: 282.5 },
+        ],
+        identical_to: null,
+        omitted_target_ids: [],
+        models: [
+          {
+            id: "synthetic-model",
+            version: "1",
+            source_ids: ["synthetic-software-test-source"],
+            assumptions: [],
+            limitations: [],
+          },
+        ],
+        limitations: [],
+        assessments: Object.fromEntries(
+          assessments.map((name) => [
+            name,
+            { status: "Unverified", reason: "", value: null, unit: null },
+          ]),
+        ),
+      },
+      {
+        id: "candidate-projected-only",
+        objective: "fastest",
+        validation: "scientifically_reviewed",
+        geometry: [
+          { body: "Mars", crs: "IAU_2015", easting_m: 0, northing_m: 0 },
+          { body: "Mars", crs: "IAU_2015", easting_m: 1, northing_m: 1 },
+        ],
+        identical_to: null,
+        omitted_target_ids: [],
+        models: [
+          {
+            id: "synthetic-model",
+            version: "1",
+            source_ids: ["synthetic-software-test-source"],
+            assumptions: [],
+            limitations: [],
+          },
+        ],
+        limitations: [],
+        assessments: Object.fromEntries(
+          assessments.map((name) => [
+            name,
+            { status: "Unverified", reason: "", value: null, unit: null },
+          ]),
+        ),
+      },
+    ],
+  });
+  assert.equal(result.status, "candidates");
+  if (result.status !== "candidates") return;
+
+  const { routes, unplottable } = displayRoutesFromResult(result);
+  assert.deepEqual(unplottable, ["candidate-projected-only"]);
+  assert.deepEqual(routes, [
+    {
+      id: "candidate-display",
+      objective: "safest",
+      validation: "experimental",
+      coordinates: [
+        [77.5, 18.4],
+        [-77.5, 18.5],
+      ],
+    },
+  ]);
+
+  const collection = routeFeatureCollection(routes, "candidate-display");
+  assert.equal(collection.features.length, 1);
+  assert.equal(collection.features[0].properties.selected, true);
+  assert.deepEqual(
+    routeFeatureCollection(routes, null).features[0].properties.selected,
     false,
   );
 });

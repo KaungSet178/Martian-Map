@@ -19,9 +19,9 @@
     -2620,
     -1770
   ],
-  "tiles_written": 120,
-  "output_bytes": 9051849,
-  "transparent_pixels": 1573290,
+  "tiles_written": 193,
+  "output_bytes": 12816609,
+  "transparent_pixels": 3532101,
   "tile_ranges": [
     {
       "z": 5,
@@ -81,14 +81,14 @@
     },
     {
       "z": 13,
-      "xMin": 5853,
+      "xMin": 5852,
       "xMax": 5859,
       "yTop": 3666,
       "yBottom": 3670
     },
     {
       "z": 14,
-      "xMin": 11706,
+      "xMin": 11704,
       "xMax": 11719,
       "yTop": 7333,
       "yBottom": 7340

@@ -97,6 +97,12 @@ export const routeResponseSchema = z.discriminatedUnion("status", [
         objective: z.enum(["safest", "fastest", "science"]),
         validation: z.enum(["experimental", "scientifically_reviewed"]),
         geometry: z.array(projectedCoordinatesSchema).min(2),
+        // Optional display-only geographic geometry supplied by the planning
+        // service (planetocentric latitude, east longitude 0-360). It must be
+        // the same audited route reprojected by the service; the client never
+        // derives a route from it. Candidates without this field remain
+        // unplottable until a reviewed projection transform exists.
+        display_geometry: z.array(coordinatesSchema).min(2).optional(),
         identical_to: z.string().nullable(),
         omitted_target_ids: z.array(z.string()),
         models: z.array(modelProvenanceSchema).min(1),

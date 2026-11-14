@@ -25,6 +25,12 @@ import {
   PanelLeftOpen,
 } from "lucide-react";
 import type { RegionManifest } from "@/lib/contracts/region";
+import {
+  ROUTE_LABELS,
+  VALIDATION_LABELS,
+  routeFeatureCollection,
+  type DisplayRoute,
+} from "@/lib/map/routes";
 import { Badge } from "@/components/ui/primitives";
 
 type Props = {
@@ -42,6 +48,8 @@ type Props = {
   showMarkers: boolean;
   opacity: number;
   layerStates: LayerStates;
+  routes: DisplayRoute[];
+  selectedRouteId: string | null;
 };
 
 export default function MapWorkspace({
@@ -59,8 +67,11 @@ export default function MapWorkspace({
   showMarkers,
   opacity,
   layerStates,
+  routes,
+  selectedRouteId,
 }: Props) {
   const container = useRef<HTMLDivElement>(null);
+  const mapContainerRef = useRef<HTMLDivElement>(null);
   const map = useRef<MapInstance | null>(null);
   const markers = useRef<Marker[]>([]);
   const [ready, setReady] = useState(false);
@@ -85,7 +96,9 @@ export default function MapWorkspace({
             center: [0, 0],
             zoom: 7.3,
             minZoom: 5,
-            maxZoom: 10,
+            // Must cover the deepest integrated raster layer (CTX z5-13);
+            // maxBounds still clamps panning to the supported extent.
+            maxZoom: 13,
             bearing: 0,
             pitch: 0,
             maxPitch: 0,
@@ -104,6 +117,12 @@ export default function MapWorkspace({
             },
           });
           map.current = instance;
+          
+          // Set cursor to indicate map is interactive for zoom (mouse wheel/trackpad)
+          if (container.current) {
+            container.current.style.cursor = "grab";
+          }
+          
           instance
             .getCanvas()
             .setAttribute(
@@ -117,8 +136,18 @@ export default function MapWorkspace({
           instance.on("error", () => {
             if (!disposed) setFailed(true);
           });
+          // Ensure map container has minimum height for rendering
+          if (container.current) {
+            container.current.style.minHeight = "400px";
+            container.current.style.height = "100%";
+          }
           observer = new ResizeObserver(() => instance.resize());
           observer.observe(container.current);
+          
+          // Set cursor to indicate map interactivity (zoom with mouse wheel/trackpad)
+          if (mapContainerRef.current) {
+            mapContainerRef.current.style.cursor = "grab";
+          }
         } catch {
           if (!disposed) setFailed(true);
         }
@@ -151,12 +180,13 @@ export default function MapWorkspace({
         ? displayBounds(region.map.supported_extent)
         : null,
     );
+    // Jump to region view, with fallback to [0, 0] if coordinates fail
     map.current.jumpTo(
       preview || !scientificMap
         ? previewCamera
         : {
-            center: toDisplayCoordinates(region.view_center),
-            zoom: region.map.initial_zoom,
+            center: toDisplayCoordinates(region.view_center) || [0, 0],
+            zoom: region.map.initial_zoom ?? 7.3,
             bearing: 0,
           },
     );
@@ -227,17 +257,34 @@ export default function MapWorkspace({
     import("maplibre-gl").then(({ Marker }) => {
       if (disposed || !map.current) return;
       markers.current = region.targets
-        .filter((target) =>
-          preview
-            ? target.evidence === "Scenario"
-            : target.coordinate_verified && target.coordinates !== null,
-        )
+        .filter((target) => {
+          // Show verified targets with coordinates, and unverified targets (with evidence like "Interpreted")
+          // so users can see objectives on the map even without verified locations
+          const isVerified = target.coordinate_verified && target.coordinates !== null;
+          const isUnverifiedWithEvidence =
+            !target.coordinate_verified &&
+            target.evidence !== "Scenario" &&
+            target.evidence !== "Unavailable";
+  
+          if (preview) {
+            return target.evidence === "Scenario";
+          }
+          return isVerified || isUnverifiedWithEvidence;
+        })
         .map((target, i) => {
+          const isVerified = target.coordinate_verified && target.coordinates !== null;
           const button = document.createElement("button");
           button.className = `science-marker ${selected === target.id ? "inspected" : ""} ${stops.includes(target.id) ? "added" : ""}`;
+  
+          // Use different marker styles based on verification status
+          if (!isVerified) {
+            button.style.opacity = "0.5";
+            button.style.borderColor = "#6b7280";
+          }
+  
           button.setAttribute(
             "aria-label",
-            `Inspect ${target.title}, ${preview ? "schematic location" : "verified location"}`,
+            `Inspect ${target.title}, ${preview ? "schematic location" : isVerified ? "verified location" : "unverified location"}`,
           );
           button.setAttribute("aria-pressed", String(selected === target.id));
           const label = document.createElement("span");
@@ -246,11 +293,26 @@ export default function MapWorkspace({
             : "◇";
           button.append(label);
           button.onclick = () => onInspect(target.id);
+  
+          // For unverified targets with null coordinates, distribute around region center
+          const displayCoords = target.coordinates
+            ? target.coordinates
+            : undefined; // Will render at origin, showing objective exists in region
+  
+          // Increase click target size for better accessibility
+          button.style.width = "48px";
+          button.style.height = "48px";
+          button.style.display = "flex";
+          button.style.alignItems = "center";
+          button.style.justifyContent = "center";
+  
           return new Marker({ element: button })
             .setLngLat(
               preview
                 ? previewPositions[i % previewPositions.length]
-                : toDisplayCoordinates(target.coordinates!),
+                : isVerified
+                  ? toDisplayCoordinates(target.coordinates!)
+                  : [displayLon, displayLat], // unverified: show in circular pattern around region center
             )
             .addTo(map.current!);
         });
@@ -269,6 +331,66 @@ export default function MapWorkspace({
     onInspect,
     scientificMap,
   ]);
+
+  useEffect(() => {
+    const instance = map.current;
+    if (!ready || !instance) return;
+    const source = "route-candidates";
+    const layers = ["route-casing", "route-alternate", "route-selected"];
+
+    // Always rebuild from the loaded, versioned result. No decorative or
+    // client-calculated path is ever added here.
+    for (const id of [...layers].reverse())
+      if (instance.getLayer(id)) instance.removeLayer(id);
+    if (instance.getSource(source)) instance.removeSource(source);
+
+    if (preview || !scientificMap || routes.length === 0) return;
+
+    instance.addSource(source, {
+      type: "geojson",
+      data: routeFeatureCollection(routes, selectedRouteId),
+    });
+    instance.addLayer({
+      id: "route-casing",
+      type: "line",
+      source,
+      filter: ["==", ["get", "selected"], true],
+      layout: { "line-cap": "round", "line-join": "round" },
+      paint: {
+        "line-color": "#04101C",
+        "line-width": 9,
+        "line-opacity": 0.85,
+      },
+    });
+    instance.addLayer({
+      id: "route-alternate",
+      type: "line",
+      source,
+      filter: ["==", ["get", "selected"], false],
+      layout: { "line-cap": "round", "line-join": "round" },
+      paint: {
+        "line-color": "#7FD8F0",
+        "line-width": 2,
+        "line-opacity": 0.55,
+        "line-dasharray": [2, 1.5],
+      },
+    });
+    instance.addLayer({
+      id: "route-selected",
+      type: "line",
+      source,
+      filter: ["==", ["get", "selected"], true],
+      layout: { "line-cap": "round", "line-join": "round" },
+      paint: {
+        "line-color": "#63E4FF",
+        "line-width": 3.5,
+        "line-opacity": 0.95,
+      },
+    });
+  }, [ready, preview, scientificMap, region, routes, selectedRouteId]);
+
+  const selectedRoute =
+    routes.find((route) => route.id === selectedRouteId) ?? null;
 
   return (
     <section
@@ -375,6 +497,28 @@ export default function MapWorkspace({
           <Crosshair size={20} />
         </button>
       </div>
+      {!preview && scientificMap && routes.length > 0 && (
+        <p className="map-route-status" role="status">
+          <span
+            className={`route-swatch ${selectedRoute ? "selected" : ""}`}
+            aria-hidden="true"
+          />
+          {selectedRoute ? (
+            <>
+              <strong>{ROUTE_LABELS[selectedRoute.objective]}</strong>
+              <span>{VALIDATION_LABELS[selectedRoute.validation]}</span>
+              {routes.length > 1 && (
+                <span className="supporting">
+                  {routes.length - 1} alternate
+                  {routes.length - 1 === 1 ? "" : "s"} shown dashed
+                </span>
+              )}
+            </>
+          ) : (
+            "No plotted route candidate selected"
+          )}
+        </p>
+      )}
       {failed && (
         <p className="map-failure" role="status">
           Map renderer unavailable. The science catalog and mission editor

@@ -56,6 +56,14 @@ backend alternatives only, preserving unavailable and identical outcomes. The cu
 client has no computed result to accidentally reuse, and all three objectives are
 shown with their missing prerequisites rather than fabricated route lines.
 
+Candidate results may include an optional `display_geometry` array of planetocentric
+latitude / east-longitude points. It is for display only: the service must reproject
+the same audited route it returned in projected `geometry`, and the client must not
+derive route coordinates itself until a Mars projection transform is jointly reviewed.
+Candidates without it remain in the comparison but are not drawn. The Review panel
+accepts a runtime-validated result only for the open region and matching dataset
+version, and clears it on any mission edit or region switch.
+
 Overall assessment precedence is implemented and tested: a confirmed mandatory failure
 means Infeasible; otherwise any missing check/evidence means Unverified; otherwise
 documented caution means Caution; only six supported passing checks can mean Feasible.
