@@ -254,7 +254,7 @@ test("optional photo evidence preserves legacy manifests and cannot promote an a
     assert.equal(target.coordinates, null);
     assert.equal(target.coordinate_verified, false);
     assert.equal(target.routing_eligibility.status, "unavailable");
-    assert.equal(target.boundary?.status, "unavailable");
+    assert.equal(target.boundary?.status, "available");
   }
 });
 

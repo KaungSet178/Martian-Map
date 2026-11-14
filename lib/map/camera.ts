@@ -176,3 +176,23 @@ export function fitLayerCoverage(
   fitOverview(map, { ...region, map: { ...region.map, supported_extent: extent } }, container, false, true);
   return true;
 }
+
+// Explicit fit-to-area action for a source-supported geographic objective area.
+export function fitObjectiveArea(
+  map: MapInstance,
+  region: RegionManifest,
+  extent: NonNullable<RegionManifest["map"]["supported_extent"]>,
+  container: HTMLElement,
+  animate = true,
+): boolean {
+  if (extent.west_east >= extent.east_east || extent.south_latitude >= extent.north_latitude) return false;
+  fitOverview(
+    map,
+    { ...region, map: { ...region.map, supported_extent: extent } },
+    container,
+    false,
+    animate,
+    focusPadding(container),
+  );
+  return true;
+}

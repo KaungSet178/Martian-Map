@@ -23,8 +23,14 @@ import {
 } from "@/lib/map/waypoint-layers";
 import { formatCoordinates } from "@/components/mission/waypoint-itinerary";
 import type { WaypointPlan } from "@/lib/mission/waypoint-planning";
-import { fitOverview, fitInitialView, fitLayerCoverage } from "@/lib/map/camera";
+import { fitOverview, fitInitialView, fitLayerCoverage, fitObjectiveArea } from "@/lib/map/camera";
 import { registerScientificClip } from "@/lib/map/scientific-clip";
+import {
+  mountObjectiveAreaLayers,
+  updateObjectiveAreaSelection,
+  removeObjectiveAreaLayers,
+  setObjectiveAreasVisibility,
+} from "@/lib/map/objective-area-layers";
 import {
   Crosshair,
   Layers,
@@ -34,11 +40,19 @@ import {
   ArrowUp,
   Map as MapIcon,
   PanelLeftOpen,
+  Shapes,
 } from "lucide-react";
 import type { RegionManifest, MarsGeographicCoordinates } from "@/lib/contracts/region";
 import { Badge } from "@/components/ui/primitives";
 import BasemapControl from "@/components/map/basemap-control";
 import { COLOR_BASEMAP } from "@/lib/map/color-basemap";
+
+export type TargetAreaFocusRequest = {
+  region_id: string;
+  target_id: string;
+  request_id: number;
+  extent: NonNullable<RegionManifest["map"]["supported_extent"]>;
+};
 
 type Props = {
   region: RegionManifest;
@@ -58,6 +72,7 @@ type Props = {
   onLayerChange?: (id: string, change: Partial<LayerState>) => void;
   presentationMode?: "mission_view" | "full_coverage";
   coverageFocus?: CoverageFocusRequest | null;
+  targetAreaFocus?: TargetAreaFocusRequest | null;
   plan?: WaypointPlan;
   isPlacingOnMap?: boolean;
   onPlaceWaypoint?: (coords: MarsGeographicCoordinates) => void;
@@ -85,6 +100,7 @@ export default function MapWorkspace({
   onLayerChange,
   presentationMode = "mission_view",
   coverageFocus,
+  targetAreaFocus,
   plan,
   isPlacingOnMap = false,
   onPlaceWaypoint,
@@ -100,8 +116,10 @@ export default function MapWorkspace({
   const markerElements = useRef<Map<string, HTMLButtonElement>>(new Map());
   const overview = useRef<"initial" | "mission" | false>("initial");
   const handledCoverageFocus = useRef<number | null>(null);
+  const handledTargetAreaFocus = useRef<number | null>(null);
   const previousLayers = useRef<{ region: string; visible: Set<string> } | null>(null);
   const [ready, setReady] = useState(false);
+  const [showObjectiveAreas, setShowObjectiveAreas] = useState(true);
   const [loadedMap, setLoadedMap] = useState<MapInstance | null>(null);
   const [failed, setFailed] = useState(false);
   const scientificMap = region.map.visualization.status === "available";
@@ -238,6 +256,49 @@ export default function MapWorkspace({
     if (fitLayerCoverage(map.current, region, coverageFocus.layer_id, container.current))
       overview.current = false;
   }, [ready, coverageFocus, region, preview]);
+
+  useEffect(() => {
+    if (
+      !ready ||
+      !map.current ||
+      !container.current ||
+      !targetAreaFocus ||
+      handledTargetAreaFocus.current === targetAreaFocus.request_id
+    )
+      return;
+    handledTargetAreaFocus.current = targetAreaFocus.request_id;
+    if (preview || targetAreaFocus.region_id !== region.id) return;
+    if (
+      fitObjectiveArea(
+        map.current,
+        region,
+        targetAreaFocus.extent,
+        container.current,
+      )
+    ) {
+      overview.current = false;
+    }
+  }, [ready, targetAreaFocus, region, preview]);
+
+  useEffect(() => {
+    if (!ready || !map.current || preview || !scientificMap) return;
+    const instance = map.current;
+    mountObjectiveAreaLayers(instance, region, selected, onInspect);
+    setObjectiveAreasVisibility(instance, showObjectiveAreas);
+    return () => {
+      removeObjectiveAreaLayers(instance);
+    };
+  }, [ready, region, preview, scientificMap, onInspect, showObjectiveAreas, selected]);
+
+  useEffect(() => {
+    if (!ready || !map.current || preview || !scientificMap) return;
+    updateObjectiveAreaSelection(map.current, selected);
+  }, [ready, selected, preview, scientificMap]);
+
+  useEffect(() => {
+    if (!ready || !map.current || preview || !scientificMap) return;
+    setObjectiveAreasVisibility(map.current, showObjectiveAreas);
+  }, [ready, showObjectiveAreas, preview, scientificMap]);
 
   useEffect(() => {
     if (!ready || !container.current || !map.current) return;
@@ -727,6 +788,21 @@ export default function MapWorkspace({
             title={scientificMap && !preview ? "Fit mission area" : "Reset map view"}
           >
             <Crosshair size={20} />
+          </button>
+        )}
+        {scientificMap && !preview && (
+          <button
+            className={`icon-button ${showObjectiveAreas ? "active" : ""}`}
+            onClick={() => setShowObjectiveAreas(!showObjectiveAreas)}
+            disabled={!ready || failed}
+            aria-label={
+              showObjectiveAreas ? "Hide objective areas" : "Show objective areas"
+            }
+            title={
+              showObjectiveAreas ? "Hide objective areas" : "Show objective areas"
+            }
+          >
+            <Shapes size={20} />
           </button>
         )}
       </div>

@@ -8,6 +8,11 @@ import {
   waypointPlanSchema,
   type WaypointPlan,
 } from "@/lib/mission/waypoint-planning";
+import {
+  findTarget,
+  isValidTargetId,
+  isRetiredTarget,
+} from "./target-lookup";
 
 export const missionSchema = z.object({
   schema_version: z.literal(1),
@@ -77,7 +82,7 @@ export function missionIssues(
   }
   if (
     mission.target_ids.some((id) => {
-      const target = region.targets.find((t) => t.id === id);
+      const target = findTarget(region, id);
       return (
         !target?.coordinate_verified ||
         target.routing_eligibility.status !== "available"
@@ -87,6 +92,11 @@ export function missionIssues(
     issues.push(
       "Selected objectives need verified target coordinates and routing eligibility before routing.",
     );
+  if (mission.target_ids.some((id) => isRetiredTarget(region.id, id))) {
+    issues.push(
+      "Plan contains retired scenario objective(s) that are no longer available for active mission planning.",
+    );
+  }
   if (mission.dataset_version !== region.dataset_version)
     issues.push(
       "Dataset version changed. Revalidate this plan against current evidence.",
@@ -98,7 +108,7 @@ export function parseMission(value: unknown, region: RegionManifest): Mission {
   const mission = missionSchema.parse(value);
   if (
     mission.region !== region.id ||
-    mission.target_ids.some((id) => !region.targets.some((t) => t.id === id))
+    mission.target_ids.some((id) => !isValidTargetId(region, id))
   ) {
     throw new Error(
       "This plan contains unknown region or objective IDs. Its source catalog is required before opening.",

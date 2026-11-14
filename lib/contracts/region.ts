@@ -12,8 +12,21 @@ import {
   targetSchema,
 } from "./science";
 export * from "./primitives";
-export { layerSchema, sourceSchema, targetSchema } from "./science";
-export type { Target, ScientificLayer, SourceRecord } from "./science";
+export {
+  layerSchema,
+  sourceSchema,
+  targetSchema,
+  boundarySchema,
+  objectiveLocationSchema,
+} from "./science";
+export type {
+  Target,
+  ScientificLayer,
+  SourceRecord,
+  TargetBoundary,
+  ObjectiveLocation,
+  GeographicAreaClassification,
+} from "./science";
 export const mapConfigSchema = z.object({
   visualization: availabilitySchema,
   initial_zoom: z.number().min(0).max(22),

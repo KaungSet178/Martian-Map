@@ -150,6 +150,91 @@ export const photographSchema = z.object({
   message: "Photographic evidence requires an acquisition date or Sol",
 });
 export type Photograph = z.infer<typeof photographSchema>;
+
+export const geographicAreaClassificationSchema = z.enum([
+  "mapped",
+  "approximate",
+  "candidate",
+]);
+export type GeographicAreaClassification = z.infer<
+  typeof geographicAreaClassificationSchema
+>;
+
+export const linearRingSchema = z
+  .array(z.tuple([z.number(), z.number()]))
+  .min(4)
+  .refine(
+    (ring) =>
+      ring[0][0] === ring[ring.length - 1][0] &&
+      ring[0][1] === ring[ring.length - 1][1],
+    { message: "LinearRing must be closed (first and last coordinates must match)" },
+  );
+
+export const geoJsonPolygonSchema = z.object({
+  type: z.literal("Polygon"),
+  coordinates: z.array(linearRingSchema).min(1),
+});
+
+export const geoJsonMultiPolygonSchema = z.object({
+  type: z.literal("MultiPolygon"),
+  coordinates: z.array(z.array(linearRingSchema).min(1)).min(1),
+});
+
+export const geoJsonAreaGeometrySchema = z.discriminatedUnion("type", [
+  geoJsonPolygonSchema,
+  geoJsonMultiPolygonSchema,
+]);
+export type GeoJsonAreaGeometry = z.infer<typeof geoJsonAreaGeometrySchema>;
+
+export const boundarySchema = z.discriminatedUnion("status", [
+  z.object({
+    status: z.literal("unavailable"),
+    reason: z.string().min(1),
+  }),
+  z.object({
+    status: z.literal("available"),
+    classification: geographicAreaClassificationSchema,
+    geometry: geoJsonAreaGeometrySchema,
+    extent: geographicExtentSchema,
+    source_ids: z.array(z.string()).optional(),
+    limitations: z.array(z.string()).optional(),
+    source_verified: z.boolean().optional(),
+    processing_verified: z.boolean().optional(),
+    registration_verified: z.boolean().optional(),
+    uncertainty_m: z.number().positive().nullable().optional(),
+  }),
+]);
+export type TargetBoundary = z.infer<typeof boundarySchema>;
+
+export const objectiveLocationSchema = z.discriminatedUnion("type", [
+  z.object({
+    type: z.literal("point"),
+    coordinates: z.tuple([z.number(), z.number()]),
+    source_verified: z.boolean(),
+    processing_verified: z.boolean(),
+    registration_verified: z.boolean(),
+    source_ids: z.array(z.string()),
+    uncertainty_m: z.number().positive().nullable().optional(),
+  }),
+  z.object({
+    type: z.literal("area"),
+    geometry: geoJsonAreaGeometrySchema,
+    extent: geographicExtentSchema,
+    classification: geographicAreaClassificationSchema,
+    source_verified: z.boolean(),
+    processing_verified: z.boolean(),
+    registration_verified: z.boolean(),
+    source_ids: z.array(z.string()),
+    limitations: z.array(z.string()),
+    uncertainty_m: z.number().positive().nullable().optional(),
+  }),
+  z.object({
+    type: z.literal("unavailable"),
+    reason: z.string().min(1),
+  }),
+]);
+export type ObjectiveLocation = z.infer<typeof objectiveLocationSchema>;
+
 export const targetSchema = z
   .object({
     id: z.string().min(1),
@@ -171,7 +256,8 @@ export const targetSchema = z
     // valid. Photos establish evidence/association, never target coordinates.
     feature_kind: z.enum(["geological_area", "observation_site", "sampling_site", "scenario_objective"]).optional(),
     location_notes: z.string().min(1).optional(),
-    boundary: z.object({ status: z.literal("unavailable"), reason: z.string().min(1) }).optional(),
+    boundary: boundarySchema.optional(),
+    location: objectiveLocationSchema.optional(),
     photographs: z.array(photographSchema).max(8).optional(),
   })
   .superRefine((t, ctx) => {

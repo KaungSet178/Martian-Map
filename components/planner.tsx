@@ -22,7 +22,12 @@ import {
   Globe2,
   CircleHelp,
 } from "lucide-react";
-import { regionIdSchema, type RegionId, type MarsGeographicCoordinates } from "@/lib/contracts/region";
+import {
+  regionIdSchema,
+  type RegionId,
+  type MarsGeographicCoordinates,
+  type Target,
+} from "@/lib/contracts/region";
 import { regions, regionIds } from "@/lib/regions/registry";
 import {
   updateLayerState,
@@ -38,6 +43,8 @@ import {
   missionSchema,
   type Mission,
 } from "@/lib/mission/model";
+import { findTarget, isRetiredTarget } from "@/lib/mission/target-lookup";
+import type { TargetAreaFocusRequest } from "./map/map-workspace";
 import {
   Badge,
   Dialog,
@@ -117,8 +124,21 @@ export function Planner() {
     () => true,
   );
   const region = regions[regionId];
-  const target = region.targets.find((t) => t.id === selected);
+  const target = selected ? findTarget(region, selected) : undefined;
   const stale = mission.dataset_version !== region.dataset_version;
+
+  const [targetAreaFocus, setTargetAreaFocus] = useState<TargetAreaFocusRequest | null>(null);
+  const handleFitArea = useCallback((t: Target) => {
+    if (t.boundary?.status === "available") {
+      setTargetAreaFocus({
+        region_id: region.id,
+        target_id: t.id,
+        request_id: Date.now(),
+        extent: t.boundary.extent,
+      });
+      setModal(null);
+    }
+  }, [region.id]);
 
   const [planSubView, setPlanSubView] = useState<"objectives" | "waypoints">("objectives");
   const [editingWaypointId, setEditingWaypointId] = useState<string | null>(null);
@@ -307,6 +327,10 @@ export function Planner() {
     );
   }
   function toggleStop(id: string) {
+    if (isRetiredTarget(region.id, id) && !mission.target_ids.includes(id)) {
+      setMessage("Retired scenario objectives cannot be added to new mission drafts.");
+      return;
+    }
     updateMission({
       target_ids: mission.target_ids.includes(id)
         ? mission.target_ids.filter((t) => t !== id)
@@ -814,6 +838,7 @@ export function Planner() {
           }
           presentationMode={presentationMode}
           coverageFocus={coverageFocus}
+          targetAreaFocus={targetAreaFocus}
           plan={activePlan}
           isPlacingOnMap={isPlacingOnMap}
           onPlaceWaypoint={handlePlaceWaypoint}
@@ -844,6 +869,7 @@ export function Planner() {
             region={region}
             added={mission.target_ids.includes(target.id)}
             onToggle={() => toggleStop(target.id)}
+            onFitArea={handleFitArea}
           />
         </Dialog>
       )}

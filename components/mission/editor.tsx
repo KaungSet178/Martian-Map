@@ -3,6 +3,7 @@
 import { ArrowDown, ArrowUp, X, MapPin, CornerDownLeft, Compass } from "lucide-react";
 import type { RegionManifest } from "@/lib/contracts/region";
 import { moveStop, type Mission } from "@/lib/mission/model";
+import { findTarget, isRetiredTarget } from "@/lib/mission/target-lookup";
 import { Badge, Notice } from "@/components/ui/primitives";
 
 export function MissionEditor({
@@ -135,22 +136,29 @@ export function MissionEditor({
       ) : (
         <ol className="itinerary">
           {mission.target_ids.map((id, index) => {
-            const target = region.targets.find((t) => t.id === id)!;
+            const target = findTarget(region, id);
+            const isRetired = isRetiredTarget(region.id, id);
+            const title = target?.title ?? `Unknown objective (${id})`;
             return (
               <li key={id}>
                 <span className="stop-number mono">{index + 1}</span>
                 <div className="stop-copy">
-                  <strong>{target.title}</strong>
+                  <div className="stop-title-row">
+                    <strong>{title}</strong>
+                    {isRetired && <Badge tone="muted">Retired</Badge>}
+                  </div>
                   <span>
-                    {target.evidence} ·{" "}
-                    {target.coordinate_verified
+                    {target?.evidence ?? "Unknown"} ·{" "}
+                    {isRetired
+                      ? "Scenario retired from active catalog"
+                      : target?.coordinate_verified
                       ? "Location verified"
                       : "Location unverified"}
                   </span>
                   <div className="stop-actions">
                     <button
                       className="icon-button"
-                      aria-label={`Move ${target.title} up`}
+                      aria-label={`Move ${title} up`}
                       disabled={index === 0}
                       onClick={() =>
                         onChange({
@@ -162,7 +170,7 @@ export function MissionEditor({
                     </button>
                     <button
                       className="icon-button"
-                      aria-label={`Move ${target.title} down`}
+                      aria-label={`Move ${title} down`}
                       disabled={index === mission.target_ids.length - 1}
                       onClick={() =>
                         onChange({
@@ -174,7 +182,7 @@ export function MissionEditor({
                     </button>
                     <button
                       className="icon-button"
-                      aria-label={`Remove ${target.title} from itinerary`}
+                      aria-label={`Remove ${title} from itinerary`}
                       onClick={() =>
                         onChange({
                           target_ids: mission.target_ids.filter(
