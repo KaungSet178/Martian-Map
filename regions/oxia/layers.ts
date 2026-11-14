@@ -25,6 +25,34 @@ export const layers = [
       min_zoom: 5,
       max_zoom: 12,
     },
+    // Off by default: the colorized CTX below is the default basemap.
+    default_visible: false,
+    default_opacity: 100,
+    legend: null,
+  },
+  {
+    id: "oxia-optical-color",
+    type: "Optical imagery",
+    display_name: "CTX colorized (Viking color)",
+    kind: "optical",
+    availability: "available",
+    source_id: "oxia-viking-color-trek",
+    observation_date: null,
+    spatial_resolution_m: 5,
+    coverage:
+      "Same area and zooms as the CTX basemap (17.11-19.15 N, 334.60-336.60 E; 841 tiles, z5-12, JPEG). Brightness and detail from the Mars Trek CTX tiles (source oxia-ctx-trek); colour from the Mars Trek Viking global colour mosaic (source oxia-viking-color-trek, levels 4-7).",
+    limitations:
+      "Pan-sharpened display: brightness and detail from CTX (~5 m), colour from the Viking global colour mosaic (~232 m). Colour is approximate and regional, not true colour at CTX scale. Not for mineral identification. Method: YCbCr luminance swap (CTX gray as luminance, Viking chroma sampled bilinearly and scaled to 0.8 saturation), no other radiometric adjustment; built by team/oxia/basemap/prepare_ctx_color.py. Inherits the CTX limitations (uncontrolled beta mosaic, seams, display-grade, no HiRISE registration check). Lossy JPEG tiles.",
+    evidence: "Derived",
+    attribution:
+      "NASA/JPL/MSSS · Caltech Murray Lab CTX global mosaic (beta01) + NASA Viking Orbiter MDIM 2.1 colour mosaic · via NASA JPL Mars Trek",
+    rendering: {
+      kind: "raster-tiles",
+      tiles: ["/maps/oxia/ctx-color-tiles/{z}/{x}/{y}.jpg"],
+      tile_size: 256,
+      min_zoom: 5,
+      max_zoom: 12,
+    },
     default_visible: true,
     default_opacity: 100,
     legend: null,

@@ -1,0 +1,23 @@
+{
+  "detail_source": "public/maps/oxia/ctx-tiles (Mars Trek CTX_beta01_uncontrolled_5m_Caltech)",
+  "colour_source_layer": "Mars_Viking_MDIM21_ClrMosaic_global_232m",
+  "colour_source": "https://trek.nasa.gov/tiles/Mars/EQ/Mars_Viking_MDIM21_ClrMosaic_global_232m/1.0.0//default/default028mm",
+  "credit": "NASA/JPL/MSSS/Caltech Murray Lab CTX; NASA Viking Orbiter MDIM 2.1 colour mosaic; both via NASA JPL Mars Trek",
+  "method": "luminance swap in YCbCr (BT.601 full range): Y from CTX gray, Cb/Cr from bilinear Viking colour scaled by saturation; no other radiometric change",
+  "saturation": 0.8,
+  "tools": "Python 3.14.6, Pillow 12.3.0, numpy 2.5.3",
+  "output": "public/maps/oxia/ctx-color-tiles",
+  "output_format": "JPEG quality 85, 256 px Web-Mercator XYZ",
+  "viking_levels_used": [
+    4,
+    5,
+    6,
+    7
+  ],
+  "viking_tiles_fetched_ok": 26,
+  "viking_tiles_missing": 0,
+  "output_tiles_written": 841,
+  "output_bytes": 5866999,
+  "mean_abs_channel_offset_from_gray": 12.95,
+  "generated_at": "2026-11-14T15:50:35.908618+00:00"
+}

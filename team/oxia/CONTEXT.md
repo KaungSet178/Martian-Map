@@ -4,7 +4,7 @@ Owner: **Thaw Thaw Tun**. Assigned branch: **feat/oxia-map**.
 Shared integration/architecture branch: feat/shared-ui-redesign, PR #1.
 This is implementation guidance, not scientific or operational approval.
 
-## Current state (14 November 2026, `dataset_version` `oxia-thermal-colour-v11`)
+## Current state (14 November 2026, `dataset_version` `oxia-ctx-color-v12`)
 
 Data-source rule for Oxia: (1) the Space Apps challenge Resources list (NASA JPL Mars
 Trek) first; (2) other NASA sources only where the list cannot cover it, marked tier 2
@@ -18,7 +18,8 @@ Display area (team-chosen, not a landing ellipse or published map boundary):
 
 | Layer id | Display name | Evidence | Source id | Resolution | Asset (zooms, size) |
 | --- | --- | --- | --- | --- | --- |
-| `oxia-optical` | CTX basemap | Observed | `oxia-ctx-trek` | CTX ~5 m, displayed to z12 (~20 m) | `/maps/oxia/ctx-tiles/` (z5–12, 841 tiles, ~21 MB) |
+| `oxia-optical-color` | CTX colorized (Viking color) — **default basemap** | Derived | `oxia-viking-color-trek` (+ `oxia-ctx-trek`) | detail CTX ~5 m, colour Viking ~232 m | `/maps/oxia/ctx-color-tiles/` (z5–12, 841 JPEG tiles, 5.9 MB) |
+| `oxia-optical` | CTX basemap (plain gray, off by default) | Observed | `oxia-ctx-trek` | CTX ~5 m, displayed to z12 (~20 m) | `/maps/oxia/ctx-tiles/` (z5–12, 841 tiles, ~21 MB) |
 | `oxia-terrain` | Regional hillshade (200 m) | Derived | `oxia-mola-hrsc-shade-trek` | 200 m | `/maps/oxia/hillshade-tiles/` (z5–9, 26 tiles, ~1 MB) |
 | `oxia-elevation` | Elevation (MOLA) | Observed | `oxia-trek-elevation-profile` | MOLA ~463 m (grid 0.01°, interpolated by the Mars Trek service) | `/maps/oxia/elevation-tiles/` (z5–9, 26 tiles, 34 KB) |
 | `oxia-slope` | Regional slope (MOLA) | Derived | `oxia-trek-elevation-profile` | MOLA ~463 m (grid 0.01°) | `/maps/oxia/slope-tiles/` (z5–9, 26 tiles, 33 KB) |
@@ -29,6 +30,12 @@ THEMIS night IR is coloured with matplotlib's "inferno" ramp (dark purple = dark
 cools fast at night, likely loose sand/dust; yellow = brightest, holds heat, likely rock
 or firm ground). The ramp is a display choice on uncalibrated 8-bit relative
 brightness, not °C or K; strip-to-strip seams can appear.
+
+Colorized CTX (default basemap) is a pan-sharpened display: brightness and detail from
+CTX (~5 m), colour from the Viking global colour mosaic (~232 m) via a YCbCr luminance
+swap with chroma scaled to 0.8. Colour is approximate and regional, not true colour at
+CTX scale, and not for mineral identification. Plain gray CTX stays available in the
+Basemaps group (off by default); flip the two `default_visible` values to swap.
 
 Elevation classes (m, relative to the Mars areoid): below −3100, −3100 to −3000,
 −3000 to −2900, −2900 to −2800, −2800 and above; the grid ranges −3791 to −2381 m.
@@ -65,6 +72,7 @@ points are not drawn as a map layer; they only locate these targets.
 | Source id | What | Tier |
 | --- | --- | --- |
 | `oxia-ctx-trek` | Mars Trek `CTX_beta01_uncontrolled_5m_Caltech` (tiles served from the Trek-designated astro.arcgis.com CTX MapServer) | 1 |
+| `oxia-viking-color-trek` | Mars Trek `Mars_Viking_MDIM21_ClrMosaic_global_232m` (colour input of the colorized CTX only) | 1 |
 | `oxia-trek-elevation-profile` | Mars Trek elevation-profile service `multiDEM/interpolated` (DEM "MGS MOLA, Global DEM") | 1 |
 | `oxia-mola-hrsc-shade-trek` | Mars Trek `Mars_MOLA_blend200ppx_HRSC_Shade_clon0dd_200mpp_lzw` | 1 |
 | `oxia-themis-night-trek` | Mars Trek `THEMIS_NightIR_ControlledMosaics_100m_v2_oct2018` (relative brightness; observation period unconfirmed) | 1 |
@@ -112,7 +120,8 @@ test assertions needed changing (all marker assertions run in preview mode).
 
 ### Rebuild scripts (prep-only, outside the app build)
 
-`team/oxia/basemap/prepare_ctx_basemap.mjs`, `team/oxia/thermal/prepare_themis_night.mjs`,
+`team/oxia/basemap/prepare_ctx_basemap.mjs`, `team/oxia/basemap/prepare_ctx_color.py`
+(Python + Pillow + numpy; run after the gray CTX tiles exist), `team/oxia/thermal/prepare_themis_night.mjs`,
 `team/oxia/terrain/prepare_hillshade.py` (Python + Pillow), `team/oxia/terrain/build_mola_slope.mjs`,
 `team/oxia/terrain/build_elevation_tiles.mjs` (offline, from the saved grid); each
 writes a build report next to it.

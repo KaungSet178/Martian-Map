@@ -62,7 +62,8 @@ export const config = {
   // v9: oxia-elevation colour-by-height layer from the same MOLA grid.
   // v10: mineral-detections map layer removed; oxia-geology back to pending.
   // v11: THEMIS night IR re-rendered with an inferno display colour ramp.
-  dataset_version: "oxia-thermal-colour-v11",
+  // v12: colorized CTX basemap (CTX detail + Viking colour), default on.
+  dataset_version: "oxia-ctx-color-v12",
   routing: {
     enabled: false,
     reason:
@@ -232,6 +233,30 @@ export const config = {
         "Which input (MOLA or HRSC) dominates at Oxia is not stated per pixel.",
         "Illumination direction and the exact processing date are not stated by Mars Trek.",
         "Served as lossy JPEG tiles.",
+      ],
+    },
+    {
+      id: "oxia-viking-color-trek",
+      title:
+        "NASA JPL Mars Trek layer 'Viking VIS, Global Color Mosaic' (Mars_Viking_MDIM21_ClrMosaic_global_232m)",
+      url: "https://trek.nasa.gov/tiles/Mars/EQ/Mars_Viking_MDIM21_ClrMosaic_global_232m/1.0.0/WMTSCapabilities.xml",
+      agency: "NASA JPL Mars Trek · NASA Viking Orbiter",
+      instrument: "Viking Orbiter 1 and 2 Visual Imaging Subsystem (vidicon cameras)",
+      product_id:
+        "Mars_Viking_MDIM21_ClrMosaic_global_232m (Mars Trek item 8bc9352d-ee73-4d1f-94b8-de5495fd8dfa)",
+      acquisition_date: null,
+      sol: null,
+      native_resolution_m: 232,
+      processing_notes: [
+        "Mars Trek is listed in the Space Apps 2026 challenge resources.",
+        "Mars Trek description: assembled from Viking 1 and 2 orbiter imaging (identical vidicon cameras, 475 mm lenses, six selectable filters); each frame covers at least 40 x 44 km from 1500 km altitude.",
+        "WMTS (checked 2026-11-14): EPSG::104905 (Mars 2000 sphere), TopLeftCorner -180/90, 256 px RGB JPEG tiles, levels 0-7 (level 8 returns 404 over Oxia; level 7 is ~0.0055 deg, ~326 m per pixel).",
+        "Used only as the colour (chroma) input of the oxia-optical-color pan-sharpened basemap, built by team/oxia/basemap/prepare_ctx_color.py; see team/oxia/basemap/color_build_report.json (26 Viking tiles, 0 missing).",
+      ],
+      limitations: [
+        "Regional colour (~232 m nominal, ~326 m as served); not true colour at CTX scale.",
+        "Mosaic of many Viking frames; colour balance between frames is not stated by Mars Trek.",
+        "Not for mineral identification.",
       ],
     },
     {
