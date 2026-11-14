@@ -14,7 +14,7 @@ for (const [width, height] of [
     await page.goto("/?region=jezero");
     await expand(page);
     await page
-      .getByRole("button", { name: "Add Delta sediment exposure", exact: true })
+      .getByRole("button", { name: "Add Jezero geology and climate record", exact: true })
       .click();
     await page
       .getByLabel("Mission region", { exact: true })
@@ -24,7 +24,7 @@ for (const [width, height] of [
       "Layered sedimentary unit",
     );
     await expect(page.locator(".target-list")).not.toContainText(
-      "Delta sediment exposure",
+      "Jezero geology and climate record",
     );
     await expect(page.locator(".mission-summary")).toContainText(
       "0 objectives",
@@ -74,7 +74,7 @@ test("mission JSON round trip preserves legacy v1 IDs and unknown URL region is 
   await page.goto("/?region=unknown");
   await expect(page.locator(".map-location h1")).toHaveText("Jezero Crater");
   await page
-    .getByRole("button", { name: "Add Delta sediment exposure", exact: true })
+    .getByRole("button", { name: "Add Jezero geology and climate record", exact: true })
     .click();
   await page
     .getByRole("button", { name: "Open saved missions", exact: true })
@@ -90,7 +90,7 @@ test("mission JSON round trip preserves legacy v1 IDs and unknown URL region is 
   const mission = JSON.parse(buffer.toString());
   expect(mission.schema_version).toBe(1);
   expect(mission.target_ids).toEqual(["jezero-objective-1"]);
-  expect(mission.dataset_version).toBe("shared-ui-fixture-v1");
+  expect(mission.dataset_version).toBe("jezero-four-layers-v10");
   await page
     .getByLabel("Import mission JSON", { exact: true })
     .setInputFiles({
@@ -100,7 +100,7 @@ test("mission JSON round trip preserves legacy v1 IDs and unknown URL region is 
     });
   await expect(page.locator(".itinerary li")).toHaveCount(1);
   await expect(page.locator(".itinerary li")).toContainText(
-    "Delta sediment exposure",
+    "Jezero geology and climate record",
   );
 });
 
@@ -174,7 +174,7 @@ test("target dialogs support Escape/focus return and region-scoped selection", a
 }) => {
   await page.goto("/");
   const target = page.getByRole("button", {
-    name: "Delta sediment exposure",
+    name: "Jezero geology and climate record",
     exact: true,
   });
   await target.click();
@@ -203,17 +203,17 @@ test("MapLibre preview, camera, layer visibility and opacity work without scient
   page,
 }) => {
   await page.goto("/");
-  await page
-    .getByRole("button", { name: "View interface preview", exact: false })
-    .click();
+  await page.getByRole("button", { name: "Layers", exact: true }).click();
+  await page.getByRole("checkbox", { name: /Show schematic preview/ }).check();
   await expect(
     page.getByRole("button", { name: "Zoom map in", exact: true }),
   ).toBeEnabled();
-  await expect(page.locator(".science-marker")).toHaveCount(3);
-  const before = await page.locator(".science-marker").first().boundingBox();
+  await expect(page.locator(".science-marker")).toHaveCount(0);
+  const before = await page.locator(".map-canvas canvas").screenshot();
   await page.getByRole("button", { name: "Zoom map in", exact: true }).click();
-  const after = await page.locator(".science-marker").first().boundingBox();
-  expect(after?.x).not.toBe(before?.x);
+  await page.waitForTimeout(400);
+  const after = await page.locator(".map-canvas canvas").screenshot();
+  expect(after.equals(before)).toBe(false);
   await page
     .getByRole("button", { name: "Reset map view", exact: true })
     .click();
@@ -223,7 +223,7 @@ test("MapLibre preview, camera, layer visibility and opacity work without scient
     .uncheck();
   await expect(page.locator(".science-marker")).toHaveCount(0);
   await page.getByLabel("Scenario objective markers", { exact: true }).check();
-  await expect(page.locator(".science-marker")).toHaveCount(3);
+  await expect(page.locator(".science-marker")).toHaveCount(0);
   await page.getByLabel("Linework opacity", { exact: false }).fill("30");
   await expect(
     page.getByLabel("Linework opacity", { exact: false }),
@@ -250,11 +250,7 @@ for (const [width, height] of [
     page.on("pageerror", (e) => errors.push(e.message));
     for (const region of ["jezero", "gale", "oxia"]) {
       await page.goto(`/?region=${region}`);
-      if (region === "gale") {
-        await expect(page.locator(".map-empty")).toHaveCount(0);
-      } else {
-        await expect(page.locator(".map-empty")).toBeVisible();
-      }
+      await expect(page.locator(".map-empty")).toHaveCount(0);
       await expect(page.locator(".map-canvas canvas")).toBeAttached();
       await expect(
         page.getByRole("button", { name: "Review mission", exact: true }),
@@ -271,10 +267,10 @@ for (const [width, height] of [
         path: `output/playwright/redesign-${region}-${width}.png`,
       });
     }
-    await page
-      .getByRole("button", { name: "View interface preview", exact: false })
-      .click();
-    await expect(page.locator(".science-marker")).toHaveCount(3);
+    await page.getByRole("button", { name: "Layers", exact: true }).click();
+    await expand(page);
+    await page.getByRole("checkbox", { name: /Show schematic preview/ }).check();
+    await expect(page.locator(".science-marker")).toHaveCount(0);
     for (const marker of await page.locator(".science-marker").all()) {
       const bounds = await marker.boundingBox();
       expect(bounds!.x).toBeGreaterThanOrEqual(0);
@@ -340,7 +336,7 @@ test("keyboard focus, native dialog trapping and core view accessibility", async
   page,
 }) => {
   await page.goto("/");
-  await expect(page.locator(".map-empty")).toBeVisible();
+  await expect(page.locator(".map-empty")).toHaveCount(0);
   await page.keyboard.press("Tab");
   await expect(
     page.getByRole("link", { name: "Skip to planning controls" }),
@@ -361,7 +357,7 @@ test("keyboard focus, native dialog trapping and core view accessibility", async
   await page.keyboard.press("Enter");
   await expect(page.locator(".panel-tabs")).toBeVisible();
   await page
-    .getByRole("button", { name: "Delta sediment exposure", exact: true })
+    .getByRole("button", { name: "Jezero geology and climate record", exact: true })
     .click();
   for (let i = 0; i < 10; i++) {
     await page.keyboard.press("Tab");
@@ -382,21 +378,14 @@ test("mobile selection, review action and collapsed sheet remain reachable", asy
 }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/");
-  await page
-    .getByRole("button", { name: "View interface preview", exact: false })
-    .click();
-  await page
-    .getByRole("button", {
-      name: "Inspect Delta sediment exposure, schematic location",
-      exact: true,
-    })
-    .click();
+  await expand(page);
+  await page.getByRole("button", { name: "Jezero geology and climate record", exact: true }).click();
   await page
     .getByRole("button", { name: "Add objective to mission", exact: true })
     .click();
   await page.keyboard.press("Escape");
   await expect(page.locator(".mission-summary")).toContainText(
-    "Selected: Delta sediment exposure",
+    "Selected: Jezero geology and climate record",
   );
   await expect(page.locator(".mission-summary")).toContainText(
     "Return margin unavailable",
@@ -425,7 +414,7 @@ test("offline saved plans and downloadable brief remain useful", async ({
 }) => {
   await page.goto("/");
   await page
-    .getByRole("button", { name: "Add Delta sediment exposure", exact: true })
+    .getByRole("button", { name: "Add Jezero geology and climate record", exact: true })
     .click();
   await page.getByRole("button", { name: "Save mission", exact: true }).click();
   await context.setOffline(true);

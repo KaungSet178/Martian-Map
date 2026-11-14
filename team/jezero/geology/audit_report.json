@@ -1,0 +1,85 @@
+{
+  "source": {
+    "product": "USGS SIM 3464, Sun & Stack (2020), Geologic map of Jezero crater and the Nili Planum region, Mars, 1:75,000",
+    "doi": "https://doi.org/10.3133/sim3464",
+    "data_release_doi": "https://doi.org/10.5066/P9CZYIO7",
+    "layers_service": "https://services.arcgis.com/v01gqwM5QqNysAAi/arcgis/rest/services/Jezero_FeatureServiceFromPro/FeatureServer",
+    "fetched_by": "team/jezero/geology/fetch_source_layers.mjs",
+    "official_database": "sim3464_database.zip (Nili.gdb) downloaded to team/jezero/geology/downloads/ (kept local, gitignored)"
+  },
+  "projection": {
+    "name": "MTM_clon77.5E (Transverse Mercator, CM 77.5 E, k0 1.0, meters)",
+    "geodetic": "GCS Mars_2000_(Sphere), R = 3,396,190 m, prime meridian Reference_Meridian, degrees east",
+    "inverse_impl": "spherical TM inverse in audit_geology.mjs (roundtrip-checked)"
+  },
+  "longitude_convention": "east-positive 0-360; all values 76-78 E so the display wrap is identity",
+  "checks": [
+    {
+      "id": "A.projection-roundtrip",
+      "pass": true,
+      "detail": "max roundtrip error 2.783e-10 m"
+    },
+    {
+      "id": "A.central-meridian",
+      "pass": true,
+      "detail": "x(77.5E, 18.4N) = 0.000e+0 m"
+    },
+    {
+      "id": "B.boundary-bbox",
+      "pass": true,
+      "detail": "boundary corner inverse 76.8000-77.8017 E, 17.6988-18.7011 N vs published 76.8-77.8 E, 17.7-18.7 N (max edge deviation 0.00173 deg); MTM area 3337787882 m2 vs spherical 1x1 deg patch 3337674718 m2 (dev 0.003%)"
+    },
+    {
+      "id": "C.units-count",
+      "pass": true,
+      "detail": "units: 1308 (published FGDC ORIG_FID max 1308)"
+    },
+    {
+      "id": "C.unit-names",
+      "pass": true,
+      "detail": "unit names (15, all in the published 15-value domain): Upper etched unit; Eolian bedform unit; Smooth unit, undivided; Nili Planum 2 unit; Rugged bright unit; Nili Planum 1 unit; Crater ejecta unit; Crater interior unit; Crater rim unit; Jezero floor unit; Lower etched unit; Nili Planum fan unit; Crater riim unit; Jezero fan 2 unit; Jezero fan 1 unit"
+    },
+    {
+      "id": "C.unit-symbols",
+      "pass": true,
+      "detail": "unit symbols (14 of the 15 published domain values used): Nue; Aeb; su; Nnp2; Nrb; Nnp1; ce; ci; cr; Njf; Nle; Hnpf; NHjf2; NHjf1"
+    },
+    {
+      "id": "C.id-ranges",
+      "pass": true,
+      "detail": "OBJECTID 1-1308, 1308 contiguous features (published FGDC: OBJECTID 1-1304, ORIG_FID 1-1308; the service exposes the gdb ORIG_FID range as OBJECTID)"
+    },
+    {
+      "id": "C.area-length-ranges",
+      "pass": true,
+      "detail": "Shape area 20014.4-533443741.2 m2 (published 20014.3504697-533443741.309); length 535.8-1073714.9 m (published 535.784353011-1073714.87194)"
+    },
+    {
+      "id": "D.unit-vertices-in-envelope",
+      "pass": true,
+      "detail": "all unit vertices inside the published 1x1 degree MTM envelope (+500 m tol)"
+    },
+    {
+      "id": "E.unit-vertices-in-bbox",
+      "pass": true,
+      "detail": "all unit vertices inside 76.8-77.8 E, 17.7-18.7 N; observed lon 76.8000-77.8000, lat 17.7000-18.7000"
+    },
+    {
+      "id": "F.units-cover-boundary",
+      "pass": true,
+      "detail": "61952/62002 boundary sample points in exactly one unit (99.92%); 28 multi-covered (0.045%), 22 uncovered (0.035%) - sliver gaps/overlaps in the published GIS polygons (999 sample points fall outside the boundary polygon; e.g. uncovered [[\"-35915\",\"1083586\"],[\"-39303\",\"1085723\"],[\"-36141\",\"1086910\"],[\"-30946\",\"1088097\"],[\"-21007\",\"1089046\"],[\"-16715\",\"1089521\"],[\"-24847\",\"1090471\"],[\"-24169\",\"1090946\"]])"
+    },
+    {
+      "id": "G.unit-descriptions",
+      "pass": true,
+      "detail": "15 distinct units all carry Unit_Description and Unit_Interpretation"
+    },
+    {
+      "id": "H.other-layers-present",
+      "pass": true,
+      "detail": "contacts 2497 (paths 2497), linear 382 (paths 383), surface 285 (paths 440), location 341, boundary 1"
+    }
+  ],
+  "all_pass": true,
+  "checked_at_utc": "2026-11-13T03:48:16.536Z"
+}

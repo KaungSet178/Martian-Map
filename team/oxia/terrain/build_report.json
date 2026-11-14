@@ -1,0 +1,38 @@
+{
+  "source_layer": "Mars_MOLA_blend200ppx_HRSC_Shade_clon0dd_200mpp_lzw",
+  "source": "https://trek.nasa.gov/tiles/Mars/EQ/Mars_MOLA_blend200ppx_HRSC_Shade_clon0dd_200mpp_lzw/1.0.0//default/default028mm",
+  "credit": "NASA MGS MOLA and ESA Mars Express HRSC blend; via NASA JPL Mars Trek",
+  "tools": "Python 3.14.6, Pillow 12.3.0",
+  "output_scheme": "Web-Mercator XYZ, 256 px 8-bit grayscale PNG",
+  "zoom_range": [
+    5,
+    9
+  ],
+  "source_levels_used": [
+    4,
+    5,
+    6,
+    7,
+    8
+  ],
+  "output_tiles_written": 26,
+  "output_bytes": 950047,
+  "source_tiles_fetched_ok": 37,
+  "source_tiles_missing": 0,
+  "output_samples": 1703936,
+  "samples_without_source": 0,
+  "reprojection": "nearest-neighbour from the equirectangular source grid; gray values unchanged",
+  "extent_east_0_360": {
+    "west": 334.6,
+    "east": 336.6,
+    "south": 17.11,
+    "north": 19.15
+  },
+  "extent_display_lon": {
+    "west": -25.399999999999977,
+    "east": -23.399999999999977,
+    "south": 17.11,
+    "north": 19.15
+  },
+  "generated_at": "2026-11-14T04:11:12.696207+00:00"
+}

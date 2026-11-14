@@ -1,0 +1,20 @@
+{
+  "product": "JEZ_hirise_soc_006_DTM_MOLAtopography_DeltaGeoid_1m_Eqc_latTs0_lon0_blend40",
+  "source_sha256": "44c3819caa33922b06f7a8228534d1e32ab4087aca85144136d825c371c747d8",
+  "source_exact_range_m": [
+    -2665.37109375,
+    -1639.885498046875
+  ],
+  "mission_exact_range_m": [
+    -2640.52685546875,
+    -1639.885498046875
+  ],
+  "source_bounds": [
+    77.22293307697143,
+    18.30679944968657,
+    77.58396402093508,
+    18.669315006877746
+  ],
+  "source_valid_cells": 303990958,
+  "nodata": -3.4028226550889045e+38
+}

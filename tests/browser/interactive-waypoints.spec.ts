@@ -140,7 +140,7 @@ for (const [width, height] of VIEWPORTS) {
   });
 }
 
-test("Jezero Crater disables interactive map placement with clear explanation", async ({
+test("Jezero map placement is available while unverified objectives remain unplottable", async ({
   page,
 }) => {
   await page.goto("/?region=jezero");
@@ -156,14 +156,12 @@ test("Jezero Crater disables interactive map placement with clear explanation", 
   // "Place waypoint on map" button should be disabled
   const placeBtn = page.getByTestId("toggle-map-placement-btn");
   await expect(placeBtn).toBeVisible();
-  await expect(placeBtn).toBeDisabled();
+  await expect(placeBtn).toBeEnabled();
 
   // Explanatory note should be visible
   const note = page.getByTestId("placement-unavailable-note");
-  await expect(note).toBeVisible();
-  await expect(note).toContainText(
-    "Map placement requires georeferenced scientific map coverage",
-  );
+  await expect(note).toHaveCount(0);
+  await expect(page.locator(".science-marker")).toHaveCount(0);
 
   // Manual coordinate entry should still be available
   const manualCard = page.getByTestId("manual-coordinates-card");

@@ -4,3 +4,4 @@ import { targets } from "./targets";
 import { layers } from "./layers";
 
 export const jezero = regionSchema.parse({ ...config, targets, layers });
+export { scientificLayers, scientificPresentation, missionExtent, demExtent } from "./scientific-presentation";

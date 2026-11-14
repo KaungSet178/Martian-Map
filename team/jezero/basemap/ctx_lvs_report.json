@@ -1,0 +1,113 @@
+{
+  "source": "https://trek.nasa.gov/tiles/Mars/EQ/JEZ_ctx_B_soc_008_orthoMosaic_6m_Eqc_latTs0_lon0/1.0.0/default/default028mm",
+  "source_product": "JEZ_ctx_B_soc_008_orthoMosaic_6m_Eqc_latTs0_lon0",
+  "source_title": "Mars 2020 TRN LVS controlled CTX mosaic (SOC_008), ~6 m/px",
+  "credit": "NASA/JPL-Caltech/MSSS · USGS Astrogeology · Mars 2020 TRN CTX LVS mosaic · NASA Mars Trek",
+  "landing_page": "https://trek.nasa.gov/mars/",
+  "native_resolution_m": 6,
+  "output_scheme": "Web-Mercator XYZ, 256 px RGBA PNG",
+  "zoom_range": [
+    5,
+    13
+  ],
+  "source_levels_used": [
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+  ],
+  "sampling": "nearest-neighbour at source level L = z-1 (1:1 source/output grid)",
+  "source_tile_px": 256,
+  "output_tiles_written": 111,
+  "output_bytes": 5950878,
+  "source_tiles_fetched_ok": 156,
+  "source_tiles_missing": 13,
+  "samples_without_source": 1186463,
+  "transparent_pixels": 1186463,
+  "tile_ranges": [
+    {
+      "z": 5,
+      "sourceLevel": 4,
+      "xMin": 22,
+      "xMax": 22,
+      "yTop": 14,
+      "yBottom": 14
+    },
+    {
+      "z": 6,
+      "sourceLevel": 5,
+      "xMin": 45,
+      "xMax": 45,
+      "yTop": 28,
+      "yBottom": 28
+    },
+    {
+      "z": 7,
+      "sourceLevel": 6,
+      "xMin": 91,
+      "xMax": 91,
+      "yTop": 57,
+      "yBottom": 57
+    },
+    {
+      "z": 8,
+      "sourceLevel": 7,
+      "xMin": 182,
+      "xMax": 183,
+      "yTop": 114,
+      "yBottom": 114
+    },
+    {
+      "z": 9,
+      "sourceLevel": 8,
+      "xMin": 365,
+      "xMax": 366,
+      "yTop": 229,
+      "yBottom": 229
+    },
+    {
+      "z": 10,
+      "sourceLevel": 9,
+      "xMin": 731,
+      "xMax": 732,
+      "yTop": 458,
+      "yBottom": 458
+    },
+    {
+      "z": 11,
+      "sourceLevel": 10,
+      "xMin": 1462,
+      "xMax": 1465,
+      "yTop": 916,
+      "yBottom": 917
+    },
+    {
+      "z": 12,
+      "sourceLevel": 11,
+      "xMin": 2925,
+      "xMax": 2930,
+      "yTop": 1832,
+      "yBottom": 1835
+    },
+    {
+      "z": 13,
+      "sourceLevel": 12,
+      "xMin": 5851,
+      "xMax": 5860,
+      "yTop": 3665,
+      "yBottom": 3671
+    }
+  ],
+  "extent_used": {
+    "west": 77.186786,
+    "east": 77.493133,
+    "south": 18.401964,
+    "north": 18.519663
+  },
+  "margin_deg": 0.05
+}

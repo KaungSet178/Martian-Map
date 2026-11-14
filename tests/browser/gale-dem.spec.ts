@@ -46,8 +46,13 @@ async function inspectLocalFootprint(page: Page) {
   await page.getByRole("button",{name:"Fit exploration region",exact:true}).click();
   await page.waitForTimeout(350);
   await page.waitForLoadState("networkidle");
+  // Isolate the detailed footprint while locating it. Wider authentic CTX is
+  // also grayscale, so the older all-grayscale bounding box found the viewport.
+  const context = page.getByRole("checkbox", { name: /^Context CTX/ });
+  await context.uncheck();
+  await page.waitForTimeout(400);
   const canvas = page.locator(".map-canvas canvas");
-  const png = await canvas.screenshot({style:".map-topline,.map-navigation,.map-bottomline,.map-attribution{visibility:hidden!important}"});
+  const png = await canvas.screenshot({style:".map-topline,.map-navigation,.map-bottomline,.map-attribution,.basemap-control{visibility:hidden!important}"});
   const box = await page.evaluate(async(encoded)=>{
     const image=await createImageBitmap(await(await fetch(`data:image/png;base64,${encoded}`)).blob());
     const c=document.createElement("canvas"); c.width=image.width;c.height=image.height;
@@ -68,6 +73,7 @@ async function inspectLocalFootprint(page: Page) {
   await page.mouse.down();
   await page.mouse.move(frame.x+frame.width*.5,frame.y+frame.height*.5,{steps:10});
   await page.mouse.up();
+  await context.check();
   for(let i=0;i<3;i++){
     await page.getByRole("button",{name:"Zoom map in",exact:true}).click();
     await page.waitForTimeout(220);

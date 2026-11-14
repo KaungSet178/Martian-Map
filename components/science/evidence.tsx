@@ -1,5 +1,7 @@
 "use client";
 
+import { scientificPresentation as jezeroPresentation } from "@/regions/jezero/scientific-presentation";
+import { layerGroups, scientificCategories } from "@/lib/map/scientific-categories";
 import { CoverageControls } from "./coverage-controls";
 import { ProductMetadata } from "./product-metadata";
 import { ArrowUpRight } from "lucide-react";
@@ -209,9 +211,12 @@ export function LayerManager({
           Unknown terrain is not safe terrain.
         </Notice>
       ) : (
-        region.layers
-          .filter((l) => l.availability === "available" && !l.zoom_extent)
-          .map((layer) => {
+        layerGroups(region).map((group) => (
+          <section key={group.title} aria-label={group.title} data-scientific-category={scientificCategories.some(category => category === group.title) ? group.title : undefined}>
+            <h3>{group.title}</h3>
+            <p className="supporting">{group.description}</p>
+            {group.layers.length === 0 && <p className="supporting">No dataset available.</p>}
+            {group.layers.map((layer) => {
             const state = layerState(region, layerStates, layer.id);
             return (
               <div key={layer.id} className="data-product">
@@ -219,6 +224,7 @@ export function LayerManager({
                   <input
                     type="checkbox"
                     checked={state.visible}
+                    disabled={layer.availability !== "available"}
                     onChange={(e) =>
                       onLayerChange(layer.id, { visible: e.target.checked })
                     }
@@ -226,6 +232,7 @@ export function LayerManager({
                   {layer.display_name}
                   <EvidenceBadge value={layer.evidence} />
                 </label>
+                <p className="supporting">Availability: {layer.availability}</p>
                 {state.visible && (
                   <>
                     <label
@@ -276,11 +283,33 @@ export function LayerManager({
                     </p>
                     {layer.coverage && <p className="supporting">Coverage: {layer.coverage}</p>}
                     <ProductMetadata layer={layer} />
+                    {region.id === "jezero" && jezeroPresentation.filter((item) => item.dataset_id === layer.id).map((item) => (
+                      <details key={item.dataset_id}><summary>Scientific processing and verification</summary>
+                        <p className="supporting">{item.interpretation}</p>
+                        <dl className="metadata">
+                          <div><dt>Source verification</dt><dd>{item.verification.source}</dd></div>
+                          <div><dt>Processing verification</dt><dd>{item.verification.processing}</dd></div>
+                          <div><dt>Independent registration</dt><dd>{item.verification.registration}</dd></div>
+                          <div><dt>Nominal source posting</dt><dd>{item.native_posting_m} m; not effective resolution</dd></div>
+                          <div><dt>Valid-data mask</dt><dd>{item.valid_mask}</dd></div>
+                        </dl>
+                        <p className="supporting">{item.limitations}</p>
+                      </details>
+                    ))}
+                    {region.source_references.filter((source) => source.id === layer.source_id).map((source) => (
+                      <details key={source.id}><summary>Source and processing details</summary>
+                        <a href={source.url} target="_blank" rel="noreferrer">{source.title}</a>
+                        {source.processing_notes.map((note) => <p key={note} className="supporting">{note}</p>)}
+                        {source.limitations.map((note) => <p key={note} className="supporting">{note}</p>)}
+                      </details>
+                    ))}
                   </>
                 )}
               </div>
             );
-          })
+          })}
+          </section>
+        ))
       )}
       <h3>Interface preview</h3>
       <p className="supporting">

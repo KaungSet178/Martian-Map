@@ -4,6 +4,120 @@ Owner: **Thaw Thaw Tun**. Assigned branch: **feat/oxia-map**.
 Shared integration/architecture branch: feat/shared-ui-redesign, PR #1.
 This is implementation guidance, not scientific or operational approval.
 
+## Current state (14 November 2026, `dataset_version` `oxia-thermal-colour-v11`)
+
+Data-source rule for Oxia: (1) the Space Apps challenge Resources list (NASA JPL Mars
+Trek) first; (2) other NASA sources only where the list cannot cover it, marked tier 2
+and cited by exact document and page; (3) no non-NASA sources.
+
+Display area (team-chosen, not a landing ellipse or published map boundary):
+17.11–19.15 N, 334.60–336.60 E (display longitude −25.40 to −23.40). View centre
+18.20 N, 335.45 E is illustrative. Mars 2000 sphere, R = 3,396,190 m.
+
+### Layers (`regions/oxia/layers.ts`)
+
+| Layer id | Display name | Evidence | Source id | Resolution | Asset (zooms, size) |
+| --- | --- | --- | --- | --- | --- |
+| `oxia-optical` | CTX basemap | Observed | `oxia-ctx-trek` | CTX ~5 m, displayed to z12 (~20 m) | `/maps/oxia/ctx-tiles/` (z5–12, 841 tiles, ~21 MB) |
+| `oxia-terrain` | Regional hillshade (200 m) | Derived | `oxia-mola-hrsc-shade-trek` | 200 m | `/maps/oxia/hillshade-tiles/` (z5–9, 26 tiles, ~1 MB) |
+| `oxia-elevation` | Elevation (MOLA) | Observed | `oxia-trek-elevation-profile` | MOLA ~463 m (grid 0.01°, interpolated by the Mars Trek service) | `/maps/oxia/elevation-tiles/` (z5–9, 26 tiles, 34 KB) |
+| `oxia-slope` | Regional slope (MOLA) | Derived | `oxia-trek-elevation-profile` | MOLA ~463 m (grid 0.01°) | `/maps/oxia/slope-tiles/` (z5–9, 26 tiles, 33 KB) |
+| `oxia-thermal-night` | THEMIS night IR | Observed | `oxia-themis-night-trek` | 100 m (source level 9 ~81 m) | `/maps/oxia/themis-night-tiles/` (z5–10, 75 RGBA tiles, 5.6 MB, inferno display ramp) |
+| `oxia-geology` | Geology & mineralogy | Unavailable | — | — | pending, not drawn (mineral-detection layer removed by the region owner) |
+
+THEMIS night IR is coloured with matplotlib's "inferno" ramp (dark purple = darkest,
+cools fast at night, likely loose sand/dust; yellow = brightest, holds heat, likely rock
+or firm ground). The ramp is a display choice on uncalibrated 8-bit relative
+brightness, not °C or K; strip-to-strip seams can appear.
+
+Elevation classes (m, relative to the Mars areoid): below −3100, −3100 to −3000,
+−3000 to −2900, −2900 to −2800, −2800 and above; the grid ranges −3791 to −2381 m.
+Plain colour by height, no shading.
+
+Hillshade detail varies: sharp where Mars Express HRSC stereo elevation exists (e.g.
+the south-east of the area), smoother where only MOLA (~463 m) is available (much of
+the centre). A per-tile edge check at zoom 9 found smooth tiles across roughly
+17.98–19.15 N, 334.60–336.09 E (including around `oxia-objective-1`) and crisp tiles
+south of about 18 N and east of about 336.1 E. Mars Trek does not state which input
+each pixel uses, so this is inferred from the image. The elevation and slope layers are
+MOLA only everywhere. All three terrain tile sets end at zoom 9 (the map opens at
+zoom 9), so closer zooms enlarge them.
+
+Slope classes: 0–2, 2–5, 5–10, 10–20, >20°. The >20° class marks slopes beyond
+NASA's 20° suited-walking figure (tier 2: EVA-EXP-0042 Rev B p.38; ICES-2025-129
+p.7). In the display area 56 of 41,205 cells (18.8 km², 0.14 %) exceed 20°, mostly
+one patch near 17.21 N, 335.07 E.
+
+### Targets (`regions/oxia/targets.ts`; IDs unchanged)
+
+| Target id | Title | Location (planetocentric N, E 0–360) | Evidence | Sources |
+| --- | --- | --- | --- | --- |
+| `oxia-objective-1` | Clay-rich bedrock study | 18.22, 335.83 | Interpreted | `oxia-trek-aqueous`, `oxia-trek-hydrous` |
+| `oxia-objective-2` | Hydrated silica detection | 17.84, 336.33 | Interpreted | `oxia-trek-aqueous` |
+| `oxia-objective-3` | Second clay detection | 18.22, 336.11 | Interpreted | `oxia-trek-aqueous` |
+
+Locations are Mars Trek detection points (two-decimal degrees, ~0.6 km), not sample
+sites. All targets keep `routing_eligibility` unavailable. The mineral-detection
+points are not drawn as a map layer; they only locate these targets.
+
+### Sources (`config.source_references`)
+
+| Source id | What | Tier |
+| --- | --- | --- |
+| `oxia-ctx-trek` | Mars Trek `CTX_beta01_uncontrolled_5m_Caltech` (tiles served from the Trek-designated astro.arcgis.com CTX MapServer) | 1 |
+| `oxia-trek-elevation-profile` | Mars Trek elevation-profile service `multiDEM/interpolated` (DEM "MGS MOLA, Global DEM") | 1 |
+| `oxia-mola-hrsc-shade-trek` | Mars Trek `Mars_MOLA_blend200ppx_HRSC_Shade_clon0dd_200mpp_lzw` | 1 |
+| `oxia-themis-night-trek` | Mars Trek `THEMIS_NightIR_ControlledMosaics_100m_v2_oct2018` (relative brightness; observation period unconfirmed) | 1 |
+| `oxia-trek-aqueous` | Mars Trek `Aqueous_Mineral_Distribution_Options_clon0` (cites Ehlmann & Edwards 2014) | 1 |
+| `oxia-trek-hydrous` | Mars Trek `Hydrous_Mineral_Detections_CRISM_clon0` (cites Carter et al. 2013) | 1 |
+| `oxia-nasa-eva-exp-0042` | NASA EVA-EXP-0042 Rev B, Exploration EVA System ConOps (Oct 19, 2020), p.38 | 2 |
+| `oxia-nasa-ices-2025-129` | NASA NTRS 20250001829, ICES-2025-129 (Kim et al.), p.7 | 2 |
+| `oxia-mission-context` | esa.int ExoMars page from the shared fixture; **open question**: remove or replace under the NASA-only rule | — |
+
+### Elevation grid for a future route engine
+
+`public/maps/oxia/elevation-grid.json`: 201 × 205 samples at 0.01° (real MOLA
+elevations in metres, areoid-relative, −3791 to −2381 m), row-major north→south,
+west→east, with lat/lon axes (display and 0–360 E), nodata −32768, DEM name, source
+URL and fetch date. Built by `team/oxia/terrain/build_mola_slope.mjs` (resumable;
+`--refetch` samples Mars Trek again). Real detail is MOLA (~463 m); 0.01° spacing only
+interpolates it.
+
+The Mars Trek elevation-profile service sends no CORS header, so the browser app cannot
+call it directly. Live elevation profiles would need a server-side proxy route (shared
+`app/` change, coordinator decision); otherwise use the pre-baked grid.
+
+### Unavailable, and why
+
+- **Radiation / weather:** no landed instrument at Oxia and no applicable Mars Trek
+  product; `oxia-environment-context` stays Unavailable.
+- **Routing and feasibility:** `routing.enabled` false; no hazard coverage or approved
+  routing policy. Regional terrain (MOLA ~463 m, hillshade 200 m) cannot support it.
+- **Walking-scale slope / hazards:** not available; MOLA smooths short steep slopes,
+  boulders and banks.
+- **Planned landing area outline:** Mars Trek has no ExoMars landing ellipse, and
+  non-NASA sources are excluded.
+- **Geology / mineralogy layer:** removed by the region owner; `oxia-geology` is pending
+  and not drawn. No mapped geologic units are integrated.
+
+### Shared code change on this branch (carry over when merging)
+
+`components/map/map-workspace.tsx`, markers effect: in scientific map mode a target
+marker is shown only when the target has been added to the mission as a stop
+(`stops.includes(target.id)`, in addition to `coordinate_verified &&
+coordinates !== null`). Requested by Thaw Thaw Tun; OK'd by Kaung. Affects all three
+regions; schematic preview mode is unchanged. Kaung's `feat/gale-map` also edits this
+file heavily, so this one condition must be carried over by hand during the merge. No
+test assertions needed changing (all marker assertions run in preview mode).
+
+### Rebuild scripts (prep-only, outside the app build)
+
+`team/oxia/basemap/prepare_ctx_basemap.mjs`, `team/oxia/thermal/prepare_themis_night.mjs`,
+`team/oxia/terrain/prepare_hillshade.py` (Python + Pillow), `team/oxia/terrain/build_mola_slope.mjs`,
+`team/oxia/terrain/build_elevation_tiles.mjs` (offline, from the saved grid); each
+writes a build report next to it.
+Screenshots: `team/oxia/screenshots/`.
+
 ## Read and inspect first
 
 Read PRD.md, DESIGN.md, TEAM_CONTRACT.md and docs/REGION_DEVELOPMENT_GUIDE.md.

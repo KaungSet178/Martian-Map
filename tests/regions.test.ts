@@ -360,7 +360,7 @@ test("validation rejects foreign records, duplicate IDs and missing scientific l
     false,
   );
   assert.equal(
-    targetSchema.safeParse({ ...base.targets[0], coordinate_verified: true })
+    targetSchema.safeParse({ ...base.targets[0], coordinates: null, coordinate_verified: true })
       .success,
     false,
   );
@@ -377,6 +377,7 @@ test("validation rejects foreign records, duplicate IDs and missing scientific l
       map: {
         ...base.map,
         visualization: { status: "available", reason: "unsupported assertion" },
+        display_transform: { status: "unverified", reason: "No reviewed transform" },
       },
     }).success,
     false,
@@ -384,7 +385,7 @@ test("validation rejects foreign records, duplicate IDs and missing scientific l
   assert.equal(
     regionSchema.safeParse({
       ...base,
-      layers: [{ ...base.layers[0], availability: "available" }],
+      layers: [{ ...base.layers[0], availability: "available", source_id: null }],
     }).success,
     false,
   );
@@ -420,7 +421,7 @@ function syntheticMap(): RegionManifest {
         notes: "Synthetic software fixture, not a scientific review.",
       },
     },
-    layers: base.layers.map((l, i) => ({
+    layers: base.layers.filter((l) => ["jezero-optical", "jezero-elevation", "jezero-geology"].includes(l.id)).map((l, i) => ({
       ...l,
       availability: "available",
       evidence: "Scenario",
@@ -485,7 +486,10 @@ test("declarative renderer mounts only current regional sources and cleans them 
   cleanup();
   assert.equal(layers.size, 0);
   assert.equal(sources.size, 0);
-  mountRegionLayers(map, getRegion("oxia")!);
+  const cleanupOxia = mountRegionLayers(map, getRegion("oxia")!);
+  assert.ok(sources.has("region-oxia-elevation"));
+  assert.ok([...sources].every((id) => id.startsWith("region-oxia-") || id === "region-presentation-mask"));
+  cleanupOxia();
   assert.equal(sources.size, 0);
 });
 test("Mars east-longitude display conversion and extents never infer Earth distances", () => {

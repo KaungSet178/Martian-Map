@@ -1,0 +1,53 @@
+{
+  "input": "public/maps/oxia/elevation-grid.json",
+  "dem": [
+    "MGS MOLA, Global DEM"
+  ],
+  "grid_fetched_at": "2026-11-14T07:12:11.793Z",
+  "elevation_m": {
+    "min": -3791.46,
+    "max": -2381.14
+  },
+  "classes": [
+    {
+      "label": "below -3100",
+      "upper_bound_m": -3100,
+      "color": "#5081B5",
+      "cells": 5121
+    },
+    {
+      "label": "-3100 to -3000",
+      "upper_bound_m": -3000,
+      "color": "#8DAFA2",
+      "cells": 12499
+    },
+    {
+      "label": "-3000 to -2900",
+      "upper_bound_m": -2900,
+      "color": "#CEC390",
+      "cells": 9456
+    },
+    {
+      "label": "-2900 to -2800",
+      "upper_bound_m": -2800,
+      "color": "#E7D6AC",
+      "cells": 6574
+    },
+    {
+      "label": "-2800 and above",
+      "upper_bound_m": null,
+      "color": "#F4E9D3",
+      "cells": 7555
+    }
+  ],
+  "tiles": {
+    "root": "public/maps/oxia/elevation-tiles",
+    "zoom_range": [
+      5,
+      9
+    ],
+    "written": 26,
+    "bytes": 34474
+  },
+  "generated_at": "2026-11-14T07:49:34.987Z"
+}

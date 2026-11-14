@@ -19,12 +19,9 @@ test("all region fixtures obey shared contract and cannot imply scientific readi
     assert.equal(region.routing.enabled, false);
     assert.equal(region.capabilities.validated_routing.status, "unavailable");
     assert.equal(region.capabilities.mission_feasibility.status, "unavailable");
-    assert.equal(region.capabilities.terrain_coverage.status, id === "gale" ? "partial" : "unknown");
-    assert.ok(
-      region.targets.every(
-        (t) => t.coordinates === null && !t.coordinate_verified,
-      ),
-    );
+    assert.equal(region.capabilities.terrain_coverage.status, "partial");
+    assert.ok(region.targets.every((t) => !t.coordinate_verified || t.coordinates !== null));
+    if (id !== "oxia") assert.ok(region.targets.every((t) => t.coordinates === null && !t.coordinate_verified));
     if (id === "gale") {
       assert.equal(region.data_status, "metadata_verified");
       assert.deepEqual(
@@ -49,8 +46,9 @@ test("all region fixtures obey shared contract and cannot imply scientific readi
         ],
       );
     } else {
-      assert.equal(region.data_status, "illustrative");
-      assert.ok(region.layers.every((l) => l.availability !== "available"));
+      assert.equal(region.data_status, id === "jezero" ? "raster_audited" : "metadata_verified");
+      assert.equal(region.map.visualization.status, "available");
+      assert.ok(region.layers.filter((l) => l.availability === "available").every((l) => l.source_id && l.attribution && l.rendering.kind !== "unavailable"));
     }
   }
 });

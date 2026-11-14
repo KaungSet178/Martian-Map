@@ -327,7 +327,7 @@ export default function MapWorkspace({
         .filter((target) =>
           preview
             ? target.evidence === "Scenario"
-            : target.coordinate_verified && target.coordinates !== null,
+            : target.coordinate_verified && target.coordinates !== null && stops.includes(target.id),
         )
         .map((target, i) => {
           const button = document.createElement("button");

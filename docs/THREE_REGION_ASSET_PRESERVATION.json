@@ -1,0 +1,14 @@
+{
+  "gale": {
+    "source_sha": "fa081fa14daeabb1e98b7e0c72d73d17b1323e4e",
+    "identical_assets": 2163
+  },
+  "jezero": {
+    "source_sha": "93ab7362e305dd2a10910729e3073247e99985db",
+    "identical_assets": 4124
+  },
+  "oxia": {
+    "source_sha": "0d1cc2eae0a745a9aeec8c3357c107c0e5ff108c",
+    "identical_assets": 995
+  }
+}

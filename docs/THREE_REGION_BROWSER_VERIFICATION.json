@@ -1,0 +1,423 @@
+{
+  "viewports": [
+    [
+      1440,
+      900
+    ],
+    [
+      768,
+      1024
+    ],
+    [
+      390,
+      844
+    ]
+  ],
+  "layer_cases": [
+    {
+      "case": "gale-1440",
+      "checks": [
+        {
+          "category": "Elevation",
+          "layer": "gale-regional-elevation",
+          "visible_pixels": 503209,
+          "opacity_pixels": 503138
+        },
+        {
+          "category": "Elevation",
+          "layer": "gale-global-elevation",
+          "visible_pixels": 503212,
+          "opacity_pixels": 503139
+        },
+        {
+          "category": "Elevation",
+          "layer": "gale-terrain",
+          "visible_pixels": 8992,
+          "opacity_pixels": 8953
+        },
+        {
+          "category": "Hillshade",
+          "layer": "gale-regional-hillshade",
+          "visible_pixels": 503275,
+          "opacity_pixels": 503217
+        },
+        {
+          "category": "Hillshade",
+          "layer": "gale-global-hillshade",
+          "visible_pixels": 503290,
+          "opacity_pixels": 503236
+        },
+        {
+          "category": "Hillshade",
+          "layer": "gale-hillshade",
+          "visible_pixels": 9034,
+          "opacity_pixels": 9026
+        },
+        {
+          "category": "Slope",
+          "layer": "gale-regional-slope",
+          "visible_pixels": 503187,
+          "opacity_pixels": 503081
+        },
+        {
+          "category": "Slope",
+          "layer": "gale-global-slope",
+          "visible_pixels": 503197,
+          "opacity_pixels": 503114
+        },
+        {
+          "category": "Slope",
+          "layer": "gale-slope",
+          "visible_pixels": 9009,
+          "opacity_pixels": 8996
+        },
+        {
+          "category": "Thermal",
+          "layer": "gale-thermal",
+          "visible_pixels": 478483,
+          "opacity_pixels": 477071
+        }
+      ],
+      "runtime_errors": [],
+      "failed_map_responses": [],
+      "successful_map_responses": 194
+    },
+    {
+      "case": "gale-390",
+      "checks": [
+        {
+          "category": "Elevation",
+          "layer": "gale-regional-elevation",
+          "visible_pixels": 90417,
+          "opacity_pixels": 90384
+        },
+        {
+          "category": "Elevation",
+          "layer": "gale-global-elevation",
+          "visible_pixels": 90418,
+          "opacity_pixels": 90385
+        },
+        {
+          "category": "Elevation",
+          "layer": "gale-terrain",
+          "visible_pixels": 2339,
+          "opacity_pixels": 2321
+        },
+        {
+          "category": "Hillshade",
+          "layer": "gale-regional-hillshade",
+          "visible_pixels": 90451,
+          "opacity_pixels": 90430
+        },
+        {
+          "category": "Hillshade",
+          "layer": "gale-global-hillshade",
+          "visible_pixels": 90456,
+          "opacity_pixels": 90436
+        },
+        {
+          "category": "Hillshade",
+          "layer": "gale-hillshade",
+          "visible_pixels": 2359,
+          "opacity_pixels": 2353
+        },
+        {
+          "category": "Slope",
+          "layer": "gale-regional-slope",
+          "visible_pixels": 90396,
+          "opacity_pixels": 90349
+        },
+        {
+          "category": "Slope",
+          "layer": "gale-global-slope",
+          "visible_pixels": 90401,
+          "opacity_pixels": 90377
+        },
+        {
+          "category": "Slope",
+          "layer": "gale-slope",
+          "visible_pixels": 2347,
+          "opacity_pixels": 2338
+        },
+        {
+          "category": "Thermal",
+          "layer": "gale-thermal",
+          "visible_pixels": 86464,
+          "opacity_pixels": 86120
+        }
+      ],
+      "runtime_errors": [],
+      "failed_map_responses": [],
+      "successful_map_responses": 72
+    },
+    {
+      "case": "gale-768",
+      "checks": [
+        {
+          "category": "Elevation",
+          "layer": "gale-regional-elevation",
+          "visible_pixels": 186852,
+          "opacity_pixels": 186805
+        },
+        {
+          "category": "Elevation",
+          "layer": "gale-global-elevation",
+          "visible_pixels": 186852,
+          "opacity_pixels": 186804
+        },
+        {
+          "category": "Elevation",
+          "layer": "gale-terrain",
+          "visible_pixels": 6284,
+          "opacity_pixels": 6257
+        },
+        {
+          "category": "Hillshade",
+          "layer": "gale-regional-hillshade",
+          "visible_pixels": 186917,
+          "opacity_pixels": 186873
+        },
+        {
+          "category": "Hillshade",
+          "layer": "gale-global-hillshade",
+          "visible_pixels": 186920,
+          "opacity_pixels": 186879
+        },
+        {
+          "category": "Hillshade",
+          "layer": "gale-hillshade",
+          "visible_pixels": 6320,
+          "opacity_pixels": 6307
+        },
+        {
+          "category": "Slope",
+          "layer": "gale-regional-slope",
+          "visible_pixels": 186821,
+          "opacity_pixels": 186765
+        },
+        {
+          "category": "Slope",
+          "layer": "gale-global-slope",
+          "visible_pixels": 186842,
+          "opacity_pixels": 186808
+        },
+        {
+          "category": "Slope",
+          "layer": "gale-slope",
+          "visible_pixels": 6300,
+          "opacity_pixels": 6286
+        },
+        {
+          "category": "Thermal",
+          "layer": "gale-thermal",
+          "visible_pixels": 178518,
+          "opacity_pixels": 178004
+        }
+      ],
+      "runtime_errors": [],
+      "failed_map_responses": [],
+      "successful_map_responses": 152
+    },
+    {
+      "case": "jezero-1440",
+      "checks": [
+        {
+          "category": "Elevation",
+          "layer": "jezero-elevation",
+          "visible_pixels": 299797,
+          "opacity_pixels": 299681
+        },
+        {
+          "category": "Hillshade",
+          "layer": "jezero-hillshade",
+          "visible_pixels": 292892,
+          "opacity_pixels": 290584
+        },
+        {
+          "category": "Slope",
+          "layer": "jezero-slope",
+          "visible_pixels": 299850,
+          "opacity_pixels": 299799
+        },
+        {
+          "category": "Thermal",
+          "layer": "jezero-thermal",
+          "visible_pixels": 363909,
+          "opacity_pixels": 360091
+        }
+      ],
+      "runtime_errors": [],
+      "failed_map_responses": [],
+      "successful_map_responses": 79
+    },
+    {
+      "case": "jezero-390",
+      "checks": [
+        {
+          "category": "Elevation",
+          "layer": "jezero-elevation",
+          "visible_pixels": 7379,
+          "opacity_pixels": 7366
+        },
+        {
+          "category": "Hillshade",
+          "layer": "jezero-hillshade",
+          "visible_pixels": 7174,
+          "opacity_pixels": 7093
+        },
+        {
+          "category": "Slope",
+          "layer": "jezero-slope",
+          "visible_pixels": 7384,
+          "opacity_pixels": 7377
+        },
+        {
+          "category": "Thermal",
+          "layer": "jezero-thermal",
+          "visible_pixels": 8895,
+          "opacity_pixels": 8788
+        }
+      ],
+      "runtime_errors": [],
+      "failed_map_responses": [],
+      "successful_map_responses": 33
+    },
+    {
+      "case": "jezero-768",
+      "checks": [
+        {
+          "category": "Elevation",
+          "layer": "jezero-elevation",
+          "visible_pixels": 30840,
+          "opacity_pixels": 30813
+        },
+        {
+          "category": "Hillshade",
+          "layer": "jezero-hillshade",
+          "visible_pixels": 30058,
+          "opacity_pixels": 29791
+        },
+        {
+          "category": "Slope",
+          "layer": "jezero-slope",
+          "visible_pixels": 30866,
+          "opacity_pixels": 30851
+        },
+        {
+          "category": "Thermal",
+          "layer": "jezero-thermal",
+          "visible_pixels": 37349,
+          "opacity_pixels": 36899
+        }
+      ],
+      "runtime_errors": [],
+      "failed_map_responses": [],
+      "successful_map_responses": 63
+    },
+    {
+      "case": "oxia-1440",
+      "checks": [
+        {
+          "category": "Elevation",
+          "layer": "oxia-elevation",
+          "visible_pixels": 239304,
+          "opacity_pixels": 239304
+        },
+        {
+          "category": "Hillshade",
+          "layer": "oxia-terrain",
+          "visible_pixels": 238421,
+          "opacity_pixels": 238162
+        },
+        {
+          "category": "Slope",
+          "layer": "oxia-slope",
+          "visible_pixels": 239304,
+          "opacity_pixels": 239304
+        },
+        {
+          "category": "Thermal",
+          "layer": "oxia-thermal-night",
+          "visible_pixels": 239304,
+          "opacity_pixels": 239304
+        }
+      ],
+      "runtime_errors": [],
+      "failed_map_responses": [],
+      "successful_map_responses": 65
+    },
+    {
+      "case": "oxia-390",
+      "checks": [
+        {
+          "category": "Elevation",
+          "layer": "oxia-elevation",
+          "visible_pixels": 8732,
+          "opacity_pixels": 8730
+        },
+        {
+          "category": "Hillshade",
+          "layer": "oxia-terrain",
+          "visible_pixels": 8781,
+          "opacity_pixels": 8767
+        },
+        {
+          "category": "Slope",
+          "layer": "oxia-slope",
+          "visible_pixels": 8766,
+          "opacity_pixels": 8731
+        },
+        {
+          "category": "Thermal",
+          "layer": "oxia-thermal-night",
+          "visible_pixels": 8820,
+          "opacity_pixels": 8814
+        }
+      ],
+      "runtime_errors": [],
+      "failed_map_responses": [],
+      "successful_map_responses": 24
+    },
+    {
+      "case": "oxia-768",
+      "checks": [
+        {
+          "category": "Elevation",
+          "layer": "oxia-elevation",
+          "visible_pixels": 14500,
+          "opacity_pixels": 14500
+        },
+        {
+          "category": "Hillshade",
+          "layer": "oxia-terrain",
+          "visible_pixels": 14450,
+          "opacity_pixels": 14431
+        },
+        {
+          "category": "Slope",
+          "layer": "oxia-slope",
+          "visible_pixels": 14500,
+          "opacity_pixels": 14500
+        },
+        {
+          "category": "Thermal",
+          "layer": "oxia-thermal-night",
+          "visible_pixels": 14500,
+          "opacity_pixels": 14500
+        }
+      ],
+      "runtime_errors": [],
+      "failed_map_responses": [],
+      "successful_map_responses": 46
+    }
+  ],
+  "passed_browser_cases": 52,
+  "suites": {
+    "three_region_layers": 9,
+    "marker_eligibility": 1,
+    "gale_viewport": 3,
+    "jezero_four_layers": 1,
+    "gale_dem": 4,
+    "mission_coverage_waypoint_persistence_accessibility": 34
+  }
+}

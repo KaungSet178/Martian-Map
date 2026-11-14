@@ -1,0 +1,22 @@
+{
+  "source_sha256_verified": true,
+  "actual_jezero_tiles": [
+    {
+      "tile": "13/5856/3668",
+      "deterministic_bytes": true,
+      "valid_pixels": 65536
+    },
+    {
+      "tile": "13/5857/3668",
+      "deterministic_bytes": true,
+      "valid_pixels": 65536
+    },
+    {
+      "tile": "14/11704/7336",
+      "deterministic_bytes": true,
+      "valid_pixels": 0
+    }
+  ],
+  "combined_grid_cross_tile_bytes_equal": true,
+  "registration": "UNVERIFIED; numeric grid and source affine checks are not independent absolute control"
+}
