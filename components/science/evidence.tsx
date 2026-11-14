@@ -165,6 +165,8 @@ export function LayerManager({
   setOpacity,
   onEvidence,
   onZoomToCoverage,
+  presentationMode = "mission_view",
+  onPresentationModeChange,
 }: {
   region: RegionManifest;
   layerStates: LayerStates;
@@ -179,6 +181,8 @@ export function LayerManager({
   setOpacity: (v: number) => void;
   onEvidence: () => void;
   onZoomToCoverage: (id: string) => void;
+  presentationMode?: "mission_view" | "full_coverage";
+  onPresentationModeChange?: (mode: "mission_view" | "full_coverage") => void;
 }) {
   return (
     <>
@@ -190,8 +194,15 @@ export function LayerManager({
           controls.
         </p>
       </div>
-      <CoverageControls region={region} states={layerStates} onChange={onLayerChange}
-        onZoom={onZoomToCoverage} preview={preview} />
+      <CoverageControls
+        region={region}
+        states={layerStates}
+        onChange={onLayerChange}
+        onZoom={onZoomToCoverage}
+        preview={preview}
+        presentationMode={presentationMode}
+        onPresentationModeChange={onPresentationModeChange}
+      />
       {region.map.visualization.status === "unavailable" ? (
         <Notice title="No scientific layers connected">
           Optical imagery, terrain, geology and coverage masks are pending.

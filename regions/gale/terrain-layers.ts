@@ -119,7 +119,7 @@ const regionalRendering = (kind: string) => ({
   tile_size: 256 as const,
   min_zoom: 5,
   max_zoom: 13,
-  bounds: missionViewExtent,
+  bounds: regionalExtent,
   resampling: "nearest" as const,
 });
 
@@ -152,7 +152,7 @@ const globalRendering = (kind: string) => ({
   tile_size: 256 as const,
   min_zoom: 5,
   max_zoom: 13,
-  bounds: missionViewExtent,
+  bounds: globalExtent,
   resampling: "nearest" as const,
 });
 
@@ -242,7 +242,7 @@ export const terrainLayers = [
       tile_size: 256,
       min_zoom: 5,
       max_zoom: 9,
-      bounds: missionViewExtent,
+      bounds: thermalExtent,
       resampling: "nearest",
     },
     default_visible: false,

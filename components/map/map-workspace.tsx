@@ -52,6 +52,7 @@ type Props = {
   showMarkers: boolean;
   opacity: number;
   layerStates: LayerStates;
+  presentationMode?: "mission_view" | "full_coverage";
   coverageFocus?: CoverageFocusRequest | null;
   plan?: WaypointPlan;
   isPlacingOnMap?: boolean;
@@ -77,6 +78,7 @@ export default function MapWorkspace({
   showMarkers,
   opacity,
   layerStates,
+  presentationMode = "mission_view",
   coverageFocus,
   plan,
   isPlacingOnMap = false,
@@ -182,8 +184,8 @@ export default function MapWorkspace({
 
   useEffect(() => {
     if (!ready || !map.current) return;
-    applyLayerStates(map.current, region, layerStates, preview);
-  }, [ready, region, layerStates, preview]);
+    applyLayerStates(map.current, region, layerStates, preview, presentationMode);
+  }, [ready, region, layerStates, preview, presentationMode]);
 
   useEffect(() => {
     if (!ready || !map.current) return;

@@ -7,6 +7,42 @@ import type {
 export type CoverageFocusRequest = { region_id: string; layer_id: string; request_id: number };
 export type LayerState = { visible: boolean; opacity: number };
 export type LayerStates = Record<string, LayerState>;
+
+export const PRESENTATION_MASK_LAYER_ID = "region-presentation-mask";
+export const PRESENTATION_MASK_SOURCE_ID = "region-presentation-mask";
+
+export function createPresentationMaskData(
+  extent: NonNullable<RegionManifest["map"]["supported_extent"]>,
+) {
+  const bounds = displayBounds(extent);
+  const [west, south] = bounds[0];
+  const [east, north] = bounds[1];
+  return {
+    type: "Feature" as const,
+    properties: {},
+    geometry: {
+      type: "Polygon" as const,
+      coordinates: [
+        // Exterior ring (counter-clockwise across global display)
+        [
+          [-180, -85.051129],
+          [180, -85.051129],
+          [180, 85.051129],
+          [-180, 85.051129],
+          [-180, -85.051129],
+        ],
+        // Hole (clockwise across mission overview footprint)
+        [
+          [west, south],
+          [west, north],
+          [east, north],
+          [east, south],
+          [west, south],
+        ],
+      ],
+    },
+  };
+}
 export function fillColor(layer: RegionManifest["layers"][number]): string | ExpressionSpecification {
   const render = layer.rendering;
   if (render.kind !== "geojson") return "#647C9A";
@@ -87,90 +123,123 @@ export function mountRegionLayers(
 ): () => void {
   if (region.map.visualization.status !== "available") return () => {};
   const ids: string[] = [];
-  for (const layer of region.layers.filter(
+  const availableLayers = region.layers.filter(
     (l) => l.availability === "available",
-  )) {
+  );
+
+  // 1. Mount raster tile layers
+  for (const layer of availableLayers) {
     const render = layer.rendering,
       id = `region-${layer.id}`;
-    if (render.kind === "unavailable") continue;
-    if (render.kind === "raster-tiles") {
-      // Restrict tile *requests*, not the camera. Sparse regional tile packs do
-      // not contain tiles outside this reviewed display footprint. Dateline-
-      // crossing extents need split source bounds; leave those unbounded here.
-      const extent = render.bounds ?? region.map.supported_extent;
-      const bounds = extent
-        ? displayBounds(extent)
+    if (render.kind !== "raster-tiles") continue;
+    // Restrict tile *requests*, not the camera. Sparse regional tile packs do
+    // not contain tiles outside this reviewed display footprint. Dateline-
+    // crossing extents need split source bounds; leave those unbounded here.
+    const extent = render.bounds ?? region.map.supported_extent;
+    const bounds = extent
+      ? displayBounds(extent)
+      : undefined;
+    const sourceBounds: [number, number, number, number] | undefined =
+      bounds && bounds[1][0] <= 180
+        ? [bounds[0][0], bounds[0][1], bounds[1][0], bounds[1][1]]
         : undefined;
-      const sourceBounds: [number, number, number, number] | undefined =
-        bounds && bounds[1][0] <= 180
-          ? [bounds[0][0], bounds[0][1], bounds[1][0], bounds[1][1]]
-          : undefined;
-      map.addSource(id, {
-        type: "raster",
-        tiles: render.tiles,
-        tileSize: render.tile_size,
-        minzoom: render.min_zoom,
-        maxzoom: render.max_zoom,
-        bounds: sourceBounds,
-        attribution: layer.attribution ?? undefined,
-      });
+    map.addSource(id, {
+      type: "raster",
+      tiles: render.tiles,
+      tileSize: render.tile_size,
+      minzoom: render.min_zoom,
+      maxzoom: render.max_zoom,
+      bounds: sourceBounds,
+      attribution: layer.attribution ?? undefined,
+    });
+    map.addLayer({
+      id,
+      type: "raster",
+      source: id,
+      layout: { visibility: "none" },
+      paint: { "raster-resampling": render.resampling ?? "linear" },
+    });
+    ids.push(id);
+  }
+
+  // 2. Mount presentation mask layer immediately above raster layers
+  const hasRaster = availableLayers.some((l) => l.rendering.kind === "raster-tiles");
+  if (hasRaster && region.map.supported_extent) {
+    map.addSource(PRESENTATION_MASK_SOURCE_ID, {
+      type: "geojson",
+      data: createPresentationMaskData(region.map.supported_extent),
+    });
+    map.addLayer({
+      id: PRESENTATION_MASK_LAYER_ID,
+      type: "fill",
+      source: PRESENTATION_MASK_SOURCE_ID,
+      layout: { visibility: "visible" },
+      paint: {
+        "fill-color": "#0D1928",
+        "fill-opacity": 1,
+        "fill-outline-color": "#0D1928",
+      },
+    });
+    ids.push(PRESENTATION_MASK_LAYER_ID);
+  }
+
+  // 3. Mount vector / GeoJSON layers above the presentation mask
+  for (const layer of availableLayers) {
+    const render = layer.rendering,
+      id = `region-${layer.id}`;
+    if (render.kind !== "geojson") continue;
+    // GeoJSON assets must already use the reviewed display transform.
+    map.addSource(id, {
+      type: "geojson",
+      data: render.url,
+      attribution: layer.attribution ?? undefined,
+    });
+    if (render.geometry === "line") {
+      // A thin dark casing keeps the optional boundaries legible over both
+      // light imagery and the dark map background. No polygon fill is added.
+      if (render.line_pattern) {
+        const halo = `${id}-halo`;
+        map.addLayer({
+          id: halo, type: "line", source: id,
+          layout: { visibility: "none", "line-join": "round" },
+          paint: { "line-color": "#09111F", "line-width": 5,
+            ...(render.line_pattern === "dashed" ? { "line-dasharray": [2.4, 1.6] } : {}) },
+        });
+        ids.push(halo);
+      }
       map.addLayer({
         id,
-        type: "raster",
+        type: "line",
+        source: id,
+        layout: { visibility: "none", ...(render.line_pattern ? { "line-join": "round" as const } : {}) },
+        paint: { "line-color": render.color, "line-width": 2,
+          ...(render.line_pattern === "dashed" ? { "line-dasharray": [6, 4] } : {}) },
+      });
+      ids.push(id);
+    }
+    if (render.geometry === "fill") {
+      map.addLayer({
+        id,
+        type: "fill",
         source: id,
         layout: { visibility: "none" },
-        paint: { "raster-resampling": render.resampling ?? "linear" },
+        paint: {
+          "fill-color": fillColor(layer),
+          ...(render.category_property ? { "fill-outline-color": "#111D30" } : {}),
+        },
       });
-    } else {
-      // GeoJSON assets must already use the reviewed display transform.
-      map.addSource(id, {
-        type: "geojson",
-        data: render.url,
-        attribution: layer.attribution ?? undefined,
-      });
-      if (render.geometry === "line") {
-        // A thin dark casing keeps the optional boundaries legible over both
-        // light imagery and the dark map background. No polygon fill is added.
-        if (render.line_pattern) {
-          const halo = `${id}-halo`;
-          map.addLayer({
-            id: halo, type: "line", source: id,
-            layout: { visibility: "none", "line-join": "round" },
-            paint: { "line-color": "#09111F", "line-width": 5,
-              ...(render.line_pattern === "dashed" ? { "line-dasharray": [2.4, 1.6] } : {}) },
-          });
-          ids.push(halo);
-        }
-        map.addLayer({
-          id,
-          type: "line",
-          source: id,
-          layout: { visibility: "none", ...(render.line_pattern ? { "line-join": "round" as const } : {}) },
-          paint: { "line-color": render.color, "line-width": 2,
-            ...(render.line_pattern === "dashed" ? { "line-dasharray": [6, 4] } : {}) },
-        });
-      }
-      if (render.geometry === "fill")
-        map.addLayer({
-          id,
-          type: "fill",
-          source: id,
-          layout: { visibility: "none" },
-          paint: {
-            "fill-color": fillColor(layer),
-            ...(render.category_property ? { "fill-outline-color": "#111D30" } : {}),
-          },
-        });
-      if (render.geometry === "circle")
-        map.addLayer({
-          id,
-          type: "circle",
-          source: id,
-          layout: { visibility: "none" },
-          paint: { "circle-color": render.color, "circle-radius": 5 },
-        });
+      ids.push(id);
     }
-    ids.push(id);
+    if (render.geometry === "circle") {
+      map.addLayer({
+        id,
+        type: "circle",
+        source: id,
+        layout: { visibility: "none" },
+        paint: { "circle-color": render.color, "circle-radius": 5 },
+      });
+      ids.push(id);
+    }
   }
   return () => {
     for (const id of [...ids].reverse())
@@ -184,7 +253,20 @@ export function applyLayerStates(
   region: RegionManifest,
   states: LayerStates,
   preview: boolean,
+  presentationMode: "mission_view" | "full_coverage" = "mission_view",
 ) {
+  if (map.getLayer(PRESENTATION_MASK_LAYER_ID)) {
+    const isFullCoverage =
+      presentationMode === "full_coverage" ||
+      states["presentation-mode"]?.visible === false ||
+      states[PRESENTATION_MASK_LAYER_ID]?.visible === false;
+    const maskVisible = !preview && !isFullCoverage;
+    map.setLayoutProperty(
+      PRESENTATION_MASK_LAYER_ID,
+      "visibility",
+      maskVisible ? "visible" : "none",
+    );
+  }
   for (const layer of region.layers) {
     const id = `region-${layer.id}`;
     if (!map.getLayer(id) || layer.rendering.kind === "unavailable") continue;

@@ -3,6 +3,10 @@ import assert from "node:assert/strict";
 import { existsSync, readFileSync } from "node:fs";
 import { getRegion } from "../lib/regions/registry";
 import {
+  createPresentationMaskData,
+  displayBounds,
+} from "../lib/map/region-layers";
+import {
   missionViewExtent,
   regionalExtent,
   globalExtent,
@@ -113,14 +117,18 @@ test("thermal layer derives from authentic THEMIS daytime IR mosaic v2", () => {
   assert.equal(thermalExtent.west_east, 137.327439);
 });
 
-test("Problem A: presentation bounds restrict overlay to mission basemap footprint", () => {
+test("Mission View visual clipping restricts presentation footprint while preserving full data coverage", () => {
+  // Scientific terrain and thermal layers maintain full authentic data bounds
   const regionalElev = gale.layers.find((l) => l.id === "gale-regional-elevation")!;
   if (regionalElev.rendering.kind !== "raster-tiles") throw new Error("Expected raster-tiles");
-  assert.deepEqual(regionalElev.rendering.bounds, missionViewExtent);
+  assert.deepEqual(regionalElev.rendering.bounds, regionalExtent);
 
   const thermal = gale.layers.find((l) => l.id === "gale-thermal")!;
   if (thermal.rendering.kind !== "raster-tiles") throw new Error("Expected raster-tiles");
-  assert.deepEqual(thermal.rendering.bounds, missionViewExtent);
+  assert.deepEqual(thermal.rendering.bounds, thermalExtent);
+
+  // Region supported extent drives the default Mission View presentation mask footprint
+  assert.deepEqual(gale.map.supported_extent, missionViewExtent);
 
   // Full data coverage is preserved in exported modes and coverage layers
   assert.deepEqual(galeCoverageModes.missionView.bounds, missionViewExtent);
@@ -132,6 +140,20 @@ test("Problem A: presentation bounds restrict overlay to mission basemap footpri
 
   const globalCoverage = gale.layers.find((l) => l.id === "gale-coverage-global")!;
   assert.deepEqual(globalCoverage.zoom_extent, globalExtent);
+
+  // Regression check: presentation mask geometry has the exact hole matching missionViewExtent
+  const maskFeature = createPresentationMaskData(gale.map.supported_extent!);
+  const [outerRing, innerHole] = maskFeature.geometry.coordinates;
+  assert.equal(outerRing.length, 5);
+  assert.equal(innerHole.length, 5);
+  const [[w, s], [e, n]] = displayBounds(missionViewExtent);
+  assert.deepEqual(innerHole, [
+    [w, s],
+    [w, n],
+    [e, n],
+    [e, s],
+    [w, s],
+  ]);
 });
 
 test("geological units and rover traverse remain auxiliary overlays outside the four categories", () => {

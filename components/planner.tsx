@@ -104,6 +104,7 @@ export function Planner() {
   const [markers, setMarkers] = useState(true);
   const [opacity, setOpacity] = useState(70);
   const [layerStates, setLayerStates] = useState<LayerStates>({});
+  const [presentationMode, setPresentationMode] = useState<"mission_view" | "full_coverage">("mission_view");
   const [coverageFocus, setCoverageFocus] = useState<CoverageFocusRequest | null>(null);
   const [message, setMessage] = useState("");
   const [storageError, setStorageError] = useState("");
@@ -754,6 +755,8 @@ export function Planner() {
                 setMarkers={setMarkers}
                 opacity={opacity}
                 setOpacity={setOpacity}
+                presentationMode={presentationMode}
+                onPresentationModeChange={setPresentationMode}
                 onEvidence={() => showPanel("evidence")}
               />
             )}
@@ -804,6 +807,7 @@ export function Planner() {
           showMarkers={markers}
           opacity={opacity}
           layerStates={layerStates}
+          presentationMode={presentationMode}
           coverageFocus={coverageFocus}
           plan={activePlan}
           isPlacingOnMap={isPlacingOnMap}

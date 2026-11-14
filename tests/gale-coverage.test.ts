@@ -68,7 +68,13 @@ test("coverage lines and casings mount once, follow independent state, and clean
   } as unknown as MapInstance;
   const cleanup=mountRegionLayers(fake,gale);
   const count=layers.size;
-  assert.equal(count,gale.layers.length+2);
+  // Layers + 2 halos (regional & global coverage) + 1 presentation clipping mask
+  assert.equal(count,gale.layers.length+3);
+  const mask=layers.get("region-presentation-mask")!;
+  assert.ok(mask);
+  assert.equal(mask.type,"fill");
+  assert.equal(mask.paint["fill-color"],"#0D1928");
+  assert.equal(mask.layout.visibility,"visible");
   let state=updateLayerState(gale,{},"gale-coverage-regional",{visible:true});
   state=updateLayerState(gale,state,"gale-coverage-global",{visible:true});
   for (let i=0;i<3;i++) for (const theme of ["elevation","slope","hillshade"]) {
@@ -92,7 +98,14 @@ test("coverage lines and casings mount once, follow independent state, and clean
   assert.equal(dashed.layout.visibility,"visible");
   assert.equal(layers.get("region-gale-coverage-global-halo")!.paint["line-opacity"],.35);
   assert.equal(layers.get("region-gale-regional-hillshade")!.layout.visibility,"visible");
+  assert.equal(mask.layout.visibility,"visible");
+  // Test switching between Mission View and Full Data Coverage modes
+  applyLayerStates(fake,gale,state,false,"full_coverage");
+  assert.equal(mask.layout.visibility,"none");
+  applyLayerStates(fake,gale,state,false,"mission_view");
+  assert.equal(mask.layout.visibility,"visible");
   applyLayerStates(fake,gale,state,true); assert.equal(dashed.layout.visibility,"none");
+  assert.equal(mask.layout.visibility,"none");
   cleanup(); assert.equal(layers.size,0); assert.equal(sources.size,0);
   assert.equal(layerSchema.safeParse({...gale.layers.find(l=>l.id==="gale-coverage-global")!,rendering:{kind:"geojson",url:"/test.geojson",geometry:"fill",color:"#FFFFFF",line_pattern:"dashed"}}).success,false);
 });
