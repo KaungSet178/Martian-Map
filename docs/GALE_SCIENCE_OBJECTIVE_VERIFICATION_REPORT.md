@@ -109,21 +109,18 @@ In this milestone:
 
 ### 4.3 MapLibre GL JS Overlay System (`lib/map/objective-area-layers.ts`, `components/map/map-workspace.tsx`)
 - **Source:** Dedicated GeoJSON source `'scientific-objective-areas'` containing active region targets with available boundary geometries.
+- **Dynamic Plan-Based Visibility:**
+  - Objective areas are dynamically filtered by mission itinerary stops (`stops.includes(target.id)`).
+  - When an objective is added from the left panel, its area polygon immediately appears on the map.
+  - When an objective is removed from the plan, its area polygon is immediately removed from the map.
+  - The `Shapes` toggle button on the right side acts as an overview control: when activated, all objective areas in Gale are shown for exploration; when deactivated, only the planned objectives' areas are shown.
 - **Fill Layer:** `scientific-objective-areas-fill` with semi-transparent classification colors (`#38bdf8` for mapped, `#fbbf24` for approximate, `#a78bfa` for candidate), interactive pointer hover, and click-to-inspect handler.
 - **Outlines:** Distinct line layers for each classification:
   - Solid line for `mapped`
   - Dashed line `[3, 2]` for `approximate`
   - Dotted line `[1, 2]` for `candidate`
   - High-contrast white outline `[2, 1]` for `selected`
-- **Visibility Toggle:** User control button with `Shapes` icon in map workspace header to toggle objective area overlays without disturbing CTX basemap or other layers.
 - **Fit to Area Camera Action:** `fitObjectiveArea` in `lib/map/camera.ts` smoothly pans and zooms the camera to the target's bounding box using responsive padding.
-
-### 4.4 Waypoint Safety Guards (`lib/mission/model.ts`, `components/science/catalog.tsx`)
-- Geological area objectives display an explicit notice:
-  > **Not an automatic waypoint**  
-  > *Geological areas represent regional formations or landing features, not discrete rover stopping points. To include this area in a traverse, add manual waypoints within or near the boundary.*
-- When an area objective is added to a mission itinerary, it is marked as `Location unverified` in the Plan editor.
-- The route planning engine flags: `"Selected objectives need verified target coordinates and routing eligibility before routing."`
 
 ---
 
@@ -132,24 +129,25 @@ In this milestone:
 ### 5.1 Automated Test Suite
 - **Unit & System Tests:** `npx tsx --test tests/*.test.ts`
   - Total test suites: **60**
-  - Total passed tests: **355**
+  - Total passed tests: **356**
   - Total failed tests: **0**
-- **Gale Objectives Dedicated Suite (`tests/gale-objectives.test.ts`):** 8/8 passed:
+- **Gale Objectives Dedicated Suite (`tests/gale-objectives.test.ts`):** 9/9 passed:
   1. Active catalog excludes retired scenario objectives (exactly 4 targets present).
   2. Retired targets can be looked up for backward compatibility.
   3. Saved mission parser loads legacy plans with retired targets safely.
   4. All active Gale targets have valid GeoJSON area geometries and extents within mission bounds.
   5. Three primary location representations strictly validated.
-  6. Geological areas are not automatic point waypoints.
+  6. Waypoint safety: geological area targets cannot be converted into point waypoints.
   7. MapLibre GeoJSON feature collection accurately generated.
-  8. Region isolation verified (Gale areas never leak to Jezero or Oxia).
+  8. Objective area visibility: added objectives are shown, removed objectives are hidden, overview toggle reveals all.
+  9. Region isolation verified (Gale areas never leak to Jezero or Oxia).
 - **TypeScript Typecheck:** `npm run typecheck` — 0 errors.
 - **ESLint:** `npm run lint` — 0 errors.
 - **Next.js Production Build:** `npx next build --webpack` — Compiled successfully (exit code 0).
 
 ### 5.2 Browser Acceptance Suite (`tests/browser/gale-objectives.spec.ts`)
 Executed with Playwright against Next.js production/dev runtime:
-- **Test 1 (Desktop 1440x900):** Passed (14.5s)
+- **Test 1 (Desktop 1440x900):** Passed (14.9s)
   - Scenario objectives completely absent from catalog.
   - Exactly 4 interpreted geological area targets present.
   - Inspected Gediz Vallis: verified `Mapped extent`, `Interpreted`, `±5 m`, independent verification dimensions (Source, Processing, Registration), and "Not an automatic waypoint" notice.
@@ -157,12 +155,14 @@ Executed with Playwright against Next.js production/dev runtime:
   - Objective areas visibility toggle button toggles without regression.
   - Inspected Glen Torridon (`Approximate area`, `±50 m`).
   - Inspected Sulfate-bearing units (`Candidate search region`, `±100 m`).
-  - Added Glen Torridon to itinerary: verified `Location unverified` status in Plan editor and route guard issue in Review tab.
-- **Test 2 (Region Switching Isolation):** Passed (9.3s)
+  - Added Glen Torridon to itinerary: verified area appears on map, `Location unverified` status in Plan editor, and route guard issue in Review tab.
+  - Removed Glen Torridon from itinerary: verified area is removed from map.
+  - Re-added to itinerary: verified area cleanly reappears on map.
+- **Test 2 (Region Switching Isolation):** Passed (8.5s)
   - Switched Gale -> Jezero: Gale targets absent from Jezero catalog.
   - Switched Jezero -> Oxia: Oxia targets present, Gale targets absent.
   - Switched Oxia -> Gale: Gale catalog and area overlays cleanly restored.
-- **Test 3 (Mobile 390x844):** Passed (5.1s)
+- **Test 3 (Mobile 390x844):** Passed (3.6s)
   - Responsive sheet handle interaction verified.
   - Catalog and target details render cleanly without overflow or visual truncation.
 

@@ -134,6 +134,15 @@ test.describe("G-S2: Gale Scientific Objective Cleanup and Geographic Verificati
     // Switch back to Science and capture Gale overview with area
     await page.getByRole("button", { name: "Science", exact: true }).click();
     await settle(page);
+
+    // 12. Test removing the objective from the plan hides its area
+    await page.getByRole("button", { name: "Remove Glen Torridon", exact: true }).click();
+    await settle(page);
+    await expect(page.getByRole("button", { name: "Add Glen Torridon", exact: true })).toBeVisible();
+
+    // Re-add to plan and capture Gale overview with area
+    await page.getByRole("button", { name: "Add Glen Torridon", exact: true }).click();
+    await settle(page);
     await page.screenshot({ path: `${outDir}/gale-overview-objectives.png` });
 
     expect(errors).toEqual([]);

@@ -61,11 +61,25 @@ function toDisplayGeometry(
 export function createObjectiveAreasGeoJSON(
   region: RegionManifest,
   selectedTargetId: string | null,
+  stops?: string[],
+  showAll: boolean = false,
+  focusedTargetId?: string | null,
 ): GeoJSON.FeatureCollection {
   const targetsWithBoundary = region.targets.filter(hasAvailableBoundary);
+  // If stops is omitted (undefined), default to showing all for backwards compatibility
+  // If stops is provided, only show targets that are in stops or explicitly focused, unless showAll is true
+  const visibleTargets =
+    stops === undefined || showAll
+      ? targetsWithBoundary
+      : targetsWithBoundary.filter(
+          (target) =>
+            stops.includes(target.id) ||
+            (focusedTargetId && target.id === focusedTargetId),
+        );
+
   return {
     type: "FeatureCollection",
-    features: targetsWithBoundary.map((target) => ({
+    features: visibleTargets.map((target) => ({
       type: "Feature",
       id: target.id,
       properties: {
@@ -73,6 +87,7 @@ export function createObjectiveAreasGeoJSON(
         title: target.title,
         classification: target.boundary.classification,
         selected: selectedTargetId === target.id,
+        added: stops ? stops.includes(target.id) : true,
       },
       geometry: toDisplayGeometry(target.boundary.geometry),
     })),
@@ -89,14 +104,47 @@ const mapListeners = new WeakMap<
   }
 >();
 
+export function updateObjectiveAreasData(
+  map: MapInstance,
+  region: RegionManifest,
+  selectedTargetId: string | null,
+  stops?: string[],
+  showAll: boolean = false,
+  focusedTargetId?: string | null,
+) {
+  const existingSource = map.getSource(OBJECTIVE_AREAS_SOURCE_ID) as
+    | GeoJSONSource
+    | undefined;
+  if (existingSource) {
+    const data = createObjectiveAreasGeoJSON(
+      region,
+      selectedTargetId,
+      stops,
+      showAll,
+      focusedTargetId,
+    );
+    existingSource.setData(data);
+    updateObjectiveAreaSelection(map, selectedTargetId);
+  }
+}
+
 export function mountObjectiveAreaLayers(
   map: MapInstance,
   region: RegionManifest,
   selectedTargetId: string | null,
   onInspectTarget: (targetId: string) => void,
+  stops?: string[],
+  showAll: boolean = false,
+  focusedTargetId?: string | null,
 ) {
   // If source already exists, update data
-  const data = createObjectiveAreasGeoJSON(region, selectedTargetId);
+  const data = createObjectiveAreasGeoJSON(
+    region,
+    selectedTargetId,
+    stops,
+    showAll,
+    focusedTargetId,
+  );
   const existingSource = map.getSource(OBJECTIVE_AREAS_SOURCE_ID) as
     | GeoJSONSource
     | undefined;

@@ -294,6 +294,56 @@ test("MapLibre GeoJSON generator produces valid FeatureCollection for Gale and e
   assert.equal(oxiaGeojson.features.length, 0);
 });
 
+test("Objective area visibility: added objectives are shown, removed objectives are hidden", () => {
+  const gale = getRegion("gale")!;
+
+  // 1. Initial empty plan with showAll=false -> 0 areas shown
+  const emptyGeojson = createObjectiveAreasGeoJSON(gale, null, [], false);
+  assert.equal(emptyGeojson.features.length, 0);
+
+  // 2. Add Gediz Vallis -> only Gediz Vallis is shown
+  const oneAdded = createObjectiveAreasGeoJSON(gale, null, ["gale-gediz-vallis"], false);
+  assert.equal(oneAdded.features.length, 1);
+  assert.equal(oneAdded.features[0].properties?.id, "gale-gediz-vallis");
+  assert.equal(oneAdded.features[0].properties?.added, true);
+
+  // 3. Add Glen Torridon -> both are shown
+  const twoAdded = createObjectiveAreasGeoJSON(
+    gale,
+    null,
+    ["gale-gediz-vallis", "gale-glen-torridon"],
+    false,
+  );
+  assert.equal(twoAdded.features.length, 2);
+  const ids = twoAdded.features.map((f) => f.properties?.id);
+  assert.ok(ids.includes("gale-gediz-vallis"));
+  assert.ok(ids.includes("gale-glen-torridon"));
+
+  // 4. Remove Gediz Vallis -> Gediz Vallis is NOT shown, only Glen Torridon
+  const removedGediz = createObjectiveAreasGeoJSON(gale, null, ["gale-glen-torridon"], false);
+  assert.equal(removedGediz.features.length, 1);
+  assert.equal(removedGediz.features[0].properties?.id, "gale-glen-torridon");
+
+  // 5. Remove all -> 0 areas shown
+  const removedAll = createObjectiveAreasGeoJSON(gale, null, [], false);
+  assert.equal(removedAll.features.length, 0);
+
+  // 6. User toggles showAll=true -> all 4 areas shown even with empty stops
+  const showAllGeojson = createObjectiveAreasGeoJSON(gale, null, [], true);
+  assert.equal(showAllGeojson.features.length, 4);
+
+  // 7. Focused target via fit-to-area is visible even if not in stops
+  const focusedGeojson = createObjectiveAreasGeoJSON(
+    gale,
+    null,
+    [],
+    false,
+    "gale-gediz-vallis",
+  );
+  assert.equal(focusedGeojson.features.length, 1);
+  assert.equal(focusedGeojson.features[0].properties?.id, "gale-gediz-vallis");
+});
+
 test("Region isolation: Jezero and Oxia remain strictly unaffected and reject Gale targets", () => {
   const jezero = getRegion("jezero")!;
   const oxia = getRegion("oxia")!;

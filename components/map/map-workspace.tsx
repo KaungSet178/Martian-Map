@@ -27,7 +27,6 @@ import { fitOverview, fitInitialView, fitLayerCoverage, fitObjectiveArea } from 
 import { registerScientificClip } from "@/lib/map/scientific-clip";
 import {
   mountObjectiveAreaLayers,
-  updateObjectiveAreaSelection,
   removeObjectiveAreaLayers,
   setObjectiveAreasVisibility,
 } from "@/lib/map/objective-area-layers";
@@ -119,10 +118,20 @@ export default function MapWorkspace({
   const handledTargetAreaFocus = useRef<number | null>(null);
   const previousLayers = useRef<{ region: string; visible: Set<string> } | null>(null);
   const [ready, setReady] = useState(false);
-  const [showObjectiveAreas, setShowObjectiveAreas] = useState(true);
+  const [showAllObjectiveAreas, setShowAllObjectiveAreas] = useState(false);
+  const previousStops = useRef<string[]>(stops);
   const [loadedMap, setLoadedMap] = useState<MapInstance | null>(null);
   const [failed, setFailed] = useState(false);
   const scientificMap = region.map.visualization.status === "available";
+
+  useEffect(() => {
+    // When an objective is removed from the plan, ensure showAllObjectiveAreas is turned off
+    // so that the removed objective's area is guaranteed not to be shown!
+    if (stops.length < previousStops.current.length && showAllObjectiveAreas) {
+      setShowAllObjectiveAreas(false);
+    }
+    previousStops.current = stops;
+  }, [stops, showAllObjectiveAreas]);
   const resetView = useCallback((animate = false, initial = false) => {
     if (!map.current || !container.current) return;
     overview.current = initial ? "initial" : "mission";
@@ -283,22 +292,39 @@ export default function MapWorkspace({
   useEffect(() => {
     if (!ready || !map.current || preview || !scientificMap) return;
     const instance = map.current;
-    mountObjectiveAreaLayers(instance, region, selected, onInspect);
-    setObjectiveAreasVisibility(instance, showObjectiveAreas);
+    const focusedTargetId =
+      targetAreaFocus?.region_id === region.id ? targetAreaFocus.target_id : null;
+    mountObjectiveAreaLayers(
+      instance,
+      region,
+      selected,
+      onInspect,
+      stops,
+      showAllObjectiveAreas,
+      focusedTargetId,
+    );
+    const hasVisibleAreas =
+      showAllObjectiveAreas ||
+      region.targets.some(
+        (t) =>
+          t.boundary?.status === "available" &&
+          (stops.includes(t.id) || t.id === focusedTargetId),
+      );
+    setObjectiveAreasVisibility(instance, hasVisibleAreas);
     return () => {
       removeObjectiveAreaLayers(instance);
     };
-  }, [ready, region, preview, scientificMap, onInspect, showObjectiveAreas, selected]);
-
-  useEffect(() => {
-    if (!ready || !map.current || preview || !scientificMap) return;
-    updateObjectiveAreaSelection(map.current, selected);
-  }, [ready, selected, preview, scientificMap]);
-
-  useEffect(() => {
-    if (!ready || !map.current || preview || !scientificMap) return;
-    setObjectiveAreasVisibility(map.current, showObjectiveAreas);
-  }, [ready, showObjectiveAreas, preview, scientificMap]);
+  }, [
+    ready,
+    region,
+    preview,
+    scientificMap,
+    onInspect,
+    showAllObjectiveAreas,
+    selected,
+    stops,
+    targetAreaFocus,
+  ]);
 
   useEffect(() => {
     if (!ready || !container.current || !map.current) return;
@@ -792,14 +818,14 @@ export default function MapWorkspace({
         )}
         {scientificMap && !preview && (
           <button
-            className={`icon-button ${showObjectiveAreas ? "active" : ""}`}
-            onClick={() => setShowObjectiveAreas(!showObjectiveAreas)}
+            className={`icon-button ${showAllObjectiveAreas ? "active" : ""}`}
+            onClick={() => setShowAllObjectiveAreas(!showAllObjectiveAreas)}
             disabled={!ready || failed}
             aria-label={
-              showObjectiveAreas ? "Hide objective areas" : "Show objective areas"
+              showAllObjectiveAreas ? "Hide objective areas" : "Show objective areas"
             }
             title={
-              showObjectiveAreas ? "Hide objective areas" : "Show objective areas"
+              showAllObjectiveAreas ? "Hide objective areas" : "Show objective areas"
             }
           >
             <Shapes size={20} />
