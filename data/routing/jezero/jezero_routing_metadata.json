@@ -1,0 +1,45 @@
+{
+  "datasetId": "jezero-usgs-trn-dtm-routing-25m",
+  "sourceProduct": "JEZ_hirise_soc_006_DTM_MOLAtopography_DeltaGeoid_1m_Eqc_latTs0_lon0_blend40",
+  "doi": "https://doi.org/10.5066/P9REJ9JN",
+  "crs": "PROJCS[\"Equirectangular Mars 2000 Sphere IAU\"]",
+  "projection": "Equirectangular",
+  "marsRadiusMeters": 3396190.0,
+  "standardParallelDegrees": 0.0,
+  "centerLongitudeDegrees": 0.0,
+  "gridSpacingMeters": 25.0,
+  "width": 604,
+  "height": 213,
+  "bounds": {
+    "west": 77.225042,
+    "east": 77.479788,
+    "south": 18.405172,
+    "north": 18.495008
+  },
+  "elevationRangeMeters": [
+    -2621.3,
+    -1641.3
+  ],
+  "slopeRangeDegrees": [
+    0.0,
+    38.29999923706055
+  ],
+  "slopePercentiles": {
+    "p50": 4.5,
+    "p90": 16.100000381469727,
+    "p98": 22.5
+  },
+  "nodataValue": -9999.0,
+  "sourceSha256": "44c3819caa33922b06f7a8228534d1e32ab4087aca85144136d825c371c747d8",
+  "sourceBytes": 1839545409,
+  "totalCells": 128652,
+  "validCells": 114520,
+  "validFraction": 0.8902,
+  "derivationMethod": "Block mean of authentic 1m DTM posts; slope via central differences with Mars spherical scale cos(latitude).",
+  "scientificCaveats": [
+    "Derived computational grid for pathfinding; not a substitute for full 1m DTM posts.",
+    "Slope is an algorithmic traversal penalty, NOT a certified EVA or astronaut safety limit.",
+    "Nodata cells outside valid DEM coverage are strictly impassable.",
+    "Registration accuracy reflects USGS TRN HiRISE baseline; absolute horizontal registration is UNVERIFIED."
+  ]
+}
