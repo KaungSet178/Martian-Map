@@ -33,7 +33,7 @@ export const config = {
     visualization: {
       status: "available",
       reason:
-        "Five integrated data layers (CTX, Elevation, Slope, Geological units, Thermal) plus the recorded-traverse overlay, each with a reviewed, documented display transform and the supported extent.",
+        "Four scientific categories: Elevation, Hillshade, Slope, Thermal. Existing CTX basemap, deferred geology and recorded traverse remain separate. Hillshade uses the authenticated numeric SOC_006 DEM; independent absolute registration is unverified. The map remains limited to the established mission view.",
     },
     initial_zoom: 10,
     supported_extent: {
@@ -59,7 +59,7 @@ export const config = {
   // non-routable. Existing IDs 1-3 are preserved for saved-plan compatibility.
   // Routing stays disabled: no hazard coverage and no approved routing policy
   // are connected.
-  dataset_version: "jezero-objectives-v9",
+  dataset_version: "jezero-four-layers-v10",
   routing: {
     enabled: false,
     reason:
@@ -242,6 +242,7 @@ export const config = {
       native_resolution_m: 1,
       processing_notes: [
         "Product verified via its DOI landing page, FGDC metadata XML and ISIS label before download; source index https://asc-pds-services.s3.us-west-2.amazonaws.com/mosaic/mars2020_trn/HiRISE/index.html.",
+        "Four-layer audit: standalone hillshade uses team/jezero/terrain/build_hillshade.py from the numeric source, artificial azimuth 315 / elevation 45 degrees, native pixel centers and Mars ground spacing, strict nodata support. Source SHA256, exact extrema, native mask geometry and per-tile hashes are in team/jezero/terrain/hillshade_report.json. Native label longitude domain is 180; positive Jezero longitudes are unchanged in application 0-360 east convention.",
         "Uncompressed 32-bit float GeoTIFF, 21,400 x 21,488, 1 m/px, equirectangular (latTs0/lon0), planetocentric latitude, east-positive, D_Mars_2000_Sphere r=3,396,190 m; ISIS label UpperLeftCornerX/Y = 4577366.0/1106618.0 m; GDAL nodata tag -3.4028e+38; label footprint 77.2229-77.5840 E, 18.3068-18.6693 N (reproduced exactly by the GeoTIFF georeferencing tags).",
         "Audit (team/jezero/terrain/audit_terrain.mjs, report team/jezero/terrain/audit_report.json): structure, georeferencing, nodata and value-range checks pass; PLACES cross-check over 30,445 traverse points: median DTM-PLACES +0.025 m, RMS 1.6 m, abs P95 4.3 m - the areoid-relative vertical datum is verified empirically.",
         "FGDC published value range (-2659.8 to -1942.1 m) is understated: sampled values reach -1639.971 m in a contiguous western-rim band (lon 77.25-77.29 E). Confirmed real terrain by rover ground truth (PLACES sol 1354: -1786.0 m at 18.4575 N, 77.2685 E; DTM matched within ~5 m) - recorded as a documented metadata caveat, not a data defect.",
@@ -250,6 +251,7 @@ export const config = {
       ],
       limitations: [
         "Public domain USGS release; cite the product authors via the DOI.",
+        "Four-layer audit identified incorrect Earth-sized gradient spacing and flat-ground illumination in the legacy elevation tint; existing pixels retained with processing UNVERIFIED. Legacy slope/elevation sampling also omits half-post center correction. These display issues do not invalidate the source elevations; standalone hillshade does not reuse those calculations. Independent absolute horizontal registration remains UNVERIFIED; historical PLACES height agreement is not independent positional control.",
         "Display tiles are derived, resampled and hillshaded - not the native 1 m posts; not a route-safety or engineering product.",
         "The far-west CR stereo component retains a small (~3-5 m) vertical bias per USGS quality notes; values there are display-grade only.",
       ],

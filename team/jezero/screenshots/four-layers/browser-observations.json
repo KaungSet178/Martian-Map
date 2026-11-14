@@ -1,0 +1,384 @@
+{
+  "errors": [
+    "displayLon is not defined",
+    "displayLon is not defined"
+  ],
+  "responses": [
+    {
+      "url": "/maps/jezero/ctx-lvs-tiles/13/5857/3668.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/ctx-lvs-tiles/13/5857/3667.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/ctx-lvs-tiles/13/5856/3668.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/ctx-lvs-tiles/13/5858/3668.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/ctx-lvs-tiles/13/5856/3667.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/ctx-lvs-tiles/13/5857/3669.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/perseverance-traverse.geojson",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/ctx-lvs-tiles/13/5858/3667.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/ctx-lvs-tiles/13/5856/3669.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/ctx-lvs-tiles/13/5858/3669.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/ctx-lvs-tiles/13/5855/3668.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/ctx-lvs-tiles/13/5859/3668.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/ctx-lvs-tiles/13/5855/3667.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/ctx-lvs-tiles/13/5855/3669.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/ctx-lvs-tiles/13/5859/3667.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/ctx-lvs-tiles/13/5859/3669.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/terrain-tiles/13/5857/3668.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/terrain-tiles/13/5857/3667.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/terrain-tiles/13/5856/3668.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/terrain-tiles/13/5858/3668.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/terrain-tiles/13/5857/3669.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/terrain-tiles/13/5856/3667.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/terrain-tiles/13/5858/3667.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/terrain-tiles/13/5856/3669.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/terrain-tiles/13/5858/3669.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/terrain-tiles/13/5855/3668.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/terrain-tiles/13/5859/3668.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/terrain-tiles/13/5855/3667.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/terrain-tiles/13/5855/3669.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/terrain-tiles/13/5859/3669.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/terrain-tiles/13/5859/3667.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/hillshade-tiles/13/5857/3668.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/hillshade-tiles/13/5857/3667.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/hillshade-tiles/13/5856/3668.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/hillshade-tiles/13/5858/3668.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/hillshade-tiles/13/5857/3669.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/hillshade-tiles/13/5856/3667.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/hillshade-tiles/13/5858/3667.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/hillshade-tiles/13/5856/3669.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/hillshade-tiles/13/5858/3669.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/hillshade-tiles/13/5855/3668.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/hillshade-tiles/13/5859/3668.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/hillshade-tiles/13/5855/3667.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/hillshade-tiles/13/5855/3669.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/hillshade-tiles/13/5859/3667.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/hillshade-tiles/13/5859/3669.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/slope-tiles/13/5857/3668.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/slope-tiles/13/5857/3667.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/slope-tiles/13/5856/3668.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/slope-tiles/13/5858/3668.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/slope-tiles/13/5857/3669.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/slope-tiles/13/5856/3667.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/slope-tiles/13/5858/3667.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/slope-tiles/13/5856/3669.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/slope-tiles/13/5858/3669.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/slope-tiles/13/5855/3668.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/slope-tiles/13/5859/3668.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/slope-tiles/13/5855/3667.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/slope-tiles/13/5855/3669.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/slope-tiles/13/5859/3667.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/slope-tiles/13/5859/3669.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/thermal-tiles/9/366/229.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/thermal-tiles/9/365/229.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/perseverance-traverse.geojson",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/ctx-lvs-tiles/13/5857/3668.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/ctx-lvs-tiles/13/5857/3667.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/ctx-lvs-tiles/13/5856/3668.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/ctx-lvs-tiles/13/5858/3668.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/ctx-lvs-tiles/13/5857/3669.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/ctx-lvs-tiles/13/5856/3667.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/ctx-lvs-tiles/13/5858/3667.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/ctx-lvs-tiles/13/5856/3669.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/ctx-lvs-tiles/13/5858/3669.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/ctx-lvs-tiles/13/5855/3668.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/ctx-lvs-tiles/13/5859/3668.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/ctx-lvs-tiles/13/5855/3667.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/ctx-lvs-tiles/13/5855/3669.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/ctx-lvs-tiles/13/5859/3667.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/ctx-lvs-tiles/13/5859/3669.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/hillshade-tiles/13/5857/3668.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/hillshade-tiles/13/5857/3667.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/hillshade-tiles/13/5856/3668.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/hillshade-tiles/13/5858/3668.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/hillshade-tiles/13/5857/3669.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/hillshade-tiles/13/5856/3667.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/hillshade-tiles/13/5858/3667.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/hillshade-tiles/13/5856/3669.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/hillshade-tiles/13/5858/3669.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/hillshade-tiles/13/5855/3668.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/hillshade-tiles/13/5859/3668.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/hillshade-tiles/13/5855/3667.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/hillshade-tiles/13/5855/3669.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/hillshade-tiles/13/5859/3667.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/hillshade-tiles/13/5859/3669.png",
+      "status": 200
+    }
+  ]
+}

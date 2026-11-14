@@ -1,0 +1,4 @@
+# Preserve archived upstream metadata and checksummed geometry bytes on Windows.
+source-label.lbl -text -diff
+source-metadata.xml -text -diff
+*.geojson -text

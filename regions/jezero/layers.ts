@@ -1,9 +1,9 @@
 import type { ScientificLayer } from "@/lib/contracts/region";
+import terrainSummary from "./terrain-summary.json";
 
 // Region-owned content. Pending values are deliberately explicit.
-// Five integrated data layers (CTX, Elevation, Slope, Geological units,
-// Thermal) plus the recorded-traverse overlay; see the config
-// display_transform notes for every derivation.
+// Four scientific categories are indexed in scientific-presentation.ts.
+// Basemap, legacy geology and traverse remain separate existing records.
 export const layers = [
   {
     id: "jezero-optical",
@@ -56,16 +56,50 @@ export const layers = [
       max_zoom: 14,
     },
     default_visible: false,
-    default_opacity: 70,
+    default_opacity: 60,
     legend: {
-      title: "Elevation (MOLA areoid-relative, hillshaded)",
+      title: "Elevation (areoid m; legacy shaded tint, clipped -2620/-1770)",
       units: "m",
       items: [
-        { label: "-2620 to -2400", color: "#5081b5" },
-        { label: "-2400 to -2200", color: "#8dafa2" },
-        { label: "-2200 to -2000", color: "#cec390" },
-        { label: "-2000 to -1850", color: "#e7d6ac" },
-        { label: "-1850 to -1770", color: "#f4e9d3" },
+        { label: `-2620 and below (mission native min ${terrainSummary.mission_exact_range_m[0].toFixed(2)} m; unshaded tint)`, color: "#4655ac" },
+        { label: "-2486.1 (unshaded tint)", color: "#5288b6" },
+        { label: "-2326.9 (unshaded tint)", color: "#82aca6" },
+        { label: "-2141.4 (unshaded tint)", color: "#c8be8a" },
+        { label: "-1935.6 (unshaded tint)", color: "#e6d4a8" },
+        { label: `-1770 and above (mission native max ${terrainSummary.mission_exact_range_m[1].toFixed(2)} m; unshaded tint)`, color: "#f8f0e0" },
+      ],
+    },
+  },
+  {
+    id: "jezero-hillshade",
+    type: "Hillshade",
+    display_name: "Hillshade",
+    kind: "topography",
+    availability: "available",
+    source_id: "jezero-usgs-trn-dtm",
+    observation_date: null,
+    spatial_resolution_m: 1,
+    coverage: "Full native Jezero SOC_006 DEM envelope: 77.222933-77.583964 E, 18.306799-18.669315 N, with an irregular valid-data footprint. XYZ RGBA zooms 5-14. Nodata and unsupported gradient edges transparent; envelope is not a valid-data rectangle.",
+    limitations: "Hillshade uses artificial illumination derived from elevation data to reveal terrain shape. It does not represent actual sunlight, surface temperature, or terrain safety. Surface-normal illumination, azimuth 315 degrees clockwise from north, elevation 45 degrees; 2m native map-coordinate gradient baseline with strict bilinear support and Mars ground-spacing correction. No cast shadows or gap filling. Fine relief can alias at coarse zooms. Independent absolute registration remains UNVERIFIED; the map remains limited to the mission view.",
+    evidence: "Derived",
+    attribution: "USGS Astrogeology · NASA/MRO HiRISE · Mars 2020 TRN DTM (DOI 10.5066/P9REJ9JN); artificial illumination",
+    rendering: {
+      kind: "raster-tiles",
+      tiles: ["/maps/jezero/hillshade-tiles/{z}/{x}/{y}.png"],
+      tile_size: 256,
+      min_zoom: 5,
+      max_zoom: 14,
+    },
+    default_visible: false,
+    default_opacity: 45,
+    legend: {
+      title: "Artificial illumination (unitless intensity; transparent = no support)",
+      units: null,
+      items: [
+        { label: "0 (unlit)", color: "#000000" },
+        { label: "0.5", color: "#808080" },
+        { label: "0.707 (flat terrain)", color: "#b4b4b4" },
+        { label: "1 (fully lit)", color: "#ffffff" },
       ],
     },
   },
@@ -82,7 +116,7 @@ export const layers = [
       "Slope derived from the same USGS Mars 2020 TRN HiRISE DTM mosaic (JEZ_hirise_soc_006, 1 m/px, DOI 10.5066/P9REJ9JN): display tiles cover 77.2229-77.4931 E, 18.4020-18.5197 N (Web-Mercator XYZ, zooms 5-14, 193 RGBA tiles; tile ranges span the region extent, data only within the footprint). Pixels outside the DTM footprint - including the west margin 77.1868-77.2229 E - are transparent (no terrain data there).",
     limitations:
       "Derived display measurement, not a hazard or trafficability product: slope = atan(sqrt((dz/dx)^2 + (dz/dy)^2)) computed by team/jezero/terrain/build_slope.mjs on the display pixel grid from bilinearly sampled DTM elevations, with Mars ground spacing (r = 3,396,190 m). The measurement baseline is therefore the display pixel size, not the native 1 m post: ~10 m at z14, ~19 m at z13, ~150 m at z10 and ~5 km at z5, so low zooms show a smoothed regional gradient and the same terrain reads slightly gentler as zoom decreases. Slope alone says nothing about bearing strength, rock abundance, sand trapping or rover trafficability; unknown terrain is not safe terrain. Vertical-datum caveats and the far-west CR stereo bias (~3-5 m) documented for the Elevation layer apply to the underlying elevations; the display shares the region display-transform caveats (planetocentric display latitude on Web Mercator).",
-    evidence: "Observed",
+    evidence: "Derived",
     attribution:
       "USGS Astrogeology Science Center · NASA/MRO HiRISE · derived from the Mars 2020 TRN DTM mosaic (DOI 10.5066/P9REJ9JN)",
     rendering: {
@@ -93,16 +127,17 @@ export const layers = [
       max_zoom: 14,
     },
     default_visible: false,
-    default_opacity: 70,
+    default_opacity: 60,
     legend: {
       title: "Slope (display-derived, degrees)",
       units: "deg",
       items: [
-        { label: "0 to 3", color: "#286b6d" },
-        { label: "3 to 8", color: "#73ac81" },
-        { label: "8 to 15", color: "#ecb967" },
-        { label: "15 to 25", color: "#f0935c" },
-        { label: "25 and steeper", color: "#c7513f" },
+        { label: "0", color: "#264653" },
+        { label: "3.5", color: "#2a9d8f" },
+        { label: "8.75", color: "#e9c46a" },
+        { label: "17.5", color: "#f4a261" },
+        { label: "26.25", color: "#e76f51" },
+        { label: "35 and above (color saturated)", color: "#9d2a26" },
       ],
     },
   },
@@ -176,7 +211,7 @@ export const layers = [
       max_zoom: 9,
     },
     default_visible: false,
-    default_opacity: 70,
+    default_opacity: 60,
     legend: {
       title: "Relative daytime infrared brightness (qualitative)",
       units: null,
