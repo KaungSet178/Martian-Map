@@ -1,0 +1,166 @@
+{
+  "classification": "Georeferenced but alignment unverified",
+  "method": "Source-specific coordinates; unshifted same-XYZ windows at comparable display spacing; source-overview area averages. Exploratory and held-out windows preselected; no optimization.",
+  "source_lineage": "Published color strips manually tied, blended and fused to mission RED orthophoto; grayscale HRSC/MOLA -> CTX -> HiRISE lineage. Exact Trek mosaic control chain not established.",
+  "published_base_control_context_m_approx": 100,
+  "base_control_is_local_accuracy_bound": false,
+  "independent_control_points": [],
+  "positional_residual_rmse_m": null,
+  "positional_uncertainty_m": null,
+  "correction_applied": false,
+  "ctx_color_windows": [
+    {
+      "id": "window-1",
+      "split": "exploratory",
+      "tile_xyz": [
+        13,
+        7221,
+        4200
+      ],
+      "center_lon_lat": [
+        137.35107421875,
+        -4.587376153449693
+      ],
+      "valid_comparison_pixels": 28224,
+      "zero_shift_brightness_correlation": 0.07915274689747767,
+      "input_sha256": [
+        "22b301f18a691b78ab1eaad630d9f7e825512308102332481ca60e73ec22914a",
+        "4067a858cb30636c3c98e675aaca936168bb26b3791bb6394dcf53fcafbdb762"
+      ],
+      "accepted_independent_feature_controls": 0,
+      "residual_m": null,
+      "interpretation": "Diagnostic window, not a photographed-feature control. Photometry, native support and local lineage differ; no registration accuracy follows from this coefficient."
+    },
+    {
+      "id": "window-2",
+      "split": "exploratory",
+      "tile_xyz": [
+        13,
+        7222,
+        4201
+      ],
+      "center_lon_lat": [
+        137.39501953125,
+        -4.631179340411009
+      ],
+      "valid_comparison_pixels": 65536,
+      "zero_shift_brightness_correlation": 0.4946590954491644,
+      "input_sha256": [
+        "eb228807a902712e6917de27be626ca4aebff68caa97c84a2e2375a66baca4e1",
+        "425cb0c4674d0e5dbaf78d4535e2fab6ad2deec76fff697c3a62e9df2ce7d841"
+      ],
+      "accepted_independent_feature_controls": 0,
+      "residual_m": null,
+      "interpretation": "Diagnostic window, not a photographed-feature control. Photometry, native support and local lineage differ; no registration accuracy follows from this coefficient."
+    },
+    {
+      "id": "window-3",
+      "split": "exploratory",
+      "tile_xyz": [
+        13,
+        7223,
+        4202
+      ],
+      "center_lon_lat": [
+        137.43896484375,
+        -4.674979814820246
+      ],
+      "valid_comparison_pixels": 61184,
+      "zero_shift_brightness_correlation": 0.3526269930110069,
+      "input_sha256": [
+        "4d48037c5808eea6ac80d66a33d5687b862cd60571ef21c4ddf96a0d1f14a106",
+        "faa7c73e861531a1d78df0130132da680828c6049c93ef25fba370fd695f940a"
+      ],
+      "accepted_independent_feature_controls": 0,
+      "residual_m": null,
+      "interpretation": "Diagnostic window, not a photographed-feature control. Photometry, native support and local lineage differ; no registration accuracy follows from this coefficient."
+    },
+    {
+      "id": "window-4",
+      "split": "exploratory",
+      "tile_xyz": [
+        13,
+        7221,
+        4203
+      ],
+      "center_lon_lat": [
+        137.35107421875,
+        -4.718777551249853
+      ],
+      "valid_comparison_pixels": 43008,
+      "zero_shift_brightness_correlation": -0.17045712324679219,
+      "input_sha256": [
+        "c67470e005f1e9c7a34e17c4904fade76c2ac291d4e93b7364260a4cca8a5c45",
+        "f4f8aa1f19dc0116a7a90167f41ffb4b189662e65c023f10ef2e2ce63e89a131"
+      ],
+      "accepted_independent_feature_controls": 0,
+      "residual_m": null,
+      "interpretation": "Diagnostic window, not a photographed-feature control. Photometry, native support and local lineage differ; no registration accuracy follows from this coefficient."
+    },
+    {
+      "id": "window-5",
+      "split": "held_out",
+      "tile_xyz": [
+        13,
+        7222,
+        4204
+      ],
+      "center_lon_lat": [
+        137.39501953125,
+        -4.762572524280269
+      ],
+      "valid_comparison_pixels": 65536,
+      "zero_shift_brightness_correlation": 0.0405047154157725,
+      "input_sha256": [
+        "690e7769d56f81133ace5735d0b70fe1ad12902b28dbdf5c50970e76a4bc1c88",
+        "210296e4fa0b6167f9169a7d958963f62d69e598825898472adc23398a645930"
+      ],
+      "accepted_independent_feature_controls": 0,
+      "residual_m": null,
+      "interpretation": "Diagnostic window, not a photographed-feature control. Photometry, native support and local lineage differ; no registration accuracy follows from this coefficient."
+    },
+    {
+      "id": "window-6",
+      "split": "held_out",
+      "tile_xyz": [
+        13,
+        7223,
+        4205
+      ],
+      "center_lon_lat": [
+        137.43896484375,
+        -4.806364708499992
+      ],
+      "valid_comparison_pixels": 53058,
+      "zero_shift_brightness_correlation": 0.2580349378044288,
+      "input_sha256": [
+        "c310201509fa999561fde8dbf96b94bf701b8e073adfc9661f1da9540d1004ae",
+        "b0b207371a3b6cf724b9e36443a57fe321e4d559a3f14a160b1e2e8bf680846b"
+      ],
+      "accepted_independent_feature_controls": 0,
+      "residual_m": null,
+      "interpretation": "Diagnostic window, not a photographed-feature control. Photometry, native support and local lineage differ; no registration accuracy follows from this coefficient."
+    }
+  ],
+  "grayscale_color": {
+    "native_window": [
+      72000,
+      154000,
+      128,
+      128
+    ],
+    "size_m": [
+      32,
+      32
+    ],
+    "native_sha256": "707d4815759271820868ca9098a929ac9e082733bfcfa76a078d8ba33c429ffc",
+    "matched_support_m": 2,
+    "zero_shift_brightness_correlation": 0.9461892948527573,
+    "accepted_feature_controls": 0,
+    "residual_m": null,
+    "limitation": "A 32 m patch is insufficient for distributed stable landform controls. Color shares grayscale ancestry and is not independent absolute control."
+  },
+  "visual_review": "Same-coordinate panels show unresolved landform/photometric differences, notably the northern crater field and southern ridge/channel margins. These differences are not resolved by the high correlation in the tiny grayscale patch. A cause or global correction cannot be assigned from these windows.",
+  "decision": "Optional provisional comparison only, with persistent alignment warning. No survey-grade display validation, source shifts, terrain sampling or safety inference.",
+  "remaining_validation": "Identify and independently check spatially distributed stable photographed landforms; reserve held-out controls; characterize photometric/support differences; measure residuals and uncertainty without cosmetic warping."
+}

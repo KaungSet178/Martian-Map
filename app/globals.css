@@ -641,6 +641,34 @@ input[type="radio"] {
   z-index: 1;
   pointer-events: none;
 }
+.basemap-control {
+  position: absolute;
+  z-index: 2;
+  top: 120px;
+  left: 0;
+  width: min(248px, calc(100% - 96px));
+  padding: 10px 12px;
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  background: var(--color-surface);
+  color: var(--color-text);
+  font-size: 12px;
+}
+.basemap-control label { display: block; margin-bottom: 5px; }
+.basemap-control select {
+  width: 100%; min-height: 36px; background: var(--color-bg);
+  color: var(--color-text); border: 1px solid var(--color-border);
+  border-radius: 5px; padding: 4px;
+}
+.basemap-control [role="status"] { margin-top: 6px; line-height: 1.5; }
+.basemap-control strong { color: #f5c58c; font-weight: 500; }
+.basemap-control summary { cursor: pointer; padding-top: 4px; }
+.basemap-control p { margin: 7px 0; }
+.basemap-control a { text-decoration: underline; }
+@media (max-width: 900px) {
+  .basemap-control { top: 96px; left: 0; font-size: 11px; width: 218px; }
+  .sheet-expanded .basemap-control { display: none; }
+}
 .map-topline > * {
   pointer-events: auto;
 }

@@ -1,0 +1,38 @@
+[
+  {
+    "width": 1024,
+    "firstColorMs": 452,
+    "tileRequests": 1,
+    "tileBytes": 22038,
+    "jsHeapUsedBytes": 19015492,
+    "jsHeapTotalBytes": 33693696,
+    "caveat": "Localhost, one Chromium run; screenshot polling included in timing. JS heap excludes GPU textures, native image decoding and worker heaps."
+  },
+  {
+    "width": 1440,
+    "firstColorMs": 774,
+    "tileRequests": 6,
+    "tileBytes": 333668,
+    "jsHeapUsedBytes": 14012504,
+    "jsHeapTotalBytes": 34570240,
+    "caveat": "Localhost, one Chromium run; screenshot polling included in timing. JS heap excludes GPU textures, native image decoding and worker heaps."
+  },
+  {
+    "width": 390,
+    "firstColorMs": 470,
+    "tileRequests": 2,
+    "tileBytes": 84476,
+    "jsHeapUsedBytes": 22809284,
+    "jsHeapTotalBytes": 33169408,
+    "caveat": "Localhost, one Chromium run; screenshot polling included in timing. JS heap excludes GPU textures, native image decoding and worker heaps."
+  },
+  {
+    "width": 768,
+    "firstColorMs": 568,
+    "tileRequests": 2,
+    "tileBytes": 84476,
+    "jsHeapUsedBytes": 18686056,
+    "jsHeapTotalBytes": 34111488,
+    "caveat": "Localhost, one Chromium run; screenshot polling included in timing. JS heap excludes GPU textures, native image decoding and worker heaps."
+  }
+]

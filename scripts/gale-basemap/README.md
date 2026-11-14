@@ -1,8 +1,57 @@
-# G5 scientific preparation
+# G5 source audit and provisional processed-color display
 
-This directory is an offline audit, not an enabled basemap or a tile generator.
-It writes only ignored `output/gale-basemap/`. No app, camera, scientific layer,
-waypoint or original imagery changes are made.
+`audit.py` preserves the Phase 1 offline scientific audit. Phase 2 adds
+`color_tiles.py` and `registration.py`. The app can optionally display actual
+USGS processed color, explicitly **georeferenced but alignment unverified**.
+CTX remains the default. No geographic or registration correction is applied.
+
+## Phase 2 reproduction
+
+The committed 357 tiles work immediately after `npm ci` / `npm run dev`;
+no local raster cache, Python environment or external tile host is needed by
+the application. Open `/?region=gale`, then choose `USGS Color · provisional`.
+
+To regenerate imagery with the pinned Python dependencies:
+
+```powershell
+python -m pip install -r scripts/gale-basemap/requirements.txt
+python -B scripts/gale-basemap/color_tiles.py --download
+# Subsequent regeneration uses authenticated cached byte ranges, no network:
+python -B scripts/gale-basemap/color_tiles.py
+# Reuse the bounded grayscale patch for comparisons; on a fresh clone first:
+python -B scripts/gale-basemap/audit.py --download --gray-window 72000 154000 128 128
+python -B scripts/gale-basemap/registration.py
+python -B -m unittest discover -s tests -p 'test_gale_*.py' -v
+```
+
+The generator validates actual TIFF GeoKeys, affine, image/mask dimensions and
+object identity against Phase 1; it refuses a changed source. It assembles only
+the under-16-MiB COG prefix containing factor-8 and coarser overviews. A 32 MiB
+read/replay budget includes bounded retry attempts; a 24 MiB tile asset budget
+limits Git growth. Range reads are grouped in batches of four, with receipts
+persisted between batches. Initial source timeouts can require rerunning
+`--download`; successful hash-pinned ranges are reused. Cache paths are ignored.
+
+Pixel-edge area integration uses the source sphere and source-specific affine;
+destination centers clip alpha to the unchanged overview. It does not sparsely
+sample native pixels or reinterpret coordinates as Earth. Output uses lossless
+WebP, preserving the source's existing JPEG/color processing without adding
+sharpening. The delivered pyramid is 21,482,684 bytes; no single image exceeds
+102 KB. The manifest pins every output hash, source identity, range receipts,
+working transform and software versions. Regenerating with different image
+codec versions can change byte hashes, so use the pinned dependencies.
+
+Registration panels and diagnostics are under `team/gale/sources/g5-phase2/`.
+Four exploratory and two held-out windows are unshifted; brightness correlation
+is diagnostic only. No independent feature controls or positional error bound
+were established. USGS grayscale overview validation and display are deferred.
+The broad grayscale-validation gate below remains necessary for a future
+grayscale mode; the user-authorized provisional color comparison does not claim
+that gate, local registration, or operational terrain validation is complete.
+
+See [Phase 2 report](../../docs/GALE_COLOR_BASEMAP_INTEGRATION_REPORT.md).
+
+## Historical Phase 1 audit
 
 ## Reproduce
 

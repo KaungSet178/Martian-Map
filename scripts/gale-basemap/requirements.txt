@@ -1,2 +1,3 @@
 # Offline audit dependencies; no browser/runtime dependency.
 -r ../../team/gale/requirements-registration.txt
+scipy==1.17.1
