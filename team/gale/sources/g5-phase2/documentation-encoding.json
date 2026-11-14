@@ -1,0 +1,46 @@
+[
+  {
+    "path": "docs/images/g5-phase2/g5-closeup-color.webp",
+    "quality": 90,
+    "original_bytes": 814884,
+    "encoded_bytes": 148692,
+    "dimensions": [
+      1440,
+      900
+    ],
+    "purpose": "Documentation only; original scientific tile samples and measurement inputs unchanged"
+  },
+  {
+    "path": "docs/images/g5-phase2/g5-closeup-ctx.webp",
+    "quality": 95,
+    "original_bytes": 460335,
+    "encoded_bytes": 157252,
+    "dimensions": [
+      1440,
+      900
+    ],
+    "purpose": "Documentation only; original scientific tile samples and measurement inputs unchanged"
+  },
+  {
+    "path": "docs/images/g5-phase2/g5-color-1440.webp",
+    "quality": 95,
+    "original_bytes": 336736,
+    "encoded_bytes": 111316,
+    "dimensions": [
+      1440,
+      900
+    ],
+    "purpose": "Documentation only; original scientific tile samples and measurement inputs unchanged"
+  },
+  {
+    "path": "team/gale/sources/g5-phase2/distributed-comparisons.webp",
+    "quality": 80,
+    "original_bytes": 840136,
+    "encoded_bytes": 146514,
+    "dimensions": [
+      768,
+      1704
+    ],
+    "purpose": "Documentation only; original scientific tile samples and measurement inputs unchanged"
+  }
+]

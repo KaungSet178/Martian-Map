@@ -33,6 +33,8 @@ import {
 } from "lucide-react";
 import type { RegionManifest, MarsGeographicCoordinates } from "@/lib/contracts/region";
 import { Badge } from "@/components/ui/primitives";
+import BasemapControl from "@/components/map/basemap-control";
+import { COLOR_BASEMAP } from "@/lib/map/color-basemap";
 
 type Props = {
   region: RegionManifest;
@@ -89,6 +91,7 @@ export default function MapWorkspace({
   const overview = useRef(true);
   const previousLayers = useRef<{ region: string; visible: Set<string> } | null>(null);
   const [ready, setReady] = useState(false);
+  const [loadedMap, setLoadedMap] = useState<MapInstance | null>(null);
   const [failed, setFailed] = useState(false);
   const scientificMap = region.map.visualization.status === "available";
   const resetView = useCallback((animate = false) => {
@@ -145,9 +148,10 @@ export default function MapWorkspace({
             );
           instance.getCanvas().setAttribute("tabindex", "-1");
           instance.on("load", () => {
-            if (!disposed) setReady(true);
+            if (!disposed) { setReady(true); setLoadedMap(instance); }
           });
-          instance.on("error", () => {
+          instance.on("error", (event) => {
+            if ("sourceId" in event && event.sourceId === COLOR_BASEMAP.id) return;
             if (!disposed) setFailed(true);
           });
           instance.on("movestart", (event) => {
@@ -594,6 +598,11 @@ export default function MapWorkspace({
           <Layers size={18} />
           Layers
         </button>
+        {region.id === "gale" && scientificMap && !preview && (
+          <BasemapControl key={region.id} map={loadedMap}
+            visible={layerState(region, layerStates, "gale-optical").visible}
+            opacity={layerState(region, layerStates, "gale-optical").opacity} />
+        )}
       </div>
       {preview ? (
         <div className="preview-label">
