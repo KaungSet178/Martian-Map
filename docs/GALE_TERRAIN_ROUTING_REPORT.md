@@ -700,22 +700,28 @@ The existing shared timeline/resource engines and UI were not modified.
 
 ## 15. Final commit SHA
 
-Final implementation commit: `TO_BE_RECORDED_AFTER_COMMIT`.
+Final implementation commit: `a83866ffe62c6dac914c45c854c2f7c74b831f77`
+(`feat(routing): implement Gale terrain-aware route planning`).
 
-The commit that introduces this report is the implementation commit. A
-follow-up documentation commit records its SHA and the push status; the branch
-HEAD therefore advances without changing any code or data. This avoids the
-impossibility of a commit containing its own hash.
+This commit introduces the routing engine, compact DEM crops, manifest,
+examples, tests, TypeScript adapter, and this report. A follow-up
+documentation-metadata commit records this SHA and the push status; it changes
+only this report, so the branch HEAD advances without changing any code or data.
+This avoids the impossibility of a commit containing its own hash.
 
 ---
 
 ## 16. Push status
 
-Push status at report drafting: **not yet pushed**.
+Push status: **pushed**.
 
-The branch is pushed normally to `origin/feat/gale-terrain-routing` after the
-documentation metadata commit. No force-push, no merge into shared branches, and
-no rebase of other agents' work is performed.
+- Remote: `origin` (`https://github.com/KaungSet178/Martian-Map.git`)
+- Branch: `feat/gale-terrain-routing`
+- Upstream: `origin/feat/gale-terrain-routing`
+- Implementation commit `a83866ffe62c6dac914c45c854c2f7c74b831f77` was pushed
+  successfully.
+- This documentation-metadata commit is pushed immediately afterward.
+- No force-push was used.
+- No shared branch was merged, rebased, or overwritten.
 
-Final push confirmation is recorded in the follow-up documentation commit and
-in the hand-off message.
+Final remote confirmation is reported in the hand-off message.
