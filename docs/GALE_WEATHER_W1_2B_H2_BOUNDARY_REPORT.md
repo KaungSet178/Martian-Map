@@ -230,7 +230,9 @@ python -B -m unittest discover -s tests -p "test_gale_*.py" -v
 - Branch: `feat/gale-weather-data`
 - Starting commit: `ceb3a34a70804d2cccf57566eeab39d801d4e472`
 - Scientific code commit: `5d182eef4cd62c7959befa0cd56d1a6338065fa1`
-- Documentation commit: see `git log` for this report
-- Remote: `origin/feat/gale-weather-data`
+- Documentation commit (this report): `e01692eed9030ebea2df3129e579c13a03a2240d`
+- Remote push verification: `ceb3a34..e01692e feat/gale-weather-data -> feat/gale-weather-data`;
+  local HEAD and `origin/feat/gale-weather-data` matched at verification.
+- Final delivery-addendum commit: the HEAD containing this verification note (see `git log`).
 - No reset, stash, clean, rebase, force-push, or merge was performed. No protected branch
-  or other worktree was modified.
+  or other worktree was modified. Worktree was clean after the commits.
