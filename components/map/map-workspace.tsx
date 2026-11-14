@@ -230,7 +230,10 @@ export default function MapWorkspace({
         .filter((target) =>
           preview
             ? target.evidence === "Scenario"
-            : target.coordinate_verified && target.coordinates !== null,
+            : // Scientific map: only targets added to the mission as stops.
+              target.coordinate_verified &&
+              target.coordinates !== null &&
+              stops.includes(target.id),
         )
         .map((target, i) => {
           const button = document.createElement("button");

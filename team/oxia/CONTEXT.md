@@ -86,6 +86,16 @@ call it directly. Live elevation profiles would need a server-side proxy route (
 - **Geology / mineralogy layer:** removed by the region owner; `oxia-geology` is pending
   and not drawn. No mapped geologic units are integrated.
 
+### Shared code change on this branch (carry over when merging)
+
+`components/map/map-workspace.tsx`, markers effect: in scientific map mode a target
+marker is shown only when the target has been added to the mission as a stop
+(`stops.includes(target.id)`, in addition to `coordinate_verified &&
+coordinates !== null`). Requested by Thaw Thaw Tun; OK'd by Kaung. Affects all three
+regions; schematic preview mode is unchanged. Kaung's `feat/gale-map` also edits this
+file heavily, so this one condition must be carried over by hand during the merge. No
+test assertions needed changing (all marker assertions run in preview mode).
+
 ### Rebuild scripts (prep-only, outside the app build)
 
 `team/oxia/basemap/prepare_ctx_basemap.mjs`, `team/oxia/thermal/prepare_themis_night.mjs`,
