@@ -1,0 +1,155 @@
+{
+ "type": "FeatureCollection",
+ "features": [
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -23.67,
+     17.84
+    ]
+   },
+   "properties": {
+    "mineral_class": "silica",
+    "latitude": 17.84,
+    "longitude_east": 336.33,
+    "instrument": "CRISM / OMEGA / THEMIS compilation (per-point instrument not given)",
+    "source_id": "oxia-trek-aqueous",
+    "trek_layer_id": "Aqueous_Mineral_Distribution_Options_clon0",
+    "trek_feature_ids": [
+     260,
+     261
+    ],
+    "citation": "Ehlmann, B. L., Edwards, C. S. (2014) Mineralogy of the Martian Surface, Annu. Rev. Earth Planet. Sci. 42, 291-315",
+    "evidence": "Interpreted",
+    "location_note": "Approximate detection location (two-decimal degrees, about 0.6 km); not a mapped unit boundary."
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -23.62,
+     17.74
+    ]
+   },
+   "properties": {
+    "mineral_class": "phyllosilicate",
+    "latitude": 17.74,
+    "longitude_east": 336.38,
+    "instrument": "CRISM / OMEGA / THEMIS compilation (per-point instrument not given)",
+    "source_id": "oxia-trek-aqueous",
+    "trek_layer_id": "Aqueous_Mineral_Distribution_Options_clon0",
+    "trek_feature_ids": [
+     2450,
+     2451,
+     3601,
+     3602
+    ],
+    "citation": "Ehlmann, B. L., Edwards, C. S. (2014) Mineralogy of the Martian Surface, Annu. Rev. Earth Planet. Sci. 42, 291-315",
+    "evidence": "Interpreted",
+    "location_note": "Approximate detection location (two-decimal degrees, about 0.6 km); not a mapped unit boundary."
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -23.89,
+     18.22
+    ]
+   },
+   "properties": {
+    "mineral_class": "phyllosilicate",
+    "latitude": 18.22,
+    "longitude_east": 336.11,
+    "instrument": "CRISM / OMEGA / THEMIS compilation (per-point instrument not given)",
+    "source_id": "oxia-trek-aqueous",
+    "trek_layer_id": "Aqueous_Mineral_Distribution_Options_clon0",
+    "trek_feature_ids": [
+     2454,
+     2455
+    ],
+    "citation": "Ehlmann, B. L., Edwards, C. S. (2014) Mineralogy of the Martian Surface, Annu. Rev. Earth Planet. Sci. 42, 291-315",
+    "evidence": "Interpreted",
+    "location_note": "Approximate detection location (two-decimal degrees, about 0.6 km); not a mapped unit boundary."
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -24.17,
+     18.22
+    ]
+   },
+   "properties": {
+    "mineral_class": "phyllosilicate",
+    "latitude": 18.22,
+    "longitude_east": 335.83,
+    "instrument": "CRISM / OMEGA / THEMIS compilation (per-point instrument not given)",
+    "source_id": "oxia-trek-aqueous",
+    "trek_layer_id": "Aqueous_Mineral_Distribution_Options_clon0",
+    "trek_feature_ids": [
+     3603,
+     3604
+    ],
+    "citation": "Ehlmann, B. L., Edwards, C. S. (2014) Mineralogy of the Martian Surface, Annu. Rev. Earth Planet. Sci. 42, 291-315",
+    "evidence": "Interpreted",
+    "location_note": "Approximate detection location (two-decimal degrees, about 0.6 km); not a mapped unit boundary."
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -24.18,
+     18.17
+    ]
+   },
+   "properties": {
+    "mineral_class": "hydrous (unspecified)",
+    "latitude": 18.17,
+    "longitude_east": 335.82,
+    "instrument": "CRISM",
+    "source_id": "oxia-trek-hydrous",
+    "trek_layer_id": "Hydrous_Mineral_Detections_CRISM_clon0",
+    "trek_feature_ids": [
+     773
+    ],
+    "citation": "Carter, J., Poulet, F., Bibring, J.-P., Mangold, N., Murchie, S. (2013) Hydrous minerals on Mars as seen by the CRISM and OMEGA imaging spectrometers: Updated global view, JGR Planets 118(4), 831-858",
+    "evidence": "Interpreted",
+    "location_note": "Approximate detection location (two-decimal degrees, about 0.6 km); not a mapped unit boundary."
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -23.93,
+     17.7
+    ]
+   },
+   "properties": {
+    "mineral_class": "hydrous (unspecified)",
+    "latitude": 17.7,
+    "longitude_east": 336.07,
+    "instrument": "CRISM",
+    "source_id": "oxia-trek-hydrous",
+    "trek_layer_id": "Hydrous_Mineral_Detections_CRISM_clon0",
+    "trek_feature_ids": [
+     775
+    ],
+    "citation": "Carter, J., Poulet, F., Bibring, J.-P., Mangold, N., Murchie, S. (2013) Hydrous minerals on Mars as seen by the CRISM and OMEGA imaging spectrometers: Updated global view, JGR Planets 118(4), 831-858",
+    "evidence": "Interpreted",
+    "location_note": "Approximate detection location (two-decimal degrees, about 0.6 km); not a mapped unit boundary."
+   }
+  }
+ ]
+}

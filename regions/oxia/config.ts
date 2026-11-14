@@ -56,7 +56,8 @@ export const config = {
   // approximate); routing stays off.
   // v4: THEMIS night-IR thermal layer (relative brightness, Mars Trek).
   // v5: regional 200 m hillshade in oxia-terrain (Derived, Mars Trek).
-  dataset_version: "oxia-hillshade-v5",
+  // v6: oxia-geology shows Mars Trek mineral detections (Interpreted points).
+  dataset_version: "oxia-geology-v6",
   routing: {
     enabled: false,
     reason:

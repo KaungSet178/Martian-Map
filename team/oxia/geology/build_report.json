@@ -1,0 +1,29 @@
+{
+  "queried_at": "2026-11-14T04:55:58.895Z",
+  "box_east_0_360": {
+    "west": 334.6,
+    "east": 336.6,
+    "south": 17.11,
+    "north": 19.15
+  },
+  "layers": [
+    {
+      "trek_layer_id": "Aqueous_Mineral_Distribution_Options_clon0",
+      "rows_returned": 10,
+      "unique_points": 4,
+      "exceeded_transfer_limit": false
+    },
+    {
+      "trek_layer_id": "Hydrous_Mineral_Detections_CRISM_clon0",
+      "rows_returned": 2,
+      "unique_points": 2,
+      "exceeded_transfer_limit": false
+    }
+  ],
+  "features_written": 6,
+  "classes": [
+    "silica",
+    "phyllosilicate",
+    "hydrous (unspecified)"
+  ]
+}
