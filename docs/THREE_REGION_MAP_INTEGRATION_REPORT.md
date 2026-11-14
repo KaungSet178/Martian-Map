@@ -121,5 +121,5 @@ The first worktree dependency junction could not be resolved by Turbopack's herm
 
 ## Delivery
 
-Integration implementation commit: recorded in the delivery receipt below after commit creation. All required validation gates are now passed.
-Push status: pending normal push of `feat/three-region-map-integration`; main is unchanged. A documentation-only receipt commit will record the exact integration SHA and verified push status after delivery.
+Final integration implementation commit: `372677ff8c5dea5536febda14faa1b0eec613d59` (`feat(map): integrate Gale Jezero and Oxia scientific maps`). All required validation gates passed before commit creation.
+Push status: normal push succeeded to `origin/feat/three-region-map-integration`. `git ls-remote origin refs/heads/feat/three-region-map-integration` returned `372677ff8c5dea5536febda14faa1b0eec613d59`, matching local HEAD. Main is unchanged. This documentation-only receipt records that verified implementation SHA; the receipt is pushed normally and its new branch HEAD is checked again after commit creation.
