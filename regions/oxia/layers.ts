@@ -237,4 +237,41 @@ export const layers = [
       ],
     },
   },
+  {
+    id: "oxia-candidate-traverse",
+    type: "Candidate traverse",
+    display_name: "Candidate traverse (Modeled)",
+    kind: "overlay",
+    availability: "available",
+    source_id: "oxia-trek-elevation-profile",
+    observation_date: null,
+    spatial_resolution_m: 463,
+    coverage:
+      "Fixed candidate walk Start -> oxia-objective-1 (18.22 N, 335.83 E) -> oxia-objective-4 / CRISM hydrous detection (18.17 N, 335.82 E) -> Start, with Start a Scenario midpoint at 18.195 N, 335.825 E. Three LineString legs in /maps/oxia/candidate-traverse.geojson, exported from team/oxia/route/walk_report.json by team/oxia/route/export_traverse.mjs.",
+    limitations:
+      "Offline least-cost path on the MOLA elevation grid (~463 m), cost = distance × (1 + k·slope) with k = 0.05 per degree, cells >20° excluded (NASA EVA-EXP-0042 Rev B p.38; ICES-2025-129 p.7). Start point is a Scenario midpoint, not a landing site. Within NASA's 2 km walking radius (p.39; farthest point 1.51 km from Start). This drawn line is 7.2 km, about 3.6 h at 2 km/h (p.40); the straight-line walk is 6.0 km, about 3.0 h. The extra length is zig-zag from the 0.01 degree (~0.59 km) grid, not terrain avoidance; max slope along the line is about 1.1°. Small hazards (boulders, banks) are not resolved. Not safety-validated; not live routing.",
+    evidence: "Modeled",
+    attribution:
+      "Modeled from NASA MGS MOLA elevations via the NASA JPL Mars Trek elevation-profile service",
+    rendering: {
+      kind: "geojson",
+      url: "/maps/oxia/candidate-traverse.geojson",
+      geometry: "line",
+      color: "#59E3FA",
+      line_pattern: "dashed",
+    },
+    default_visible: false,
+    default_opacity: 100,
+    legend: {
+      title: "Candidate astronaut traverse (Modeled, experimental)",
+      units: null,
+      items: [
+        {
+          label:
+            "Dashed cyan: offline candidate walk Start (Scenario midpoint) -> objective-1 -> objective-4 -> Start. Not a selected or validated route.",
+          color: "#59E3FA",
+        },
+      ],
+    },
+  },
 ] satisfies ScientificLayer[];

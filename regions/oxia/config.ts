@@ -64,7 +64,8 @@ export const config = {
   // v11: THEMIS night IR re-rendered with an inferno display colour ramp.
   // v12: colorized CTX basemap (CTX detail + Viking colour), default on.
   // v13: oxia-objective-4 (CRISM hydrous detection) added.
-  dataset_version: "oxia-objective4-v13",
+  // v14: oxia-candidate-traverse overlay (Modeled, fixed offline line).
+  dataset_version: "oxia-candidate-traverse-v14",
   routing: {
     enabled: false,
     reason:

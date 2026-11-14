@@ -4,7 +4,7 @@ Owner: **Thaw Thaw Tun**. Assigned branch: **feat/oxia-map**.
 Shared integration/architecture branch: feat/shared-ui-redesign, PR #1.
 This is implementation guidance, not scientific or operational approval.
 
-## Current state (14 November 2026, `dataset_version` `oxia-objective4-v13`)
+## Current state (14 November 2026, `dataset_version` `oxia-candidate-traverse-v14`)
 
 Data-source rule for Oxia: (1) the Space Apps challenge Resources list (NASA JPL Mars
 Trek) first; (2) other NASA sources only where the list cannot cover it, marked tier 2
@@ -25,6 +25,7 @@ Display area (team-chosen, not a landing ellipse or published map boundary):
 | `oxia-slope` | Regional slope (MOLA) | Derived | `oxia-trek-elevation-profile` | MOLA ~463 m (grid 0.01°) | `/maps/oxia/slope-tiles/` (z5–9, 26 tiles, 33 KB) |
 | `oxia-thermal-night` | THEMIS night IR | Observed | `oxia-themis-night-trek` | 100 m (source level 9 ~81 m) | `/maps/oxia/themis-night-tiles/` (z5–10, 75 RGBA tiles, 5.6 MB, inferno display ramp) |
 | `oxia-geology` | Geology & mineralogy | Unavailable | — | — | pending, not drawn (mineral-detection layer removed by the region owner) |
+| `oxia-candidate-traverse` | Candidate traverse (Modeled) | Modeled | `oxia-trek-elevation-profile` | MOLA ~463 m grid | `/maps/oxia/candidate-traverse.geojson` (3 legs, dashed cyan, off by default) |
 
 THEMIS night IR is coloured with matplotlib's "inferno" ramp (dark purple = darkest,
 cools fast at night, likely loose sand/dust; yellow = brightest, holds heat, likely rock
@@ -95,6 +96,11 @@ interpolates it.
 The Mars Trek elevation-profile service sends no CORS header, so the browser app cannot
 call it directly. Live elevation profiles would need a server-side proxy route (shared
 `app/` change, coordinator decision); otherwise use the pre-baked grid.
+
+Live routing is Kaung's track (`feat/gale-terrain-routing`, `feat/jezero-terrain-routing`);
+this grid is available to it for Oxia. The `oxia-candidate-traverse` overlay is a fixed
+offline line exported from the candidate-walk analysis below
+(`team/oxia/route/export_traverse.mjs`), not live routing; `routing.enabled` stays false.
 
 ### Candidate walk (offline analysis)
 
