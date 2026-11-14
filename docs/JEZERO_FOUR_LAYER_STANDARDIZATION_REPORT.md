@@ -141,3 +141,13 @@ Screenshots:
 - [Hillshade mobile](../team/jezero/screenshots/four-layers/hillshade-mobile.png)
 
 No final shared UI completion or all-tests-passed claim is made. Remaining blockers are the exact shared marker and evidence-test fixes above, plus integration of coverage modes and presentation metadata. Full native DEM expansion of retained elevation/slope display assets, true thermal calibration/observation metadata, independent absolute registration and legacy recoloring remain explicit follow-up work.
+
+## Git delivery
+
+- Final implementation commit: `a3456971449cde6b71f55a6ae6c0d841b3f21309` — `feat(jezero): implement hillshade and standardize four scientific layers`.
+- Normal push of `feat/jezero-four-layer-standardization` succeeded. `git ls-remote --heads origin feat/jezero-four-layer-standardization` independently returned the same implementation SHA.
+- This Git-delivery closeout is committed separately. The final delivery commit is the HEAD of `feat/jezero-four-layer-standardization` containing this report; its exact local/remote equality is checked after the final push and reported in the delivery response. A commit cannot embed its own SHA without changing that SHA.
+- No force push, shared-branch merge, target-coordinate change, source georeference modification or teammate-worktree modification occurred. The ignored original 1.84GB source remains local and is not pushed.
+- Before the closeout, the worktree was clean and a baseline-to-implementation path audit found only authorized Jezero-specific changes. Archived upstream label/XML and checksummed geometry bytes were also verified against the actual staged Git blobs; Jezero-only Git attributes preserve those bytes across checkouts.
+
+Regional implementation is delivered for integration. The requested all-green, final shared-interface milestone remains blocked by the explicitly documented shared fixes; this branch does not conceal or bypass them.
