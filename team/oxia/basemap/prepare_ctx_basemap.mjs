@@ -21,10 +21,9 @@
 //          Standard 256 px Web-Mercator XYZ tiles (what the shared
 //          renderer's raster-tiles path consumes) for zooms 5-12 over the
 //          region supported extent (plus margin).
-// Extent : the published Oxia Planum geological map area, 17.11-19.15 N,
-//          334.60-336.60 E (Fawdon et al. 2024, Journal of Maps 20:1,
-//          2302361, section 2.1, doi:10.1080/17445647.2024.2302361), whose
-//          projection is also based on the IAU Mars2000 sphere.
+// Extent : team-chosen display box, 17.11-19.15 N, 334.60-336.60 E (about
+//          2 x 2 degrees around the region's illustrative display centre).
+//          Not a landing ellipse or published map boundary.
 // Zooms  : capped at z12 (~20 m display pixels, below CTX native ~5-6 m)
 //          to keep the committed tile set small (~840 tiles). Higher zooms
 //          over-zoom the z12 tiles; HiRISE detail is a separate future layer.
@@ -58,7 +57,7 @@ const SERVICE =
 const MIN_Z = 5;
 const MAX_Z = 12;
 // Supported extent in canonical planetocentric / east-positive 0-360 degrees
-// (Fawdon et al. 2024 map area).
+// (team-chosen display box).
 const EXTENT_EAST_0_360 = {
   west: 334.6,
   east: 336.6,
@@ -75,8 +74,7 @@ const EXTENT = {
   south: EXTENT_EAST_0_360.south,
   north: EXTENT_EAST_0_360.north,
 };
-// No extra margin: the extent is already the full published map area, and
-// edge tiles already extend past it.
+// No extra margin: edge tiles already extend past the display box.
 const MARGIN = 0;
 const TILE_PX = 256;
 const D2R = Math.PI / 180;

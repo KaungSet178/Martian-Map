@@ -12,7 +12,7 @@ export const layers = [
     observation_date: null,
     spatial_resolution_m: 5,
     coverage:
-      "Murray Lab CTX global mosaic (beta01) over the published Oxia Planum map area, 17.11-19.15 N, 334.60-336.60 E (Fawdon et al. 2024): 841 derived display tiles, Web-Mercator XYZ, zooms 5-12.",
+      "Murray Lab CTX global mosaic (beta01) over the team-chosen Oxia display area, 17.11-19.15 N, 334.60-336.60 E: 841 derived display tiles, Web-Mercator XYZ, zooms 5-12.",
     limitations:
       "Uncontrolled beta mosaic (seams, varying illumination; not radiometrically calibrated). Display-grade: nearest-neighbour resampled to ~20 m display pixels at the top zoom (12), coarser than CTX native ~5 m; closer zooms enlarge the z12 tiles. No independent registration check against HiRISE yet. Imagery only, not a DEM, geology or terrain-safety evidence.",
     evidence: "Observed",
