@@ -33,10 +33,21 @@ test("all region fixtures obey shared contract and cannot imply scientific readi
           l.evidence === "Interpreted",
       ),
     );
+    // Targets either have no coordinates (unverified), or carry verified,
+    // source-backed, non-scenario coordinates. None may be routable.
     assert.ok(
-      region.targets.every(
-        (t) => t.coordinates === null && !t.coordinate_verified,
+      region.targets.every((t) =>
+        t.coordinates === null
+          ? !t.coordinate_verified
+          : t.coordinate_verified &&
+            t.verification === "verified" &&
+            t.source_ids.length > 0 &&
+            t.evidence !== "Scenario" &&
+            t.evidence !== "Unavailable",
       ),
+    );
+    assert.ok(
+      region.targets.every((t) => t.routing_eligibility.status !== "available"),
     );
   }
 });

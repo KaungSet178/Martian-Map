@@ -52,8 +52,9 @@ export const config = {
   },
   data_status: "metadata_verified",
   // v2: CTX basemap integrated (oxia-optical available, evidence Observed).
-  // Targets are unchanged and still have no coordinates; routing stays off.
-  dataset_version: "oxia-ctx-v2",
+  // v3: targets located at Mars Trek mineral-detection points (Interpreted,
+  // approximate); routing stays off.
+  dataset_version: "oxia-targets-v3",
   routing: {
     enabled: false,
     reason:
@@ -133,6 +134,52 @@ export const config = {
         "Uncontrolled beta mosaic: seams and illumination differences between orbits; not radiometrically calibrated.",
         "Individual CTX image acquisition dates are not carried by the tiled service.",
         "Imagery only; not elevation, geology or hazard evidence.",
+      ],
+    },
+    {
+      id: "oxia-trek-hydrous",
+      title:
+        "NASA JPL Mars Trek layer 'Hydrous Mineral Detections (OMEGA, CRISM)' (Hydrous_Mineral_Detections_CRISM_clon0)",
+      url: "https://trek.nasa.gov/mars/trekarcgis/rest/services/Hydrous_Mineral_Detections_OMEGA_CRISM_clon0/MapServer/0",
+      agency: "NASA JPL Mars Trek · NASA MRO CRISM · ESA Mars Express OMEGA",
+      instrument: "MRO CRISM / Mars Express OMEGA (all Oxia points: CRISM)",
+      product_id:
+        "Hydrous_Mineral_Detections_CRISM_clon0 (Mars Trek item ab0cdc7b-2152-4a91-8023-ae06c09967da)",
+      acquisition_date: null,
+      sol: null,
+      native_resolution_m: null,
+      processing_notes: [
+        "Mars Trek is listed in the Space Apps 2026 challenge resources.",
+        "Layer description cites: J. Carter, F. Poulet, J.-P. Bibring, N. Mangold, S. Murchie (2013) Hydrous minerals on Mars as seen by the CRISM and OMEGA imaging spectrometers: Updated global view, JGR Planets 118(4), 831-858.",
+        "Queried 2026-11-14 (ArcGIS feature query, envelope 334.60-336.60 E, 17.11-19.15 N): 2 points, both Type 'Hydrous Mineral Detection', Instrument 'CRISM': FID 773 (18.17 N, 335.82 E) and FID 775 (17.70 N, 336.07 E). Coordinates taken from the 'Latitude' and 'Longitude' (0-360 E) fields; the 'Long_East' field holds -180..180 values.",
+        "Service spatial reference: GCS_Mars_2000_Sphere (r = 3,396,190 m), so geodetic and planetocentric latitude coincide.",
+      ],
+      limitations: [
+        "Global-survey point markers with two-decimal coordinates (about 0.6 km steps); they mark detection locations, not precise outcrops or sample sites.",
+        "No mineral class is given per point, only 'Hydrous Mineral Detection'.",
+      ],
+    },
+    {
+      id: "oxia-trek-aqueous",
+      title:
+        "NASA JPL Mars Trek layer 'Aqueous Mineral Distribution' (Aqueous_Mineral_Distribution_Options_clon0)",
+      url: "https://trek.nasa.gov/mars/trekarcgis/rest/services/Aquieous_Mineral_Distribution_Options_clon0/MapServer/0",
+      agency: "NASA JPL Mars Trek · NASA MRO CRISM · ESA Mars Express OMEGA · NASA Mars Odyssey THEMIS",
+      instrument: "MRO CRISM / Mars Express OMEGA / Mars Odyssey THEMIS (compilation)",
+      product_id:
+        "Aqueous_Mineral_Distribution_Options_clon0 (Mars Trek item dd2e18f9-e698-4f8d-b5c7-895992bffbc2)",
+      acquisition_date: null,
+      sol: null,
+      native_resolution_m: null,
+      processing_notes: [
+        "Mars Trek is listed in the Space Apps 2026 challenge resources.",
+        "Layer description cites: B. L. Ehlmann, C. S. Edwards (2014) Mineralogy of the Martian Surface, Annu. Rev. Earth Planet. Sci. 42, 291-315. Classes: silica, phyllosilicate, sulfate, chloride, carbonate.",
+        "Queried 2026-11-14 (ArcGIS feature query, envelope 334.60-336.60 E, 17.11-19.15 N): 10 rows, 4 unique locations (rows repeat with identical values): silica 17.84 N 336.33 E (FID 260/261); phyllosilicate 18.22 N 335.83 E (FID 3603/3604), 18.22 N 336.11 E (FID 2454/2455), 17.74 N 336.38 E (FID 2450/2451/3601/3602). Coordinates from 'Latitude' and 'Longitude' (0-360 E).",
+        "Service spatial reference: GCS_Mars_2000_Sphere (r = 3,396,190 m).",
+      ],
+      limitations: [
+        "Compilation point markers with two-decimal coordinates (about 0.6 km steps); detection locations, not precise outcrops or sample sites.",
+        "Classes are published spectral interpretations; no abundance, layering or depth information.",
       ],
     },
   ],
