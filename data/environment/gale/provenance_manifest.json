@@ -1,0 +1,74 @@
+{
+  "manifest_version": "1.0.0",
+  "regionId": "gale",
+  "mission": "MSL Curiosity",
+  "generation_timestamp": "2026-11-14T19:28:00Z",
+  "git_baseline_sha": "ed3e253d6e07b7675853aaa3c6951030ef3ac54b",
+  "raw_products": {
+    "rems_modrdr_sol100": {
+      "product_id": "RME_406323911RMD01000000000_______P9",
+      "bundle_id": "urn:nasa:pds:msl_rems",
+      "archive_node": "NASA Planetary Data System (PDS) Atmospheres Node",
+      "source_url": "https://pds-atmospheres.nmsu.edu/PDS/data/PDS4/MSL/REMS/data_derived/0100/RME_406323911RMD01000000000_______P9.TAB",
+      "time_span_sclk": [
+        406323911,
+        406413755
+      ],
+      "time_span_utc": [
+        "2012-11-16T08:14:48Z",
+        "2012-11-17T09:12:12Z"
+      ],
+      "sol": 100,
+      "solar_longitude_ls": 208.57,
+      "martian_year": 31,
+      "description": "REMS Calibrated Derived Reduced Data Record (MODRDR) 1 Hz time series"
+    },
+    "rad_rdr_sol100_lbl": {
+      "filename": "RAD_RDR_2012_321_08_21_0100_V00.LBL",
+      "dataset_id": "MSL-M-RAD-3-RDR-V1.0",
+      "archive_node": "NASA PDS Planetary Plasma Interactions (PPI) Node / UCLA",
+      "source_url": "https://pds-ppi.igpp.ucla.edu/data/MSL-M-RAD-3-RDR-V1.0/DATA/SOL_00090_00179/RAD_RDR_2012_321_08_21_0100_V00.LBL",
+      "sha256": "f4ca7b4bd3cfd5a26ba79b83a62709d3d9270665e5e09626cece572373c80b9d",
+      "size_bytes": 393012
+    },
+    "rad_rdr_sol100_txt": {
+      "filename": "RAD_RDR_2012_321_08_21_0100_V00.TXT",
+      "dataset_id": "MSL-M-RAD-3-RDR-V1.0",
+      "archive_node": "NASA PDS Planetary Plasma Interactions (PPI) Node / UCLA",
+      "source_url": "https://pds-ppi.igpp.ucla.edu/data/MSL-M-RAD-3-RDR-V1.0/DATA/SOL_00090_00179/RAD_RDR_2012_321_08_21_0100_V00.TXT",
+      "sha256": "f08b7ccfb6950240e3c869c58ed825e669dcc42a261a82d8871bd90544e30c12",
+      "size_bytes": 17208991
+    }
+  },
+  "intermediate_products": {
+    "rems_sol_00100_json": {
+      "path": "team/gale/weather/data/rems_sol_00100.json",
+      "sha256": "4467e2cbf6337de4b437d06114c062d2e8b03ee44376a80b43f181ba2cc05c5b",
+      "size_bytes": 9536943
+    }
+  },
+  "processed_application_products": {
+    "rems_sol_00100_hourly_json": {
+      "path": "data/environment/gale/rems_sol_00100_hourly.json",
+      "sha256": "04eebad8251412896654c624b4e3ba3c102c0eb8fabb8b8150589fe48cf74ec8",
+      "size_bytes": 49315
+    },
+    "rad_sol_00100_json": {
+      "path": "data/environment/gale/rad_sol_00100.json",
+      "sha256": "140cafdc9e66c16d2a52c206cfeefceb58d9bc01624468c54f3e2d710fce03bd",
+      "size_bytes": 25160
+    },
+    "environmental_dataset_json": {
+      "path": "data/environment/gale/environmental_dataset.json",
+      "sha256": "7313c710ba6ff68b5884c6d75cb67093db50de25ac1f61755bdededce2053039",
+      "size_bytes": 192859
+    }
+  },
+  "pipeline_scripts": {
+    "download_rad_sol100": "team/environment/gale/download_rad_sol100.py",
+    "process_rad_sol100": "team/environment/gale/process_rad_sol100.py",
+    "process_rems_sol100": "team/environment/gale/process_rems_sol100.py",
+    "build_environmental_dataset": "team/environment/gale/build_environmental_dataset.py",
+    "generate_manifest": "team/environment/gale/generate_manifest.py"
+  }
+}
