@@ -1,0 +1,14 @@
+# Gale terrain-aware routing engine (Python >= 3.11)
+#
+# Core engine: numeric DEM loading and graph search.
+numpy>=2.0
+rasterio>=1.4
+pyproj>=3.6
+#
+# Optional HTTP boundary (team/gale/routing/service.py).
+fastapi>=0.115
+uvicorn[standard]>=0.30
+#
+# Tests use the standard library unittest runner; httpx is only needed for
+# FastAPI TestClient checks.
+httpx>=0.27
