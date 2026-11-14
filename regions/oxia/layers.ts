@@ -66,6 +66,42 @@ export const layers = [
     },
   },
   {
+    id: "oxia-elevation",
+    type: "Terrain & slope",
+    display_name: "Elevation (MOLA)",
+    kind: "topography",
+    availability: "available",
+    source_id: "oxia-trek-elevation-profile",
+    observation_date: null,
+    spatial_resolution_m: 463,
+    coverage:
+      "MOLA elevations over the team-chosen Oxia display area, 17.11-19.15 N, 334.60-336.60 E, from the 201 x 205 elevation grid (/maps/oxia/elevation-grid.json): range -3791 to -2381 m. 26 display tiles, zooms 5-9, built by team/oxia/terrain/build_elevation_tiles.mjs.",
+    limitations:
+      "Regional (~463 m MOLA detail). Not for walking-scale terrain. Values are MGS MOLA heights as returned by the Mars Trek elevation-profile service, interpolated by that service onto a 0.01 degree grid (about 0.59 km); the service does not state its interpolation method. Plain colour by height class (100 m steps, open-ended outer classes covering -3791 to -2381 m); no shading. Not a slope or safety assessment.",
+    evidence: "Observed",
+    attribution: "NASA MGS MOLA Global DEM · via NASA JPL Mars Trek elevation-profile service",
+    rendering: {
+      kind: "raster-tiles",
+      tiles: ["/maps/oxia/elevation-tiles/{z}/{x}/{y}.png"],
+      tile_size: 256,
+      min_zoom: 5,
+      max_zoom: 9,
+    },
+    default_visible: false,
+    default_opacity: 70,
+    legend: {
+      title: "Elevation (MOLA, m, relative to the Mars areoid)",
+      units: "m",
+      items: [
+        { label: "below -3100 (lowest -3791)", color: "#5081B5" },
+        { label: "-3100 to -3000", color: "#8DAFA2" },
+        { label: "-3000 to -2900", color: "#CEC390" },
+        { label: "-2900 to -2800", color: "#E7D6AC" },
+        { label: "-2800 and above (highest -2381)", color: "#F4E9D3" },
+      ],
+    },
+  },
+  {
     id: "oxia-slope",
     type: "Terrain & slope",
     display_name: "Regional slope (MOLA)",

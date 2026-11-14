@@ -59,7 +59,8 @@ export const config = {
   // v6: oxia-geology shows Mars Trek mineral detections (Interpreted points).
   // v7: oxia-slope from a Mars Trek MOLA elevation grid (Derived).
   // v8: slope classes 10-20 / >20 deg aligned with NASA's 20 deg EVA figure.
-  dataset_version: "oxia-slope-v8",
+  // v9: oxia-elevation colour-by-height layer from the same MOLA grid.
+  dataset_version: "oxia-elevation-v9",
   routing: {
     enabled: false,
     reason:
