@@ -45,9 +45,9 @@ export const config = {
     display_transform: {
       status: "reviewed",
       method: "mars-geographic-to-maplibre-display",
-      source_id: "oxia-ctx-esri",
+      source_id: "oxia-ctx-trek",
       notes:
-        "Review 2026-11-14, Oxia region owner. EXTENT: the supported extent is the published main map area of Fawdon et al. 2024 (17.11-19.15 N, 334.60-336.60 E; source oxia-fawdon-2024-map), not a landing ellipse. LONGITUDE: Oxia lies above 180 E, so the shared display conversion (lib/map/region-layers.ts: east longitude - 360) gives display longitudes -25.40 to -23.40; team/oxia/basemap/prepare_ctx_basemap.mjs applies the same conversion when sampling. BASEMAP (v2): /maps/oxia/ctx-tiles/ derived from the Murray Lab CTX global mosaic beta01 (Esri tiled service, source oxia-ctx-esri) by team/oxia/basemap/prepare_ctx_basemap.mjs (adapted from the Jezero owner's script): 841 self-hosted 256 px grayscale Web-Mercator XYZ tiles, zooms 5-12, nearest-neighbour from the service's equirectangular grid at level L=z-2, no radiometric processing. Build report team/oxia/basemap/build_report.json: 262 source tiles fetched, 0 missing, 0 output samples without source. LATITUDE: the service GCS is Mars_2000_Sphere (r=3,396,190 m), so geodetic == planetocentric and planetocentric latitude is passed as display latitude; Web Mercator is display math only (MapLibre Earth distances/scale stay forbidden). NOT CHECKED: no independent registration test against HiRISE or the Fawdon map products (the beta01 mosaic is uncontrolled); display-grade only, not survey-grade, not terrain or hazard evidence.",
+        "Review 2026-11-14, Oxia region owner. EXTENT: the supported extent is the published main map area of Fawdon et al. 2024 (17.11-19.15 N, 334.60-336.60 E; source oxia-fawdon-2024-map), not a landing ellipse. LONGITUDE: Oxia lies above 180 E, so the shared display conversion (lib/map/region-layers.ts: east longitude - 360) gives display longitudes -25.40 to -23.40; team/oxia/basemap/prepare_ctx_basemap.mjs applies the same conversion when sampling. BASEMAP (v2): /maps/oxia/ctx-tiles/ derived from the Murray Lab CTX global mosaic beta01, NASA Mars Trek layer CTX_beta01_uncontrolled_5m_Caltech (source oxia-ctx-trek; tiles from the Trek-designated endpoint), by team/oxia/basemap/prepare_ctx_basemap.mjs (adapted from the Jezero owner's script): 841 self-hosted 256 px grayscale Web-Mercator XYZ tiles, zooms 5-12, nearest-neighbour from the service's equirectangular grid at level L=z-2, no radiometric processing. Build report team/oxia/basemap/build_report.json: 262 source tiles fetched, 0 missing, 0 output samples without source. LATITUDE: the service GCS is Mars_2000_Sphere (r=3,396,190 m), so geodetic == planetocentric and planetocentric latitude is passed as display latitude; Web Mercator is display math only (MapLibre Earth distances/scale stay forbidden). NOT CHECKED: no independent registration test against HiRISE or the Fawdon map products (the beta01 mosaic is uncontrolled); display-grade only, not survey-grade, not terrain or hazard evidence.",
     },
   },
   data_status: "metadata_verified",
@@ -112,19 +112,21 @@ export const config = {
       ],
     },
     {
-      id: "oxia-ctx-esri",
+      id: "oxia-ctx-trek",
       title:
-        "Mars MRO CTX global mosaic beta01 (Caltech Murray Lab), Esri tiled map service",
-      url: "https://astro.arcgis.com/arcgis/rest/services/OnMars/CTX/MapServer",
-      agency: "NASA/JPL/MSSS · Caltech Murray Lab · Esri",
+        "NASA JPL Mars Trek layer 'MRO CTX, Mosaic Global Uncontrolled (Caltech)' (CTX_beta01_uncontrolled_5m_Caltech)",
+      url: "https://trek.nasa.gov/tiles/Mars/EQ/CTX_beta01_uncontrolled_5m_Caltech/1.0.0/WMTSCapabilities.xml",
+      agency: "NASA JPL Mars Trek · NASA/JPL/MSSS · Caltech Murray Lab",
       instrument: "MRO Context Camera (CTX)",
-      product_id: "Murray Lab CTX global mosaic beta01 (uncontrolled)",
+      product_id:
+        "CTX_beta01_uncontrolled_5m_Caltech (Mars Trek item 8b9208ac-bb00-4d7c-8da4-f4d34366146d)",
       acquisition_date: null,
       sol: null,
       native_resolution_m: 5,
       processing_notes: [
-        "Service metadata checked 2026-11-14: GCS_Mars_2000_Sphere (radius 3,396,190 m), origin -180/90, 512 px PNG tiles, 18 levels, level 0 resolution 0.3515625 deg/px.",
-        "Service copyright text: 'Source: NASA/JPL/MSSS/Caltech Murray Lab/Esri'.",
+        "Mars Trek is listed in the Space Apps 2026 'Interplanetary Survival Guide: Martian Map' challenge resources.",
+        "Mars Trek WMTS capabilities (checked 2026-11-14) give the layer's tile ResourceURL as https://astro.arcgis.com/arcgis/rest/services/OnMars/CTX/MapServer/tile/{TileMatrix}/{TileRow}/{TileCol}; tiles were fetched from that Trek-designated endpoint.",
+        "Tile service metadata checked 2026-11-14: GCS_Mars_2000_Sphere (radius 3,396,190 m), origin -180/90, 512 px PNG tiles, 18 levels, level 0 resolution 0.3515625 deg/px; copyright 'Source: NASA/JPL/MSSS/Caltech Murray Lab/Esri'.",
         "Display tiles /maps/oxia/ctx-tiles/ built by team/oxia/basemap/prepare_ctx_basemap.mjs; see the region display-transform notes and team/oxia/basemap/build_report.json.",
       ],
       limitations: [

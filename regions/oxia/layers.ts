@@ -8,7 +8,7 @@ export const layers = [
     display_name: "CTX basemap",
     kind: "optical",
     availability: "available",
-    source_id: "oxia-ctx-esri",
+    source_id: "oxia-ctx-trek",
     observation_date: null,
     spatial_resolution_m: 5,
     coverage:
@@ -17,7 +17,7 @@ export const layers = [
       "Uncontrolled beta mosaic (seams, varying illumination; not radiometrically calibrated). Display-grade: nearest-neighbour resampled to ~20 m display pixels at the top zoom (12), coarser than CTX native ~5 m; closer zooms enlarge the z12 tiles. No independent registration check against HiRISE yet. Imagery only, not a DEM, geology or terrain-safety evidence.",
     evidence: "Observed",
     attribution:
-      "NASA/JPL/MSSS · Caltech Murray Lab CTX global mosaic (beta01) · tiled service hosted by Esri",
+      "NASA/JPL/MSSS · Caltech Murray Lab CTX global mosaic (beta01) · via NASA JPL Mars Trek (tiles hosted by Esri)",
     rendering: {
       kind: "raster-tiles",
       tiles: ["/maps/oxia/ctx-tiles/{z}/{x}/{y}.png"],

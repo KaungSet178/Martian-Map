@@ -6,7 +6,10 @@
 // sampling logic are unchanged.
 //
 // Source : Mars MRO CTX uncontrolled mosaic "beta01", Caltech Murray Lab,
-//          served by Esri as a tiled MapServer:
+//          as published by NASA JPL Mars Trek (challenge resource) as layer
+//          CTX_beta01_uncontrolled_5m_Caltech. Trek's WMTS capabilities
+//          (https://trek.nasa.gov/tiles/Mars/EQ/CTX_beta01_uncontrolled_5m_Caltech/1.0.0/WMTSCapabilities.xml)
+//          point the layer's tiles at this Esri-hosted tiled MapServer:
 //          https://astro.arcgis.com/arcgis/rest/services/OnMars/CTX/MapServer
 //          (PNG, 512 px tiles, equirectangular planetary tiling scheme:
 //           origin -180/90, level L resolution 0.3515625/2^L deg/px,
@@ -310,7 +313,8 @@ for (let z = MIN_Z; z <= MAX_Z; z++) {
 const audit = {
   source: SERVICE,
   source_product: "Murray Lab CTX global mosaic beta01 (uncontrolled)",
-  credit: "NASA/JPL/MSSS/Caltech Murray Lab; tiled service hosted by Esri",
+  credit:
+    "NASA/JPL/MSSS/Caltech Murray Lab; via NASA JPL Mars Trek layer CTX_beta01_uncontrolled_5m_Caltech (tiles hosted by Esri)",
   output_scheme: "Web-Mercator XYZ, 256 px grayscale PNG",
   zoom_range: [MIN_Z, MAX_Z],
   source_levels_used: [...levelsUsed].sort((a, b) => a - b),

@@ -1,7 +1,7 @@
 {
   "source": "https://astro.arcgis.com/arcgis/rest/services/OnMars/CTX/MapServer/tile",
   "source_product": "Murray Lab CTX global mosaic beta01 (uncontrolled)",
-  "credit": "NASA/JPL/MSSS/Caltech Murray Lab; tiled service hosted by Esri",
+  "credit": "NASA/JPL/MSSS/Caltech Murray Lab; via NASA JPL Mars Trek layer CTX_beta01_uncontrolled_5m_Caltech (tiles hosted by Esri)",
   "output_scheme": "Web-Mercator XYZ, 256 px grayscale PNG",
   "zoom_range": [
     5,
