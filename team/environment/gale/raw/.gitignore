@@ -1,0 +1,11 @@
+# Raw NASA PDS archive files downloaded locally are ignored to prevent repo bloat
+*.TXT
+*.txt
+*.LBL
+*.lbl
+*.DAT
+*.dat
+*.TAB
+*.tab
+*.xml
+*.XML

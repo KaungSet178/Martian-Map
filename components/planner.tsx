@@ -21,6 +21,7 @@ import {
   Upload,
   Globe2,
   CircleHelp,
+  Sun,
 } from "lucide-react";
 import { regionIdSchema, type RegionId, type MarsGeographicCoordinates } from "@/lib/contracts/region";
 import { regions, regionIds } from "@/lib/regions/registry";
@@ -46,6 +47,7 @@ import {
 } from "@/components/ui/primitives";
 import { TargetCatalog, TargetDetails } from "@/components/science/catalog";
 import { EvidenceDetails, LayerManager } from "@/components/science/evidence";
+import { EnvironmentalConditionsPanel } from "@/components/environment/environmental-conditions-panel";
 import { MissionEditor } from "@/components/mission/editor";
 import { RouteComparison } from "@/components/mission/analysis";
 import { MissionBrief } from "@/components/mission/brief";
@@ -76,7 +78,7 @@ const MapWorkspace = dynamic(() => import("@/components/map/map-workspace"), {
     </div>
   ),
 });
-type Panel = "science" | "plan" | "compare" | "layers" | "evidence";
+type Panel = "science" | "environment" | "plan" | "compare" | "layers" | "evidence";
 type Modal = "sites" | "saved" | "brief" | "target" | null;
 const subscribeOnline = (onChange: () => void) => {
   window.addEventListener("online", onChange);
@@ -249,6 +251,11 @@ export function Planner() {
       );
       const initial = parsed.success ? parsed.data : "jezero";
       setRegionId(initial);
+      const panelParam = new URLSearchParams(location.search).get("panel");
+      if (panelParam === "environment") {
+        setPanel("environment");
+        setExpanded(true);
+      }
       try {
         const stored = readMissions(localStorage);
         const latest = stored.find((m) => m.region === initial);
@@ -297,7 +304,9 @@ export function Planner() {
     setPreview(false);
     setIsPlacingOnMap(false);
     setSelectedWaypointId(null);
-    setPanel("science");
+    if (panel !== "environment") {
+      setPanel("science");
+    }
     setPlanSubView("objectives");
     setEditingWaypointId(null);
     setExpanded(false);
@@ -529,6 +538,7 @@ export function Planner() {
             {(
               [
                 ["science", "Science"],
+                ["environment", "Environment"],
                 ["plan", "Plan"],
                 ["compare", "Review"],
               ] as const
@@ -581,6 +591,14 @@ export function Planner() {
                   onToggle={toggleStop}
                 />
               </>
+            )}
+            {panel === "environment" && (
+              <EnvironmentalConditionsPanel
+                regionId={regionId}
+                onEvidence={() => showPanel("evidence")}
+                onExploreLayers={() => showPanel("layers")}
+                onSelectRegion={(id) => changeRegion(id)}
+              />
             )}
             {panel === "plan" && (
               <>
@@ -824,10 +842,16 @@ export function Planner() {
           {dirty ? "Unsaved draft" : "Draft workspace"}
           <span className="status-separator">/</span>Pre-mission planning only
         </span>
-        <button onClick={() => showPanel("evidence")}>
-          <CircleHelp size={14} />
-          Data and limitations
-        </button>
+        <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
+          <button onClick={() => showPanel("environment")}>
+            <Sun size={14} />
+            Environment
+          </button>
+          <button onClick={() => showPanel("evidence")}>
+            <CircleHelp size={14} />
+            Data and limitations
+          </button>
+        </div>
       </footer>
       <div className="sr-only" role="status" aria-live="polite">
         {message}

@@ -1,0 +1,66 @@
+{
+  "schema_version": "1.0",
+  "sol": 100,
+  "source_dataset": "MSL-M-REMS-5-MODRDR-V1.0",
+  "calculation_method": "Mars24 / Allison-McEwen (AM2000)",
+  "time_scale": "TT (from REMS TIMESTAMP as J2000.0 seconds)",
+  "validation_status": "PARTIALLY_VALIDATED",
+  "validation_statuses": {
+    "orbital_algorithm": "VALIDATED_AGAINST_MARS24_REFERENCES",
+    "utc_to_tt_conversion": "VALIDATED_FOR_SUPPORTED_DATE_RANGE",
+    "rems_source_timestamp": "ASSUMED_TIME_SCALE"
+  },
+  "ls_range_degrees": [
+    207.896385,
+    208.495693
+  ],
+  "samples": [
+    {
+      "record_index": 0,
+      "timestamp_seconds_since_j2000": 406323911,
+      "lmst": "00100M00:00:00.192",
+      "ltst": "00100 00:37:07",
+      "ls_degrees": 207.896385,
+      "ls_northern_season": "Autumn",
+      "ls_southern_season": "Spring",
+      "gale_season": "Spring",
+      "time_scale_assumption": "REMS TIMESTAMP interpreted as seconds since J2000.0 in TT"
+    },
+    {
+      "record_index": 17672,
+      "timestamp_seconds_since_j2000": 406365010,
+      "lmst": "00100M11:06:39.930",
+      "ltst": "00100 11:43:41",
+      "ls_degrees": 208.184599,
+      "ls_northern_season": "Autumn",
+      "ls_southern_season": "Spring",
+      "gale_season": "Spring",
+      "time_scale_assumption": "REMS TIMESTAMP interpreted as seconds since J2000.0 in TT"
+    },
+    {
+      "record_index": 35343,
+      "timestamp_seconds_since_j2000": 406409344,
+      "lmst": "00100M23:05:48.143",
+      "ltst": "00100 23:42:44",
+      "ls_degrees": 208.495693,
+      "ls_northern_season": "Autumn",
+      "ls_southern_season": "Spring",
+      "gale_season": "Spring",
+      "time_scale_assumption": "REMS TIMESTAMP interpreted as seconds since J2000.0 in TT"
+    }
+  ],
+  "limitations": [
+    "REMS TIMESTAMP is synced with SCLK with a maximum deviation of 30 s.",
+    "TIMESTAMP-derived JD differs from label START_TIME UTC by about 3.5 minutes; both are reported.",
+    "Ls changes by roughly 0.5 deg over one sol.",
+    "Martian Year uses the Clancy convention and is reported separately when verified.",
+    "REMS source timestamp scale is not independently verified; Ls from TIMESTAMP is provisional."
+  ],
+  "independent_utc_cross_check": {
+    "label_start_time_utc": "2012-11-16T07:48:43.598000+00:00",
+    "ls_degrees": 207.898346,
+    "martian_year_clancy": 31,
+    "note": "Ls derived from the PDS4 label START_TIME UTC, independent of REMS TIMESTAMP."
+  },
+  "martian_year_clancy_sol100": 31
+}

@@ -1,0 +1,5 @@
+# Raw NASA PDS source files are downloaded locally and are not committed.
+*.TAB
+*.xml
+# Keep the compact derived JSON output.
+!rems_sol_00100.json
