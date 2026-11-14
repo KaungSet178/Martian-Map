@@ -25,7 +25,7 @@ Authoritative SIM 3464 metadata independently confirms the previous source warni
 - JZ-T1 inspected directly at local commit `9670ada94b634ab6a35b660c7e675ee9dfad4ac3`: report, manifest and original native geometry JSON, including source hashes. JZ-T1A inspected at `b580e214ce54a6a043a9a55c8adcf3d1259c6a9b`: report, renderer predicate and mission/catalog changes. Neither branch was merged.
 - `git worktree list --porcelain` and branch/status inspection identified concurrent uncommitted renderer work in main/Gale coverage and timeline-dashboard work. No other worktree was modified, reset, cleaned, stashed or overwritten.
 - A sparse checkout excludes bulk public imagery and screenshots. Actual sample tiles were read from this baseline's Git objects, not substituted from another branch.
-- Final commit, normal-push result and exact remote HEAD are reported in the delivery message. This committed report cannot embed its own commit hash; resolve with `git rev-parse HEAD`.
+- The initial audit commit was pushed normally. A follow-up explicitly re-staged evidence under byte-preserving attributes after the final Git-object hash check caught prior EOL normalization; every indexed artifact then matched its staged SHA-256. Final commit, normal-push result and exact remote HEAD are reported in the delivery message. This committed report cannot embed its own commit hash; resolve with `git rev-parse HEAD`.
 
 The audit baseline intentionally still contains the original target-marker defect; JZ-T1A is separate and was not merged. No target catalog, rendering, bounds, mission schema or geographic eligibility changed here.
 
