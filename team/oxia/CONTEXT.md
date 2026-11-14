@@ -4,7 +4,7 @@ Owner: **Thaw Thaw Tun**. Assigned branch: **feat/oxia-map**.
 Shared integration/architecture branch: feat/shared-ui-redesign, PR #1.
 This is implementation guidance, not scientific or operational approval.
 
-## Current state (14 November 2026, `dataset_version` `oxia-ctx-color-v12`)
+## Current state (14 November 2026, `dataset_version` `oxia-objective4-v13`)
 
 Data-source rule for Oxia: (1) the Space Apps challenge Resources list (NASA JPL Mars
 Trek) first; (2) other NASA sources only where the list cannot cover it, marked tier 2
@@ -62,6 +62,7 @@ one patch near 17.21 N, 335.07 E.
 | `oxia-objective-1` | Clay-rich bedrock study | 18.22, 335.83 | Interpreted | `oxia-trek-aqueous`, `oxia-trek-hydrous` |
 | `oxia-objective-2` | Hydrated silica detection | 17.84, 336.33 | Interpreted | `oxia-trek-aqueous` |
 | `oxia-objective-3` | Second clay detection | 18.22, 336.11 | Interpreted | `oxia-trek-aqueous` |
+| `oxia-objective-4` | Hydrous mineral detection (CRISM) | 18.17, 335.82 | Interpreted | `oxia-trek-hydrous` |
 
 Locations are Mars Trek detection points (two-decimal degrees, ~0.6 km), not sample
 sites. All targets keep `routing_eligibility` unavailable. The mineral-detection
