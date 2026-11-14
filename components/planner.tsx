@@ -22,7 +22,12 @@ import {
   Globe2,
   CircleHelp,
 } from "lucide-react";
-import { regionIdSchema, type RegionId, type MarsGeographicCoordinates } from "@/lib/contracts/region";
+import {
+  regionIdSchema,
+  type RegionId,
+  type MarsGeographicCoordinates,
+  type Target,
+} from "@/lib/contracts/region";
 import { regions, regionIds } from "@/lib/regions/registry";
 import {
   updateLayerState,
@@ -38,6 +43,7 @@ import {
   missionSchema,
   type Mission,
 } from "@/lib/mission/model";
+import type { TargetAreaFocusRequest } from "./map/map-workspace";
 import {
   Badge,
   Dialog,
@@ -119,6 +125,19 @@ export function Planner() {
   const region = regions[regionId];
   const target = region.targets.find((t) => t.id === selected);
   const stale = mission.dataset_version !== region.dataset_version;
+
+  const [targetAreaFocus, setTargetAreaFocus] = useState<TargetAreaFocusRequest | null>(null);
+  const handleFitArea = useCallback((t: Target) => {
+    if (t.boundary?.status === "available") {
+      setTargetAreaFocus({
+        region_id: region.id,
+        target_id: t.id,
+        request_id: Date.now(),
+        extent: t.boundary.extent,
+      });
+      setModal(null);
+    }
+  }, [region.id]);
 
   const [planSubView, setPlanSubView] = useState<"objectives" | "waypoints">("objectives");
   const [editingWaypointId, setEditingWaypointId] = useState<string | null>(null);
@@ -809,6 +828,7 @@ export function Planner() {
           layerStates={layerStates}
           presentationMode={presentationMode}
           coverageFocus={coverageFocus}
+          targetAreaFocus={targetAreaFocus}
           plan={activePlan}
           isPlacingOnMap={isPlacingOnMap}
           onPlaceWaypoint={handlePlaceWaypoint}
@@ -839,6 +859,7 @@ export function Planner() {
             region={region}
             added={mission.target_ids.includes(target.id)}
             onToggle={() => toggleStop(target.id)}
+            onFitArea={handleFitArea}
           />
         </Dialog>
       )}
@@ -871,11 +892,11 @@ export function Planner() {
           {regionIds.every(
             (id) => regions[id].map.visualization.status === "unavailable",
           ) && (
-            <Notice title="Scientific map integration pending">
-              No source-verified orbital image, target coordinates or routing
-              coverage is bundled for any region.
-            </Notice>
-          )}
+              <Notice title="Scientific map integration pending">
+                No source-verified orbital image, target coordinates or routing
+                coverage is bundled for any region.
+              </Notice>
+            )}
         </Dialog>
       )}
       {modal === "saved" && (
@@ -922,8 +943,8 @@ export function Planner() {
                     </span>
                     {plan.dataset_version !==
                       regions[plan.region].dataset_version && (
-                      <Badge tone="caution">Revalidation required</Badge>
-                    )}
+                        <Badge tone="caution">Revalidation required</Badge>
+                      )}
                   </div>
                   <button
                     onClick={() => openMission(plan)}

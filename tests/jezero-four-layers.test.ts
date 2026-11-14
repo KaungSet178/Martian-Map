@@ -25,7 +25,8 @@ test("Jezero has exactly four source-backed categories with safe interpretations
   assert.equal(scientificLayers[1].evidence, "Derived");
   assert.equal(scientificLayers[2].evidence, "Derived");
   assert.equal(jezero.routing.enabled, false);
-  assert.ok(jezero.targets.every((target) => target.coordinates === null && !target.coordinate_verified && target.routing_eligibility.status === "unavailable"));
+  assert.ok(jezero.targets.every((target) => target.routing_eligibility.status === "unavailable"));
+  assert.ok(jezero.targets.every((target) => !target.coordinate_verified || target.coordinates !== null));
 });
 
 test("real DEM lineage, extrema, strict nodata, tile positioning and native affine", () => {

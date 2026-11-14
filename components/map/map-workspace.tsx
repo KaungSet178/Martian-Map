@@ -22,8 +22,13 @@ import {
 } from "@/lib/map/waypoint-layers";
 import { formatCoordinates } from "@/components/mission/waypoint-itinerary";
 import type { WaypointPlan } from "@/lib/mission/waypoint-planning";
-import { fitOverview, fitInitialView, fitLayerCoverage } from "@/lib/map/camera";
+import { fitOverview, fitInitialView, fitLayerCoverage, fitObjectiveArea } from "@/lib/map/camera";
 import { registerScientificClip } from "@/lib/map/scientific-clip";
+import {
+  mountObjectiveAreaLayers,
+  removeObjectiveAreaLayers,
+  setObjectiveAreasVisibility,
+} from "@/lib/map/objective-area-layers";
 import {
   Crosshair,
   Layers,
@@ -32,11 +37,19 @@ import {
   ArrowUp,
   Map as MapIcon,
   PanelLeftOpen,
+  Shapes,
 } from "lucide-react";
 import type { RegionManifest, MarsGeographicCoordinates } from "@/lib/contracts/region";
 import { Badge } from "@/components/ui/primitives";
 import BasemapControl from "@/components/map/basemap-control";
 import { COLOR_BASEMAP } from "@/lib/map/color-basemap";
+
+export type TargetAreaFocusRequest = {
+  region_id: string;
+  target_id: string;
+  request_id: number;
+  extent: NonNullable<RegionManifest["map"]["supported_extent"]>;
+};
 
 type Props = {
   region: RegionManifest;
@@ -55,6 +68,7 @@ type Props = {
   layerStates: LayerStates;
   presentationMode?: "mission_view" | "full_coverage";
   coverageFocus?: CoverageFocusRequest | null;
+  targetAreaFocus?: TargetAreaFocusRequest | null;
   plan?: WaypointPlan;
   isPlacingOnMap?: boolean;
   onPlaceWaypoint?: (coords: MarsGeographicCoordinates) => void;
@@ -81,6 +95,7 @@ export default function MapWorkspace({
   layerStates,
   presentationMode = "mission_view",
   coverageFocus,
+  targetAreaFocus,
   plan,
   isPlacingOnMap = false,
   onPlaceWaypoint,
@@ -96,11 +111,23 @@ export default function MapWorkspace({
   const markerElements = useRef<Map<string, HTMLButtonElement>>(new Map());
   const overview = useRef<"initial" | "mission" | false>("initial");
   const handledCoverageFocus = useRef<number | null>(null);
+  const handledTargetAreaFocus = useRef<number | null>(null);
   const previousLayers = useRef<{ region: string; visible: Set<string> } | null>(null);
   const [ready, setReady] = useState(false);
+  const [showAllObjectiveAreas, setShowAllObjectiveAreas] = useState(false);
+  const previousStops = useRef<string[]>(stops);
   const [loadedMap, setLoadedMap] = useState<MapInstance | null>(null);
   const [failed, setFailed] = useState(false);
   const scientificMap = region.map.visualization.status === "available";
+
+  useEffect(() => {
+    // When an objective is removed from the plan, ensure showAllObjectiveAreas is turned off
+    // so that the removed objective's area is guaranteed not to be shown!
+    if (stops.length < previousStops.current.length && showAllObjectiveAreas) {
+      setShowAllObjectiveAreas(false);
+    }
+    previousStops.current = stops;
+  }, [stops, showAllObjectiveAreas]);
   const resetView = useCallback((animate = false, initial = false) => {
     if (!map.current || !container.current) return;
     overview.current = initial ? "initial" : "mission";
@@ -197,10 +224,10 @@ export default function MapWorkspace({
     map.current.setMaxZoom(
       scientificMap
         ? Math.max(10, ...region.layers.flatMap((layer) =>
-            layer.availability === "available" && layer.rendering.kind !== "unavailable" && layer.rendering.max_zoom !== undefined
-              ? [layer.rendering.max_zoom]
-              : [],
-          ))
+          layer.availability === "available" && layer.rendering.kind !== "unavailable" && layer.rendering.max_zoom !== undefined
+            ? [layer.rendering.max_zoom]
+            : [],
+        ))
         : 10,
     );
     resetView(false, true);
@@ -220,20 +247,84 @@ export default function MapWorkspace({
       // Explicitly opening a small mapped area uses the same contained fit as
       // the regional overview. Opacity changes and resize never re-trigger it.
       overview.current = false;
-      fitOverview(map.current, { ...region, map: { ...region.map,
-        supported_extent: revealed.rendering.focus_extent } }, container.current, false);
+      fitOverview(map.current, {
+        ...region, map: {
+          ...region.map,
+          supported_extent: revealed.rendering.focus_extent
+        }
+      }, container.current, false);
     }
   }, [ready, region, layerStates, preview]);
 
   useEffect(() => {
     if (!ready || !map.current || !container.current || !coverageFocus ||
-        handledCoverageFocus.current === coverageFocus.request_id) return;
+      handledCoverageFocus.current === coverageFocus.request_id) return;
     handledCoverageFocus.current = coverageFocus.request_id;
     if (preview || coverageFocus.region_id !== region.id) return;
     // Explicit user action only. Reuse responsive padding/maxZoom/north-up fit.
     if (fitLayerCoverage(map.current, region, coverageFocus.layer_id, container.current))
       overview.current = false;
   }, [ready, coverageFocus, region, preview]);
+
+  useEffect(() => {
+    if (
+      !ready ||
+      !map.current ||
+      !container.current ||
+      !targetAreaFocus ||
+      handledTargetAreaFocus.current === targetAreaFocus.request_id
+    )
+      return;
+    handledTargetAreaFocus.current = targetAreaFocus.request_id;
+    if (preview || targetAreaFocus.region_id !== region.id) return;
+    if (
+      fitObjectiveArea(
+        map.current,
+        region,
+        targetAreaFocus.extent,
+        container.current,
+      )
+    ) {
+      overview.current = false;
+    }
+  }, [ready, targetAreaFocus, region, preview]);
+
+  useEffect(() => {
+    if (!ready || !map.current || preview || !scientificMap) return;
+    const instance = map.current;
+    const focusedTargetId =
+      targetAreaFocus?.region_id === region.id ? targetAreaFocus.target_id : null;
+    mountObjectiveAreaLayers(
+      instance,
+      region,
+      selected,
+      onInspect,
+      stops,
+      showAllObjectiveAreas,
+      focusedTargetId,
+    );
+    const hasVisibleAreas =
+      showAllObjectiveAreas ||
+      region.targets.some(
+        (t) =>
+          t.boundary?.status === "available" &&
+          (stops.includes(t.id) || t.id === focusedTargetId),
+      );
+    setObjectiveAreasVisibility(instance, hasVisibleAreas);
+    return () => {
+      removeObjectiveAreaLayers(instance);
+    };
+  }, [
+    ready,
+    region,
+    preview,
+    scientificMap,
+    onInspect,
+    showAllObjectiveAreas,
+    selected,
+    stops,
+    targetAreaFocus,
+  ]);
 
   useEffect(() => {
     if (!ready || !container.current || !map.current) return;
@@ -699,6 +790,21 @@ export default function MapWorkspace({
         >
           <Crosshair size={20} />
         </button>
+        {scientificMap && !preview && (
+          <button
+            className={`icon-button ${showAllObjectiveAreas ? "active" : ""}`}
+            onClick={() => setShowAllObjectiveAreas(!showAllObjectiveAreas)}
+            disabled={!ready || failed}
+            aria-label={
+              showAllObjectiveAreas ? "Hide objective areas" : "Show objective areas"
+            }
+            title={
+              showAllObjectiveAreas ? "Hide objective areas" : "Show objective areas"
+            }
+          >
+            <Shapes size={20} />
+          </button>
+        )}
       </div>
       {failed && (
         <p className="map-failure" role="status">
@@ -739,9 +845,9 @@ export default function MapWorkspace({
           ? "Schematic interface artwork · no observations or routes"
           : scientificMap
             ? activeLayers
-                .map((l) => l.attribution)
-                .filter(Boolean)
-                .join(" · ")
+              .map((l) => l.attribution)
+              .filter(Boolean)
+              .join(" · ")
             : "No NASA / ESA imagery displayed"}
       </div>
     </section>

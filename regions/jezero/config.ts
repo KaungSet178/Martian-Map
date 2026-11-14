@@ -395,5 +395,66 @@ export const config = {
         "~100 m source resolution, upsampled above z9; display-grade only.",
       ],
     },
+    {
+      id: "jezero-msr-three-forks-lpsc",
+      title:
+        "Mars Sample Return 'Three Forks' Landing and Depot Site Selections (Williams et al., 2023, 54th LPSC #2618)",
+      url: "https://www.hou.usra.edu/meetings/lpsc2023/pdf/2618.pdf",
+      agency: "NASA / JPL-Caltech / USRA",
+      instrument: "Perseverance Rover / Mars Sample Return Science Team",
+      product_id: "LPI Contrib. No. 2806, Abstract #2618",
+      acquisition_date: "2023-03-13",
+      sol: 705,
+      native_resolution_m: null,
+      processing_notes: [
+        "Evaluates terrain and coordinates for the Three Forks landing site and surface sample depot.",
+        "Authoritative coordinates: 18.45369687° N, 77.41359752° E (planetocentric), elevation -2548.673 m (MOLA areoid).",
+        "Defines a 60-meter radius operational circle where 10 sample tubes were successfully deposited between Sols 653 and 705.",
+      ],
+      limitations: [
+        "Depot coordinates define the operational landing and sample caching site; not an astronaut-certified waypoint.",
+        "Operations conducted on MRO HiRISE/CTX terrain basemap; independent absolute surface registration remains unverified.",
+      ],
+    },
+    {
+      id: "jezero-scheller-2022-science",
+      title:
+        "Aqueous alteration processes and organic molecule detection in Jezero crater (Scheller et al., 2022, Science 378:1105-1110)",
+      url: "https://doi.org/10.1126/science.abo5204",
+      agency: "Science / AAAS · NASA Mars 2020 Science Team",
+      instrument: "SHERLOC, PIXL, WATSON",
+      product_id: "DOI 10.1126/science.abo5204",
+      acquisition_date: "2022-12-09",
+      sol: 550,
+      native_resolution_m: null,
+      processing_notes: [
+        "Documents detection of aromatic organic molecules preserved in aqueous minerals in crater floor and delta front mudstones.",
+        "Primary preservation targets: fine-grained lacustrine sedimentary rocks at Hogwallow Flats, Wildcat Ridge, and Skinner Ridge.",
+      ],
+      limitations: [
+        "Detection of aromatic organic molecules is consistent with abiotic or biological origins; biosignature verification requires returned sample laboratory analysis.",
+        "Spatial corridor reflects campaign operational area, not a continuous outcrop.",
+      ],
+    },
+    {
+      id: "jezero-mangold-2021-science",
+      title:
+        "Perseverance rover reveals an ancient delta-lake system and flood deposits at Jezero crater, Mars (Mangold et al., 2021, Science 374:711-717)",
+      url: "https://doi.org/10.1126/science.abl4051",
+      agency: "Science / AAAS · NASA Mars 2020 Science Team",
+      instrument: "Mastcam-Z, SuperCam RMI",
+      product_id: "DOI 10.1126/science.abl4051",
+      acquisition_date: "2021-10-07",
+      sol: 220,
+      native_resolution_m: null,
+      processing_notes: [
+        "Stratigraphic analysis of delta bottomsets, foresets, and topsets confirming an ancient closed-basin lake in Jezero crater.",
+        "Establishes lake levels and hydrologic history recorded in unit NHjf2 (Western Delta fan) and Kodiak butte.",
+      ],
+      limitations: [
+        "Rover imaging confirms deltaic stratigraphy from distance; detailed habitability varies across sedimentary layers.",
+        "Published interpretations establish formation history, not localized traversability.",
+      ],
+    },
   ],
 } satisfies RegionConfig;

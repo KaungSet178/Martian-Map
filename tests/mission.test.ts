@@ -21,7 +21,7 @@ test("all region fixtures obey shared contract and cannot imply scientific readi
     assert.equal(region.capabilities.mission_feasibility.status, "unavailable");
     assert.equal(region.capabilities.terrain_coverage.status, "partial");
     assert.ok(region.targets.every((t) => !t.coordinate_verified || t.coordinates !== null));
-    if (id !== "oxia") assert.ok(region.targets.every((t) => t.coordinates === null && !t.coordinate_verified));
+    if (id === "gale") assert.ok(region.targets.every((t) => t.coordinates === null && !t.coordinate_verified));
     if (id === "gale") {
       assert.equal(region.data_status, "metadata_verified");
       assert.deepEqual(
