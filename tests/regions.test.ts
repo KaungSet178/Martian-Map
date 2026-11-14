@@ -13,6 +13,7 @@ import {
 } from "@/lib/regions/registry";
 import {
   regionSchema,
+  assessments,
   type RegionManifest,
   targetSchema,
 } from "@/lib/contracts/region";
@@ -20,6 +21,10 @@ import {
   routeRequestSchema,
   routeResponseSchema,
 } from "@/lib/contracts/planning";
+import {
+  displayRoutesFromResult,
+  routeFeatureCollection,
+} from "@/lib/map/routes";
 import {
   applyLayerStates,
   displayBounds,
@@ -39,7 +44,10 @@ test("registry resolves every region, typed metadata and safe unknown IDs", () =
     assert.equal(getRegion(region.id), region);
     assert.ok(regionSchema.safeParse(region).success);
     assert.equal(getTargets(region.id), region.targets);
-    assert.deepEqual(getAvailableLayers(region.id), []);
+    assert.deepEqual(
+      getAvailableLayers(region.id),
+      region.layers.filter((l) => l.availability === "available"),
+    );
     assert.equal(getMapConfig(region.id), region.map);
     assert.equal(getRegionEvidence(region.id), region.source_references);
     assert.equal(getRegionCapabilities(region.id), region.capabilities);
@@ -182,7 +190,7 @@ test("declarative renderer mounts only current regional sources and cleans them 
   const map = fake as unknown as MapInstance;
   const region = syntheticMap();
   const cleanup = mountRegionLayers(map, region);
-  assert.equal(layers.size, 3);
+  assert.equal(layers.size, region.layers.length);
   let state = updateLayerState(region, {}, region.layers[1].id, {
     visible: true,
     opacity: 35,
@@ -196,14 +204,15 @@ test("declarative renderer mounts only current regional sources and cleans them 
     calls.some(
       (c) =>
         c[0] === "layout" &&
-        c[1] === "region-jezero-geology" &&
+        c[1] === `region-${region.layers[2].id}` &&
         c[3] === "visible",
     ),
   );
   applyLayerStates(map, region, state, true);
-  assert.deepEqual(calls.at(-2), [
+  const layoutCalls = calls.filter((c) => c[0] === "layout");
+  assert.deepEqual(layoutCalls.at(-1), [
     "layout",
-    "region-jezero-geology",
+    `region-${region.layers.at(-1)!.id}`,
     "visibility",
     "none",
   ]);
@@ -270,6 +279,104 @@ test("backend boundary rejects missing one-way endpoints and incomplete assessme
       region: "gale",
       candidates: [{ assessments: { Terrain: { status: "Feasible" } } }],
     }).success,
+    false,
+  );
+});
+
+test("route result geometry is display-only and fails closed without it", () => {
+  const result = routeResponseSchema.parse({
+    status: "candidates",
+    region: "jezero",
+    input_revision: "rev-1",
+    dataset_version: "synthetic-software-test",
+    coverage: {
+      status: "audited",
+      source_ids: ["synthetic-software-test-source"],
+      limitations: [],
+    },
+    candidates: [
+      {
+        id: "candidate-display",
+        objective: "safest",
+        validation: "experimental",
+        geometry: [
+          { body: "Mars", crs: "IAU_2015", easting_m: 0, northing_m: 0 },
+          { body: "Mars", crs: "IAU_2015", easting_m: 1, northing_m: 1 },
+        ],
+        display_geometry: [
+          { latitude: 18.4, longitude_east: 77.5 },
+          { latitude: 18.5, longitude_east: 282.5 },
+        ],
+        identical_to: null,
+        omitted_target_ids: [],
+        models: [
+          {
+            id: "synthetic-model",
+            version: "1",
+            source_ids: ["synthetic-software-test-source"],
+            assumptions: [],
+            limitations: [],
+          },
+        ],
+        limitations: [],
+        assessments: Object.fromEntries(
+          assessments.map((name) => [
+            name,
+            { status: "Unverified", reason: "", value: null, unit: null },
+          ]),
+        ),
+      },
+      {
+        id: "candidate-projected-only",
+        objective: "fastest",
+        validation: "scientifically_reviewed",
+        geometry: [
+          { body: "Mars", crs: "IAU_2015", easting_m: 0, northing_m: 0 },
+          { body: "Mars", crs: "IAU_2015", easting_m: 1, northing_m: 1 },
+        ],
+        identical_to: null,
+        omitted_target_ids: [],
+        models: [
+          {
+            id: "synthetic-model",
+            version: "1",
+            source_ids: ["synthetic-software-test-source"],
+            assumptions: [],
+            limitations: [],
+          },
+        ],
+        limitations: [],
+        assessments: Object.fromEntries(
+          assessments.map((name) => [
+            name,
+            { status: "Unverified", reason: "", value: null, unit: null },
+          ]),
+        ),
+      },
+    ],
+  });
+  assert.equal(result.status, "candidates");
+  if (result.status !== "candidates") return;
+
+  const { routes, unplottable } = displayRoutesFromResult(result);
+  assert.deepEqual(unplottable, ["candidate-projected-only"]);
+  assert.deepEqual(routes, [
+    {
+      id: "candidate-display",
+      objective: "safest",
+      validation: "experimental",
+      coordinates: [
+        [77.5, 18.4],
+        [-77.5, 18.5],
+      ],
+    },
+  ]);
+
+  const collection = routeFeatureCollection(routes, "candidate-display");
+  assert.equal(collection.features.length, 1);
+  assert.equal(collection.features[0].properties.selected, true);
+  assert.deepEqual(
+    routeFeatureCollection(routes, null).features[0].properties.selected,
     false,
   );
 });

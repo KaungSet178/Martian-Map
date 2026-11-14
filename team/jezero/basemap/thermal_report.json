@@ -1,0 +1,77 @@
+{
+  "source": "https://trek.nasa.gov/tiles/Mars/EQ/THEMIS_DayIR_ControlledMosaics_100m_v2_oct2018/1.0.0/default/default028mm",
+  "source_product": "THEMIS_DayIR_ControlledMosaics_100m_v2_oct2018",
+  "source_title": "THEMIS daytime infrared controlled mosaic (v2, Oct 2018), ~100 m/px",
+  "credit": "NASA/JPL/ASU · THEMIS daytime IR controlled mosaic v2 · NASA Mars Trek",
+  "landing_page": "https://trek.nasa.gov/mars/",
+  "native_resolution_m": 100,
+  "output_scheme": "Web-Mercator XYZ, 256 px RGBA PNG",
+  "zoom_range": [
+    5,
+    9
+  ],
+  "source_levels_used": [
+    4,
+    5,
+    6,
+    7,
+    8
+  ],
+  "sampling": "nearest-neighbour at source level L = z-1 (1:1 source/output grid)",
+  "source_tile_px": 256,
+  "output_tiles_written": 7,
+  "output_bytes": 525011,
+  "source_tiles_fetched_ok": 25,
+  "source_tiles_missing": 0,
+  "samples_without_source": 0,
+  "transparent_pixels": 0,
+  "tile_ranges": [
+    {
+      "z": 5,
+      "sourceLevel": 4,
+      "xMin": 22,
+      "xMax": 22,
+      "yTop": 14,
+      "yBottom": 14
+    },
+    {
+      "z": 6,
+      "sourceLevel": 5,
+      "xMin": 45,
+      "xMax": 45,
+      "yTop": 28,
+      "yBottom": 28
+    },
+    {
+      "z": 7,
+      "sourceLevel": 6,
+      "xMin": 91,
+      "xMax": 91,
+      "yTop": 57,
+      "yBottom": 57
+    },
+    {
+      "z": 8,
+      "sourceLevel": 7,
+      "xMin": 182,
+      "xMax": 183,
+      "yTop": 114,
+      "yBottom": 114
+    },
+    {
+      "z": 9,
+      "sourceLevel": 8,
+      "xMin": 365,
+      "xMax": 366,
+      "yTop": 229,
+      "yBottom": 229
+    }
+  ],
+  "extent_used": {
+    "west": 77.186786,
+    "east": 77.493133,
+    "south": 18.401964,
+    "north": 18.519663
+  },
+  "margin_deg": 0.05
+}

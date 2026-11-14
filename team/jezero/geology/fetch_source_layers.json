@@ -1,0 +1,48 @@
+{
+  "service": "https://services.arcgis.com/v01gqwM5QqNysAAi/arcgis/rest/services/Jezero_FeatureServiceFromPro/FeatureServer",
+  "fetched_at_utc": "2026-11-13T03:35:00.392Z",
+  "layers": [
+    {
+      "id": 0,
+      "name": "MapBoundary",
+      "feature_count": 1,
+      "file": "source/MapBoundary.json",
+      "geometry_type": "esriGeometryPolygon"
+    },
+    {
+      "id": 4,
+      "name": "Location Features",
+      "feature_count": 341,
+      "file": "source/LocationFeatures.json",
+      "geometry_type": "esriGeometryPoint"
+    },
+    {
+      "id": 5,
+      "name": "Geologic Contacts",
+      "feature_count": 2497,
+      "file": "source/GeologicContacts.json",
+      "geometry_type": "esriGeometryPolyline"
+    },
+    {
+      "id": 6,
+      "name": "Linear Features",
+      "feature_count": 382,
+      "file": "source/LinearFeatures.json",
+      "geometry_type": "esriGeometryPolyline"
+    },
+    {
+      "id": 7,
+      "name": "Surface Features",
+      "feature_count": 285,
+      "file": "source/SurfaceFeatures.json",
+      "geometry_type": "esriGeometryPolygon"
+    },
+    {
+      "id": 8,
+      "name": "Geologic Units",
+      "feature_count": 1308,
+      "file": "source/GeologicUnits.json",
+      "geometry_type": "esriGeometryPolygon"
+    }
+  ]
+}

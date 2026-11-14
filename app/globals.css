@@ -760,6 +760,43 @@ input[type="radio"] {
   font-size: 11px;
   margin-top: 4px;
 }
+.map-route-status {
+  position: absolute;
+  left: 24px;
+  bottom: 96px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  max-width: calc(100% - 160px);
+  margin: 0;
+  padding: 8px 12px;
+  font-size: 12px;
+  color: var(--color-text-muted);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  z-index: 1;
+}
+.map-route-status strong {
+  color: var(--color-text);
+}
+.map-route-status .supporting {
+  font-size: 11px;
+}
+.route-swatch {
+  width: 22px;
+  height: 0;
+  border-top: 2px dashed #7fd8f0;
+  opacity: 0.7;
+}
+.route-swatch.selected {
+  height: 3px;
+  border: 0;
+  border-radius: 2px;
+  background: var(--color-route);
+  opacity: 1;
+}
 .map-attribution {
   position: absolute;
   bottom: 20px;
@@ -1023,6 +1060,58 @@ input[type="radio"] {
   font-size: 13px;
   color: var(--color-text-muted);
   margin: 6px 0 0;
+}
+.route-upload {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 20px 0;
+}
+.route-candidates {
+  margin: 16px 0 12px;
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  overflow: hidden;
+}
+.route-candidate {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--color-border);
+  cursor: pointer;
+  background: var(--color-surface);
+}
+.route-candidate:last-child {
+  border-bottom: 0;
+}
+.route-candidate:hover {
+  background: var(--color-surface-raised);
+}
+.route-candidate.selected {
+  box-shadow: inset 3px 0 0 var(--color-route);
+}
+.route-candidate input {
+  margin: 4px 0 0;
+  accent-color: var(--color-route);
+}
+.route-candidate-body {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+.route-candidate-title {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.route-candidate-title strong {
+  font-size: 15px;
+}
+.route-candidate .supporting {
+  font-size: 12px;
 }
 .missing-list {
   padding-left: 20px;

@@ -1,0 +1,182 @@
+[
+  {
+    "name": "Upper etched unit",
+    "polygons": 271,
+    "symbols": [
+      "Nue"
+    ],
+    "unit_numbers": [
+      "10"
+    ],
+    "description": "Indurated, rugged, moderately-to-heavily cratered, light-to-intermediate toned unit located along and on the northern Jezero crater rim and wall, along the interior margin of Jezero crater, and throughout Nili Planum. Overlies units Nnp1 and cr in Nili Planum and conformably overlies unit Nle in Jezero crater. Contains three different surface expressions with varying morphologic and erosional textures that grade into one another without clear or systematic stratigraphic contacts: a ridged expression in northern Jezero and northeastern Nili Planum, a heavily cratered expression in northern Nili Planum, and a light-toned rugged expression in southern Nili Planum (Figure 3). Type area: lat 18.67°N, long 77.57°E and lat 18.68°N, long 76.86°E and lat 17.77°N, long 76.86°E respectively.",
+    "interpretation": "Volcanic ash deposit that drapes underlying units Nnp1, cr, and Nle. Could also be other clastic deposit of volcanic or eolian origin. The three distinct surface expressions could result from differential erosion or cementation, as no clear or systematic stratigraphic contacts are discernable between the three surface expressions. Ridges in the ridged Nue unit are yardangs (Day and Dorn, 2019). Long linear occurrences of the light-toned rugged Nue unit could have formed through infilling of preexisting fractures created by the Isidis impact."
+  },
+  {
+    "name": "Eolian bedform unit",
+    "polygons": 476,
+    "symbols": [
+      "Aeb"
+    ],
+    "unit_numbers": [
+      "7"
+    ],
+    "description": "Light-toned, linear, commonly parallel low-relief ridges prevalent in local topographic lows such as impact craters, including along the interior margin of Jezero crater, and at the base of steep scarps throughout Nili Planum. Superposes other map units. Type area: lat 18.41°N, long 77.36°E",
+    "interpretation": "Amazonian-aged bedforms and transverse aeolian ridges (TARs) composed of unconsolidated sediment oriented orthogonal to the dominant east-west wind direction (Day and Dorn, 2019)."
+  },
+  {
+    "name": "Smooth unit, undivided",
+    "polygons": 53,
+    "symbols": [
+      "su"
+    ],
+    "unit_numbers": [
+      "8"
+    ],
+    "description": "Smooth, intermediate-toned, commonly featureless unit with rare dark-toned occurrences (for example, 17.85°N, 77.50°E) that occurs predominantly on the steep interior slopes of Jezero crater and Sedona crater, on Nili Planum east of Sedona crater, and in local depressions. Type area: lat 17.84°N, long 77.68°E",
+    "interpretation": "Sediments contributed from mass wasting, a widespread deposit of volcanic, or eolian origin, or residual accumulation of sand, pebbles, and cobbles due to deflation of the landscape."
+  },
+  {
+    "name": "Nili Planum 2 unit",
+    "polygons": 127,
+    "symbols": [
+      "Nnp2"
+    ],
+    "unit_numbers": [
+      "5"
+    ],
+    "description": "Rugged, heavily cratered, light- to intermediate-toned, planar unit, margins defined by low-relief, sharp, lobate scarps, located throughout Nili Planum and on the western rim of Jezero crater (lat 18.39°N, long 77.28°E). Erosional texture contains meter-scale blocks at HiRISE-scale. Caps lobate mesa sequences by overlying units Nue, Nnp1, or cr. Banding or stratification visible along some margins (for example, 17.87°N, 77.09°E). Type areas at different elevations: 18.19°N, long 77.01°E; 18.39°N, 77.27°E; 18.08°N, 77.26°E",
+    "interpretation": "Volcanic ash or eolian airfall deposit emplaced during the Late Noachian, possibly in multiple, localized episodes of deposition, that drapes underlying topography, for example on the Jezero crater rim. Correlates with unit Njf based on common stratigraphic position and shared textural and morphologic characteristics."
+  },
+  {
+    "name": "Rugged bright unit",
+    "polygons": 69,
+    "symbols": [
+      "Nrb"
+    ],
+    "unit_numbers": [
+      "9"
+    ],
+    "description": "Rugged, light-to-intermediate toned, high standing outcrops up to several hundred meters in height that occur throughout Nili Planum and along the Jezero crater rim and interior margin. Peaks are generally rugged (for example, 18.602°N, 77.031°E), with dark-toned and smooth slopes that sometimes expose underlying unit Nue (Figure 6). Nonconformable contacts with unit Nue occur at different elevations (Cross Section B-B'). Type area: lat 17.81°N, long 76.92°E.",
+    "interpretation": "Indurated remnant deposits of a more extensive unit of undetermined sedimentary or volcanic origin that was emplaced during the Late Noachian. Nonconformably deposited on top of unit Nue, as contacts between the two units occur at different elevations. Subsequently eroded to its current form as isolated outcrops."
+  },
+  {
+    "name": "Nili Planum 1 unit",
+    "polygons": 157,
+    "symbols": [
+      "Nnp1"
+    ],
+    "unit_numbers": [
+      "6"
+    ],
+    "description": "Stratigraphically lowest unit in the map area and underlies all other units. Contains three different surface expressions: a high-standing rugged outcrop expression, a rugged, light-to-intermediate toned, moderately cratered, high relief expression with irregularly or poorly defined margins, and a smooth, dark-toned, lightly-cratered, low relief expression occuring in local topographic lows. No clear stratigraphic contacts are discernable between the three expressions. Hummocks (~100s of meters in diameter and 10s of meters high), ridge crests, and megabreccia occur throughout this unit. Type areas: lat 17.90°N, long 76.94°E; lat 17.74°N, long 77.18°E, lat 17.90°N, long 77.12°E respectively.",
+    "interpretation": "Crustal rocks of undetermined origin, representing pre-Isidis crust, syn-Isidis impact products, and syn-Jezero impact products. Nnp1 was the target rock for the Jezero impact. Megabreccias represent pre-Isidis and pre-Jezero crust. The smooth dark-toned surface expression could be lower-relief portions of these crustal rocks that have been preferentially covered by eroded sediments from local or regional units or mantled by an unconsolidated dark, smooth deposit (possibly su) of unknown origin. Linear ridge crests are inferred to be filled or cemented fractures."
+  },
+  {
+    "name": "Crater ejecta unit",
+    "polygons": 16,
+    "symbols": [
+      "ce"
+    ],
+    "unit_numbers": [
+      "12"
+    ],
+    "description": "Rugged, hummocky, variably-toned unit that occurs around Sedona crater, Angelica crater, and an unnamed crater (17.87°N, 77.30°E). Contains frequent lineations and rare lobate scarps. Type area: lat 17.75°N, long 77.50°E",
+    "interpretation": "Sediments and undifferentiated target rock displaced during impact ejection. Target rock was unit Nnp1 for Jezero (cross sections)."
+  },
+  {
+    "name": "Crater interior unit",
+    "polygons": 9,
+    "symbols": [
+      "ci"
+    ],
+    "unit_numbers": [
+      "13"
+    ],
+    "description": "Rugged, light- to intermediate-toned, low-relief hillocks within Sedona crater and Angelica crater. Hillocks range from several hundred meters2 up to 1.5 km2 in area and are several tens of meters in height. Type area: lat 17.84°N, long 77.56°E",
+    "interpretation": "Mass wasted blocks from unit cr, or deposits of undetermined sedimentary or volcanic origin, emplaced within Sedona crater and Angelica crater during the Late Noachian and subsequently eroded to their current form. May be correlative with Nue."
+  },
+  {
+    "name": "Crater rim unit",
+    "polygons": 64,
+    "symbols": [
+      "cr"
+    ],
+    "unit_numbers": [
+      "11"
+    ],
+    "description": "Rugged, light- to intermediate-toned, relatively high-relief scarps surrounding circular or quasicircular depressions >500 m in diameter. Type area: lat 18.04°N, long 77.51°E",
+    "interpretation": "Undifferentiated target rock exposed and uplifted during impact. Target rock was unit Nnp1 for Jezero (cross sections). High standing outcrops of unit cr by the western and southern Jezero crater walls contain megabreccia and represent collapsed portions of the transient crater rim (cross section B-B’)."
+  },
+  {
+    "name": "Jezero floor unit",
+    "polygons": 13,
+    "symbols": [
+      "Njf"
+    ],
+    "unit_numbers": [
+      "2"
+    ],
+    "description": "Rugged, moderately-to-heavily cratered, light- to dark-toned, planar unit with margins defined by low-relief, sharp, lobate scarps, forms the central portion of the Jezero crater floor and overlies and embays units Nue and Nle, respectively. Most impact craters on this surface are <200 m. Can have dark, smooth surface texture, especially near contact with unit NHjf2. Type area: lat 18.43°N, long 77.65°E.",
+    "interpretation": "Volcanic ash or eolian airfall deposit that drapes underlying topography. Correlates with unit Nnp2 based on common stratigraphic position and shared textural and morphologic characteristics. Emplaced during the Late Noachian before deposition of unit NHjf1. May have been modified by subsequent lacustrine activity during deposition of units NHjf1 and NHjf2. Dark, smooth surface texture near unit NHjf2 is due to a dark mantle deposit or erosional lag derived from erosion of unit NHjf2. Previously interpreted by Schon and others (2012) and Goudge and others (2015) as an extrusive volcanic flow."
+  },
+  {
+    "name": "Lower etched unit",
+    "polygons": 20,
+    "symbols": [
+      "Nle"
+    ],
+    "unit_numbers": [
+      "3"
+    ],
+    "description": "Rugged, lightly cratered, light- to intermediate-toned unit concentrically exposed on the floor of Jezero adjacent to unit Njf. Topographically lower than adjacent unit Nue. Contains NE-SW trending ridges that extend several hundred meters in length. When present, impact craters are typically >200 m in diameter. Type area: lat 18.28°N, long 77.49°E",
+    "interpretation": "Volcanic ash deposit, similar to the origin of unit Nue. Could also be other clastic deposit of volcanic or eolian origin. Either deposited into an existing lake within Jezero or subsequently altered by later lacustrine processes during emplacement of units NHjf1 and NHjf2. Underlies unit Nue based on its consistently lower elevation. Ridges are yardangs (Day and Dorn, 2019)."
+  },
+  {
+    "name": "Nili Planum fan unit",
+    "polygons": 8,
+    "symbols": [
+      "Hnpf"
+    ],
+    "unit_numbers": [
+      "4"
+    ],
+    "description": "Smooth, rarely cratered, dark-toned unit with margins defined by low-relief scarps. Outcrops within and near Neretva Vallis are triangular-shaped, with rare stratification (18.56°N, 76.83°E), and overlie and infill parts of Neretva Vallis. Outcrops near Una Vallis occur in depressions, one of which is the end point for Una Vallis, and contain stratification at HiRISE scale (18.33°N, 77.09°E). Type area: 18.47°N, long 76.88°E",
+    "interpretation": "Alluvial/fluvial deposits emplaced during the Early to Late Hesperian, likely during the later stages of fluvial activity in Neretva Vallis and subsequently mantled by smooth, dark-toned mantle or erosional lag deposit."
+  },
+  {
+    "name": "Crater riim unit",
+    "polygons": 1,
+    "symbols": [
+      "cr"
+    ],
+    "unit_numbers": [
+      "11"
+    ],
+    "description": "Rugged, light- to intermediate-toned, relatively high-relief scarps surrounding circular or quasicircular depressions >500 m in diameter. Type area: lat 18.04°N, long 77.51°E",
+    "interpretation": "Undifferentiated target rock exposed and uplifted during impact. Target rock was unit Nnp1 for Jezero (cross sections). High standing outcrops of unit cr by the western and southern Jezero crater walls contain megabreccia and represent collapsed portions of the transient crater rim (cross section B-B’)."
+  },
+  {
+    "name": "Jezero fan 2 unit",
+    "polygons": 15,
+    "symbols": [
+      "NHjf2"
+    ],
+    "unit_numbers": [
+      "0"
+    ],
+    "description": "Lightly cratered, intermediate-toned, stratified unit with margins defined by sharp scarps, located at the mouth of Neretva Vallis on the western portion of Jezero crater's floor. Occurs at higher elevation than unit NHjf1 (18.58°N, 77.48°E). Contain rugged arcuate ridges and troughs that branch out from nodes and define several overlapping lobes (Figure 7). Meter-scale sequences of alternating light and dark strata as well as some curvilinear strata (18.48°N, 77.39°E; 18.47°N, 77.37°E). Forms isolated outcrops that are <50 m in height on the Jezero crater floor east of the main unit. Some outcrops exhibit parallel stratification on their slopes (18.43°N, 77.36°E), while others do not exhibit obvious visible stratification at map scale (for example, 18.47°N, 77.50°E). Type areas: lat 18.49°N, long 77.36°E and lat 18.47°N, long 77.50°E.",
+    "interpretation": "Deltaic fan deposits emplaced during the Late Noachian to Early Hesperian, postdating and overlying portions of unit NHjf1. Presence of inlet channels (Neretva, Sava Valles) and an outlet channel (Pliva Vallis) suggests deposition into a lacustrine environment. Rugged arcuate ridges are inverted channels based on their association with the fan deposit and radiation out from various  nodes. Overlapping lobes represent branching channel deposits and distinct episodes of sediment deposition (Figure 7). Isolated outcrops could be remnants of the main delta deposit, much of which has been eroded since initial deposition."
+  },
+  {
+    "name": "Jezero fan 1 unit",
+    "polygons": 9,
+    "symbols": [
+      "NHjf1"
+    ],
+    "unit_numbers": [
+      "1"
+    ],
+    "description": "Smooth, sparsely cratered, light-toned unit located on the northwestern floor of Jezero crater. Northeastern portion contains ridges that trend from NE to SW (18.60°N, 77.59°E), similar to the ridged Nue unit nearby. Southwestern portion contains semi-arcuate ridges and troughs (18.59°N, 77.47°E). Meter-scale stratification occasionally visible along the edges of the unit and within terraced knobby outcrops (for example, 18.60°N, 77.55°E). Type area: lat 18.59°N, long 77.47°E.",
+    "interpretation": "Degraded deltaic or lacustrine deposit emplaced during the Late Noachian before deposition of unit NHjf2. Represents an older episode of deposition from Neretva Vallis, given its spatial disconnect from Sava Vallis, proximity to unit NHjf2, and arcuate ridges in the southwestern outcrop that are inverted channels extending away from the direction of Neretva Vallis. Previously interpreted by Goudge and others (2015) as an older, degraded deposit from Sava Vallis."
+  }
+]
