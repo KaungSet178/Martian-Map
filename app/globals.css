@@ -2466,6 +2466,641 @@ input[type="radio"] {
   margin-top: 4px;
 }
 
+/* ==========================================================================
+   Mission Timeline Dashboard Components (M4.3)
+   ========================================================================== */
+
+.timeline-dashboard {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+
+.timeline-single-waypoint-card {
+  padding: 16px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.timeline-stop-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 15px;
+}
+
+.section-title-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.status-badge-container {
+  flex-shrink: 0;
+  margin-top: 4px;
+}
+
+/* 2. Planning Assumptions Bar */
+.timeline-assumptions-section {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.timeline-assumptions-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.assumptions-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: var(--color-text);
+}
+
+.disclaimer-subtext {
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--color-text-muted);
+  margin: 0;
+}
+
+.timeline-assumptions-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin-top: 4px;
+}
+
+@media (min-width: 680px) {
+  .timeline-assumptions-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.assumption-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.field-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-text);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.field-label .mono {
+  color: var(--color-route);
+  font-size: 12px;
+}
+
+.input-with-unit {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-with-unit input {
+  width: 100%;
+  padding-right: 48px;
+  box-sizing: border-box;
+}
+
+.unit-suffix {
+  position: absolute;
+  right: 12px;
+  font-size: 12px;
+  font-family: var(--font-mono, monospace);
+  color: var(--color-text-muted);
+  pointer-events: none;
+}
+
+.preset-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.preset-pill {
+  min-height: 28px;
+  padding: 4px 10px;
+  font-size: 11px;
+  font-family: var(--font-mono, monospace);
+  background: var(--color-surface-raised);
+  border: 1px solid var(--color-control-border);
+  border-radius: 9999px;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.preset-pill:hover:not(:disabled) {
+  background: var(--color-surface);
+  color: var(--color-text);
+  border-color: var(--color-route);
+}
+
+.preset-pill.active {
+  background: #0d2538;
+  border-color: var(--color-route);
+  color: var(--color-route);
+  font-weight: 600;
+}
+
+.preset-pill:focus-visible {
+  outline: 2px solid var(--color-route);
+  outline-offset: 1px;
+}
+
+.field-hint {
+  font-size: 11px;
+  color: var(--color-text-muted);
+  line-height: 1.4;
+}
+
+.input-warning-notice {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background: #331f10;
+  border: 1px solid var(--color-caution);
+  border-radius: 6px;
+  font-size: 12px;
+  color: #ffd080;
+}
+
+/* 3. Summary Metrics Grid */
+.timeline-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+@media (min-width: 860px) {
+  .timeline-summary-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.timeline-metric-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  transition: border-color 0.15s ease;
+}
+
+.timeline-metric-card.primary {
+  background: #091a2a;
+  border-color: rgba(89, 227, 250, 0.45);
+}
+
+.timeline-metric-card .card-top {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--color-text-muted);
+}
+
+.timeline-metric-card .metric-icon {
+  flex-shrink: 0;
+  color: var(--color-route);
+}
+
+.timeline-metric-card .card-label {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-text-muted);
+}
+
+.timeline-metric-card .card-value {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--color-text);
+  line-height: 1.2;
+}
+
+.timeline-metric-card.primary .card-value {
+  color: var(--color-route);
+}
+
+.timeline-metric-card .card-subtext {
+  font-size: 12px;
+  color: var(--color-text-muted);
+}
+
+/* 4. Warnings */
+.timeline-warnings-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* 5. Chronological Trajectory Schedule */
+.chronological-timeline-section {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.chronological-timeline-section .section-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.chronological-timeline-section .section-heading h3 {
+  margin: 0;
+  font-size: 16px;
+  color: var(--color-text);
+}
+
+.timeline-events-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.timeline-event-item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Stop Card */
+.timeline-stop-card {
+  position: relative;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  padding: 14px 16px;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.15s ease;
+}
+
+.timeline-stop-card:hover {
+  background: var(--color-surface-raised);
+  border-color: var(--color-route);
+}
+
+.timeline-stop-card:focus-visible {
+  outline: 2px solid var(--color-route);
+  outline-offset: 2px;
+}
+
+.timeline-stop-card.selected-node {
+  border-color: var(--color-route);
+  background: rgba(89, 227, 250, 0.06);
+  box-shadow: 0 0 0 1px var(--color-route), 0 4px 16px rgba(89, 227, 250, 0.15);
+}
+
+.timeline-stop-card.base {
+  border-left: 3px solid var(--color-route);
+}
+
+.timeline-stop-card.science_stop {
+  border-left: 3px solid var(--color-science);
+}
+
+.timeline-stop-card.poi {
+  border-left: 3px solid #f6ad55;
+}
+
+.timeline-stop-card.intermediate {
+  border-left: 3px solid #63b3ed;
+}
+
+.timeline-stop-card.comm_relay {
+  border-left: 3px solid #4fd1c5;
+}
+
+.timeline-stop-card.return-closure-node {
+  border-left: 3px dashed var(--color-route);
+  background: #091726;
+}
+
+.stop-card-main {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.stop-card-left {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  flex: 1;
+  min-width: 200px;
+}
+
+.stop-index-circle {
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  background: var(--color-surface-raised);
+  border: 1px solid var(--color-control-border);
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-text);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.timeline-stop-card.selected-node .stop-index-circle {
+  background: var(--color-route);
+  color: #051522;
+  border-color: var(--color-route);
+}
+
+.stop-identity {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.stop-name-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.role-glyph {
+  flex-shrink: 0;
+}
+
+.role-glyph.base { color: var(--color-route); }
+.role-glyph.science_stop { color: var(--color-science); }
+.role-glyph.poi { color: #f6ad55; }
+.role-glyph.intermediate { color: #63b3ed; }
+.role-glyph.comm_relay { color: #4fd1c5; }
+
+.stop-name {
+  font-size: 15px;
+  line-height: 1.35;
+  color: var(--color-text);
+}
+
+.stop-role-provenance {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: 12px;
+}
+
+.role-text-label {
+  color: var(--color-text-muted);
+}
+
+.stop-coords {
+  color: var(--color-route);
+  font-size: 11px;
+}
+
+/* Timing Chips */
+.stop-timing-chips {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.timing-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px;
+  background: var(--color-surface-raised);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  font-size: 12px;
+}
+
+.timing-chip .chip-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-text-muted);
+}
+
+.timing-chip .chip-time {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.timing-chip.arrival .chip-time {
+  color: var(--color-route);
+}
+
+.timing-chip.dwell {
+  background: rgba(182, 146, 254, 0.08);
+  border-color: rgba(182, 146, 254, 0.25);
+}
+
+.timing-chip.dwell .chip-time {
+  color: var(--color-science);
+}
+
+.timing-chip.departure .chip-time {
+  color: #72e0a2;
+}
+
+/* Transit Leg Card & Connector */
+.timeline-transit-leg-card {
+  position: relative;
+  display: flex;
+  margin: 4px 0 4px 13px;
+  padding-left: 20px;
+}
+
+.leg-vertical-connector {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.connector-line {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 2px;
+  background: var(--color-border);
+}
+
+.timeline-transit-leg-card.return-leg .connector-line {
+  background: repeating-linear-gradient(
+    to bottom,
+    var(--color-route) 0,
+    var(--color-route) 4px,
+    transparent 4px,
+    transparent 8px
+  );
+}
+
+.connector-arrow {
+  position: relative;
+  transform: rotate(90deg);
+  color: var(--color-text-muted);
+  background: var(--color-surface);
+  border-radius: 50%;
+  padding: 1px;
+}
+
+.leg-content {
+  flex: 1;
+  background: #091322;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 10px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 6px 0;
+}
+
+.timeline-transit-leg-card.return-leg .leg-content {
+  background: #081a29;
+  border-color: rgba(89, 227, 250, 0.35);
+}
+
+.timeline-transit-leg-card.unsupported-leg .leg-content {
+  border-color: var(--color-caution);
+  background: #1f170b;
+}
+
+.leg-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.leg-title-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--color-text);
+}
+
+.leg-route-endpoints {
+  font-size: 11px;
+  color: var(--color-text-muted);
+}
+
+.leg-metrics-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px;
+  font-size: 12px;
+}
+
+.leg-metric {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.leg-metric .metric-label {
+  color: var(--color-text-muted);
+  font-size: 11px;
+}
+
+.leg-metric .metric-value {
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.leg-metric .metric-clock {
+  color: var(--color-route);
+  font-size: 11px;
+}
+
+.leg-unsupported-warning {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: #ffd080;
+  margin: 4px 0 0;
+}
+
+/* 6. Scientific Disclaimer Notice */
+.timeline-disclaimer-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-left: 3px solid var(--color-caution);
+  border-radius: 8px;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.disclaimer-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--color-caution);
+}
+
+.disclaimer-icon {
+  flex-shrink: 0;
+}
+
+.disclaimer-body {
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--color-text-muted);
+  margin: 0;
+}
+
 @keyframes pulse-ring {
   0% { opacity: 0.6; transform: scale(0.96); }
   50% { opacity: 1; transform: scale(1.04); }

@@ -49,6 +49,7 @@ import { MissionEditor } from "@/components/mission/editor";
 import { RouteComparison } from "@/components/mission/analysis";
 import { MissionBrief } from "@/components/mission/brief";
 import { WaypointEditor } from "@/components/mission/waypoint-editor";
+import { MissionTimelineDashboard } from "@/components/mission/timeline-dashboard";
 import {
   initWaypointPlanFromMission,
   syncMissionWithWaypointPlan,
@@ -117,7 +118,7 @@ export function Planner() {
   const target = region.targets.find((t) => t.id === selected);
   const stale = mission.dataset_version !== region.dataset_version;
 
-  const [planSubView, setPlanSubView] = useState<"objectives" | "waypoints">("objectives");
+  const [planSubView, setPlanSubView] = useState<"objectives" | "waypoints" | "timeline">("objectives");
   const [editingWaypointId, setEditingWaypointId] = useState<string | null>(null);
   const [isPlacingOnMap, setIsPlacingOnMap] = useState(false);
   const [selectedWaypointId, setSelectedWaypointId] = useState<string | null>(null);
@@ -593,6 +594,7 @@ export function Planner() {
                     aria-selected={planSubView === "objectives"}
                     className={planSubView === "objectives" ? "active" : ""}
                     onClick={() => setPlanSubView("objectives")}
+                    data-testid="tab-plan-objectives"
                   >
                     Science Objectives ({mission.target_ids.length})
                   </button>
@@ -602,11 +604,22 @@ export function Planner() {
                     aria-selected={planSubView === "waypoints"}
                     className={planSubView === "waypoints" ? "active" : ""}
                     onClick={() => setPlanSubView("waypoints")}
+                    data-testid="tab-plan-waypoints"
                   >
                     Surface Waypoints ({activePlan.waypoints.length})
                   </button>
+                  <button
+                    type="button"
+                    role="tab"
+                    aria-selected={planSubView === "timeline"}
+                    className={planSubView === "timeline" ? "active" : ""}
+                    onClick={() => setPlanSubView("timeline")}
+                    data-testid="tab-plan-timeline"
+                  >
+                    Timeline Schedule
+                  </button>
                 </div>
-                {planSubView === "objectives" ? (
+                {planSubView === "objectives" && (
                   <MissionEditor
                     mission={mission}
                     region={region}
@@ -614,7 +627,8 @@ export function Planner() {
                     onScience={() => showPanel("science")}
                     onSwitchToWaypoints={() => setPlanSubView("waypoints")}
                   />
-                ) : (
+                )}
+                {planSubView === "waypoints" && (
                   <WaypointEditor
                     plan={activePlan}
                     regionName={region.name}
@@ -719,6 +733,16 @@ export function Planner() {
                       );
                       updateMission(updatedMission);
                     }}
+                    onExploreScience={() => showPanel("science")}
+                  />
+                )}
+                {planSubView === "timeline" && (
+                  <MissionTimelineDashboard
+                    plan={activePlan}
+                    region={region}
+                    onSelectWaypoint={handleSelectWaypoint}
+                    selectedWaypointId={selectedWaypointId}
+                    onSwitchToWaypoints={() => setPlanSubView("waypoints")}
                     onExploreScience={() => showPanel("science")}
                   />
                 )}
