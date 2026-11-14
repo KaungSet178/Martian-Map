@@ -216,4 +216,6 @@ Python and its numeric libraries must be deployed with a full Node server. Large
 
 ## 20. Delivery
 
-All implementation and validation gates passed. The implementation SHA and verified normal-push receipt are recorded after commit creation in a documentation-only delivery update. Target branch: `feat/map-routing-feature-integration`. Main and teammate worktrees remain untouched.
+All implementation and validation gates passed. Implementation commit: `032706f4fa3724f975c445aef942c878930f65d3` (`feat(integration): unify Gale and Jezero terrain routing`). Normal push to `origin/feat/map-routing-feature-integration` succeeded; an independent `git ls-remote origin refs/heads/feat/map-routing-feature-integration` matched that full local SHA. This documentation-only receipt follows that verified implementation commit and is pushed normally as well. The final branch HEAD is the receipt commit; it can be resolved with `git rev-parse HEAD` and checked against the same remote command without a self-referential embedded hash.
+
+Production review: http://127.0.0.1:3219 (HTTP 200 checked after delivery). The working tree is `D:/martian-map-routing-integration`. Main and teammate worktrees remain untouched; the original worktree's one modified renderer and two untracked scripts are preserved. No force-push or main merge occurred.
