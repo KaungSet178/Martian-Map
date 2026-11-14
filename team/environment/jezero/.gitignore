@@ -1,0 +1,9 @@
+# Raw PDS4 downloads are large and reproducible; never committed.
+cache/
+
+# Generated preview harness output (HTML + bundled JS).
+preview/
+test-results/
+playwright-report/
+
+__pycache__/
