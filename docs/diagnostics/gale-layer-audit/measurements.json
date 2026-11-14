@@ -1,0 +1,449 @@
+{
+  "starting_commit": "bd12f5508ed317b76d5119db39b56e4f4f059590",
+  "overview_wsen": [
+    137.3442352329006,
+    -4.822361175063087,
+    137.4579431096443,
+    -4.580605407446296
+  ],
+  "overview_area_m2": 96259148.3776599,
+  "worktrees_before": {
+    "D:/martian-map": "M components/map/map-workspace.tsx",
+    "D:/martian-map/output/gale-g1": "",
+    "D:/martian-map/output/gale-g1/output/end-of-day-2026-11-13": "",
+    "D:/martian-map/output/gale-g1/output/gale-color-basemap": "",
+    "D:/martian-map/output/gale-g1/output/gale-g4-g5-integration": "",
+    "D:/martian-map/output/gale-g1/output/gale-layer-visualization": "?? docs/diagnostics/",
+    "D:/martian-map/output/jezero-preview": "",
+    "D:/martian-map-antigravity": "",
+    "D:/martian-map-gale-terrain": "",
+    "D:/martian-map-m4-integration": "?? tests/mission-m4-integration.test.ts",
+    "D:/martian-map-resource-budget": "",
+    "D:/martian-map-timeline": ""
+  },
+  "tools": {
+    "python": "3.13.7",
+    "rasterio": "1.5.2",
+    "gdal": "3.12.2",
+    "pyproj": "3.8.0",
+    "proj": "9.8.1",
+    "shapely": "2.2.0",
+    "pyogrio": "0.13.0"
+  },
+  "regional_hrsc_30m": {
+    "source_filename": "hrsc_km09_h1938_h1927_h1916-dtm-mosaic.tif",
+    "source_sha256": "ed1fd5cd080a62eff7d2b9f38110c0a2c62ee05a4706ac0b45d015043e781ae6",
+    "crs_wkt": "PROJCS[\"unnamed\",GEOGCS[\"unnamed ellipse\",DATUM[\"unknown\",SPHEROID[\"unnamed\",3396190,0]],PRIMEM[\"Greenwich\",0],UNIT[\"degree\",0.0174532925199433,AUTHORITY[\"EPSG\",\"9122\"]]],PROJECTION[\"Equirectangular\"],PARAMETER[\"standard_parallel_1\",0],PARAMETER[\"central_meridian\",0],PARAMETER[\"false_easting\",0],PARAMETER[\"false_northing\",0],UNIT[\"metre\",1,AUTHORITY[\"EPSG\",\"9001\"]],AXIS[\"Easting\",EAST],AXIS[\"Northing\",NORTH]]",
+    "width": 7584,
+    "height": 10275,
+    "dtype": "float32",
+    "nodata": -32768.0,
+    "affine_abcdef": [
+      30.0,
+      0.0,
+      8054872.398099138,
+      0.0,
+      -30.0,
+      -176868.30708358268
+    ],
+    "source_native_bounds": [
+      8054872.398099138,
+      -485118.3070835827,
+      8282392.398099138,
+      -176868.30708358268
+    ],
+    "source_wsen": [
+      135.89056941086952,
+      -8.184239268244921,
+      139.72896942818787,
+      -2.9838753207309043
+    ],
+    "source_valid_bbox_wsen": [
+      135.89056941086952,
+      -8.183733150099178,
+      139.72846331004214,
+      -2.9838753207309043
+    ],
+    "valid_mask_sha256": "b41a1cabb9b2e1392c053c62166264f6e51414167511b3d1889c2a5f847fba5f",
+    "source_valid_cells": 60515345,
+    "source_total_cells": 77925600,
+    "source_valid_cell_area_m2": 54193511330.535225,
+    "derived_width": 291,
+    "derived_height": 543,
+    "derived_affine_abcdef": [
+      30.0,
+      0.0,
+      8140042.398099138,
+      0.0,
+      -30.0,
+      -270528.3070835827
+    ],
+    "derived_window_col_row": [
+      2839,
+      3122
+    ],
+    "input_support_width_height": [
+      293,
+      545
+    ],
+    "derived_extent_wsen": [
+      137.32743882663516,
+      -4.838798324880672,
+      137.47471920704652,
+      -4.563976171741976
+    ],
+    "derived_valid_cells": 158013,
+    "derived_spherical_area_m2": 141733079.01931885,
+    "area_ratio_to_overview": 1.4724115204432109,
+    "grid_step_north_m": 30.0,
+    "grid_step_east_at_overview_center_m": 29.899057957021324,
+    "tiles_hash_checked": 210,
+    "tile_alpha_pair_mismatches": 0,
+    "tile_alpha_inverse_sampling_mismatches": 0,
+    "alpha_by_zoom": {
+      "10": {
+        "opaque_pixels": 21507,
+        "bbox_wsen": [
+          137.32772827148438,
+          -4.83920700122575,
+          137.47467041015625,
+          -4.564104615806488
+        ]
+      },
+      "11": {
+        "opaque_pixels": 85814,
+        "bbox_wsen": [
+          137.32772827148438,
+          -4.838522803012068,
+          137.47467041015625,
+          -4.564104615806488
+        ]
+      },
+      "12": {
+        "opaque_pixels": 344487,
+        "bbox_wsen": [
+          137.32738494873047,
+          -4.8388649022053665,
+          137.47467041015625,
+          -4.564104615806488
+        ]
+      },
+      "13": {
+        "opaque_pixels": 1378806,
+        "bbox_wsen": [
+          137.32738494873047,
+          -4.8388649022053665,
+          137.47467041015625,
+          -4.563933498759915
+        ]
+      },
+      "5": {
+        "opaque_pixels": 18,
+        "bbox_wsen": [
+          137.3291015625,
+          -4.8282597468669755,
+          137.4609375,
+          -4.565473550710281
+        ]
+      },
+      "6": {
+        "opaque_pixels": 84,
+        "bbox_wsen": [
+          137.3291015625,
+          -4.8282597468669755,
+          137.48291015625,
+          -4.565473550710281
+        ]
+      },
+      "7": {
+        "opaque_pixels": 325,
+        "bbox_wsen": [
+          137.3291015625,
+          -4.83920700122575,
+          137.471923828125,
+          -4.565473550710281
+        ]
+      },
+      "8": {
+        "opaque_pixels": 1350,
+        "bbox_wsen": [
+          137.3291015625,
+          -4.83920700122575,
+          137.4774169921875,
+          -4.565473550710281
+        ]
+      },
+      "9": {
+        "opaque_pixels": 5454,
+        "bbox_wsen": [
+          137.32635498046875,
+          -4.83920700122575,
+          137.47467041015625,
+          -4.562735678291756
+        ]
+      }
+    },
+    "runtime_and_coverage_bounds_match": true
+  },
+  "global_usgs_200m": {
+    "source_filename": "usgs_hrsc_mola_200m_gale.tif",
+    "source_sha256": "6661929884ed52de7f0a7e746e99d5196783178ce7bdfe718c52402747b87ff4",
+    "crs_wkt": "GEOGCS[\"GCS_Mars_2000_Sphere\",DATUM[\"Mars_2000_(Sphere)\",SPHEROID[\"Mars_2000_Sphere_IAU_IAG\",3396190,0]],PRIMEM[\"Reference_Meridian\",0],UNIT[\"degree\",0.0174532925199433,AUTHORITY[\"EPSG\",\"9122\"]],AXIS[\"Latitude\",NORTH],AXIS[\"Longitude\",EAST]]",
+    "width": 179,
+    "height": 238,
+    "dtype": "int16",
+    "nodata": -32768.0,
+    "affine_abcdef": [
+      0.003374120830641,
+      0.0,
+      137.09650154281053,
+      0.0,
+      -0.003374120830641,
+      -4.296554853924022
+    ],
+    "source_native_bounds": [
+      137.09650154281053,
+      -5.0995956116165795,
+      137.70046917149526,
+      -4.296554853924022
+    ],
+    "source_wsen": [
+      137.09650154281053,
+      -5.0995956116165795,
+      137.70046917149526,
+      -4.296554853924022
+    ],
+    "source_valid_bbox_wsen": [
+      137.09650154281053,
+      -5.0995956116165795,
+      137.70046917149526,
+      -4.296554853924022
+    ],
+    "valid_mask_sha256": "890eeacee909d3e9215683347cc5ff9ef9878068e7c9ae2c3bc5378a4eda4d04",
+    "source_valid_cells": 42602,
+    "source_total_cells": 42602,
+    "source_valid_cell_area_m2": 1698340484.9048169,
+    "derived_width": 177,
+    "derived_height": 236,
+    "derived_affine_abcdef": [
+      0.003374120830641,
+      0.0,
+      137.09987566364117,
+      0.0,
+      -0.003374120830641,
+      -4.299928974754662
+    ],
+    "derived_window_col_row": [
+      1,
+      1
+    ],
+    "input_support_width_height": [
+      179,
+      238
+    ],
+    "derived_extent_wsen": [
+      137.09987566364117,
+      -5.096221490785939,
+      137.69709505066461,
+      -4.299928974754662
+    ],
+    "derived_valid_cells": 41772,
+    "derived_spherical_area_m2": 1665252534.0036273,
+    "area_ratio_to_overview": 17.29968072717859,
+    "grid_step_north_m": 199.999991643332,
+    "grid_step_east_at_overview_center_m": 199.3270447182588,
+    "tiles_hash_checked": 1305,
+    "tile_alpha_pair_mismatches": 0,
+    "tile_alpha_inverse_sampling_mismatches": 0,
+    "alpha_by_zoom": {
+      "10": {
+        "opaque_pixels": 253170,
+        "bbox_wsen": [
+          137.09976196289062,
+          -5.096415645847089,
+          137.6971435546875,
+          -4.2998522307419185
+        ]
+      },
+      "11": {
+        "opaque_pixels": 1012680,
+        "bbox_wsen": [
+          137.09976196289062,
+          -5.096415645847089,
+          137.6971435546875,
+          -4.2998522307419185
+        ]
+      },
+      "12": {
+        "opaque_pixels": 4048980,
+        "bbox_wsen": [
+          137.09976196289062,
+          -5.096073680285908,
+          137.6971435546875,
+          -4.2998522307419185
+        ]
+      },
+      "13": {
+        "opaque_pixels": 16194745,
+        "bbox_wsen": [
+          137.09993362426758,
+          -5.0962446630892515,
+          137.6971435546875,
+          -4.2998522307419185
+        ]
+      },
+      "5": {
+        "opaque_pixels": 234,
+        "bbox_wsen": [
+          137.109375,
+          -5.09094417503339,
+          137.6806640625,
+          -4.302591077119675
+        ]
+      },
+      "6": {
+        "opaque_pixels": 972,
+        "bbox_wsen": [
+          137.109375,
+          -5.09094417503339,
+          137.70263671875,
+          -4.302591077119675
+        ]
+      },
+      "7": {
+        "opaque_pixels": 3888,
+        "bbox_wsen": [
+          137.098388671875,
+          -5.09094417503339,
+          137.691650390625,
+          -4.302591077119675
+        ]
+      },
+      "8": {
+        "opaque_pixels": 15805,
+        "bbox_wsen": [
+          137.098388671875,
+          -5.096415645847089,
+          137.6971435546875,
+          -4.302591077119675
+        ]
+      },
+      "9": {
+        "opaque_pixels": 63147,
+        "bbox_wsen": [
+          137.10113525390625,
+          -5.096415645847089,
+          137.6971435546875,
+          -4.2998522307419185
+        ]
+      }
+    },
+    "runtime_and_coverage_bounds_match": true
+  },
+  "arc_pass": {
+    "archive_sha256": "783f052b5bb5eb7b478e66ce6c972816f8adc0e154be0176bc817b14cd7e8a24",
+    "geojson_sha256": "d182c9291450f77fd07fef4fbdb979d23df45e65c6665fb02dd7df08f2748dce",
+    "native_bounds_m": [
+      8144734.477600001,
+      -283870.8426000001,
+      8144998.632300001,
+      -283649.2681
+    ],
+    "geographic_wsen": [
+      137.4065970458571,
+      -4.789072816244821,
+      137.4110534954222,
+      -4.785334720408685
+    ],
+    "feature_count": 53,
+    "unit_counts": {
+      "F1": 5,
+      "R": 21,
+      "MSg": 7,
+      "F3": 16,
+      "F2": 1,
+      "mF1R": 2,
+      "S": 1
+    },
+    "valid_features": 53,
+    "empty_features": 0,
+    "source_to_display_max_vertex_delta_degrees": 0.0,
+    "projected_union_area_m2": 58527.26077382739,
+    "spherical_union_area_m2": 58323.08712365542,
+    "projected_boundary_area_m2": 58529.945575141894,
+    "source_overlap_m2": 0.0001719896899885498,
+    "source_unmapped_inside_boundary_m2": 2.6848013144980585,
+    "outside_boundary_m2": 0.0,
+    "spherical_bbox_area_m2": 58325.765178481895,
+    "bbox_width_ground_m": 263.23320232612167,
+    "bbox_height_ground_m": 221.57450000007483,
+    "area_percent_overview": 0.060589656262937816,
+    "traverse_wsen": [
+      137.3527136,
+      -4.825677784,
+      137.4494842,
+      -4.589136889
+    ],
+    "traverse_intersection_projected_length_m": 720.2237402568097,
+    "traverse_intersecting_source_features": 1
+  },
+  "raw_inputs_unchanged": {
+    "D:\\martian-map\\output\\gale-g1\\output\\gale-g4-g5-integration\\output\\g4\\raw\\hrsc_km09_h1938_h1927_h1916-dtm-mosaic.tif": true,
+    "D:\\martian-map\\output\\gale-g1\\output\\gale-g4-g5-integration\\output\\g4\\raw\\usgs_hrsc_mola_200m_gale.tif": true,
+    "D:\\martian-map\\output\\gale-g1\\output\\gale-layer-visualization\\team\\gale\\sources\\g3\\Geomap.gdb.zip": true
+  },
+  "worktrees_after": {
+    "D:/martian-map": "M components/map/map-workspace.tsx",
+    "D:/martian-map/output/gale-g1": "",
+    "D:/martian-map/output/gale-g1/output/end-of-day-2026-11-13": "",
+    "D:/martian-map/output/gale-g1/output/gale-color-basemap": "",
+    "D:/martian-map/output/gale-g1/output/gale-g4-g5-integration": "",
+    "D:/martian-map/output/gale-g1/output/gale-layer-visualization": "?? docs/diagnostics/",
+    "D:/martian-map/output/jezero-preview": "",
+    "D:/martian-map-antigravity": "",
+    "D:/martian-map-gale-terrain": "",
+    "D:/martian-map-m4-integration": "?? tests/mission-m4-integration.test.ts",
+    "D:/martian-map-resource-budget": "",
+    "D:/martian-map-timeline": ""
+  },
+  "original_global_header": {
+    "prefix_sha256": "c4189705c45c65eef450cacd4942fc31832a75b48fa35df2b578aa7689f028d7",
+    "width": 106694,
+    "height": 53347,
+    "affine_abcdef": [
+      0.003374120830641,
+      0.0,
+      -180.0,
+      0.0,
+      -0.003374120830641,
+      90.0
+    ],
+    "wsen": [
+      -180.0,
+      -89.99922395220543,
+      179.99844790441085,
+      90.0
+    ],
+    "nodata": -32768.0,
+    "dtype": "int16",
+    "crs_wkt": "GEOGCS[\"GCS_Mars_2000_Sphere\",DATUM[\"Mars_2000_(Sphere)\",SPHEROID[\"Mars_2000_Sphere_IAU_IAG\",3396190,0]],PRIMEM[\"Reference_Meridian\",0],UNIT[\"degree\",0.0174532925199433,AUTHORITY[\"EPSG\",\"9122\"]],AXIS[\"Latitude\",NORTH],AXIS[\"Longitude\",EAST]]",
+    "full_global_valid_mask": "Not read: 11.38 GB source not downloaded; Gale subset validity independently checked.",
+    "native_dn_sample_checks": [
+      {
+        "subset_row": 0,
+        "source_row": 27947,
+        "values_verified": 179
+      },
+      {
+        "subset_row": 119,
+        "source_row": 28066,
+        "values_verified": 179
+      },
+      {
+        "subset_row": 237,
+        "source_row": 28184,
+        "values_verified": 179
+      }
+    ]
+  }
+}

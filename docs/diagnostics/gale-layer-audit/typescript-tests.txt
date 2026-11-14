@@ -1,0 +1,163 @@
+Command: node D:/martian-map/node_modules/tsx/dist/cli.mjs --test tests/mission.test.ts tests/regions.test.ts tests/gale-integration.test.ts
+Exit code: 0
+
+TAP version 13
+# Subtest: Gale terrain alternatives preserve independent geology, optical imagery and traverse in both directions
+ok 1 - Gale terrain alternatives preserve independent geology, optical imagery and traverse in both directions
+  ---
+  duration_ms: 1.4483
+  type: 'test'
+  ...
+# Subtest: Jezero and Oxia retain the original availability and visibility policy
+ok 2 - Jezero and Oxia retain the original availability and visibility policy
+  ---
+  duration_ms: 0.4917
+  type: 'test'
+  ...
+# Subtest: regional terrain selection preserves camera policy and neutral numeric legends
+ok 3 - regional terrain selection preserves camera policy and neutral numeric legends
+  ---
+  duration_ms: 0.5639
+  type: 'test'
+  ...
+# Subtest: all region fixtures obey shared contract and cannot imply scientific readiness
+ok 4 - all region fixtures obey shared contract and cannot imply scientific readiness
+  ---
+  duration_ms: 5.2827
+  type: 'test'
+  ...
+# Subtest: individual stop moves preserve membership and boundaries
+ok 5 - individual stop moves preserve membership and boundaries
+  ---
+  duration_ms: 0.4961
+  type: 'test'
+  ...
+# Subtest: one-way endpoints, unknown target locations and stale datasets block readiness
+ok 6 - one-way endpoints, unknown target locations and stale datasets block readiness
+  ---
+  duration_ms: 0.8674
+  type: 'test'
+  ...
+# Subtest: saved plans retain independent reserves, stop order, versions and timestamps
+ok 7 - saved plans retain independent reserves, stop order, versions and timestamps
+  ---
+  duration_ms: 4.6335
+  type: 'test'
+  ...
+# Subtest: imports reject foreign, duplicate and unknown objectives without trusting results
+ok 8 - imports reject foreign, duplicate and unknown objectives without trusting results
+  ---
+  duration_ms: 1.722
+  type: 'test'
+  ...
+# Subtest: known mandatory failure outranks missing evidence; six checks required for feasible
+ok 9 - known mandatory failure outranks missing evidence; six checks required for feasible
+  ---
+  duration_ms: 0.1697
+  type: 'test'
+  ...
+# Subtest: DEM derivatives retain audited bytes, bounded support, units and conservative readiness
+ok 10 - DEM derivatives retain audited bytes, bounded support, units and conservative readiness
+  ---
+  duration_ms: 21.6515
+  type: 'test'
+  ...
+# Subtest: per-product raster request bounds and nearest resampling preserve legacy defaults
+ok 11 - per-product raster request bounds and nearest resampling preserve legacy defaults
+  ---
+  duration_ms: 1.3226
+  type: 'test'
+  ...
+# Subtest: G4 regional and global terrain layers preserve multi-resolution hierarchy, audited tiles, and scientific bounds
+ok 12 - G4 regional and global terrain layers preserve multi-resolution hierarchy, audited tiles, and scientific bounds
+  ---
+  duration_ms: 6.2372
+  type: 'test'
+  ...
+# Subtest: Arc Pass asset preserves all source classifications and audited geometry identity
+ok 13 - Arc Pass asset preserves all source classifications and audited geometry identity
+  ---
+  duration_ms: 6.2637
+  type: 'test'
+  ...
+# Subtest: categorical layer contracts reject missing or duplicate legend values and preserve legacy manifests
+ok 14 - categorical layer contracts reject missing or duplicate legend values and preserve legacy manifests
+  ---
+  duration_ms: 4.3391
+  type: 'test'
+  ...
+# Subtest: optional photo evidence preserves legacy manifests and cannot promote an area to a point
+ok 15 - optional photo evidence preserves legacy manifests and cannot promote an area to a point
+  ---
+  duration_ms: 2.292
+  type: 'test'
+  ...
+# Subtest: photographs require acquisition metadata, local source lineage and consistent product identity
+ok 16 - photographs require acquisition metadata, local source lineage and consistent product identity
+  ---
+  duration_ms: 5.4742
+  type: 'test'
+  ...
+# Subtest: committed NASA browse assets match the reviewed evidence register without local image alteration
+ok 17 - committed NASA browse assets match the reviewed evidence register without local image alteration
+  ---
+  duration_ms: 7.4471
+  type: 'test'
+  ...
+# Subtest: registry resolves every region, typed metadata and safe unknown IDs
+ok 18 - registry resolves every region, typed metadata and safe unknown IDs
+  ---
+  duration_ms: 1.4114
+  type: 'test'
+  ...
+# Subtest: region modules own their content without importing other regions or UI
+ok 19 - region modules own their content without importing other regions or UI
+  ---
+  duration_ms: 7.6116
+  type: 'test'
+  ...
+# Subtest: validation rejects foreign records, duplicate IDs and missing scientific lineage
+ok 20 - validation rejects foreign records, duplicate IDs and missing scientific lineage
+  ---
+  duration_ms: 1.2331
+  type: 'test'
+  ...
+# Subtest: declarative renderer mounts only current regional sources and cleans them on switch
+ok 21 - declarative renderer mounts only current regional sources and cleans them on switch
+  ---
+  duration_ms: 1.6518
+  type: 'test'
+  ...
+# Subtest: Mars east-longitude display conversion and extents never infer Earth distances
+ok 22 - Mars east-longitude display conversion and extents never infer Earth distances
+  ---
+  duration_ms: 0.2062
+  type: 'test'
+  ...
+# Subtest: overview fits the reviewed extent without constraining navigation or accumulating padding
+ok 23 - overview fits the reviewed extent without constraining navigation or accumulating padding
+  ---
+  duration_ms: 0.5028
+  type: 'test'
+  ...
+# Subtest: regional raster bounds limit sparse tile requests without changing Mars registration
+ok 24 - regional raster bounds limit sparse tile requests without changing Mars registration
+  ---
+  duration_ms: 0.1773
+  type: 'test'
+  ...
+# Subtest: backend boundary rejects missing one-way endpoints and incomplete assessments
+ok 25 - backend boundary rejects missing one-way endpoints and incomplete assessments
+  ---
+  duration_ms: 4.4862
+  type: 'test'
+  ...
+1..25
+# tests 25
+# suites 0
+# pass 25
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 702.3345
