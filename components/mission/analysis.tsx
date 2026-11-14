@@ -1,5 +1,7 @@
 "use client";
 
+import { missionPlanningSnapshot } from "@/lib/mission/planning-snapshot";
+import { PlanningSummary } from "./planning-summary";
 import type { TerrainRoute } from "@/lib/routing/contracts";
 import { Shield, Timer, Microscope, LockKeyhole } from "lucide-react";
 import { assessments, type RegionManifest } from "@/lib/contracts/region";
@@ -12,7 +14,7 @@ export function RouteComparison({
   region,
   online,
   onEvidence,
-  terrainRoute,
+  terrainRoute: suppliedTerrainRoute,
   onTerrainRouting,
 }: {
   mission: Mission;
@@ -22,6 +24,8 @@ export function RouteComparison({
   terrainRoute?: TerrainRoute | null;
   onTerrainRouting?: () => void;
 }) {
+  const snapshot = missionPlanningSnapshot(mission, region, suppliedTerrainRoute);
+  const terrainRoute = snapshot.terrain;
   const availability = routeAvailability(mission, region, online);
   const icons = [Shield, Timer, Microscope];
   return (
@@ -34,6 +38,7 @@ export function RouteComparison({
           objective.
         </p>
       </div>
+      <PlanningSummary snapshot={snapshot} />
       {terrainRoute ? <Notice title="Terrain route computed - absolute registration unverified">
         <p>{terrainRoute.preference === "shortest" ? "Shortest distance" : "Lower terrain cost"}: {terrainRoute.distanceMeters?.toFixed(1)} m 3D DEM distance; {terrainRoute.horizontalDistanceMeters?.toFixed(1)} m horizontal Mars distance. Source: {terrainRoute.sourceDatasetIds.join(", ")}.</p>
         <p>This research path does not establish the science-objective readiness or operational assessments below.</p>
@@ -89,7 +94,7 @@ export function FeasibilityPanel({hasTerrain=false}:{hasTerrain?:boolean}={}) {
         ))}
       </dl>
       <p className="supporting">
-        {hasTerrain ? "Terrain distance and path-grade estimates are available above. Validated EVA time, oxygen, battery, radiation dose and return margin remain unavailable." : "Distance, EVA time, slope, oxygen, battery, radiation dose and return margin: unavailable."}
+        {hasTerrain ? "Terrain distance and path-grade estimates are available above. Validated EVA time, oxygen, battery, radiation dose and return margin remain unavailable." : "Geometric distance for planning points is shown in the planning snapshot. Validated EVA time, slope, oxygen, battery, radiation dose and return margin remain unavailable."}
       </p>
     </section>
   );

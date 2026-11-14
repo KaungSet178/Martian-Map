@@ -225,7 +225,7 @@ test("syncMissionWithWaypointPlan: syncs base, endpoint, target_ids, and preserv
   // target_ids must include the waypoint's verified target AND preserve the unverified target
   assert.ok(synced.target_ids.includes("target-verified-2"));
   assert.ok(synced.target_ids.includes("target-unverified-1"));
-  assert.equal(synced.waypoint_plan, plan);
+  assert.deepEqual(synced.waypoint_plan, plan);
 });
 
 test("syncWaypointPlanWithMission: preserves intermediate waypoints when science targets change", () => {

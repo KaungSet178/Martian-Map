@@ -162,7 +162,7 @@ describe("WaypointItinerary Component Rendering", () => {
 
     // Formatted coordinates
     assert.match(html, /-5.4000°, 137.8000° E/);
-    assert.match(html, /-5.4200°, 137.8300° E/);
+    assert.match(html, /-5.42° N, 137.83° E/);
 
     // Catalog ID display
     assert.match(html, /target-pahrump-hills/);
@@ -175,7 +175,7 @@ describe("WaypointItinerary Component Rendering", () => {
     );
 
     // Verified NASA Target badge
-    assert.match(html, /Observed · NASA Target/);
+    assert.match(html, /Evidence unavailable · Catalog target/);
     // User planning input badge
     assert.match(html, /Scenario · User Waypoint/);
   });
@@ -279,7 +279,7 @@ describe("WaypointEditor Component Rendering & Validation", () => {
     assert.match(html, /data-testid="one-way-section"/);
   });
 
-  test("renders advisory warnings when origin is not marked role=base", () => {
+  test("renders recoverable validation errors when no origin base is selected", () => {
     let plan = createTestPlan();
     // Change first stop role to intermediate
     const nonBaseFirst = { ...plan.waypoints[0], role: "intermediate" as const };
@@ -292,8 +292,8 @@ describe("WaypointEditor Component Rendering & Validation", () => {
       React.createElement(WaypointEditor, { plan }),
     );
 
-    assert.match(html, /data-testid="validation-warnings"/);
-    assert.match(html, /first waypoint.*must have role.*base/i);
+    assert.match(html, /data-testid="validation-errors"/);
+    assert.match(html, /Designate exactly one origin base/i);
   });
 
   test("renders interactive placement button when onRequestMapPlacement is provided", () => {

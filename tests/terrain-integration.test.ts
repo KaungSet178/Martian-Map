@@ -12,7 +12,7 @@ import { loadJezeroRoutingGrid } from "../lib/routing/jezero/loader";
 import { terrainBriefSummary } from "../components/mission/brief";
 export function realRequest(region:"gale"|"jezero",round=false) {
   const points=region==="gale"?[[137.441633,-4.589467],[137.4010487,-4.6347708]]:[[77.450886,18.444627],[77.38,18.455]];
-  const plan=createWaypointPlan({region_id:region,name:"Authentic route QA",mode:round?"round_trip":"one_way",waypoints:points.map(([longitude_east,latitude],i)=>createWaypoint({id:`qa-${i}`,coordinates:{longitude_east,latitude},role:i===0?"base":"science_stop",provenance:"user_planning_input"}))});
+  const plan=createWaypointPlan({region_id:region,name:"Authentic route QA",mode:round?"round_trip":"one_way",waypoints:points.map(([longitude_east,latitude],i)=>createWaypoint({id:`qa-${i}`,coordinates:{longitude_east,latitude},role:i===0?"base":round?"science_stop":"destination",provenance:"user_planning_input"}))});
   return {regionId:region,plan,datasetId:region==="gale"?"gale-hrsc-30m":"jezero-usgs-trn-dtm-routing-25m",maxSnapMeters:100};
 }
 for(const region of ["gale","jezero"] as const)test(`${region}: real worker, ordered round trip, canonical metrics, scenarios and persistence`,async()=>{
@@ -79,6 +79,7 @@ test("Jezero default slope restriction cannot be disabled by an undefined option
 
 for(const region of ["gale","jezero"] as const)test(`${region}: three distinct ordered waypoints keep segment junctions`,async()=>{
  const request=realRequest(region);
+ request.plan.waypoints[1].role="intermediate";
  const last=region==="gale"?{longitude_east:137.39,latitude:-4.75}:{longitude_east:77.43,latitude:18.435};
  request.plan.waypoints.push(createWaypoint({id:"qa-final",coordinates:last,role:"destination",provenance:"user_planning_input"}));
  const result=await calculateTerrainRoutes(request);

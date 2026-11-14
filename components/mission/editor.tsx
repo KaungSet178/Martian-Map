@@ -3,6 +3,7 @@
 import { ArrowDown, ArrowUp, X, MapPin, CornerDownLeft, Compass } from "lucide-react";
 import type { RegionManifest } from "@/lib/contracts/region";
 import { moveStop, type Mission } from "@/lib/mission/model";
+import { missionPlanningSnapshot } from "@/lib/mission/planning-snapshot";
 import { Badge, Notice } from "@/components/ui/primitives";
 
 export function MissionEditor({
@@ -18,6 +19,7 @@ export function MissionEditor({
   onScience: () => void;
   onSwitchToWaypoints?: () => void;
 }) {
+  const snapshot = missionPlanningSnapshot(mission, region);
   return (
     <>
       <div className="section-intro">
@@ -83,7 +85,7 @@ export function MissionEditor({
         <MapPin size={18} />
         <div>
           <strong>Start location</strong>
-          <p>Unavailable · No verified base or coverage</p>
+          <p>{snapshot.start ? `${snapshot.start.label ?? "Base"} · ${snapshot.start.coordinate_text} · Registration unverified` : "Not designated — select Make Base in Surface Waypoints"}</p>
         </div>
       </div>
       {mission.direction === "one" ? (
@@ -92,7 +94,7 @@ export function MissionEditor({
             <MapPin size={18} />
             <div>
               <strong>Recovery endpoint required</strong>
-              <p>No verified endpoint can be selected yet.</p>
+              <p>{snapshot.destination ? `${snapshot.destination.label ?? "Terminus"} — ${snapshot.destination.coordinate_text} · Registration unverified` : "Not designated — select Make Terminus in Surface Waypoints"}</p>
             </div>
           </div>
           <label className="field-label" htmlFor="recovery">
@@ -116,7 +118,7 @@ export function MissionEditor({
           <CornerDownLeft size={18} />
           <div>
             <strong>Return to start</strong>
-            <p>Return geometry awaits verified locations.</p>
+            <p>Geometric return is calculated from planned waypoints; operational recovery remains unverified.</p>
           </div>
         </div>
       )}
@@ -124,7 +126,7 @@ export function MissionEditor({
         <h3>Ordered objectives</h3>
         <Badge>
           {mission.target_ids.length}{" "}
-          {mission.target_ids.length === 1 ? "stop" : "stops"}
+          {mission.target_ids.length === 1 ? "objective" : "objectives"}
         </Badge>
       </div>
       {!mission.target_ids.length ? (
@@ -135,7 +137,8 @@ export function MissionEditor({
       ) : (
         <ol className="itinerary">
           {mission.target_ids.map((id, index) => {
-            const target = region.targets.find((t) => t.id === id)!;
+            const target = region.targets.find((t) => t.id === id);
+            if (!target) return <li key={id}><strong>{id}</strong><p>Retired or unavailable objective; retained for historical context. Not a route destination.</p><button onClick={() => onChange({target_ids:mission.target_ids.filter(t => t !== id)})}>Remove objective {id}</button></li>;
             return (
               <li key={id}>
                 <span className="stop-number mono">{index + 1}</span>
@@ -222,9 +225,8 @@ export function MissionEditor({
           </div>
         ))}
       </details>
-      <Notice title="Calculations unavailable">
-        Draft edits invalidate previous results. No distance, time, consumption
-        or return margin is calculated from these objectives.
+      <Notice title="Planning inputs and operational limits">
+        {snapshot.countLabel}. Geometric distance: {snapshot.geometric.total_surface_distance_m.toFixed(1)} m. Waypoint edits invalidate prior terrain results. Operational feasibility remains unverified.
       </Notice>
     </>
   );

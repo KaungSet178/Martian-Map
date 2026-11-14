@@ -1,6 +1,7 @@
 import { spawn } from "node:child_process";
 import path from "node:path";
 import { routeRequestSchema, ROUTING_VERSION, terrainResponseSchema, unavailableRoute, type TerrainRequest, type TerrainRoute } from "./contracts";
+import { orderedWaypoints } from "@/lib/mission/waypoint-planning";
 import { regions } from "@/lib/regions/registry";
 import { parseGaleRoute } from "./gale/adapter";
 import { terrainMetrics } from "./metrics";
@@ -12,10 +13,14 @@ export function validateTerrainRequest(input:unknown): TerrainRequest {
   if(request.regionId === "gale" && !request.datasetId.startsWith("gale-")) throw new Error("Wrong terrain source for Gale");
   if(request.regionId === "jezero" && request.datasetId !== "jezero-usgs-trn-dtm-routing-25m") throw new Error("Wrong terrain source for Jezero");
   if(new Set(request.plan.waypoints.map(waypoint=>waypoint.id)).size!==request.plan.waypoints.length)throw new Error("Waypoint IDs must be unique");
+  if(request.plan.waypoints.filter(w=>w.role==="base").length!==1) throw new Error("Designate exactly one origin base before terrain routing");
+  if(request.plan.mode==="one_way" && request.plan.waypoints.filter(w=>w.role==="destination" || w.role==="recovery_endpoint").length!==1) throw new Error("Designate exactly one destination terminus before terrain routing");
+  request.plan.waypoints=orderedWaypoints(request.plan);
   for(const waypoint of request.plan.waypoints) {
+    if(waypoint.inactive_reason) throw new Error("Retired or unavailable scientific target cannot be an active routing endpoint");
     if(waypoint.target_id || waypoint.provenance === "verified_science_target") {
       const target=regions[request.regionId].targets.find(target=>target.id===waypoint.target_id);
-      if(!target?.coordinate_verified || !target.coordinates || JSON.stringify(target.coordinates)!==JSON.stringify(waypoint.coordinates)) throw new Error("Unverified scientific target cannot be a routing endpoint");
+      if(!target?.coordinate_verified || !target.coordinates || target.feature_kind==="geological_area" || target.routing_eligibility.status!=="available" || JSON.stringify(target.coordinates)!==JSON.stringify(waypoint.coordinates)) throw new Error("Unverified scientific target cannot be a routing endpoint");
     }
     const extent=regions[request.regionId].map.supported_extent;
     const {longitude_east:lon,latitude:lat}=waypoint.coordinates;

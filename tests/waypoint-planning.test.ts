@@ -253,13 +253,13 @@ describe("Pure Immutable Plan Management", () => {
     );
   });
 
-  it("reorderWaypoints applies exact permutation", () => {
+  it("reorderWaypoints preserves the selected base and orders intermediate stops", () => {
     const plan = createWaypointPlan({ waypoints: [w1, w2, w3] });
     const reordered = reorderWaypoints(plan, ["wp-3", "wp-1", "wp-2"]);
 
     assert.deepEqual(
       reordered.waypoints.map((w) => w.id),
-      ["wp-3", "wp-1", "wp-2"],
+      ["wp-1", "wp-3", "wp-2"],
     );
     // Original unchanged
     assert.deepEqual(
@@ -285,13 +285,13 @@ describe("Pure Immutable Plan Management", () => {
     const movedDown = moveWaypoint(plan, "wp-1", 1);
     assert.deepEqual(
       movedDown.waypoints.map((w) => w.id),
-      ["wp-2", "wp-1", "wp-3"],
+      ["wp-1", "wp-2", "wp-3"],
     );
 
     const movedUp = moveWaypoint(movedDown, "wp-3", -2);
     assert.deepEqual(
       movedUp.waypoints.map((w) => w.id),
-      ["wp-3", "wp-2", "wp-1"],
+      ["wp-1", "wp-3", "wp-2"],
     );
 
     // Out of bounds shift returns unchanged plan
@@ -368,7 +368,7 @@ describe("Plan Validation Rules", () => {
     assert.ok(res.errors.some((e) => e.code === "DUPLICATE_WAYPOINT_ID"));
   });
 
-  it("warns when first waypoint is not marked role=base", () => {
+  it("requires a selected base when no waypoint has the base role", () => {
     const plan = createWaypointPlan({
       waypoints: [
         wp("wp-1", 0, 0, "science_stop"),
@@ -376,7 +376,7 @@ describe("Plan Validation Rules", () => {
       ],
     });
     const res = validateWaypointPlan(plan);
-    assert.ok(res.warnings.some((w) => w.code === "MISSING_ORIGIN"));
+    assert.ok(res.errors.some((w) => w.code === "MISSING_ORIGIN"));
   });
 
   it("enforces one-way mode constraints: destination role & recovery assumption", () => {

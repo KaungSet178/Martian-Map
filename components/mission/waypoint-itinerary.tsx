@@ -25,11 +25,13 @@ import type {
   TrajectorySegment,
 } from "@/lib/mission/waypoint-planning";
 import {
+  orderedWaypoints,
   generateGeometricTrajectory,
   calculateDistanceSummary,
   GEOMETRIC_TRAJECTORY_LABEL,
 } from "@/lib/mission/waypoint-planning";
 import type { MarsCoordinate } from "@/lib/map/geodesy";
+import { evidenceText, coordinateText } from "@/lib/mission/planning-snapshot";
 import { Badge } from "@/components/ui/primitives";
 
 // ---------------------------------------------------------------------------
@@ -89,25 +91,25 @@ export function roleDisplay(role: WaypointRole): { label: string; icon: typeof M
 // Provenance Badge Subcomponent
 // ---------------------------------------------------------------------------
 
-export function WaypointProvenanceBadge({ provenance }: { provenance: WaypointProvenance }) {
+export function WaypointProvenanceBadge({ provenance, evidence }: { provenance: WaypointProvenance; evidence?: MarsWaypoint["evidence"] }) {
   switch (provenance) {
     case "verified_science_target":
       return (
-        <span title="Location derived from audited NASA science catalog">
-          <Badge tone="cyan">Observed · NASA Target</Badge>
+        <span title="Catalog association does not independently verify scientific evidence or geographic registration">
+          <Badge tone="cyan">{evidence?.classification ?? "Evidence unavailable"} · Catalog target</Badge>
         </span>
       );
     case "historical_landmark":
       return (
         <span title="Historical precursor mission landing site or landmark">
-          <Badge tone="muted">Observed · Precursor Landmark</Badge>
+          <Badge tone="muted">Precursor landmark · Evidence unverified</Badge>
         </span>
       );
     case "user_planning_input":
     default:
       return (
         <span title="Hypothetical planning coordinates chosen by mission architect">
-          <Badge tone="science">Scenario · User Waypoint</Badge>
+          <Badge tone="science">Scenario · User Waypoint · User-defined waypoint</Badge>
         </span>
       );
   }
@@ -168,7 +170,7 @@ export function WaypointItinerary({
   // Compute geometric trajectory dynamically from pure M2 engine
   const trajectory: ProposedGeometricTrajectory = generateGeometricTrajectory(plan);
   const distanceSummary: GeometricDistanceSummary = calculateDistanceSummary(trajectory);
-  const waypoints = plan.waypoints;
+  const waypoints = orderedWaypoints(plan);
 
   if (waypoints.length === 0) {
     return (
@@ -231,7 +233,7 @@ export function WaypointItinerary({
                     <RoleIcon size={15} aria-hidden="true" className="role-icon" />
                     <span className="waypoint-role-title">{roleName}</span>
                   </div>
-                  <WaypointProvenanceBadge provenance={wp.provenance} />
+                  <WaypointProvenanceBadge provenance={wp.provenance} evidence={wp.evidence} />
                 </div>
 
                 {/* Title / Label with Inline Editing */}
@@ -294,10 +296,12 @@ export function WaypointItinerary({
                 <div className="waypoint-coords-row">
                   <span className="waypoint-coords-label">Planetocentric:</span>
                   <span className="waypoint-coords-val mono">
-                    {formatCoordinates(wp.coordinates)}
+                    {wp.target_id ? coordinateText(wp.coordinates) : formatCoordinates(wp.coordinates)}
                   </span>
                 </div>
 
+                <p className="supporting">{evidenceText(wp.evidence, wp.provenance === "user_planning_input" && !wp.target_id)}</p>
+                {wp.evidence && <p className="supporting">{wp.evidence.precision_disclosure}</p>}
                 {/* Target Catalog Association */}
                 {wp.target_id && (
                   <div className="waypoint-target-row">
@@ -306,9 +310,13 @@ export function WaypointItinerary({
                   </div>
                 )}
 
+                {wp.inactive_reason && <p role="alert">{wp.inactive_reason}</p>}
                 {/* Notes if documented */}
                 {wp.notes && <p className="waypoint-notes">{wp.notes}</p>}
 
+                {!readOnly && onWaypointUpdate && <label className="field-label">Stop duration (seconds)
+                  <input aria-label={`Stop duration for ${wp.label || wp.id}`} type="number" min="0" step="any" value={wp.stop_duration_seconds ?? ""} onChange={e => {const value=e.target.valueAsNumber;if(e.target.value === "" || (Number.isFinite(value) && value >= 0))onWaypointUpdate(wp.id, {stop_duration_seconds:e.target.value === "" ? undefined : value});}}/>
+                </label>}
                 {/* Action Toolbar */}
                 {!readOnly && (
                   <div className="stop-actions waypoint-actions-toolbar">
@@ -334,7 +342,7 @@ export function WaypointItinerary({
                       <ArrowDown size={16} />
                     </button>
 
-                    {!isOrigin && onSetOrigin && (
+                    {(wp.role !== "base" || waypoints.filter(w => w.role === "base").length !== 1) && onSetOrigin && (
                       <button
                         type="button"
                         className="small-action-button"
@@ -347,7 +355,7 @@ export function WaypointItinerary({
                       </button>
                     )}
 
-                    {plan.mode === "one_way" && !isLast && onSetDestination && (
+                    {plan.mode === "one_way" && wp.role !== "base" && ((wp.role !== "destination" && wp.role !== "recovery_endpoint") || waypoints.filter(w => w.role === "destination" || w.role === "recovery_endpoint").length !== 1) && onSetDestination && (
                       <button
                         type="button"
                         className="small-action-button"
@@ -356,7 +364,7 @@ export function WaypointItinerary({
                         title="Designate as destination terminus"
                       >
                         <Flag size={14} aria-hidden="true" />
-                        <span>Terminus</span>
+                        <span>Make Terminus</span>
                       </button>
                     )}
 

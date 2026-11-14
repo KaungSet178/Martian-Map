@@ -8,6 +8,7 @@ import {
 import {
   waypointPlanSchema,
   type WaypointPlan,
+  targetWaypointEvidence,
 } from "@/lib/mission/waypoint-planning";
 
 export const missionSchema = z.object({
@@ -30,6 +31,7 @@ export const missionSchema = z.object({
   saved_at: z.iso.datetime().nullable(),
   waypoint_plan: waypointPlanSchema.optional(),
   terrain_route: routeReceiptSchema.optional(),
+  retired_objectives: z.array(z.object({id:z.string().max(100),title:z.string().max(200).optional(),reason:z.string().max(2000)})).max(100).optional(),
   terrain_assumptions: z.record(z.string().max(40), z.string().max(50)).optional(),
 });
 export type Mission = z.infer<typeof missionSchema>;
@@ -67,13 +69,13 @@ export function missionIssues(
   region: RegionManifest,
 ): string[] {
   const issues: string[] = [];
-  if (!mission.target_ids.length)
-    issues.push("Add at least one science objective.");
-  if (!mission.start) issues.push("A verified start location is required.");
+  if (!mission.target_ids.length && !mission.waypoint_plan?.waypoints.length)
+    issues.push("Add a planning waypoint or science objective.");
+  if (!mission.start) issues.push("A planned start/base location is required; absolute registration remains unverified.");
   if (mission.direction === "one") {
     if (!mission.endpoint)
       issues.push(
-        "A verified recovery endpoint is required for a one-way mission.",
+        "A planned recovery endpoint is required for a one-way mission; absolute registration remains unverified.",
       );
     if (!mission.recovery_assumption.trim())
       issues.push("Document the recovery assumption for a one-way mission.");
@@ -101,17 +103,33 @@ export function parseMission(value: unknown, region: RegionManifest): Mission {
   const mission = missionSchema.parse(value);
   if (
     mission.region !== region.id ||
-    mission.target_ids.some((id) => !region.targets.some((t) => t.id === id))
+    mission.target_ids.some((id) => /^(gale|jezero|oxia)[-_]/.test(id) && !id.startsWith(region.id))
   ) {
     throw new Error(
       "This plan contains unknown region or objective IDs. Its source catalog is required before opening.",
     );
   }
-  if (mission.waypoint_plan && mission.waypoint_plan.region_id !== region.id) {
+  if (mission.waypoint_plan && mission.waypoint_plan.region_id !== undefined && mission.waypoint_plan.region_id !== region.id) {
     throw new Error(
       "This plan contains waypoints from a different exploration region. Regional state must remain strictly isolated.",
     );
   }
+  if (mission.waypoint_plan && !mission.waypoint_plan.region_id) mission.waypoint_plan.region_id = region.id;
+  // Retired references remain readable and editable, never silently discarded or routed.
+  const retired = new Map((mission.retired_objectives ?? []).map(t => [t.id,t]));
+  for (const id of [...mission.target_ids, ...(mission.waypoint_plan?.waypoints.flatMap(w => w.target_id ? [w.target_id] : []) ?? [])]) {
+    if (!region.targets.some(t => t.id === id)) retired.set(id, retired.get(id) ?? {id,reason:"Target absent from the current science catalog; retained as historical planning context, unavailable for terrain routing."});
+  }
+  if (retired.size) mission.retired_objectives = [...retired.values()];
+  if (mission.waypoint_plan) mission.waypoint_plan.waypoints = mission.waypoint_plan.waypoints.map(w => {
+    const target = region.targets.find(t => t.id === w.target_id);
+    if (target) {
+      const evidence = targetWaypointEvidence(target);
+      return {...w,evidence,previous_evidence:w.previous_evidence ?? (w.evidence && JSON.stringify(w.evidence)!==JSON.stringify(evidence) ? w.evidence : undefined)};
+    }
+    if (w.target_id && w.evidence) return {...w,evidence:{...w.evidence,routing_eligible:false,precision_disclosure:`Retired catalog association. ${w.evidence.precision_disclosure}`}};
+    return w;
+  });
   return mission;
 }
 export function readMissions(storage: Pick<Storage, "getItem">): Mission[] {

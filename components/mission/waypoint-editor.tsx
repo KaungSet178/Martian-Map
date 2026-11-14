@@ -21,6 +21,7 @@ import type {
 import {
   validateWaypointPlan,
   createWaypoint,
+  orderedWaypoints,
   GEOMETRIC_TRAJECTORY_LABEL,
 } from "@/lib/mission/waypoint-planning";
 import { Badge, Notice } from "@/components/ui/primitives";
@@ -123,8 +124,8 @@ export function ManualCoordinateEntry({
           const defaultLabel = isFirst ? "Base Camp" : `Waypoint ${waypointsLength + 1}`;
           const newWp = createWaypoint({
             coordinates: {
-              latitude: Number(lat.toFixed(6)),
-              longitude_east: Number(lon.toFixed(6)),
+              latitude: lat,
+              longitude_east: lon,
             },
             role,
             label: manualLabel.trim() || defaultLabel,
@@ -230,7 +231,7 @@ export function WaypointEditor({
 }: WaypointEditorProps) {
   // Validate plan rules using pure M2 validation engine
   const validation = validateWaypointPlan(plan);
-  const waypoints = plan.waypoints;
+  const waypoints = orderedWaypoints(plan);
   const originBase = waypoints.length > 0 && waypoints[0].role === "base" ? waypoints[0] : null;
   const lastWaypoint = waypoints.length > 0 ? waypoints[waypoints.length - 1] : null;
   const hasValidDestination =
@@ -341,7 +342,7 @@ export function WaypointEditor({
               <span className="origin-label">{originBase.label || "Base Camp"}</span>
               <span className="origin-coords mono">{formatCoordinates(originBase.coordinates)}</span>
               <div className="origin-provenance">
-                <WaypointProvenanceBadge provenance={originBase.provenance} />
+                <WaypointProvenanceBadge provenance={originBase.provenance} evidence={originBase.evidence} />
               </div>
             </div>
           ) : (

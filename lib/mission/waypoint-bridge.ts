@@ -1,3 +1,4 @@
+import { terrainRequestKey } from "@/lib/routing/request-key";
 import type { RegionManifest } from "@/lib/contracts/region";
 import type { Mission } from "@/lib/mission/model";
 import {
@@ -5,6 +6,10 @@ import {
   createWaypointFromTarget,
   createWaypointPlan,
   waypointPlanSchema,
+  orderedWaypoints,
+  targetWaypointEvidence,
+  setTrajectoryMode,
+  isTerminus,
   type MarsWaypoint,
   type TrajectoryMode,
   type WaypointPlan,
@@ -26,9 +31,20 @@ export function initWaypointPlanFromMission(
 ): WaypointPlan {
   // If the mission already has a valid waypoint plan matching the region, return it
   if (mission.waypoint_plan && mission.waypoint_plan.region_id === region.id) {
-    const parsed = waypointPlanSchema.safeParse(mission.waypoint_plan);
+    // A temporarily empty title is editable UI state, not permission to discard points.
+    const parsed = waypointPlanSchema.safeParse({...mission.waypoint_plan,name:mission.waypoint_plan.name.trim() || "Untitled draft"});
     if (parsed.success) {
-      return parsed.data;
+      return { ...parsed.data, name:mission.waypoint_plan.name, waypoints: orderedWaypoints(parsed.data).map(w => {
+        if (!w.target_id) return w;
+        const target = region.targets.find(t => t.id === w.target_id);
+        const mismatch = target?.coordinates && (target.coordinates.latitude !== w.coordinates.latitude || target.coordinates.longitude_east !== w.coordinates.longitude_east);
+        const inactive_reason = !target ? "Retired or unavailable catalog target; not an active route destination."
+          : !target.coordinates || !target.coordinate_verified || target.feature_kind === "geological_area" ? "Scientific location unavailable for point routing; historical coordinates retained without verification."
+          : mismatch ? "Stored coordinates differ from the current catalog; registration and routing require review." : undefined;
+        const currentEvidence = target ? targetWaypointEvidence(target) : undefined;
+        const previous_evidence = w.previous_evidence ?? (w.evidence && currentEvidence && JSON.stringify(w.evidence)!==JSON.stringify(currentEvidence) ? w.evidence : undefined);
+        return { ...w, inactive_reason, previous_evidence, evidence: target ? {...targetWaypointEvidence(target), ...(inactive_reason ? {coordinate_verified:false,routing_eligible:false} : {})} : w.evidence ? {...w.evidence,routing_eligible:false} : undefined };
+      }) };
     }
   }
 
@@ -51,7 +67,7 @@ export function initWaypointPlanFromMission(
   for (const targetId of mission.target_ids) {
     const target = region.targets.find((t) => t.id === targetId);
     // Explicit check: only targets with verified coordinates become waypoints
-    if (target && target.coordinates && target.coordinate_verified) {
+    if (target && target.coordinates && target.coordinate_verified && target.feature_kind !== "geological_area") {
       waypoints.push(createWaypointFromTarget(target, "science_stop"));
     }
   }
@@ -94,7 +110,9 @@ export function syncMissionWithWaypointPlan(
   region: RegionManifest,
 ): Mission {
   // 1. Determine start coordinates from first base waypoint
-  const first = plan.waypoints[0];
+  plan = { ...plan, waypoints: orderedWaypoints(plan) };
+  const bases = plan.waypoints.filter(w => w.role === "base");
+  const first = bases.length === 1 ? bases[0] : undefined;
   const startCoords =
     first && first.role === "base" ? first.coordinates : null;
 
@@ -102,7 +120,7 @@ export function syncMissionWithWaypointPlan(
   let endpointCoords = null;
   if (plan.mode === "one_way" && plan.waypoints.length > 0) {
     const last = plan.waypoints[plan.waypoints.length - 1];
-    if (last.role === "destination" || last.role === "recovery_endpoint") {
+    if (plan.waypoints.filter(w => w.role === "destination" || w.role === "recovery_endpoint").length === 1 && (last.role === "destination" || last.role === "recovery_endpoint")) {
       endpointCoords = last.coordinates;
     }
   }
@@ -116,7 +134,7 @@ export function syncMissionWithWaypointPlan(
   // Regional targets that have verified coordinates
   const verifiedTargetIdsInRegion = new Set(
     region.targets
-      .filter((t) => t.coordinate_verified && t.coordinates)
+      .filter((t) => t.coordinate_verified && t.coordinates && t.feature_kind !== "geological_area")
       .map((t) => t.id),
   );
 
@@ -126,9 +144,10 @@ export function syncMissionWithWaypointPlan(
     (id) => !verifiedTargetIdsInRegion.has(id),
   );
 
-  const combinedTargetIds = Array.from(
-    new Set([...waypointTargetIds, ...retainedUnverifiedTargetIds]),
-  );
+  const combinedTargetIds = Array.from(new Set([
+    ...mission.target_ids.filter(id => retainedUnverifiedTargetIds.includes(id) || waypointTargetIds.includes(id)),
+    ...waypointTargetIds,
+  ]));
 
   return {
     ...mission,
@@ -189,7 +208,7 @@ export function syncWaypointPlanWithMission(
 
   // Remove science stop waypoints whose target is no longer in mission.target_ids
   updatedWaypoints = updatedWaypoints.filter((w) => {
-    if (w.role === "science_stop" && w.target_id) {
+    if (w.target_id && region.targets.some(t => t.id === w.target_id)) {
       return missionTargetSet.has(w.target_id);
     }
     return true;
@@ -203,7 +222,7 @@ export function syncWaypointPlanWithMission(
   for (const tid of mission.target_ids) {
     if (!existingWaypointTargetIds.has(tid)) {
       const target = region.targets.find((t) => t.id === tid);
-      if (target && target.coordinates && target.coordinate_verified) {
+      if (target && target.coordinates && target.coordinate_verified && target.feature_kind !== "geological_area") {
         // Insert before recovery endpoint if one exists
         const lastIndex = updatedWaypoints.length - 1;
         const hasEndpoint =
@@ -222,7 +241,8 @@ export function syncWaypointPlanWithMission(
   }
 
   // 3. Sync recovery endpoint for one-way missions
-  if (targetMode === "one_way" && mission.endpoint) {
+  const removedCatalogEndpoint = currentPlan.waypoints.some(w => isTerminus(w) && w.target_id && !missionTargetSet.has(w.target_id));
+  if (targetMode === "one_way" && mission.endpoint && !removedCatalogEndpoint) {
     const epIndex = updatedWaypoints.findIndex(
       (w) => w.role === "destination" || w.role === "recovery_endpoint",
     );
@@ -244,11 +264,6 @@ export function syncWaypointPlanWithMission(
         }),
       );
     }
-  } else if (targetMode === "round_trip") {
-    // In round-trip mode, remove recovery endpoints
-    updatedWaypoints = updatedWaypoints.filter(
-      (w) => w.role !== "destination" && w.role !== "recovery_endpoint",
-    );
   }
 
   return {
@@ -256,6 +271,18 @@ export function syncWaypointPlanWithMission(
     name: mission.name,
     mode: targetMode,
     recovery_assumption: mission.recovery_assumption || undefined,
-    waypoints: updatedWaypoints,
+    waypoints: setTrajectoryMode({ ...currentPlan, waypoints: updatedWaypoints }, targetMode).waypoints,
   };
+}
+
+/** Single state transition used by catalog, waypoint, and scenario editors. */
+export function applyMissionChange(mission: Mission, change: Partial<Mission>, region: RegionManifest): Mission {
+  const next = { ...mission, ...change };
+  const plan = change.waypoint_plan ?? syncWaypointPlanWithMission(next, region);
+  const canonical = syncMissionWithWaypointPlan(next, plan, region);
+  const receipt = canonical.terrain_route;
+  if (receipt && receipt.requestKey !== terrainRequestKey(canonical, initWaypointPlanFromMission(canonical, region), receipt.datasetId, receipt.maxSnapMeters ?? 100)) {
+    canonical.terrain_route = undefined;
+  }
+  return canonical;
 }

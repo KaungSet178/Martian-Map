@@ -22,6 +22,7 @@ import { z } from "zod";
 import {
   coordinatesSchema,
   regionIdSchema,
+  evidenceSchema,
   type RegionId,
 } from "@/lib/contracts/primitives";
 import {
@@ -74,6 +75,37 @@ export type WaypointProvenance = z.infer<typeof waypointProvenanceSchema>;
 /**
  * Schema for an individual Mars surface waypoint.
  */
+export const waypointEvidenceSchema = z.object({
+  classification: evidenceSchema,
+  source_ids: z.array(z.string()),
+  source_verified: z.boolean().nullable(),
+  processing_verified: z.boolean().nullable(),
+  coordinate_verified: z.boolean(),
+  registration_verified: z.boolean().nullable(),
+  positional_uncertainty_m: z.number().nonnegative().nullable(),
+  representation: z.enum(["point", "mapped_area", "approximate_area", "unavailable"]),
+  precision_disclosure: z.string(),
+  routing_eligible: z.boolean(),
+});
+
+export function targetWaypointEvidence(target: Target): z.infer<typeof waypointEvidenceSchema> {
+  return {
+    classification: target.evidence,
+    source_ids: [...target.source_ids],
+    // Legacy catalog verification does not independently certify these dimensions.
+    source_verified: null,
+    processing_verified: null,
+    coordinate_verified: target.coordinate_verified,
+    registration_verified: null,
+    positional_uncertainty_m: null,
+    representation: target.feature_kind === "geological_area" ? "approximate_area" : target.coordinates ? "point" : "unavailable",
+    precision_disclosure: (target.location_notes ? `${target.location_notes} ` : "") + (target.coordinates
+      ? "Catalog coordinate values retained as supplied. Source-supported positional uncertainty and absolute registration are unverified; displayed digits do not establish survey accuracy."
+      : "Location unavailable; no navigation point inferred."),
+    routing_eligible: target.coordinate_verified && target.coordinates !== null && target.feature_kind !== "geological_area" && target.routing_eligibility.status === "available",
+  };
+}
+
 export const waypointSchema = z.object({
   id: z.string().min(1).max(100),
   coordinates: coordinatesSchema,
@@ -81,6 +113,10 @@ export const waypointSchema = z.object({
   label: z.string().trim().min(1).max(200).optional(),
   target_id: z.string().min(1).max(100).optional(),
   provenance: waypointProvenanceSchema,
+  evidence: waypointEvidenceSchema.optional(),
+  previous_evidence: waypointEvidenceSchema.optional(),
+  inactive_reason: z.string().max(2000).optional(),
+  stop_duration_seconds: z.number().finite().nonnegative().optional(),
   notes: z.string().max(2000).optional(),
 });
 export type MarsWaypoint = z.infer<typeof waypointSchema>;
@@ -200,6 +236,8 @@ export interface CreateWaypointParams {
   readonly target_id?: string;
   readonly provenance?: WaypointProvenance;
   readonly notes?: string;
+  readonly evidence?: z.infer<typeof waypointEvidenceSchema>;
+  readonly stop_duration_seconds?: number;
 }
 
 /**
@@ -220,6 +258,8 @@ export function createWaypoint(params: CreateWaypointParams): MarsWaypoint {
   if (params.label !== undefined) raw.label = params.label;
   if (params.target_id !== undefined) raw.target_id = params.target_id;
   if (params.notes !== undefined) raw.notes = params.notes;
+  if (params.evidence !== undefined) raw.evidence = params.evidence;
+  if (params.stop_duration_seconds !== undefined) raw.stop_duration_seconds = params.stop_duration_seconds;
 
   return waypointSchema.parse(raw);
 }
@@ -233,7 +273,7 @@ export function createWaypointFromTarget(
   target: Target,
   role: WaypointRole = "science_stop",
 ): MarsWaypoint {
-  if (!target.coordinates) {
+  if (!target.coordinates || target.feature_kind === "geological_area") {
     throw new Error(
       `Cannot create waypoint from target "${target.id}": coordinates are null or unassigned.`,
     );
@@ -252,6 +292,7 @@ export function createWaypointFromTarget(
     target_id: target.id,
     provenance: "verified_science_target",
     notes: target.scientific_goal,
+    evidence: targetWaypointEvidence(target),
   });
 }
 
@@ -293,6 +334,25 @@ export function createWaypointPlan(
 // Pure Immutable Management Functions
 // ---------------------------------------------------------------------------
 
+/** Pin the selected endpoint roles without changing intermediate visit order. */
+export function orderedWaypoints(plan: WaypointPlan): MarsWaypoint[] {
+  const bases = plan.waypoints.filter(w => w.role === "base");
+  const ends = plan.mode === "one_way" ? plan.waypoints.filter(isTerminus) : [];
+  return [
+    ...bases,
+    ...plan.waypoints.filter(w => w.role !== "base" && !ends.includes(w)),
+    ...ends,
+  ];
+}
+
+export function isTerminus(waypoint: MarsWaypoint): boolean {
+  return waypoint.role === "destination" || waypoint.role === "recovery_endpoint";
+}
+
+function demotedRole(waypoint: MarsWaypoint): WaypointRole {
+  return waypoint.target_id ? "science_stop" : "intermediate";
+}
+
 /**
  * Add a waypoint to the plan.
  *
@@ -325,7 +385,7 @@ export function addWaypoint(
 
   return {
     ...plan,
-    waypoints: nextWaypoints,
+    waypoints: orderedWaypoints({ ...plan, waypoints: nextWaypoints }),
     updated_at: new Date().toISOString(),
   };
 }
@@ -389,13 +449,13 @@ export function updateWaypoint(
 
   return {
     ...plan,
-    waypoints: nextWaypoints,
+    waypoints: orderedWaypoints({ ...plan, waypoints: nextWaypoints }),
     updated_at: new Date().toISOString(),
   };
 }
 
 /**
- * Reorder all waypoints in the plan according to an array of waypoint IDs.
+ * Reorder intermediate visits according to all waypoint IDs, then pin endpoint roles.
  *
  * @param plan Target plan.
  * @param orderedIds Explicit ordered array of all waypoint IDs in the plan.
@@ -427,7 +487,7 @@ export function reorderWaypoints(
 
   return {
     ...plan,
-    waypoints: reordered,
+    waypoints: orderedWaypoints({ ...plan, waypoints: reordered }),
     updated_at: new Date().toISOString(),
   };
 }
@@ -457,7 +517,7 @@ export function moveWaypoint(
 
   return {
     ...plan,
-    waypoints: nextWaypoints,
+    waypoints: orderedWaypoints({ ...plan, waypoints: nextWaypoints }),
     updated_at: new Date().toISOString(),
   };
 }
@@ -472,93 +532,20 @@ export function moveWaypoint(
  * @param waypointOrId New waypoint or existing waypoint ID.
  * @returns A fresh, immutable `WaypointPlan`.
  */
-export function setOrigin(
-  plan: WaypointPlan,
-  waypointOrId: MarsWaypoint | string,
-): WaypointPlan {
-  if (typeof waypointOrId === "string") {
-    const existing = plan.waypoints.find((w) => w.id === waypointOrId);
-    if (!existing) {
-      throw new Error(
-        `Cannot set origin: waypoint ID "${waypointOrId}" not found in plan.`,
-      );
-    }
-    const filtered = plan.waypoints.filter((w) => w.id !== waypointOrId);
-    const updatedBase: MarsWaypoint = { ...existing, role: "base" };
-    return {
-      ...plan,
-      waypoints: [updatedBase, ...filtered],
-      updated_at: new Date().toISOString(),
-    };
-  }
-
-  const newBase: MarsWaypoint = {
-    ...waypointSchema.parse(waypointOrId),
-    role: "base",
-  };
-  const filtered = plan.waypoints.filter((w) => w.id !== newBase.id);
-  return {
-    ...plan,
-    waypoints: [newBase, ...filtered],
-    updated_at: new Date().toISOString(),
-  };
+export function setOrigin(plan: WaypointPlan, waypointOrId: MarsWaypoint | string): WaypointPlan {
+  const waypoint = typeof waypointOrId === "string" ? plan.waypoints.find(w => w.id === waypointOrId) : waypointSchema.parse(waypointOrId);
+  if (!waypoint) throw new Error(`Cannot set origin: waypoint ID "${waypointOrId}" not found in plan.`);
+  const rest = plan.waypoints.filter(w => w.id !== waypoint.id).map(w => w.role === "base" ? { ...w, role: demotedRole(w) } : w);
+  return { ...plan, waypoints: orderedWaypoints({ ...plan, waypoints: [{ ...waypoint, role: "base" }, ...rest] }), updated_at: new Date().toISOString() };
 }
 
-/**
- * Set or designate the final destination or recovery endpoint for a one-way plan.
- *
- * @param plan Target plan.
- * @param waypointOrId Waypoint object, existing waypoint ID, or null to clear.
- * @returns A fresh, immutable `WaypointPlan`.
- */
-export function setDestination(
-  plan: WaypointPlan,
-  waypointOrId: MarsWaypoint | string | null,
-): WaypointPlan {
-  if (waypointOrId === null) {
-    // If the last waypoint has role destination or recovery_endpoint, revert to intermediate
-    const nextWaypoints = plan.waypoints.map((w, idx) => {
-      if (
-        idx === plan.waypoints.length - 1 &&
-        (w.role === "destination" || w.role === "recovery_endpoint")
-      ) {
-        return { ...w, role: "intermediate" as WaypointRole };
-      }
-      return w;
-    });
-    return {
-      ...plan,
-      waypoints: nextWaypoints,
-      updated_at: new Date().toISOString(),
-    };
-  }
-
-  if (typeof waypointOrId === "string") {
-    const existing = plan.waypoints.find((w) => w.id === waypointOrId);
-    if (!existing) {
-      throw new Error(
-        `Cannot set destination: waypoint ID "${waypointOrId}" not found in plan.`,
-      );
-    }
-    const filtered = plan.waypoints.filter((w) => w.id !== waypointOrId);
-    const updatedDest: MarsWaypoint = { ...existing, role: "destination" };
-    return {
-      ...plan,
-      waypoints: [...filtered, updatedDest],
-      updated_at: new Date().toISOString(),
-    };
-  }
-
-  const newDest: MarsWaypoint = {
-    ...waypointSchema.parse(waypointOrId),
-    role: "destination",
-  };
-  const filtered = plan.waypoints.filter((w) => w.id !== newDest.id);
-  return {
-    ...plan,
-    waypoints: [...filtered, newDest],
-    updated_at: new Date().toISOString(),
-  };
+export function setDestination(plan: WaypointPlan, waypointOrId: MarsWaypoint | string | null): WaypointPlan {
+  const rest = plan.waypoints.map(w => isTerminus(w) ? { ...w, role: demotedRole(w) } : w);
+  if (waypointOrId === null) return { ...plan, waypoints: rest, updated_at: new Date().toISOString() };
+  const waypoint = typeof waypointOrId === "string" ? plan.waypoints.find(w => w.id === waypointOrId) : waypointSchema.parse(waypointOrId);
+  if (!waypoint) throw new Error(`Cannot set destination: waypoint ID "${waypointOrId}" not found in plan.`);
+  if (waypoint.role === "base") throw new Error("The base cannot also be the one-way terminus. Select a different waypoint.");
+  return { ...plan, waypoints: [...rest.filter(w => w.id !== waypoint.id), { ...waypoint, role: "destination" }], updated_at: new Date().toISOString() };
 }
 
 /**
@@ -577,6 +564,7 @@ export function setTrajectoryMode(
   return {
     ...plan,
     mode,
+    waypoints: orderedWaypoints({ ...plan, mode, waypoints: plan.waypoints.map(w => mode === "round_trip" && isTerminus(w) ? { ...w, role: demotedRole(w) } : w) }),
     recovery_assumption:
       mode === "one_way"
         ? recoveryAssumption ?? plan.recovery_assumption ?? ""
@@ -625,6 +613,10 @@ export function validateWaypointPlan(plan: WaypointPlan): PlanValidationResult {
     seenIds.add(wp.id);
   }
 
+  for (const wp of plan.waypoints) {
+    if (wp.inactive_reason) issues.push({code:"UNVERIFIED_TARGET_REFERENCE",message:`${wp.label ?? wp.id}: ${wp.inactive_reason} Retained for history; remove this waypoint from the active plan or select a current eligible target.`,waypoint_id:wp.id,severity:"error"});
+  }
+
   // 3. Coordinate validation
   for (const wp of plan.waypoints) {
     const lat = wp.coordinates.latitude;
@@ -648,14 +640,9 @@ export function validateWaypointPlan(plan: WaypointPlan): PlanValidationResult {
   }
 
   // 4. Origin role validation
-  const firstWp = plan.waypoints[0];
-  if (firstWp.role !== "base") {
-    issues.push({
-      code: "MISSING_ORIGIN",
-      message: `The first waypoint ("${firstWp.id}") must have role "base" to define the excursion origin.`,
-      waypoint_id: firstWp.id,
-      severity: "warning",
-    });
+  const bases = plan.waypoints.filter(w => w.role === "base");
+  if (bases.length !== 1) {
+    issues.push({ code: "MISSING_ORIGIN", message: "Designate exactly one origin base using Make Base.", severity: "error" });
   }
 
   // 5. Trajectory mode specific requirements
@@ -669,10 +656,10 @@ export function validateWaypointPlan(plan: WaypointPlan): PlanValidationResult {
       });
     }
 
-    const lastWp = plan.waypoints[plan.waypoints.length - 1];
+    const termini = plan.waypoints.filter(isTerminus);
+    const lastWp = orderedWaypoints(plan)[plan.waypoints.length - 1];
     if (
-      lastWp.role !== "destination" &&
-      lastWp.role !== "recovery_endpoint"
+      termini.length !== 1
     ) {
       issues.push({
         code: "MISSING_DESTINATION",
@@ -753,7 +740,7 @@ function finalizeValidation(
 export function generateGeometricTrajectory(
   plan: WaypointPlan,
 ): ProposedGeometricTrajectory {
-  const waypoints = plan.waypoints;
+  const waypoints = plan.waypoints.some(w => w.inactive_reason) ? [] : orderedWaypoints(plan);
 
   if (waypoints.length === 0) {
     return {
@@ -801,7 +788,7 @@ export function generateGeometricTrajectory(
   }
 
   // 2. Build return segment if mode is round_trip
-  if (plan.mode === "round_trip" && waypoints.length >= 2) {
+  if (plan.mode === "round_trip" && waypoints.length >= 2 && waypoints.filter(w => w.role === "base").length === 1) {
     const finalWp = waypoints[waypoints.length - 1];
     const baseWp = waypoints[0];
     const returnDist = marsDistance(finalWp.coordinates, baseWp.coordinates);
@@ -875,7 +862,7 @@ export function calculateDistanceSummary(
     segment_count: trajectory.segments.length,
     waypoint_count: trajectory.trajectory_waypoints.length,
     is_closed_loop:
-      trajectory.mode === "round_trip" && trajectory.segments.length > 0,
+      trajectory.mode === "round_trip" && trajectory.segments.some(segment => segment.is_return_segment),
   };
 }
 

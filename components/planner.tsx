@@ -52,12 +52,13 @@ import { MissionEditor } from "@/components/mission/editor";
 import { RouteComparison } from "@/components/mission/analysis";
 import { useTerrainRouting } from "@/lib/routing/use-terrain-routing";
 import { TerrainRoutingPanel } from "@/components/mission/terrain-routing";
+import { missionPlanningSnapshot } from "@/lib/mission/planning-snapshot";
 import { MissionBrief } from "@/components/mission/brief";
 import { WaypointEditor } from "@/components/mission/waypoint-editor";
 import {
   initWaypointPlanFromMission,
   syncMissionWithWaypointPlan,
-  syncWaypointPlanWithMission,
+  applyMissionChange,
 } from "@/lib/mission/waypoint-bridge";
 import {
   addWaypoint,
@@ -136,22 +137,17 @@ export function Planner() {
 
   const updateMission = useCallback(
     (change: Partial<Mission>) => {
-      setMission((m) => {
-        const nextMission: Mission = { ...m, ...change };
-        if (!change.waypoint_plan) {
-          nextMission.waypoint_plan = syncWaypointPlanWithMission(nextMission, region);
-        }
-        return nextMission;
-      });
+      setMission(m => applyMissionChange(m, change, region));
       setDirty(true);
       setMessage(
-        "Draft updated. Route and feasibility results remain unavailable.",
+        "Draft updated. Terrain outputs follow the current waypoint inputs; operational feasibility remains unverified.",
       );
     },
     [region],
   );
 
   const terrainRouting = useTerrainRouting(mission, activePlan, updateMission);
+  const planningSnapshot = missionPlanningSnapshot(mission, region, terrainRouting.selected);
 
   const inspect = useCallback((id: string) => {
     setSelected(id);
@@ -346,7 +342,7 @@ export function Planner() {
       return;
     }
     try {
-      const plans = saveMission(localStorage, mission);
+      const plans = saveMission(localStorage, planningSnapshot.mission);
       setSaved(plans);
       setMission(plans[0]);
       setDirty(false);
@@ -419,7 +415,7 @@ export function Planner() {
   const exportJson = () =>
     downloadFile(
       `marswalk-${regionId}-mission.json`,
-      JSON.stringify(mission, null, 2),
+      JSON.stringify(planningSnapshot.mission, null, 2),
       "application/json",
     );
   const openBrief = () => {
@@ -509,7 +505,7 @@ export function Planner() {
             <span>
               {expanded
                 ? "Collapse planning panel"
-                : `Plan · ${mission.target_ids.length} ${mission.target_ids.length === 1 ? "objective" : "objectives"}`}
+                : `Plan · ${planningSnapshot.countLabel}`}
             </span>
             {expanded ? <ChevronDown size={18} /> : <ChevronUp size={18} />}
           </button>
@@ -555,8 +551,8 @@ export function Planner() {
               >
                 {label}
                 {key === "plan" && (
-                  <span className="tab-count mono">
-                    {mission.target_ids.length}
+                  <span className="tab-count mono" title={planningSnapshot.countLabel}>
+                    {planningSnapshot.counts.waypoints + planningSnapshot.objectives.filter(t => !t.is_waypoint).length + planningSnapshot.retiredObjectives.length}
                   </span>
                 )}
               </button>
@@ -794,8 +790,7 @@ export function Planner() {
             <div className="summary-line">
               <span>
                 <strong>
-                  {mission.target_ids.length}{" "}
-                  {mission.target_ids.length === 1 ? "objective" : "objectives"}
+                  {planningSnapshot.countLabel}
                 </strong>
                 <span className="supporting">Return margin unavailable</span>
                 {target && (
@@ -842,7 +837,7 @@ export function Planner() {
           plan={activePlan}
           terrainRoutes={terrainRouting.alternatives}
           terrainPreference={terrainRouting.preference}
-          hideGeometric={terrainRouting.hideGeometric}
+          hideGeometric={terrainRouting.hideGeometric || activePlan.waypoints.some(w => Boolean(w.inactive_reason))}
           isPlacingOnMap={isPlacingOnMap}
           onPlaceWaypoint={handlePlaceWaypoint}
           onCancelPlacement={handleCancelPlacement}
@@ -951,8 +946,7 @@ export function Planner() {
                   <div>
                     <strong>{plan.name}</strong>
                     <p>
-                      {regions[plan.region].name} · {plan.target_ids.length}{" "}
-                      objectives
+                      {regions[plan.region].name} · {missionPlanningSnapshot(plan, regions[plan.region]).countLabel}
                     </p>
                     <span className="supporting">
                       {plan.saved_at
