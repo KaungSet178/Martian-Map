@@ -1,0 +1,1479 @@
+{
+  "schema_version": "1.0",
+  "generated_by": "W1.2C-1 multi-sol historical weather coverage audit (research milestone; no observation records included)",
+  "dataset_identity": {
+    "region": "gale",
+    "mission": "MSL Curiosity",
+    "instrument": "REMS",
+    "product_level": "MODRDR",
+    "dataset_id": "MSL-M-REMS-5-MODRDR-V1.0",
+    "bundle_doi": "10.17189/vwva-ms24",
+    "pds4_bundle_lid": "urn:nasa:pds:msl_rems",
+    "bundle_url": "https://atmos.nmsu.edu/PDS/data/PDS4/msl_rems_bundle/",
+    "calibrated_collection_url": "https://atmos.nmsu.edu/PDS/data/PDS4/msl_rems_bundle/data_calibrated/",
+    "collection_inventory_url": "https://atmos.nmsu.edu/PDS/data/PDS4/msl_rems_bundle/data_calibrated/collection_mslrems_data_calibrated_inventory.csv",
+    "official_page_url": "https://pds-atmospheres.nmsu.edu/data_and_services/atmospheres_data/MARS/curiosity/rems.html"
+  },
+  "selection_methodology": {
+    "objective": "Approximately 12 REMS sols covering all four northern seasons with Martian-year diversity.",
+    "season_bins": {
+      "Northern Spring": "0-90",
+      "Northern Summer": "90-180",
+      "Northern Autumn": "180-270",
+      "Northern Winter": "270-360"
+    },
+    "candidate_pool_size": 28,
+    "candidate_pool_construction": "Sols estimated from a sol-to-UTC model anchored at the verified Sol 100 and Sol 4843 label START_TIMEs (linear rate 1.02751 days/sol), cross-checked against the official page's Sol 4488 = 2025-03-22 and its published Ls 60.1 (calculated 60.037-60.037 deg at mid-day UTC, consistent at the published rounding). Exact per-candidate solar longitude and Martian year were then derived from each PDS4 label START_TIME using the validated Mars24 module. Archive-gap sols were excluded.",
+    "priorities": [
+      "Valid air temperature (AMBIENT_TEMP, boom-local temperatures).",
+      "Valid pressure (PRESSURE).",
+      "Valid ground temperature (BRIGHTNESS_TEMP) where available.",
+      "Reliable humidity (LOCAL_RELATIVE_HUMIDITY, VOLUME_MIXING_RATIO).",
+      "Wind observations only when genuinely available; a missing wind measurement does not disqualify a sol.",
+      "UV observations with documented sensor limitations.",
+      "Martian-year diversity across the archive (MY31-MY38).",
+      "In-season Ls spread and avoidance of archive-gap sols."
+    ],
+    "rejected_alternatives": "No candidate was rejected solely for missing wind; all evaluated candidates satisfied the air-temperature, pressure and humidity priorities in sampled windows.",
+    "product_audit": "Every selected MODRDR label was downloaded and parsed with the existing validated label schema (team/gale/weather/rems_schema.py); field names, order, count, units, record counts, record bytes and missing-value constants were verified. Logical identifiers were cross-checked against the PDS4 calibrated collection inventory. Bounded 65536-byte HTTP range samples (start/middle/end) verified field population for the selected sols except Sol 100, whose full-sol statistics were measured previously (W1.2A)."
+  },
+  "archive_coverage_summary": {
+    "official_page_statement": "Aug 7, 2012 (Sol 1, Ls 151.0, MY 31) to March 22, 2025 (Sol 04488, Ls 60.1, MY 38) [ongoing]",
+    "bundle_directory_coverage": "Sol folders SOL_00001_00089 through SOL_04710_04843",
+    "collection_inventory_sols": 4703,
+    "latest_sol_with_accessible_products": 4843,
+    "latest_sol_label_start_time_utc": "2026-03-21T19:16:37.443Z",
+    "sols_with_complete_4_product_sets": 4703,
+    "sols_with_no_products_archive_gaps": 140,
+    "archive_gap_sols": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      193,
+      194,
+      201,
+      202,
+      203,
+      204,
+      205,
+      206,
+      207,
+      208,
+      209,
+      210,
+      211,
+      212,
+      213,
+      214,
+      215,
+      216,
+      217,
+      218,
+      219,
+      220,
+      221,
+      263,
+      264,
+      265,
+      266,
+      359,
+      360,
+      361,
+      362,
+      363,
+      364,
+      445,
+      446,
+      447,
+      448,
+      449,
+      450,
+      451,
+      452,
+      453,
+      458,
+      459,
+      460,
+      461,
+      479,
+      480,
+      481,
+      482,
+      483,
+      484,
+      874,
+      875,
+      876,
+      877,
+      878,
+      879,
+      938,
+      956,
+      1390,
+      1391,
+      1392,
+      1393,
+      1394,
+      1395,
+      1396,
+      1397,
+      2176,
+      2177,
+      2178,
+      2179,
+      2180,
+      2181,
+      2182,
+      2183,
+      2184,
+      2185,
+      2186,
+      2187,
+      2188,
+      2189,
+      2190,
+      2191,
+      2192,
+      2193,
+      2194,
+      2195,
+      2196,
+      2197,
+      2198,
+      2199,
+      2200,
+      2201,
+      2202,
+      2203,
+      2321,
+      2322,
+      2323,
+      2324,
+      2325,
+      2326,
+      2327,
+      2328,
+      2329,
+      2330,
+      2331,
+      2332,
+      2340,
+      2341,
+      2342,
+      2343,
+      2344,
+      2345,
+      2346,
+      2808,
+      2809,
+      2815,
+      2966,
+      3497,
+      3498,
+      3499,
+      3500,
+      3501,
+      3502,
+      3584,
+      3585,
+      3586,
+      3587,
+      3588,
+      3789,
+      3790,
+      3791,
+      3792
+    ],
+    "discrepancy_4488_vs_4843": {
+      "status": "RESOLVED (documentation lag identified)",
+      "finding": "The official REMS page coverage statement still reports Sol 4488 (2025-03-22), but the PDS4 bundle directory and calibrated collection inventory contain complete four-product sols through Sol 4843 (label START_TIME 2026-03-21T19:16:37.443Z). The errata document's newest release note is Release 36 (sols 4000-4133, 2024-08-02) plus the 2024-09-30 PDS4 compatibility conversion of sols 0-3999; sols 4134-4843 therefore exist as accessible PDS4 products without a published release note. Archive directory coverage, product availability and release documentation were verified separately and are not identical.",
+      "spot_checks": "Complete ADR/MODRDR/RNV/RTL product sets were verified at sols 4488, 4500, 4600, 4700, 4800, 4842 and 4843.",
+      "policy_for_this_milestone": "Selection restricted to sols within the officially stated coverage (<= 4488). Sols 4489-4843 are available but not yet documented in release notes; treat as pending official release documentation."
+    },
+    "release_documentation": {
+      "errata_url": "https://atmos.nmsu.edu/PDS/data/PDS4/msl_rems_bundle/document/ERRATA_CAL.TXT",
+      "errata_publication_date": "2024-09-30",
+      "newest_release_note": "Release 36, sols 4000-4133, released 2024-08-02",
+      "pds4_compatibility_conversion": "2024-09-30 interim release converted sols 0-3999 to the -999 special-constant convention"
+    }
+  },
+  "time_scale_assumptions": {
+    "per_sample_solar_longitude": "Derived from PDS4 label START_TIME (UTC) using the validated Mars24 / Allison-McEwen module; independent of the REMS TIMESTAMP time-scale assumption.",
+    "rems_timestamp": "ASSUMED_TIME_SCALE: seconds since J2000.0 interpreted as TT (existing validated convention; not used for this manifest's per-sample Ls).",
+    "validation_status": "PARTIALLY_VALIDATED",
+    "unresolved": "The approximately 3.5-minute difference between TIMESTAMP-derived time and PDS4 label UTC remains unresolved; per-record UTC and Ls values were not fabricated."
+  },
+  "samples": [
+    {
+      "sol": 4400,
+      "martian_year": 38,
+      "label_start_time_utc": "2024-12-21T12:54:40.004Z",
+      "label_stop_time_utc": "2024-12-22T12:38:44.813Z",
+      "solar_longitude_degrees": {
+        "value_at_label_start_time": 18.980709,
+        "method": "Mars24 / Allison-McEwen (AM2000) applied to PDS4 label START_TIME UTC",
+        "time_scale": "UTC -> TT via leap-second table (existing validated module)",
+        "note": "Ls advances roughly 0.5 deg per sol; the sol spans about 0.5 deg of Ls."
+      },
+      "seasons": {
+        "northern": "Spring",
+        "southern": "Autumn",
+        "gale": "Autumn"
+      },
+      "role": "selected_sample",
+      "products": {
+        "modrdr_data": {
+          "file_name": "RME_788053862RMD44000000000_______P1.TAB",
+          "url": "https://atmos.nmsu.edu/PDS/data/PDS4/msl_rems_bundle/data_calibrated/SOL_04355_04488/SOL04400/RME_788053862RMD44000000000_______P1.TAB",
+          "data_bytes": 12863760,
+          "sha256": null,
+          "sha256_verified": false
+        },
+        "modrdr_label": {
+          "file_name": "RME_788053862RMD44000000000_______P1.TAB",
+          "url": "https://atmos.nmsu.edu/PDS/data/PDS4/msl_rems_bundle/data_calibrated/SOL_04355_04488/SOL04400/RME_788053862RMD44000000000_______P1.TAB"
+        },
+        "logical_identifier": "urn:nasa:pds:msl_rems:data_calibrated:rme_788053862rmd44000000000_______p1",
+        "product_version": "1.0",
+        "record_count": 34580,
+        "field_count": 40,
+        "record_bytes": 372
+      },
+      "field_contract": {
+        "fields_match_canonical_40_field_contract": true,
+        "key_variables_present": true,
+        "missing_constant_convention": "-999 / -999.00 / -9.990E+02 per label Special_Constants"
+      },
+      "window_sample_audit": {
+        "method": "Three 65536-byte HTTP range samples per data file (start, middle, end); rows parsed in label field order; statistics are window samples, not full-sol values.",
+        "bytes_per_window": 65536,
+        "rows_per_window": {
+          "start": 176,
+          "middle": 176,
+          "end": 176
+        },
+        "missing_value_percent_by_window": {
+          "start": {
+            "AMBIENT_TEMP": 0.0,
+            "BRIGHTNESS_TEMP": 34.1,
+            "PRESSURE": 0.0,
+            "LOCAL_RELATIVE_HUMIDITY": 0.6,
+            "VOLUME_MIXING_RATIO": 0.6,
+            "HS_TEMP": 0.6,
+            "HORIZONTAL_WIND_SPEED": 100.0,
+            "WIND_DIRECTION": 100.0,
+            "VERTICAL_WIND_SPEED": 100.0,
+            "UV_A": 0.0,
+            "UV_ABC": 0.0,
+            "UV_D": 0.0,
+            "UV_E": 0.0,
+            "BOOM1_LOCAL_AIR_TEMP": 0.0,
+            "BOOM2_LOCAL_AIR_TEMP": 0.0
+          },
+          "middle": {
+            "AMBIENT_TEMP": 0.0,
+            "BRIGHTNESS_TEMP": 33.0,
+            "PRESSURE": 0.0,
+            "LOCAL_RELATIVE_HUMIDITY": 0.6,
+            "VOLUME_MIXING_RATIO": 0.6,
+            "HS_TEMP": 0.6,
+            "HORIZONTAL_WIND_SPEED": 100.0,
+            "WIND_DIRECTION": 100.0,
+            "VERTICAL_WIND_SPEED": 100.0,
+            "UV_A": 67.0,
+            "UV_ABC": 67.0,
+            "UV_D": 67.0,
+            "UV_E": 67.0,
+            "BOOM1_LOCAL_AIR_TEMP": 0.0,
+            "BOOM2_LOCAL_AIR_TEMP": 0.0
+          },
+          "end": {
+            "AMBIENT_TEMP": 0.0,
+            "BRIGHTNESS_TEMP": 0.0,
+            "PRESSURE": 0.0,
+            "LOCAL_RELATIVE_HUMIDITY": 0.0,
+            "VOLUME_MIXING_RATIO": 0.0,
+            "HS_TEMP": 0.0,
+            "HORIZONTAL_WIND_SPEED": 100.0,
+            "WIND_DIRECTION": 100.0,
+            "VERTICAL_WIND_SPEED": 100.0,
+            "UV_A": 0.0,
+            "UV_ABC": 0.0,
+            "UV_D": 0.0,
+            "UV_E": 0.0,
+            "BOOM1_LOCAL_AIR_TEMP": 0.0,
+            "BOOM2_LOCAL_AIR_TEMP": 0.0
+          }
+        }
+      },
+      "audit_status": "window_sampled_start_middle_end"
+    },
+    {
+      "sol": 430,
+      "martian_year": 32,
+      "label_start_time_utc": "2013-10-21T09:33:18.056Z",
+      "label_stop_time_utc": "2013-10-22T09:16:17.862Z",
+      "solar_longitude_degrees": {
+        "value_at_label_start_time": 38.631104,
+        "method": "Mars24 / Allison-McEwen (AM2000) applied to PDS4 label START_TIME UTC",
+        "time_scale": "UTC -> TT via leap-second table (existing validated module)",
+        "note": "Ls advances roughly 0.5 deg per sol; the sol spans about 0.5 deg of Ls."
+      },
+      "seasons": {
+        "northern": "Spring",
+        "southern": "Autumn",
+        "gale": "Autumn"
+      },
+      "role": "selected_sample",
+      "products": {
+        "modrdr_data": {
+          "file_name": "RME_435619468RMD04300000000_______P6.TAB",
+          "url": "https://atmos.nmsu.edu/PDS/data/PDS4/msl_rems_bundle/data_calibrated/SOL_00360_00449/SOL00430/RME_435619468RMD04300000000_______P6.TAB",
+          "data_bytes": 8093232,
+          "sha256": null,
+          "sha256_verified": false
+        },
+        "modrdr_label": {
+          "file_name": "RME_435619468RMD04300000000_______P6.TAB",
+          "url": "https://atmos.nmsu.edu/PDS/data/PDS4/msl_rems_bundle/data_calibrated/SOL_00360_00449/SOL00430/RME_435619468RMD04300000000_______P6.TAB"
+        },
+        "logical_identifier": "urn:nasa:pds:msl_rems:data_calibrated:rme_435619468rmd04300000000_______p6",
+        "product_version": "1.0",
+        "record_count": 21756,
+        "field_count": 40,
+        "record_bytes": 372
+      },
+      "field_contract": {
+        "fields_match_canonical_40_field_contract": true,
+        "key_variables_present": true,
+        "missing_constant_convention": "-999 / -999.00 / -9.990E+02 per label Special_Constants"
+      },
+      "window_sample_audit": {
+        "method": "Three 65536-byte HTTP range samples per data file (start, middle, end); rows parsed in label field order; statistics are window samples, not full-sol values.",
+        "bytes_per_window": 65536,
+        "rows_per_window": {
+          "start": 176,
+          "middle": 176,
+          "end": 176
+        },
+        "missing_value_percent_by_window": {
+          "start": {
+            "AMBIENT_TEMP": 0.0,
+            "BRIGHTNESS_TEMP": 34.1,
+            "PRESSURE": 0.0,
+            "LOCAL_RELATIVE_HUMIDITY": 0.6,
+            "VOLUME_MIXING_RATIO": 0.6,
+            "HORIZONTAL_WIND_SPEED": 100.0,
+            "WIND_DIRECTION": 100.0,
+            "VERTICAL_WIND_SPEED": 100.0,
+            "UV_A": 0.0,
+            "UV_ABC": 0.0,
+            "UV_D": 0.0,
+            "UV_E": 0.0,
+            "HS_TEMP": 0.6,
+            "BOOM1_LOCAL_AIR_TEMP": 0.0,
+            "BOOM2_LOCAL_AIR_TEMP": 0.0
+          },
+          "middle": {
+            "AMBIENT_TEMP": 0.0,
+            "BRIGHTNESS_TEMP": 100.0,
+            "PRESSURE": 0.0,
+            "LOCAL_RELATIVE_HUMIDITY": 0.0,
+            "VOLUME_MIXING_RATIO": 0.0,
+            "HORIZONTAL_WIND_SPEED": 100.0,
+            "WIND_DIRECTION": 100.0,
+            "VERTICAL_WIND_SPEED": 100.0,
+            "UV_A": 25.0,
+            "UV_ABC": 25.0,
+            "UV_D": 25.0,
+            "UV_E": 25.0,
+            "HS_TEMP": 0.0,
+            "BOOM1_LOCAL_AIR_TEMP": 0.0,
+            "BOOM2_LOCAL_AIR_TEMP": 0.0
+          },
+          "end": {
+            "AMBIENT_TEMP": 0.0,
+            "BRIGHTNESS_TEMP": 0.0,
+            "PRESSURE": 0.0,
+            "LOCAL_RELATIVE_HUMIDITY": 0.0,
+            "VOLUME_MIXING_RATIO": 0.0,
+            "HORIZONTAL_WIND_SPEED": 100.0,
+            "WIND_DIRECTION": 100.0,
+            "VERTICAL_WIND_SPEED": 100.0,
+            "UV_A": 0.0,
+            "UV_ABC": 0.0,
+            "UV_D": 0.0,
+            "UV_E": 0.0,
+            "HS_TEMP": 0.0,
+            "BOOM1_LOCAL_AIR_TEMP": 0.0,
+            "BOOM2_LOCAL_AIR_TEMP": 0.0
+          }
+        }
+      },
+      "audit_status": "window_sampled_start_middle_end"
+    },
+    {
+      "sol": 1850,
+      "martian_year": 34,
+      "label_start_time_utc": "2017-10-19T10:27:54.807Z",
+      "label_stop_time_utc": "2017-10-20T10:10:49.613Z",
+      "solar_longitude_degrees": {
+        "value_at_label_start_time": 76.128558,
+        "method": "Mars24 / Allison-McEwen (AM2000) applied to PDS4 label START_TIME UTC",
+        "time_scale": "UTC -> TT via leap-second table (existing validated module)",
+        "note": "Ls advances roughly 0.5 deg per sol; the sol spans about 0.5 deg of Ls."
+      },
+      "seasons": {
+        "northern": "Spring",
+        "southern": "Autumn",
+        "gale": "Autumn"
+      },
+      "role": "selected_sample",
+      "products": {
+        "modrdr_data": {
+          "file_name": "RME_561679125RMD18500000000_______P2.TAB",
+          "url": "https://atmos.nmsu.edu/PDS/data/PDS4/msl_rems_bundle/data_calibrated/SOL_01773_01869/SOL01850/RME_561679125RMD18500000000_______P2.TAB",
+          "data_bytes": 10318536,
+          "sha256": null,
+          "sha256_verified": false
+        },
+        "modrdr_label": {
+          "file_name": "RME_561679125RMD18500000000_______P2.TAB",
+          "url": "https://atmos.nmsu.edu/PDS/data/PDS4/msl_rems_bundle/data_calibrated/SOL_01773_01869/SOL01850/RME_561679125RMD18500000000_______P2.TAB"
+        },
+        "logical_identifier": "urn:nasa:pds:msl_rems:data_calibrated:rme_561679125rmd18500000000_______p2",
+        "product_version": "1.0",
+        "record_count": 27738,
+        "field_count": 40,
+        "record_bytes": 372
+      },
+      "field_contract": {
+        "fields_match_canonical_40_field_contract": true,
+        "key_variables_present": true,
+        "missing_constant_convention": "-999 / -999.00 / -9.990E+02 per label Special_Constants"
+      },
+      "window_sample_audit": {
+        "method": "Three 65536-byte HTTP range samples per data file (start, middle, end); rows parsed in label field order; statistics are window samples, not full-sol values.",
+        "bytes_per_window": 65536,
+        "rows_per_window": {
+          "start": 176,
+          "middle": 176,
+          "end": 176
+        },
+        "missing_value_percent_by_window": {
+          "start": {
+            "AMBIENT_TEMP": 0.0,
+            "BRIGHTNESS_TEMP": 34.1,
+            "PRESSURE": 0.0,
+            "LOCAL_RELATIVE_HUMIDITY": 0.6,
+            "VOLUME_MIXING_RATIO": 0.6,
+            "HS_TEMP": 0.6,
+            "HORIZONTAL_WIND_SPEED": 100.0,
+            "WIND_DIRECTION": 100.0,
+            "VERTICAL_WIND_SPEED": 100.0,
+            "UV_A": 0.0,
+            "UV_ABC": 0.0,
+            "UV_D": 0.0,
+            "UV_E": 0.0,
+            "BOOM1_LOCAL_AIR_TEMP": 0.0,
+            "BOOM2_LOCAL_AIR_TEMP": 0.0
+          },
+          "middle": {
+            "AMBIENT_TEMP": 0.0,
+            "BRIGHTNESS_TEMP": 50.0,
+            "PRESSURE": 0.0,
+            "LOCAL_RELATIVE_HUMIDITY": 0.6,
+            "VOLUME_MIXING_RATIO": 0.6,
+            "HS_TEMP": 0.6,
+            "HORIZONTAL_WIND_SPEED": 100.0,
+            "WIND_DIRECTION": 100.0,
+            "VERTICAL_WIND_SPEED": 100.0,
+            "UV_A": 100.0,
+            "UV_ABC": 100.0,
+            "UV_D": 100.0,
+            "UV_E": 100.0,
+            "BOOM1_LOCAL_AIR_TEMP": 0.0,
+            "BOOM2_LOCAL_AIR_TEMP": 0.0
+          },
+          "end": {
+            "AMBIENT_TEMP": 0.0,
+            "BRIGHTNESS_TEMP": 0.0,
+            "PRESSURE": 0.0,
+            "LOCAL_RELATIVE_HUMIDITY": 0.0,
+            "VOLUME_MIXING_RATIO": 0.0,
+            "HS_TEMP": 0.0,
+            "HORIZONTAL_WIND_SPEED": 100.0,
+            "WIND_DIRECTION": 100.0,
+            "VERTICAL_WIND_SPEED": 100.0,
+            "UV_A": 0.0,
+            "UV_ABC": 0.0,
+            "UV_D": 0.0,
+            "UV_E": 0.0,
+            "BOOM1_LOCAL_AIR_TEMP": 0.0,
+            "BOOM2_LOCAL_AIR_TEMP": 0.0
+          }
+        }
+      },
+      "audit_status": "window_sampled_start_middle_end"
+    },
+    {
+      "sol": 1250,
+      "martian_year": 33,
+      "label_start_time_utc": "2016-02-10T22:34:13.095Z",
+      "label_stop_time_utc": "2016-02-11T22:18:05.902Z",
+      "solar_longitude_degrees": {
+        "value_at_label_start_time": 107.355905,
+        "method": "Mars24 / Allison-McEwen (AM2000) applied to PDS4 label START_TIME UTC",
+        "time_scale": "UTC -> TT via leap-second table (existing validated module)",
+        "note": "Ls advances roughly 0.5 deg per sol; the sol spans about 0.5 deg of Ls."
+      },
+      "seasons": {
+        "northern": "Summer",
+        "southern": "Winter",
+        "gale": "Winter"
+      },
+      "role": "selected_sample",
+      "products": {
+        "modrdr_data": {
+          "file_name": "RME_508414481RMD12500000000_______P2.TAB",
+          "url": "https://atmos.nmsu.edu/PDS/data/PDS4/msl_rems_bundle/data_calibrated/SOL_01160_01293/SOL01250/RME_508414481RMD12500000000_______P2.TAB",
+          "data_bytes": 13887876,
+          "sha256": null,
+          "sha256_verified": false
+        },
+        "modrdr_label": {
+          "file_name": "RME_508414481RMD12500000000_______P2.TAB",
+          "url": "https://atmos.nmsu.edu/PDS/data/PDS4/msl_rems_bundle/data_calibrated/SOL_01160_01293/SOL01250/RME_508414481RMD12500000000_______P2.TAB"
+        },
+        "logical_identifier": "urn:nasa:pds:msl_rems:data_calibrated:rme_508414481rmd12500000000_______p2",
+        "product_version": "1.0",
+        "record_count": 37333,
+        "field_count": 40,
+        "record_bytes": 372
+      },
+      "field_contract": {
+        "fields_match_canonical_40_field_contract": true,
+        "key_variables_present": true,
+        "missing_constant_convention": "-999 / -999.00 / -9.990E+02 per label Special_Constants"
+      },
+      "window_sample_audit": {
+        "method": "Three 65536-byte HTTP range samples per data file (start, middle, end); rows parsed in label field order; statistics are window samples, not full-sol values.",
+        "bytes_per_window": 65536,
+        "rows_per_window": {
+          "start": 176,
+          "middle": 175,
+          "end": 176
+        },
+        "missing_value_percent_by_window": {
+          "start": {
+            "AMBIENT_TEMP": 0.0,
+            "BRIGHTNESS_TEMP": 34.1,
+            "PRESSURE": 0.0,
+            "LOCAL_RELATIVE_HUMIDITY": 0.6,
+            "VOLUME_MIXING_RATIO": 0.6,
+            "HORIZONTAL_WIND_SPEED": 100.0,
+            "WIND_DIRECTION": 100.0,
+            "VERTICAL_WIND_SPEED": 100.0,
+            "UV_A": 0.0,
+            "UV_ABC": 0.0,
+            "UV_D": 0.0,
+            "UV_E": 0.0,
+            "HS_TEMP": 0.6,
+            "BOOM1_LOCAL_AIR_TEMP": 0.0,
+            "BOOM2_LOCAL_AIR_TEMP": 0.0
+          },
+          "middle": {
+            "AMBIENT_TEMP": 0.0,
+            "BRIGHTNESS_TEMP": 0.0,
+            "PRESSURE": 0.0,
+            "LOCAL_RELATIVE_HUMIDITY": 0.0,
+            "VOLUME_MIXING_RATIO": 0.0,
+            "HORIZONTAL_WIND_SPEED": 100.0,
+            "WIND_DIRECTION": 100.0,
+            "VERTICAL_WIND_SPEED": 100.0,
+            "UV_A": 100.0,
+            "UV_ABC": 100.0,
+            "UV_D": 100.0,
+            "UV_E": 100.0,
+            "HS_TEMP": 0.0,
+            "BOOM1_LOCAL_AIR_TEMP": 0.0,
+            "BOOM2_LOCAL_AIR_TEMP": 0.0
+          },
+          "end": {
+            "AMBIENT_TEMP": 0.0,
+            "BRIGHTNESS_TEMP": 0.0,
+            "PRESSURE": 0.0,
+            "LOCAL_RELATIVE_HUMIDITY": 0.0,
+            "VOLUME_MIXING_RATIO": 0.0,
+            "HORIZONTAL_WIND_SPEED": 100.0,
+            "WIND_DIRECTION": 100.0,
+            "VERTICAL_WIND_SPEED": 100.0,
+            "UV_A": 0.0,
+            "UV_ABC": 0.0,
+            "UV_D": 0.0,
+            "UV_E": 0.0,
+            "HS_TEMP": 0.0,
+            "BOOM1_LOCAL_AIR_TEMP": 0.0,
+            "BOOM2_LOCAL_AIR_TEMP": 0.0
+          }
+        }
+      },
+      "audit_status": "window_sampled_start_middle_end"
+    },
+    {
+      "sol": 2600,
+      "martian_year": 35,
+      "label_start_time_utc": "2019-11-29T01:17:11.788Z",
+      "label_stop_time_utc": "2019-11-30T01:56:46.638Z",
+      "solar_longitude_degrees": {
+        "value_at_label_start_time": 113.376515,
+        "method": "Mars24 / Allison-McEwen (AM2000) applied to PDS4 label START_TIME UTC",
+        "time_scale": "UTC -> TT via leap-second table (existing validated module)",
+        "note": "Ls advances roughly 0.5 deg per sol; the sol spans about 0.5 deg of Ls."
+      },
+      "seasons": {
+        "northern": "Summer",
+        "southern": "Winter",
+        "gale": "Winter"
+      },
+      "role": "selected_sample",
+      "products": {
+        "modrdr_data": {
+          "file_name": "RME_628259926RMD26000000000_______P2.TAB",
+          "url": "https://atmos.nmsu.edu/PDS/data/PDS4/msl_rems_bundle/data_calibrated/SOL_02580_02713/SOL02600/RME_628259926RMD26000000000_______P2.TAB",
+          "data_bytes": 14102148,
+          "sha256": null,
+          "sha256_verified": false
+        },
+        "modrdr_label": {
+          "file_name": "RME_628259926RMD26000000000_______P2.TAB",
+          "url": "https://atmos.nmsu.edu/PDS/data/PDS4/msl_rems_bundle/data_calibrated/SOL_02580_02713/SOL02600/RME_628259926RMD26000000000_______P2.TAB"
+        },
+        "logical_identifier": "urn:nasa:pds:msl_rems:data_calibrated:rme_628259926rmd26000000000_______p2",
+        "product_version": "1.0",
+        "record_count": 37909,
+        "field_count": 40,
+        "record_bytes": 372
+      },
+      "field_contract": {
+        "fields_match_canonical_40_field_contract": true,
+        "key_variables_present": true,
+        "missing_constant_convention": "-999 / -999.00 / -9.990E+02 per label Special_Constants"
+      },
+      "window_sample_audit": {
+        "method": "Three 65536-byte HTTP range samples per data file (start, middle, end); rows parsed in label field order; statistics are window samples, not full-sol values.",
+        "bytes_per_window": 65536,
+        "rows_per_window": {
+          "start": 176,
+          "middle": 175,
+          "end": 176
+        },
+        "missing_value_percent_by_window": {
+          "start": {
+            "AMBIENT_TEMP": 0.0,
+            "BRIGHTNESS_TEMP": 34.1,
+            "PRESSURE": 0.0,
+            "LOCAL_RELATIVE_HUMIDITY": 0.6,
+            "VOLUME_MIXING_RATIO": 0.6,
+            "HORIZONTAL_WIND_SPEED": 100.0,
+            "WIND_DIRECTION": 100.0,
+            "VERTICAL_WIND_SPEED": 100.0,
+            "UV_A": 0.0,
+            "UV_ABC": 0.0,
+            "UV_D": 0.0,
+            "UV_E": 0.0,
+            "HS_TEMP": 0.6,
+            "BOOM1_LOCAL_AIR_TEMP": 0.0,
+            "BOOM2_LOCAL_AIR_TEMP": 0.0
+          },
+          "middle": {
+            "AMBIENT_TEMP": 0.0,
+            "BRIGHTNESS_TEMP": 0.0,
+            "PRESSURE": 0.0,
+            "LOCAL_RELATIVE_HUMIDITY": 0.0,
+            "VOLUME_MIXING_RATIO": 0.0,
+            "HORIZONTAL_WIND_SPEED": 100.0,
+            "WIND_DIRECTION": 100.0,
+            "VERTICAL_WIND_SPEED": 100.0,
+            "UV_A": 0.0,
+            "UV_ABC": 0.0,
+            "UV_D": 0.0,
+            "UV_E": 0.0,
+            "HS_TEMP": 0.0,
+            "BOOM1_LOCAL_AIR_TEMP": 0.0,
+            "BOOM2_LOCAL_AIR_TEMP": 0.0
+          },
+          "end": {
+            "AMBIENT_TEMP": 0.0,
+            "BRIGHTNESS_TEMP": 0.0,
+            "PRESSURE": 0.0,
+            "LOCAL_RELATIVE_HUMIDITY": 0.0,
+            "VOLUME_MIXING_RATIO": 0.0,
+            "HORIZONTAL_WIND_SPEED": 100.0,
+            "WIND_DIRECTION": 100.0,
+            "VERTICAL_WIND_SPEED": 100.0,
+            "UV_A": 0.0,
+            "UV_ABC": 0.0,
+            "UV_D": 0.0,
+            "UV_E": 0.0,
+            "HS_TEMP": 0.0,
+            "BOOM1_LOCAL_AIR_TEMP": 0.0,
+            "BOOM2_LOCAL_AIR_TEMP": 0.0
+          }
+        }
+      },
+      "audit_status": "window_sampled_start_middle_end"
+    },
+    {
+      "sol": 3950,
+      "martian_year": 37,
+      "label_start_time_utc": "2023-09-16T04:01:27.932Z",
+      "label_stop_time_utc": "2023-09-17T03:44:25.740Z",
+      "solar_longitude_degrees": {
+        "value_at_label_start_time": 119.488865,
+        "method": "Mars24 / Allison-McEwen (AM2000) applied to PDS4 label START_TIME UTC",
+        "time_scale": "UTC -> TT via leap-second table (existing validated module)",
+        "note": "Ls advances roughly 0.5 deg per sol; the sol spans about 0.5 deg of Ls."
+      },
+      "seasons": {
+        "northern": "Summer",
+        "southern": "Winter",
+        "gale": "Winter"
+      },
+      "role": "selected_sample",
+      "products": {
+        "modrdr_data": {
+          "file_name": "RME_748105384RMD39500000000_______P2.TAB",
+          "url": "https://atmos.nmsu.edu/PDS/data/PDS4/msl_rems_bundle/data_calibrated/SOL_03903_03999/SOL03950/RME_748105384RMD39500000000_______P2.TAB",
+          "data_bytes": 7795632,
+          "sha256": null,
+          "sha256_verified": false
+        },
+        "modrdr_label": {
+          "file_name": "RME_748105384RMD39500000000_______P2.TAB",
+          "url": "https://atmos.nmsu.edu/PDS/data/PDS4/msl_rems_bundle/data_calibrated/SOL_03903_03999/SOL03950/RME_748105384RMD39500000000_______P2.TAB"
+        },
+        "logical_identifier": "urn:nasa:pds:msl_rems:data_calibrated:rme_748105384rmd39500000000_______p2",
+        "product_version": "1.0",
+        "record_count": 20956,
+        "field_count": 40,
+        "record_bytes": 372
+      },
+      "field_contract": {
+        "fields_match_canonical_40_field_contract": true,
+        "key_variables_present": true,
+        "missing_constant_convention": "-999 / -999.00 / -9.990E+02 per label Special_Constants"
+      },
+      "window_sample_audit": {
+        "method": "Three 65536-byte HTTP range samples per data file (start, middle, end); rows parsed in label field order; statistics are window samples, not full-sol values.",
+        "bytes_per_window": 65536,
+        "rows_per_window": {
+          "start": 176,
+          "middle": 176,
+          "end": 176
+        },
+        "missing_value_percent_by_window": {
+          "start": {
+            "AMBIENT_TEMP": 0.0,
+            "BRIGHTNESS_TEMP": 34.1,
+            "PRESSURE": 0.0,
+            "LOCAL_RELATIVE_HUMIDITY": 0.6,
+            "VOLUME_MIXING_RATIO": 0.6,
+            "HORIZONTAL_WIND_SPEED": 100.0,
+            "WIND_DIRECTION": 100.0,
+            "VERTICAL_WIND_SPEED": 100.0,
+            "UV_A": 0.0,
+            "UV_ABC": 0.0,
+            "UV_D": 0.0,
+            "UV_E": 0.0,
+            "HS_TEMP": 0.6,
+            "BOOM1_LOCAL_AIR_TEMP": 0.0,
+            "BOOM2_LOCAL_AIR_TEMP": 0.0
+          },
+          "middle": {
+            "AMBIENT_TEMP": 0.0,
+            "BRIGHTNESS_TEMP": 50.0,
+            "PRESSURE": 0.0,
+            "LOCAL_RELATIVE_HUMIDITY": 0.6,
+            "VOLUME_MIXING_RATIO": 0.6,
+            "HORIZONTAL_WIND_SPEED": 100.0,
+            "WIND_DIRECTION": 100.0,
+            "VERTICAL_WIND_SPEED": 100.0,
+            "UV_A": 0.0,
+            "UV_ABC": 0.0,
+            "UV_D": 0.0,
+            "UV_E": 0.0,
+            "HS_TEMP": 0.6,
+            "BOOM1_LOCAL_AIR_TEMP": 0.0,
+            "BOOM2_LOCAL_AIR_TEMP": 0.0
+          },
+          "end": {
+            "AMBIENT_TEMP": 0.0,
+            "BRIGHTNESS_TEMP": 0.0,
+            "PRESSURE": 0.0,
+            "LOCAL_RELATIVE_HUMIDITY": 0.0,
+            "VOLUME_MIXING_RATIO": 0.0,
+            "HORIZONTAL_WIND_SPEED": 100.0,
+            "WIND_DIRECTION": 100.0,
+            "VERTICAL_WIND_SPEED": 100.0,
+            "UV_A": 0.0,
+            "UV_ABC": 0.0,
+            "UV_D": 0.0,
+            "UV_E": 0.0,
+            "HS_TEMP": 0.0,
+            "BOOM1_LOCAL_AIR_TEMP": 0.0,
+            "BOOM2_LOCAL_AIR_TEMP": 0.0
+          }
+        }
+      },
+      "audit_status": "window_sampled_start_middle_end"
+    },
+    {
+      "sol": 100,
+      "martian_year": 31,
+      "solar_longitude_degrees": {
+        "value_range": [
+          207.896385,
+          208.495693
+        ],
+        "method": "TIMESTAMP-derived (existing W1.2B-H2 metadata)",
+        "label_start_time_utc": "2012-11-16T07:48:43.598Z",
+        "label_utc_derived_ls_start": 207.898346,
+        "timestamp_utc_cross_check_difference_deg": 0.001961
+      },
+      "seasons": {
+        "northern": "Autumn",
+        "southern": "Spring",
+        "gale": "Spring"
+      },
+      "role": "existing_reference_sample_W1_2A",
+      "products": {
+        "modrdr_data": {
+          "file_name": "RME_406323911RMD01000000000_______P9.TAB",
+          "url": "https://atmos.nmsu.edu/PDS/data/PDS4/msl_rems_bundle/data_calibrated/SOL_00090_00179/SOL00100/RME_406323911RMD01000000000_______P9.TAB",
+          "data_bytes": 13147968,
+          "sha256": "be0ecfea58f2957502bc8f2723b52dc4c2e0e38600bfb2f67f7c1fa6e9c216b9",
+          "sha256_verified": true
+        },
+        "modrdr_label": {
+          "file_name": "RME_406323911RMD01000000000_______P9.xml",
+          "url": "https://atmos.nmsu.edu/PDS/data/PDS4/msl_rems_bundle/data_calibrated/SOL_00090_00179/SOL00100/RME_406323911RMD01000000000_______P9.xml",
+          "sha256": "92af8c645bd513b20dcbc79f2667388b273dd9d9bcbd4ee7c29f07745c0952ce",
+          "sha256_verified": true
+        },
+        "logical_identifier": "urn:nasa:pds:msl_rems:data_calibrated:rme_406323911rmd01000000000_______p9",
+        "product_version": "1.0",
+        "record_count": 35344,
+        "field_count": 40,
+        "record_bytes": 372
+      },
+      "measurement_status": {
+        "scope": "full_sol",
+        "source": "team/gale/weather/data/rems_sol_00100.json quality_summary (W1.2A, locally verified)",
+        "missing_value_percent": {
+          "AMBIENT_TEMP": 0.849,
+          "BRIGHTNESS_TEMP": 4.753,
+          "PRESSURE": 0.849,
+          "LOCAL_RELATIVE_HUMIDITY": 0.962,
+          "VOLUME_MIXING_RATIO": 0.962,
+          "HORIZONTAL_WIND_SPEED": 99.898,
+          "WIND_DIRECTION": 99.751,
+          "VERTICAL_WIND_SPEED": 100.0,
+          "UV_A": 22.997,
+          "UV_ABC": 22.997,
+          "UV_D": 22.997,
+          "UV_E": 22.997,
+          "BOOM1_LOCAL_AIR_TEMP": 0.849,
+          "BOOM2_LOCAL_AIR_TEMP": 0.849
+        }
+      },
+      "audit_status": "full_sol_measured"
+    },
+    {
+      "sol": 1450,
+      "martian_year": 33,
+      "label_start_time_utc": "2016-09-03T10:32:27.665Z",
+      "label_stop_time_utc": "2016-09-04T10:15:36.471Z",
+      "solar_longitude_degrees": {
+        "value_at_label_start_time": 215.910337,
+        "method": "Mars24 / Allison-McEwen (AM2000) applied to PDS4 label START_TIME UTC",
+        "time_scale": "UTC -> TT via leap-second table (existing validated module)",
+        "note": "Ls advances roughly 0.5 deg per sol; the sol spans about 0.5 deg of Ls."
+      },
+      "seasons": {
+        "northern": "Autumn",
+        "southern": "Spring",
+        "gale": "Spring"
+      },
+      "role": "selected_sample",
+      "products": {
+        "modrdr_data": {
+          "file_name": "RME_526169363RMD14500000000_______P2.TAB",
+          "url": "https://atmos.nmsu.edu/PDS/data/PDS4/msl_rems_bundle/data_calibrated/SOL_01418_01514/SOL01450/RME_526169363RMD14500000000_______P2.TAB",
+          "data_bytes": 11579988,
+          "sha256": null,
+          "sha256_verified": false
+        },
+        "modrdr_label": {
+          "file_name": "RME_526169363RMD14500000000_______P2.TAB",
+          "url": "https://atmos.nmsu.edu/PDS/data/PDS4/msl_rems_bundle/data_calibrated/SOL_01418_01514/SOL01450/RME_526169363RMD14500000000_______P2.TAB"
+        },
+        "logical_identifier": "urn:nasa:pds:msl_rems:data_calibrated:rme_526169363rmd14500000000_______p2",
+        "product_version": "1.0",
+        "record_count": 31129,
+        "field_count": 40,
+        "record_bytes": 372
+      },
+      "field_contract": {
+        "fields_match_canonical_40_field_contract": true,
+        "key_variables_present": true,
+        "missing_constant_convention": "-999 / -999.00 / -9.990E+02 per label Special_Constants"
+      },
+      "window_sample_audit": {
+        "method": "Three 65536-byte HTTP range samples per data file (start, middle, end); rows parsed in label field order; statistics are window samples, not full-sol values.",
+        "bytes_per_window": 65536,
+        "rows_per_window": {
+          "start": 176,
+          "middle": 175,
+          "end": 176
+        },
+        "missing_value_percent_by_window": {
+          "start": {
+            "AMBIENT_TEMP": 0.0,
+            "BRIGHTNESS_TEMP": 34.1,
+            "PRESSURE": 0.0,
+            "LOCAL_RELATIVE_HUMIDITY": 0.6,
+            "VOLUME_MIXING_RATIO": 0.6,
+            "HORIZONTAL_WIND_SPEED": 100.0,
+            "WIND_DIRECTION": 100.0,
+            "VERTICAL_WIND_SPEED": 100.0,
+            "UV_A": 0.0,
+            "UV_ABC": 0.0,
+            "UV_D": 0.0,
+            "UV_E": 0.0,
+            "HS_TEMP": 0.6,
+            "BOOM1_LOCAL_AIR_TEMP": 0.0,
+            "BOOM2_LOCAL_AIR_TEMP": 0.0
+          },
+          "middle": {
+            "AMBIENT_TEMP": 0.0,
+            "BRIGHTNESS_TEMP": 0.0,
+            "PRESSURE": 0.0,
+            "LOCAL_RELATIVE_HUMIDITY": 0.0,
+            "VOLUME_MIXING_RATIO": 0.0,
+            "HORIZONTAL_WIND_SPEED": 100.0,
+            "WIND_DIRECTION": 100.0,
+            "VERTICAL_WIND_SPEED": 100.0,
+            "UV_A": 0.0,
+            "UV_ABC": 0.0,
+            "UV_D": 0.0,
+            "UV_E": 0.0,
+            "HS_TEMP": 0.0,
+            "BOOM1_LOCAL_AIR_TEMP": 0.0,
+            "BOOM2_LOCAL_AIR_TEMP": 0.0
+          },
+          "end": {
+            "AMBIENT_TEMP": 0.0,
+            "BRIGHTNESS_TEMP": 0.0,
+            "PRESSURE": 0.0,
+            "LOCAL_RELATIVE_HUMIDITY": 0.0,
+            "VOLUME_MIXING_RATIO": 0.0,
+            "HORIZONTAL_WIND_SPEED": 100.0,
+            "WIND_DIRECTION": 100.0,
+            "VERTICAL_WIND_SPEED": 100.0,
+            "UV_A": 0.0,
+            "UV_ABC": 0.0,
+            "UV_D": 0.0,
+            "UV_E": 0.0,
+            "HS_TEMP": 0.0,
+            "BOOM1_LOCAL_AIR_TEMP": 0.0,
+            "BOOM2_LOCAL_AIR_TEMP": 0.0
+          }
+        }
+      },
+      "audit_status": "window_sampled_start_middle_end"
+    },
+    {
+      "sol": 4100,
+      "martian_year": 37,
+      "label_start_time_utc": "2024-02-17T06:59:27.957Z",
+      "label_stop_time_utc": "2024-02-18T06:42:20.765Z",
+      "solar_longitude_degrees": {
+        "value_at_label_start_time": 200.749259,
+        "method": "Mars24 / Allison-McEwen (AM2000) applied to PDS4 label START_TIME UTC",
+        "time_scale": "UTC -> TT via leap-second table (existing validated module)",
+        "note": "Ls advances roughly 0.5 deg per sol; the sol spans about 0.5 deg of Ls."
+      },
+      "seasons": {
+        "northern": "Autumn",
+        "southern": "Spring",
+        "gale": "Spring"
+      },
+      "role": "selected_sample",
+      "products": {
+        "modrdr_data": {
+          "file_name": "RME_761421544RMD41000000000_______P2.TAB",
+          "url": "https://atmos.nmsu.edu/PDS/data/PDS4/msl_rems_bundle/data_calibrated/SOL_04000_04133/SOL04100/RME_761421544RMD41000000000_______P2.TAB",
+          "data_bytes": 16625796,
+          "sha256": null,
+          "sha256_verified": false
+        },
+        "modrdr_label": {
+          "file_name": "RME_761421544RMD41000000000_______P2.TAB",
+          "url": "https://atmos.nmsu.edu/PDS/data/PDS4/msl_rems_bundle/data_calibrated/SOL_04000_04133/SOL04100/RME_761421544RMD41000000000_______P2.TAB"
+        },
+        "logical_identifier": "urn:nasa:pds:msl_rems:data_calibrated:rme_761421544rmd41000000000_______p2",
+        "product_version": "1.0",
+        "record_count": 44693,
+        "field_count": 40,
+        "record_bytes": 372
+      },
+      "field_contract": {
+        "fields_match_canonical_40_field_contract": true,
+        "key_variables_present": true,
+        "missing_constant_convention": "-999 / -999.00 / -9.990E+02 per label Special_Constants"
+      },
+      "window_sample_audit": {
+        "method": "Three 65536-byte HTTP range samples per data file (start, middle, end); rows parsed in label field order; statistics are window samples, not full-sol values.",
+        "bytes_per_window": 65536,
+        "rows_per_window": {
+          "start": 176,
+          "middle": 175,
+          "end": 176
+        },
+        "missing_value_percent_by_window": {
+          "start": {
+            "AMBIENT_TEMP": 0.0,
+            "BRIGHTNESS_TEMP": 34.1,
+            "PRESSURE": 0.0,
+            "LOCAL_RELATIVE_HUMIDITY": 0.6,
+            "VOLUME_MIXING_RATIO": 0.6,
+            "HORIZONTAL_WIND_SPEED": 100.0,
+            "WIND_DIRECTION": 100.0,
+            "VERTICAL_WIND_SPEED": 100.0,
+            "UV_A": 0.0,
+            "UV_ABC": 0.0,
+            "UV_D": 0.0,
+            "UV_E": 0.0,
+            "HS_TEMP": 0.6,
+            "BOOM1_LOCAL_AIR_TEMP": 0.0,
+            "BOOM2_LOCAL_AIR_TEMP": 0.0
+          },
+          "middle": {
+            "AMBIENT_TEMP": 0.0,
+            "BRIGHTNESS_TEMP": 0.0,
+            "PRESSURE": 0.0,
+            "LOCAL_RELATIVE_HUMIDITY": 0.0,
+            "VOLUME_MIXING_RATIO": 0.0,
+            "HORIZONTAL_WIND_SPEED": 100.0,
+            "WIND_DIRECTION": 100.0,
+            "VERTICAL_WIND_SPEED": 100.0,
+            "UV_A": 0.0,
+            "UV_ABC": 0.0,
+            "UV_D": 0.0,
+            "UV_E": 0.0,
+            "HS_TEMP": 0.0,
+            "BOOM1_LOCAL_AIR_TEMP": 0.0,
+            "BOOM2_LOCAL_AIR_TEMP": 0.0
+          },
+          "end": {
+            "AMBIENT_TEMP": 0.0,
+            "BRIGHTNESS_TEMP": 0.0,
+            "PRESSURE": 0.0,
+            "LOCAL_RELATIVE_HUMIDITY": 0.0,
+            "VOLUME_MIXING_RATIO": 0.0,
+            "HORIZONTAL_WIND_SPEED": 100.0,
+            "WIND_DIRECTION": 100.0,
+            "VERTICAL_WIND_SPEED": 100.0,
+            "UV_A": 0.0,
+            "UV_ABC": 0.0,
+            "UV_D": 0.0,
+            "UV_E": 0.0,
+            "HS_TEMP": 0.0,
+            "BOOM1_LOCAL_AIR_TEMP": 0.0,
+            "BOOM2_LOCAL_AIR_TEMP": 0.0
+          }
+        }
+      },
+      "audit_status": "window_sampled_start_middle_end"
+    },
+    {
+      "sol": 900,
+      "martian_year": 32,
+      "label_start_time_utc": "2015-02-16T07:39:27.847Z",
+      "label_stop_time_utc": "2015-02-17T08:18:13.685Z",
+      "solar_longitude_degrees": {
+        "value_at_label_start_time": 292.313631,
+        "method": "Mars24 / Allison-McEwen (AM2000) applied to PDS4 label START_TIME UTC",
+        "time_scale": "UTC -> TT via leap-second table (existing validated module)",
+        "note": "Ls advances roughly 0.5 deg per sol; the sol spans about 0.5 deg of Ls."
+      },
+      "seasons": {
+        "northern": "Winter",
+        "southern": "Summer",
+        "gale": "Summer"
+      },
+      "role": "selected_sample",
+      "products": {
+        "modrdr_data": {
+          "file_name": "RME_477343439RMD09000000000_______P3.TAB",
+          "url": "https://atmos.nmsu.edu/PDS/data/PDS4/msl_rems_bundle/data_calibrated/SOL_00805_00938/SOL00900/RME_477343439RMD09000000000_______P3.TAB",
+          "data_bytes": 11687496,
+          "sha256": null,
+          "sha256_verified": false
+        },
+        "modrdr_label": {
+          "file_name": "RME_477343439RMD09000000000_______P3.TAB",
+          "url": "https://atmos.nmsu.edu/PDS/data/PDS4/msl_rems_bundle/data_calibrated/SOL_00805_00938/SOL00900/RME_477343439RMD09000000000_______P3.TAB"
+        },
+        "logical_identifier": "urn:nasa:pds:msl_rems:data_calibrated:rme_477343439rmd09000000000_______p3",
+        "product_version": "1.0",
+        "record_count": 31418,
+        "field_count": 40,
+        "record_bytes": 372
+      },
+      "field_contract": {
+        "fields_match_canonical_40_field_contract": true,
+        "key_variables_present": true,
+        "missing_constant_convention": "-999 / -999.00 / -9.990E+02 per label Special_Constants"
+      },
+      "window_sample_audit": {
+        "method": "Three 65536-byte HTTP range samples per data file (start, middle, end); rows parsed in label field order; statistics are window samples, not full-sol values.",
+        "bytes_per_window": 65536,
+        "rows_per_window": {
+          "start": 176,
+          "middle": 176,
+          "end": 176
+        },
+        "missing_value_percent_by_window": {
+          "start": {
+            "AMBIENT_TEMP": 0.0,
+            "BRIGHTNESS_TEMP": 34.1,
+            "PRESSURE": 0.0,
+            "LOCAL_RELATIVE_HUMIDITY": 0.6,
+            "VOLUME_MIXING_RATIO": 0.6,
+            "HORIZONTAL_WIND_SPEED": 100.0,
+            "WIND_DIRECTION": 99.4,
+            "VERTICAL_WIND_SPEED": 100.0,
+            "UV_A": 0.0,
+            "UV_ABC": 0.0,
+            "UV_D": 0.0,
+            "UV_E": 0.0,
+            "HS_TEMP": 0.6,
+            "BOOM1_LOCAL_AIR_TEMP": 0.0,
+            "BOOM2_LOCAL_AIR_TEMP": 0.0
+          },
+          "middle": {
+            "AMBIENT_TEMP": 0.0,
+            "BRIGHTNESS_TEMP": 0.0,
+            "PRESSURE": 0.0,
+            "LOCAL_RELATIVE_HUMIDITY": 0.0,
+            "VOLUME_MIXING_RATIO": 0.0,
+            "HORIZONTAL_WIND_SPEED": 99.4,
+            "WIND_DIRECTION": 99.4,
+            "VERTICAL_WIND_SPEED": 100.0,
+            "UV_A": 100.0,
+            "UV_ABC": 100.0,
+            "UV_D": 100.0,
+            "UV_E": 100.0,
+            "HS_TEMP": 0.0,
+            "BOOM1_LOCAL_AIR_TEMP": 0.0,
+            "BOOM2_LOCAL_AIR_TEMP": 0.0
+          },
+          "end": {
+            "AMBIENT_TEMP": 0.0,
+            "BRIGHTNESS_TEMP": 0.0,
+            "PRESSURE": 0.0,
+            "LOCAL_RELATIVE_HUMIDITY": 0.0,
+            "VOLUME_MIXING_RATIO": 0.0,
+            "HORIZONTAL_WIND_SPEED": 100.0,
+            "WIND_DIRECTION": 100.0,
+            "VERTICAL_WIND_SPEED": 100.0,
+            "UV_A": 0.0,
+            "UV_ABC": 0.0,
+            "UV_D": 0.0,
+            "UV_E": 0.0,
+            "HS_TEMP": 0.0,
+            "BOOM1_LOCAL_AIR_TEMP": 0.0,
+            "BOOM2_LOCAL_AIR_TEMP": 0.0
+          }
+        }
+      },
+      "audit_status": "window_sampled_start_middle_end"
+    },
+    {
+      "sol": 2250,
+      "martian_year": 34,
+      "label_start_time_utc": "2018-12-04T10:22:21.948Z",
+      "label_stop_time_utc": "2018-12-05T11:01:10.785Z",
+      "solar_longitude_degrees": {
+        "value_at_label_start_time": 300.226095,
+        "method": "Mars24 / Allison-McEwen (AM2000) applied to PDS4 label START_TIME UTC",
+        "time_scale": "UTC -> TT via leap-second table (existing validated module)",
+        "note": "Ls advances roughly 0.5 deg per sol; the sol spans about 0.5 deg of Ls."
+      },
+      "seasons": {
+        "northern": "Winter",
+        "southern": "Summer",
+        "gale": "Summer"
+      },
+      "role": "selected_sample",
+      "products": {
+        "modrdr_data": {
+          "file_name": "RME_597188888RMD22500000000_______P2.TAB",
+          "url": "https://atmos.nmsu.edu/PDS/data/PDS4/msl_rems_bundle/data_calibrated/SOL_02225_02358/SOL02250/RME_597188888RMD22500000000_______P2.TAB",
+          "data_bytes": 11856012,
+          "sha256": null,
+          "sha256_verified": false
+        },
+        "modrdr_label": {
+          "file_name": "RME_597188888RMD22500000000_______P2.TAB",
+          "url": "https://atmos.nmsu.edu/PDS/data/PDS4/msl_rems_bundle/data_calibrated/SOL_02225_02358/SOL02250/RME_597188888RMD22500000000_______P2.TAB"
+        },
+        "logical_identifier": "urn:nasa:pds:msl_rems:data_calibrated:rme_597188888rmd22500000000_______p2",
+        "product_version": "1.0",
+        "record_count": 31871,
+        "field_count": 40,
+        "record_bytes": 372
+      },
+      "field_contract": {
+        "fields_match_canonical_40_field_contract": true,
+        "key_variables_present": true,
+        "missing_constant_convention": "-999 / -999.00 / -9.990E+02 per label Special_Constants"
+      },
+      "window_sample_audit": {
+        "method": "Three 65536-byte HTTP range samples per data file (start, middle, end); rows parsed in label field order; statistics are window samples, not full-sol values.",
+        "bytes_per_window": 65536,
+        "rows_per_window": {
+          "start": 176,
+          "middle": 175,
+          "end": 176
+        },
+        "missing_value_percent_by_window": {
+          "start": {
+            "AMBIENT_TEMP": 0.0,
+            "BRIGHTNESS_TEMP": 34.1,
+            "PRESSURE": 0.0,
+            "LOCAL_RELATIVE_HUMIDITY": 0.6,
+            "VOLUME_MIXING_RATIO": 0.6,
+            "HORIZONTAL_WIND_SPEED": 100.0,
+            "WIND_DIRECTION": 100.0,
+            "VERTICAL_WIND_SPEED": 100.0,
+            "UV_A": 0.0,
+            "UV_ABC": 0.0,
+            "UV_D": 0.0,
+            "UV_E": 0.0,
+            "HS_TEMP": 0.6,
+            "BOOM1_LOCAL_AIR_TEMP": 0.0,
+            "BOOM2_LOCAL_AIR_TEMP": 0.0
+          },
+          "middle": {
+            "AMBIENT_TEMP": 0.0,
+            "BRIGHTNESS_TEMP": 0.0,
+            "PRESSURE": 0.0,
+            "LOCAL_RELATIVE_HUMIDITY": 0.0,
+            "VOLUME_MIXING_RATIO": 0.0,
+            "HORIZONTAL_WIND_SPEED": 100.0,
+            "WIND_DIRECTION": 100.0,
+            "VERTICAL_WIND_SPEED": 100.0,
+            "UV_A": 100.0,
+            "UV_ABC": 100.0,
+            "UV_D": 100.0,
+            "UV_E": 100.0,
+            "HS_TEMP": 0.0,
+            "BOOM1_LOCAL_AIR_TEMP": 0.0,
+            "BOOM2_LOCAL_AIR_TEMP": 0.0
+          },
+          "end": {
+            "AMBIENT_TEMP": 0.0,
+            "BRIGHTNESS_TEMP": 0.0,
+            "PRESSURE": 0.0,
+            "LOCAL_RELATIVE_HUMIDITY": 0.0,
+            "VOLUME_MIXING_RATIO": 0.0,
+            "HORIZONTAL_WIND_SPEED": 100.0,
+            "WIND_DIRECTION": 100.0,
+            "VERTICAL_WIND_SPEED": 100.0,
+            "UV_A": 0.0,
+            "UV_ABC": 0.0,
+            "UV_D": 0.0,
+            "UV_E": 0.0,
+            "HS_TEMP": 0.0,
+            "BOOM1_LOCAL_AIR_TEMP": 0.0,
+            "BOOM2_LOCAL_AIR_TEMP": 0.0
+          }
+        }
+      },
+      "audit_status": "window_sampled_start_middle_end"
+    },
+    {
+      "sol": 3560,
+      "martian_year": 36,
+      "label_start_time_utc": "2022-08-11T10:42:02.269Z",
+      "label_stop_time_utc": "2022-08-12T10:25:12.078Z",
+      "solar_longitude_degrees": {
+        "value_at_label_start_time": 283.223973,
+        "method": "Mars24 / Allison-McEwen (AM2000) applied to PDS4 label START_TIME UTC",
+        "time_scale": "UTC -> TT via leap-second table (existing validated module)",
+        "note": "Ls advances roughly 0.5 deg per sol; the sol spans about 0.5 deg of Ls."
+      },
+      "seasons": {
+        "northern": "Winter",
+        "southern": "Summer",
+        "gale": "Summer"
+      },
+      "role": "selected_sample",
+      "products": {
+        "modrdr_data": {
+          "file_name": "RME_713483365RMD35600000000_______P2.TAB",
+          "url": "https://atmos.nmsu.edu/PDS/data/PDS4/msl_rems_bundle/data_calibrated/SOL_03548_03644/SOL03560/RME_713483365RMD35600000000_______P2.TAB",
+          "data_bytes": 11579988,
+          "sha256": null,
+          "sha256_verified": false
+        },
+        "modrdr_label": {
+          "file_name": "RME_713483365RMD35600000000_______P2.TAB",
+          "url": "https://atmos.nmsu.edu/PDS/data/PDS4/msl_rems_bundle/data_calibrated/SOL_03548_03644/SOL03560/RME_713483365RMD35600000000_______P2.TAB"
+        },
+        "logical_identifier": "urn:nasa:pds:msl_rems:data_calibrated:rme_713483365rmd35600000000_______p2",
+        "product_version": "1.0",
+        "record_count": 31129,
+        "field_count": 40,
+        "record_bytes": 372
+      },
+      "field_contract": {
+        "fields_match_canonical_40_field_contract": true,
+        "key_variables_present": true,
+        "missing_constant_convention": "-999 / -999.00 / -9.990E+02 per label Special_Constants"
+      },
+      "window_sample_audit": {
+        "method": "Three 65536-byte HTTP range samples per data file (start, middle, end); rows parsed in label field order; statistics are window samples, not full-sol values.",
+        "bytes_per_window": 65536,
+        "rows_per_window": {
+          "start": 176,
+          "middle": 175,
+          "end": 176
+        },
+        "missing_value_percent_by_window": {
+          "start": {
+            "AMBIENT_TEMP": 0.0,
+            "BRIGHTNESS_TEMP": 34.1,
+            "PRESSURE": 0.0,
+            "LOCAL_RELATIVE_HUMIDITY": 0.6,
+            "VOLUME_MIXING_RATIO": 0.6,
+            "HORIZONTAL_WIND_SPEED": 100.0,
+            "WIND_DIRECTION": 100.0,
+            "VERTICAL_WIND_SPEED": 100.0,
+            "UV_A": 0.0,
+            "UV_ABC": 0.0,
+            "UV_D": 0.0,
+            "UV_E": 0.0,
+            "HS_TEMP": 0.6,
+            "BOOM1_LOCAL_AIR_TEMP": 0.0,
+            "BOOM2_LOCAL_AIR_TEMP": 0.0
+          },
+          "middle": {
+            "AMBIENT_TEMP": 0.0,
+            "BRIGHTNESS_TEMP": 0.0,
+            "PRESSURE": 0.0,
+            "LOCAL_RELATIVE_HUMIDITY": 0.0,
+            "VOLUME_MIXING_RATIO": 0.0,
+            "HORIZONTAL_WIND_SPEED": 100.0,
+            "WIND_DIRECTION": 100.0,
+            "VERTICAL_WIND_SPEED": 100.0,
+            "UV_A": 100.0,
+            "UV_ABC": 100.0,
+            "UV_D": 100.0,
+            "UV_E": 100.0,
+            "HS_TEMP": 0.0,
+            "BOOM1_LOCAL_AIR_TEMP": 0.0,
+            "BOOM2_LOCAL_AIR_TEMP": 0.0
+          },
+          "end": {
+            "AMBIENT_TEMP": 0.0,
+            "BRIGHTNESS_TEMP": 0.0,
+            "PRESSURE": 0.0,
+            "LOCAL_RELATIVE_HUMIDITY": 0.0,
+            "VOLUME_MIXING_RATIO": 0.0,
+            "HORIZONTAL_WIND_SPEED": 100.0,
+            "WIND_DIRECTION": 100.0,
+            "VERTICAL_WIND_SPEED": 100.0,
+            "UV_A": 0.0,
+            "UV_ABC": 0.0,
+            "UV_D": 0.0,
+            "UV_E": 0.0,
+            "HS_TEMP": 0.0,
+            "BOOM1_LOCAL_AIR_TEMP": 0.0,
+            "BOOM2_LOCAL_AIR_TEMP": 0.0
+          }
+        }
+      },
+      "audit_status": "window_sampled_start_middle_end"
+    }
+  ],
+  "seasonal_distribution": {
+    "Northern Spring (Gale Autumn)": [
+      4400,
+      430,
+      1850
+    ],
+    "Northern Summer (Gale Winter)": [
+      1250,
+      2600,
+      3950
+    ],
+    "Northern Autumn (Gale Spring)": [
+      100,
+      1450,
+      4100
+    ],
+    "Northern Winter (Gale Summer)": [
+      900,
+      2250,
+      3560
+    ]
+  },
+  "martian_year_distribution": {
+    "31": [
+      100
+    ],
+    "32": [
+      430,
+      900
+    ],
+    "33": [
+      1250,
+      1450
+    ],
+    "34": [
+      1850,
+      2250
+    ],
+    "35": [
+      2600
+    ],
+    "36": [
+      3560
+    ],
+    "37": [
+      3950,
+      4100
+    ],
+    "38": [
+      4400
+    ]
+  },
+  "limitations": [
+    "Wind observations are effectively unavailable in the sampled windows (0 of 176 valid rows in every sampled window for every selected sol, with one single-row exception) and 99.898% missing across the full Sol 100 reference; wind hardware degradation is documented in the archive.",
+    "Vertical wind speed is not scientifically usable (entirely missing in every inspected product).",
+    "UV flux is degraded after approximately Sol 155 (dust deposition exceeding 10% attenuation); sampled windows show partial UV population whose pattern varies by sol and time of day.",
+    "Humidity reliability is limited before approximately Sol 63; all selected sols are Sol 100 or later, but full-product humidity populations must be re-measured in W1.2C-2.",
+    "Window-sample missing-value percentages are bounded samples (3 x 65536 bytes per file), not full-sol statistics; full-sol percentages must be computed in W1.2C-2 when the selected products are processed.",
+    "REMS observations are point measurements at Curiosity's location within Gale Crater; they are not region-wide observations, forecasts, or EVA safety products.",
+    "Missing observations (-999 conventions) must never be interpreted as zero or interpolated.",
+    "Sol 4400 lies within the officially stated coverage but has no published release note in the errata document yet (the newest note covers sols 4000-4133); identity and completeness were verified via its PDS4 label and the calibrated collection inventory."
+  ]
+}
