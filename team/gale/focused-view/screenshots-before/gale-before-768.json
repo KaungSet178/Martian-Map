@@ -1,0 +1,226 @@
+{
+  "width": 768,
+  "height": 1024,
+  "measurement": {
+    "workspace": {
+      "x": 0,
+      "y": 72,
+      "width": 768,
+      "height": 750
+    },
+    "canvas": {
+      "x": 0,
+      "y": 72,
+      "width": 768,
+      "height": 750
+    },
+    "body": {
+      "x": 0,
+      "y": 0,
+      "width": 768,
+      "height": 1024
+    }
+  },
+  "context_visible_default": true,
+  "errors": [],
+  "context_tiles_requested": true,
+  "detailed_tiles_requested": true,
+  "responses": [
+    {
+      "url": "/maps/gale/context-tiles/11/1805/1051.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/context-tiles/11/1805/1050.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/context-tiles/11/1806/1051.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/context-tiles/11/1806/1050.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/ctx-tiles/13/7222/4204.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/ctx-tiles/13/7222/4203.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/ctx-tiles/13/7223/4204.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/ctx-tiles/13/7223/4203.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/ctx-tiles/13/7222/4205.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/ctx-tiles/13/7221/4204.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/ctx-tiles/13/7223/4205.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/arc-pass-geology.geojson",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/ctx-tiles/13/7221/4203.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/ctx-tiles/13/7221/4205.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/ctx-tiles/13/7222/4202.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/ctx-tiles/13/7223/4202.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/terrain-regional/coverage.geojson",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/terrain-global/coverage.geojson",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/curiosity-traverse.geojson",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/ctx-tiles/13/7221/4202.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/ctx-tiles/12/3610/2101.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/ctx-tiles/12/3610/2102.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/ctx-tiles/12/3611/2102.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/ctx-tiles/12/3611/2101.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/context-tiles/11/1804/1051.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/context-tiles/11/1804/1050.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/context-tiles/11/1807/1051.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/context-tiles/11/1807/1050.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/ctx-tiles/11/1805/1051.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/ctx-tiles/11/1805/1050.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/context-tiles/10/902/525.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/context-tiles/10/902/524.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/context-tiles/10/903/525.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/context-tiles/10/902/526.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/context-tiles/10/903/524.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/context-tiles/10/903/526.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/context-tiles/10/901/525.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/context-tiles/10/901/524.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/context-tiles/10/904/525.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/context-tiles/10/901/526.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/context-tiles/10/904/524.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/context-tiles/10/904/526.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/ctx-tiles/10/902/525.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/context-tiles/10/900/525.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/context-tiles/10/900/524.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/context-tiles/10/900/526.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/context-tiles/10/905/524.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/context-tiles/10/905/526.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/context-tiles/10/905/525.png",
+      "status": 200
+    }
+  ]
+}

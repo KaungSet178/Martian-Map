@@ -807,6 +807,11 @@ export function Planner() {
           showMarkers={markers}
           opacity={opacity}
           layerStates={layerStates}
+          onLayerChange={(id: string, change: Partial<LayerState>) =>
+            setLayerStates((current) =>
+              updateLayerState(region, current, id, change),
+            )
+          }
           presentationMode={presentationMode}
           coverageFocus={coverageFocus}
           plan={activePlan}

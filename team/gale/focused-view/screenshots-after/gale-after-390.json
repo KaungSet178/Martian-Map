@@ -1,0 +1,151 @@
+{
+  "width": 390,
+  "height": 844,
+  "measurement": {
+    "workspace": {
+      "x": 0,
+      "y": 72,
+      "width": 390,
+      "height": 570
+    },
+    "canvas": {
+      "x": 0,
+      "y": 72,
+      "width": 390,
+      "height": 570
+    },
+    "body": {
+      "x": 0,
+      "y": 0,
+      "width": 390,
+      "height": 844
+    }
+  },
+  "darkFraction": 0.00009446693657219973,
+  "initialContextRequested": false,
+  "initialDetailedRequested": true,
+  "widerContextRequested": true,
+  "errors": [],
+  "responses": [
+    {
+      "url": "/maps/gale/terrain-regional/elevation/13/7222/4204.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/terrain-regional/elevation/13/7222/4205.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/terrain-regional/elevation/13/7221/4204.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/terrain-regional/elevation/13/7223/4203.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/terrain-regional/elevation/13/7221/4203.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/terrain-regional/elevation/13/7221/4205.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/terrain-regional/elevation/13/7223/4205.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/terrain-regional/elevation/13/7222/4204.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/terrain-regional/elevation/13/7223/4204.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/terrain-regional/elevation/13/7222/4203.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/terrain-regional/elevation/13/7223/4203.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/terrain-regional/elevation/13/7222/4205.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/terrain-regional/elevation/13/7221/4204.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/terrain-regional/elevation/13/7223/4205.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/terrain-regional/elevation/13/7221/4203.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/terrain-regional/elevation/13/7221/4205.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/terrain-regional/elevation/13/7222/4204.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/terrain-regional/elevation/13/7223/4204.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/terrain-regional/elevation/13/7222/4203.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/terrain-regional/elevation/13/7223/4203.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/terrain-regional/elevation/13/7222/4205.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/terrain-regional/elevation/13/7221/4204.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/terrain-regional/elevation/13/7223/4205.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/terrain-regional/elevation/13/7221/4203.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/terrain-regional/elevation/13/7221/4205.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/perseverance-traverse.geojson",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/ctx-lvs-tiles/10/731/458.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/ctx-lvs-tiles/10/732/458.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/oxia/ctx-tiles/7/54/57.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/oxia/ctx-tiles/7/55/57.png",
+      "status": 200
+    }
+  ]
+}

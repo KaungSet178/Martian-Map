@@ -665,6 +665,17 @@ input[type="radio"] {
 .basemap-control summary { cursor: pointer; padding-top: 4px; }
 .basemap-control p { margin: 7px 0; }
 .basemap-control a { text-decoration: underline; }
+.basemap-control .basemap-context-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 32px;
+  margin: 8px 0 0;
+  border-bottom: 0;
+  font-size: 12px;
+  cursor: pointer;
+}
+.basemap-control .basemap-context-toggle input { margin: 0; }
 @media (max-width: 900px) {
   .basemap-control { top: 96px; left: 0; font-size: 11px; width: 218px; }
   .sheet-expanded .basemap-control { display: none; }

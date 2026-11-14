@@ -11,6 +11,7 @@ import {
   mountRegionLayers,
   layerState,
   toDisplayCoordinates,
+  type LayerState,
   type LayerStates,
   type CoverageFocusRequest,
 } from "@/lib/map/region-layers";
@@ -27,6 +28,7 @@ import { registerScientificClip } from "@/lib/map/scientific-clip";
 import {
   Crosshair,
   Layers,
+  Maximize2,
   Minus,
   Plus,
   ArrowUp,
@@ -53,6 +55,7 @@ type Props = {
   showMarkers: boolean;
   opacity: number;
   layerStates: LayerStates;
+  onLayerChange?: (id: string, change: Partial<LayerState>) => void;
   presentationMode?: "mission_view" | "full_coverage";
   coverageFocus?: CoverageFocusRequest | null;
   plan?: WaypointPlan;
@@ -79,6 +82,7 @@ export default function MapWorkspace({
   showMarkers,
   opacity,
   layerStates,
+  onLayerChange,
   presentationMode = "mission_view",
   coverageFocus,
   plan,
@@ -104,7 +108,7 @@ export default function MapWorkspace({
   const resetView = useCallback((animate = false, initial = false) => {
     if (!map.current || !container.current) return;
     overview.current = initial ? "initial" : "mission";
-    if (initial) fitInitialView(map.current, region, container.current, preview);
+    if (initial) fitInitialView(map.current, region, container.current, preview, animate);
     else fitOverview(map.current, region, container.current, preview, animate);
   }, [region, preview]);
   const activeLayers = region.layers.filter(
@@ -627,7 +631,10 @@ export default function MapWorkspace({
         {region.id === "gale" && scientificMap && !preview && (
           <BasemapControl key={region.id} map={loadedMap}
             visible={layerState(region, layerStates, "gale-optical").visible}
-            opacity={layerState(region, layerStates, "gale-optical").opacity} />
+            opacity={layerState(region, layerStates, "gale-optical").opacity}
+            contextVisible={layerState(region, layerStates, "gale-context").visible}
+            onContextVisibleChange={(visible) =>
+              onLayerChange?.("gale-context", { visible })} />
         )}
       </div>
       {preview ? (
@@ -690,15 +697,38 @@ export default function MapWorkspace({
             <Minus size={20} />
           </button>
         </div>
-        <button
-          className="icon-button"
-          onClick={() => resetView(true)}
-          disabled={(!preview && !scientificMap) || !ready || failed}
-          aria-label={scientificMap && !preview ? "Fit exploration region" : "Reset map view"}
-          title={scientificMap && !preview ? "Fit mission area" : "Reset map view"}
-        >
-          <Crosshair size={20} />
-        </button>
+        {scientificMap && !preview && region.id === "gale" ? (
+          <>
+            <button
+              className="icon-button"
+              onClick={() => resetView(true, true)}
+              disabled={!ready || failed}
+              aria-label="Explore Curiosity area"
+              title="Explore Curiosity area"
+            >
+              <Crosshair size={20} />
+            </button>
+            <button
+              className="icon-button"
+              onClick={() => resetView(true)}
+              disabled={!ready || failed}
+              aria-label="Fit complete mission area"
+              title="Fit complete mission area"
+            >
+              <Maximize2 size={20} />
+            </button>
+          </>
+        ) : (
+          <button
+            className="icon-button"
+            onClick={() => resetView(true)}
+            disabled={(!preview && !scientificMap) || !ready || failed}
+            aria-label={scientificMap && !preview ? "Fit exploration region" : "Reset map view"}
+            title={scientificMap && !preview ? "Fit mission area" : "Reset map view"}
+          >
+            <Crosshair size={20} />
+          </button>
+        )}
       </div>
       {failed && (
         <p className="map-failure" role="status">
