@@ -50,6 +50,8 @@ import { EvidenceDetails, LayerManager } from "@/components/science/evidence";
 import { EnvironmentalConditionsPanel } from "@/components/environment/environmental-conditions-panel";
 import { MissionEditor } from "@/components/mission/editor";
 import { RouteComparison } from "@/components/mission/analysis";
+import { useTerrainRouting } from "@/lib/routing/use-terrain-routing";
+import { TerrainRoutingPanel } from "@/components/mission/terrain-routing";
 import { MissionBrief } from "@/components/mission/brief";
 import { WaypointEditor } from "@/components/mission/waypoint-editor";
 import {
@@ -148,6 +150,8 @@ export function Planner() {
     },
     [region],
   );
+
+  const terrainRouting = useTerrainRouting(mission, activePlan, updateMission);
 
   const inspect = useCallback((id: string) => {
     setSelected(id);
@@ -372,6 +376,7 @@ export function Planner() {
     try {
       const parsed = missionSchema.parse(value);
       const validated = parseMission(parsed, regions[parsed.region]);
+      terrainRouting.invalidate(validated);
       drafts.current[regionId] = mission;
       setRegionId(validated.region);
       setMission(validated);
@@ -636,6 +641,8 @@ export function Planner() {
                     onSwitchToWaypoints={() => setPlanSubView("waypoints")}
                   />
                 ) : (
+                  <>
+                  <TerrainRoutingPanel mission={mission} plan={activePlan} routing={terrainRouting} onChange={updateMission} />
                   <WaypointEditor
                     plan={activePlan}
                     regionName={region.name}
@@ -742,6 +749,7 @@ export function Planner() {
                     }}
                     onExploreScience={() => showPanel("science")}
                   />
+                  </>
                 )}
               </>
             )}
@@ -750,6 +758,8 @@ export function Planner() {
                 mission={mission}
                 region={region}
                 online={online}
+                terrainRoute={terrainRouting.selected}
+                onTerrainRouting={() => {setPlanSubView("waypoints");showPanel("plan");}}
                 onEvidence={() => showPanel("evidence")}
               />
             )}
@@ -825,9 +835,14 @@ export function Planner() {
           showMarkers={markers}
           opacity={opacity}
           layerStates={layerStates}
+          onLayerChange={(id: string, change: Partial<LayerState>) =>
+            setLayerStates(current => updateLayerState(region, current, id, change))}
           presentationMode={presentationMode}
           coverageFocus={coverageFocus}
           plan={activePlan}
+          terrainRoutes={terrainRouting.alternatives}
+          terrainPreference={terrainRouting.preference}
+          hideGeometric={terrainRouting.hideGeometric}
           isPlacingOnMap={isPlacingOnMap}
           onPlaceWaypoint={handlePlaceWaypoint}
           onCancelPlacement={handleCancelPlacement}
@@ -971,6 +986,7 @@ export function Planner() {
       {modal === "brief" && (
         <Dialog title="Mission brief" onClose={() => setModal(null)} wide>
           <MissionBrief
+              terrainRoute={terrainRouting.selected}
             mission={mission}
             region={region}
             generatedAt={generatedAt}

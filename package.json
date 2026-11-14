@@ -3,15 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "predev": "node scripts/prepare-map-worker.mjs",
-    "prebuild": "node scripts/prepare-map-worker.mjs",
+    "predev": "node scripts/prepare-map-worker.mjs && node scripts/build-routing-worker.mjs",
+    "prebuild": "node scripts/prepare-map-worker.mjs && node scripts/build-routing-worker.mjs",
     "dev": "next dev --hostname 127.0.0.1",
     "build": "next build",
     "start": "next start --hostname 127.0.0.1",
     "lint": "eslint .",
     "typecheck": "next typegen && tsc --noEmit",
     "test": "tsx --test tests/mission.test.ts tests/regions.test.ts tests/gale-integration.test.ts tests/gale-coverage.test.ts",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "routing:check": "node scripts/check-routing-runtime.mjs"
   },
   "dependencies": {
     "@fontsource/geist": "5.3.0",
@@ -29,6 +30,7 @@
     "@types/node": "^22.19.0",
     "@types/react": "^19.2.0",
     "@types/react-dom": "^19.2.0",
+    "esbuild": "0.27.0",
     "eslint": "^9.39.0",
     "eslint-config-next": "16.4.6",
     "tsx": "^4.21.0",

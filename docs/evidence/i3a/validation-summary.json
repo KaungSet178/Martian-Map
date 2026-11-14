@@ -1,0 +1,62 @@
+{
+  "validation_date": "2026-11-15",
+  "timezone": "Asia/Rangoon",
+  "foundation_sha": "818eeb85db67f0c2440e2acc47024b436e8a1526",
+  "typescript": {
+    "tests": 432,
+    "passed": 432,
+    "failed": 0
+  },
+  "python": {
+    "gale_scientific_routing_weather": {
+      "run": 149,
+      "passed": 146,
+      "skipped": 3
+    },
+    "jezero_routing_algorithm": {
+      "run": 9,
+      "passed": 9
+    },
+    "gale_environment": {
+      "run": 4,
+      "passed": 4
+    },
+    "jezero_environment": {
+      "run": 21,
+      "passed": 20,
+      "skipped": 1
+    },
+    "jezero_hillshade": {
+      "run": 7,
+      "passed": 7
+    }
+  },
+  "browser": {
+    "unique_affected_cases_passed": 54,
+    "environment": 9,
+    "focused_camera": 4,
+    "terrain_integration": 10,
+    "mission_waypoint_and_jezero_layer_regressions": 31,
+    "final_affected_reruns": {
+      "camera_and_terrain": 14,
+      "mobile_mouse_touch": 2,
+      "console_checked_all_regions_and_sizes": 10,
+      "same_session_saved_source_JSON_roundtrip": 1
+    }
+  },
+  "independent_numeric_cost_and_native_source_checks": "passed",
+  "typecheck": "passed",
+  "lint": "passed",
+  "default_production_build": "passed",
+  "development_api_regions": [
+    "gale",
+    "jezero"
+  ],
+  "production_api_regions": [
+    "gale",
+    "jezero"
+  ],
+  "map_assets_preserved": 7282,
+  "protected_environment_objective_and_Oxia_paths": "unchanged from foundation",
+  "large_numeric_grids_in_client_bundle": false
+}

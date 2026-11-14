@@ -1,0 +1,1231 @@
+{
+  "version": "terrain-i3a-v1-georeferenced",
+  "alternatives": [
+    {
+      "regionId": "gale",
+      "preference": "shortest",
+      "status": "unverified",
+      "coordinates": [
+        [
+          137.379609,
+          -4.7204154
+        ],
+        [
+          137.3829831,
+          -4.7237895
+        ],
+        [
+          137.3863572,
+          -4.7271637
+        ],
+        [
+          137.3897314,
+          -4.7305378
+        ],
+        [
+          137.3931055,
+          -4.7339119
+        ],
+        [
+          137.3964797,
+          -4.7372861
+        ],
+        [
+          137.3998538,
+          -4.7406602
+        ],
+        [
+          137.3964797,
+          -4.7372861
+        ],
+        [
+          137.3931055,
+          -4.7339119
+        ],
+        [
+          137.3897314,
+          -4.7305378
+        ],
+        [
+          137.3863572,
+          -4.7271637
+        ],
+        [
+          137.3829831,
+          -4.7237895
+        ],
+        [
+          137.379609,
+          -4.7204154
+        ]
+      ],
+      "segments": [
+        {
+          "coordinates": [
+            [
+              137.379609,
+              -4.7204154
+            ],
+            [
+              137.3829831,
+              -4.7237895
+            ],
+            [
+              137.3863572,
+              -4.7271637
+            ],
+            [
+              137.3897314,
+              -4.7305378
+            ],
+            [
+              137.3931055,
+              -4.7339119
+            ],
+            [
+              137.3964797,
+              -4.7372861
+            ],
+            [
+              137.3998538,
+              -4.7406602
+            ]
+          ],
+          "distanceMeters": 1702.7982178973011,
+          "horizontalDistanceMeters": 1694.1744941749407,
+          "ascentMeters": 167,
+          "descentMeters": 0
+        },
+        {
+          "coordinates": [
+            [
+              137.3998538,
+              -4.7406602
+            ],
+            [
+              137.3964797,
+              -4.7372861
+            ],
+            [
+              137.3931055,
+              -4.7339119
+            ],
+            [
+              137.3897314,
+              -4.7305378
+            ],
+            [
+              137.3863572,
+              -4.7271637
+            ],
+            [
+              137.3829831,
+              -4.7237895
+            ],
+            [
+              137.379609,
+              -4.7204154
+            ]
+          ],
+          "distanceMeters": 1702.798217897301,
+          "horizontalDistanceMeters": 1694.1744941749407,
+          "ascentMeters": 0,
+          "descentMeters": 167
+        }
+      ],
+      "distanceMeters": 3405.5964357946027,
+      "horizontalDistanceMeters": 3388.3489883498814,
+      "surfaceDistanceMeters": 3405.5964357946027,
+      "ascentMeters": 167,
+      "descentMeters": 167,
+      "maximumSlopeDegrees": 7.863891317620289,
+      "meanSlopeDegrees": 5.62679828641411,
+      "sourceDatasetIds": [
+        "gale-hrsc-mola-200m"
+      ],
+      "sourceVerified": true,
+      "processingVerified": true,
+      "registrationVerified": false,
+      "requestedWaypoints": [
+        [
+          137.38,
+          -4.72
+        ],
+        [
+          137.4,
+          -4.74
+        ],
+        [
+          137.38,
+          -4.72
+        ]
+      ],
+      "snappedWaypoints": [
+        [
+          137.379609,
+          -4.7204154
+        ],
+        [
+          137.3998538,
+          -4.7406602
+        ],
+        [
+          137.379609,
+          -4.7204154
+        ]
+      ],
+      "snapDistancesMeters": [
+        33.76072101822401,
+        40.07480308342547,
+        33.76072101822401
+      ],
+      "warnings": [
+        "A computed path is a lower-terrain-cost path through the declared DEM model. It is not an astronaut traversability, hazard, trafficability, or safety certification.",
+        "DEM-to-CTX optical co-registration is unverified. Preserve published coordinates and do not use this route for fine-feature matching or operational navigation.",
+        "No verified Gale roughness, sand, rock-abundance, boulder, or obstacle dataset was available. The route avoids slope and elevation cost only; unmapped physical hazards are not represented.",
+        "Cost weights are documented algorithmic preferences, not validated EVA physiology, metabolic rate, oxygen use, battery drain, or safety thresholds.",
+        "Ascent and descent are raw sums of 30 m DEM elevation differences and include DEM noise; they are not surveyed rover-odometry values.",
+        "This route uses the 200 m HRSC-MOLA blended regional DEM with approximately 600 m gradient support. It is a coarse regional comparison, not a local traverse.",
+        "The shortest objective ignores terrain penalties and is expected to cross steeper ground when that reduces distance.",
+        "status is 'unverified': the graph search is deterministic and the source DEM provenance is verified, but local CTX co-registration is not.",
+        "Canonical summary: 3D DEM distance on the Mars sphere; native engine metrics are retained separately. Not approved EVA navigation."
+      ],
+      "failureReason": null,
+      "nativeMetrics": {
+        "schemaVersion": "gale-route-v1",
+        "regionId": "gale",
+        "status": "unverified",
+        "preference": "shortest",
+        "coordinates": [
+          [
+            137.379609,
+            -4.7204154
+          ],
+          [
+            137.3829831,
+            -4.7237895
+          ],
+          [
+            137.3863572,
+            -4.7271637
+          ],
+          [
+            137.3897314,
+            -4.7305378
+          ],
+          [
+            137.3931055,
+            -4.7339119
+          ],
+          [
+            137.3964797,
+            -4.7372861
+          ],
+          [
+            137.3998538,
+            -4.7406602
+          ],
+          [
+            137.3964797,
+            -4.7372861
+          ],
+          [
+            137.3931055,
+            -4.7339119
+          ],
+          [
+            137.3897314,
+            -4.7305378
+          ],
+          [
+            137.3863572,
+            -4.7271637
+          ],
+          [
+            137.3829831,
+            -4.7237895
+          ],
+          [
+            137.379609,
+            -4.7204154
+          ]
+        ],
+        "distanceMeters": 3388.3510413782315,
+        "ascentMeters": 167,
+        "descentMeters": 167,
+        "maximumSlopeDegrees": 7.86392536294425,
+        "meanSlopeDegrees": 5.626794859591946,
+        "sourceDatasetIds": [
+          "gale-hrsc-mola-200m"
+        ],
+        "sourceVerified": true,
+        "processingVerified": true,
+        "registrationVerified": false,
+        "warnings": [
+          "A computed path is a lower-terrain-cost path through the declared DEM model. It is not an astronaut traversability, hazard, trafficability, or safety certification.",
+          "DEM-to-CTX optical co-registration is unverified. Preserve published coordinates and do not use this route for fine-feature matching or operational navigation.",
+          "No verified Gale roughness, sand, rock-abundance, boulder, or obstacle dataset was available. The route avoids slope and elevation cost only; unmapped physical hazards are not represented.",
+          "Cost weights are documented algorithmic preferences, not validated EVA physiology, metabolic rate, oxygen use, battery drain, or safety thresholds.",
+          "Ascent and descent are raw sums of 30 m DEM elevation differences and include DEM noise; they are not surveyed rover-odometry values.",
+          "This route uses the 200 m HRSC-MOLA blended regional DEM with approximately 600 m gradient support. It is a coarse regional comparison, not a local traverse.",
+          "The shortest objective ignores terrain penalties and is expected to cross steeper ground when that reduces distance.",
+          "status is 'unverified': the graph search is deterministic and the source DEM provenance is verified, but local CTX co-registration is not."
+        ],
+        "routeId": "6c8b4622357113c7",
+        "requestId": "36403c609813f684",
+        "requestedWaypoints": [
+          [
+            137.38,
+            -4.72
+          ],
+          [
+            137.4,
+            -4.74
+          ],
+          [
+            137.38,
+            -4.72
+          ]
+        ],
+        "snappedWaypoints": [
+          [
+            137.379609,
+            -4.7204154
+          ],
+          [
+            137.3998538,
+            -4.7406602
+          ],
+          [
+            137.379609,
+            -4.7204154
+          ]
+        ],
+        "waypoints": [
+          {
+            "index": 0,
+            "role": "start",
+            "requested": [
+              137.38,
+              -4.72
+            ],
+            "snapped": [
+              137.379609,
+              -4.7204154
+            ],
+            "snapDistanceMeters": 33.761444750102385,
+            "snapReason": "nearest_valid_cell",
+            "insideDeclaredExtent": true,
+            "gridCell": [
+              125,
+              83
+            ],
+            "ok": true
+          },
+          {
+            "index": 1,
+            "role": "via",
+            "requested": [
+              137.4,
+              -4.74
+            ],
+            "snapped": [
+              137.3998538,
+              -4.7406602
+            ],
+            "snapDistanceMeters": 40.07529964138393,
+            "snapReason": "nearest_valid_cell",
+            "insideDeclaredExtent": true,
+            "gridCell": [
+              131,
+              89
+            ],
+            "ok": true
+          },
+          {
+            "index": 2,
+            "role": "destination",
+            "requested": [
+              137.38,
+              -4.72
+            ],
+            "snapped": [
+              137.379609,
+              -4.7204154
+            ],
+            "snapDistanceMeters": 33.761444750102385,
+            "snapReason": "nearest_valid_cell",
+            "insideDeclaredExtent": true,
+            "gridCell": [
+              125,
+              83
+            ],
+            "ok": true
+          }
+        ],
+        "segments": [
+          {
+            "segmentId": "seg-1",
+            "fromWaypointIndex": 0,
+            "toWaypointIndex": 1,
+            "status": "computed",
+            "coordinates": [
+              [
+                137.379609,
+                -4.7204154
+              ],
+              [
+                137.3829831,
+                -4.7237895
+              ],
+              [
+                137.3863572,
+                -4.7271637
+              ],
+              [
+                137.3897314,
+                -4.7305378
+              ],
+              [
+                137.3931055,
+                -4.7339119
+              ],
+              [
+                137.3964797,
+                -4.7372861
+              ],
+              [
+                137.3998538,
+                -4.7406602
+              ]
+            ],
+            "distanceMeters": 1694.1755206891157,
+            "ascentMeters": 167,
+            "descentMeters": 0,
+            "maximumSlopeDegrees": 7.86392536294425,
+            "meanSlopeDegrees": 5.626794859591946,
+            "maximumCellSlopeDegrees": 7.995898264660703,
+            "meanCellSlopeDegrees": 7.09085909425533,
+            "straightLineDistanceMeters": 1694.1755205576983,
+            "detourRatio": 1.0000000000775702,
+            "totalTerrainCostMeters": 1694.1755206891157,
+            "expandedNodes": 7,
+            "heapPushes": 34,
+            "failure": null,
+            "preference": "shortest",
+            "netElevationChangeMeters": 167,
+            "elevationsMeters": [
+              -4221,
+              -4189,
+              -4150,
+              -4123,
+              -4104,
+              -4079,
+              -4054
+            ]
+          },
+          {
+            "segmentId": "seg-2",
+            "fromWaypointIndex": 1,
+            "toWaypointIndex": 2,
+            "status": "computed",
+            "coordinates": [
+              [
+                137.3998538,
+                -4.7406602
+              ],
+              [
+                137.3964797,
+                -4.7372861
+              ],
+              [
+                137.3931055,
+                -4.7339119
+              ],
+              [
+                137.3897314,
+                -4.7305378
+              ],
+              [
+                137.3863572,
+                -4.7271637
+              ],
+              [
+                137.3829831,
+                -4.7237895
+              ],
+              [
+                137.379609,
+                -4.7204154
+              ]
+            ],
+            "distanceMeters": 1694.1755206891157,
+            "ascentMeters": 0,
+            "descentMeters": 167,
+            "maximumSlopeDegrees": 7.86392536294425,
+            "meanSlopeDegrees": 5.626794859591946,
+            "maximumCellSlopeDegrees": 7.995898264660703,
+            "meanCellSlopeDegrees": 7.09085909425533,
+            "straightLineDistanceMeters": 1694.1755205576983,
+            "detourRatio": 1.0000000000775702,
+            "totalTerrainCostMeters": 1694.1755206891157,
+            "expandedNodes": 7,
+            "heapPushes": 34,
+            "failure": null,
+            "preference": "shortest",
+            "netElevationChangeMeters": -167,
+            "elevationsMeters": [
+              -4054,
+              -4079,
+              -4104,
+              -4123,
+              -4150,
+              -4189,
+              -4221
+            ]
+          }
+        ],
+        "algorithm": {
+          "name": "A*",
+          "preference": "shortest",
+          "heuristic": "great-circle ground distance; admissible and consistent because every edge cost is at least its ground distance",
+          "neighbours": 8,
+          "deterministic": true,
+          "diagonalCost": "hypot(east_ground_step, north_ground_step)",
+          "tieBreak": "f-score, then heuristic, then row-major cell index"
+        },
+        "costModel": {
+          "name": "gale-terrain-penalty-v1",
+          "units": "equivalent horizontal metres",
+          "formula": "distance * (1 + uphill_weight*min(tan(theta_up), max_grade) + downhill_weight*min(tan(theta_down), max_grade) + cross_slope_weight*(max_endpoint_horn_slope/reference_slope)^2)",
+          "uphillWeight": 3,
+          "downhillWeight": 0.75,
+          "crossSlopeWeight": 0.5,
+          "slopeReferenceDegrees": 20,
+          "maxGradeTangent": 3,
+          "interpretation": "Algorithmic terrain preference, not astronaut physiology, metabolic cost, or a certified safety threshold."
+        },
+        "grid": {
+          "datasetId": "gale-hrsc-mola-200m",
+          "nominalPostingMeters": 200,
+          "slopeDerivative": "Horn 3x3",
+          "slopeSupportMeters": {
+            "northMeters": 600,
+            "eastMeters": 598,
+            "note": "Horn 3x3 support: three 200 m north steps; east support is about 598 m at 4.7 deg S."
+          },
+          "width": 179,
+          "height": 238,
+          "crs": "GCS_Mars_2000_Sphere",
+          "verticalDatum": "MOLA areoid, metres positive up",
+          "horizontalDatum": "Mars 2000 sphere R=3,396,190 m; planetocentric latitude; east-positive longitude 0-360",
+          "nodata": -32768,
+          "checksumSha256": "b5b53e2c04e513bb167dde6db893e69b7e79f4c9e266f2a0b70e7bb511bb2bf1",
+          "extentWsen": [
+            137.09786867115304,
+            -5.10000562355897,
+            137.70183890378092,
+            -4.296961403640324
+          ],
+          "validRouteCells": 41772,
+          "totalCells": 42602,
+          "validFraction": 0.9805173466034458,
+          "validAreaKm2": 1665.265918043206
+        },
+        "samples": {
+          "coordinateCount": 13,
+          "edgeCount": 12,
+          "expandedNodes": 14,
+          "heapPushes": 68
+        },
+        "coverage": {
+          "status": "partial",
+          "datasetId": "gale-hrsc-mola-200m",
+          "validRouteCells": 41772,
+          "totalCells": 42602,
+          "validFraction": 0.9805173466034458,
+          "validAreaKm2": 1665.265918043206,
+          "extentWsen": [
+            137.09786867115304,
+            -5.10000562355897,
+            137.70183890378092,
+            -4.296961403640324
+          ],
+          "routeWithinValidCoverage": true,
+          "missingTerrain": "No numeric DEM is available outside the declared crop. Cells outside it are not treated as traversable.",
+          "nodataPolicy": "Nodata and cells without a complete valid 3x3 slope neighbourhood are blocked. No interpolation, gap filling, or synthetic surface is used.",
+          "note": "Coverage applies only to the audited regional crop for this dataset; it is not a claim of whole-Gale coverage."
+        },
+        "evidence": {
+          "source": {
+            "status": "VERIFIED",
+            "datasetId": "gale-hrsc-mola-200m",
+            "product": "Mars_HRSC_MOLA_BlendDEM_Global_200mp_v2",
+            "publisher": "USGS Astrogeology Science Center / NASA / ESA",
+            "citation": "Fergason, Hare, and Laura (2018), USGS HRSC-MOLA blended DEM",
+            "sourceUrl": "https://asc-pds-services.s3.us-west-2.amazonaws.com/mosaic/Mars/HRSC_MOLA_Blend/Mars_HRSC_MOLA_BlendDEM_Global_200mp_v2.tif",
+            "checksumSha256": "b5b53e2c04e513bb167dde6db893e69b7e79f4c9e266f2a0b70e7bb511bb2bf1",
+            "units": "metres relative to MOLA areoid, positive up",
+            "note": "Numeric elevation band was read directly. Display colours and rendered PNGs were not used as terrain data."
+          },
+          "processing": {
+            "status": "VERIFIED",
+            "slopeMethod": "Horn 3x3 finite difference",
+            "slopeSupportMeters": {
+              "northMeters": 600,
+              "eastMeters": 598,
+              "note": "Horn 3x3 support: three 200 m north steps; east support is about 598 m at 4.7 deg S."
+            },
+            "distanceModel": "Mars 2000 sphere R=3,396,190 m, per-row cos(latitude) east spacing, 8-connected graph",
+            "pathfinder": "A* with admissible great-circle heuristic",
+            "note": "Slope, validity, distances, and pathfinding are covered by synthetic mathematical tests and authentic-DEM tests."
+          },
+          "registration": {
+            "status": "UNVERIFIED",
+            "reason": "Precise local DEM-to-CTX co-registration is not certified. The DEM retains its published MOLA/Mars 2000 frame; no shift was fitted to the optical basemap.",
+            "source": "team/gale/G3_2_REPORT.md and team/gale/REGISTRATION_INVESTIGATION.md; G4_TERRAIN_AUDIT.json registration gate"
+          },
+          "hazards": {
+            "status": "NOT_EVALUATED",
+            "reason": "No verified Gale roughness, sand, rock-abundance, boulder, or obstacle dataset was available. The route avoids slope and elevation cost only; unmapped physical hazards are not represented."
+          },
+          "resource_model": {
+            "status": "NOT_EVALUATED",
+            "reason": "Cost weights are documented algorithmic preferences, not validated EVA physiology, metabolic rate, oxygen use, battery drain, or safety thresholds."
+          }
+        },
+        "failure": null,
+        "limitations": [
+          "200 m posting and approximately 600 m gradient support are far too coarse for suit-scale or rover-scale hazard assessment.",
+          "The product blends HRSC and MOLA observations; local source quality and seams are not mapped per pixel.",
+          "CTX optical co-registration is unverified locally.",
+          "This crop is a regional comparison product, not a replacement for the 30 m primary routing grid.",
+          "No roughness, obstacle, trafficability, or hazard dataset is included."
+        ],
+        "straightLineDistanceMeters": 3388.3510411153966,
+        "detourRatio": 1.0000000000775702,
+        "totalTerrainCostMeters": 3388.3510413782315,
+        "meanTerrainPenalty": 1,
+        "startElevationMeters": -4221,
+        "endElevationMeters": -4221,
+        "minimumElevationMeters": -4221,
+        "maximumElevationMeters": -4054,
+        "netElevationChangeMeters": 0,
+        "maximumCellSlopeDegrees": 7.995898264660703,
+        "meanCellSlopeDegrees": 7.09085909425533
+      }
+    },
+    {
+      "regionId": "gale",
+      "preference": "lower-terrain-cost",
+      "status": "unverified",
+      "coordinates": [
+        [
+          137.379609,
+          -4.7204154
+        ],
+        [
+          137.3829831,
+          -4.7237895
+        ],
+        [
+          137.3863572,
+          -4.7271637
+        ],
+        [
+          137.3897314,
+          -4.7305378
+        ],
+        [
+          137.3931055,
+          -4.7339119
+        ],
+        [
+          137.3964797,
+          -4.7372861
+        ],
+        [
+          137.3998538,
+          -4.7406602
+        ],
+        [
+          137.3964797,
+          -4.7372861
+        ],
+        [
+          137.3931055,
+          -4.7339119
+        ],
+        [
+          137.3897314,
+          -4.7305378
+        ],
+        [
+          137.3863572,
+          -4.7271637
+        ],
+        [
+          137.3829831,
+          -4.7237895
+        ],
+        [
+          137.379609,
+          -4.7204154
+        ]
+      ],
+      "segments": [
+        {
+          "coordinates": [
+            [
+              137.379609,
+              -4.7204154
+            ],
+            [
+              137.3829831,
+              -4.7237895
+            ],
+            [
+              137.3863572,
+              -4.7271637
+            ],
+            [
+              137.3897314,
+              -4.7305378
+            ],
+            [
+              137.3931055,
+              -4.7339119
+            ],
+            [
+              137.3964797,
+              -4.7372861
+            ],
+            [
+              137.3998538,
+              -4.7406602
+            ]
+          ],
+          "distanceMeters": 1702.7982178973011,
+          "horizontalDistanceMeters": 1694.1744941749407,
+          "ascentMeters": 167,
+          "descentMeters": 0
+        },
+        {
+          "coordinates": [
+            [
+              137.3998538,
+              -4.7406602
+            ],
+            [
+              137.3964797,
+              -4.7372861
+            ],
+            [
+              137.3931055,
+              -4.7339119
+            ],
+            [
+              137.3897314,
+              -4.7305378
+            ],
+            [
+              137.3863572,
+              -4.7271637
+            ],
+            [
+              137.3829831,
+              -4.7237895
+            ],
+            [
+              137.379609,
+              -4.7204154
+            ]
+          ],
+          "distanceMeters": 1702.798217897301,
+          "horizontalDistanceMeters": 1694.1744941749407,
+          "ascentMeters": 0,
+          "descentMeters": 167
+        }
+      ],
+      "distanceMeters": 3405.5964357946027,
+      "horizontalDistanceMeters": 3388.3489883498814,
+      "surfaceDistanceMeters": 3405.5964357946027,
+      "ascentMeters": 167,
+      "descentMeters": 167,
+      "maximumSlopeDegrees": 7.863891317620289,
+      "meanSlopeDegrees": 5.62679828641411,
+      "sourceDatasetIds": [
+        "gale-hrsc-mola-200m"
+      ],
+      "sourceVerified": true,
+      "processingVerified": true,
+      "registrationVerified": false,
+      "requestedWaypoints": [
+        [
+          137.38,
+          -4.72
+        ],
+        [
+          137.4,
+          -4.74
+        ],
+        [
+          137.38,
+          -4.72
+        ]
+      ],
+      "snappedWaypoints": [
+        [
+          137.379609,
+          -4.7204154
+        ],
+        [
+          137.3998538,
+          -4.7406602
+        ],
+        [
+          137.379609,
+          -4.7204154
+        ]
+      ],
+      "snapDistancesMeters": [
+        33.76072101822401,
+        40.07480308342547,
+        33.76072101822401
+      ],
+      "warnings": [
+        "A computed path is a lower-terrain-cost path through the declared DEM model. It is not an astronaut traversability, hazard, trafficability, or safety certification.",
+        "DEM-to-CTX optical co-registration is unverified. Preserve published coordinates and do not use this route for fine-feature matching or operational navigation.",
+        "No verified Gale roughness, sand, rock-abundance, boulder, or obstacle dataset was available. The route avoids slope and elevation cost only; unmapped physical hazards are not represented.",
+        "Cost weights are documented algorithmic preferences, not validated EVA physiology, metabolic rate, oxygen use, battery drain, or safety thresholds.",
+        "Ascent and descent are raw sums of 30 m DEM elevation differences and include DEM noise; they are not surveyed rover-odometry values.",
+        "This route uses the 200 m HRSC-MOLA blended regional DEM with approximately 600 m gradient support. It is a coarse regional comparison, not a local traverse.",
+        "status is 'unverified': the graph search is deterministic and the source DEM provenance is verified, but local CTX co-registration is not.",
+        "Canonical summary: 3D DEM distance on the Mars sphere; native engine metrics are retained separately. Not approved EVA navigation."
+      ],
+      "failureReason": null,
+      "nativeMetrics": {
+        "schemaVersion": "gale-route-v1",
+        "regionId": "gale",
+        "status": "unverified",
+        "preference": "lower-terrain-cost",
+        "coordinates": [
+          [
+            137.379609,
+            -4.7204154
+          ],
+          [
+            137.3829831,
+            -4.7237895
+          ],
+          [
+            137.3863572,
+            -4.7271637
+          ],
+          [
+            137.3897314,
+            -4.7305378
+          ],
+          [
+            137.3931055,
+            -4.7339119
+          ],
+          [
+            137.3964797,
+            -4.7372861
+          ],
+          [
+            137.3998538,
+            -4.7406602
+          ],
+          [
+            137.3964797,
+            -4.7372861
+          ],
+          [
+            137.3931055,
+            -4.7339119
+          ],
+          [
+            137.3897314,
+            -4.7305378
+          ],
+          [
+            137.3863572,
+            -4.7271637
+          ],
+          [
+            137.3829831,
+            -4.7237895
+          ],
+          [
+            137.379609,
+            -4.7204154
+          ]
+        ],
+        "distanceMeters": 3388.3510413782315,
+        "ascentMeters": 167,
+        "descentMeters": 167,
+        "maximumSlopeDegrees": 7.86392536294425,
+        "meanSlopeDegrees": 5.626794859591946,
+        "sourceDatasetIds": [
+          "gale-hrsc-mola-200m"
+        ],
+        "sourceVerified": true,
+        "processingVerified": true,
+        "registrationVerified": false,
+        "warnings": [
+          "A computed path is a lower-terrain-cost path through the declared DEM model. It is not an astronaut traversability, hazard, trafficability, or safety certification.",
+          "DEM-to-CTX optical co-registration is unverified. Preserve published coordinates and do not use this route for fine-feature matching or operational navigation.",
+          "No verified Gale roughness, sand, rock-abundance, boulder, or obstacle dataset was available. The route avoids slope and elevation cost only; unmapped physical hazards are not represented.",
+          "Cost weights are documented algorithmic preferences, not validated EVA physiology, metabolic rate, oxygen use, battery drain, or safety thresholds.",
+          "Ascent and descent are raw sums of 30 m DEM elevation differences and include DEM noise; they are not surveyed rover-odometry values.",
+          "This route uses the 200 m HRSC-MOLA blended regional DEM with approximately 600 m gradient support. It is a coarse regional comparison, not a local traverse.",
+          "status is 'unverified': the graph search is deterministic and the source DEM provenance is verified, but local CTX co-registration is not."
+        ],
+        "routeId": "5620c2382086d937",
+        "requestId": "36403c609813f684",
+        "requestedWaypoints": [
+          [
+            137.38,
+            -4.72
+          ],
+          [
+            137.4,
+            -4.74
+          ],
+          [
+            137.38,
+            -4.72
+          ]
+        ],
+        "snappedWaypoints": [
+          [
+            137.379609,
+            -4.7204154
+          ],
+          [
+            137.3998538,
+            -4.7406602
+          ],
+          [
+            137.379609,
+            -4.7204154
+          ]
+        ],
+        "waypoints": [
+          {
+            "index": 0,
+            "role": "start",
+            "requested": [
+              137.38,
+              -4.72
+            ],
+            "snapped": [
+              137.379609,
+              -4.7204154
+            ],
+            "snapDistanceMeters": 33.761444750102385,
+            "snapReason": "nearest_valid_cell",
+            "insideDeclaredExtent": true,
+            "gridCell": [
+              125,
+              83
+            ],
+            "ok": true
+          },
+          {
+            "index": 1,
+            "role": "via",
+            "requested": [
+              137.4,
+              -4.74
+            ],
+            "snapped": [
+              137.3998538,
+              -4.7406602
+            ],
+            "snapDistanceMeters": 40.07529964138393,
+            "snapReason": "nearest_valid_cell",
+            "insideDeclaredExtent": true,
+            "gridCell": [
+              131,
+              89
+            ],
+            "ok": true
+          },
+          {
+            "index": 2,
+            "role": "destination",
+            "requested": [
+              137.38,
+              -4.72
+            ],
+            "snapped": [
+              137.379609,
+              -4.7204154
+            ],
+            "snapDistanceMeters": 33.761444750102385,
+            "snapReason": "nearest_valid_cell",
+            "insideDeclaredExtent": true,
+            "gridCell": [
+              125,
+              83
+            ],
+            "ok": true
+          }
+        ],
+        "segments": [
+          {
+            "segmentId": "seg-1",
+            "fromWaypointIndex": 0,
+            "toWaypointIndex": 1,
+            "status": "computed",
+            "coordinates": [
+              [
+                137.379609,
+                -4.7204154
+              ],
+              [
+                137.3829831,
+                -4.7237895
+              ],
+              [
+                137.3863572,
+                -4.7271637
+              ],
+              [
+                137.3897314,
+                -4.7305378
+              ],
+              [
+                137.3931055,
+                -4.7339119
+              ],
+              [
+                137.3964797,
+                -4.7372861
+              ],
+              [
+                137.3998538,
+                -4.7406602
+              ]
+            ],
+            "distanceMeters": 1694.1755206891157,
+            "ascentMeters": 167,
+            "descentMeters": 0,
+            "maximumSlopeDegrees": 7.86392536294425,
+            "meanSlopeDegrees": 5.626794859591946,
+            "maximumCellSlopeDegrees": 7.995898264660703,
+            "meanCellSlopeDegrees": 7.09085909425533,
+            "straightLineDistanceMeters": 1694.1755205576983,
+            "detourRatio": 1.0000000000775702,
+            "totalTerrainCostMeters": 2303.2845288237036,
+            "expandedNodes": 36,
+            "heapPushes": 100,
+            "failure": null,
+            "preference": "lower-terrain-cost",
+            "netElevationChangeMeters": 167,
+            "elevationsMeters": [
+              -4221,
+              -4189,
+              -4150,
+              -4123,
+              -4104,
+              -4079,
+              -4054
+            ]
+          },
+          {
+            "segmentId": "seg-2",
+            "fromWaypointIndex": 1,
+            "toWaypointIndex": 2,
+            "status": "computed",
+            "coordinates": [
+              [
+                137.3998538,
+                -4.7406602
+              ],
+              [
+                137.3964797,
+                -4.7372861
+              ],
+              [
+                137.3931055,
+                -4.7339119
+              ],
+              [
+                137.3897314,
+                -4.7305378
+              ],
+              [
+                137.3863572,
+                -4.7271637
+              ],
+              [
+                137.3829831,
+                -4.7237895
+              ],
+              [
+                137.379609,
+                -4.7204154
+              ]
+            ],
+            "distanceMeters": 1694.1755206891157,
+            "ascentMeters": 0,
+            "descentMeters": 167,
+            "maximumSlopeDegrees": 7.86392536294425,
+            "meanSlopeDegrees": 5.626794859591946,
+            "maximumCellSlopeDegrees": 7.995898264660703,
+            "meanCellSlopeDegrees": 7.09085909425533,
+            "straightLineDistanceMeters": 1694.1755205576983,
+            "detourRatio": 1.0000000000775702,
+            "totalTerrainCostMeters": 1927.5345288237033,
+            "expandedNodes": 19,
+            "heapPushes": 65,
+            "failure": null,
+            "preference": "lower-terrain-cost",
+            "netElevationChangeMeters": -167,
+            "elevationsMeters": [
+              -4054,
+              -4079,
+              -4104,
+              -4123,
+              -4150,
+              -4189,
+              -4221
+            ]
+          }
+        ],
+        "algorithm": {
+          "name": "A*",
+          "preference": "lower-terrain-cost",
+          "heuristic": "great-circle ground distance; admissible and consistent because every edge cost is at least its ground distance",
+          "neighbours": 8,
+          "deterministic": true,
+          "diagonalCost": "hypot(east_ground_step, north_ground_step)",
+          "tieBreak": "f-score, then heuristic, then row-major cell index"
+        },
+        "costModel": {
+          "name": "gale-terrain-penalty-v1",
+          "units": "equivalent horizontal metres",
+          "formula": "distance * (1 + uphill_weight*min(tan(theta_up), max_grade) + downhill_weight*min(tan(theta_down), max_grade) + cross_slope_weight*(max_endpoint_horn_slope/reference_slope)^2)",
+          "uphillWeight": 3,
+          "downhillWeight": 0.75,
+          "crossSlopeWeight": 0.5,
+          "slopeReferenceDegrees": 20,
+          "maxGradeTangent": 3,
+          "interpretation": "Algorithmic terrain preference, not astronaut physiology, metabolic cost, or a certified safety threshold."
+        },
+        "grid": {
+          "datasetId": "gale-hrsc-mola-200m",
+          "nominalPostingMeters": 200,
+          "slopeDerivative": "Horn 3x3",
+          "slopeSupportMeters": {
+            "northMeters": 600,
+            "eastMeters": 598,
+            "note": "Horn 3x3 support: three 200 m north steps; east support is about 598 m at 4.7 deg S."
+          },
+          "width": 179,
+          "height": 238,
+          "crs": "GCS_Mars_2000_Sphere",
+          "verticalDatum": "MOLA areoid, metres positive up",
+          "horizontalDatum": "Mars 2000 sphere R=3,396,190 m; planetocentric latitude; east-positive longitude 0-360",
+          "nodata": -32768,
+          "checksumSha256": "b5b53e2c04e513bb167dde6db893e69b7e79f4c9e266f2a0b70e7bb511bb2bf1",
+          "extentWsen": [
+            137.09786867115304,
+            -5.10000562355897,
+            137.70183890378092,
+            -4.296961403640324
+          ],
+          "validRouteCells": 41772,
+          "totalCells": 42602,
+          "validFraction": 0.9805173466034458,
+          "validAreaKm2": 1665.265918043206
+        },
+        "samples": {
+          "coordinateCount": 13,
+          "edgeCount": 12,
+          "expandedNodes": 55,
+          "heapPushes": 165
+        },
+        "coverage": {
+          "status": "partial",
+          "datasetId": "gale-hrsc-mola-200m",
+          "validRouteCells": 41772,
+          "totalCells": 42602,
+          "validFraction": 0.9805173466034458,
+          "validAreaKm2": 1665.265918043206,
+          "extentWsen": [
+            137.09786867115304,
+            -5.10000562355897,
+            137.70183890378092,
+            -4.296961403640324
+          ],
+          "routeWithinValidCoverage": true,
+          "missingTerrain": "No numeric DEM is available outside the declared crop. Cells outside it are not treated as traversable.",
+          "nodataPolicy": "Nodata and cells without a complete valid 3x3 slope neighbourhood are blocked. No interpolation, gap filling, or synthetic surface is used.",
+          "note": "Coverage applies only to the audited regional crop for this dataset; it is not a claim of whole-Gale coverage."
+        },
+        "evidence": {
+          "source": {
+            "status": "VERIFIED",
+            "datasetId": "gale-hrsc-mola-200m",
+            "product": "Mars_HRSC_MOLA_BlendDEM_Global_200mp_v2",
+            "publisher": "USGS Astrogeology Science Center / NASA / ESA",
+            "citation": "Fergason, Hare, and Laura (2018), USGS HRSC-MOLA blended DEM",
+            "sourceUrl": "https://asc-pds-services.s3.us-west-2.amazonaws.com/mosaic/Mars/HRSC_MOLA_Blend/Mars_HRSC_MOLA_BlendDEM_Global_200mp_v2.tif",
+            "checksumSha256": "b5b53e2c04e513bb167dde6db893e69b7e79f4c9e266f2a0b70e7bb511bb2bf1",
+            "units": "metres relative to MOLA areoid, positive up",
+            "note": "Numeric elevation band was read directly. Display colours and rendered PNGs were not used as terrain data."
+          },
+          "processing": {
+            "status": "VERIFIED",
+            "slopeMethod": "Horn 3x3 finite difference",
+            "slopeSupportMeters": {
+              "northMeters": 600,
+              "eastMeters": 598,
+              "note": "Horn 3x3 support: three 200 m north steps; east support is about 598 m at 4.7 deg S."
+            },
+            "distanceModel": "Mars 2000 sphere R=3,396,190 m, per-row cos(latitude) east spacing, 8-connected graph",
+            "pathfinder": "A* with admissible great-circle heuristic",
+            "note": "Slope, validity, distances, and pathfinding are covered by synthetic mathematical tests and authentic-DEM tests."
+          },
+          "registration": {
+            "status": "UNVERIFIED",
+            "reason": "Precise local DEM-to-CTX co-registration is not certified. The DEM retains its published MOLA/Mars 2000 frame; no shift was fitted to the optical basemap.",
+            "source": "team/gale/G3_2_REPORT.md and team/gale/REGISTRATION_INVESTIGATION.md; G4_TERRAIN_AUDIT.json registration gate"
+          },
+          "hazards": {
+            "status": "NOT_EVALUATED",
+            "reason": "No verified Gale roughness, sand, rock-abundance, boulder, or obstacle dataset was available. The route avoids slope and elevation cost only; unmapped physical hazards are not represented."
+          },
+          "resource_model": {
+            "status": "NOT_EVALUATED",
+            "reason": "Cost weights are documented algorithmic preferences, not validated EVA physiology, metabolic rate, oxygen use, battery drain, or safety thresholds."
+          }
+        },
+        "failure": null,
+        "limitations": [
+          "200 m posting and approximately 600 m gradient support are far too coarse for suit-scale or rover-scale hazard assessment.",
+          "The product blends HRSC and MOLA observations; local source quality and seams are not mapped per pixel.",
+          "CTX optical co-registration is unverified locally.",
+          "This crop is a regional comparison product, not a replacement for the 30 m primary routing grid.",
+          "No roughness, obstacle, trafficability, or hazard dataset is included."
+        ],
+        "straightLineDistanceMeters": 3388.3510411153966,
+        "detourRatio": 1.0000000000775702,
+        "totalTerrainCostMeters": 4230.819057647407,
+        "meanTerrainPenalty": 1.2486365804431223,
+        "startElevationMeters": -4221,
+        "endElevationMeters": -4221,
+        "minimumElevationMeters": -4221,
+        "maximumElevationMeters": -4054,
+        "netElevationChangeMeters": 0,
+        "maximumCellSlopeDegrees": 7.995898264660703,
+        "meanCellSlopeDegrees": 7.09085909425533
+      }
+    }
+  ]
+}

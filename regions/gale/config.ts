@@ -30,8 +30,10 @@ export const config = {
       "status": "available",
       "reason": "Source-registered NASA Trek CTX display tiles and NASA recorded Curiosity traverse; documented independent PDS display audit."
     },
-    // Display-only Lower Mount Sharp camera crop. Fit Mission still uses the
-    // complete supported_extent; neither rectangle changes source geography.
+    // Display-only focus window. On entry the camera fits the largest
+    // viewport-aspect rectangle inside this window, centered on real Lower
+    // Mount Sharp traverse terrain. Fit Mission still uses the complete
+    // supported_extent; neither rectangle changes source geography.
     "initial_zoom": 11,
     "initial_extent": {
       "west_east": 137.36,

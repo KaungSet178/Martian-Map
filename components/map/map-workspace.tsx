@@ -11,6 +11,7 @@ import {
   mountRegionLayers,
   layerState,
   toDisplayCoordinates,
+  type LayerState,
   type LayerStates,
   type CoverageFocusRequest,
 } from "@/lib/map/region-layers";
@@ -20,6 +21,8 @@ import {
   fromDisplayCoordinates,
   isCoordinateWithinExtent,
 } from "@/lib/map/waypoint-layers";
+import { mountTerrainRoutes, updateTerrainRoutes } from "@/lib/map/terrain-routes";
+import type { TerrainRoute, TerrainPreference } from "@/lib/routing/contracts";
 import { formatCoordinates } from "@/components/mission/waypoint-itinerary";
 import type { WaypointPlan } from "@/lib/mission/waypoint-planning";
 import { fitOverview, fitInitialView, fitLayerCoverage } from "@/lib/map/camera";
@@ -27,6 +30,7 @@ import { registerScientificClip } from "@/lib/map/scientific-clip";
 import {
   Crosshair,
   Layers,
+  Maximize2,
   Minus,
   Plus,
   ArrowUp,
@@ -53,9 +57,13 @@ type Props = {
   showMarkers: boolean;
   opacity: number;
   layerStates: LayerStates;
+  onLayerChange?: (id: string, change: Partial<LayerState>) => void;
   presentationMode?: "mission_view" | "full_coverage";
   coverageFocus?: CoverageFocusRequest | null;
   plan?: WaypointPlan;
+  terrainRoutes?: TerrainRoute[];
+  terrainPreference?: TerrainPreference;
+  hideGeometric?: boolean;
   isPlacingOnMap?: boolean;
   onPlaceWaypoint?: (coords: MarsGeographicCoordinates) => void;
   onCancelPlacement?: () => void;
@@ -79,9 +87,13 @@ export default function MapWorkspace({
   showMarkers,
   opacity,
   layerStates,
+  onLayerChange,
   presentationMode = "mission_view",
   coverageFocus,
   plan,
+  terrainRoutes,
+  terrainPreference = "shortest",
+  hideGeometric = false,
   isPlacingOnMap = false,
   onPlaceWaypoint,
   onCancelPlacement,
@@ -104,7 +116,7 @@ export default function MapWorkspace({
   const resetView = useCallback((animate = false, initial = false) => {
     if (!map.current || !container.current) return;
     overview.current = initial ? "initial" : "mission";
-    if (initial) fitInitialView(map.current, region, container.current, preview);
+    if (initial) fitInitialView(map.current, region, container.current, preview, animate);
     else fitOverview(map.current, region, container.current, preview, animate);
   }, [region, preview]);
   const activeLayers = region.layers.filter(
@@ -378,8 +390,17 @@ export default function MapWorkspace({
 
   useEffect(() => {
     if (!ready || !map.current || !plan) return;
-    updateTrajectoryData(map.current, plan);
-  }, [ready, region, plan]);
+    updateTrajectoryData(map.current, hideGeometric ? { ...plan, waypoints: [] } : plan);
+  }, [ready, region, plan, hideGeometric]);
+
+  useEffect(() => {
+    if(!ready || !map.current)return;
+    return mountTerrainRoutes(map.current);
+  },[ready,region]);
+  useEffect(() => {
+    if(!ready || !map.current)return;
+    updateTerrainRoutes(map.current,terrainRoutes || [],terrainPreference,region.id,preview);
+  },[ready,region,terrainRoutes,terrainPreference,preview]);
 
   const selectedWaypointIdRef = useRef(selectedWaypointId);
   useEffect(() => {
@@ -572,6 +593,7 @@ export default function MapWorkspace({
   return (
     <section
       className={`map-workspace ${preview ? "preview" : ""} ${scientificMap ? "scientific" : ""} ${isPlacingOnMap ? "placing-mode" : ""}`}
+      data-region={region.id}
       aria-label={`${region.name} map workspace`}
     >
       <div className="map-canvas" ref={container} data-testid="map-canvas" />
@@ -627,7 +649,10 @@ export default function MapWorkspace({
         {region.id === "gale" && scientificMap && !preview && (
           <BasemapControl key={region.id} map={loadedMap}
             visible={layerState(region, layerStates, "gale-optical").visible}
-            opacity={layerState(region, layerStates, "gale-optical").opacity} />
+            opacity={layerState(region, layerStates, "gale-optical").opacity}
+            contextVisible={layerState(region, layerStates, "gale-context").visible}
+            onContextVisibleChange={(visible) =>
+              onLayerChange?.("gale-context", { visible })} />
         )}
       </div>
       {preview ? (
@@ -690,16 +715,40 @@ export default function MapWorkspace({
             <Minus size={20} />
           </button>
         </div>
-        <button
-          className="icon-button"
-          onClick={() => resetView(true)}
-          disabled={(!preview && !scientificMap) || !ready || failed}
-          aria-label={scientificMap && !preview ? "Fit exploration region" : "Reset map view"}
-          title={scientificMap && !preview ? "Fit mission area" : "Reset map view"}
-        >
-          <Crosshair size={20} />
-        </button>
+        {scientificMap && !preview && region.id === "gale" ? (
+          <>
+            <button
+              className="icon-button"
+              onClick={() => resetView(true, true)}
+              disabled={!ready || failed}
+              aria-label="Explore Curiosity area"
+              title="Explore Curiosity area"
+            >
+              <Crosshair size={20} />
+            </button>
+            <button
+              className="icon-button"
+              onClick={() => resetView(true)}
+              disabled={!ready || failed}
+              aria-label="Fit complete mission area"
+              title="Fit complete mission area"
+            >
+              <Maximize2 size={20} />
+            </button>
+          </>
+        ) : (
+          <button
+            className="icon-button"
+            onClick={() => resetView(true)}
+            disabled={(!preview && !scientificMap) || !ready || failed}
+            aria-label={scientificMap && !preview ? "Fit exploration region" : "Reset map view"}
+            title={scientificMap && !preview ? "Fit mission area" : "Reset map view"}
+          >
+            <Crosshair size={20} />
+          </button>
+        )}
       </div>
+      {terrainRoutes?.some(route=>route.regionId===region.id && route.status!=="unavailable") && !preview && <p className="map-route-status" data-testid="terrain-map-status" style={{position:"absolute",bottom:100,left:16,right:16,fontSize:12,pointerEvents:"none"}}>Terrain-derived {terrainPreference === "shortest" ? "shortest distance" : "lower terrain cost"} route; absolute registration unverified</p>}
       {failed && (
         <p className="map-failure" role="status">
           Map renderer unavailable. The science catalog and mission editor
@@ -721,7 +770,7 @@ export default function MapWorkspace({
             </>
           )}
         </button>
-        {plan?.waypoints && plan.waypoints.length >= 2 && (
+        {!hideGeometric && plan?.waypoints && plan.waypoints.length >= 2 && (
           <span
             className="trajectory-legend mono"
             data-testid="trajectory-legend"

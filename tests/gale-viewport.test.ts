@@ -4,7 +4,7 @@ import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
 import type { Map as MapInstance } from "maplibre-gl";
 import { getRegion } from "../lib/regions/registry";
-import { fitInitialView, fitOverview } from "../lib/map/camera";
+import { fitInitialView, fitOverview, focusExtentForViewport } from "../lib/map/camera";
 import { applyLayerStates, mountRegionLayers, displayBounds } from "../lib/map/region-layers";
 import { missionPixelRect, missionTileTemplates, usesScientificClip, registerScientificClip } from "../lib/map/scientific-clip";
 
@@ -13,7 +13,7 @@ test("broader context retains authenticated existing source, original mission bo
   const layer = gale.layers.find((item) => item.id === "gale-context")!;
   assert.equal(layer.source_id, "gale-trek-ctx");
   assert.equal(layer.kind, "optical");
-  assert.equal(layer.default_visible, true);
+  assert.equal(layer.default_visible, false);
   const report = JSON.parse(readFileSync("team/gale/viewport/context-report.json", "utf8"));
   assert.equal(report.source_capabilities_sha256, JSON.parse(readFileSync("team/gale/sources/g1-audit.json", "utf8")).inputs["capabilities.xml"].sha256);
   assert.equal(report.tiles_written, 207);
@@ -33,12 +33,18 @@ test("initial exploration is separate from complete mission fit and other region
   const container = { getBoundingClientRect:()=>({width:1080,height:788,top:0,bottom:788,right:1080}),
     parentElement:{querySelector:()=>null} } as unknown as HTMLElement;
   fitInitialView(map,gale,container,false);
-  assert.deepEqual(calls.at(-1)![0],displayBounds(gale.map.initial_extent!));
+  const focus=focusExtentForViewport(gale,{width:1080,height:788},{top:24,bottom:64,left:24,right:32})!;
+  assert.deepEqual(calls.at(-1)![0],displayBounds(focus));
+  assert.notDeepEqual(calls.at(-1)![0],displayBounds(gale.map.initial_extent!));
+  assert.equal((calls.at(-1)![1] as {duration:number}).duration,0);
+  fitInitialView(map,gale,container,false,true);
+  assert.equal((calls.at(-1)![1] as {duration:number}).duration,280);
   fitOverview(map,gale,container,false);
   assert.deepEqual(calls.at(-1)![0],displayBounds(gale.map.supported_extent!));
   for (const id of ["jezero","oxia"]) {
     const region=getRegion(id)!;
     assert.equal(region.map.initial_extent,undefined);
+    assert.equal(focusExtentForViewport(region,{width:1080,height:788},{top:24,bottom:64,left:24,right:32}),null);
   }
 });
 

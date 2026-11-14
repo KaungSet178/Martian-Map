@@ -1,0 +1,83 @@
+{
+  "gale": [
+    {
+      "preference": "shortest",
+      "cells": 179,
+      "horizontal_m": 7317.245353077637,
+      "surface_m": 7323.039940202372,
+      "ascent_m": 104.15185546875,
+      "descent_m": 104.15185546875,
+      "valid_connected_cells": true,
+      "snapping_checked": true,
+      "native_horizontal_objective_m": 7317.245353077637,
+      "independent_lower_terrain_cost": 7795.660387403709
+    },
+    {
+      "preference": "lower-terrain-cost",
+      "cells": 179,
+      "horizontal_m": 7317.252321387742,
+      "surface_m": 7320.240012501871,
+      "ascent_m": 72.42919921875,
+      "descent_m": 72.42919921875,
+      "valid_connected_cells": true,
+      "snapping_checked": true,
+      "native_horizontal_objective_m": 7317.252321387742,
+      "independent_lower_terrain_cost": 7660.7136485463725
+    }
+  ],
+  "jezero": [
+    {
+      "preference": "shortest",
+      "cells": 337,
+      "horizontal_m": 8505.431327174643,
+      "surface_m": 8514.738741081954,
+      "ascent_m": 147.298828125,
+      "descent_m": 147.298828125,
+      "valid_connected_cells": true,
+      "snapping_checked": true,
+      "native_horizontal_objective_m": 8505.422010525923,
+      "independent_lower_terrain_cost": 11263.657748127755
+    },
+    {
+      "preference": "lower-terrain-cost",
+      "cells": 337,
+      "horizontal_m": 8677.238831867002,
+      "surface_m": 8681.39900885938,
+      "ascent_m": 98.900146484375,
+      "descent_m": 98.900146484375,
+      "valid_connected_cells": true,
+      "snapping_checked": true,
+      "native_horizontal_objective_m": 8677.321067004877,
+      "independent_lower_terrain_cost": 9787.012039185878
+    }
+  ],
+  "native_jezero": {
+    "source_sha256": "44c3819caa33922b06f7a8228534d1e32ab4087aca85144136d825c371c747d8",
+    "samples": [
+      {
+        "cell": [
+          100,
+          80
+        ],
+        "native_mean_m": -1789.9000244140625,
+        "source_georeferencing_checked": true
+      },
+      {
+        "cell": [
+          300,
+          100
+        ],
+        "native_mean_m": -2428.0,
+        "source_georeferencing_checked": true
+      },
+      {
+        "cell": [
+          500,
+          120
+        ],
+        "native_mean_m": -2556.60009765625,
+        "source_georeferencing_checked": true
+      }
+    ]
+  }
+}

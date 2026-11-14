@@ -1,0 +1,227 @@
+{
+  "schemaVersion": "gale-routing-datasets-v1",
+  "generatedAtUtc": "2026-11-14T13:50:25+00:00",
+  "regionId": "gale",
+  "reference": {
+    "body": "Mars",
+    "sphereRadiusM": 3396190.0,
+    "latitudeType": "planetocentric",
+    "longitudeDirection": "east",
+    "longitudeRange": "0-360",
+    "verticalDatum": "MOLA areoid, metres positive up"
+  },
+  "productsAreNotBlended": "The 30 m HRSC and 200 m HRSC-MOLA crops are distinct products. They are never averaged, resampled together, or presented as one uniform high-resolution DEM.",
+  "datasets": {
+    "gale-hrsc-30m": {
+      "datasetId": "gale-hrsc-30m",
+      "title": "Gale HRSC 30 m DTM routing crop",
+      "role": "primary",
+      "path": "data/routing/gale/gale-hrsc-30m-routing.tif",
+      "sha256": "b0212c310f1b9fa7cca8f5566d4b3c1dc4c0069e2a1eee59b350b6836d643e4b",
+      "bytes": 285545,
+      "width": 293,
+      "height": 545,
+      "dtype": "float32",
+      "crs": "Mars equidistant cylindrical (R=3,396,190 m)",
+      "crsWkt": "PROJCRS[\"unnamed\",BASEGEOGCRS[\"unnamed ellipse\",DATUM[\"unknown\",ELLIPSOID[\"unnamed\",3396190,0,LENGTHUNIT[\"metre\",1,ID[\"EPSG\",9001]]]],PRIMEM[\"Greenwich\",0,ANGLEUNIT[\"degree\",0.0174532925199433,ID[\"EPSG\",9122]]]],CONVERSION[\"unnamed\",METHOD[\"Equidistant Cylindrical (Spherical)\",ID[\"EPSG\",1029]],PARAMETER[\"Latitude of 1st standard parallel\",0,ANGLEUNIT[\"degree\",0.0174532925199433],ID[\"EPSG\",8823]],PARAMETER[\"Longitude of natural origin\",0,ANGLEUNIT[\"degree\",0.0174532925199433],ID[\"EPSG\",8802]],PARAMETER[\"False easting\",0,LENGTHUNIT[\"metre\",1],ID[\"EPSG\",8806]],PARAMETER[\"False northing\",0,LENGTHUNIT[\"metre\",1],ID[\"EPSG\",8807]]],CS[Cartesian,2],AXIS[\"easting\",east,ORDER[1],LENGTHUNIT[\"metre\",1,ID[\"EPSG\",9001]]],AXIS[\"northing\",north,ORDER[2],LENGTHUNIT[\"metre\",1,ID[\"EPSG\",9001]]]]",
+      "transform": [
+        30.0,
+        0.0,
+        8140012.398099138,
+        0.0,
+        -30.0,
+        -270498.3070835827
+      ],
+      "nodata": -32768.0,
+      "nominalPostingMeters": 30,
+      "slopeDerivative": "Horn 3x3",
+      "slopeSupportMeters": {
+        "northMeters": 90.0,
+        "eastMeters": 89.7,
+        "note": "Horn 3x3 support: three 30 m north steps; east support is three ground steps corrected by cos(planetocentric latitude), about 89.7 m at 4.7 deg S."
+      },
+      "validPosts": 159685,
+      "validRouteCells": 158013,
+      "totalCells": 159685,
+      "validFraction": 0.9895293859786455,
+      "groundAreaKm2": 141.7330790138141,
+      "extentWsen": [
+        137.32693270848944,
+        -4.839304443026415,
+        137.47522532519224,
+        -4.563470053596232
+      ],
+      "elevationM": {
+        "min": -4530.0,
+        "max": -2641.216552734375,
+        "mean": -4119.734147864379,
+        "p05": -4497.7232421875,
+        "p50": -4287.744140625,
+        "p95": -3332.9856445312503
+      },
+      "slopeDegrees": {
+        "min": 0.0,
+        "max": 27.299450655932137,
+        "mean": 5.830624778677768,
+        "p05": 0.35757965220199084,
+        "p50": 4.86225765557641,
+        "p95": 15.105631805415372
+      },
+      "verticalDatum": "MOLA areoid, metres positive up",
+      "horizontalDatum": "Mars 2000 sphere R=3,396,190 m; planetocentric latitude; east-positive longitude 0-360",
+      "source": {
+        "path": "hrsc_km09_h1938_h1927_h1916-dtm-mosaic.tif",
+        "bytes": 311785221,
+        "sha256": "ed1fd5cd080a62eff7d2b9f38110c0a2c62ee05a4706ac0b45d015043e781ae6",
+        "md5": "1d714f2142a56e962d50d985b7088b13",
+        "product": "hrsc_km09_h1938_h1927_h1916-dtm-mosaic",
+        "publisher": "ESA / DLR / Freie Universitat Berlin / NASA JPL",
+        "citation": "Persaud et al. (2021), 30 m HRSC DTM mosaic of Gale Crater, DOI 10.5281/zenodo.5808354",
+        "url": "https://zenodo.org/records/5808354/files/hrsc_km09_h1938_h1927_h1916-dtm-mosaic.tif"
+      },
+      "crop": {
+        "method": "Gale overview bounds plus 1 km derivative buffer",
+        "window": [
+          2838,
+          3121,
+          293,
+          545
+        ],
+        "sourceDimensions": [
+          7584,
+          10275
+        ],
+        "overviewBounds": {
+          "west_east": 137.3442352329006,
+          "east_east": 137.4579431096443,
+          "south_latitude": -4.822361175063087,
+          "north_latitude": -4.580605407446296
+        }
+      },
+      "processing": {
+        "slope": "Horn 3x3 finite difference with per-row cos(latitude) east spacing",
+        "nodataPolicy": "Nonfinite posts and the product nodata value are invalid. A cell is routeable only when all nine 3x3 elevation posts are valid. No filling, interpolation, or smoothing across gaps.",
+        "distanceModel": "Mars 2000 sphere R=3,396,190 m; per-row east ground spacing and 8-connected diagonal hypot",
+        "displayTilesUsedAsData": false
+      },
+      "registration": {
+        "status": "UNVERIFIED",
+        "reason": "Precise local DEM-to-CTX co-registration is not certified. Published coordinates are retained; no shift was fitted.",
+        "reference": "team/gale/G3_2_REPORT.md; G4_TERRAIN_AUDIT.json"
+      },
+      "limitations": [
+        "30 m posting is a grid spacing, not a guaranteed 30 m effective resolving power.",
+        "Horn 3x3 slopes have approximately 90 m support and smooth out boulders, small scarps, sand traps, and suit-scale obstacles.",
+        "Absolute horizontal/vertical accuracy and slope error are not quantitatively certified.",
+        "CTX optical co-registration is unverified locally; no shift was applied.",
+        "The crop covers the audited Gale exploration footprint plus a 1 km derivative buffer, not all of Gale Crater.",
+        "No roughness, obstacle, trafficability, or hazard dataset is included."
+      ]
+    },
+    "gale-hrsc-mola-200m": {
+      "datasetId": "gale-hrsc-mola-200m",
+      "title": "Gale HRSC-MOLA 200 m blended DEM routing crop",
+      "role": "coarse-regional-comparison",
+      "path": "data/routing/gale/gale-hrsc-mola-200m-routing.tif",
+      "sha256": "b5b53e2c04e513bb167dde6db893e69b7e79f4c9e266f2a0b70e7bb511bb2bf1",
+      "bytes": 40377,
+      "width": 179,
+      "height": 238,
+      "dtype": "int16",
+      "crs": "GCS_Mars_2000_Sphere",
+      "crsWkt": "GEOGCRS[\"GCS_Mars_2000_Sphere\",DATUM[\"Mars_2000_(Sphere)\",ELLIPSOID[\"Mars_2000_Sphere_IAU_IAG\",3396190,0,LENGTHUNIT[\"metre\",1,ID[\"EPSG\",9001]]]],PRIMEM[\"Reference_Meridian\",0,ANGLEUNIT[\"degree\",0.0174532925199433,ID[\"EPSG\",9122]]],CS[ellipsoidal,2],AXIS[\"latitude\",north,ORDER[1],ANGLEUNIT[\"degree\",0.0174532925199433,ID[\"EPSG\",9122]]],AXIS[\"longitude\",east,ORDER[2],ANGLEUNIT[\"degree\",0.0174532925199433,ID[\"EPSG\",9122]]]]",
+      "transform": [
+        0.0033741353778094364,
+        0.0,
+        137.09786867115304,
+        0.0,
+        -0.0033741353778094364,
+        -4.296961403640324
+      ],
+      "nodata": -32768.0,
+      "nominalPostingMeters": 200,
+      "slopeDerivative": "Horn 3x3",
+      "slopeSupportMeters": {
+        "northMeters": 600.0,
+        "eastMeters": 598.0,
+        "note": "Horn 3x3 support: three 200 m north steps; east support is about 598 m at 4.7 deg S."
+      },
+      "validPosts": 42602,
+      "validRouteCells": 41772,
+      "totalCells": 42602,
+      "validFraction": 0.9805173466034458,
+      "groundAreaKm2": 1665.265918043206,
+      "extentWsen": [
+        137.09786867115304,
+        -5.10000562355897,
+        137.70183890378092,
+        -4.296961403640324
+      ],
+      "elevationM": {
+        "min": -4635.0,
+        "max": 179.0,
+        "mean": -3588.5497462415015,
+        "p05": -4507.0,
+        "p50": -4194.0,
+        "p95": -1051.0
+      },
+      "slopeDegrees": {
+        "min": 0.0,
+        "max": 32.299687921462386,
+        "mean": 6.364005925997968,
+        "p05": 0.5906845246197856,
+        "p50": 4.615161118847756,
+        "p95": 17.461872288146658
+      },
+      "verticalDatum": "MOLA areoid, metres positive up",
+      "horizontalDatum": "Mars 2000 sphere R=3,396,190 m; planetocentric latitude; east-positive longitude 0-360",
+      "source": {
+        "path": "usgs_hrsc_mola_200m_gale.tif",
+        "bytes": 81288,
+        "sha256": "1b39ccf4a714f9a13c51e53140dce417e6ebb4ff652af11ae97807a71bd30b4c",
+        "md5": "a9b48bf7e76e41abbbb865e0a1f0db71",
+        "product": "Mars_HRSC_MOLA_BlendDEM_Global_200mp_v2",
+        "publisher": "USGS Astrogeology Science Center / NASA / ESA",
+        "citation": "Fergason, Hare, and Laura (2018), USGS HRSC-MOLA blended DEM",
+        "url": "https://asc-pds-services.s3.us-west-2.amazonaws.com/mosaic/Mars/HRSC_MOLA_Blend/Mars_HRSC_MOLA_BlendDEM_Global_200mp_v2.tif"
+      },
+      "crop": {
+        "method": "Pre-extracted Gale regional window",
+        "window": [
+          0,
+          0,
+          179,
+          238
+        ],
+        "sourceDimensions": [
+          179,
+          238
+        ],
+        "overviewBounds": {
+          "west_east": 137.3442352329006,
+          "east_east": 137.4579431096443,
+          "south_latitude": -4.822361175063087,
+          "north_latitude": -4.580605407446296
+        }
+      },
+      "processing": {
+        "slope": "Horn 3x3 finite difference with per-row cos(latitude) east spacing",
+        "nodataPolicy": "Nonfinite posts and the product nodata value are invalid. A cell is routeable only when all nine 3x3 elevation posts are valid. No filling, interpolation, or smoothing across gaps.",
+        "distanceModel": "Mars 2000 sphere R=3,396,190 m; per-row east ground spacing and 8-connected diagonal hypot",
+        "displayTilesUsedAsData": false
+      },
+      "registration": {
+        "status": "UNVERIFIED",
+        "reason": "Precise local DEM-to-CTX co-registration is not certified. Published coordinates are retained; no shift was fitted.",
+        "reference": "team/gale/G3_2_REPORT.md; G4_TERRAIN_AUDIT.json"
+      },
+      "limitations": [
+        "200 m posting and approximately 600 m gradient support are far too coarse for suit-scale or rover-scale hazard assessment.",
+        "The product blends HRSC and MOLA observations; local source quality and seams are not mapped per pixel.",
+        "CTX optical co-registration is unverified locally.",
+        "This crop is a regional comparison product, not a replacement for the 30 m primary routing grid.",
+        "No roughness, obstacle, trafficability, or hazard dataset is included."
+      ]
+    }
+  }
+}

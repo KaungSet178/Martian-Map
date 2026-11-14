@@ -1,0 +1,4 @@
+# Python >= 3.11. Direct Gale engine boundary; no separate FastAPI service.
+numpy>=2.0
+rasterio>=1.4
+pyproj>=3.6

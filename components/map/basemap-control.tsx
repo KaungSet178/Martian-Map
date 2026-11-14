@@ -5,8 +5,14 @@ import type { Map as MapInstance, ErrorEvent as MapErrorEvent } from "maplibre-g
 import { addProtocol, removeProtocol } from "maplibre-gl";
 import { COLOR_BASEMAP, applyColorBasemap } from "@/lib/map/color-basemap";
 
-export default function BasemapControl({ map, visible, opacity }: {
-  map: MapInstance | null; visible: boolean; opacity: number;
+export default function BasemapControl({
+  map, visible, opacity, contextVisible, onContextVisibleChange,
+}: {
+  map: MapInstance | null;
+  visible: boolean;
+  opacity: number;
+  contextVisible: boolean;
+  onContextVisibleChange: (visible: boolean) => void;
 }) {
   const [mode, setMode] = useState("ctx");
   const [notice, setNotice] = useState("");
@@ -25,7 +31,7 @@ export default function BasemapControl({ map, visible, opacity }: {
       if (event.sourceId !== COLOR_BASEMAP.id) return;
       if (map.getLayer(COLOR_BASEMAP.id)) map.setLayoutProperty(COLOR_BASEMAP.id, "visibility", "none");
       setMode("ctx");
-      setNotice("USGS imagery could not load. Original CTX restored; mission and camera preserved.");
+      setNotice("USGS imagery could not load. Detailed CTX restored; mission and camera preserved.");
     };
     map.on("error", onError);
     return () => {
@@ -46,9 +52,18 @@ export default function BasemapControl({ map, visible, opacity }: {
       <label htmlFor="gale-basemap">Basemap</label>
       <select id="gale-basemap" value={mode} disabled={!map} aria-describedby="basemap-source"
         onChange={(event) => { setMode(event.target.value); setNotice(""); }}>
-        <option value="ctx">Detailed CTX + context</option>
-        <option value="color">USGS Color + context · provisional</option>
+        <option value="ctx">Curiosity detailed CTX</option>
+        <option value="color">USGS Color · provisional</option>
       </select>
+      <label className="check-row basemap-context-toggle">
+        <input
+          type="checkbox"
+          checked={contextVisible}
+          disabled={!map}
+          onChange={(event) => onContextVisibleChange(event.target.checked)}
+        />
+        Show wider Gale context
+      </label>
       <div id="basemap-source" role="status">
         {notice || (mode === "color" ? <>
           <strong>Alignment unverified · visual comparison</strong>
@@ -59,9 +74,9 @@ export default function BasemapControl({ map, visible, opacity }: {
             <a href={COLOR_BASEMAP.catalogue} target="_blank" rel="noreferrer">USGS source · Parker & Calef</a>
           </details>
         </> : <>
-          <div>NASA Trek CTX · ~10 m detail / ~41 m context sampling</div>
+          <div>NASA Trek CTX · ~10 m detailed mission sampling</div>
           <details><summary>Coverage & source</summary>
-            <p>Outside the detailed mission crop, wider CTX context remains visible when enabled in Layers. Context covers 136.4–138.4°E, 5.6–3.8°S; gaps remain transparent. These are display sample spacings, not verified effective resolution. Absolute positional accuracy is unquantified.</p>
+            <p>The wider Gale context is hidden by default; enable Show wider Gale context to restore it. Context covers 136.4–138.4°E, 5.6–3.8°S; gaps remain transparent. These are display sample spacings, not verified effective resolution. Absolute positional accuracy is unquantified.</p>
             <a href="https://trek.nasa.gov/tiles/Mars/EQ/Gale_CTX_BlockAdj_dd/1.0.0/WMTSCapabilities.xml" target="_blank" rel="noreferrer">NASA Trek source</a>
           </details>
         </>)}

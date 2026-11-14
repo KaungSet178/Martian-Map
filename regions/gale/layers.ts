@@ -26,7 +26,7 @@ export const layers = [
       max_zoom: 11,
       bounds: { west_east: 136.4, east_east: 138.4, south_latitude: -5.6, north_latitude: -3.8 },
     },
-    default_visible: true,
+    default_visible: false,
     default_opacity: 100,
     legend: null,
   },

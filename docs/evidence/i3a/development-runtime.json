@@ -1,0 +1,32 @@
+[
+  {
+    "region": "gale",
+    "http_status": 200,
+    "runtime": "existing dedicated-worktree next dev on port 3000",
+    "alternatives": [
+      {
+        "status": "unverified",
+        "distanceMeters": 1691.1685162717622
+      },
+      {
+        "status": "unverified",
+        "distanceMeters": 1691.3622695961237
+      }
+    ]
+  },
+  {
+    "region": "jezero",
+    "http_status": 200,
+    "runtime": "existing dedicated-worktree next dev on port 3000",
+    "alternatives": [
+      {
+        "status": "unverified",
+        "distanceMeters": 4257.563830312001
+      },
+      {
+        "status": "unverified",
+        "distanceMeters": 4340.700981631676
+      }
+    ]
+  }
+]

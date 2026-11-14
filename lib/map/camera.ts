@@ -24,12 +24,30 @@ export function overviewPadding(container: HTMLElement): PaddingOptions {
   };
 }
 
+// A close-up fills the map behind the floating title and basemap panels, which
+// are opaque surfaces. Reserving the whole title block would letterbox a wide
+// viewport with dark background that no overlay occupies. Keep only a modest
+// breathing edge, the real navigation-control column and the bottom strip.
+export function focusPadding(container: HTMLElement): PaddingOptions {
+  const frame = container.getBoundingClientRect();
+  const controls = container.parentElement
+    ?.querySelector(".map-navigation")?.getBoundingClientRect();
+  return {
+    top: Math.min(24, frame.height * .05),
+    bottom: Math.min(64, frame.height * .12),
+    left: Math.min(24, frame.width * .06),
+    right: Math.min(frame.width * .24,
+      controls ? frame.right - controls.left + 16 : 32),
+  };
+}
+
 export function fitOverview(
   map: MapInstance,
   region: RegionManifest,
   container: HTMLElement,
   preview: boolean,
   animate = false,
+  paddingOverride?: PaddingOptions,
 ) {
   if (region.id === "gale") {
     const frame = container.getBoundingClientRect();
@@ -48,7 +66,7 @@ export function fitOverview(
     map.jumpTo(previewCamera);
   } else if (region.map.supported_extent) {
     map.fitBounds(displayBounds(region.map.supported_extent), {
-      padding: overviewPadding(container),
+      padding: paddingOverride ?? overviewPadding(container),
       maxZoom: map.getMaxZoom(),
       bearing: 0,
       pitch: 0,
@@ -69,14 +87,83 @@ export function fitOverview(
   }
 }
 
+type Extent = NonNullable<RegionManifest["map"]["supported_extent"]>;
+const MERCATOR_MAX_LATITUDE = 85.0511287798066;
+
+// MapLibre renders the Mars equirectangular source through Web Mercator. Use
+// projected spans, not raw degrees, so the close-up is not subtly stretched.
+function mercatorY(latitude: number) {
+  const clamped = Math.max(-MERCATOR_MAX_LATITUDE, Math.min(MERCATOR_MAX_LATITUDE, latitude));
+  return Math.log(Math.tan(Math.PI / 4 + (clamped * Math.PI) / 360));
+}
+function mercatorLatitude(y: number) {
+  return ((2 * Math.atan(Math.exp(y)) - Math.PI / 2) * 180) / Math.PI;
+}
+
+// Largest viewport-aspect rectangle inside the reviewed initial window. The
+// window is display framing already inside the detailed CTX footprint; this
+// only crops it further so one real subsection fills the usable map instead
+// of exposing dark margins beside a portrait footprint on a wide screen.
+// It never invents coverage, shifts imagery or changes scientific bounds.
+export function focusExtentForViewport(
+  region: RegionManifest,
+  viewport: { width: number; height: number },
+  padding: PaddingOptions,
+): Extent | null {
+  const framing = region.map.initial_extent;
+  const detailed = region.map.supported_extent;
+  if (!framing || !detailed) return null;
+  const padLeft = padding.left ?? 0;
+  const padRight = padding.right ?? 0;
+  const padTop = padding.top ?? 0;
+  const padBottom = padding.bottom ?? 0;
+  const usableWidth = viewport.width - padLeft - padRight;
+  const usableHeight = viewport.height - padTop - padBottom;
+  if (!(usableWidth > 0) || !(usableHeight > 0)) return null;
+  // A display window must not exceed the reviewed mission footprint. Unknown
+  // or malformed combinations fall back to the existing framing behaviour.
+  const west = Math.max(framing.west_east, detailed.west_east);
+  const east = Math.min(framing.east_east, detailed.east_east);
+  const south = Math.max(framing.south_latitude, detailed.south_latitude);
+  const north = Math.min(framing.north_latitude, detailed.north_latitude);
+  if (!(west < east) || !(south < north)) return null;
+  const centerLongitude = (west + east) / 2;
+  const southY = mercatorY(south), northY = mercatorY(north);
+  const centerY = (southY + northY) / 2;
+  // Mercator x is longitude in radians; y spans are already projected.
+  const halfWindowWidth = ((east - west) * Math.PI) / 360;
+  const halfWindowHeight = (northY - southY) / 2;
+  const aspect = usableWidth / usableHeight;
+  // Saturate the narrower geographic axis: full window width on landscape
+  // screens, full window height on tall screens. The result always fits.
+  const halfHeight = Math.min(halfWindowHeight, halfWindowWidth / aspect);
+  const halfWidth = halfHeight * aspect;
+  if (!(halfHeight > 0) || !(halfWidth > 0)) return null;
+  const halfLongitude = (halfWidth * 180) / Math.PI;
+  return {
+    west_east: centerLongitude - halfLongitude,
+    east_east: centerLongitude + halfLongitude,
+    south_latitude: mercatorLatitude(centerY - halfHeight),
+    north_latitude: mercatorLatitude(centerY + halfHeight),
+  };
+}
+
 // Optional initial framing never replaces the explicit whole-mission action.
+// A fresh Gale entry (or the explicit Explore action) gets an aspect-aware
+// close-up; other regions keep their existing initial camera.
 export function fitInitialView(
   map: MapInstance, region: RegionManifest, container: HTMLElement, preview: boolean,
+  animate = false,
 ) {
-  const extent = region.map.initial_extent;
+  const frame = container.getBoundingClientRect();
+  const padding = focusPadding(container);
+  const focus = !preview && frame.width > 0 && frame.height > 0
+    ? focusExtentForViewport(region, frame, padding)
+    : null;
+  const extent = focus ?? region.map.initial_extent;
   fitOverview(map, extent && !preview
     ? { ...region, map: { ...region.map, supported_extent: extent } }
-    : region, container, preview);
+    : region, container, preview, animate, focus ? padding : undefined);
 }
 
 // Called only by an explicit coverage-fit action. Auto-focus remains separate.

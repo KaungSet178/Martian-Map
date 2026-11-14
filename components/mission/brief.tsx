@@ -1,5 +1,6 @@
 "use client";
 
+import { ROUTING_VERSION, type TerrainRoute } from "@/lib/routing/contracts";
 import { Download, Printer } from "lucide-react";
 import type { RegionManifest } from "@/lib/contracts/region";
 import { assessments } from "@/lib/contracts/region";
@@ -19,29 +20,39 @@ function mapSummary(region: RegionManifest): string {
     ? `Map context: ${region.layers.filter((layer) => layer.availability === "available").map((layer) => layer.display_name).join(", ")}. Map imagery is viewable in the application; no map image is embedded in this brief. Terrain eligibility remains unverified.`
     : "Scientific map and terrain coverage: not integrated.";
 }
+export function terrainBriefSummary(mission:Mission,route?:TerrainRoute|null):string {
+  const environment=mission.region === "gale" ? "Historical REMS weather and RAD absorbed-dose observations (sol 100); sparse wind limitations apply." : mission.region === "jezero" ? "Historical MEDA weather, five temperature sensors, solar/UV radiance across six sols; ionizing dose unavailable." : "Local environmental observations unavailable.";
+  const result=route && route.regionId===mission.region && route.status!=="unavailable"
+    ? `Terrain-derived ${route.preference} route. Model ${ROUTING_VERSION}. 3D distance ${route.distanceMeters?.toFixed(1)} m; horizontal Mars distance ${route.horizontalDistanceMeters?.toFixed(1)} m; ascent ${route.ascentMeters?.toFixed(1)} m; descent ${route.descentMeters?.toFixed(1)} m; maximum path grade ${route.maximumSlopeDegrees?.toFixed(2)} degrees. Source: ${route.sourceDatasetIds.join(", ")}. Absolute registration unverified. ${route.warnings.join(" ")}`
+    : mission.terrain_route ? `Saved ${mission.terrain_route.preference} preference requires recalculation and source/model revalidation. No stored geometry is trusted.` : "No computed terrain route selected.";
+  return `${result} Environmental availability: ${environment} Oxygen, battery, radiation and mission feasibility remain unverified. Scenario reserve inputs: oxygen ${mission.oxygen_reserve_percent}%, battery ${mission.battery_reserve_percent}%.`;
+}
 function briefHtml(
   mission: Mission,
   region: RegionManifest,
   generatedAt: string,
+  terrainRoute?: TerrainRoute | null,
 ) {
-  return `<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>${escape(mission.name)} — Mission brief</title><style>body{font:16px/1.6 system-ui;max-width:850px;margin:40px auto;padding:0 24px;color:#172234}h1,h2{line-height:1.2}aside{border:1px solid #99703a;padding:16px}li{margin:8px 0}dt{font-weight:bold}dd{margin:0 0 12px}a{color:#174c68}@media print{body{margin:0}}</style><body><p>Marswalk · Pre-mission research plan</p><h1>${escape(mission.name)}</h1><p>${escape(region.name)} · ${escape(region.mission_context)}</p><aside><strong>Unverified — Not operational navigation.</strong> No calculated route, hazard analysis or resource estimate is available.</aside><h2>Plan inputs</h2><dl><dt>Generated</dt><dd>${escape(generatedAt)}</dd><dt>Mission direction</dt><dd>${mission.direction === "round" ? "Round trip to start" : "One way"}</dd><dt>Start / recovery endpoint</dt><dd>Unavailable / unverified</dd><dt>Recovery assumption</dt><dd>${escape(mission.recovery_assumption || "Not documented")}</dd><dt>Scenario reserve preferences</dt><dd>Oxygen ${mission.oxygen_reserve_percent}%; battery ${mission.battery_reserve_percent}%. These are inputs, not calculated margins.</dd></dl><h2>Ordered objectives</h2><ol>${
+  return `<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>${escape(mission.name)} — Mission brief</title><style>body{font:16px/1.6 system-ui;max-width:850px;margin:40px auto;padding:0 24px;color:#172234}h1,h2{line-height:1.2}aside{border:1px solid #99703a;padding:16px}li{margin:8px 0}dt{font-weight:bold}dd{margin:0 0 12px}a{color:#174c68}@media print{body{margin:0}}</style><body><p>Marswalk · Pre-mission research plan</p><h1>${escape(mission.name)}</h1><p>${escape(region.name)} · ${escape(region.mission_context)}</p><aside><strong>Unverified — Not operational navigation.</strong> ${terrainRoute ? "Terrain routing is a research estimate; hazard analysis and validated resource estimates are unavailable." : "No calculated route, hazard analysis or resource estimate is available."}</aside><h2>Terrain routing and environment</h2><p>${escape(terrainBriefSummary(mission,terrainRoute))}</p><h2>Plan inputs</h2><dl><dt>Generated</dt><dd>${escape(generatedAt)}</dd><dt>Mission direction</dt><dd>${mission.direction === "round" ? "Round trip to start" : "One way"}</dd><dt>Start / recovery endpoint</dt><dd>Unavailable / unverified</dd><dt>Recovery assumption</dt><dd>${escape(mission.recovery_assumption || "Not documented")}</dd><dt>Scenario reserve preferences</dt><dd>Oxygen ${mission.oxygen_reserve_percent}%; battery ${mission.battery_reserve_percent}%. These are inputs, not calculated margins.</dd></dl><h2>Ordered objectives</h2><ol>${
     mission.target_ids
       .map((id) => {
         const t = region.targets.find((t) => t.id === id)!;
         return `<li><strong>${escape(t.title)}</strong> — ${escape(t.evidence)}; location ${t.coordinate_verified ? "verified" : "unverified"}.<br>${escape(t.activity)}</li>`;
       })
       .join("") || "<li>None selected</li>"
-  }</ol><h2>Six mandatory assessments</h2><ul>${assessments.map((a) => `<li>${a}: Unverified — required evidence unavailable.</li>`).join("")}</ul><h2>Map, route and resource results</h2><p>${escape(mapSummary(region))} Route geometry, distance, slope, time, oxygen, battery, radiation and return margin: unavailable. No schematic preview artwork is exported as evidence.</p><h2>Versions and provenance</h2><p>Mission schema: ${mission.schema_version}. Saved dataset: ${escape(mission.dataset_version)}. Current dataset: ${escape(region.dataset_version)}. Models: none connected. Coordinates: planetocentric latitude, east-positive longitude 0–360°; projected reference: ${escape(region.coordinate_system.projected_crs)}.</p><p>${escape(region.routing.reason)}</p><h2>Source references</h2><p>References document regional evidence; unresolved target coordinates remain unverified.</p><ul>${region.source_references.map((s) => `<li><a href="${escape(s.url)}">${escape(s.title)}</a></li>`).join("")}</ul></body></html>`;
+  }</ol><h2>Six mandatory assessments</h2><ul>${assessments.map((a) => `<li>${a}: Unverified — required evidence unavailable.</li>`).join("")}</ul><h2>Map, route and resource results</h2><p>${escape(mapSummary(region))} ${terrainRoute ? "Computed terrain route metrics are detailed above; validated resource and hazard assessments remain unavailable." : "Route geometry, distance, slope, time, oxygen, battery, radiation and return margin: unavailable."} No schematic preview artwork is exported as evidence.</p><h2>Versions and provenance</h2><p>Mission schema: ${mission.schema_version}. Saved dataset: ${escape(mission.dataset_version)}. Current dataset: ${escape(region.dataset_version)}. Models: ${terrainRoute ? ROUTING_VERSION : "none connected"}. Coordinates: planetocentric latitude, east-positive longitude 0–360°; projected reference: ${escape(region.coordinate_system.projected_crs)}.</p><p>${escape(region.routing.reason)}</p><h2>Source references</h2><p>References document regional evidence; unresolved target coordinates remain unverified.</p><ul>${region.source_references.map((s) => `<li><a href="${escape(s.url)}">${escape(s.title)}</a></li>`).join("")}</ul></body></html>`;
 }
 
 export function MissionBrief({
   mission,
   region,
   generatedAt,
+  terrainRoute,
 }: {
   mission: Mission;
   region: RegionManifest;
   generatedAt: string;
+  terrainRoute?: TerrainRoute | null;
 }) {
   return (
     <>
@@ -55,7 +66,7 @@ export function MissionBrief({
           onClick={() =>
             downloadFile(
               `marswalk-${mission.region}-brief.html`,
-              briefHtml(mission, region, generatedAt),
+              briefHtml(mission, region, generatedAt, terrainRoute),
               "text/html;charset=utf-8",
             )
           }
@@ -72,8 +83,7 @@ export function MissionBrief({
         </p>
         <Badge tone="caution">Unverified</Badge>
         <p>
-          Not operational navigation. No calculated route or safety
-          certification.
+          Not operational navigation. {terrainRoute ? "Terrain-derived research estimate; no safety certification." : "No calculated route or safety certification."}
         </p>
         <dl className="metadata">
           <div>
@@ -128,17 +138,17 @@ export function MissionBrief({
             </div>
           ))}
         </dl>
+        <h3>Terrain routing and environment</h3>
+        <p>{terrainBriefSummary(mission,terrainRoute)}</p>
         <h3>Map, route and resource results</h3>
         <p>
-          {mapSummary(region)} Route, hazard analysis, slope, distance, EVA time,
-          consumption, radiation and return margin: unavailable. Preview artwork
-          is excluded from this brief.
+          {mapSummary(region)} {terrainRoute ? "Computed terrain results are detailed above. Hazard certification and validated resource assessments remain unavailable." : "Route, hazard analysis, slope, distance, EVA time, consumption, radiation and return margin: unavailable."} Preview artwork is excluded from this brief.
         </p>
         <h3>Versions and references</h3>
         <p className="supporting">
           Schema {mission.schema_version} · Saved dataset{" "}
           {mission.dataset_version} · Current dataset {region.dataset_version} ·
-          No models connected.
+          {terrainRoute ? `Terrain model ${ROUTING_VERSION}; operational resource models unverified.` : "No models connected."}
         </p>
         <p>
           Planetocentric latitude; east-positive longitude 0–360°. Projected reference: {region.coordinate_system.projected_crs}.

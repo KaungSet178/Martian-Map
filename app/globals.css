@@ -2560,3 +2560,23 @@ input[type="radio"] {
 .product-metadata, .posting-explanation { margin: 14px 0; font-size: 13px; }
 .product-metadata summary, .posting-explanation summary { cursor: pointer; padding: 10px 0; color: var(--color-text); }
 .product-metadata dd { overflow-wrap: anywhere; }
+
+.basemap-context-toggle { display:flex; align-items:center; gap:8px; min-height:32px; margin:8px 0 0; font-size:12px; cursor:pointer; }
+.terrain-routing { margin:20px 0; padding:16px 0; border-top:1px solid var(--color-border); }
+.terrain-routing .metadata dd { overflow-wrap:anywhere; }
+.terrain-actions { display:flex; flex-wrap:wrap; gap:8px; margin:12px 0; }
+.terrain-routing input { max-width:100%; }
+
+/* Keep manual placement taps clear of Gale basemap furniture on compact maps. */
+.placing-mode .basemap-control { display:none; }
+
+/* Gale has two fit actions: keep all five controls inside compact map frames. */
+@media (max-width: 900px) {
+  .map-workspace[data-region="gale"] .map-navigation {
+    display:grid;
+    grid-template-columns:44px 44px;
+    align-items:start;
+    top:72px;
+    gap:8px;
+  }
+}

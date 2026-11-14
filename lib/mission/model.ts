@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { routeReceiptSchema } from "@/lib/routing/contracts";
 import {
   coordinatesSchema,
   regionIdSchema,
@@ -28,6 +29,8 @@ export const missionSchema = z.object({
   model_versions: z.record(z.string(), z.string()),
   saved_at: z.iso.datetime().nullable(),
   waypoint_plan: waypointPlanSchema.optional(),
+  terrain_route: routeReceiptSchema.optional(),
+  terrain_assumptions: z.record(z.string().max(40), z.string().max(50)).optional(),
 });
 export type Mission = z.infer<typeof missionSchema>;
 export type { WaypointPlan };

@@ -1,0 +1,185 @@
+{
+  "schemaVersion": "gale-routing-audit-v1",
+  "regionId": "gale",
+  "datasets": [
+    {
+      "datasetId": "gale-hrsc-30m",
+      "title": "Gale HRSC 30 m DTM routing crop",
+      "role": "primary",
+      "nominalPostingMeters": 30,
+      "slopeDerivative": "Horn 3x3",
+      "slopeSupportMeters": {
+        "northMeters": 90.0,
+        "eastMeters": 89.7,
+        "note": "Horn 3x3 support: three 30 m north steps; east support is three ground steps corrected by cos(planetocentric latitude), about 89.7 m at 4.7 deg S."
+      },
+      "product": "hrsc_km09_h1938_h1927_h1916-dtm-mosaic",
+      "publisher": "ESA / DLR / Freie Universitat Berlin / NASA JPL",
+      "citation": "Persaud et al. (2021), 30 m HRSC DTM mosaic of Gale Crater, DOI 10.5281/zenodo.5808354",
+      "sourceUrl": "https://zenodo.org/records/5808354/files/hrsc_km09_h1938_h1927_h1916-dtm-mosaic.tif",
+      "verticalDatum": "MOLA areoid, metres positive up",
+      "horizontalDatum": "Mars 2000 sphere R=3,396,190 m; planetocentric latitude; east-positive longitude 0-360",
+      "registrationReference": "team/gale/G3_2_REPORT.md and team/gale/REGISTRATION_INVESTIGATION.md; G4_TERRAIN_AUDIT.json registration gate",
+      "sourceVerified": true,
+      "limitations": [
+        "30 m posting is a grid spacing, not a guaranteed 30 m effective resolving power.",
+        "Horn 3x3 slopes have approximately 90 m support and smooth out boulders, small scarps, sand traps, and suit-scale obstacles.",
+        "Absolute horizontal/vertical accuracy and slope error are not quantitatively certified.",
+        "CTX optical co-registration is unverified locally; no shift was applied.",
+        "The crop covers the audited Gale exploration footprint plus a 1 km derivative buffer, not all of Gale Crater.",
+        "No roughness, obstacle, trafficability, or hazard dataset is included."
+      ],
+      "path": "data/routing/gale/gale-hrsc-30m-routing.tif",
+      "sha256": "b0212c310f1b9fa7cca8f5566d4b3c1dc4c0069e2a1eee59b350b6836d643e4b",
+      "bytes": 285545,
+      "width": 293,
+      "height": 545,
+      "validPosts": 159685,
+      "validRouteCells": 158013,
+      "totalCells": 159685,
+      "extentWsen": [
+        137.32693270848944,
+        -4.839304443026415,
+        137.47522532519224,
+        -4.563470053596232
+      ],
+      "groundAreaKm2": 141.7330790138141,
+      "elevationM": {
+        "min": -4530.0,
+        "max": -2641.216552734375,
+        "mean": -4119.734147864379,
+        "p05": -4497.7232421875,
+        "p50": -4287.744140625,
+        "p95": -3332.9856445312503
+      },
+      "slopeDegrees": {
+        "min": 0.0,
+        "max": 27.299450655932137,
+        "mean": 5.830624778677768,
+        "p05": 0.35757965220199084,
+        "p50": 4.86225765557641,
+        "p95": 15.105631805415372
+      }
+    },
+    {
+      "datasetId": "gale-hrsc-mola-200m",
+      "title": "Gale HRSC-MOLA 200 m blended DEM routing crop",
+      "role": "coarse-regional-comparison",
+      "nominalPostingMeters": 200,
+      "slopeDerivative": "Horn 3x3",
+      "slopeSupportMeters": {
+        "northMeters": 600.0,
+        "eastMeters": 598.0,
+        "note": "Horn 3x3 support: three 200 m north steps; east support is about 598 m at 4.7 deg S."
+      },
+      "product": "Mars_HRSC_MOLA_BlendDEM_Global_200mp_v2",
+      "publisher": "USGS Astrogeology Science Center / NASA / ESA",
+      "citation": "Fergason, Hare, and Laura (2018), USGS HRSC-MOLA blended DEM",
+      "sourceUrl": "https://asc-pds-services.s3.us-west-2.amazonaws.com/mosaic/Mars/HRSC_MOLA_Blend/Mars_HRSC_MOLA_BlendDEM_Global_200mp_v2.tif",
+      "verticalDatum": "MOLA areoid, metres positive up",
+      "horizontalDatum": "Mars 2000 sphere R=3,396,190 m; planetocentric latitude; east-positive longitude 0-360",
+      "registrationReference": "team/gale/G3_2_REPORT.md and team/gale/REGISTRATION_INVESTIGATION.md; G4_TERRAIN_AUDIT.json registration gate",
+      "sourceVerified": true,
+      "limitations": [
+        "200 m posting and approximately 600 m gradient support are far too coarse for suit-scale or rover-scale hazard assessment.",
+        "The product blends HRSC and MOLA observations; local source quality and seams are not mapped per pixel.",
+        "CTX optical co-registration is unverified locally.",
+        "This crop is a regional comparison product, not a replacement for the 30 m primary routing grid.",
+        "No roughness, obstacle, trafficability, or hazard dataset is included."
+      ],
+      "path": "data/routing/gale/gale-hrsc-mola-200m-routing.tif",
+      "sha256": "b5b53e2c04e513bb167dde6db893e69b7e79f4c9e266f2a0b70e7bb511bb2bf1",
+      "bytes": 40377,
+      "width": 179,
+      "height": 238,
+      "validPosts": 42602,
+      "validRouteCells": 41772,
+      "totalCells": 42602,
+      "extentWsen": [
+        137.09786867115304,
+        -5.10000562355897,
+        137.70183890378092,
+        -4.296961403640324
+      ],
+      "groundAreaKm2": 1665.265918043206,
+      "elevationM": {
+        "min": -4635.0,
+        "max": 179.0,
+        "mean": -3588.5497462415015,
+        "p05": -4507.0,
+        "p50": -4194.0,
+        "p95": -1051.0
+      },
+      "slopeDegrees": {
+        "min": 0.0,
+        "max": 32.299687921462386,
+        "mean": 6.364005925997968,
+        "p05": 0.5906845246197856,
+        "p50": 4.615161118847756,
+        "p95": 17.461872288146658
+      }
+    }
+  ],
+  "measured": {
+    "gale-hrsc-30m": {
+      "width": 293,
+      "height": 545,
+      "totalCells": 159685,
+      "validRouteCells": 158013,
+      "validFraction": 0.9895293859786455,
+      "validAreaKm2": 141.7330790138141,
+      "extentWsen": [
+        137.32693270848944,
+        -4.839304443026415,
+        137.47522532519224,
+        -4.563470053596232
+      ],
+      "elevationM": {
+        "min": -4530.0,
+        "max": -2641.216552734375,
+        "mean": -4119.734147864379,
+        "p05": -4497.7232421875,
+        "p50": -4287.744140625,
+        "p95": -3332.9856445312503
+      },
+      "slopeDegrees": {
+        "min": 0.0,
+        "max": 27.299450655932137,
+        "mean": 5.830624778677768,
+        "p05": 0.35757965220199084,
+        "p50": 4.86225765557641,
+        "p95": 15.105631805415372
+      }
+    },
+    "gale-hrsc-mola-200m": {
+      "width": 179,
+      "height": 238,
+      "totalCells": 42602,
+      "validRouteCells": 41772,
+      "validFraction": 0.9805173466034458,
+      "validAreaKm2": 1665.265918043206,
+      "extentWsen": [
+        137.09786867115304,
+        -5.10000562355897,
+        137.70183890378092,
+        -4.296961403640324
+      ],
+      "elevationM": {
+        "min": -4635.0,
+        "max": 179.0,
+        "mean": -3588.5497462415015,
+        "p05": -4507.0,
+        "p50": -4194.0,
+        "p95": -1051.0
+      },
+      "slopeDegrees": {
+        "min": 0.0,
+        "max": 32.299687921462386,
+        "mean": 6.364005925997968,
+        "p05": 0.5906845246197856,
+        "p50": 4.615161118847756,
+        "p95": 17.461872288146658
+      }
+    }
+  }
+}
