@@ -54,7 +54,8 @@ export const config = {
   // v2: CTX basemap integrated (oxia-optical available, evidence Observed).
   // v3: targets located at Mars Trek mineral-detection points (Interpreted,
   // approximate); routing stays off.
-  dataset_version: "oxia-targets-v3",
+  // v4: THEMIS night-IR thermal layer (relative brightness, Mars Trek).
+  dataset_version: "oxia-thermal-v4",
   routing: {
     enabled: false,
     reason:
@@ -134,6 +135,29 @@ export const config = {
         "Uncontrolled beta mosaic: seams and illumination differences between orbits; not radiometrically calibrated.",
         "Individual CTX image acquisition dates are not carried by the tiled service.",
         "Imagery only; not elevation, geology or hazard evidence.",
+      ],
+    },
+    {
+      id: "oxia-themis-night-trek",
+      title:
+        "NASA JPL Mars Trek layer 'MO THEMIS-IR Night, Global Mosaic' (THEMIS_NightIR_ControlledMosaics_100m_v2_oct2018)",
+      url: "https://trek.nasa.gov/tiles/Mars/EQ/THEMIS_NightIR_ControlledMosaics_100m_v2_oct2018/1.0.0/WMTSCapabilities.xml",
+      agency: "NASA JPL Mars Trek · NASA Mars Odyssey",
+      instrument: "Mars Odyssey Thermal Emission Imaging System (THEMIS), night-time infrared",
+      product_id:
+        "THEMIS_NightIR_ControlledMosaics_100m_v2_oct2018 (Mars Trek item ecbd1840-2302-49c8-be40-86740c21ea98)",
+      acquisition_date: null,
+      sol: null,
+      native_resolution_m: 100,
+      processing_notes: [
+        "Mars Trek is listed in the Space Apps 2026 challenge resources.",
+        "Mars Trek description: geodetically controlled THEMIS night-IR mosaic tied to USGS Viking MDIM 2.1, orthoprojected at 100 m/pixel; 2017 preliminary release with further adjustments in the 2018 release.",
+        "WMTS (checked 2026-11-14): EPSG::104905 (Mars 2000 sphere), TopLeftCorner -180/90, 256 px gray+alpha PNG tiles, levels 0-9 (level 9 is the finest; level 10 returns 404).",
+        "Display tiles /maps/oxia/themis-night-tiles/ built by team/oxia/thermal/prepare_themis_night.mjs (nearest-neighbour, gray values unchanged, source alpha kept); see team/oxia/thermal/build_report.json.",
+      ],
+      limitations: [
+        "Pixel values are relative 8-bit brightness, not calibrated temperature (Mars Trek states no units or calibration).",
+        "Observation period not confirmed: Mars Trek FGDC metadata has placeholder dates (19700101) and status 'In work'.",
       ],
     },
     {

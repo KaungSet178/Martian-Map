@@ -75,4 +75,45 @@ export const layers = [
     default_opacity: 70,
     legend: null,
   },
+  {
+    id: "oxia-thermal-night",
+    type: "Thermal context",
+    display_name: "THEMIS night IR",
+    kind: "thermal",
+    availability: "available",
+    source_id: "oxia-themis-night-trek",
+    observation_date: null,
+    spatial_resolution_m: 100,
+    coverage:
+      "Mars Trek THEMIS night-IR global mosaic over the team-chosen Oxia display area, 17.11-19.15 N, 334.60-336.60 E: 75 derived display tiles, Web-Mercator XYZ, zooms 5-10 (source level 9, about 81 m per pixel). No gaps in this area.",
+    limitations:
+      "Relative brightness only: the 8-bit mosaic values are not calibrated temperatures and are not thermal-inertia values. Observation period not stated by Mars Trek (the 'oct2018' in the layer name refers to the 2018 mosaic release). Night-time brightness mainly reflects thermal inertia (brighter = holds heat, e.g. rock or indurated surfaces; darker = loose sand or dust), but it can also vary with season, local time and dust. Mosaic of many orbits with stretched brightness between images. Display-grade, nearest-neighbour resampled; not terrain-safety evidence.",
+    evidence: "Observed",
+    attribution:
+      "NASA Mars Odyssey THEMIS · night-IR global mosaic (2018 release) · via NASA JPL Mars Trek",
+    rendering: {
+      kind: "raster-tiles",
+      tiles: ["/maps/oxia/themis-night-tiles/{z}/{x}/{y}.png"],
+      tile_size: 256,
+      min_zoom: 5,
+      max_zoom: 10,
+    },
+    default_visible: false,
+    default_opacity: 80,
+    legend: {
+      title: "Night-time IR brightness (relative, not temperature)",
+      units: null,
+      items: [
+        {
+          label: "Bright: holds heat at night (likely rock or indurated surface)",
+          color: "#DADADA",
+        },
+        { label: "Medium", color: "#818181" },
+        {
+          label: "Dark: cools quickly at night (likely loose sand or dust)",
+          color: "#373737",
+        },
+      ],
+    },
+  },
 ] satisfies ScientificLayer[];
