@@ -34,6 +34,7 @@ test("all region fixtures obey shared contract and cannot imply scientific readi
           "gale-regional-elevation",
           "gale-regional-hillshade",
           "gale-regional-slope",
+          "gale-thermal",
           "gale-global-elevation",
           "gale-global-hillshade",
           "gale-global-slope",

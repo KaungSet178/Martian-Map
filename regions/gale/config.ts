@@ -223,6 +223,27 @@ export const config = {
       ]
     },
     {
+      "id": "gale-mars-trek-themis",
+      "title": "NASA Trek - THEMIS Daytime Infrared Controlled Mosaic v2",
+      "url": "https://trek.nasa.gov/tiles/Mars/EQ/THEMIS_DayIR_ControlledMosaics_100m_v2_oct2018/1.0.0/default/default028mm",
+      "agency": "NASA/JPL/ASU - Arizona State University / NASA Solar System Treks",
+      "instrument": "2001 Mars Odyssey Thermal Emission Imaging System (THEMIS IR)",
+      "product_id": "THEMIS_DayIR_ControlledMosaics_100m_v2_oct2018",
+      "acquisition_date": null,
+      "sol": null,
+      "native_resolution_m": 100,
+      "processing_notes": [
+        "Global controlled daytime infrared mosaic v2 (released Oct 2018), Edwards et al. (2011), Christensen et al. (2004).",
+        "Equirectangular planetary grid on Mars 2000 Sphere R=3,396,190 m, origin -180/90; nearest-neighbor 1:1 sampling from source matrix z-1 to Web-Mercator XYZ zooms 5-9.",
+        "Represents relative daytime infrared brightness (qualitative DN). Uncalibrated for absolute kinetic temperature or thermal inertia in this composite mosaic; gaps outside data are transparent."
+      ],
+      "limitations": [
+        "Relative daytime infrared brightness only (qualitative); no physical temperature (K) or thermal inertia (J m^-2 K^-1 s^-1/2) values are asserted.",
+        "Daytime IR mixes albedo, surface slopes, and thermophysical properties; bright or dark patches are not by themselves compositional, geotechnical, or astronaut hazard classifications.",
+        "Not a live weather forecast or real-time thermal environment model. Coarse ~100 m resolution; localized suit hazards are completely unresolved."
+      ]
+    },
+    {
       "id": "gale-places",
       "title": "PDS - Curiosity localized/interpolated rover positions",
       "url": "https://planetarydata.jpl.nasa.gov/img/data/msl/msl_places/data_localizations/localized_interp.csv.xml",

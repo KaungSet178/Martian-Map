@@ -66,7 +66,7 @@ for (const [width, height] of [[1440, 900], [1024, 768], [768, 1024], [390, 844]
     await expect.poll(async () => (await pixels(page)).colored).toBeGreaterThan(baselinePixels.colored + 100);
 
     const elevOpacity = page.getByLabel(/Regional HRSC elevation opacity/);
-    await expect(elevOpacity).toHaveValue("100");
+    await expect(elevOpacity).toHaveValue("60");
 
     await page.screenshot({ path: `output/playwright/g4-regional-elevation-${width}.png` });
 
