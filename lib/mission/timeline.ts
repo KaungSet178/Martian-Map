@@ -353,13 +353,22 @@ export function calculateMissionTimeline(
   const { segments, trajectoryWaypoints, isScenarioIncomplete } = segmentsResult;
 
   // 6. Build timeline entries along trajectory waypoints
-  const { timeline, totalStopSeconds, hasIndeterminateTiming } =
+  const { timeline, totalStopSeconds, hasIndeterminateTiming, hasOverflow } =
     buildTimelineEntries(
       trajectoryWaypoints,
       segments,
       mode,
       resolvedAssumptions,
+      warnings,
     );
+
+  if (hasOverflow) {
+    return createInvalidResult(
+      resolvedAssumptions,
+      warnings,
+      TIMELINE_DISCLAIMER,
+    );
+  }
 
   // 7. Calculate totals & finalize status
   const incomplete = isScenarioIncomplete || hasIndeterminateTiming;
@@ -395,6 +404,24 @@ export function calculateMissionTimeline(
     0,
   );
   const totalMissionSeconds = totalTravelSeconds + totalStopSeconds;
+
+  if (
+    !Number.isFinite(totalDistance) ||
+    totalDistance > Number.MAX_SAFE_INTEGER ||
+    !Number.isFinite(totalTravelSeconds) ||
+    totalTravelSeconds > Number.MAX_SAFE_INTEGER ||
+    !Number.isFinite(totalMissionSeconds) ||
+    totalMissionSeconds > Number.MAX_SAFE_INTEGER
+  ) {
+    warnings.push(
+      "Total mission duration calculation overflowed finite representable limits.",
+    );
+    return createInvalidResult(
+      resolvedAssumptions,
+      warnings,
+      TIMELINE_DISCLAIMER,
+    );
+  }
 
   return {
     status: "COMPLETE_SCENARIO",
@@ -638,20 +665,68 @@ function buildAndValidateSegments(
 ): SegmentsBuildOutcome {
   let isScenarioIncomplete = false;
   const segments: TimelineSegment[] = [];
-  const trajectoryWaypoints: MarsWaypoint[] = [...waypoints];
+
+  // Determine base waypoints (excluding any closing return duplicate from precomputed trajectories)
+  const isClosingReturnDuplicate =
+    mode === "round_trip" &&
+    waypoints.length >= 2 &&
+    waypoints[waypoints.length - 1].id === waypoints[0].id;
+
+  const baseWaypoints = isClosingReturnDuplicate
+    ? waypoints.slice(0, -1)
+    : waypoints;
+
+  const N = baseWaypoints.length;
+  let trajectoryWaypoints: MarsWaypoint[] = [...baseWaypoints];
 
   // Helper map for waypoint existence
-  const wpMap = new Map(waypoints.map((w) => [w.id, w]));
+  const wpMap = new Map(baseWaypoints.map((w) => [w.id, w]));
 
   if (rawSegments && rawSegments.length > 0) {
-    // Caller provided explicit segment specifications
-    for (let i = 0; i < rawSegments.length; i++) {
-      const seg = rawSegments[i];
+    const K = rawSegments.length;
+    const maxAllowedSegments = mode === "round_trip" ? N : N - 1;
 
-      // Validate waypoint references
+    // Check 1: Multiple return markers
+    const returnMarkersCount = rawSegments.filter(
+      (s) => s.is_return_segment,
+    ).length;
+    if (returnMarkersCount > 1) {
+      warnings.push(
+        "Multiple segments are marked as return segments. Only the final closing leg may be a return segment.",
+      );
+      return {
+        valid: false,
+        segments: [],
+        trajectoryWaypoints: [],
+        isScenarioIncomplete: true,
+      };
+    }
+
+    // Check 2: Duplicate explicit segments
+    const seenSegmentKeys = new Set<string>();
+    for (let i = 0; i < K; i++) {
+      const s = rawSegments[i];
+      const key = `${s.from_waypoint_id}->${s.to_waypoint_id}`;
+      if (seenSegmentKeys.has(key)) {
+        warnings.push(`Duplicate explicit segment detected: "${key}".`);
+        return {
+          valid: false,
+          segments: [],
+          trajectoryWaypoints: [],
+          isScenarioIncomplete: true,
+        };
+      }
+      seenSegmentKeys.add(key);
+    }
+
+    // Check 3: Process and validate each explicit segment
+    for (let j = 0; j < K; j++) {
+      const seg = rawSegments[j];
+
+      // Verify waypoint references exist in base itinerary
       if (!wpMap.has(seg.from_waypoint_id)) {
         warnings.push(
-          `Segment ${i} references unknown from_waypoint_id: "${seg.from_waypoint_id}".`,
+          `Segment ${j} references unknown from_waypoint_id: "${seg.from_waypoint_id}".`,
         );
         return {
           valid: false,
@@ -662,7 +737,7 @@ function buildAndValidateSegments(
       }
       if (!wpMap.has(seg.to_waypoint_id)) {
         warnings.push(
-          `Segment ${i} references unknown to_waypoint_id: "${seg.to_waypoint_id}".`,
+          `Segment ${j} references unknown to_waypoint_id: "${seg.to_waypoint_id}".`,
         );
         return {
           valid: false,
@@ -672,14 +747,112 @@ function buildAndValidateSegments(
         };
       }
 
-      const isReturn = Boolean(seg.is_return_segment);
-      const isExplicitUnsupported = seg.status === "UNSUPPORTED";
+      // Verify supplied segment index consistency
+      if (seg.segment_index !== undefined && seg.segment_index !== j) {
+        warnings.push(
+          `Segment at position ${j} has inconsistent segment_index: ${seg.segment_index}. Expected: ${j}.`,
+        );
+        return {
+          valid: false,
+          segments: [],
+          trajectoryWaypoints: [],
+          isScenarioIncomplete: true,
+        };
+      }
+
+      // Verify segment count does not exceed max allowed
+      if (j >= maxAllowedSegments) {
+        warnings.push(
+          `Extra explicit segment detected at index ${j} (${seg.from_waypoint_id} -> ${seg.to_waypoint_id}). Expected at most ${maxAllowedSegments} segments for ${N} waypoints.`,
+        );
+        return {
+          valid: false,
+          segments: [],
+          trajectoryWaypoints: [],
+          isScenarioIncomplete: true,
+        };
+      }
+
+      // Determine expected endpoints for leg j based on itinerary order
+      let expectedFromId: string;
+      let expectedToId: string;
+      let isExpectedReturn: boolean;
+
+      if (j < N - 1) {
+        expectedFromId = baseWaypoints[j].id;
+        expectedToId = baseWaypoints[j + 1].id;
+        isExpectedReturn = false;
+      } else {
+        // j === N - 1 in round_trip mode
+        expectedFromId = baseWaypoints[N - 1].id;
+        expectedToId = baseWaypoints[0].id;
+        isExpectedReturn = true;
+      }
+
+      // Continuity checks: from and to must match the sequential itinerary
+      if (seg.from_waypoint_id !== expectedFromId) {
+        warnings.push(
+          `Segment ${j} has disconnected start waypoint "${seg.from_waypoint_id}". Expected "${expectedFromId}".`,
+        );
+        return {
+          valid: false,
+          segments: [],
+          trajectoryWaypoints: [],
+          isScenarioIncomplete: true,
+        };
+      }
+
+      if (seg.to_waypoint_id !== expectedToId) {
+        if (isExpectedReturn) {
+          warnings.push(
+            `Return segment destination "${seg.to_waypoint_id}" does not match the starting base "${expectedToId}".`,
+          );
+        } else {
+          warnings.push(
+            `Segment ${j} has disconnected destination waypoint "${seg.to_waypoint_id}". Expected "${expectedToId}".`,
+          );
+        }
+        return {
+          valid: false,
+          segments: [],
+          trajectoryWaypoints: [],
+          isScenarioIncomplete: true,
+        };
+      }
+
+      // Return marker validation
+      if (mode === "one_way" && seg.is_return_segment) {
+        warnings.push(
+          `One-way route contains a segment falsely marked as a return segment at index ${j}.`,
+        );
+        return {
+          valid: false,
+          segments: [],
+          trajectoryWaypoints: [],
+          isScenarioIncomplete: true,
+        };
+      }
+
+      if (mode === "round_trip" && !isExpectedReturn && seg.is_return_segment) {
+        warnings.push(
+          `Segment at index ${j} (${seg.from_waypoint_id} -> ${seg.to_waypoint_id}) is falsely marked as a return segment before the final leg.`,
+        );
+        return {
+          valid: false,
+          segments: [],
+          trajectoryWaypoints: [],
+          isScenarioIncomplete: true,
+        };
+      }
+
+      // Distance validation
       const dist = seg.distance_metres;
+      const isExplicitUnsupported = seg.status === "UNSUPPORTED";
 
       if (dist !== null && dist !== undefined) {
         if (!Number.isFinite(dist)) {
           warnings.push(
-            `Segment ${i} (${seg.from_waypoint_id} -> ${seg.to_waypoint_id}) has non-finite distance: ${dist}.`,
+            `Segment ${j} (${seg.from_waypoint_id} -> ${seg.to_waypoint_id}) has non-finite distance: ${dist}.`,
           );
           return {
             valid: false,
@@ -690,7 +863,18 @@ function buildAndValidateSegments(
         }
         if (dist < 0) {
           warnings.push(
-            `Segment ${i} (${seg.from_waypoint_id} -> ${seg.to_waypoint_id}) has negative distance: ${dist} m.`,
+            `Segment ${j} (${seg.from_waypoint_id} -> ${seg.to_waypoint_id}) has negative distance: ${dist} m.`,
+          );
+          return {
+            valid: false,
+            segments: [],
+            trajectoryWaypoints: [],
+            isScenarioIncomplete: true,
+          };
+        }
+        if (dist > Number.MAX_SAFE_INTEGER) {
+          warnings.push(
+            `Segment ${j} distance ${dist} m exceeds maximum safe representable integer.`,
           );
           return {
             valid: false,
@@ -702,62 +886,99 @@ function buildAndValidateSegments(
       }
 
       if (dist === null || dist === undefined || isExplicitUnsupported) {
-        // Unsupported or missing distance
         isScenarioIncomplete = true;
         warnings.push(
-          `Segment ${i} (${seg.from_waypoint_id} -> ${seg.to_waypoint_id}) is unsupported or missing distance: travel duration cannot be determined.`,
+          `Segment ${j} (${seg.from_waypoint_id} -> ${seg.to_waypoint_id}) is unsupported or missing distance: travel duration cannot be determined.`,
         );
         segments.push({
-          segment_index: i,
+          segment_index: j,
           from_waypoint_id: seg.from_waypoint_id,
           to_waypoint_id: seg.to_waypoint_id,
           distance_metres: dist ?? null,
           travel_duration_seconds: null,
           status: "UNSUPPORTED",
-          is_return_segment: isReturn,
+          is_return_segment: isExpectedReturn,
         });
       } else {
-        // Supported leg
         const travelDurationSec = (dist / speedMPerHour) * 3600;
+        if (
+          !Number.isFinite(travelDurationSec) ||
+          travelDurationSec > Number.MAX_SAFE_INTEGER
+        ) {
+          warnings.push(
+            `Segment ${j} duration calculation overflowed finite representable limits: ${travelDurationSec} s.`,
+          );
+          return {
+            valid: false,
+            segments: [],
+            trajectoryWaypoints: [],
+            isScenarioIncomplete: true,
+          };
+        }
+
         segments.push({
-          segment_index: i,
+          segment_index: j,
           from_waypoint_id: seg.from_waypoint_id,
           to_waypoint_id: seg.to_waypoint_id,
           distance_metres: dist,
           travel_duration_seconds: travelDurationSec,
           status: "SUPPORTED",
-          is_return_segment: isReturn,
+          is_return_segment: isExpectedReturn,
         });
       }
     }
 
-    // Check round-trip return closure
-    if (mode === "round_trip") {
-      const baseId = waypoints[0].id;
-      const hasReturnSegment = segments.some(
-        (s) => s.is_return_segment || s.to_waypoint_id === baseId,
-      );
-      if (!hasReturnSegment) {
+    // Check 4: Missing expected segments
+    if (mode === "one_way") {
+      if (K < N - 1) {
         isScenarioIncomplete = true;
         warnings.push(
-          "Round-trip itinerary is missing a return segment closing back to the origin base.",
+          `Itinerary is missing expected explicit segments: provided ${K} of ${N - 1} required legs.`,
         );
-      } else {
-        // If return segment exists and trajectoryWaypoints doesn't have closing base, add it
-        const lastWp = trajectoryWaypoints[trajectoryWaypoints.length - 1];
-        if (lastWp.id !== baseId) {
-          trajectoryWaypoints.push(waypoints[0]);
+      }
+      trajectoryWaypoints = [...baseWaypoints];
+    } else {
+      // mode === "round_trip"
+      if (K < N) {
+        isScenarioIncomplete = true;
+        if (K === N - 1) {
+          warnings.push(
+            "Round-trip itinerary is missing a return segment closing back to the origin base.",
+          );
+        } else {
+          warnings.push(
+            `Itinerary is missing expected explicit segments: provided ${K} of ${N} required legs.`,
+          );
         }
+        trajectoryWaypoints = [...baseWaypoints];
+      } else {
+        // Complete round-trip: all N segments provided, closing visit added
+        trajectoryWaypoints = [...baseWaypoints, baseWaypoints[0]];
       }
     }
   } else {
     // Generate geometric segments from waypoints sequence
     let segIdx = 0;
-    for (let i = 1; i < waypoints.length; i++) {
-      const fromWp = waypoints[i - 1];
-      const toWp = waypoints[i];
+    for (let i = 1; i < baseWaypoints.length; i++) {
+      const fromWp = baseWaypoints[i - 1];
+      const toWp = baseWaypoints[i];
       const dist = marsDistance(fromWp.coordinates, toWp.coordinates);
       const travelDurationSec = (dist / speedMPerHour) * 3600;
+
+      if (
+        !Number.isFinite(travelDurationSec) ||
+        travelDurationSec > Number.MAX_SAFE_INTEGER
+      ) {
+        warnings.push(
+          `Segment ${segIdx} duration calculation overflowed finite representable limits: ${travelDurationSec} s.`,
+        );
+        return {
+          valid: false,
+          segments: [],
+          trajectoryWaypoints: [],
+          isScenarioIncomplete: true,
+        };
+      }
 
       segments.push({
         segment_index: segIdx++,
@@ -771,11 +992,26 @@ function buildAndValidateSegments(
     }
 
     // For round_trip, generate return segment back to origin base
-    if (mode === "round_trip" && waypoints.length >= 2) {
-      const finalWp = waypoints[waypoints.length - 1];
-      const baseWp = waypoints[0];
+    if (mode === "round_trip" && baseWaypoints.length >= 2) {
+      const finalWp = baseWaypoints[baseWaypoints.length - 1];
+      const baseWp = baseWaypoints[0];
       const returnDist = marsDistance(finalWp.coordinates, baseWp.coordinates);
       const returnTravelDurationSec = (returnDist / speedMPerHour) * 3600;
+
+      if (
+        !Number.isFinite(returnTravelDurationSec) ||
+        returnTravelDurationSec > Number.MAX_SAFE_INTEGER
+      ) {
+        warnings.push(
+          `Return segment duration calculation overflowed finite representable limits: ${returnTravelDurationSec} s.`,
+        );
+        return {
+          valid: false,
+          segments: [],
+          trajectoryWaypoints: [],
+          isScenarioIncomplete: true,
+        };
+      }
 
       segments.push({
         segment_index: segIdx++,
@@ -787,7 +1023,7 @@ function buildAndValidateSegments(
         is_return_segment: true,
       });
 
-      trajectoryWaypoints.push(baseWp);
+      trajectoryWaypoints = [...baseWaypoints, baseWp];
     }
   }
 
@@ -803,6 +1039,7 @@ interface TimelineBuildOutcome {
   timeline: TimelineEntry[];
   totalStopSeconds: number;
   hasIndeterminateTiming: boolean;
+  hasOverflow: boolean;
 }
 
 function buildTimelineEntries(
@@ -810,6 +1047,7 @@ function buildTimelineEntries(
   segments: readonly TimelineSegment[],
   mode: TrajectoryMode,
   assumptions: ResolvedTimelineAssumptions,
+  warnings: string[],
 ): TimelineBuildOutcome {
   const timeline: TimelineEntry[] = [];
   let currentElapsed: number | null = assumptions.start_elapsed_seconds;
@@ -857,10 +1095,34 @@ function buildTimelineEntries(
     }
 
     totalStopSeconds += stopDuration;
+    if (
+      !Number.isFinite(totalStopSeconds) ||
+      totalStopSeconds > Number.MAX_SAFE_INTEGER
+    ) {
+      warnings.push("Cumulative stop duration overflowed finite representable limits.");
+      return {
+        timeline: [],
+        totalStopSeconds: 0,
+        hasIndeterminateTiming: false,
+        hasOverflow: true,
+      };
+    }
 
     const arrival: number | null = currentElapsed;
     const departure: number | null =
       arrival !== null ? arrival + stopDuration : null;
+
+    if (departure !== null) {
+      if (!Number.isFinite(departure) || departure > Number.MAX_SAFE_INTEGER) {
+        warnings.push("Cumulative timeline elapsed time overflowed finite representable limits.");
+        return {
+          timeline: [],
+          totalStopSeconds: 0,
+          hasIndeterminateTiming: false,
+          hasOverflow: true,
+        };
+      }
+    }
 
     if (arrival === null || departure === null) {
       hasIndeterminateTiming = true;
@@ -876,15 +1138,32 @@ function buildTimelineEntries(
       stop_duration_seconds: stopDuration,
     });
 
-    // Advance to next waypoint using segment i
-    if (i < segments.length) {
-      const seg = segments[i];
-      if (
-        seg.status === "SUPPORTED" &&
-        seg.travel_duration_seconds !== null &&
-        departure !== null
-      ) {
-        currentElapsed = departure + seg.travel_duration_seconds;
+    // Advance to next waypoint using segment i (only needed if there is a next waypoint)
+    if (i < totalStops - 1) {
+      if (i < segments.length) {
+        const seg = segments[i];
+        if (
+          seg.status === "SUPPORTED" &&
+          seg.travel_duration_seconds !== null &&
+          departure !== null
+        ) {
+          const nextElapsed: number = departure + seg.travel_duration_seconds;
+          if (!Number.isFinite(nextElapsed) || nextElapsed > Number.MAX_SAFE_INTEGER) {
+            warnings.push(
+              "Cumulative timeline arrival time overflowed finite representable limits.",
+            );
+            return {
+              timeline: [],
+              totalStopSeconds: 0,
+              hasIndeterminateTiming: false,
+              hasOverflow: true,
+            };
+          }
+          currentElapsed = nextElapsed;
+        } else {
+          currentElapsed = null;
+          hasIndeterminateTiming = true;
+        }
       } else {
         currentElapsed = null;
         hasIndeterminateTiming = true;
@@ -896,6 +1175,7 @@ function buildTimelineEntries(
     timeline,
     totalStopSeconds,
     hasIndeterminateTiming,
+    hasOverflow: false,
   };
 }
 
