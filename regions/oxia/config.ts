@@ -57,7 +57,8 @@ export const config = {
   // v4: THEMIS night-IR thermal layer (relative brightness, Mars Trek).
   // v5: regional 200 m hillshade in oxia-terrain (Derived, Mars Trek).
   // v6: oxia-geology shows Mars Trek mineral detections (Interpreted points).
-  dataset_version: "oxia-geology-v6",
+  // v7: oxia-slope from a Mars Trek MOLA elevation grid (Derived).
+  dataset_version: "oxia-slope-v7",
   routing: {
     enabled: false,
     reason:
@@ -69,8 +70,8 @@ export const config = {
     terrain_coverage: {
       status: "partial",
       reason:
-        "Regional 200 m hillshade display only (Mars Trek MOLA + HRSC blend) over the team-chosen Oxia display area, 17.11-19.15 N, 334.60-336.60 E. No elevation values, slope grid or walking-scale terrain are integrated; nothing here supports routing or hazard screening.",
-      source_id: "oxia-mola-hrsc-shade-trek",
+        "Regional terrain only over the team-chosen Oxia display area, 17.11-19.15 N, 334.60-336.60 E: a MOLA elevation grid (~463 m detail, sampled at 0.01 degree from the Mars Trek elevation-profile service) with derived slope, plus a 200 m hillshade display. No walking-scale terrain or hazard data; nothing here supports routing or safety screening.",
+      source_id: "oxia-trek-elevation-profile",
     },
     experimental_routing: {
       status: "unavailable",
@@ -138,6 +139,29 @@ export const config = {
         "Uncontrolled beta mosaic: seams and illumination differences between orbits; not radiometrically calibrated.",
         "Individual CTX image acquisition dates are not carried by the tiled service.",
         "Imagery only; not elevation, geology or hazard evidence.",
+      ],
+    },
+    {
+      id: "oxia-trek-elevation-profile",
+      title:
+        "NASA JPL Mars Trek elevation-profile service (multiDEM/interpolated), DEM 'MGS MOLA, Global DEM'",
+      url: "https://trek.nasa.gov/mars/TrekServices/ws/elevationProfile/multiDEM/interpolated",
+      agency: "NASA JPL Mars Trek · NASA Mars Global Surveyor",
+      instrument: "MGS Mars Orbiter Laser Altimeter (MOLA)",
+      product_id: "MGS MOLA, Global DEM (as named in the service response)",
+      acquisition_date: null,
+      sol: null,
+      native_resolution_m: 463,
+      processing_notes: [
+        "Mars Trek is listed in the Space Apps 2026 challenge resources; this is the service behind Mars Trek's own Elevation Profile tool (https://trek.nasa.gov/mars/jpl/config/config.json, services.multiDEMService.equirect).",
+        "Sampled 2026-11-14 by team/oxia/terrain/build_mola_slope.mjs: one request per latitude row (205 rows, 17.11-19.15 N), path [[-25.40,lat],[-23.40,lat]], numberOfPoints=201, radiusInMeters=3390000; points snapped to a 0.01 degree grid. 0 no-data samples (No_Data_Value -32768). Elevations -3791.46 to -2381.14 m.",
+        "Grid saved as /maps/oxia/elevation-grid.json (201 x 205, 360 KB). Slope (degrees) from central differences with Mars 2000 sphere distances, R = 3,396,190 m: median 0.68, p95 4.29, max 27.94; see team/oxia/terrain/slope_report.json.",
+        "The service sends no CORS header, so browsers cannot call it from this app's origin; data is pre-baked.",
+      ],
+      limitations: [
+        "Real detail is MOLA (~463 m); 0.01 degree samples interpolate it and add no detail.",
+        "Elevations are as returned by the service (MOLA heights relative to the Mars areoid); the service does not state its interpolation method.",
+        "Not walking-scale terrain and not a safety or hazard assessment.",
       ],
     },
     {

@@ -66,6 +66,43 @@ export const layers = [
     },
   },
   {
+    id: "oxia-slope",
+    type: "Terrain & slope",
+    display_name: "Regional slope (MOLA)",
+    kind: "topography",
+    availability: "available",
+    source_id: "oxia-trek-elevation-profile",
+    observation_date: null,
+    spatial_resolution_m: 463,
+    coverage:
+      "Slope in degrees over the team-chosen Oxia display area, 17.11-19.15 N, 334.60-336.60 E, from a 201 x 205 elevation grid (0.01 degree, about 0.59 km) sampled from the Mars Trek elevation-profile service (MGS MOLA, Global DEM). 26 display tiles, zooms 5-9. Grid: /maps/oxia/elevation-grid.json.",
+    limitations:
+      "Regional slope from MOLA (~463 m). Small banks, boulders and walking-scale hazards are not resolved. Not a safety assessment. Slope from central differences on a 0.01 degree grid interpolated from MOLA, using Mars 2000 sphere distances (R = 3,396,190 m); steep short slopes are smoothed out. Colour classes are display bins only, not walkability or safety limits.",
+    evidence: "Derived",
+    attribution: "NASA MGS MOLA Global DEM · via NASA JPL Mars Trek elevation-profile service",
+    rendering: {
+      kind: "raster-tiles",
+      tiles: ["/maps/oxia/slope-tiles/{z}/{x}/{y}.png"],
+      tile_size: 256,
+      min_zoom: 5,
+      max_zoom: 9,
+    },
+    default_visible: false,
+    default_opacity: 70,
+    legend: {
+      title:
+        "Regional slope from MOLA (~463 m). Display classes only, not safety limits.",
+      units: "degrees",
+      items: [
+        { label: "0-2", color: "#FFFFCC" },
+        { label: "2-5", color: "#FED976" },
+        { label: "5-10", color: "#FD8D3C" },
+        { label: "10-15", color: "#E31A1C" },
+        { label: "> 15", color: "#800026" },
+      ],
+    },
+  },
+  {
     id: "oxia-geology",
     type: "Geology & mineralogy",
     display_name: "Mineral detections",

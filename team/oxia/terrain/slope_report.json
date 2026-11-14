@@ -1,0 +1,40 @@
+{
+  "source": "https://trek.nasa.gov/mars/TrekServices/ws/elevationProfile/multiDEM/interpolated",
+  "dem": [
+    "MGS MOLA, Global DEM"
+  ],
+  "grid_file": "public/maps/oxia/elevation-grid.json",
+  "grid_fetched_at": "2026-11-14T07:12:11.793Z",
+  "grid_size": "201 x 205",
+  "grid_bytes": 366349,
+  "nodata_samples": 0,
+  "elevation_m": {
+    "min": -3791.46,
+    "max": -2381.14
+  },
+  "slope_radius_m": 3396190,
+  "slope_deg": {
+    "min": 0.001,
+    "p50": 0.682,
+    "p95": 4.293,
+    "p99": 10.034,
+    "max": 27.944
+  },
+  "slope_class_cells": {
+    "0-2": 35726,
+    "2-5": 3824,
+    "5-10": 1239,
+    "10-15": 267,
+    ">15": 149
+  },
+  "tiles": {
+    "root": "public/maps/oxia/slope-tiles",
+    "zoom_range": [
+      5,
+      9
+    ],
+    "written": 26,
+    "bytes": 32955
+  },
+  "generated_at": "2026-11-14T07:12:11.994Z"
+}
