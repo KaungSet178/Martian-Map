@@ -34,6 +34,15 @@ Elevation classes (m, relative to the Mars areoid): below −3100, −3100 to �
 −3000 to −2900, −2900 to −2800, −2800 and above; the grid ranges −3791 to −2381 m.
 Plain colour by height, no shading.
 
+Hillshade detail varies: sharp where Mars Express HRSC stereo elevation exists (e.g.
+the south-east of the area), smoother where only MOLA (~463 m) is available (much of
+the centre). A per-tile edge check at zoom 9 found smooth tiles across roughly
+17.98–19.15 N, 334.60–336.09 E (including around `oxia-objective-1`) and crisp tiles
+south of about 18 N and east of about 336.1 E. Mars Trek does not state which input
+each pixel uses, so this is inferred from the image. The elevation and slope layers are
+MOLA only everywhere. All three terrain tile sets end at zoom 9 (the map opens at
+zoom 9), so closer zooms enlarge them.
+
 Slope classes: 0–2, 2–5, 5–10, 10–20, >20°. The >20° class marks slopes beyond
 NASA's 20° suited-walking figure (tier 2: EVA-EXP-0042 Rev B p.38; ICES-2025-129
 p.7). In the display area 56 of 41,205 cells (18.8 km², 0.14 %) exceed 20°, mostly
