@@ -58,7 +58,8 @@ export const config = {
   // v5: regional 200 m hillshade in oxia-terrain (Derived, Mars Trek).
   // v6: oxia-geology shows Mars Trek mineral detections (Interpreted points).
   // v7: oxia-slope from a Mars Trek MOLA elevation grid (Derived).
-  dataset_version: "oxia-slope-v7",
+  // v8: slope classes 10-20 / >20 deg aligned with NASA's 20 deg EVA figure.
+  dataset_version: "oxia-slope-v8",
   routing: {
     enabled: false,
     reason:
@@ -162,6 +163,46 @@ export const config = {
         "Real detail is MOLA (~463 m); 0.01 degree samples interpolate it and add no detail.",
         "Elevations are as returned by the service (MOLA heights relative to the Mars areoid); the service does not state its interpolation method.",
         "Not walking-scale terrain and not a safety or hazard assessment.",
+      ],
+    },
+    {
+      id: "oxia-nasa-eva-exp-0042",
+      title:
+        "NASA EVA-EXP-0042 Rev B, Exploration EVA System Concept of Operations (effective Oct 19, 2020)",
+      url: "https://www.nasa.gov/wp-content/uploads/2017/02/eva-exp-0042_xeva_system_con_ops_rev_b_final_dtd_10192020_ref_doc.pdf",
+      agency: "NASA",
+      instrument: null,
+      product_id: "EVA-EXP-0042 Revision B",
+      acquisition_date: "2020-10-19",
+      sol: null,
+      native_resolution_m: null,
+      processing_notes: [
+        "Tier 2 NASA source (not on the challenge Resources list; used because the list has no EVA walking limits).",
+        "p.38 (partial-gravity surface operations): 'Walking up/down/across a slope of up to 20°' [Note: Apollo 15 traversed on slopes of ~17°]. Text checked in the PDF on 2026-11-14.",
+        "Used only to place the boundary between the top two oxia-slope display classes (10-20 and >20 degrees).",
+      ],
+      limitations: [
+        "Written for Artemis lunar surface operations; not a Mars-specific requirement. Mars surface gravity is higher than the Moon's.",
+        "Applies to local walked slopes; the oxia-slope layer is regional MOLA slope (~463 m), not walking-scale.",
+      ],
+    },
+    {
+      id: "oxia-nasa-ices-2025-129",
+      title:
+        "NASA NTRS 20250001829: Kim et al., A Consolidated Tool for Planning and Analyzing Simulated Exploration Traverses and Associated Metabolic Workload, ICES-2025-129 (54th ICES, 13-17 July 2025)",
+      url: "https://ntrs.nasa.gov/api/citations/20250001829/downloads/ICES%202025%20TraverseModel.pdf",
+      agency: "NASA JSC (with KBR, GeoControl Systems and LPI co-authors); funded by the NASA Mars Campaign Office",
+      instrument: null,
+      product_id: "ICES-2025-129 (NTRS 20250001829)",
+      acquisition_date: "2025-07",
+      sol: null,
+      native_resolution_m: null,
+      processing_notes: [
+        "Tier 2 NASA source (NASA Technical Reports Server).",
+        "p.7: surfaces with slope > 20° or < -20° are treated as inaccessible 'no-go' zones per flight rules and requirements; the p.7 example is a VR recreation of Jezero Crater, Mars. Abstract (p.1): planning for 'terrestrial, Lunar, and Martian terrains'. Text checked in the PDF on 2026-11-14.",
+      ],
+      limitations: [
+        "A planning-tool convention for simulated traverses, not a certified Mars EVA requirement.",
       ],
     },
     {

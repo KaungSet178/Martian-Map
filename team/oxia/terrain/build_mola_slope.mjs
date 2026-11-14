@@ -29,9 +29,11 @@
 //          The service's radiusInMeters only affects its reported distances.
 // Tiles  : public/maps/oxia/slope-tiles/{z}/{x}/{y}.png, 256 px Web-Mercator
 //          XYZ RGBA, zooms 5-9, nearest grid cell, display classes
-//          0-2, 2-5, 5-10, 10-15, >15 degrees (display classes only, not
-//          safety limits). Cells outside the grid or with nodata are
-//          transparent.
+//          0-2, 2-5, 5-10, 10-20, >20 degrees. The >20 class marks slopes
+//          beyond NASA's 20 degree suited-walking figure (EVA-EXP-0042 Rev B,
+//          p.38; ICES-2025-129 p.7 treats >+/-20 degrees as no-go). At MOLA
+//          scale these are display classes, not a safety assessment. Cells
+//          outside the grid or with nodata are transparent.
 
 import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
@@ -172,11 +174,63 @@ const CLASSES = [
   { max: 2, label: "0-2", rgb: [255, 255, 204] },
   { max: 5, label: "2-5", rgb: [254, 217, 118] },
   { max: 10, label: "5-10", rgb: [253, 141, 60] },
-  { max: 15, label: "10-15", rgb: [227, 26, 28] },
-  { max: Infinity, label: ">15", rgb: [128, 0, 38] },
+  { max: 20, label: "10-20", rgb: [227, 26, 28] },
+  { max: Infinity, label: ">20", rgb: [128, 0, 38] },
 ];
 const classCounts = Object.fromEntries(CLASSES.map((k) => [k.label, 0]));
 for (const v of valid) classCounts[CLASSES.find((k) => v < k.max).label]++;
+
+// Cells steeper than 20 degrees: total area and connected patches
+// (8-connected), each with its centre and extent in planetocentric
+// latitude / east longitude 0-360.
+const LIMIT = 20;
+const cellArea = (r) => {
+  const lat = grid.lat_axis[r] * D2R;
+  return (R * STEP * D2R) * (R * Math.cos(lat) * STEP * D2R); // m^2
+};
+let steepArea = 0, totalArea = 0;
+for (let r = 0; r < NY; r++)
+  for (let c = 0; c < NX; c++) {
+    const s = slope[r * NX + c];
+    if (Number.isNaN(s)) continue;
+    totalArea += cellArea(r);
+    if (s > LIMIT) steepArea += cellArea(r);
+  }
+const seen = new Uint8Array(NX * NY);
+const patches = [];
+for (let r = 0; r < NY; r++)
+  for (let c = 0; c < NX; c++) {
+    const i = r * NX + c;
+    if (seen[i] || !(slope[i] > LIMIT)) continue;
+    const stack = [i];
+    seen[i] = 1;
+    const cells = [];
+    while (stack.length) {
+      const k = stack.pop();
+      cells.push(k);
+      const kr = Math.floor(k / NX), kc = k % NX;
+      for (let dr = -1; dr <= 1; dr++)
+        for (let dc = -1; dc <= 1; dc++) {
+          const nr = kr + dr, nc = kc + dc;
+          if (nr < 0 || nr >= NY || nc < 0 || nc >= NX) continue;
+          const n = nr * NX + nc;
+          if (!seen[n] && slope[n] > LIMIT) { seen[n] = 1; stack.push(n); }
+        }
+    }
+    const lats = cells.map((k) => grid.lat_axis[Math.floor(k / NX)]);
+    const lons = cells.map((k) => grid.lon_axis_east_0_360[k % NX]);
+    const mean = (a) => a.reduce((s, v) => s + v, 0) / a.length;
+    patches.push({
+      cells: cells.length,
+      area_km2: +(cells.reduce((s, k) => s + cellArea(Math.floor(k / NX)), 0) / 1e6).toFixed(2),
+      centre_lat: +mean(lats).toFixed(2),
+      centre_lon_east: +mean(lons).toFixed(2),
+      lat_range: [Math.min(...lats), Math.max(...lats)],
+      lon_east_range: [Math.min(...lons), Math.max(...lons)],
+      max_slope_deg: +Math.max(...cells.map((k) => slope[k])).toFixed(2),
+    });
+  }
+patches.sort((a, b) => b.cells - a.cells);
 
 // --- 3. Slope tiles ------------------------------------------------------------
 const crcTable = (() => {
@@ -274,6 +328,13 @@ const report = {
     max: +valid[valid.length - 1].toFixed(3),
   },
   slope_class_cells: classCounts,
+  over_20_deg: {
+    cells: valid.filter((v) => v > LIMIT).length,
+    area_km2: +(steepArea / 1e6).toFixed(2),
+    percent_of_area: +((100 * steepArea) / totalArea).toFixed(3),
+    total_area_km2: +(totalArea / 1e6).toFixed(0),
+    patches,
+  },
   tiles: { root: TILE_ROOT, zoom_range: [MIN_Z, MAX_Z], written: tilesWritten, bytes: bytesWritten },
   generated_at: new Date().toISOString(),
 };

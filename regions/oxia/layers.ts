@@ -77,7 +77,7 @@ export const layers = [
     coverage:
       "Slope in degrees over the team-chosen Oxia display area, 17.11-19.15 N, 334.60-336.60 E, from a 201 x 205 elevation grid (0.01 degree, about 0.59 km) sampled from the Mars Trek elevation-profile service (MGS MOLA, Global DEM). 26 display tiles, zooms 5-9. Grid: /maps/oxia/elevation-grid.json.",
     limitations:
-      "Regional slope from MOLA (~463 m). Small banks, boulders and walking-scale hazards are not resolved. Not a safety assessment. Slope from central differences on a 0.01 degree grid interpolated from MOLA, using Mars 2000 sphere distances (R = 3,396,190 m); steep short slopes are smoothed out. Colour classes are display bins only, not walkability or safety limits.",
+      "Regional slope from MOLA (~463 m). Small banks, boulders and walking-scale hazards are not resolved. Not a safety assessment. Slope from central differences on a 0.01 degree grid interpolated from MOLA, using Mars 2000 sphere distances (R = 3,396,190 m); steep short slopes are smoothed out, so real local slopes can exceed the mapped class. The >20 degree class marks slopes beyond NASA's 20 degree suited-walking figure: NASA EVA-EXP-0042 Rev B, Exploration EVA System Concept of Operations (Oct 19, 2020), p.38, 'Walking up/down/across a slope of up to 20°' (source oxia-nasa-eva-exp-0042); NASA ICES-2025-129 (Kim et al., funded by the NASA Mars Campaign Office), p.7, treats slopes beyond +/-20 degrees as inaccessible no-go zones (source oxia-nasa-ices-2025-129). That figure is lunar-derived and Mars gravity is higher. In this area 56 of 41,205 cells (18.8 km2, 0.14%) exceed 20 degrees, mostly one patch near 17.21 N, 335.07 E.",
     evidence: "Derived",
     attribution: "NASA MGS MOLA Global DEM · via NASA JPL Mars Trek elevation-profile service",
     rendering: {
@@ -91,14 +91,18 @@ export const layers = [
     default_opacity: 70,
     legend: {
       title:
-        "Regional slope from MOLA (~463 m). Display classes only, not safety limits.",
+        "Regional slope from MOLA (~463 m). Not a safety assessment.",
       units: "degrees",
       items: [
         { label: "0-2", color: "#FFFFCC" },
         { label: "2-5", color: "#FED976" },
         { label: "5-10", color: "#FD8D3C" },
-        { label: "10-15", color: "#E31A1C" },
-        { label: "> 15", color: "#800026" },
+        { label: "10-20", color: "#E31A1C" },
+        {
+          label:
+            ">20°: beyond NASA's 20° suited-walking limit (lunar-derived; Mars gravity is higher). Regional MOLA slope (~463 m), so small steep features are not resolved. Not a safety assessment.",
+          color: "#800026",
+        },
       ],
     },
   },
