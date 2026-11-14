@@ -27,14 +27,14 @@ export const targets = [
     scientific_goal:
       "Examine clay-bearing material as a record of past water-rock alteration.",
     geological_significance:
-      "Phyllosilicates form by aqueous alteration of rock, so they point to past liquid water. Two independent Mars Trek layers report a detection here.",
-    priority_category: "Primary: detected by two Mars Trek layers",
+      "Phyllosilicates form by aqueous alteration of rock, so they point to past liquid water. Two Mars Trek compilations report nearby detections; their contributing observations may overlap.",
+    priority_category: "Primary: context from two Mars Trek compilations",
     coordinates: { latitude: 18.22, longitude_east: 335.83 },
     coordinate_reference,
     coordinate_verified: true,
     source_ids: ["oxia-trek-aqueous", "oxia-trek-hydrous"],
     activity:
-      "Inspect the detection area in orbital imagery, then plan close-range imaging of clay-bearing surfaces. Location is approximate (about 0.6 km precision).",
+      "Inspect the detection area in orbital imagery, then plan close-range imaging of clay-bearing surfaces. Source coordinates are rounded to 0.01 degree (about 0.6 km spacing); positional uncertainty and independent registration are unknown.",
     evidence: "Interpreted",
     verification: "verified",
     routing_eligibility,
@@ -44,7 +44,7 @@ export const targets = [
     region_id: "oxia",
     title: "Hydrated silica detection",
     description:
-      "Silica detection in the Mars Trek Aqueous Mineral Distribution layer, about 7 km from a phyllosilicate detection.",
+      "Silica detection in the Mars Trek Aqueous Mineral Distribution layer, about 36.1 km from the primary clay catalog detection (oxia-objective-1), calculated on the Mars sphere (radius 3,396,190 m).",
     scientific_goal:
       "Examine silica-bearing material and compare it with nearby clay detections.",
     geological_significance:
@@ -55,7 +55,7 @@ export const targets = [
     coordinate_verified: true,
     source_ids: ["oxia-trek-aqueous"],
     activity:
-      "Inspect the detection area in orbital imagery and compare its surface texture with the clay detection 7 km away. Location is approximate (about 0.6 km precision).",
+      "Inspect the detection area in orbital imagery and compare its surface texture with the primary clay catalog detection about 36.1 km away. Source coordinates are rounded to 0.01 degree (about 0.6 km spacing); positional uncertainty and independent registration are unknown.",
     evidence: "Interpreted",
     verification: "verified",
     routing_eligibility,
@@ -65,7 +65,7 @@ export const targets = [
     region_id: "oxia",
     title: "Second clay detection",
     description:
-      "A second phyllosilicate detection in the Mars Trek Aqueous Mineral Distribution layer, about 16 km east of the primary clay target.",
+      "A second phyllosilicate detection in the Mars Trek Aqueous Mineral Distribution layer, about 15.8 km east of the primary clay target.",
     scientific_goal:
       "Check whether clay-bearing material extends between separate detections.",
     geological_significance:
@@ -76,7 +76,7 @@ export const targets = [
     coordinate_verified: true,
     source_ids: ["oxia-trek-aqueous"],
     activity:
-      "Compare this detection with the primary clay target in orbital imagery. Location is approximate (about 0.6 km precision).",
+      "Compare this detection with the primary clay target in orbital imagery. Source coordinates are rounded to 0.01 degree (about 0.6 km spacing); positional uncertainty and independent registration are unknown.",
     evidence: "Interpreted",
     verification: "verified",
     routing_eligibility,

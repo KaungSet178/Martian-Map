@@ -3,7 +3,7 @@ import terrainSummary from "./terrain-summary.json";
 
 // Region-owned content. Pending values are deliberately explicit.
 // Four scientific categories are indexed in scientific-presentation.ts.
-// Basemap, legacy geology and traverse remain separate existing records.
+// Basemap and traverse remain separate existing records.
 export const layers = [
   {
     id: "jezero-optical",
@@ -138,52 +138,6 @@ export const layers = [
         { label: "17.5", color: "#f4a261" },
         { label: "26.25", color: "#e76f51" },
         { label: "35 and above (color saturated)", color: "#9d2a26" },
-      ],
-    },
-  },
-  {
-    id: "jezero-geology",
-    type: "Geology & mineralogy",
-    display_name: "Geology (USGS SIM 3464)",
-    kind: "geology",
-    availability: "available",
-    source_id: "jezero-usgs-sim3464",
-    observation_date: null,
-    spatial_resolution_m: 6,
-    coverage:
-      "USGS SIM 3464 geologic units (Sun & Stack 2020, 1:75,000, DOI 10.3133/sim3464) over the full published map area, 76.8-77.8 E, 17.7-18.7 N (~60 x 60 km, spanning Jezero crater and Nili Planum): derived display tiles cover the entire footprint (3,101 Web-Mercator XYZ tiles, zooms 5-14); pixels with no unit polygon are transparent.",
-    limitations:
-      "Published photogeologic interpretation at 1:75,000 map scale (evidence Interpreted: a published scientific classification), not direct mineralogical measurements - unit boundaries are mapper-drawn from CTX morphology/tone/stratigraphy. USGS documents ~100-200 m random offsets versus the July 2020 surface-operations CTX mosaic (map digitized on a semi-controlled predecessor), so the layer is not co-registered to the basemap at that level. Boundary completeness 99.92% (0.035% sliver gaps, 0.045% overlaps - published GIS digitizing artifacts, quantified by team/jezero/geology/audit_geology.mjs). Unit colors are display choices for legend separation, not the printed map sheet's lithology colors; the legend merges the data's single 'Crater riim unit' typo polygon into 'Crater rim unit'. Display-grade classification only - not a route/hazard product and not a source of precise sample coordinates.",
-    evidence: "Interpreted",
-    attribution:
-      "USGS Astrogeology Science Center · Sun, V.Z., and Stack, K.M., 2020, USGS SIM 3464 · DOI 10.3133/sim3464",
-    rendering: {
-      kind: "raster-tiles",
-      tiles: ["/maps/jezero/geology-tiles/{z}/{x}/{y}.png"],
-      tile_size: 256,
-      min_zoom: 5,
-      max_zoom: 14,
-    },
-    default_visible: false,
-    default_opacity: 70,
-    legend: {
-      title: "Geologic units (USGS SIM 3464, 1:75,000)",
-      units: null,
-      items: [
-        { label: "Nue — Upper etched unit", color: "#D2B48C" },
-        { label: "Nle — Lower etched unit", color: "#A9713C" },
-        { label: "Nnp1 — Nili Planum 1 unit", color: "#9CB380" },
-        { label: "Nnp2 — Nili Planum 2 unit", color: "#7A8B52" },
-        { label: "Hnpf — Nili Planum fan unit", color: "#C97B4A" },
-        { label: "NHjf1 — Jezero fan 1 unit", color: "#3D7AB8" },
-        { label: "NHjf2 — Jezero fan 2 unit", color: "#6FA8DC" },
-        { label: "Njf — Jezero floor unit", color: "#9BD3C8" },
-        { label: "su — Smooth unit, undivided", color: "#CDD6D0" },
-        { label: "Nrb — Rugged bright unit", color: "#D8CFC0" },
-        { label: "Aeb — Eolian bedform unit", color: "#E8D9A0" },
-        { label: "cr — Crater rim unit", color: "#8A6642" },
-        { label: "ci — Crater interior unit", color: "#6B4F4F" },
-        { label: "ce — Crater ejecta unit", color: "#BFBFBF" },
       ],
     },
   },

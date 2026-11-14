@@ -27,6 +27,6 @@ export function layerGroups(region: RegionManifest) {
   const remaining = region.layers.filter((layer) => !ids.has(layer.id) && !layer.zoom_extent);
   return [...scientific,
     { title: "Basemaps", description: "Optical context and mission imagery.", layers: remaining.filter((layer) => layer.kind === "optical") },
-    { title: "Map overlays", description: "Recorded traverses and optional geological research overlays; these do not establish waypoint eligibility.", layers: remaining.filter((layer) => layer.kind !== "optical") },
+    { title: "Map overlays", description: "Recorded traverses and dataset coverage outlines; these do not establish waypoint eligibility.", layers: remaining.filter((layer) => layer.kind !== "optical") },
   ];
 }

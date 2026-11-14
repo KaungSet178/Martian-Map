@@ -15,7 +15,7 @@ export const config = {
     "latitude_type": "planetocentric",
     "longitude_direction": "east",
     "longitude_range": "0-360",
-    "projected_crs": "Mars equirectangular, r=3396190 m, lat_ts=0, lon_0=0 (PDS orbital map); no routing grid integrated",
+    "projected_crs": "Mars equirectangular, r=3396190 m, lat_ts=0, lon_0=0 (PDS orbital map); experimental HRSC numerical routing integrated; absolute registration unverified",
     "reference_surface": "Mars 2000 sphere; PDS orbital map v42.0 axes all 3396.19 km",
     "sphere_radius_m": 3396190,
     "vertical_datum": "Rendered PDS DEM subset: metres relative to MOLA areoid, positive up; not radial or ellipsoid height. Absolute error unquantified."
@@ -60,33 +60,33 @@ export const config = {
     {
       "id": "gale-environment-context",
       "name": "Historical REMS observations",
-      "evidence": "Unavailable",
+      "evidence": "Observed",
       "availability": {
-        "status": "unavailable",
-        "reason": "REMS archive registered; no dated observation series ingested."
+        "status": "available",
+        "reason": "Historical Curiosity REMS observation samples are integrated in Environment; rover-local measurements with product quality flags."
       },
       "source_ids": [
         "gale-rems"
       ],
-      "limitations": "Historical rover-local observations are not forecasts. Future values require dates, measurement locations, calibration and quality flags."
+      "limitations": "Historical rover-local observations are not forecasts. They do not describe future conditions along a route; forecasts and validated EVA exposure modeling remain unavailable."
     },
     {
       "id": "gale-radiation-context",
       "name": "Historical RAD observations",
-      "evidence": "Unavailable",
+      "evidence": "Observed",
       "availability": {
-        "status": "unavailable",
-        "reason": "RAD archive entry located; no dose series or applicable shielding model integrated."
+        "status": "available",
+        "reason": "Historical Curiosity RAD absorbed-dose observations are integrated in Environment; no validated astronaut exposure model."
       },
       "source_ids": [
-        "gale-pds-mission"
+        "gale-rad-historical-f3"
       ],
       "limitations": "Rover radiation observations do not determine future astronaut dose or mission feasibility."
     }
   ],
   "routing": {
     "enabled": false,
-    "reason": "G1 supports scientific map exploration only. Audited terrain quality masks, hazard coverage, routing thresholds and the shared planning service are unavailable.",
+    "reason": "Validated scientific-objective routing remains unavailable. I3A provides experimental numerical HRSC research routes for explicit manual waypoints; independent registration, hazard coverage and an operational EVA policy remain unverified.",
     "eligibility_dataset_id": null,
     "policy_version": null
   },
@@ -97,8 +97,8 @@ export const config = {
       "source_id": "gale-hrsc-30m"
     },
     "experimental_routing": {
-      "status": "unavailable",
-      "reason": "No experimental planning service is connected."
+      "status": "available",
+      "reason": "I3A numerical HRSC research routing is integrated through the Python runtime for explicit manual waypoints. Absolute registration is unverified; no operational EVA clearance."
     },
     "validated_routing": {
       "status": "unavailable",
@@ -110,6 +110,23 @@ export const config = {
     }
   },
   "source_references": [
+    {
+      "id": "gale-rad-historical-f3",
+      "title": "Curiosity RAD historical surface observations",
+      "url": "https://pds-ppi.igpp.ucla.edu/mission/MSL",
+      "agency": "NASA / PDS PPI",
+      "instrument": "Curiosity RAD",
+      "product_id": null,
+      "acquisition_date": null,
+      "sol": null,
+      "native_resolution_m": null,
+      "processing_notes": [
+        "Existing historical RAD products are displayed by the Environment adapter; sensor values unchanged."
+      ],
+      "limitations": [
+        "Rover-local historical absorbed dose is not astronaut effective dose, a route field, or a forecast."
+      ]
+    },
     {
       "id": "gale-pds-dem-subset",
       "title": "PDS PLACES v42.0 - bounded orbital DEM subset",
@@ -410,7 +427,7 @@ export const config = {
       "native_resolution_m": null,
       "processing_notes": [],
       "limitations": [
-        "Archive discovery only. No dated time series, calibration or quality flags ingested; historical rover measurements are not EVA forecasts."
+        "Historical REMS samples with product quality flags are integrated in Environment. This archive entry is not a forecast, a route-wide observation field or a validated EVA exposure model."
       ]
     },
     {
@@ -425,7 +442,7 @@ export const config = {
       "native_resolution_m": null,
       "processing_notes": [],
       "limitations": [
-        "Archive entry points only; no radiation series, applicable shielding or astronaut dose model."
+        "Archive entry point; historical RAD samples are integrated separately. No applicable astronaut shielding or validated EVA dose model."
       ]
     },
     {

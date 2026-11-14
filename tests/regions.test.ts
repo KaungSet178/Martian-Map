@@ -1,3 +1,5 @@
+import { geologyLegend } from "../regions/gale/geology-legend";
+import type { ScientificLayer } from "../lib/contracts/region";
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
@@ -79,10 +81,9 @@ test("DEM derivatives retain audited bytes, bounded support, units and conservat
   }
   assert.equal(gale.routing.enabled, false);
   assert.equal(gale.capabilities.terrain_coverage.status, "partial");
-  for (const id of ["gale-terrain", "gale-hillshade", "gale-slope", "gale-geology"]) {
+  for (const id of ["gale-terrain", "gale-hillshade", "gale-slope"]) {
     const state = updateLayerState(gale, updateLayerState(gale, {}, "gale-slope", {visible:true}), id, {visible:true});
     assert.equal(gale.layers.filter((l) => l.kind === "topography" && (state[l.id]?.visible ?? l.default_visible)).length,1);
-    if (id === "gale-geology") assert.equal(state[id].visible, true);
   }
   for (const id of ["jezero", "oxia"]) assert.ok(getRegion(id)!.layers.every((l) => !l.source_id?.startsWith("gale-")));
 });
@@ -168,17 +169,16 @@ test("G4 regional and global terrain layers preserve multi-resolution hierarchy,
     assert.equal(bytes.length, record.bytes);
   }
 
-  // One thematic terrain view; independent geology must remain available.
-  for (const id of [...regionalIds, ...globalIds, "gale-terrain", "gale-geology"]) {
+  // One thematic terrain view remains available after unit retirement.
+  for (const id of [...regionalIds, ...globalIds, "gale-terrain"]) {
     const state = updateLayerState(gale, updateLayerState(gale, {}, "gale-regional-slope", { visible: true }), id, { visible: true });
     assert.equal(gale.layers.filter((l) => l.kind === "topography" && (state[l.id]?.visible ?? l.default_visible)).length, 1);
-    if (id === "gale-geology") assert.equal(state[id].visible, true);
   }
 });
 
 test("Arc Pass asset preserves all source classifications and audited geometry identity", () => {
   const gale = getRegion("gale")!;
-  const layer = gale.layers.find((item) => item.id === "gale-geology")!;
+  const layer = { ...gale.layers[0], id: "gale-test-category", legend: geologyLegend, rendering: { kind: "geojson", url: "/maps/gale/arc-pass-geology.geojson", geometry: "fill", category_property: "Unit", color: "#647C9A" } } satisfies ScientificLayer;
   const report = JSON.parse(readFileSync("team/gale/sources/g3/arc-pass-processing.json", "utf8"));
   const bytes = readFileSync(report.output);
   assert.equal(createHash("sha256").update(bytes).digest("hex"), report.output_sha256);
@@ -211,7 +211,8 @@ test("Arc Pass asset preserves all source classifications and audited geometry i
 
 test("categorical layer contracts reject missing or duplicate legend values and preserve legacy manifests", () => {
   const gale = getRegion("gale")!;
-  const layer = gale.layers.find((item) => item.id === "gale-geology")!;
+  const layer = { ...gale.layers[0], id: "gale-test-category", legend: geologyLegend, rendering: { kind: "geojson", url: "/maps/gale/arc-pass-geology.geojson", geometry: "fill", category_property: "Unit", color: "#647C9A" } } satisfies ScientificLayer;
+  assert.ok(regionSchema.safeParse({ ...gale, layers: [layer] }).success);
   for (const legend of [null, { ...layer.legend, items: [] },
     { ...layer.legend, items: [layer.legend!.items[0], layer.legend!.items[0]] }]) {
     assert.equal(regionSchema.safeParse({ ...gale, layers: [{ ...layer, legend }] }).success, false);
@@ -226,7 +227,7 @@ test("categorical layer contracts reject missing or duplicate legend values and 
     assert.ok(regionSchema.safeParse(legacy).success);
   }
   const state = updateLayerState(gale, {}, "gale-geology", { visible: true });
-  assert.equal(state["gale-geology"].visible, true);
+  assert.equal(state["gale-geology"], undefined);
   assert.notEqual(state["gale-traverse-recorded"]?.visible, false);
   assert.notEqual(state["gale-optical"]?.visible, false);
 });
@@ -421,7 +422,7 @@ function syntheticMap(): RegionManifest {
         notes: "Synthetic software fixture, not a scientific review.",
       },
     },
-    layers: base.layers.filter((l) => ["jezero-optical", "jezero-elevation", "jezero-geology"].includes(l.id)).map((l, i) => ({
+    layers: base.layers.filter((l) => ["jezero-optical", "jezero-elevation", "jezero-slope"].includes(l.id)).map((l, i) => ({
       ...l,
       availability: "available",
       evidence: "Scenario",
@@ -472,14 +473,14 @@ test("declarative renderer mounts only current regional sources and cleans them 
     calls.some(
       (c) =>
         c[0] === "layout" &&
-        c[1] === "region-jezero-geology" &&
+        c[1] === "region-jezero-slope" &&
         c[3] === "visible",
     ),
   );
   applyLayerStates(map, region, state, true);
   assert.deepEqual(calls.at(-2), [
     "layout",
-    "region-jezero-geology",
+    "region-jezero-slope",
     "visibility",
     "none",
   ]);

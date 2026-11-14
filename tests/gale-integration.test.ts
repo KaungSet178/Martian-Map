@@ -3,13 +3,13 @@ import assert from "node:assert/strict";
 import { getRegion } from "../lib/regions/registry";
 import { layerState, updateLayerState, type LayerStates } from "../lib/map/region-layers";
 
-test("Gale terrain alternatives preserve independent geology, optical imagery and traverse in both directions", () => {
+test("Gale terrain alternatives preserve optical imagery and traverse and reject retired geology in both directions", () => {
   const gale = getRegion("gale")!;
   for (const terrain of gale.layers.filter((layer) => layer.kind === "topography")) {
     let state = updateLayerState(gale, {}, "gale-geology", { visible: true, opacity: 47 });
     state = updateLayerState(gale, state, terrain.id, { visible: true, opacity: 63 });
-    assert.equal(layerState(gale, state, "gale-geology").visible, true);
-    assert.equal(layerState(gale, state, "gale-geology").opacity, 47);
+    assert.equal(layerState(gale, state, "gale-geology").visible, false);
+    assert.equal(state["gale-geology"], undefined);
     assert.equal(layerState(gale, state, "gale-optical").visible, true);
     assert.equal(layerState(gale, state, "gale-traverse-recorded").visible, true);
     const next = updateLayerState(gale, state, "gale-geology", { visible: true });

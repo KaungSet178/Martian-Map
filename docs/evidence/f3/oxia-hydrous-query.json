@@ -1,0 +1,125 @@
+{
+  "url": "https://trek.nasa.gov/mars/trekarcgis/rest/services/Hydrous_Mineral_Detections_OMEGA_CRISM_clon0/MapServer/0/query?f=json&where=Latitude+%3E%3D+17.11+AND+Latitude+%3C%3D+19.15+AND+Longitude+%3E%3D+334.6+AND+Longitude+%3C%3D+336.6&outFields=%2A&returnGeometry=true",
+  "response": {
+    "displayFieldName": "jC_lineclr",
+    "fieldAliases": {
+      "FID": "FID",
+      "Radius": "Radius",
+      "lwidth": "lwidth",
+      "jC_lineclr": "jC_lineclr",
+      "jC_fillclr": "jC_fillclr",
+      "filled": "filled",
+      "Latitude": "Latitude",
+      "Longitude": "Longitude",
+      "Long_East": "Long_East",
+      "Type": "Type",
+      "Instrument": "Instrument"
+    },
+    "geometryType": "esriGeometryPoint",
+    "spatialReference": {
+      "wkid": 104905,
+      "latestWkid": 104905
+    },
+    "fields": [
+      {
+        "name": "FID",
+        "type": "esriFieldTypeOID",
+        "alias": "FID"
+      },
+      {
+        "name": "Radius",
+        "type": "esriFieldTypeDouble",
+        "alias": "Radius"
+      },
+      {
+        "name": "lwidth",
+        "type": "esriFieldTypeDouble",
+        "alias": "lwidth"
+      },
+      {
+        "name": "jC_lineclr",
+        "type": "esriFieldTypeString",
+        "alias": "jC_lineclr",
+        "length": 15
+      },
+      {
+        "name": "jC_fillclr",
+        "type": "esriFieldTypeString",
+        "alias": "jC_fillclr",
+        "length": 15
+      },
+      {
+        "name": "filled",
+        "type": "esriFieldTypeInteger",
+        "alias": "filled"
+      },
+      {
+        "name": "Latitude",
+        "type": "esriFieldTypeDouble",
+        "alias": "Latitude"
+      },
+      {
+        "name": "Longitude",
+        "type": "esriFieldTypeDouble",
+        "alias": "Longitude"
+      },
+      {
+        "name": "Long_East",
+        "type": "esriFieldTypeDouble",
+        "alias": "Long_East"
+      },
+      {
+        "name": "Type",
+        "type": "esriFieldTypeString",
+        "alias": "Type",
+        "length": 32
+      },
+      {
+        "name": "Instrument",
+        "type": "esriFieldTypeString",
+        "alias": "Instrument",
+        "length": 10
+      }
+    ],
+    "features": [
+      {
+        "attributes": {
+          "FID": 773,
+          "Radius": 5,
+          "lwidth": 3,
+          "jC_lineclr": "255 0 0 255",
+          "jC_fillclr": "255 0 0 255",
+          "filled": 1,
+          "Latitude": 18.1700000763,
+          "Longitude": 335.819999695,
+          "Long_East": -24.1800003052,
+          "Type": "Hydrous Mineral Detection",
+          "Instrument": "CRISM"
+        },
+        "geometry": {
+          "x": -24.18000030517578,
+          "y": 18.170000076293945
+        }
+      },
+      {
+        "attributes": {
+          "FID": 775,
+          "Radius": 5,
+          "lwidth": 3,
+          "jC_lineclr": "255 0 0 255",
+          "jC_fillclr": "255 0 0 255",
+          "filled": 1,
+          "Latitude": 17.7000007629,
+          "Longitude": 336.069999695,
+          "Long_East": -23.9300003052,
+          "Type": "Hydrous Mineral Detection",
+          "Instrument": "CRISM"
+        },
+        "geometry": {
+          "x": -23.93000030517578,
+          "y": 17.700000762939453
+        }
+      }
+    ]
+  }
+}

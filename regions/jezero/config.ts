@@ -33,7 +33,7 @@ export const config = {
     visualization: {
       status: "available",
       reason:
-        "Four scientific categories: Elevation, Hillshade, Slope, Thermal. Existing CTX basemap, deferred geology and recorded traverse remain separate. Hillshade uses the authenticated numeric SOC_006 DEM; independent absolute registration is unverified. The map remains limited to the established mission view.",
+        "Four scientific categories: Elevation, Hillshade, Slope, Thermal. Existing CTX basemap and recorded traverse remain separate. Hillshade uses the authenticated numeric SOC_006 DEM; independent absolute registration is unverified. The map remains limited to the established mission view.",
     },
     initial_zoom: 10,
     supported_extent: {
@@ -75,8 +75,8 @@ export const config = {
       source_id: "jezero-usgs-trn-dtm",
     },
     experimental_routing: {
-      status: "unavailable",
-      reason: "No experimental planning service is connected.",
+      status: "available",
+      reason: "I3A HiRISE-derived numerical research routing is integrated through the corrected worker for explicit manual waypoints. Absolute registration is unverified; no operational EVA clearance.",
     },
     validated_routing: {
       status: "unavailable",
@@ -91,11 +91,11 @@ export const config = {
     {
       id: "jezero-environment-context",
       name: "Historical MEDA / environmental context",
-      evidence: "Unavailable",
+      evidence: "Observed",
       availability: {
-        status: "unavailable",
+        status: "available",
         reason:
-          "MEDA archive is registered, but no applicable observation products are integrated and no exposure model is reviewed.",
+          "Historical Perseverance MEDA observations are integrated in Environment with product quality flags; forecasts and validated EVA exposure models remain unavailable.",
       },
       source_ids: ["jezero-meda-environment"],
       limitations:
@@ -103,6 +103,23 @@ export const config = {
     },
   ],
   source_references: [
+    {
+      "id": "jezero-three-forks-primary-f3",
+      "title": "Three Forks site selection (Williams et al., LPSC 2023, abstract 2618)",
+      "url": "https://www.hou.usra.edu/meetings/lpsc2023/pdf/2618.pdf",
+      "agency": "NASA / JPL-Caltech / LPI",
+      "instrument": null,
+      "product_id": "LPSC 2023 abstract 2618",
+      "acquisition_date": null,
+      "sol": null,
+      "native_resolution_m": null,
+      "processing_notes": [
+        "Site evidence associated with the sample caching objective, not a coordinate for the entire mission objective."
+      ],
+      "limitations": [
+        "Operational-area radius is not localization uncertainty. Independent registration and astronaut routing eligibility remain unverified."
+      ]
+    },
     {
       id: "jezero-mission-context",
       title: "Jezero Crater mission context (Perseverance location map)",

@@ -1,0 +1,23 @@
+[
+  {
+    "file": "three-forks-2618.pdf",
+    "source_url": "https://www.hou.usra.edu/meetings/lpsc2023/pdf/2618.pdf",
+    "sha256": "41cb67a44ecd2231a5f1556f405032b663d57b62c34568dc0766253c6cc1d642",
+    "verified_date": "2026-11-15",
+    "timezone": "Asia/Rangoon"
+  },
+  {
+    "file": "oxia-aqueous-query.json",
+    "source_url": "NASA Trek aqueous query (exact URL inside capture)",
+    "sha256": "99fecb3bb4cacb2ba7fdd6e3fcb7459b1382efe0e22e6c336e2d75f03b667e99",
+    "verified_date": "2026-11-15",
+    "timezone": "Asia/Rangoon"
+  },
+  {
+    "file": "oxia-hydrous-query.json",
+    "source_url": "NASA Trek hydrous query (exact URL inside capture)",
+    "sha256": "a034a73f335750617737ae94569d85ed8a6f1fdc5190cee15d6dae495d3bb519",
+    "verified_date": "2026-11-15",
+    "timezone": "Asia/Rangoon"
+  }
+]

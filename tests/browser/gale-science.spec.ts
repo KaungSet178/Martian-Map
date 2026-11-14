@@ -11,7 +11,7 @@ async function openScience(page: Page) {
 const observations = [
   ["Glen Torridon", "PIA23047", "2019-02-10", "2316"],
   ["Vera Rubin Ridge", "PIA21851", "2017-08-19", "1790"],
-  ["Sulfate-bearing geological units", "PIA26551", "2025-02-07", "4447"],
+  ["Sulfate-bearing terrain investigation", "PIA26551", "2025-02-07", "4447"],
   ["Gediz Vallis", "NLB_781532029EDR_F1091446NCAM00379M_", "2024-10-07", "4326"],
 ];
 

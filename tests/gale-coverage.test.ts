@@ -51,7 +51,7 @@ test("all six terrain themes distinguish source/crop/validity/posting/support an
     }
   }
   assert.doesNotMatch(JSON.stringify(gale.source_references),/Persaud, S\./);
-  assert.equal(gale.layers.find(l=>l.id==="gale-geology")!.data_details!.nominal_posting_m,null);
+  assert.equal(gale.layers.find(l=>l.id==="gale-geology"),undefined);
 });
 
 test("coverage lines and casings mount once, follow independent state, and clean up shared sources", () => {
@@ -132,10 +132,6 @@ test("explicit coverage fits use authoritative bounds and existing responsive ca
   fitOverview(map,gale,container,false);
   assert.deepEqual(fits.at(-1)![0],displayBounds(original!));
   assert.ok(limits.every(v=>v===null));
-  const geology = gale.layers.find(l=>l.id==="gale-geology")!.rendering;
-  assert.ok(geology.kind === "geojson");
-  assert.deepEqual(geology.focus_extent,{
-    west_east:137.4065970458571,east_east:137.4110534954222,south_latitude:-4.789072816244821,north_latitude:-4.785334720408685,
-  });
+  assert.equal(fitLayerCoverage(map,gale,"gale-geology",container),false);
   for(const id of ["jezero","oxia"]) assert.ok(getRegion(id)!.layers.every(l=>!l.zoom_extent));
 });

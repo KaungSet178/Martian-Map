@@ -208,7 +208,7 @@ export const targets = [
   {
     "id": "gale-sulfate-units",
     "region_id": "gale",
-    "title": "Sulfate-bearing geological units",
+    "title": "Sulfate-bearing terrain investigation",
     "description": "Published orbital mineralogical context above the clay-bearing terrain on lower Mount Sharp.",
     "scientific_goal": "Test how sulfate mineralogy relates to changing water chemistry, deposition and alteration.",
     "geological_significance": "Published orbiter and rover analyses link the transition to depositional changes, erosion and later alteration; orbital sulfate signatures do not uniquely establish primary depositional conditions.",
