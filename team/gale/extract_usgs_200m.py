@@ -3,6 +3,7 @@ Avoids downloading the full 11.4 GB global raster while preserving original pixe
 """
 from pathlib import Path
 import time
+import json
 import numpy as np
 import requests
 from requests.adapters import HTTPAdapter
@@ -22,7 +23,7 @@ URL = "https://asc-pds-services.s3.us-west-2.amazonaws.com/mosaic/Mars/HRSC_MOLA
 # Global raster parameters from audited BigTIFF header
 WIDTH = 106694
 HEIGHT = 53347
-PIXEL_SIZE = 360.0 / WIDTH # 0.003374135377818809 deg
+PIXEL_SIZE = 0.003374120830641 # Actual GeoTIFF ModelPixelScale, not 360/width.
 ORIGIN_LON = -180.0
 ORIGIN_LAT = 90.0
 DATA_OFFSET = 854272
@@ -32,10 +33,8 @@ BYTES_PER_ROW = WIDTH * 2
 # Add generous buffer: 137.1 to 137.7 E, -5.1 to -4.3 N
 WEST, SOUTH, EAST, NORTH = 137.1, -5.1, 137.7, -4.3
 
-col_start = int(np.floor((WEST - ORIGIN_LON) / PIXEL_SIZE))
-col_end = int(np.ceil((EAST - ORIGIN_LON) / PIXEL_SIZE))
-row_start = int(np.floor((ORIGIN_LAT - NORTH) / PIXEL_SIZE))
-row_end = int(np.ceil((ORIGIN_LAT - SOUTH) / PIXEL_SIZE))
+# Preserve the independently DN-verified original G4 integer window.
+col_start, col_end, row_start, row_end = 93979, 94158, 27947, 28185
 
 win_width = col_end - col_start
 win_height = row_end - row_start
@@ -54,6 +53,9 @@ def main():
     if OUT_TIF.exists() and OUT_TIF.stat().st_size > 50000:
         print(f"Already extracted: {OUT_TIF}")
         with rasterio.open(OUT_TIF) as src:
+            expected = from_origin(ORIGIN_LON+col_start*PIXEL_SIZE, ORIGIN_LAT-row_start*PIXEL_SIZE, PIXEL_SIZE, PIXEL_SIZE)
+            if not src.transform.almost_equals(expected, precision=1e-12):
+                raise ValueError('Legacy subset affine differs from actual source; run verify_g4_global_source.py --download --repair-subset')
             print("Profile:", src.profile)
             arr = src.read(1)
             print(f"Shape: {arr.shape}, Min: {arr.min()}, Max: {arr.max()}, NoData: {src.nodata}")
@@ -71,9 +73,16 @@ def main():
         seg_start = row_offset + col_start * 2
         seg_end = row_offset + col_end * 2 - 1
         headers = {"Range": f"bytes={seg_start}-{seg_end}"}
-        resp = session.get(URL, headers=headers, timeout=20)
-        resp.raise_for_status()
-        raw_bytes = resp.content
+        identity = json.loads((ROOT/'team/gale/sources/integration/global-source-check.json').read_text())['source']
+        headers['If-Match'] = identity['etag']
+        headers['Accept-Encoding'] = 'identity'
+        with session.get(URL, headers=headers, timeout=20, stream=True) as resp:
+            expected_range = f'bytes {seg_start}-{seg_end}/{identity["total"]}'
+            if resp.status_code != 206 or resp.headers.get('Content-Range') != expected_range or resp.headers.get('ETag') != identity['etag']:
+                raise ValueError('Server changed source identity or ignored bounded range')
+            raw_bytes = resp.raw.read(win_width*2+1)
+            if len(raw_bytes) != win_width*2:
+                raise ValueError('Truncated or oversized source row')
         data_grid[r - row_start, :] = np.frombuffer(raw_bytes, dtype="<i2")
         completed += 1
         if completed % 40 == 0 or completed == win_height:
@@ -81,7 +90,7 @@ def main():
 
     print(f"All data fetched in {time.time() - t0:.1f}s. Array shape: {data_grid.shape}, Min: {data_grid.min()} m, Max: {data_grid.max()} m")
 
-    usgs_crs = CRS.from_string("GEOGCS[\"GCS_Mars_2000_Sphere\",DATUM[\"D_Mars_2000_Sphere\",SPHEROID[\"Mars_2000_Sphere_IAU_IAG\",3396190.0,0.0]],PRIMEM[\"Reference_Meridian\",0.0],UNIT[\"Degree\",0.0174532925199433]]")
+    usgs_crs = CRS.from_wkt(json.loads((ROOT/'team/gale/sources/integration/global-source-check.json').read_text())['source_crs_wkt'])
 
     transform = from_origin(
         ORIGIN_LON + col_start * PIXEL_SIZE,

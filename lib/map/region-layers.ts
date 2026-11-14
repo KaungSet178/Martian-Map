@@ -62,9 +62,16 @@ export function updateLayerState(
     ...states,
     [id]: { ...layerState(region, states, id), ...change },
   };
-  if (change.visible && layer.kind !== "optical" && layer.kind !== "overlay") {
+  // Gale terrain products are alternative thematic views. Geology/traverse
+  // are independent overlays. Preserve the legacy policy in other regions.
+  const incompatible = (other: RegionManifest["layers"][number]) =>
+    region.id === "gale"
+      ? layer.kind === "topography" && other.kind === "topography"
+      : layer.kind !== "optical" && layer.kind !== "overlay" &&
+        other.kind !== "optical" && other.kind !== "overlay";
+  if (change.visible) {
     for (const other of region.layers.filter(
-      (l) => l.id !== id && l.kind !== "optical" && l.kind !== "overlay",
+      (l) => l.id !== id && incompatible(l),
     ))
       next[other.id] = {
         ...layerState(region, next, other.id),

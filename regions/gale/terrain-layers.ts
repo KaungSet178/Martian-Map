@@ -18,10 +18,10 @@ export const regionalExtent = {
 
 // Global HRSC-MOLA 200 m blended DEM fallback bounds (Fergason et al., 2018)
 export const globalExtent = {
-  west_east: 137.10124280653086,
-  south_latitude: -5.096631488181151,
-  east_east: 137.6984647684031,
-  north_latitude: -4.300335539018143,
+  west_east: 137.09987566364117,
+  south_latitude: -5.096221490785939,
+  east_east: 137.69709505066461,
+  north_latitude: -4.299928974754662,
 };
 
 // --- Local PDS DEM (1 m native, 25 m analysis) ---
@@ -31,7 +31,7 @@ const localCommon = {
   source_id: "gale-pds-dem-subset",
   observation_date: null,
   spatial_resolution_m: 25,
-  coverage: "Audited 1 km projected square in the historical Curiosity corridor, 137.371118..137.387989 E, -4.737706..-4.720835 N. 1,600 valid analysis cells; outside is unaudited and transparent. Opening fits this subset. CTX alignment is unverified locally: do not match fine features between these products.",
+  coverage: "Audited 1 km projected square in the historical Curiosity corridor, 137.371118..137.387989 E, -4.737706..-4.720835 N. 1,600 valid analysis cells; outside is unaudited and transparent. Toggling preserves the current camera. CTX alignment is unverified locally: do not match fine features between these products.",
   limitations: "25 m complete-post averages with 75 m gradient support; these are processing scales, not guaranteed effective resolution. Native PDS grid 1 m, mixed HiRISE/CTX lineage without per-pixel quality. Heights in metres above the MOLA areoid. Absolute horizontal/vertical accuracy and slope error unquantified. Local orthophoto/CTX comparison indicates a possible positional mismatch; no fitted shift applied. Full-opacity independent DEM view by default. Slope alone is not astronaut safety, hazards or routing evidence.",
   evidence: "Derived",
   attribution: "NASA/JPL-Caltech · PDS PLACES v42.0 · USGS / HiRISE / CTX · Marswalk DEM derivatives",
@@ -46,7 +46,6 @@ const localRendering = (kind: string) => ({
   min_zoom: 5,
   max_zoom: 14,
   bounds: demExtent,
-  focus_extent: demExtent,
   resampling: "nearest" as const,
 });
 
@@ -72,7 +71,6 @@ const regionalRendering = (kind: string) => ({
   min_zoom: 5,
   max_zoom: 13,
   bounds: regionalExtent,
-  focus_extent: regionalExtent,
   resampling: "nearest" as const,
 });
 
@@ -83,8 +81,8 @@ const globalCommon = {
   source_id: "gale-usgs-200m",
   observation_date: null,
   spatial_resolution_m: 200,
-  coverage: "USGS HRSC-MOLA Blended DEM Global 200m v2 (Fergason et al., 2018) providing continuous regional elevation fallback across the entire Gale Crater footprint. 100% real-data coverage; outside transparent.",
-  limitations: "200 m grid spacing blending Mars Express HRSC and MGS MOLA elevation observations. Coarse regional baseline; small rocks, boulders, and local rover/suit hazards are completely unresolved. Not for astronaut hazard or safety routing.",
+  coverage: "USGS HRSC-MOLA Blended DEM Global 200m v2 (Fergason et al., 2018) providing continuous regional elevation fallback across the entire Gale Crater footprint. 100% real-data coverage of the configured overview means valid source-grid support; outside transparent. Nearest-neighbor display resampling repeats source cells, not independent observations. CTX/color alignment remains unverified.",
+  limitations: "200 m grid spacing blending Mars Express HRSC and MGS MOLA elevation observations. 600 m gradient support; absolute positional and slope uncertainty unmeasured. Coarse regional baseline; small rocks, boulders, and local rover/suit hazards are completely unresolved. Not for astronaut hazard or safety routing.",
   evidence: "Derived",
   attribution: "USGS Astrogeology Science Center · NASA / ESA · Fergason et al. (2018) · Marswalk DEM derivatives",
   default_visible: false,
@@ -98,7 +96,6 @@ const globalRendering = (kind: string) => ({
   min_zoom: 5,
   max_zoom: 13,
   bounds: globalExtent,
-  focus_extent: globalExtent,
   resampling: "nearest" as const,
 });
 
@@ -114,11 +111,11 @@ export const terrainLayers = [
       title: "Regional elevation · 30 m grid · CTX alignment unverified",
       units: "m relative to MOLA areoid, positive up",
       items: [
-        { label: "Below −4400 m", color: "#425A78", description: "Crater floor and northern plains" },
-        { label: "−4400 to < −4200 m", color: "#587E91", description: "Lower Mount Sharp apron" },
-        { label: "−4200 to < −3900 m", color: "#87A39D", description: "Clay-bearing unit and Vera Rubin ridge" },
-        { label: "−3900 to < −3500 m", color: "#BCB29C", description: "Sulfate-bearing layered strata" },
-        { label: "−3500 m and above", color: "#C8A97E", description: "Upper Mount Sharp flank" },
+        { label: "Below −4400 m", color: "#425A78", description: "Lowest elevation class; elevation does not identify geological materials." },
+        { label: "−4400 to < −4200 m", color: "#587E91", description: "Lower elevation terrain" },
+        { label: "−4200 to < −3900 m", color: "#87A39D", description: "Intermediate elevation terrain" },
+        { label: "−3900 to < −3500 m", color: "#BCB29C", description: "Higher elevation terrain" },
+        { label: "−3500 m and above", color: "#C8A97E", description: "Highest elevation class in this legend" },
       ],
     },
   },

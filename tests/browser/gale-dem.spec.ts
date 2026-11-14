@@ -40,6 +40,40 @@ async function settledPixels(page: Page) {
   return previous;
 }
 
+async function inspectLocalFootprint(page: Page) {
+  // Terrain toggles now preserve the camera. Explicitly navigate to the same
+  // audited PDS footprint before retaining the original detailed pixel checks.
+  await page.getByRole("button",{name:"Fit exploration region",exact:true}).click();
+  await page.waitForTimeout(350);
+  await page.waitForLoadState("networkidle");
+  const canvas = page.locator(".map-canvas canvas");
+  const png = await canvas.screenshot({style:".map-topline,.map-navigation,.map-bottomline,.map-attribution{visibility:hidden!important}"});
+  const box = await page.evaluate(async(encoded)=>{
+    const image=await createImageBitmap(await(await fetch(`data:image/png;base64,${encoded}`)).blob());
+    const c=document.createElement("canvas"); c.width=image.width;c.height=image.height;
+    const ctx=c.getContext("2d")!;ctx.drawImage(image,0,0);image.close();
+    const data=ctx.getImageData(0,0,c.width,c.height).data;
+    let left=c.width,top=c.height,right=0,bottom=0;
+    for(let y=0;y<c.height;y++)for(let x=0;x<c.width;x++){
+      const i=(y*c.width+x)*4;
+      if(data[i]>30 && Math.abs(data[i]-data[i+1])<4 && Math.abs(data[i]-data[i+2])<4){left=Math.min(left,x);right=Math.max(right,x);top=Math.min(top,y);bottom=Math.max(bottom,y);}
+    }
+    return {left,top,right,bottom};
+  },png.toString("base64"));
+  const merc=(lat:number)=>Math.asinh(Math.tan(lat*Math.PI/180));
+  const u=(137.379553722534-137.3442352329006)/(137.4579431096443-137.3442352329006);
+  const v=(merc(-4.580605407446296)-merc(-4.729270445957))/(merc(-4.580605407446296)-merc(-4.822361175063087));
+  const frame=(await canvas.boundingBox())!;
+  await page.mouse.move(frame.x+box.left+u*(box.right-box.left),frame.y+box.top+v*(box.bottom-box.top));
+  await page.mouse.down();
+  await page.mouse.move(frame.x+frame.width*.5,frame.y+frame.height*.5,{steps:10});
+  await page.mouse.up();
+  for(let i=0;i<3;i++){
+    await page.getByRole("button",{name:"Zoom map in",exact:true}).click();
+    await page.waitForTimeout(220);
+  }
+}
+
 for(const [width,height] of [[1440,900],[1024,768],[768,1024],[390,844]]) {
   test(`real DEM views, uncertainty, opacity and isolation at ${width}px`, async({page}) => {
     await page.setViewportSize({width,height});
@@ -53,6 +87,7 @@ for(const [width,height] of [[1440,900],[1024,768],[768,1024],[390,844]]) {
     });
     await page.goto("/?region=gale");
     await page.getByRole("button",{name:"Layers",exact:true}).click(); await expand(page);
+    await inspectLocalFootprint(page);
     const names=["Elevation · MOLA areoid","DEM hillshade","DEM slope · degrees"];
     for(const [i,name] of names.entries()) {
       const control=page.getByRole("checkbox",{name:new RegExp(name)});

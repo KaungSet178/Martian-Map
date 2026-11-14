@@ -1,0 +1,26 @@
+{
+  "http_origin": "http://127.0.0.1:3124",
+  "http_verified_files": 1953,
+  "http_verified_bytes": 26216593,
+  "g4_tiles": 1515,
+  "g4_tile_bytes": 1807641,
+  "g5_tiles": 357,
+  "g5_tile_bytes": 21482684,
+  "sorted_path_sha256_size_receipts_digest": "10ca0bf0ae70def46ed9ad9719baed77bc1d272c6a08d4c06158e2f3dd83917b",
+  "non_runtime_git_control_files": [
+    "public/maps/gale/.gitattributes",
+    "public/maps/gale/dem/.gitattributes"
+  ],
+  "finest_prepared_tile_alpha_coverage_overview_pct": {
+    "terrain-regional/elevation": 100.0,
+    "terrain-regional/hillshade": 100.0,
+    "terrain-regional/slope": 100.0,
+    "terrain-global/elevation": 100.0,
+    "terrain-global/hillshade": 100.0,
+    "terrain-global/slope": 100.0,
+    "usgs-color": 99.97187481261165
+  },
+  "alpha_metric": "Exact spherical-area overlap of tile alpha cell footprints with overview; finest prepared levels, before GPU resampling. Color clips destination centers, so boundary quantization may leave fractional edge slivers despite 100% native source-mask validity.",
+  "failures": [],
+  "runtime_uses_ignored_source_cache": false
+}

@@ -12,9 +12,9 @@
 
 ### Executive Summary
 
-Milestone G4 expands scientific terrain visualization across the Curiosity / Lower Mount Sharp exploration footprint in Gale Crater from a localized **1.04%** subset to **100.00% continuous real-data terrain coverage**, without interpolating, fabricating topography, or compromising coordinate integrity.
+Milestone G4 expands scientific terrain visualization across the Curiosity / Lower Mount Sharp exploration footprint in Gale Crater from a localized **1.04%** subset to **100.00% continuous real-data terrain coverage**, without new gap filling by the Marswalk derivative pipeline. Display reprojection uses nearest-neighbor resampling, and the upstream stereo reconstruction and blended source are not claimed to contain zero interpolation. See the combined integration report for measured validity and the corrected global-source affine.
 
-Using peer-reviewed 30 m HRSC stereo photogrammetry (Persaud et al., 2021; DOI: 10.5281/zenodo.5808354) as the primary regional candidate and official USGS HRSC–MOLA 200 m blended elevation (Fergason et al., 2018) as the secondary fallback, Marswalk Planner now serves authentic elevation, hillshade, and slope overlays across the full **96.2 km²** Gale overview footprint (`137.344235°` to `137.457943° E`, `-4.822361°` to `-4.580605° N`).
+Using published 30 m HRSC stereo photogrammetry (Persaud et al., 2021; DOI: 10.5281/zenodo.5808354) as the primary regional candidate and official USGS HRSC–MOLA 200 m blended elevation (Fergason et al., 2018) as the secondary fallback, Marswalk Planner now serves authentic elevation, hillshade, and slope overlays across the full **96.26 km²** Gale overview footprint (`137.344235°` to `137.457943° E`, `-4.822361°` to `-4.580605° N`).
 
 All products preserve the Mars 2000 sphere reference frame ($R = 3,396,190\text{ m}$), planetocentric latitude, east-positive longitude, and the MOLA areoid vertical datum. Co-registration against the optical CTX mosaic remains formally qualified with scientific disclaimers in accordance with project safety guidelines.
 
@@ -37,7 +37,7 @@ All products preserve the Mars 2000 sphere reference frame ($R = 3,396,190\text{
 | **Product Name** | 30-m HRSC DTM Mosaic of Gale Crater | USGS HRSC–MOLA Blended DEM Global 200m v2 | PDS PLACES v42.0 Orbital DEM Subset |
 | **Dataset Identifier** | `hrsc_km09_h1938_h1927_h1916-dtm-mosaic.tif` | `Mars_HRSC_MOLA_BlendDEM_Global_200mp_v2.tif` | `msl_orbital_dem.xml` (PDS PLACES v42.0) |
 | **Publisher / Agency** | ESA / DLR / Freie Universität Berlin / NASA JPL | USGS Astrogeology Science Center / NASA / ESA | NASA / JPL-Caltech / USGS Localization |
-| **Citation / DOI** | Persaud, S. (2021), DOI: `10.5281/zenodo.5808354` | Fergason, Hare, and Laura (2018), PDS Annex | PLACES SIS Section 3.9.3 |
+| **Citation / DOI** | Persaud, D. M., Putri, A. D. R., and Muller, J.-P. (2021), DOI: `10.5281/zenodo.5808354` | Fergason, Hare, and Laura (2018), PDS Annex | PLACES SIS Section 3.9.3 |
 | **Published File Size** | 311,785,221 bytes (311.8 MB) | 11,384,463,908 bytes (11.38 GB global) | 28,311,552 bytes (bounded row range) |
 | **Source Checksum** | MD5: `1d714f2142a56e962d50d985b7088b13` | BigTIFF IFD Header verified | SHA-256 verified |
 | **Access Method** | Direct Zenodo download with range resume | Bounded window extraction via HTTP Range | PDS row-range HTTP Range request |
@@ -55,25 +55,19 @@ The configured Gale Overview exploration footprint remains strictly preserved:
 - **East:** `137.4579431096443° E`
 - **South:** `-4.822361175063087° N`
 - **North:** `-4.580605407446296° N`
-- **Planar Surface Area:** $\approx 96.2\text{ km}^2$
+- **Planar Surface Area:** $\approx 96.26\text{ km}^2$ (spherical footprint area; not a positional-accuracy measure)
 
-#### Before vs. After Coverage Audit
+#### Independently measured integration coverage
 
-```
-┌──────────────────────────────────────────────────────────────────────────────┐
-│ GALE OVERVIEW FOOTPRINT TERRAIN COVERAGE COMPARISON                          │
-├──────────────────────────────────────┬────────────────────┬──────────────────┤
-│ Terrain Layer                        │ Valid Cells / Area │ Overview Cov. %  │
-├──────────────────────────────────────┼────────────────────┼──────────────────┤
-│ Local PDS DEM (Baseline G3.2)        │ 1.00 km²           │ 1.04%            │
-│ Regional HRSC 30 m (G4 Primary)      │ 96.20 km² (107,775)│ 100.00%          │
-│ Global HRSC-MOLA 200 m (G4 Fallback) │ 96.20 km² (42,602) │ 100.00%          │
-│ Combined Authentic Real-Data Total   │ 96.20 km²          │ 100.00%          │
-│ Fabricated / Interpolated Pixels     │ 0 cells            │ 0.00%            │
-└──────────────────────────────────────┴────────────────────┴──────────────────┘
-```
+| Product | Valid source-grid coverage of configured overview | Buffered derived cells |
+| --- | --- | --- |
+| PDS local subset | approximately 1.04% | 1,600 |
+| Regional HRSC 30 m | 100% | 158,013 |
+| Global HRSC–MOLA nominal 200 m | 100% | 41,772 |
 
-Within the Gale overview bounds, the Regional HRSC 30 m DTM mosaic contains **107,775 out of 107,775 valid pixels (100.00%)**, completely eliminating the data voids of the 1 km local subset without synthesizing topography.
+These percentages are spherical-area intersections of actual native and derivative masks with the configured overview. Buffered cell counts are not counts of cells wholly inside the overview. Display coverage is independently audited from every tile over HTTP. No pipeline gap filling is applied; nearest-neighbor display reprojection/resampling and source-authored stereo reconstruction/blending are explicitly retained. Native-grid validity does not establish uniform observational resolution or independent optical alignment.
+
+The integration audit found that the global extractor substituted 360/106694 for the actual GeoTIFF pixel step 0.003374120830641 degrees. The copied subset metadata and global derivatives are corrected to the actual source affine after 537 native DN values in three distributed rows matched the original TIFF. Original native values and integer source window are preserved. This correction is computational source correspondence, not an optical registration fit.
 
 ---
 
@@ -88,12 +82,12 @@ $$\Delta x = \Delta\lambda_{\text{rad}} \cdot R_{\text{Mars}} \cdot \cos(\phi_{\
 
 #### Slope Derivation (Horn 3×3 Gradients)
 Surface gradients in orthogonal directions are computed over a 3×3 moving window:
-$$p = \frac{\partial z}{\partial x} = \frac{(z_{NW} + 2z_{W} + z_{SW}) - (z_{NE} + 2z_{E} + z_{SE})}{8 \cdot \Delta x}$$
+$$p = \frac{\partial z}{\partial x} = \frac{(z_{NE} + 2z_{E} + z_{SE}) - (z_{NW} + 2z_{W} + z_{SW})}{8 \cdot \Delta x}$$
 $$q = \frac{\partial z}{\partial y} = \frac{(z_{NW} + 2z_{N} + z_{NE}) - (z_{SW} + 2z_{S} + z_{SE})}{8 \cdot \Delta y}$$
 $$\text{Slope (degrees)} = \arctan\left(\sqrt{p^2 + q^2}\right) \cdot \frac{180}{\pi}$$
 
 #### Artificial Illumination (Hillshade)
-Simulated illumination assumes clear Martian sky without atmospheric scattering or vertical exaggeration:
+Artificial directional illumination uses no atmosphere, acquisition-time lighting, cast-shadow or vertical-exaggeration model:
 - **Azimuth ($\theta$):** $315^\circ$ (Northwest)
 - **Altitude ($\alpha$):** $45^\circ$
 - **Illumination Model:**
@@ -109,12 +103,12 @@ All 9 posts in the 3×3 gradient window must be finite and valid. If any post is
 To maintain strict scientific provenance, different sensors are never averaged or numerically spliced into a pseudo-seamless DEM. Instead, distinct layer entries allow users to compare sensors:
 
 #### Regional HRSC 30 m Products
-- **`gale-regional-elevation`**: Continuous elevation ramp reflecting Lower Mount Sharp stratigraphy:
-  - `< −4400 m`: `#425A78` (Crater floor / Bradbury Landing)
-  - `−4400 to < −4200 m`: `#587E91` (Lower fan apron)
-  - `−4200 to < −3900 m`: `#87A39D` (Clay-bearing unit / Vera Rubin ridge)
-  - `−3900 to < −3500 m`: `#BCB29C` (Sulfate-bearing layered strata)
-  - `≥ −3500 m`: `#C8A97E` (Upper Mount Sharp flank)
+- **`gale-regional-elevation`**: Discrete elevation classes relative to the MOLA areoid; elevation does not identify lithology:
+  - `< −4400 m`: `#425A78` (Lowest elevation class)
+  - `−4400 to < −4200 m`: `#587E91` (Lower elevation terrain)
+  - `−4200 to < −3900 m`: `#87A39D` (Intermediate elevation terrain)
+  - `−3900 to < −3500 m`: `#BCB29C` (Higher elevation terrain)
+  - `≥ −3500 m`: `#C8A97E` (Highest elevation class)
 - **`gale-regional-hillshade`**: 30 m grid artificial illumination highlighting canyon walls, channel scarps, and yardang crests.
 - **`gale-regional-slope`**: 30 m grid terrain inclination classes ($0-5^\circ, 5-10^\circ, 10-15^\circ, 15-20^\circ, \ge 20^\circ$).
 
@@ -122,7 +116,7 @@ To maintain strict scientific provenance, different sensors are never averaged o
 - **`gale-global-elevation`**, **`gale-global-hillshade`**, **`gale-global-slope`**: Regional baseline providing crater-scale context.
 
 #### Local PDS 1 m / 25 m Products
-- **`gale-terrain`**, **`gale-hillshade`**, **`gale-slope`**: High-detail 1 km corridor subset retained in original resolution.
+- **`gale-terrain`**, **`gale-hillshade`**, **`gale-slope`**: Local 1 km subset retained at 25 m analysis support from a 1 m source grid; uniform native 1 m detail is not claimed.
 
 #### UI Interaction & Mutual Exclusivity
 In `lib/map/region-layers.ts`, selecting any thematic terrain or geology layer automatically clears previous non-optical layers while retaining the CTX optical mosaic and Curiosity rover traverse underneath. This prevents legend collision and conflicting vertical datums.
@@ -136,9 +130,9 @@ Tiles are prerendered as compact, transparent Web Mercator PNGs (`256×256`) for
 - **Tile Sampling:** Direct inverse Mercator projection ($px \to \lambda, py \to \phi$) with nearest-neighbor sampling. Zero arbitrary coordinate shifts.
 - **Asset Footprint:**
   - Regional HRSC 30 m: 210 tiles total (539.5 KB)
-  - Global HRSC–MOLA 200 m: 1,305 tiles total (1,233.9 KB)
+  - Global HRSC–MOLA 200 m: 1,305 tiles total (1,225.7 KiB)
   - Combined tile assets: ~1.77 MB
-- **Network Performance:** Tile requests are instant (<15 ms from local cache or CDN), consuming minimal bandwidth and zero client-side CPU computation.
+- **Network Performance:** Small static assets are served locally. No universal latency or zero browser-CPU claim is established; decoding, resampling and compositing consume client resources. Combined HTTP hashes and browser measurements are recorded in the integration report.
 
 ---
 
@@ -160,7 +154,7 @@ In accordance with Section 14, broader geological GIS products were surveyed:
 
 ### 8. Scientific Registration Gate Status
 
-Previous investigations demonstrated that fine-scale DEM-to-CTX optical registration carries unquantified residual misalignments (up to 20–50 m in steep topography due to parallax and camera models).
+Independent local DEM-to-CTX and DEM-to-USGS-color registration remains unverified. No quantitative local positional bound is established. The previously asserted 20–50 m range and causal attribution were unsupported and are withdrawn. The combined audit separately found and repaired a source-affine transcription error in the derived global subset; that computational correction is not an optical co-registration validation.
 
 - **Gate Decision:** Regional terrain visualization is permitted with mandatory visual warnings.
 - **Operational Route Planning:** Geometric great-circle planning remains uncoupled from terrain elevations.
@@ -174,7 +168,7 @@ Previous investigations demonstrated that fine-scale DEM-to-CTX optical registra
 All automated test suites pass with 100% success:
 
 1. **Node.js / TypeScript Test Suites (`npm test` & `npx tsx --test`):**
-   - **51 test suites, 160 passing tests (0 failures, 0 regressions).**
+   - **51 top-level tests, 160 passing tests (0 failures, 0 regressions).**
    - Covers geodesy, waypoint planning, UI components, bridge serialization, region contracts, layer schema validation, and G4 multi-resolution integrity.
 2. **Python Scientific Test Suites (`unittest`):**
    - **16 tests passing across 3 suites.**

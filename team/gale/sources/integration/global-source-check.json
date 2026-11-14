@@ -1,0 +1,70 @@
+{
+  "source": {
+    "url": "https://asc-pds-services.s3.us-west-2.amazonaws.com/mosaic/Mars/HRSC_MOLA_Blend/Mars_HRSC_MOLA_BlendDEM_Global_200mp_v2.tif",
+    "total": 11384463908,
+    "etag": "\"94ec792407f5a3da2f8b87aba42613eb-1358\"",
+    "last_modified": "Wed, 09 Nov 2022 14:59:19 GMT"
+  },
+  "header_sha256": "c4189705c45c65eef450cacd4942fc31832a75b48fa35df2b578aa7689f028d7",
+  "source_crs_wkt": "GEOGCS[\"GCS_Mars_2000_Sphere\",DATUM[\"Mars_2000_(Sphere)\",SPHEROID[\"Mars_2000_Sphere_IAU_IAG\",3396190,0]],PRIMEM[\"Reference_Meridian\",0],UNIT[\"degree\",0.0174532925199433,AUTHORITY[\"EPSG\",\"9122\"]],AXIS[\"Latitude\",NORTH],AXIS[\"Longitude\",EAST]]",
+  "source_affine": [
+    0.003374120830641,
+    0.0,
+    -180.0,
+    0.0,
+    -0.003374120830641,
+    90.0
+  ],
+  "source_shape": [
+    53347,
+    106694
+  ],
+  "source_nodata": -32768.0,
+  "source_dtype": [
+    "int16"
+  ],
+  "subset_col_row": [
+    93979,
+    27947
+  ],
+  "samples": [
+    {
+      "subset_row": 0,
+      "original_row": 27947,
+      "native_values_compared": 179,
+      "range_sha256": "d6c73b7375f98227bac3ee5af46c8a34f8d0c2d5700614261b327a8a43182e88"
+    },
+    {
+      "subset_row": 119,
+      "original_row": 28066,
+      "native_values_compared": 179,
+      "range_sha256": "61a010652c4854ca74873361bcbdc0fca80f7621a64cb30c5cfd1a3d5b7e8263"
+    },
+    {
+      "subset_row": 237,
+      "original_row": 28184,
+      "native_values_compared": 179,
+      "range_sha256": "eef23bb4aa95ad4e85225fdef155e51681850e702ef7d7f9cc2b816381ae7600"
+    }
+  ],
+  "legacy_subset_affine": [
+    0.0033741353778094364,
+    0.0,
+    137.09786867115304,
+    0.0,
+    -0.0033741353778094364,
+    -4.296961403640324
+  ],
+  "corrected_subset_affine": [
+    0.003374120830641,
+    0.0,
+    137.09650154281053,
+    0.0,
+    -0.003374120830641,
+    -4.296554853924022
+  ],
+  "subset_native_dn_sha256": "8cf6fbedf710da94d5a23cb9ad0e45572c017b10c0dc25521a9311a57af2bb49",
+  "correction_reason": "Restore the original TIFF affine for the documented integer source window; no feature fit, image translation or source DN changes.",
+  "unique_range_bytes": 1049650,
+  "interpretation": "Original-file encoding, affine and sampled DN correspondence verified; not independent optical co-registration or positional accuracy."
+}

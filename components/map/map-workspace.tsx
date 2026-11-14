@@ -594,7 +594,12 @@ export default function MapWorkspace({
             <p>{region.mission_context}</p>
           </div>
         </div>
-        <button className="surface-button" onClick={onLayers}>
+        <button className="surface-button" onClick={() => {
+          // Layer inspection is an explicit choice to retain the current view.
+          // Otherwise mobile sheet resize can refit against a changed legend.
+          if (region.id === "gale" && scientificMap && !preview) overview.current = false;
+          onLayers();
+        }}>
           <Layers size={18} />
           Layers
         </button>

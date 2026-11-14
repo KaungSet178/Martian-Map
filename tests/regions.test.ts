@@ -71,7 +71,7 @@ test("DEM derivatives retain audited bytes, bounded support, units and conservat
     assert.equal(layer.rendering.kind, "raster-tiles");
     if (layer.rendering.kind === "raster-tiles") {
       assert.deepEqual(layer.rendering.bounds, {west_east:west,south_latitude:south,east_east:east,north_latitude:north});
-      assert.deepEqual(layer.rendering.focus_extent, layer.rendering.bounds);
+      assert.equal(layer.rendering.focus_extent, undefined);
       assert.equal(layer.rendering.resampling, "nearest");
       assert.ok(regionSchema.safeParse({...gale, layers:[{...layer, rendering:{...layer.rendering, bounds:undefined,focus_extent:undefined,resampling:undefined}}]}).success);
       assert.equal(regionSchema.safeParse({...gale, layers:[{...layer,rendering:{...layer.rendering,resampling:"cubic"}}]}).success,false);
@@ -81,7 +81,8 @@ test("DEM derivatives retain audited bytes, bounded support, units and conservat
   assert.equal(gale.capabilities.terrain_coverage.status, "partial");
   for (const id of ["gale-terrain", "gale-hillshade", "gale-slope", "gale-geology"]) {
     const state = updateLayerState(gale, updateLayerState(gale, {}, "gale-slope", {visible:true}), id, {visible:true});
-    assert.equal(gale.layers.filter((l) => l.kind !== "optical" && l.kind !== "overlay" && (state[l.id]?.visible ?? l.default_visible)).length,1);
+    assert.equal(gale.layers.filter((l) => l.kind === "topography" && (state[l.id]?.visible ?? l.default_visible)).length,1);
+    if (id === "gale-geology") assert.equal(state[id].visible, true);
   }
   for (const id of ["jezero", "oxia"]) assert.ok(getRegion(id)!.layers.every((l) => !l.source_id?.startsWith("gale-")));
 });
@@ -106,7 +107,8 @@ test("G4 regional and global terrain layers preserve multi-resolution hierarchy,
   const audit = JSON.parse(readFileSync("team/gale/G4_TERRAIN_AUDIT.json", "utf8"));
   assert.equal(audit.milestone, "G4");
   assert.equal(audit.coverage_evaluation.combined_real_data_coverage_pct, 100);
-  assert.equal(audit.coverage_evaluation.fabricated_or_interpolated_pixels_pct, 0);
+  assert.equal(audit.coverage_evaluation.added_gap_filling, false);
+  assert.match(audit.coverage_evaluation.display_resampling, /nearest-neighbor/);
 
   // Check regional HRSC 30 m layers
   const regionalIds = ["gale-regional-elevation", "gale-regional-hillshade", "gale-regional-slope"];
@@ -126,7 +128,7 @@ test("G4 regional and global terrain layers preserve multi-resolution hierarchy,
       assert.equal(layer!.rendering.min_zoom, 5);
       assert.equal(layer!.rendering.max_zoom, 13);
       assert.ok(layer!.rendering.bounds);
-      assert.deepEqual(layer!.rendering.bounds, layer!.rendering.focus_extent);
+      assert.equal(layer!.rendering.focus_extent, undefined);
     }
   }
 
@@ -148,7 +150,7 @@ test("G4 regional and global terrain layers preserve multi-resolution hierarchy,
       assert.equal(layer!.rendering.min_zoom, 5);
       assert.equal(layer!.rendering.max_zoom, 13);
       assert.ok(layer!.rendering.bounds);
-      assert.deepEqual(layer!.rendering.bounds, layer!.rendering.focus_extent);
+      assert.equal(layer!.rendering.focus_extent, undefined);
     }
   }
 
@@ -166,10 +168,11 @@ test("G4 regional and global terrain layers preserve multi-resolution hierarchy,
     assert.equal(bytes.length, record.bytes);
   }
 
-  // Radio-like exclusivity across all terrain and geology layers
+  // One thematic terrain view; independent geology must remain available.
   for (const id of [...regionalIds, ...globalIds, "gale-terrain", "gale-geology"]) {
     const state = updateLayerState(gale, updateLayerState(gale, {}, "gale-regional-slope", { visible: true }), id, { visible: true });
-    assert.equal(gale.layers.filter((l) => l.kind !== "optical" && l.kind !== "overlay" && (state[l.id]?.visible ?? l.default_visible)).length, 1);
+    assert.equal(gale.layers.filter((l) => l.kind === "topography" && (state[l.id]?.visible ?? l.default_visible)).length, 1);
+    if (id === "gale-geology") assert.equal(state[id].visible, true);
   }
 });
 

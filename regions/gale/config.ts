@@ -84,8 +84,8 @@ export const config = {
   "capabilities": {
     "terrain_coverage": {
       "status": "partial",
-      "reason": "Audited native-CRS PDS subset only: 1 km projected square, 25 m aggregation / 75 m gradient support. Mixed effective resolution and local CTX co-registration unverified. No hazard or routing eligibility.",
-      "source_id": "gale-pds-dem-subset"
+      "reason": "Regional HRSC 30 m and global nominal 200 m source/derivative masks cover 100% of the configured overview; local PDS subset retains 25 m aggregation / 75 m gradient support. Effective observational quality and independent CTX/color co-registration remain unverified. Partial scientific readiness, not missing regional grid coverage; no hazard or routing eligibility.",
+      "source_id": "gale-hrsc-30m"
     },
     "experimental_routing": {
       "status": "unavailable",
@@ -157,7 +157,7 @@ export const config = {
       "native_resolution_m": 200,
       "processing_notes": [
         "Fergason, Hare, and Laura (2018), Astrogeology PDS Annex, U.S. Geological Survey.",
-        "Global 200 m blended digital elevation model. Equirectangular projection on Mars 2000 sphere R=3396190 m.",
+        "Global nominal 200 m blended digital elevation model. Geographic angular grid on Mars sphere R=3396190 m; source-specific affine preserved.",
         "Bounded window extraction covering Gale Crater via HTTP range requests without downloading 11.4 GB global raster.",
         "Horn 3x3 derivatives on 200 m grid for slope in degrees and NW artificial illumination hillshade."
       ],
