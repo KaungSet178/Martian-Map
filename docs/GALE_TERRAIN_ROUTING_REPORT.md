@@ -729,7 +729,7 @@ The existing shared timeline/resource engines and UI were not modified.
 | Baseline | `08ccedb7c635ab89603d6444b30e6fe4f7e7d6d4` | `fix(map): harden M3 trajectory slerp limits, fault isolation, and placement safeguards` |
 | Implementation | `a83866ffe62c6dac914c45c854c2f7c74b831f77` | `feat(routing): implement Gale terrain-aware route planning` |
 | Report metadata | `3557b97a4f4e47893ae019671d108845077a7af8` | `docs(routing): record final Gale routing commit and push status` |
-| Dependency and service note | `FOLLOW_UP_SHA_PLACEHOLDER` | `fix(routing): pin compatible FastAPI stack and record service smoke test` |
+| Dependency and service note | `b655740315880e11c4f8ee72cc87e8c86a448f80` | `fix(routing): pin compatible FastAPI stack and record service smoke test` |
 
 The implementation commit introduces the routing engine, compact DEM crops,
 manifest, examples, tests, TypeScript adapter, and this report. The two later
