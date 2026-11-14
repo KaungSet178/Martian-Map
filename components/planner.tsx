@@ -22,6 +22,7 @@ import {
   Globe2,
   CircleHelp,
   Sun,
+  Wind,
 } from "lucide-react";
 import { regionIdSchema, type RegionId, type MarsGeographicCoordinates } from "@/lib/contracts/region";
 import { regions, regionIds } from "@/lib/regions/registry";
@@ -48,6 +49,7 @@ import {
 import { TargetCatalog, TargetDetails } from "@/components/science/catalog";
 import { EvidenceDetails, LayerManager } from "@/components/science/evidence";
 import { EnvironmentalConditionsPanel } from "@/components/environment/environmental-conditions-panel";
+import { EVAResourcePanel } from "@/components/eva";
 import { MissionEditor } from "@/components/mission/editor";
 import { RouteComparison } from "@/components/mission/analysis";
 import { MissionBrief } from "@/components/mission/brief";
@@ -78,7 +80,7 @@ const MapWorkspace = dynamic(() => import("@/components/map/map-workspace"), {
     </div>
   ),
 });
-type Panel = "science" | "environment" | "plan" | "compare" | "layers" | "evidence";
+type Panel = "science" | "environment" | "plan" | "eva" | "compare" | "layers" | "evidence";
 type Modal = "sites" | "saved" | "brief" | "target" | null;
 const subscribeOnline = (onChange: () => void) => {
   window.addEventListener("online", onChange);
@@ -254,6 +256,9 @@ export function Planner() {
       const panelParam = new URLSearchParams(location.search).get("panel");
       if (panelParam === "environment") {
         setPanel("environment");
+        setExpanded(true);
+      } else if (panelParam === "eva") {
+        setPanel("eva");
         setExpanded(true);
       }
       try {
@@ -540,6 +545,7 @@ export function Planner() {
                 ["science", "Science"],
                 ["environment", "Environment"],
                 ["plan", "Plan"],
+                ["eva", "EVA Resources"],
                 ["compare", "Review"],
               ] as const
             ).map(([key, label]) => (
@@ -745,6 +751,15 @@ export function Planner() {
                 )}
               </>
             )}
+            {panel === "eva" && (
+              <EVAResourcePanel
+                region={region}
+                mission={mission}
+                onMissionChange={updateMission}
+                onEvidence={() => showPanel("evidence")}
+                onSwitchToPlan={() => showPanel("plan")}
+              />
+            )}
             {panel === "compare" && (
               <RouteComparison
                 mission={mission}
@@ -846,6 +861,10 @@ export function Planner() {
           <button onClick={() => showPanel("environment")}>
             <Sun size={14} />
             Environment
+          </button>
+          <button onClick={() => showPanel("eva")}>
+            <Wind size={14} />
+            EVA Resources
           </button>
           <button onClick={() => showPanel("evidence")}>
             <CircleHelp size={14} />

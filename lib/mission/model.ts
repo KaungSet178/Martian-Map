@@ -8,6 +8,10 @@ import {
   waypointPlanSchema,
   type WaypointPlan,
 } from "@/lib/mission/waypoint-planning";
+import {
+  evaResourcePlanPersistenceSchema,
+  type EVAResourcePlanPersistence,
+} from "@/lib/eva/validation";
 
 export const missionSchema = z.object({
   schema_version: z.literal(1),
@@ -28,9 +32,11 @@ export const missionSchema = z.object({
   model_versions: z.record(z.string(), z.string()),
   saved_at: z.iso.datetime().nullable(),
   waypoint_plan: waypointPlanSchema.optional(),
+  eva_resource_plan: evaResourcePlanPersistenceSchema.optional(),
 });
 export type Mission = z.infer<typeof missionSchema>;
 export type { WaypointPlan };
+export type { EVAResourcePlanPersistence };
 export const STORAGE_KEY = "marswalk.missions.v1";
 
 export function newMission(region: RegionManifest): Mission {
