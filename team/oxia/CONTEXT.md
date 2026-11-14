@@ -4,7 +4,7 @@ Owner: **Thaw Thaw Tun**. Assigned branch: **feat/oxia-map**.
 Shared integration/architecture branch: feat/shared-ui-redesign, PR #1.
 This is implementation guidance, not scientific or operational approval.
 
-## Current state (14 November 2026, `dataset_version` `oxia-elevation-v9`)
+## Current state (14 November 2026, `dataset_version` `oxia-geology-removed-v10`)
 
 Data-source rule for Oxia: (1) the Space Apps challenge Resources list (NASA JPL Mars
 Trek) first; (2) other NASA sources only where the list cannot cover it, marked tier 2
@@ -22,8 +22,8 @@ Display area (team-chosen, not a landing ellipse or published map boundary):
 | `oxia-terrain` | Regional hillshade (200 m) | Derived | `oxia-mola-hrsc-shade-trek` | 200 m | `/maps/oxia/hillshade-tiles/` (z5–9, 26 tiles, ~1 MB) |
 | `oxia-elevation` | Elevation (MOLA) | Observed | `oxia-trek-elevation-profile` | MOLA ~463 m (grid 0.01°, interpolated by the Mars Trek service) | `/maps/oxia/elevation-tiles/` (z5–9, 26 tiles, 34 KB) |
 | `oxia-slope` | Regional slope (MOLA) | Derived | `oxia-trek-elevation-profile` | MOLA ~463 m (grid 0.01°) | `/maps/oxia/slope-tiles/` (z5–9, 26 tiles, 33 KB) |
-| `oxia-geology` | Mineral detections | Interpreted | `oxia-trek-aqueous` (+ `oxia-trek-hydrous`) | points, ~0.6 km | `/maps/oxia/mineral-detections.geojson` (6 points, 4.7 KB) |
 | `oxia-thermal-night` | THEMIS night IR | Observed | `oxia-themis-night-trek` | 100 m (source level 9 ~81 m) | `/maps/oxia/themis-night-tiles/` (z5–10, 75 tiles, 4.8 MB) |
+| `oxia-geology` | Geology & mineralogy | Unavailable | — | — | pending, not drawn (mineral-detection layer removed by the region owner) |
 
 Elevation classes (m, relative to the Mars areoid): below −3100, −3100 to −3000,
 −3000 to −2900, −2900 to −2800, −2800 and above; the grid ranges −3791 to −2381 m.
@@ -32,8 +32,7 @@ Plain colour by height, no shading.
 Slope classes: 0–2, 2–5, 5–10, 10–20, >20°. The >20° class marks slopes beyond
 NASA's 20° suited-walking figure (tier 2: EVA-EXP-0042 Rev B p.38; ICES-2025-129
 p.7). In the display area 56 of 41,205 cells (18.8 km², 0.14 %) exceed 20°, mostly
-one patch near 17.21 N, 335.07 E. Mineral detections use one colour because the
-shared renderer draws circles in a single colour; each point keeps its class.
+one patch near 17.21 N, 335.07 E.
 
 ### Targets (`regions/oxia/targets.ts`; IDs unchanged)
 
@@ -44,7 +43,8 @@ shared renderer draws circles in a single colour; each point keeps its class.
 | `oxia-objective-3` | Second clay detection | 18.22, 336.11 | Interpreted | `oxia-trek-aqueous` |
 
 Locations are Mars Trek detection points (two-decimal degrees, ~0.6 km), not sample
-sites. All targets keep `routing_eligibility` unavailable.
+sites. All targets keep `routing_eligibility` unavailable. The mineral-detection
+points are not drawn as a map layer; they only locate these targets.
 
 ### Sources (`config.source_references`)
 
@@ -83,13 +83,15 @@ call it directly. Live elevation profiles would need a server-side proxy route (
   boulders and banks.
 - **Planned landing area outline:** Mars Trek has no ExoMars landing ellipse, and
   non-NASA sources are excluded.
+- **Geology / mineralogy layer:** removed by the region owner; `oxia-geology` is pending
+  and not drawn. No mapped geologic units are integrated.
 
 ### Rebuild scripts (prep-only, outside the app build)
 
 `team/oxia/basemap/prepare_ctx_basemap.mjs`, `team/oxia/thermal/prepare_themis_night.mjs`,
 `team/oxia/terrain/prepare_hillshade.py` (Python + Pillow), `team/oxia/terrain/build_mola_slope.mjs`,
-`team/oxia/terrain/build_elevation_tiles.mjs` (offline, from the saved grid),
-`team/oxia/geology/build_detections.mjs`; each writes a build report next to it.
+`team/oxia/terrain/build_elevation_tiles.mjs` (offline, from the saved grid); each
+writes a build report next to it.
 Screenshots: `team/oxia/screenshots/`.
 
 ## Read and inspect first

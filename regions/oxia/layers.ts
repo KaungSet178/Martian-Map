@@ -145,38 +145,25 @@ export const layers = [
   {
     id: "oxia-geology",
     type: "Geology & mineralogy",
-    display_name: "Mineral detections",
+    display_name: "Geology & mineralogy",
     kind: "geology",
-    availability: "available",
-    source_id: "oxia-trek-aqueous",
+    availability: "pending",
+    source_id: null,
     observation_date: null,
     spatial_resolution_m: null,
-    coverage:
-      "6 unique detection points inside the team-chosen Oxia display area (17.11-19.15 N, 334.60-336.60 E) from two Mars Trek layers: Aqueous Mineral Distribution (3 phyllosilicate, 1 silica; source oxia-trek-aqueous) and Hydrous Mineral Detections (2 CRISM hydrous; source oxia-trek-hydrous). Asset /maps/oxia/mineral-detections.geojson built by team/oxia/geology/build_detections.mjs.",
+    coverage: null,
     limitations:
-      "Detection points are approximate (two-decimal degrees, about 0.6 km) and are not mapped unit boundaries or outcrop outlines. All classes share one colour because the shared renderer draws circles in a single colour; each point keeps its class, source, citation and Mars Trek feature IDs as GeoJSON properties. Published spectral interpretations from global compilations, not field-verified; no abundance, layering or depth information.",
-    evidence: "Interpreted",
-    attribution:
-      "Mars Trek Aqueous Mineral Distribution (Ehlmann & Edwards 2014) and Hydrous Mineral Detections (Carter et al. 2013) · via NASA JPL Mars Trek",
+      "No geology or mineralogy map layer is shown for Oxia (removed by the region owner). Mars Trek mineral-detection points are used only to locate the science targets (sources oxia-trek-aqueous and oxia-trek-hydrous), not drawn as a layer. No mapped geologic units are integrated.",
+    evidence: "Unavailable",
+    attribution: null,
     rendering: {
-      kind: "geojson",
-      url: "/maps/oxia/mineral-detections.geojson",
-      geometry: "circle",
-      color: "#5FD39A",
+      kind: "unavailable",
+      reason:
+        "Removed by the region owner; no geology or mineralogy map layer is integrated for Oxia.",
     },
     default_visible: false,
-    default_opacity: 90,
-    legend: {
-      title:
-        "Mineral detections (approximate points, ~0.6 km; not unit boundaries). All classes in one colour.",
-      units: null,
-      items: [
-        {
-          label: "Phyllosilicate (clay), silica or hydrous mineral detection",
-          color: "#5FD39A",
-        },
-      ],
-    },
+    default_opacity: 70,
+    legend: null,
   },
   {
     id: "oxia-thermal-night",

@@ -60,7 +60,8 @@ export const config = {
   // v7: oxia-slope from a Mars Trek MOLA elevation grid (Derived).
   // v8: slope classes 10-20 / >20 deg aligned with NASA's 20 deg EVA figure.
   // v9: oxia-elevation colour-by-height layer from the same MOLA grid.
-  dataset_version: "oxia-elevation-v9",
+  // v10: mineral-detections map layer removed; oxia-geology back to pending.
+  dataset_version: "oxia-geology-removed-v10",
   routing: {
     enabled: false,
     reason:
