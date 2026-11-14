@@ -27,7 +27,23 @@ test("all region fixtures obey shared contract and cannot imply scientific readi
     );
     if (id === "gale") {
       assert.equal(region.data_status, "metadata_verified");
-      assert.deepEqual(region.layers.filter((l) => l.availability === "available").map((l) => l.id), ["gale-optical", "gale-terrain", "gale-hillshade", "gale-slope", "gale-geology", "gale-traverse-recorded"]);
+      assert.deepEqual(
+        region.layers.filter((l) => l.availability === "available").map((l) => l.id),
+        [
+          "gale-optical",
+          "gale-regional-elevation",
+          "gale-regional-hillshade",
+          "gale-regional-slope",
+          "gale-global-elevation",
+          "gale-global-hillshade",
+          "gale-global-slope",
+          "gale-terrain",
+          "gale-hillshade",
+          "gale-slope",
+          "gale-geology",
+          "gale-traverse-recorded",
+        ],
+      );
     } else {
       assert.equal(region.data_status, "illustrative");
       assert.ok(region.layers.every((l) => l.availability !== "available"));

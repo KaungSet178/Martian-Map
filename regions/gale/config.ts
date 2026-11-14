@@ -124,6 +124,50 @@ export const config = {
       ]
     },
     {
+      "id": "gale-hrsc-30m",
+      "title": "30-m HRSC DTM Mosaic of Gale Crater, Mars",
+      "url": "https://doi.org/10.5281/zenodo.5808354",
+      "agency": "ESA / DLR / Freie Universität Berlin / NASA / JPL-Caltech",
+      "instrument": "Mars Express High-Resolution Stereo Camera (HRSC)",
+      "product_id": "hrsc_km09_h1938_h1927_h1916-dtm-mosaic.tif",
+      "acquisition_date": null,
+      "sol": null,
+      "native_resolution_m": 30,
+      "processing_notes": [
+        "Processed from HRSC stereo image orbits H1938_0000, H1927_0000, and H1916_0000 using DLR-VICAR modification (Kim and Muller 2009; Persaud et al. 2021).",
+        "Equidistant cylindrical projection on Mars 2000 sphere R=3396190 m, lat_ts=0, lon_0=0. Heights in metres relative to MOLA areoid via 200 m HRSC-MOLA blended DTM control.",
+        "Horn 3x3 derivative filters with metric cos(latitude) scaling for slope and NW artificial hillshade (315° az, 45° alt).",
+        "Valid data coverage: 100.00% across the entire Gale Overview footprint. Audited in team/gale/G4_TERRAIN_AUDIT.json."
+      ],
+      "limitations": [
+        "Published under CC BY 4.0: Persaud, S. (2021), 30-m HRSC DTM Mosaic of Gale Crater, Mars, DOI: 10.5281/zenodo.5808354.",
+        "Fine-scale pixel co-registration against CTX optical mosaic is unverified. Do not infer sub-pixel alignment.",
+        "30 m posting resolves regional relief and slopes; small boulders, suit-scale obstacles, and localized hazards are unresolved. Not for astronaut hazard or safety routing."
+      ]
+    },
+    {
+      "id": "gale-usgs-200m",
+      "title": "USGS HRSC and MOLA Blended DEM Global 200m v2",
+      "url": "https://astrogeology.usgs.gov/search/map/mars_mgs_mola_mex_hrsc_blended_dem_global_200m",
+      "agency": "USGS Astrogeology Science Center / NASA / ESA",
+      "instrument": "MGS MOLA / Mars Express HRSC blend",
+      "product_id": "Mars_HRSC_MOLA_BlendDEM_Global_200mp_v2.tif",
+      "acquisition_date": null,
+      "sol": null,
+      "native_resolution_m": 200,
+      "processing_notes": [
+        "Fergason, Hare, and Laura (2018), Astrogeology PDS Annex, U.S. Geological Survey.",
+        "Global 200 m blended digital elevation model. Equirectangular projection on Mars 2000 sphere R=3396190 m.",
+        "Bounded window extraction covering Gale Crater via HTTP range requests without downloading 11.4 GB global raster.",
+        "Horn 3x3 derivatives on 200 m grid for slope in degrees and NW artificial illumination hillshade."
+      ],
+      "limitations": [
+        "Official USGS product cited: Fergason et al. (2018), HRSC and MOLA Blended Digital Elevation Model at 200m V2.",
+        "Broad 200 m regional baseline; does not resolve spacesuit-scale terrain hazards, rocks, or rover obstacles.",
+        "Co-registration to optical CTX mosaic is uncertified. Not for astronaut safety routing or hazard certification."
+      ]
+    },
+    {
       "id": "gale-arc-pass-geology",
       "title": "Davis - Arc Pass photogeological GIS, v1",
       "url": "https://doi.org/10.6084/m9.figshare.30401788.v1",
