@@ -134,3 +134,12 @@ Limits: context remains finite and coarser than the detailed mission crop; sourc
 The final viewport records include all required real-layer captures and zero changed tested background pixels outside the mission footprint for all four categories. The serial run uses a dedicated artifact directory; an earlier parallel-run artifact collision was corrected and is not counted as a passing run. Early tests were also corrected to exclude overlapping UI from raster pixel comparisons and to detect coverage relative to the actual rendered mission rectangle. Exact safety and source-validation assertions remain in force.
 
 Gale now provides the requested full-workspace optical presentation while keeping high-detail imagery at its genuine source location, default scientific clipping intact, full-data exploration accessible and original scientific values/mission behavior unchanged. No further features are included.
+
+## Git delivery
+
+- Implementation commit: **`bba8398bc9f113f2bf7c83d1d7ef385d2a98ca5e`**, `feat(gale): improve full-viewport basemap while preserving mission clipping`.
+- Normal push to **`origin/feat/gale-full-viewport-basemap`** succeeded. Independent `git ls-remote --heads origin feat/gale-full-viewport-basemap` returned that exact implementation SHA.
+- This verified delivery record is a separate documentation closeout commit. The final delivered commit is the HEAD of `feat/gale-full-viewport-basemap` containing this report; its exact local/remote equality is verified after the closeout push and supplied in the final delivery response. A commit cannot embed its own SHA without changing that SHA.
+- The worktree was clean after the implementation commit. A final baseline diff confirmed no existing Gale map asset, Jezero/Oxia manifest, mission implementation or planning API change.
+- No force push or merge into `main`, `feat/gale-map`, `feat/gale-four-layer-standardization` or another shared development branch. Original source values, scientific footprints, target coordinates and mission restrictions remain intact.
+- Temporary verification browsers and development servers were stopped. This task ends at the Gale viewport/basemap milestone.
