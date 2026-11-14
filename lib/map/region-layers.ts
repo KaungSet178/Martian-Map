@@ -3,6 +3,7 @@ import type {
   RegionManifest,
   MarsGeographicCoordinates,
 } from "@/lib/contracts/region";
+import { missionTileTemplates, usesScientificClip } from "./scientific-clip";
 
 export type CoverageFocusRequest = { region_id: string; layer_id: string; request_id: number };
 export type LayerState = { visible: boolean; opacity: number };
@@ -10,6 +11,8 @@ export type LayerStates = Record<string, LayerState>;
 
 export const PRESENTATION_MASK_LAYER_ID = "region-presentation-mask";
 export const PRESENTATION_MASK_SOURCE_ID = "region-presentation-mask";
+type ClipState = { clip: boolean; pending: boolean; opacity: number; stop?: () => void };
+const clippedSources = new WeakMap<MapInstance, Map<string, ClipState>>();
 
 export function createPresentationMaskData(
   extent: NonNullable<RegionManifest["map"]["supported_extent"]>,
@@ -123,6 +126,8 @@ export function mountRegionLayers(
 ): () => void {
   if (region.map.visualization.status !== "available") return () => {};
   const ids: string[] = [];
+  const clips = new Map<string, ClipState>();
+  clippedSources.set(map, clips);
   const availableLayers = region.layers.filter(
     (l) => l.availability === "available",
   );
@@ -145,7 +150,9 @@ export function mountRegionLayers(
         : undefined;
     map.addSource(id, {
       type: "raster",
-      tiles: render.tiles,
+      tiles: usesScientificClip(region, layer)
+        ? missionTileTemplates(render.tiles, region.map.supported_extent!)
+        : render.tiles,
       tileSize: render.tile_size,
       minzoom: render.min_zoom,
       maxzoom: render.max_zoom,
@@ -157,14 +164,21 @@ export function mountRegionLayers(
       type: "raster",
       source: id,
       layout: { visibility: "none" },
-      paint: { "raster-resampling": render.resampling ?? "linear" },
+      paint: {
+        "raster-resampling": usesScientificClip(region, layer) ? "nearest" : render.resampling ?? "linear",
+        ...(usesScientificClip(region, layer) ? { "raster-fade-duration": 0 } : {}),
+      },
     });
     ids.push(id);
+    if (usesScientificClip(region, layer)) clips.set(id, { clip: true, pending: false, opacity: layer.default_opacity / 100 });
   }
 
   // 2. Mount presentation mask layer immediately above raster layers
   const hasRaster = availableLayers.some((l) => l.rendering.kind === "raster-tiles");
-  if (hasRaster && region.map.supported_extent) {
+  // Gale clips scientific tile alpha instead. Its authentic context/optical
+  // imagery must remain visible outside the mission footprint. Other regions
+  // retain their existing presentation behavior.
+  if (region.id !== "gale" && hasRaster && region.map.supported_extent) {
     map.addSource(PRESENTATION_MASK_SOURCE_ID, {
       type: "geojson",
       data: createPresentationMaskData(region.map.supported_extent),
@@ -242,6 +256,8 @@ export function mountRegionLayers(
     }
   }
   return () => {
+    for (const entry of clips.values()) entry.stop?.();
+    clippedSources.delete(map);
     for (const id of [...ids].reverse())
       if (map.getLayer(id)) map.removeLayer(id);
     for (const id of ids)
@@ -255,11 +271,10 @@ export function applyLayerStates(
   preview: boolean,
   presentationMode: "mission_view" | "full_coverage" = "mission_view",
 ) {
+  const isFullCoverage = presentationMode === "full_coverage" ||
+    states["presentation-mode"]?.visible === false ||
+    states[PRESENTATION_MASK_LAYER_ID]?.visible === false;
   if (map.getLayer(PRESENTATION_MASK_LAYER_ID)) {
-    const isFullCoverage =
-      presentationMode === "full_coverage" ||
-      states["presentation-mode"]?.visible === false ||
-      states[PRESENTATION_MASK_LAYER_ID]?.visible === false;
     const maskVisible = !preview && !isFullCoverage;
     map.setLayoutProperty(
       PRESENTATION_MASK_LAYER_ID,
@@ -271,6 +286,34 @@ export function applyLayerStates(
     const id = `region-${layer.id}`;
     if (!map.getLayer(id) || layer.rendering.kind === "unavailable") continue;
     const state = layerState(region, states, layer.id);
+    const entry = clippedSources.get(map)?.get(id);
+    if (entry) entry.opacity = state.opacity / 100;
+    if (usesScientificClip(region, layer) && layer.rendering.kind === "raster-tiles") {
+      const clip = !isFullCoverage;
+      if (entry && entry.clip !== clip) {
+        const source = map.getSource(id);
+        if (source && "setTiles" in source && typeof source.setTiles === "function") {
+          entry.stop?.();
+          entry.clip = clip;
+          entry.pending = true;
+          // MapLibre keeps expired textures renderable while setTiles reloads.
+          // Hide this scientific raster until the new tiles finish, so a
+          // Full -> Mission transition cannot flash the old unclipped data.
+          map.setPaintProperty(id, "raster-opacity", 0);
+          const onData = (event: { sourceId?: string; sourceDataType?: string; sourceDataChanged?: boolean }) => {
+            if (event.sourceId !== id || event.sourceDataType === "metadata" || event.sourceDataChanged || !map.isSourceLoaded(id)) return;
+            entry.pending = false;
+            entry.stop?.();
+            entry.stop = undefined;
+            map.setPaintProperty(id, "raster-opacity", entry.opacity);
+          };
+          map.on("sourcedata", onData);
+          entry.stop = () => map.off("sourcedata", onData);
+          source.setTiles(clip ? missionTileTemplates(layer.rendering.tiles, region.map.supported_extent!) : layer.rendering.tiles);
+        }
+      }
+      map.setPaintProperty(id, "raster-resampling", clip ? "nearest" : layer.rendering.resampling ?? "linear");
+    }
     map.setLayoutProperty(
       id,
       "visibility",
@@ -280,7 +323,7 @@ export function applyLayerStates(
       layer.rendering.kind === "raster-tiles"
         ? "raster"
         : layer.rendering.geometry;
-    map.setPaintProperty(id, `${type}-opacity`, state.opacity / 100);
+    map.setPaintProperty(id, `${type}-opacity`, entry?.pending ? 0 : state.opacity / 100);
     if (layer.rendering.kind === "geojson" && layer.rendering.line_pattern) {
       const halo = `${id}-halo`;
       if (map.getLayer(halo)) {

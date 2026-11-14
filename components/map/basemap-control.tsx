@@ -46,8 +46,8 @@ export default function BasemapControl({ map, visible, opacity }: {
       <label htmlFor="gale-basemap">Basemap</label>
       <select id="gale-basemap" value={mode} disabled={!map} aria-describedby="basemap-source"
         onChange={(event) => { setMode(event.target.value); setNotice(""); }}>
-        <option value="ctx">Original CTX</option>
-        <option value="color">USGS Color · provisional</option>
+        <option value="ctx">Detailed CTX + context</option>
+        <option value="color">USGS Color + context · provisional</option>
       </select>
       <div id="basemap-source" role="status">
         {notice || (mode === "color" ? <>
@@ -58,7 +58,13 @@ export default function BasemapControl({ map, visible, opacity }: {
             <p>High-resolution orbital imagery for visual terrain inspection. 0.25 m source grid; spatially variable detail. Tiles sample a 2 m source overview. No validated positional uncertainty or terrain safety assessment.</p>
             <a href={COLOR_BASEMAP.catalogue} target="_blank" rel="noreferrer">USGS source · Parker & Calef</a>
           </details>
-        </> : "NASA Trek · CTX grayscale")}
+        </> : <>
+          <div>NASA Trek CTX · ~10 m detail / ~41 m context sampling</div>
+          <details><summary>Coverage & source</summary>
+            <p>Outside the detailed mission crop, wider CTX context remains visible when enabled in Layers. Context covers 136.4–138.4°E, 5.6–3.8°S; gaps remain transparent. These are display sample spacings, not verified effective resolution. Absolute positional accuracy is unquantified.</p>
+            <a href="https://trek.nasa.gov/tiles/Mars/EQ/Gale_CTX_BlockAdj_dd/1.0.0/WMTSCapabilities.xml" target="_blank" rel="noreferrer">NASA Trek source</a>
+          </details>
+        </>)}
       </div>
     </div>
   );

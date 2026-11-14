@@ -38,6 +38,18 @@ async function boundaryPixels(page: Page) {
     return {regional,global};
   },png.toString("base64"));
 }
+async function verifyGlobalOutline(page: Page) {
+  // Context imagery and expanded mobile chrome change antialiased pixel
+  // counts. Prove the actual outline appears/disappears at the same camera
+  // instead of assuming the old dark-background image has >150 gold pixels.
+  const checkbox=page.getByRole("checkbox",{name:"Global terrain coverage",exact:true});
+  await expect(checkbox).toBeChecked();
+  const present=await boundaryPixels(page);
+  await checkbox.uncheck();const absent=await boundaryPixels(page);
+  await checkbox.check();const restored=await boundaryPixels(page);
+  expect(present.global).toBeGreaterThan(absent.global+50);
+  expect(restored.global).toBeGreaterThan(absent.global+50);
+}
 async function shot(page: Page,name:string) {
   await mkdir("output/playwright/phase1",{recursive:true});
   await settle(page);
@@ -73,7 +85,7 @@ for(const [width,height] of [[1440,900],[1024,768],[768,1024],[390,844]]) {
     if([1440,390].includes(width))await shot(page,`regional-ctx-${width}`);
     await global.check();await expect(regional).toBeChecked();
     await page.getByRole("button",{name:"Zoom to global terrain coverage",exact:true}).click();
-    const both=await boundaryPixels(page);expect(both.regional).toBeGreaterThan(50);expect(both.global).toBeGreaterThan(150);
+    const both=await boundaryPixels(page);expect(both.regional).toBeGreaterThan(50);await verifyGlobalOutline(page);
     await regional.uncheck();await expect(global).toBeChecked();
     expect((await boundaryPixels(page)).regional).toBeLessThan(both.regional);
     await global.uncheck();const globalCamera=await digest(page);
@@ -94,7 +106,7 @@ for(const [width,height] of [[1440,900],[1024,768],[768,1024],[390,844]]) {
     for(const base of ["ctx","color"]) {
       await selectBasemap(page,base);
       await expect(regional).toBeChecked();await expect(global).toBeChecked();
-      const pixels=await boundaryPixels(page);expect(pixels.regional).toBeGreaterThan(50);expect(pixels.global).toBeGreaterThan(150);
+      const pixels=await boundaryPixels(page);expect(pixels.regional).toBeGreaterThan(50);await verifyGlobalOutline(page);
       if([1440,390].includes(width))await shot(page,`both-${base}-${width}`);
     }
     await page.getByRole("button",{name:"Zoom to regional terrain coverage",exact:true}).click();

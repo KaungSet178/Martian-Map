@@ -1,0 +1,152 @@
+[
+  {
+    "region": "gale",
+    "width": 1440,
+    "height": 900,
+    "workspace": {
+      "x": 360,
+      "y": 80,
+      "width": 1080,
+      "height": 788
+    },
+    "container": {
+      "x": 360,
+      "y": 80,
+      "width": 1080,
+      "height": 788
+    },
+    "canvas": {
+      "x": 360,
+      "y": 80,
+      "width": 1080,
+      "height": 788
+    },
+    "overflow": false,
+    "dark_fraction": 0.738216770069562
+  },
+  {
+    "region": "gale",
+    "width": 768,
+    "height": 1024,
+    "workspace": {
+      "x": 0,
+      "y": 72,
+      "width": 768,
+      "height": 750
+    },
+    "container": {
+      "x": 0,
+      "y": 72,
+      "width": 768,
+      "height": 750
+    },
+    "canvas": {
+      "x": 0,
+      "y": 72,
+      "width": 768,
+      "height": 750
+    },
+    "overflow": false,
+    "dark_fraction": 0.6824583333333333
+  },
+  {
+    "region": "gale",
+    "width": 390,
+    "height": 844,
+    "workspace": {
+      "x": 0,
+      "y": 72,
+      "width": 390,
+      "height": 570
+    },
+    "container": {
+      "x": 0,
+      "y": 72,
+      "width": 390,
+      "height": 570
+    },
+    "canvas": {
+      "x": 0,
+      "y": 72,
+      "width": 390,
+      "height": 570
+    },
+    "overflow": false,
+    "dark_fraction": 0.5377103013945119
+  },
+  {
+    "region": "jezero",
+    "width": 1440,
+    "height": 900,
+    "workspace": {
+      "x": 360,
+      "y": 80,
+      "width": 1080,
+      "height": 788
+    },
+    "container": {
+      "x": 360,
+      "y": 80,
+      "width": 1080,
+      "height": 788
+    },
+    "canvas": {
+      "x": 360,
+      "y": 80,
+      "width": 1080,
+      "height": 788
+    },
+    "overflow": false,
+    "dark_fraction": 0
+  },
+  {
+    "region": "jezero",
+    "width": 768,
+    "height": 1024,
+    "workspace": {
+      "x": 0,
+      "y": 72,
+      "width": 768,
+      "height": 924
+    },
+    "container": {
+      "x": 0,
+      "y": 72,
+      "width": 768,
+      "height": 924
+    },
+    "canvas": {
+      "x": 0,
+      "y": 72,
+      "width": 768,
+      "height": 924
+    },
+    "overflow": false,
+    "dark_fraction": 0.00002113771645021645
+  },
+  {
+    "region": "jezero",
+    "width": 390,
+    "height": 844,
+    "workspace": {
+      "x": 0,
+      "y": 72,
+      "width": 390,
+      "height": 744
+    },
+    "container": {
+      "x": 0,
+      "y": 72,
+      "width": 390,
+      "height": 744
+    },
+    "canvas": {
+      "x": 0,
+      "y": 72,
+      "width": 390,
+      "height": 744
+    },
+    "overflow": false,
+    "dark_fraction": 0.00005858836503997794
+  }
+]

@@ -98,7 +98,7 @@ test("per-product raster request bounds and nearest resampling preserve legacy d
   const [w,s,e,n]=JSON.parse(readFileSync("team/gale/sources/g3-2/processing-audit.json","utf8")).extent_wsen;
   assert.deepEqual(sources["region-gale-terrain"].bounds,[w,s,e,n]);
   assert.notDeepEqual(sources["region-gale-optical"].bounds,[w,s,e,n]);
-  assert.deepEqual(paint["region-gale-terrain"],{"raster-resampling":"nearest"});
+  assert.deepEqual(paint["region-gale-terrain"],{"raster-resampling":"nearest","raster-fade-duration":0});
   assert.deepEqual(paint["region-gale-optical"],{"raster-resampling":"linear"});
 });
 
@@ -511,6 +511,7 @@ test("overview fits the reviewed extent without constraining navigation or accum
   const calls: unknown[][] = [];
   const fake = {
     stop: () => {},
+    resize: () => {},
     setMaxBounds: (value: unknown) => calls.push(["bounds", value]),
     setPadding: (value: unknown) => calls.push(["padding", value]),
     getMaxZoom: () => 13,
@@ -545,15 +546,16 @@ test("overview fits the reviewed extent without constraining navigation or accum
 });
 
 test("regional raster bounds limit sparse tile requests without changing Mars registration", () => {
-  const sources: Array<{ bounds?: number[] }> = [];
+  const sources = new Map<string, { bounds?: number[] }>();
   const map = {
-    addSource: (_id: string, source: { bounds?: number[] }) => sources.push(source),
+    addSource: (id: string, source: { bounds?: number[] }) => sources.set(id, source),
     addLayer: () => {},
   } as unknown as MapInstance;
   const gale = getRegion("gale")!;
   mountRegionLayers(map, gale);
   const b = gale.map.supported_extent!;
-  assert.deepEqual(sources[0].bounds, [b.west_east, b.south_latitude, b.east_east, b.north_latitude]);
+  assert.deepEqual(sources.get("region-gale-optical")!.bounds, [b.west_east, b.south_latitude, b.east_east, b.north_latitude]);
+  assert.deepEqual(sources.get("region-gale-context")!.bounds, [136.4, -5.6, 138.4, -3.8]);
 });
 test("backend boundary rejects missing one-way endpoints and incomplete assessments", () => {
   const request = {

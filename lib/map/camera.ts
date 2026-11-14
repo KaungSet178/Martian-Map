@@ -31,6 +31,14 @@ export function fitOverview(
   preview: boolean,
   animate = false,
 ) {
+  if (region.id === "gale") {
+    const frame = container.getBoundingClientRect();
+    if (frame.width <= 0 || frame.height <= 0) return;
+    // A sheet/region transition can update DOM dimensions before MapLibre's
+    // cached transform. Fit only after those sizes agree; otherwise correct
+    // new padding can exceed the old canvas height and produce an unfit view.
+    map.resize();
+  }
   map.stop();
   // A data footprint is not a navigation boundary. In MapLibre maxBounds also
   // raises the minimum zoom until the viewport fits *inside* that rectangle.
@@ -59,6 +67,16 @@ export function fitOverview(
       pitch: 0,
     });
   }
+}
+
+// Optional initial framing never replaces the explicit whole-mission action.
+export function fitInitialView(
+  map: MapInstance, region: RegionManifest, container: HTMLElement, preview: boolean,
+) {
+  const extent = region.map.initial_extent;
+  fitOverview(map, extent && !preview
+    ? { ...region, map: { ...region.map, supported_extent: extent } }
+    : region, container, preview);
 }
 
 // Called only by an explicit coverage-fit action. Auto-focus remains separate.

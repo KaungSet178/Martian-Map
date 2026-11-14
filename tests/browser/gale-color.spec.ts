@@ -39,6 +39,29 @@ async function colorPixelCount(page: Page) {
   }, png.toString("base64"));
 }
 
+async function clickUnobstructedColorTerrain(page: Page) {
+  // Fit/panel size changes can put an old fixed screen offset on an existing
+  // waypoint. Choose an actual warm color-basemap pixel whose hit target is
+  // the canvas, preserving both geographic eligibility and marker safeguards.
+  const png=await page.locator(".map-canvas canvas").screenshot();
+  const point=await page.evaluate(async(encoded)=>{
+    const image=await createImageBitmap(await(await fetch(`data:image/png;base64,${encoded}`)).blob());
+    const canvas=document.createElement("canvas");canvas.width=image.width;canvas.height=image.height;
+    const ctx=canvas.getContext("2d")!;ctx.drawImage(image,0,0);image.close();
+    const bytes=ctx.getImageData(0,0,canvas.width,canvas.height).data;
+    const rect=document.querySelector(".map-canvas canvas")!.getBoundingClientRect();
+    const points:{x:number;y:number;distance:number}[]=[];
+    for(let y=16;y<canvas.height-16;y+=8)for(let x=16;x<canvas.width-16;x+=8){
+      const p=(y*canvas.width+x)*4;
+      if(bytes[p]>65&&bytes[p]>bytes[p+2]+12&&bytes[p+1]>45&&document.elementFromPoint(rect.x+x,rect.y+y)?.tagName==="CANVAS")
+        points.push({x:rect.x+x,y:rect.y+y,distance:(x-canvas.width/2)**2+(y-canvas.height/2)**2});
+    }
+    return points.sort((a,b)=>a.distance-b.distance)[0]??null;
+  },png.toString("base64"));
+  expect(point,"A real unobstructed color-terrain pixel must be available").not.toBeNull();
+  await page.mouse.click(point!.x,point!.y);
+}
+
 for (const [width, height] of [[1440, 900], [1024, 768], [768, 1024], [390, 844]]) {
   test(`G5 real color, stable M3 geometry, navigation and accessibility at ${width}px`, async ({ page }) => {
     await page.setViewportSize({ width, height });
@@ -113,8 +136,7 @@ for (const [width, height] of [[1440, 900], [1024, 768], [768, 1024], [390, 844]
     await openWaypoints(page);
     await page.getByTestId("toggle-map-placement-btn").click();
     await page.waitForTimeout(500);
-    const secondBox = (await canvas.boundingBox())!;
-    await page.mouse.click(secondBox.x + secondBox.width*.5, secondBox.y + secondBox.height*.5 + 55);
+    await clickUnobstructedColorTerrain(page);
     await expect(page.getByTestId("map-waypoint-marker")).toHaveCount(3);
     await page.keyboard.press("Escape");
   });

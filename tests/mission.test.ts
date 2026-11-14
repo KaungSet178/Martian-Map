@@ -30,6 +30,7 @@ test("all region fixtures obey shared contract and cannot imply scientific readi
       assert.deepEqual(
         region.layers.filter((l) => l.availability === "available").map((l) => l.id),
         [
+          "gale-context",
           "gale-optical",
           "gale-regional-elevation",
           "gale-regional-hillshade",

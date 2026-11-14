@@ -17,6 +17,8 @@ export type { Target, ScientificLayer, SourceRecord } from "./science";
 export const mapConfigSchema = z.object({
   visualization: availabilitySchema,
   initial_zoom: z.number().min(0).max(22),
+  // Optional initial exploration framing, never scientific eligibility/coverage.
+  initial_extent: geographicExtentSchema.optional(),
   supported_extent: geographicExtentSchema.nullable(),
   display_transform: z.discriminatedUnion("status", [
     z.object({ status: z.literal("unverified"), reason: z.string() }),

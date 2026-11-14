@@ -22,7 +22,8 @@ import {
 } from "@/lib/map/waypoint-layers";
 import { formatCoordinates } from "@/components/mission/waypoint-itinerary";
 import type { WaypointPlan } from "@/lib/mission/waypoint-planning";
-import { fitOverview, fitLayerCoverage } from "@/lib/map/camera";
+import { fitOverview, fitInitialView, fitLayerCoverage } from "@/lib/map/camera";
+import { registerScientificClip } from "@/lib/map/scientific-clip";
 import {
   Crosshair,
   Layers,
@@ -93,17 +94,18 @@ export default function MapWorkspace({
   const markers = useRef<Marker[]>([]);
   const waypointMarkers = useRef<Marker[]>([]);
   const markerElements = useRef<Map<string, HTMLButtonElement>>(new Map());
-  const overview = useRef(true);
+  const overview = useRef<"initial" | "mission" | false>("initial");
   const handledCoverageFocus = useRef<number | null>(null);
   const previousLayers = useRef<{ region: string; visible: Set<string> } | null>(null);
   const [ready, setReady] = useState(false);
   const [loadedMap, setLoadedMap] = useState<MapInstance | null>(null);
   const [failed, setFailed] = useState(false);
   const scientificMap = region.map.visualization.status === "available";
-  const resetView = useCallback((animate = false) => {
+  const resetView = useCallback((animate = false, initial = false) => {
     if (!map.current || !container.current) return;
-    overview.current = true;
-    fitOverview(map.current, region, container.current, preview, animate);
+    overview.current = initial ? "initial" : "mission";
+    if (initial) fitInitialView(map.current, region, container.current, preview);
+    else fitOverview(map.current, region, container.current, preview, animate);
   }, [region, preview]);
   const activeLayers = region.layers.filter(
     (l) =>
@@ -113,10 +115,12 @@ export default function MapWorkspace({
 
   useEffect(() => {
     let disposed = false;
+    let releaseClip: (() => void) | undefined;
     import("maplibre-gl")
-      .then(({ Map, setWorkerUrl }) => {
+      .then(({ Map, setWorkerUrl, addProtocol, removeProtocol }) => {
         if (disposed || !container.current) return;
         try {
+          releaseClip = registerScientificClip(addProtocol, removeProtocol);
           setWorkerUrl("/generated/maplibre-gl-worker.mjs");
           const instance = new Map({
             container: container.current,
@@ -174,6 +178,7 @@ export default function MapWorkspace({
       disposed = true;
       map.current?.remove();
       map.current = null;
+      releaseClip?.();
     };
   }, []);
 
@@ -198,7 +203,7 @@ export default function MapWorkspace({
           ))
         : 10,
     );
-    resetView();
+    resetView(false, true);
   }, [ready, region, scientificMap, resetView]);
 
   useEffect(() => {
@@ -239,7 +244,7 @@ export default function MapWorkspace({
         map.current?.resize();
         // Keep an overview fitted as the visible canvas changes; after a user
         // navigates, preserve their camera rather than snapping back on resize.
-        if (overview.current) resetView();
+        if (overview.current) resetView(false, overview.current === "initial");
       });
     });
     observer.observe(container.current);
@@ -690,7 +695,7 @@ export default function MapWorkspace({
           onClick={() => resetView(true)}
           disabled={(!preview && !scientificMap) || !ready || failed}
           aria-label={scientificMap && !preview ? "Fit exploration region" : "Reset map view"}
-          title={scientificMap && !preview ? "Fit exploration region" : "Reset map view"}
+          title={scientificMap && !preview ? "Fit mission area" : "Reset map view"}
         >
           <Crosshair size={20} />
         </button>

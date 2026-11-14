@@ -6,6 +6,31 @@ import { coverageLayers } from "./coverage-layers";
 // Gale G1: source-backed content; unknown values remain explicit.
 export const layers = [
   {
+    id: "gale-context",
+    type: "Optical imagery",
+    display_name: "Context CTX (wider area)",
+    kind: "optical",
+    availability: "available",
+    source_id: "gale-trek-ctx",
+    observation_date: null,
+    spatial_resolution_m: null,
+    coverage: "Broader crop of the existing Gale_CTX_BlockAdj_dd NASA Trek mosaic: 136.4-138.4 E, -5.6 to -3.8 N. Original alpha gaps retained. Finite context coverage, not global Mars or high-resolution mission coverage.",
+    limitations: "Context tiles sample the same authenticated angular CTX service at approximately 40.7 m equatorial spacing (z11 ceiling), versus 10.17 m for the detailed mission tiles (z13). These are display sample spacings, not effective image resolution or positional accuracy. Native acquisition dates and mosaic dimensions are unspecified. No radiometric edits, invented pixels, fitted shifts or safety inference. Source coordinates and mission eligibility remain unchanged.",
+    evidence: "Derived",
+    attribution: "NASA/JPL-Caltech/MSSS · CTX · NASA Trek Gale block-adjusted mosaic · wider context at ~41 m display sampling",
+    rendering: {
+      kind: "raster-tiles",
+      tiles: ["/maps/gale/context-tiles/{z}/{x}/{y}.png"],
+      tile_size: 256,
+      min_zoom: 5,
+      max_zoom: 11,
+      bounds: { west_east: 136.4, east_east: 138.4, south_latitude: -5.6, north_latitude: -3.8 },
+    },
+    default_visible: true,
+    default_opacity: 100,
+    legend: null,
+  },
+  {
     "id": "gale-optical",
     "type": "Optical imagery",
     "display_name": "Gale CTX orbital mosaic",

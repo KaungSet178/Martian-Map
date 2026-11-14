@@ -58,23 +58,28 @@ test("coverage lines and casings mount once, follow independent state, and clean
   const sources = new Map<string, unknown>();
   const layers = new Map<string, { type: string; source: string; layout: Record<string, unknown>; paint: Record<string, unknown> }>();
   const fake = {
-    addSource: (id: string, source: unknown) => { assert.ok(!sources.has(id)); sources.set(id,source); },
+    addSource: (id: string, source: unknown) => {
+      assert.ok(!sources.has(id));
+      const record = source as { type: string; tiles?: string[]; setTiles?: (tiles: string[]) => void };
+      if (record.type === "raster") record.setTiles = (tiles) => { record.tiles = tiles; };
+      sources.set(id,record);
+    },
     addLayer: (layer: typeof layers extends Map<string, infer T> ? T & {id:string} : never) => { assert.ok(!layers.has(layer.id)); layers.set(layer.id,layer); },
     getSource: (id:string)=>sources.get(id), getLayer:(id:string)=>layers.get(id),
     removeLayer:(id:string)=>layers.delete(id),
     removeSource:(id:string)=>{ assert.ok(![...layers.values()].some(l=>l.source===id));sources.delete(id); },
     setLayoutProperty:(id:string,key:string,value:unknown)=>{ layers.get(id)!.layout[key]=value; },
     setPaintProperty:(id:string,key:string,value:unknown)=>{ layers.get(id)!.paint[key]=value; },
+    on:()=>{},off:()=>{},isSourceLoaded:()=>true,
   } as unknown as MapInstance;
   const cleanup=mountRegionLayers(fake,gale);
   const count=layers.size;
-  // Layers + 2 halos (regional & global coverage) + 1 presentation clipping mask
-  assert.equal(count,gale.layers.length+3);
-  const mask=layers.get("region-presentation-mask")!;
-  assert.ok(mask);
-  assert.equal(mask.type,"fill");
-  assert.equal(mask.paint["fill-color"],"#0D1928");
-  assert.equal(mask.layout.visibility,"visible");
+  // Layers + 2 coverage halos. Gale's scientific tile alpha is clipped;
+  // no opaque collar can hide the authentic background context.
+  assert.equal(count,gale.layers.length+2);
+  assert.equal(layers.has("region-presentation-mask"),false);
+  const science=sources.get("region-gale-regional-hillshade") as {tiles:string[]};
+  assert.match(science.tiles[0],/^marswalk-mission:/);
   let state=updateLayerState(gale,{},"gale-coverage-regional",{visible:true});
   state=updateLayerState(gale,state,"gale-coverage-global",{visible:true});
   for (let i=0;i<3;i++) for (const theme of ["elevation","slope","hillshade"]) {
@@ -98,21 +103,21 @@ test("coverage lines and casings mount once, follow independent state, and clean
   assert.equal(dashed.layout.visibility,"visible");
   assert.equal(layers.get("region-gale-coverage-global-halo")!.paint["line-opacity"],.35);
   assert.equal(layers.get("region-gale-regional-hillshade")!.layout.visibility,"visible");
-  assert.equal(mask.layout.visibility,"visible");
+  assert.match(science.tiles[0],/^marswalk-mission:/);
   // Test switching between Mission View and Full Data Coverage modes
   applyLayerStates(fake,gale,state,false,"full_coverage");
-  assert.equal(mask.layout.visibility,"none");
+  assert.match(science.tiles[0],/^\/maps\/gale\/terrain-regional/);
   applyLayerStates(fake,gale,state,false,"mission_view");
-  assert.equal(mask.layout.visibility,"visible");
+  assert.match(science.tiles[0],/^marswalk-mission:/);
   applyLayerStates(fake,gale,state,true); assert.equal(dashed.layout.visibility,"none");
-  assert.equal(mask.layout.visibility,"none");
+  assert.equal(layers.has("region-presentation-mask"),false);
   cleanup(); assert.equal(layers.size,0); assert.equal(sources.size,0);
   assert.equal(layerSchema.safeParse({...gale.layers.find(l=>l.id==="gale-coverage-global")!,rendering:{kind:"geojson",url:"/test.geojson",geometry:"fill",color:"#FFFFFF",line_pattern:"dashed"}}).success,false);
 });
 
 test("explicit coverage fits use authoritative bounds and existing responsive camera policy", () => {
   const fits:unknown[][]=[];const limits:unknown[]=[];
-  const map={stop:()=>{},setMaxBounds:(v:unknown)=>limits.push(v),setPadding:()=>{},getMaxZoom:()=>18,fitBounds:(...a:unknown[])=>fits.push(a)} as unknown as MapInstance;
+  const map={stop:()=>{},resize:()=>{},setMaxBounds:(v:unknown)=>limits.push(v),setPadding:()=>{},getMaxZoom:()=>18,fitBounds:(...a:unknown[])=>fits.push(a)} as unknown as MapInstance;
   const container={getBoundingClientRect:()=>({width:390,height:450,top:0,right:390,bottom:450}),parentElement:{querySelector:()=>null}} as unknown as HTMLElement;
   const original=gale.map.supported_extent;
   for(const item of expected) {

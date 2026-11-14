@@ -36,6 +36,19 @@ async function overview(page: Page) {
   await completeOverview(page);
 }
 
+async function detailedMissionView(page: Page) {
+  // The wider context intentionally fills the viewport now. Isolate the
+  // unchanged detailed CTX crop when measuring its original aspect/position.
+  await page.getByRole("button", { name: "Layers", exact: true }).click();
+  const handle = page.getByRole("button", { name: /^Plan ·/ });
+  if (await handle.isVisible()) await handle.click();
+  await page.getByRole("checkbox", { name: /Context CTX \(wider area\)/ }).uncheck();
+  if (page.viewportSize()!.width <= 850)
+    await page.getByRole("button", { name: "Collapse planning panel", exact: true }).click();
+  else await page.getByRole("button", { name: "Science", exact: true }).click();
+  await overview(page);
+}
+
 async function completeOverview(page: Page) {
   // Tile responses and fade-in can leave a partial rectangle for several
   // frames. Wait for the complete rendered footprint before measuring it.
@@ -80,7 +93,7 @@ for (const [width, height] of [[1440, 900], [1024, 768], [768, 1024], [390, 844]
     });
     await page.goto("/?region=gale");
     await expect(page.getByRole("button", { name: "Fit exploration region", exact: true })).toBeEnabled();
-    await completeOverview(page);
+    await detailedMissionView(page);
     const initial = await rasterBox(page);
     expect(initial.left).toBeGreaterThan(10);
     expect(initial.right).toBeLessThan(initial.canvasWidth - 10);
@@ -135,7 +148,7 @@ for (const [width, height] of [[1440, 900], [1024, 768], [768, 1024], [390, 844]
     await page.getByLabel("Mission region", { exact: true }).selectOption("jezero");
     await expect(page.locator(".map-empty")).toBeVisible();
     await page.getByLabel("Mission region", { exact: true }).selectOption("gale");
-    await overview(page);
+    await detailedMissionView(page);
     expect(errors).toEqual([]);
   });
 }
@@ -143,7 +156,7 @@ for (const [width, height] of [[1440, 900], [1024, 768], [768, 1024], [390, 844]
 test("overview refits across viewport resize and keyboard navigation remains available", async ({ page }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/?region=gale");
-  await overview(page);
+  await detailedMissionView(page);
   await page.setViewportSize({ width: 390, height: 844 });
   await expect.poll(async () => (await rasterBox(page)).canvasWidth).toBe(390);
   await contained(page);
@@ -166,7 +179,7 @@ test("touch drag and pinch zoom operate in the mobile canvas", async ({ browser 
   const context = await browser.newContext({ viewport: { width: 390, height: 844 }, hasTouch: true, isMobile: true, reducedMotion: "reduce" });
   const page = await context.newPage();
   await page.goto("/?region=gale");
-  await overview(page);
+  await detailedMissionView(page);
   const initial = await rasterBox(page);
   const canvas = await page.locator(".map-canvas canvas").boundingBox();
   const x = canvas!.x + (initial.left + initial.right) / 2;
