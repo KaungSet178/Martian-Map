@@ -4,11 +4,21 @@ from __future__ import annotations
 
 import math
 from datetime import datetime, timezone, timedelta
+from functools import lru_cache
 from typing import Any, Dict, List, Optional, Tuple
 
 J2000_JD = 2451545.0
 MARS_TROPICAL_YEAR_SOL = 668.5921
 MARS_TROPICAL_YEAR_DAY = 686.9725
+
+# Root-finding controls for Ls = 0 boundary detection.
+_ROOT_JD_TOLERANCE_DAYS = 1e-9
+_MAX_BISECTION_ITERATIONS = 200
+_MAX_BRACKET_HALF_WIDTH_DAYS = 512.0
+_LS_ROOT_TOLERANCE_DEG = 1e-6
+# Dates this close to a boundary are re-checked against the solved crossing.
+_BOUNDARY_GUARD_DEG = 1e-4
+_BOUNDARY_JD_TOLERANCE_DAYS = 1e-9
 
 _LEAP_SECONDS = [
     (datetime(1972, 1, 1, tzinfo=timezone.utc), 10),
@@ -165,53 +175,156 @@ def circular_difference_deg(a: float, b: float) -> float:
     return min(diff, 360.0 - diff)
 
 
-def _find_ls_zero_crossing(jd_guess: float) -> float:
-    """Find a nearby Ls=0 crossing using the unnormalized Ls."""
-    target_multiple = round(_ls_raw(jd_guess) / 360.0)
+def _validate_jd_guess(jd_guess: float) -> float:
+    if isinstance(jd_guess, bool) or not isinstance(jd_guess, (int, float)):
+        raise TypeError("Julian Date guess must be a real number")
+    jd_guess = float(jd_guess)
+    if not math.isfinite(jd_guess):
+        raise ValueError("Julian Date guess must be finite")
+    return jd_guess
+
+
+def _solve_ls_multiple_crossing(target_multiple: int, jd_guess: float) -> float:
+    """Solve _ls_raw(jd) = target_multiple * 360 for the nearby crossing.
+
+    The unnormalized Ls is strictly increasing, so each 360-degree multiple is
+    crossed exactly once. The result is validated against the Ls function rather
+    than trusted merely because the solver returned a finite number.
+    """
+    jd_guess = _validate_jd_guess(jd_guess)
+    if isinstance(target_multiple, bool) or not isinstance(target_multiple, int):
+        raise TypeError("Target Ls multiple must be an integer")
     target_value = target_multiple * 360.0
 
-    def f(jd: float) -> float:
+    def residual(jd: float) -> float:
         return _ls_raw(jd) - target_value
 
-    # Expand bracket until a sign change is found.
-    half_width = 5.0
-    for _ in range(10):
+    half_width = 1.0
+    lo = hi = flo = fhi = None
+    root: Optional[float] = None
+    while half_width <= _MAX_BRACKET_HALF_WIDTH_DAYS:
         lo = jd_guess - half_width
         hi = jd_guess + half_width
-        flo = f(lo)
-        fhi = f(hi)
+        flo = residual(lo)
+        fhi = residual(hi)
         if flo == 0.0:
-            return lo
+            root = lo
+            break
         if fhi == 0.0:
-            return hi
-        if (flo < 0) != (fhi < 0):
+            root = hi
+            break
+        if (flo < 0.0) != (fhi < 0.0):
             break
         half_width *= 2.0
-    else:
-        raise ValueError("Unable to bracket an Ls=0 crossing")
+    if root is None and (lo is None or (flo < 0.0) == (fhi < 0.0)):
+        raise ValueError(
+            f"Unable to bracket the Ls={target_value} crossing within "
+            f"{_MAX_BRACKET_HALF_WIDTH_DAYS:g} days of JD {jd_guess:.6f}"
+        )
 
-    # Bisection.
-    for _ in range(100):
-        mid = (lo + hi) / 2.0
-        fmid = f(mid)
-        if fmid == 0.0:
-            return mid
-        if (fmid < 0) == (flo < 0):
-            lo = mid
-            flo = fmid
-        else:
-            hi = mid
-    return (lo + hi) / 2.0
+    if root is None:
+        converged = False
+        for _ in range(_MAX_BISECTION_ITERATIONS):
+            mid = 0.5 * (lo + hi)
+            fmid = residual(mid)
+            if fmid == 0.0:
+                root = mid
+                converged = True
+                break
+            if (fmid < 0.0) == (flo < 0.0):
+                lo, flo = mid, fmid
+            else:
+                hi, fhi = mid, fmid
+            if hi - lo <= _ROOT_JD_TOLERANCE_DAYS:
+                root = 0.5 * (lo + hi)
+                converged = True
+                break
+        if not converged:
+            raise ValueError(
+                f"Bisection failed to converge for the Ls={target_value} crossing"
+            )
+
+    if not math.isfinite(root):
+        raise ValueError("Solved crossing is not a finite Julian Date")
+    raw_at_root = _ls_raw(root)
+    if abs(raw_at_root - target_value) > _LS_ROOT_TOLERANCE_DEG:
+        raise ValueError(
+            "Solved crossing does not satisfy the unnormalized Ls target "
+            f"(residual {raw_at_root - target_value:.3e} deg)"
+        )
+    normalized = raw_at_root % 360.0
+    if min(normalized, 360.0 - normalized) > _LS_ROOT_TOLERANCE_DEG:
+        raise ValueError(
+            f"Normalized Ls at the solved crossing is {normalized:.6f} deg, not 0 deg"
+        )
+    if int(round(raw_at_root / 360.0)) != target_multiple:
+        raise ValueError(
+            "Solved crossing corresponds to a different 360-degree multiple"
+        )
+    return float(root)
+
+
+def _find_ls_zero_crossing(jd_guess: float) -> float:
+    """Return the JD (TT) of the Ls=0 crossing nearest the supplied instant."""
+    jd_guess = _validate_jd_guess(jd_guess)
+    target_multiple = int(math.floor(_ls_raw(jd_guess) / 360.0 + 0.5))
+    return _solve_ls_multiple_crossing(target_multiple, jd_guess)
+
+
+@lru_cache(maxsize=1)
+def _mars_year_reference() -> Tuple[float, int]:
+    """Calculated MY1 boundary and its exact unnormalized Ls multiple.
+
+    The published MY1 date (1955-04-11) is calendar-day precision and is not
+    itself an exact equinox instant. The reference used for classification is
+    the solved Ls=0 crossing near that date, not the raw Ls at 00:00 UTC.
+    """
+    epoch_jd = utc_to_tt_julian_date(_MARS_YEAR_1_EPOCH_UTC)
+    crossing = _find_ls_zero_crossing(epoch_jd)
+    multiple = int(math.floor(_ls_raw(crossing) / 360.0 + 0.5))
+    if abs(_ls_raw(crossing) - multiple * 360.0) > _LS_ROOT_TOLERANCE_DEG:
+        raise ValueError("MY1 reference is not aligned to an exact Ls=0 multiple")
+    return crossing, multiple
+
+
+@lru_cache(maxsize=1)
+def _mars_year_1_epoch_jd_tt() -> float:
+    return utc_to_tt_julian_date(_MARS_YEAR_1_EPOCH_UTC)
+
+
+def _martian_year_from_jd_tt(jd_tt: float) -> int:
+    jd_tt = _validate_jd_guess(jd_tt)
+    if jd_tt < _mars_year_1_epoch_jd_tt() - _BOUNDARY_JD_TOLERANCE_DAYS:
+        raise ValueError(
+            "Martian year classification is supported from the published MY1 "
+            "date (1955-04-11) onward"
+        )
+    reference_jd, reference_multiple = _mars_year_reference()
+    # The published convention is date-only. Instants earlier on the MY1
+    # boundary day are labelled MY1 rather than the out-of-range MY0.
+    if jd_tt < reference_jd - _BOUNDARY_JD_TOLERANCE_DAYS:
+        return 1
+
+    phase = _ls_raw(jd_tt) - reference_multiple * 360.0
+    completed = int(math.floor(phase / 360.0))
+    fraction = phase - completed * 360.0
+
+    # Near a boundary, classify against the solved crossing instant instead of
+    # relying on floating-point phase alone.
+    if fraction < _BOUNDARY_GUARD_DEG or fraction > 360.0 - _BOUNDARY_GUARD_DEG:
+        boundary_multiple = reference_multiple + completed
+        if fraction > 180.0:
+            boundary_multiple += 1
+        boundary_jd = _solve_ls_multiple_crossing(boundary_multiple, jd_tt)
+        at_or_after = jd_tt >= boundary_jd - _BOUNDARY_JD_TOLERANCE_DAYS
+        completed = boundary_multiple - reference_multiple - (0 if at_or_after else 1)
+
+    return int(completed) + 1
 
 
 def martian_year_clancy(dt_utc: datetime) -> int:
     _validate_utc(dt_utc)
-    jd_epoch = utc_to_tt_julian_date(_MARS_YEAR_1_EPOCH_UTC)
-    raw_epoch = _ls_raw(jd_epoch)
-    jd = utc_to_tt_julian_date(dt_utc)
-    raw_ls = _ls_raw(jd)
-    # Martian years are counted by Ls=0 crossings, not by a fixed day count.
-    return int(math.floor((raw_ls - raw_epoch) / 360.0)) + 1
+    return _martian_year_from_jd_tt(utc_to_tt_julian_date(dt_utc))
 
 
 def northern_season_from_ls(ls: float) -> str:

@@ -31,13 +31,18 @@ python scripts/gale-weather/prepare_sol.py --no-download
 python -B -m unittest tests.test_gale_weather_parser -v
 ```
 
-## Mars time conversion (W1.2B)
+## Mars time conversion (W1.2B / W1.2B-H2)
 
 ```python
-from team.gale.weather.mars_time import calculate_mars_ls_from_utc
+from team.gale.weather.mars_time import calculate_mars_ls_from_utc, martian_year_clancy
 
 ls = calculate_mars_ls_from_utc(datetime(2012, 11, 16, tzinfo=timezone.utc))
+year = martian_year_clancy(datetime(2012, 11, 16, tzinfo=timezone.utc))  # MY31
 ```
 
-See `docs/GALE_WEATHER_W1_2B_TIME_VALIDATION_REPORT.md` for algorithm and validation details.
+Martian-year boundaries use the calculated Ls = 0° crossing (bisection on the
+unnormalized Mars24 Ls), not the raw phase at 1955-04-11 00:00 UTC. The published
+MY1 date is calendar-day precision; the solved crossing is 1955-04-11 10:58:15.617 UTC.
+See `docs/GALE_WEATHER_W1_2B_H2_BOUNDARY_REPORT.md` and
+`docs/GALE_WEATHER_W1_2B_TIME_VALIDATION_REPORT.md` for algorithm and validation details.
 PY
