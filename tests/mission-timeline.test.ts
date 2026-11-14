@@ -1194,7 +1194,6 @@ describe("M4.1A Group B: Return Closure", () => {
   const wBase = makeWp("wBase", 0, 100, "base");
   const wA = makeWp("wA", 0, 100.1, "science_stop");
   const wB = makeWp("wB", 0, 100.2, "intermediate");
-  const wC = makeWp("wC", 0, 100.3, "intermediate");
 
   it("8. accepts valid Base -> A -> B -> Base in round-trip mode", () => {
     const route: TimelineRouteInput = {
