@@ -12,6 +12,7 @@ import {
   layerState,
   toDisplayCoordinates,
   type LayerStates,
+  type CoverageFocusRequest,
 } from "@/lib/map/region-layers";
 import {
   mountTrajectoryLayers,
@@ -21,7 +22,7 @@ import {
 } from "@/lib/map/waypoint-layers";
 import { formatCoordinates } from "@/components/mission/waypoint-itinerary";
 import type { WaypointPlan } from "@/lib/mission/waypoint-planning";
-import { fitOverview } from "@/lib/map/camera";
+import { fitOverview, fitLayerCoverage } from "@/lib/map/camera";
 import {
   Crosshair,
   Layers,
@@ -51,6 +52,7 @@ type Props = {
   showMarkers: boolean;
   opacity: number;
   layerStates: LayerStates;
+  coverageFocus?: CoverageFocusRequest | null;
   plan?: WaypointPlan;
   isPlacingOnMap?: boolean;
   onPlaceWaypoint?: (coords: MarsGeographicCoordinates) => void;
@@ -75,6 +77,7 @@ export default function MapWorkspace({
   showMarkers,
   opacity,
   layerStates,
+  coverageFocus,
   plan,
   isPlacingOnMap = false,
   onPlaceWaypoint,
@@ -89,6 +92,7 @@ export default function MapWorkspace({
   const waypointMarkers = useRef<Marker[]>([]);
   const markerElements = useRef<Map<string, HTMLButtonElement>>(new Map());
   const overview = useRef(true);
+  const handledCoverageFocus = useRef<number | null>(null);
   const previousLayers = useRef<{ region: string; visible: Set<string> } | null>(null);
   const [ready, setReady] = useState(false);
   const [loadedMap, setLoadedMap] = useState<MapInstance | null>(null);
@@ -213,6 +217,16 @@ export default function MapWorkspace({
         supported_extent: revealed.rendering.focus_extent } }, container.current, false);
     }
   }, [ready, region, layerStates, preview]);
+
+  useEffect(() => {
+    if (!ready || !map.current || !container.current || !coverageFocus ||
+        handledCoverageFocus.current === coverageFocus.request_id) return;
+    handledCoverageFocus.current = coverageFocus.request_id;
+    if (preview || coverageFocus.region_id !== region.id) return;
+    // Explicit user action only. Reuse responsive padding/maxZoom/north-up fit.
+    if (fitLayerCoverage(map.current, region, coverageFocus.layer_id, container.current))
+      overview.current = false;
+  }, [ready, coverageFocus, region, preview]);
 
   useEffect(() => {
     if (!ready || !container.current || !map.current) return;

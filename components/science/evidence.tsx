@@ -1,5 +1,7 @@
 "use client";
 
+import { CoverageControls } from "./coverage-controls";
+import { ProductMetadata } from "./product-metadata";
 import { ArrowUpRight } from "lucide-react";
 import { type RegionManifest } from "@/lib/contracts/region";
 import { Badge, Notice, EvidenceBadge } from "@/components/ui/primitives";
@@ -84,10 +86,11 @@ export function EvidenceDetails({ region }: { region: RegionManifest }) {
             <Badge>{layer.availability}</Badge>
           </div>
           <p>{layer.limitations}</p>
+          <ProductMetadata layer={layer} />
           <p className="supporting">
             Source: {layer.source_id ?? "unavailable"} · Date:{" "}
             {layer.observation_date ?? "unavailable"} · Resolution:{" "}
-            {layer.spatial_resolution_m === null
+            {layer.data_details ? "effective resolution unmeasured; posting documented separately" : layer.spatial_resolution_m === null
               ? "unavailable"
               : `${layer.spatial_resolution_m} m`}{" "}
             · Coverage: {layer.coverage ?? "unavailable"}
@@ -161,6 +164,7 @@ export function LayerManager({
   opacity,
   setOpacity,
   onEvidence,
+  onZoomToCoverage,
 }: {
   region: RegionManifest;
   layerStates: LayerStates;
@@ -174,6 +178,7 @@ export function LayerManager({
   opacity: number;
   setOpacity: (v: number) => void;
   onEvidence: () => void;
+  onZoomToCoverage: (id: string) => void;
 }) {
   return (
     <>
@@ -185,6 +190,8 @@ export function LayerManager({
           controls.
         </p>
       </div>
+      <CoverageControls region={region} states={layerStates} onChange={onLayerChange}
+        onZoom={onZoomToCoverage} preview={preview} />
       {region.map.visualization.status === "unavailable" ? (
         <Notice title="No scientific layers connected">
           Optical imagery, terrain, geology and coverage masks are pending.
@@ -192,7 +199,7 @@ export function LayerManager({
         </Notice>
       ) : (
         region.layers
-          .filter((l) => l.availability === "available")
+          .filter((l) => l.availability === "available" && !l.zoom_extent)
           .map((layer) => {
             const state = layerState(region, layerStates, layer.id);
             return (
@@ -257,6 +264,7 @@ export function LayerManager({
                       {layer.attribution} · {layer.limitations}
                     </p>
                     {layer.coverage && <p className="supporting">Coverage: {layer.coverage}</p>}
+                    <ProductMetadata layer={layer} />
                   </>
                 )}
               </div>

@@ -43,6 +43,8 @@ export const renderingSchema = z.discriminatedUnion("kind", [
     geometry: z.enum(["line", "fill", "circle"]),
     color: z.string().regex(/^#[0-9a-fA-F]{6}$/),
     category_property: z.string().min(1).optional(),
+    // Opt-in coverage line style; existing traverse rendering is unchanged.
+    line_pattern: z.enum(["solid", "dashed"]).optional(),
     focus_extent: geographicExtentSchema.optional(),
     max_zoom: z.number().min(0).max(22).optional(),
   }),
@@ -58,6 +60,17 @@ export const layerSchema = z
     observation_date: z.string().nullable(),
     spatial_resolution_m: z.number().positive().nullable(),
     coverage: z.string().nullable(),
+    // Explicit action extent, separate from the existing auto-focus extent.
+    zoom_extent: geographicExtentSchema.optional(),
+    data_details: z.object({
+      source_product: z.string().min(1),
+      source_coverage: z.string().min(1),
+      display_crop: z.string().min(1),
+      valid_coverage: z.string().min(1),
+      nominal_posting_m: z.number().positive().nullable(),
+      gradient_support_north_m: z.number().positive().nullable(),
+      crs: z.string().min(1),
+    }).optional(),
     limitations: z.string().min(1),
     evidence: evidenceSchema,
     attribution: z.string().nullable(),
@@ -80,6 +93,8 @@ export const layerSchema = z
       .nullable(),
   })
   .superRefine((l, ctx) => {
+    if (l.rendering.kind === "geojson" && l.rendering.line_pattern && l.rendering.geometry !== "line")
+      ctx.addIssue({ code: "custom", message: "Coverage line patterns require line rendering" });
     if (l.rendering.kind === "geojson" && l.rendering.category_property) {
       const items = l.legend?.items ?? [];
       if (l.rendering.geometry !== "fill" || !items.length ||

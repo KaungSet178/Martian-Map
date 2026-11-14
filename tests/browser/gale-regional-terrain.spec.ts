@@ -58,7 +58,7 @@ for (const [width, height] of [[1440, 900], [1024, 768], [768, 1024], [390, 844]
     const elevProduct = regionalElev.locator("xpath=ancestor::div[contains(@class,'data-product')]");
     await expect(elevProduct).toContainText("CTX alignment unverified");
     await expect(elevProduct).toContainText("30 m");
-    await expect(elevProduct).toContainText("100% of the Gale overview");
+    await expect(elevProduct).toContainText("covers 100% of the Gale overview");
     await expect(elevProduct).toContainText("not for hazard routing");
     await expect(elevProduct.locator(".legend-detail")).toContainText("MOLA areoid");
 
@@ -101,7 +101,7 @@ for (const [width, height] of [[1440, 900], [1024, 768], [768, 1024], [390, 844]
 
     const globalProduct = globalElev.locator("xpath=ancestor::div[contains(@class,'data-product')]");
     await expect(globalProduct).toContainText("200 m");
-    await expect(globalProduct).toContainText("100% real-data coverage");
+    await expect(globalProduct).toContainText("All 41,772 derived cells valid");
     await expect.poll(() => requested.some((url) => url.includes("/terrain-global/elevation/"))).toBe(true);
 
     await page.screenshot({ path: `output/playwright/g4-global-elevation-${width}.png` });

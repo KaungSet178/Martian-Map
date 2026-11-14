@@ -2550,3 +2550,13 @@ input[type="radio"] {
     color: #174c68;
   }
 }
+
+/* Optional scientific coverage controls; map boundaries have no polygon fill. */
+.coverage-controls { margin-bottom: 24px; }
+.coverage-product button { white-space: normal; text-align: left; }
+.coverage-swatch { flex: 0 0 26px; width: 26px; border-top: 2px solid var(--color-science); }
+.coverage-swatch.dashed { border-top: 2px dashed var(--color-caution); }
+.coverage-controls .check-row { align-items: center; }
+.product-metadata, .posting-explanation { margin: 14px 0; font-size: 13px; }
+.product-metadata summary, .posting-explanation summary { cursor: pointer; padding: 10px 0; color: var(--color-text); }
+.product-metadata dd { overflow-wrap: anywhere; }

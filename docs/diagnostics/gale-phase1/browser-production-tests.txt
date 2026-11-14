@@ -1,0 +1,48 @@
+Origin: http://127.0.0.1:3132 (optimized production build)
+Command: node node_modules/@playwright/test/cli.js test tests/browser/gale-color.spec.ts tests/browser/gale-coverage.spec.ts tests/browser/gale-dem.spec.ts tests/browser/gale-g4-g5.spec.ts tests/browser/gale-geology.spec.ts tests/browser/gale-regional-terrain.spec.ts tests/browser/gale-science.spec.ts --reporter=list
+
+Running 37 tests using 1 worker
+
+(node:30120) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  1 tests\browser\gale-color.spec.ts:43:3 › G5 real color, stable M3 geometry, navigation and accessibility at 1440px (9.4s)
+  ok  2 tests\browser\gale-color.spec.ts:43:3 › G5 real color, stable M3 geometry, navigation and accessibility at 1024px (6.8s)
+  ok  3 tests\browser\gale-color.spec.ts:43:3 › G5 real color, stable M3 geometry, navigation and accessibility at 768px (7.6s)
+  ok  4 tests\browser\gale-color.spec.ts:43:3 › G5 real color, stable M3 geometry, navigation and accessibility at 390px (6.7s)
+  ok  5 tests\browser\gale-color.spec.ts:123:1 › G5 missing tiles restore CTX and retain controls, camera and waypoints (2.9s)
+  ok  6 tests\browser\gale-color.spec.ts:145:1 › G5 color preserves mission save/open and terrain visibility/opacity (3.0s)
+  ok  7 tests\browser\gale-color.spec.ts:173:1 › G5 source is isolated across regions and resets to CTX on return (1.7s)
+  ok  8 tests\browser\gale-coverage.spec.ts:48:3 › coverage independence, fitting, rendering and accessibility at 1440px (25.2s)
+  ok  9 tests\browser\gale-coverage.spec.ts:48:3 › coverage independence, fitting, rendering and accessibility at 1024px (21.3s)
+  ok 10 tests\browser\gale-coverage.spec.ts:48:3 › coverage independence, fitting, rendering and accessibility at 768px (23.2s)
+  ok 11 tests\browser\gale-coverage.spec.ts:48:3 › coverage independence, fitting, rendering and accessibility at 390px (24.1s)
+  ok 12 tests\browser\gale-dem.spec.ts:78:3 › real DEM views, uncertainty, opacity and isolation at 1440px (16.9s)
+  ok 13 tests\browser\gale-dem.spec.ts:78:3 › real DEM views, uncertainty, opacity and isolation at 1024px (13.5s)
+  ok 14 tests\browser\gale-dem.spec.ts:78:3 › real DEM views, uncertainty, opacity and isolation at 768px (11.6s)
+  ok 15 tests\browser\gale-dem.spec.ts:78:3 › real DEM views, uncertainty, opacity and isolation at 390px (10.2s)
+  ok 16 tests\browser\gale-g4-g5.spec.ts:88:3 › combined G4/G5 rendered terrain, M3, camera, mission and isolation at 1440px (27.8s)
+  ok 17 tests\browser\gale-g4-g5.spec.ts:139:3 › combined missing color tile retains terrain and M3 at 1440px (5.1s)
+  ok 18 tests\browser\gale-g4-g5.spec.ts:88:3 › combined G4/G5 rendered terrain, M3, camera, mission and isolation at 1024px (21.0s)
+  ok 19 tests\browser\gale-g4-g5.spec.ts:139:3 › combined missing color tile retains terrain and M3 at 1024px (4.1s)
+  ok 20 tests\browser\gale-g4-g5.spec.ts:88:3 › combined G4/G5 rendered terrain, M3, camera, mission and isolation at 768px (22.9s)
+  ok 21 tests\browser\gale-g4-g5.spec.ts:139:3 › combined missing color tile retains terrain and M3 at 768px (4.2s)
+  ok 22 tests\browser\gale-g4-g5.spec.ts:88:3 › combined G4/G5 rendered terrain, M3, camera, mission and isolation at 390px (18.9s)
+  ok 23 tests\browser\gale-g4-g5.spec.ts:139:3 › combined missing color tile retains terrain and M3 at 390px (3.6s)
+  ok 24 tests\browser\gale-g4-g5.spec.ts:160:1 › color, regional terrain and independently mapped geology actually composite (7.1s)
+  ok 25 tests\browser\gale-geology.spec.ts:29:3 › registered Arc Pass geology, legend, opacity and regional isolation at 1440px (5.1s)
+  ok 26 tests\browser\gale-geology.spec.ts:29:3 › registered Arc Pass geology, legend, opacity and regional isolation at 1024px (4.6s)
+  ok 27 tests\browser\gale-geology.spec.ts:29:3 › registered Arc Pass geology, legend, opacity and regional isolation at 768px (4.5s)
+  ok 28 tests\browser\gale-geology.spec.ts:29:3 › registered Arc Pass geology, legend, opacity and regional isolation at 390px (4.1s)
+  ok 29 tests\browser\gale-regional-terrain.spec.ts:34:3 › G4 regional and global terrain overlays, legends, and accessibility at 1440px (4.4s)
+  ok 30 tests\browser\gale-regional-terrain.spec.ts:34:3 › G4 regional and global terrain overlays, legends, and accessibility at 1024px (3.2s)
+  ok 31 tests\browser\gale-regional-terrain.spec.ts:34:3 › G4 regional and global terrain overlays, legends, and accessibility at 768px (3.1s)
+  ok 32 tests\browser\gale-regional-terrain.spec.ts:34:3 › G4 regional and global terrain overlays, legends, and accessibility at 390px (2.5s)
+  ok 33 tests\browser\gale-science.spec.ts:19:3 › G2 area evidence, NASA photographs and region isolation at 1440px (4.5s)
+  ok 34 tests\browser\gale-science.spec.ts:19:3 › G2 area evidence, NASA photographs and region isolation at 1024px (4.4s)
+  ok 35 tests\browser\gale-science.spec.ts:19:3 › G2 area evidence, NASA photographs and region isolation at 768px (4.8s)
+  ok 36 tests\browser\gale-science.spec.ts:19:3 › G2 area evidence, NASA photographs and region isolation at 390px (3.9s)
+  ok 37 tests\browser\gale-science.spec.ts:74:1 › a missing photograph preserves scientific metadata and NASA source access (2.0s)
+
+  37 passed (5.9m)
+
+Exit code: 0

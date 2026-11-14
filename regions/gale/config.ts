@@ -140,9 +140,9 @@ export const config = {
         "Valid data coverage: 100.00% across the entire Gale Overview footprint. Audited in team/gale/G4_TERRAIN_AUDIT.json."
       ],
       "limitations": [
-        "Published under CC BY 4.0: Persaud, S. (2021), 30-m HRSC DTM Mosaic of Gale Crater, Mars, DOI: 10.5281/zenodo.5808354.",
+        "Published under CC BY 4.0: Divya M. Persaud, Alfiah Diana Rizky Putri and Jan-Peter Muller (2021), 30-m HRSC DTM Mosaic of Gale Crater, Mars, DOI: 10.5281/zenodo.5808354.",
         "Fine-scale pixel co-registration against CTX optical mosaic is unverified. Do not infer sub-pixel alignment.",
-        "30 m posting resolves regional relief and slopes; small boulders, suit-scale obstacles, and localized hazards are unresolved. Not for astronaut hazard or safety routing."
+        "30 m nominal posting and 90 m north gradient support do not establish effective spatial resolution or absolute accuracy; small boulders, suit-scale obstacles, and localized hazards are unresolved. Not for astronaut hazard or safety routing."
       ]
     },
     {
@@ -158,8 +158,8 @@ export const config = {
       "processing_notes": [
         "Fergason, Hare, and Laura (2018), Astrogeology PDS Annex, U.S. Geological Survey.",
         "Global nominal 200 m blended digital elevation model. Geographic angular grid on Mars sphere R=3396190 m; source-specific affine preserved.",
-        "Bounded window extraction covering Gale Crater via HTTP range requests without downloading 11.4 GB global raster.",
-        "Horn 3x3 derivatives on 200 m grid for slope in degrees and NW artificial illumination hillshade."
+        "Bounded extraction of a localized Gale-area crop, about 35.28 × 47.20 km; not a complete Gale Crater map. Original global source retained via HTTP range requests without downloading the full 11.4 GB raster.",
+        "Horn 3x3 derivatives on nominal 200 m grid with 600 m north gradient support for slope in degrees and NW artificial illumination hillshade; neither scale establishes effective resolution or accuracy."
       ],
       "limitations": [
         "Official USGS product cited: Fergason et al. (2018), HRSC and MOLA Blended Digital Elevation Model at 200m V2.",

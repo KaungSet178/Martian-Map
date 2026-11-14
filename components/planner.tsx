@@ -27,6 +27,7 @@ import { regions, regionIds } from "@/lib/regions/registry";
 import {
   updateLayerState,
   type LayerStates,
+  type CoverageFocusRequest,
   type LayerState,
 } from "@/lib/map/region-layers";
 import {
@@ -103,6 +104,7 @@ export function Planner() {
   const [markers, setMarkers] = useState(true);
   const [opacity, setOpacity] = useState(70);
   const [layerStates, setLayerStates] = useState<LayerStates>({});
+  const [coverageFocus, setCoverageFocus] = useState<CoverageFocusRequest | null>(null);
   const [message, setMessage] = useState("");
   const [storageError, setStorageError] = useState("");
   const [saved, setSaved] = useState<Mission[]>([]);
@@ -735,6 +737,9 @@ export function Planner() {
             {panel === "layers" && (
               <LayerManager
                 region={region}
+                onZoomToCoverage={(layer_id) => setCoverageFocus((current) => ({
+                  region_id: region.id, layer_id, request_id: (current?.request_id ?? 0) + 1,
+                }))}
                 layerStates={layerStates}
                 onLayerChange={(id: string, change: Partial<LayerState>) =>
                   setLayerStates((current) =>
@@ -799,6 +804,7 @@ export function Planner() {
           showMarkers={markers}
           opacity={opacity}
           layerStates={layerStates}
+          coverageFocus={coverageFocus}
           plan={activePlan}
           isPlacingOnMap={isPlacingOnMap}
           onPlaceWaypoint={handlePlaceWaypoint}

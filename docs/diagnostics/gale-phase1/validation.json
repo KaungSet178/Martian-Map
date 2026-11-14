@@ -1,0 +1,185 @@
+{
+  "baseline": "6ea65200d76f3dc29e5c9b70182f3facd5d5b789",
+  "terrain_tiles_hash_verified": {
+    "regional_hrsc_30m": 210,
+    "global_usgs_200m": 1305
+  },
+  "regional_raw_hash_matches": true,
+  "corrected_global_raw_hash_matches": true,
+  "original_arc_archive_hash_matches": true,
+  "arc_display_hash_matches": true,
+  "unchanged_tracked_scientific_and_unrelated_files": 2087,
+  "changed_in_protected_scientific_paths": [],
+  "default_view_comparison": {
+    "1440": {
+      "crop_xyxy": [
+        360,
+        80,
+        1440,
+        840
+      ],
+      "pixel_identical": true,
+      "mean_absolute_difference": 0
+    },
+    "390": {
+      "crop_xyxy": [
+        0,
+        80,
+        390,
+        620
+      ],
+      "pixel_identical": true,
+      "mean_absolute_difference": 0
+    }
+  },
+  "audit_commit": "8c2d8f5bc3168d05c305afbff7196f2624ce2f39",
+  "validation": {
+    "python": {
+      "passed": 37,
+      "failed": 0,
+      "skipped": 0
+    },
+    "typescript_all": {
+      "passed": 323,
+      "failed": 0,
+      "skipped": 0
+    },
+    "typescript_focused": {
+      "passed": 29,
+      "failed": 0,
+      "skipped": 0
+    },
+    "production_browser": {
+      "passed": 37,
+      "failed": 0,
+      "viewport_widths": [
+        1440,
+        1024,
+        768,
+        390
+      ]
+    },
+    "typecheck": "passed",
+    "lint": "passed",
+    "production_build": "passed (Next.js webpack)"
+  },
+  "historical_screenshot_outputs_restored": [
+    "docs/images/g4-g5/color-hillshade-waypoints-1440.jpg",
+    "docs/images/g4-g5/color-hillshade-waypoints-390.jpg",
+    "docs/images/g4-g5/color-regional-1440.jpg",
+    "docs/images/g4-g5/color-regional-390.jpg",
+    "docs/images/g4-g5/color-slope-1440.jpg",
+    "docs/images/g4-g5/color-slope-390.jpg",
+    "docs/images/g4-g5/ctx-regional-1440.jpg",
+    "docs/images/g4-g5/ctx-regional-390.jpg"
+  ],
+  "other_worktrees": {
+    "D:/martian-map": {
+      "status_before": " M components/map/map-workspace.tsx\n",
+      "status_after": " M components/map/map-workspace.tsx\n",
+      "head_before": "08ccedb7c635ab89603d6444b30e6fe4f7e7d6d4",
+      "head_after": "08ccedb7c635ab89603d6444b30e6fe4f7e7d6d4",
+      "preexisting_modified_files_unchanged": {
+        "components/map/map-workspace.tsx": true
+      }
+    },
+    "D:/martian-map/output/gale-g1": {
+      "status_before": "",
+      "status_after": "",
+      "head_before": "cdfd81a38149ba4aa44cda57591bef9681631f8e",
+      "head_after": "cdfd81a38149ba4aa44cda57591bef9681631f8e",
+      "preexisting_modified_files_unchanged": {}
+    },
+    "D:/martian-map/output/gale-g1/output/end-of-day-2026-11-13": {
+      "status_before": "",
+      "status_after": "",
+      "head_before": "6ea65200d76f3dc29e5c9b70182f3facd5d5b789",
+      "head_after": "6ea65200d76f3dc29e5c9b70182f3facd5d5b789",
+      "preexisting_modified_files_unchanged": {}
+    },
+    "D:/martian-map/output/gale-g1/output/gale-color-basemap": {
+      "status_before": "",
+      "status_after": "",
+      "head_before": "1969df9ce559bf88f0c119309f5d35fdeb4f18c4",
+      "head_after": "1969df9ce559bf88f0c119309f5d35fdeb4f18c4",
+      "preexisting_modified_files_unchanged": {}
+    },
+    "D:/martian-map/output/gale-g1/output/gale-g4-g5-integration": {
+      "status_before": "",
+      "status_after": "",
+      "head_before": "bd12f5508ed317b76d5119db39b56e4f4f059590",
+      "head_after": "bd12f5508ed317b76d5119db39b56e4f4f059590",
+      "preexisting_modified_files_unchanged": {}
+    },
+    "D:/martian-map/output/gale-g1/output/gale-layer-visualization": {
+      "status_before": "",
+      "status_after": "",
+      "head_before": "8c2d8f5bc3168d05c305afbff7196f2624ce2f39",
+      "head_after": "8c2d8f5bc3168d05c305afbff7196f2624ce2f39",
+      "preexisting_modified_files_unchanged": {}
+    },
+    "D:/martian-map/output/gale-g1/output/jezero-science-targets": {
+      "status_before": "",
+      "status_after": "",
+      "head_before": "d9fbe2f2bf845ef76e69b61cfa0f874246630ca6",
+      "head_after": "9670ada94b634ab6a35b660c7e675ee9dfad4ac3",
+      "preexisting_modified_files_unchanged": {}
+    },
+    "D:/martian-map/output/jezero-preview": {
+      "status_before": "",
+      "status_after": "",
+      "head_before": "4f728120fba160627fd08ba1373bf6e9358d2278",
+      "head_after": "4f728120fba160627fd08ba1373bf6e9358d2278",
+      "preexisting_modified_files_unchanged": {}
+    },
+    "D:/martian-map-antigravity": {
+      "status_before": "",
+      "status_after": "",
+      "head_before": "e5db09269c2f195170f43e633856a84289ff567f",
+      "head_after": "e5db09269c2f195170f43e633856a84289ff567f",
+      "preexisting_modified_files_unchanged": {}
+    },
+    "D:/martian-map-gale-terrain": {
+      "status_before": "",
+      "status_after": "",
+      "head_before": "65c95adae305cd869cf7a50f06cd59e857bce800",
+      "head_after": "65c95adae305cd869cf7a50f06cd59e857bce800",
+      "preexisting_modified_files_unchanged": {}
+    },
+    "D:/martian-map-m4-integration": {
+      "status_before": "",
+      "status_after": "",
+      "head_before": "6ea65200d76f3dc29e5c9b70182f3facd5d5b789",
+      "head_after": "6ea65200d76f3dc29e5c9b70182f3facd5d5b789",
+      "preexisting_modified_files_unchanged": {}
+    },
+    "D:/martian-map-resource-budget": {
+      "status_before": "",
+      "status_after": "",
+      "head_before": "7a4f3355d26b23d5e0bb6733e6c8fee79a12a4ba",
+      "head_after": "7a4f3355d26b23d5e0bb6733e6c8fee79a12a4ba",
+      "preexisting_modified_files_unchanged": {}
+    },
+    "D:/martian-map-timeline": {
+      "status_before": "",
+      "status_after": "",
+      "head_before": "f67505c718e529450e888b6aad8cd082609e9943",
+      "head_after": "f67505c718e529450e888b6aad8cd082609e9943",
+      "preexisting_modified_files_unchanged": {}
+    }
+  },
+  "screenshots_sha256": {
+    "docs/images/coverage-phase1/after-layers-1440.png": "58173fe78f7cae5c0228f8dbe075cc36a6d60e5b04f6e608841d9cb92186db3b",
+    "docs/images/coverage-phase1/after-layers-390.png": "313e5876733fd1dc86836e2be0eeaf8cbba9040afc64cef2297c378115e2b81f",
+    "docs/images/coverage-phase1/after-overview-1440.png": "a1b3cf572389692a72b9ce17e8ca6f665b0b584d14d0d6d513e359ec42a02686",
+    "docs/images/coverage-phase1/after-overview-390.png": "559c14c7225fe9b09f4396313ed9f9bb6dc8f518fde1a4493b6b77ff2fd573f3",
+    "docs/images/coverage-phase1/before-overview-1440.png": "f218ac6593b393db06881cecd92fd6e8ea8b449039dfc7deaf9a2b13646da7a1",
+    "docs/images/coverage-phase1/before-overview-390.png": "dec7431e755988df081f1762de96cee485656196ae21e95f3f2d769120af0bb7",
+    "docs/images/coverage-phase1/both-color-1440.png": "011e74b7e9231d78fffaa3051c5f42a2bf09359b64ab7971c97216614972d5d9",
+    "docs/images/coverage-phase1/both-color-390.png": "b347bea6fb70e2a5bb5f34e20702ebfbf627bd9b3dea8aac30297fa64f04daa9",
+    "docs/images/coverage-phase1/metadata-1440.png": "c86c3620fd04de061064fee63740f0a998c0050ad71036b6d50dd342c8f9f860",
+    "docs/images/coverage-phase1/metadata-390.png": "8723e038449010f7b83ba56442322614e9f402dc2d90dc3f6feceef4b78633cf",
+    "docs/images/coverage-phase1/regional-ctx-1440.png": "29d757b5a64c4fd1ed200b8176e9032e2e5ae1bb6f73dc6fc1461fed10aba88d",
+    "docs/images/coverage-phase1/regional-ctx-390.png": "ea2a9679b75ac6e099ec5eae67b3dc2035540d96eb0792b778338efd88359f4b"
+  }
+}

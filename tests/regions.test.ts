@@ -142,7 +142,7 @@ test("G4 regional and global terrain layers preserve multi-resolution hierarchy,
     assert.equal(layer!.source_id, "gale-usgs-200m");
     assert.equal(layer!.spatial_resolution_m, 200);
     assert.equal(layer!.default_visible, false);
-    assert.match(layer!.coverage!, /100% real-data coverage/);
+    assert.match(layer!.coverage!, /All 41,772 derived cells valid/);
     assert.match(layer!.limitations, /hazards are completely unresolved/);
     assert.equal(layer!.rendering.kind, "raster-tiles");
     if (layer!.rendering.kind === "raster-tiles") {

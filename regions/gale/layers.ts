@@ -1,6 +1,7 @@
 import type { ScientificLayer } from "@/lib/contracts/region";
 import { geologyLegend } from "./geology-legend";
 import { terrainLayers } from "./terrain-layers";
+import { coverageLayers } from "./coverage-layers";
 
 // Gale G1: source-backed content; unknown values remain explicit.
 export const layers = [
@@ -38,6 +39,15 @@ export const layers = [
     "kind": "geology",
     "availability": "available",
     "source_id": "gale-arc-pass-geology",
+    data_details: {
+      source_product: "Geomap.gdb.zip / map_unit_polygons_v2 · Joel Davis (2025), DOI 10.6084/m9.figshare.30401788.v1",
+      source_coverage: "Local Arc Pass study only; about 263.233 × 221.575 ground metres. Not the whole Gediz Vallis or Lower Mount Sharp.",
+      display_crop: "All 53 original geological features retained at exact source coordinates; no clipping, enlargement or fitted offset.",
+      valid_coverage: "Seven original Unit categories; small original topology gaps retained. Outside the interpreted polygons is unmapped.",
+      nominal_posting_m: null,
+      gradient_support_north_m: null,
+      crs: "Source Mars 2000 sphere R=3,396,190 m, equirectangular meridian/standard parallel 0; inverse to planetocentric latitude and east longitude. Constant zero Z omitted.",
+    },
     "observation_date": null,
     "spatial_resolution_m": null,
     "coverage": "Arc Pass only: 137.406597..137.411053 E, -4.789073..-4.785335 N; about 264 x 222 m. Outside the source footprint is unmapped, not a missing or safe unit. Opening the layer fits this mapped area.",
@@ -93,5 +103,6 @@ export const layers = [
         }
       ]
     }
-  }
+  },
+  ...coverageLayers,
 ] satisfies ScientificLayer[];

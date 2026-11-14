@@ -60,3 +60,14 @@ export function fitOverview(
     });
   }
 }
+
+// Called only by an explicit coverage-fit action. Auto-focus remains separate.
+export function fitLayerCoverage(
+  map: MapInstance, region: RegionManifest, layerId: string, container: HTMLElement,
+): boolean {
+  const extent = region.layers.find((layer) => layer.id === layerId &&
+    layer.availability === "available")?.zoom_extent;
+  if (!extent || region.map.visualization.status !== "available") return false;
+  fitOverview(map, { ...region, map: { ...region.map, supported_extent: extent } }, container, false, true);
+  return true;
+}

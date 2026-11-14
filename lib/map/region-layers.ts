@@ -4,6 +4,7 @@ import type {
   MarsGeographicCoordinates,
 } from "@/lib/contracts/region";
 
+export type CoverageFocusRequest = { region_id: string; layer_id: string; request_id: number };
 export type LayerState = { visible: boolean; opacity: number };
 export type LayerStates = Record<string, LayerState>;
 export function fillColor(layer: RegionManifest["layers"][number]): string | ExpressionSpecification {
@@ -127,14 +128,28 @@ export function mountRegionLayers(
         data: render.url,
         attribution: layer.attribution ?? undefined,
       });
-      if (render.geometry === "line")
+      if (render.geometry === "line") {
+        // A thin dark casing keeps the optional boundaries legible over both
+        // light imagery and the dark map background. No polygon fill is added.
+        if (render.line_pattern) {
+          const halo = `${id}-halo`;
+          map.addLayer({
+            id: halo, type: "line", source: id,
+            layout: { visibility: "none", "line-join": "round" },
+            paint: { "line-color": "#09111F", "line-width": 5,
+              ...(render.line_pattern === "dashed" ? { "line-dasharray": [2.4, 1.6] } : {}) },
+          });
+          ids.push(halo);
+        }
         map.addLayer({
           id,
           type: "line",
           source: id,
-          layout: { visibility: "none" },
-          paint: { "line-color": render.color, "line-width": 2 },
+          layout: { visibility: "none", ...(render.line_pattern ? { "line-join": "round" as const } : {}) },
+          paint: { "line-color": render.color, "line-width": 2,
+            ...(render.line_pattern === "dashed" ? { "line-dasharray": [6, 4] } : {}) },
         });
+      }
       if (render.geometry === "fill")
         map.addLayer({
           id,
@@ -158,10 +173,10 @@ export function mountRegionLayers(
     ids.push(id);
   }
   return () => {
-    for (const id of ids.reverse()) {
+    for (const id of [...ids].reverse())
       if (map.getLayer(id)) map.removeLayer(id);
+    for (const id of ids)
       if (map.getSource(id)) map.removeSource(id);
-    }
   };
 }
 export function applyLayerStates(
@@ -184,5 +199,12 @@ export function applyLayerStates(
         ? "raster"
         : layer.rendering.geometry;
     map.setPaintProperty(id, `${type}-opacity`, state.opacity / 100);
+    if (layer.rendering.kind === "geojson" && layer.rendering.line_pattern) {
+      const halo = `${id}-halo`;
+      if (map.getLayer(halo)) {
+        map.setLayoutProperty(halo, "visibility", !preview && state.visible ? "visible" : "none");
+        map.setPaintProperty(halo, "line-opacity", state.opacity / 100);
+      }
+    }
   }
 }

@@ -10,7 +10,7 @@
     "start": "next start --hostname 127.0.0.1",
     "lint": "eslint .",
     "typecheck": "next typegen && tsc --noEmit",
-    "test": "tsx --test tests/mission.test.ts tests/regions.test.ts",
+    "test": "tsx --test tests/mission.test.ts tests/regions.test.ts tests/gale-integration.test.ts tests/gale-coverage.test.ts",
     "test:e2e": "playwright test"
   },
   "dependencies": {
