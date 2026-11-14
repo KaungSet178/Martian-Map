@@ -31,6 +31,7 @@ import {
   routeFeatureCollection,
   type DisplayRoute,
 } from "@/lib/map/routes";
+import { hasVerifiedMapLocation } from "@/lib/map/target-location";
 import { Badge } from "@/components/ui/primitives";
 
 type Props = {
@@ -258,33 +259,17 @@ export default function MapWorkspace({
       if (disposed || !map.current) return;
       markers.current = region.targets
         .filter((target) => {
-          // Show verified targets with coordinates, and unverified targets (with evidence like "Interpreted")
-          // so users can see objectives on the map even without verified locations
-          const isVerified = target.coordinate_verified && target.coordinates !== null;
-          const isUnverifiedWithEvidence =
-            !target.coordinate_verified &&
-            target.evidence !== "Scenario" &&
-            target.evidence !== "Unavailable";
-  
-          if (preview) {
-            return target.evidence === "Scenario";
-          }
-          return isVerified || isUnverifiedWithEvidence;
+          // Schematic scenario positions are confined to the explicit interface preview.
+          return target.region_id === region.id && (preview
+            ? target.evidence === "Scenario"
+            : hasVerifiedMapLocation(target, region));
         })
         .map((target, i) => {
-          const isVerified = target.coordinate_verified && target.coordinates !== null;
           const button = document.createElement("button");
           button.className = `science-marker ${selected === target.id ? "inspected" : ""} ${stops.includes(target.id) ? "added" : ""}`;
-  
-          // Use different marker styles based on verification status
-          if (!isVerified) {
-            button.style.opacity = "0.5";
-            button.style.borderColor = "#6b7280";
-          }
-  
           button.setAttribute(
             "aria-label",
-            `Inspect ${target.title}, ${preview ? "schematic location" : isVerified ? "verified location" : "unverified location"}`,
+            `Inspect ${target.title}, ${preview ? "schematic location" : "verified location"}`,
           );
           button.setAttribute("aria-pressed", String(selected === target.id));
           const label = document.createElement("span");
@@ -293,11 +278,6 @@ export default function MapWorkspace({
             : "◇";
           button.append(label);
           button.onclick = () => onInspect(target.id);
-  
-          // For unverified targets with null coordinates, distribute around region center
-          const displayCoords = target.coordinates
-            ? target.coordinates
-            : undefined; // Will render at origin, showing objective exists in region
   
           // Increase click target size for better accessibility
           button.style.width = "48px";
@@ -310,9 +290,7 @@ export default function MapWorkspace({
             .setLngLat(
               preview
                 ? previewPositions[i % previewPositions.length]
-                : isVerified
-                  ? toDisplayCoordinates(target.coordinates!)
-                  : [displayLon, displayLat], // unverified: show in circular pattern around region center
+                : toDisplayCoordinates(target.coordinates!),
             )
             .addTo(map.current!);
         });

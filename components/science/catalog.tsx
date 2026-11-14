@@ -1,5 +1,6 @@
 "use client";
 
+import { hasVerifiedMapLocation } from "@/lib/map/target-location";
 import { ArrowUpRight, Check, Plus } from "lucide-react";
 import type { RegionManifest, Target } from "@/lib/contracts/region";
 import { Badge, Notice, EvidenceBadge } from "@/components/ui/primitives";
@@ -55,10 +56,10 @@ export function TargetCatalog({
             </button>
             <p>{target.scientific_goal}</p>
             <div className="target-actions">
-              <span className="supporting">
-                {target.coordinate_verified
+              <span className="supporting" title={hasVerifiedMapLocation(target, region) ? undefined : "This scientific objective has no verified map location yet."}>
+                {hasVerifiedMapLocation(target, region)
                   ? "Location verified"
-                  : "Location unverified"}
+                  : "Location not verified"}
               </span>
               <button
                 className="small-button"
@@ -97,11 +98,14 @@ export function TargetDetails({
       <div className="inline-labels">
         <EvidenceBadge value={target.evidence} />
         <Badge>
-          {target.coordinate_verified
+          {hasVerifiedMapLocation(target, region)
             ? "Location verified"
-            : "Location unverified"}
+            : "Location not verified"}
         </Badge>
       </div>
+      {!hasVerifiedMapLocation(target, region) && (
+        <p className="supporting">This scientific objective has no verified map location yet.</p>
+      )}
       <p className="lead">{target.scientific_goal}</p>
       <h3>Proposed field activity</h3>
       <p>{target.activity}</p>
@@ -111,7 +115,7 @@ export function TargetDetails({
           draft mission.
         </Notice>
       )}
-      {target.coordinates && target.coordinate_verified && (
+      {target.coordinates && hasVerifiedMapLocation(target, region) && (
         <p className="mono">
           {target.coordinates.latitude}° planetocentric ·{" "}
           {target.coordinates.longitude_east}° E

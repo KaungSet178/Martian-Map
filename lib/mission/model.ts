@@ -1,3 +1,4 @@
+import { hasVerifiedMapLocation } from "@/lib/map/target-location";
 import { z } from "zod";
 import {
   coordinatesSchema,
@@ -73,7 +74,7 @@ export function missionIssues(
     mission.target_ids.some((id) => {
       const target = region.targets.find((t) => t.id === id);
       return (
-        !target?.coordinate_verified ||
+        !hasVerifiedMapLocation(target, region) ||
         target.routing_eligibility.status !== "available"
       );
     })
