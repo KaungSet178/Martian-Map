@@ -55,7 +55,8 @@ export const config = {
   // v3: targets located at Mars Trek mineral-detection points (Interpreted,
   // approximate); routing stays off.
   // v4: THEMIS night-IR thermal layer (relative brightness, Mars Trek).
-  dataset_version: "oxia-thermal-v4",
+  // v5: regional 200 m hillshade in oxia-terrain (Derived, Mars Trek).
+  dataset_version: "oxia-hillshade-v5",
   routing: {
     enabled: false,
     reason:
@@ -65,9 +66,10 @@ export const config = {
   },
   capabilities: {
     terrain_coverage: {
-      status: "unknown",
-      reason: "No terrain footprint has been audited.",
-      source_id: null,
+      status: "partial",
+      reason:
+        "Regional 200 m hillshade display only (Mars Trek MOLA + HRSC blend) over the team-chosen Oxia display area, 17.11-19.15 N, 334.60-336.60 E. No elevation values, slope grid or walking-scale terrain are integrated; nothing here supports routing or hazard screening.",
+      source_id: "oxia-mola-hrsc-shade-trek",
     },
     experimental_routing: {
       status: "unavailable",
@@ -135,6 +137,32 @@ export const config = {
         "Uncontrolled beta mosaic: seams and illumination differences between orbits; not radiometrically calibrated.",
         "Individual CTX image acquisition dates are not carried by the tiled service.",
         "Imagery only; not elevation, geology or hazard evidence.",
+      ],
+    },
+    {
+      id: "oxia-mola-hrsc-shade-trek",
+      title:
+        "NASA JPL Mars Trek layer 'MGS MOLA and Mars Express HRSC, Hillshade Blend' (Mars_MOLA_blend200ppx_HRSC_Shade_clon0dd_200mpp_lzw)",
+      url: "https://trek.nasa.gov/tiles/Mars/EQ/Mars_MOLA_blend200ppx_HRSC_Shade_clon0dd_200mpp_lzw/1.0.0/WMTSCapabilities.xml",
+      agency: "NASA JPL Mars Trek · NASA Mars Global Surveyor · ESA Mars Express",
+      instrument:
+        "MGS Mars Orbiter Laser Altimeter (MOLA) + Mars Express High Resolution Stereo Camera (HRSC), blended terrain model",
+      product_id:
+        "Mars_MOLA_blend200ppx_HRSC_Shade_clon0dd_200mpp_lzw (Mars Trek item 595e535f-942d-41f4-b650-31e64ab63246)",
+      acquisition_date: null,
+      sol: null,
+      native_resolution_m: 200,
+      processing_notes: [
+        "Mars Trek is listed in the Space Apps 2026 challenge resources.",
+        "Mars Trek description: blend of MOLA terrain data (600+ million measurements, 1999-2001; ~100 m horizontal accuracy, at least +/-3 m elevation uncertainty; ~300 x 1000 m spatial resolution at the equator) and HRSC stereo-derived terrain models (grid up to 50 m). Cites Jaumann et al. (2007), Planet. Space Sci. 55(7-8), 928-952.",
+        "WMTS (checked 2026-11-14): EPSG::104905 (Mars 2000 sphere), TopLeftCorner -180/90, 256 px grayscale JPEG tiles, levels 0-8 (level 8 is the finest; level 9 returns 404).",
+        "Display tiles /maps/oxia/hillshade-tiles/ built by team/oxia/terrain/prepare_hillshade.py (Python + Pillow, prep-only; nearest-neighbour, gray values unchanged); see team/oxia/terrain/build_report.json.",
+      ],
+      limitations: [
+        "Hillshade image only: no elevation or slope values. Regional relief at 200 m per pixel; not for walking-scale slope, obstacles or safety.",
+        "Which input (MOLA or HRSC) dominates at Oxia is not stated per pixel.",
+        "Illumination direction and the exact processing date are not stated by Mars Trek.",
+        "Served as lossy JPEG tiles.",
       ],
     },
     {

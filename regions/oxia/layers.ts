@@ -32,25 +32,38 @@ export const layers = [
   {
     id: "oxia-terrain",
     type: "Terrain & slope",
-    display_name: "Terrain & slope",
+    display_name: "Regional hillshade (200 m)",
     kind: "topography",
-    availability: "pending",
-    source_id: null,
+    availability: "available",
+    source_id: "oxia-mola-hrsc-shade-trek",
     observation_date: null,
-    spatial_resolution_m: null,
-    coverage: null,
+    spatial_resolution_m: 200,
+    coverage:
+      "Mars Trek MOLA + HRSC hillshade blend over the team-chosen Oxia display area, 17.11-19.15 N, 334.60-336.60 E: 26 derived display tiles, Web-Mercator XYZ, zooms 5-9 (source level 8, about 163 m per pixel; product 200 m per pixel). No gaps in this area.",
     limitations:
-      "Requires audited DEM, resolution, valid-data footprint and documented derivation.",
-    evidence: "Unavailable",
-    attribution: null,
+      "Regional relief only, 200 m per pixel. Not for walking-scale slope or safety. Shaded relief image with no elevation or slope values; boulders, small craters and steep local slopes are not resolved. Illumination direction is not stated by Mars Trek. Display-grade, nearest-neighbour resampled from Mars Trek JPEG tiles (lossy compression). No routing or hazard use.",
+    evidence: "Derived",
+    attribution:
+      "NASA MGS MOLA and ESA Mars Express HRSC hillshade blend · via NASA JPL Mars Trek",
     rendering: {
-      kind: "unavailable",
-      reason:
-        "Requires audited DEM, resolution, valid-data footprint and documented derivation.",
+      kind: "raster-tiles",
+      tiles: ["/maps/oxia/hillshade-tiles/{z}/{x}/{y}.png"],
+      tile_size: 256,
+      min_zoom: 5,
+      max_zoom: 9,
     },
     default_visible: false,
     default_opacity: 70,
-    legend: null,
+    legend: {
+      title:
+        "Shaded relief. Regional relief only, 200 m per pixel. Not for walking-scale slope or safety.",
+      units: null,
+      items: [
+        { label: "Lit slopes", color: "#DADADA" },
+        { label: "Flat ground", color: "#9A9A9A" },
+        { label: "Shadowed slopes", color: "#3C3C3C" },
+      ],
+    },
   },
   {
     id: "oxia-geology",
