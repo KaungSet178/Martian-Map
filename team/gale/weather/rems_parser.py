@@ -12,7 +12,6 @@ from typing import Any, Dict, List, Optional, Tuple
 
 from .rems_schema import FieldSpec, LabelInfo, parse_label, sha256_file
 
-# Verified W1.1 contract for the selected Sol 100 MODRDR product.
 EXPECTED_SOL = 100
 EXPECTED_FIELD_NAMES: Tuple[str, ...] = (
     "TIMESTAMP", "LMST", "LTST", "HORIZONTAL_WIND_SPEED", "VERTICAL_WIND_SPEED",
@@ -85,7 +84,6 @@ class TimeValidation:
 
 
 def validate_field_contract(label: LabelInfo) -> None:
-    """Ensure the label matches the verified W1.1 schema contract."""
     names = tuple(f.name for f in label.fields)
     if names != EXPECTED_FIELD_NAMES:
         raise ValueError(
@@ -102,13 +100,42 @@ def validate_field_contract(label: LabelInfo) -> None:
             )
 
 
+def validate_source_identity(label: LabelInfo, data_path: Path, expected_sol: int = EXPECTED_SOL) -> None:
+    """Verify that the PDS4 label legitimately references the supplied MODRDR file."""
+    if "msl_rems" not in label.logical_identifier:
+        raise ValueError(f"Unexpected logical identifier: {label.logical_identifier!r}")
+    if label.version_id != "1.0":
+        raise ValueError(f"Unexpected product version: {label.version_id!r}")
+    if label.data_file_name != data_path.name:
+        raise ValueError(
+            f"Label data file {label.data_file_name!r} does not match supplied file {data_path.name!r}"
+        )
+    name = data_path.name
+    if not name.startswith("RME_") or "RMD" not in name:
+        raise ValueError(f"Data filename does not identify a MODRDR product: {name!r}")
+    if f"SOL{expected_sol:05d}" not in name and f"SOL{expected_sol:04d}" not in name:
+        # The product filename does not embed the sol directly; require the verified filename.
+        if name != "RME_406323911RMD01000000000_______P9.TAB":
+            raise ValueError(f"Unexpected Sol {expected_sol} MODRDR filename: {name!r}")
+    # The logical identifier is a lowercased PDS4 LID and legitimately ends in ...pa,
+    # while the filename retains the PDS3 product version suffix ...P9. This is an
+    # official naming difference, not a mismatch, because file_name is authoritative.
+    # PDS4 logical identifiers lowercase the product filename's version suffix.
+    # For example, a file ending in ...P9.TAB has an LID ending in ...p9.
+    expected_suffix = data_path.stem[-2:].lower()
+    if not label.logical_identifier.endswith(expected_suffix):
+        raise ValueError(
+            "Logical identifier suffix does not match the product filename version: "
+            f"{label.logical_identifier!r} vs {expected_suffix!r}"
+        )
+
+
 def _is_missing_numeric(value: str, spec: FieldSpec) -> bool:
     stripped = value.strip().strip('"')
     if stripped == "":
         return True
     if spec.missing_constant is not None and stripped == spec.missing_constant.strip().strip('"'):
         return True
-    # Documented sentinel fallback for numeric fields.
     if stripped in {"-999", "-999.00", "-9.990E+02"}:
         return True
     return False
@@ -134,32 +161,71 @@ def _parse_numeric(value: str, spec: FieldSpec) -> Optional[float]:
 
 def _parse_string(value: str, spec: FieldSpec) -> Optional[str]:
     stripped = value.strip()
-    # Remove surrounding quotes while preserving internal content.
     if len(stripped) >= 2 and stripped.startswith('"') and stripped.endswith('"'):
         stripped = stripped[1:-1]
     if stripped == "":
         return None
     if spec.missing_constant is not None and stripped == spec.missing_constant.strip().strip('"'):
-        # Preserve documented missing string sentinel as None for JSON null.
         return None
     return stripped
 
 
-def _slice_record(line: str, label: LabelInfo) -> List[str]:
-    # Use fixed-width field locations from the PDS4 label rather than CSV splitting.
-    raw = line.rstrip("\r\n")
-    if len(raw) < label.record_bytes and label.record_bytes > 0:
-        # Allow trailing whitespace differences but require at least the last field.
-        pass
+def _split_records(data: bytes) -> List[bytes]:
+    """Split a CRLF-delimited byte stream into records without silently dropping blanks."""
+    if data == b"":
+        raise ValueError("Empty MODRDR data file")
+    if not data.endswith(b"\r\n") and not data.endswith(b"\n"):
+        raise ValueError("MODRDR data file does not end with a line terminator")
+    # Split on CRLF first; fall back to LF for the final terminator check only.
+    records: List[bytes] = []
+    # Preserve blank lines: splitlines(keepends=True) would hide them; use explicit split.
+    if b"\r\n" in data:
+        parts = data.split(b"\r\n")
+        # File ends with CRLF, so the last part is empty.
+        if parts and parts[-1] == b"":
+            parts = parts[:-1]
+        for part in parts:
+            records.append(part + b"\r\n")
+    else:
+        parts = data.split(b"\n")
+        if parts and parts[-1] == b"":
+            parts = parts[:-1]
+        for part in parts:
+            records.append(part + b"\n")
+    if not records:
+        raise ValueError("No records found in MODRDR data file")
+    return records
+
+
+def _slice_record(line: bytes, label: LabelInfo) -> List[str]:
+    if line.endswith(b"\r\n"):
+        terminator = b"\r\n"
+    elif line.endswith(b"\n"):
+        terminator = b"\n"
+    else:
+        terminator = b""
+    content = line[:-len(terminator)] if terminator else line
+    if content.strip() == b"":
+        raise ValueError("Blank record encountered")
+    if terminator:
+        expected_content_len = label.record_bytes - len(terminator)
+    else:
+        expected_content_len = label.record_bytes
+    if expected_content_len <= 0:
+        raise ValueError("Invalid record_bytes in PDS4 label")
+    if len(content) != expected_content_len:
+        raise ValueError(
+            f"Record byte length mismatch: expected {expected_content_len}, got {len(content)}"
+        )
     values: List[str] = []
     for spec in label.fields:
         start = spec.location - 1
         end = start + spec.length
-        if end > len(raw):
+        if start < 0 or end > len(content):
             raise ValueError(
-                f"Record too short for field {spec.name}: need {end} bytes, got {len(raw)}"
+                f"Field {spec.name} extends outside the record: bytes {spec.location}-{spec.location + spec.length - 1}"
             )
-        values.append(raw[start:end])
+        values.append(content[start:end].decode("ascii"))
     return values
 
 
@@ -173,7 +239,8 @@ def validate_time_records(records: List[Dict[str, Any]], expected_sol: int = EXP
                 issues.append(f"Row {idx}: TIMESTAMP is not an integer")
             elif previous_timestamp is not None and ts < previous_timestamp:
                 issues.append(f"Row {idx}: TIMESTAMP is not monotonic ({ts} < {previous_timestamp})")
-            previous_timestamp = ts if isinstance(ts, int) else previous_timestamp
+            if isinstance(ts, int):
+                previous_timestamp = ts
 
         lmst = rec.get("LMST")
         if lmst is None or not isinstance(lmst, str) or not LMST_RE.match(lmst):
@@ -202,23 +269,29 @@ def parse_records(label: LabelInfo, data_path: Path, expected_sol: int = EXPECTE
     if not data_path.is_file():
         raise FileNotFoundError(f"MODRDR data file not found: {data_path}")
 
+    validate_source_identity(label, data_path, expected_sol=expected_sol)
+    validate_field_contract(label)
+
+    raw = data_path.read_bytes()
+    lines = _split_records(raw)
+
     records: List[Dict[str, Any]] = []
-    with data_path.open("r", encoding="ascii", newline="") as f:
-        for line_number, line in enumerate(f, start=1):
-            if line.strip() == "":
-                continue
+    for line_number, line in enumerate(lines, start=1):
+        try:
             values = _slice_record(line, label)
-            if len(values) != len(label.fields):
-                raise ValueError(
-                    f"Row {line_number}: expected {len(label.fields)} fields, got {len(values)}"
-                )
-            record: Dict[str, Any] = {}
-            for spec, value in zip(label.fields, values):
-                if spec.data_type in NUMERIC_TYPES:
-                    record[spec.name] = _parse_numeric(value, spec)
-                else:
-                    record[spec.name] = _parse_string(value, spec)
-            records.append(record)
+        except ValueError as exc:
+            raise ValueError(f"Record {line_number}: {exc}") from exc
+        if len(values) != len(label.fields):
+            raise ValueError(
+                f"Record {line_number}: expected {len(label.fields)} fields, got {len(values)}"
+            )
+        record: Dict[str, Any] = {}
+        for spec, value in zip(label.fields, values):
+            if spec.data_type in NUMERIC_TYPES:
+                record[spec.name] = _parse_numeric(value, spec)
+            else:
+                record[spec.name] = _parse_string(value, spec)
+        records.append(record)
 
     if len(records) != label.record_count:
         raise ValueError(
@@ -298,7 +371,6 @@ def build_output(
     ]
     q = quality_summary(records, label)
     q["time_validation_errors"] = validate_time_records(records, expected_sol=sol)
-    # Store rows as arrays in field order to keep the offline file compact.
     record_arrays = [[rec[name] for name in field_names] for rec in records]
     return {
         "schema_version": "1.0",

@@ -18,6 +18,7 @@ from team.gale.weather.rems_parser import (
     quality_summary,
     validate_field_contract,
     validate_time_records,
+    validate_source_identity,
 )
 from team.gale.weather.rems_schema import FieldSpec
 
@@ -210,6 +211,129 @@ class TestGaleWeatherParser(unittest.TestCase):
             # Pad to at least one record; record count mismatch will also raise.
             with self.assertRaises(ValueError):
                 parse_records(self.label, bad)
+
+
+class TestGaleWeatherHardening(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.label = parse_label(XML_PATH)
+        cls.records = parse_records(cls.label, TAB_PATH, expected_sol=EXPECTED_SOL)
+
+    def test_source_identity_valid(self):
+        validate_source_identity(self.label, TAB_PATH, expected_sol=EXPECTED_SOL)
+
+    def test_source_identity_wrong_filename(self):
+        from pathlib import Path as P
+        wrong = P("WRONG.TAB")
+        # Create a dummy file to satisfy is_file check? validate_source_identity checks name only before file existence.
+        with self.assertRaises(ValueError):
+            validate_source_identity(self.label, wrong, expected_sol=EXPECTED_SOL)
+
+    def test_source_identity_wrong_logical_identifier(self):
+        bad_label = parse_label(XML_PATH)
+        bad_label.logical_identifier = "urn:nasa:pds:msl_rems:data_calibrated:wrong"
+        with self.assertRaises(ValueError):
+            validate_source_identity(bad_label, TAB_PATH, expected_sol=EXPECTED_SOL)
+
+    def test_source_identity_wrong_version(self):
+        bad_label = parse_label(XML_PATH)
+        bad_label.version_id = "9.9"
+        with self.assertRaises(ValueError):
+            validate_source_identity(bad_label, TAB_PATH, expected_sol=EXPECTED_SOL)
+
+    def test_logical_identifier_suffix_matches_filename_version(self):
+        # PDS4 LIDs lowercase the product filename version suffix (_P9 -> _p9).
+        self.assertTrue(self.label.logical_identifier.endswith(TAB_PATH.stem[-2:].lower()))
+        self.assertTrue(TAB_PATH.name.endswith("P9.TAB"))
+        validate_source_identity(self.label, TAB_PATH, expected_sol=EXPECTED_SOL)
+
+    def test_truncated_record_raises(self):
+        with tempfile.TemporaryDirectory() as td:
+            bad = Path(td) / "bad.TAB"
+            lines = TAB_PATH.read_bytes().split(b"\r\n")
+            if lines and lines[-1] == b"":
+                lines = lines[:-1]
+            # Remove last 10 bytes from first record.
+            truncated_line = lines[0][:-10] + b"\r\n"
+            bad.write_bytes(truncated_line + b"\r\n".join(lines[1:]) + b"\r\n")
+            with self.assertRaises(ValueError):
+                parse_records(self.label, bad)
+
+    def test_oversized_record_raises(self):
+        with tempfile.TemporaryDirectory() as td:
+            bad = Path(td) / "bad.TAB"
+            lines = TAB_PATH.read_bytes().split(b"\r\n")
+            if lines and lines[-1] == b"":
+                lines = lines[:-1]
+            oversized_line = lines[0] + b" " + b"\r\n"
+            bad.write_bytes(oversized_line + b"\r\n".join(lines[1:]) + b"\r\n")
+            with self.assertRaises(ValueError):
+                parse_records(self.label, bad)
+
+    def test_blank_record_raises(self):
+        with tempfile.TemporaryDirectory() as td:
+            bad = Path(td) / "bad.TAB"
+            lines = TAB_PATH.read_bytes().split(b"\r\n")
+            if lines and lines[-1] == b"":
+                lines = lines[:-1]
+            blank_line = b"\r\n"
+            bad.write_bytes(lines[0] + b"\r\n" + blank_line + b"\r\n".join(lines[2:]) + b"\r\n")
+            with self.assertRaises(ValueError):
+                parse_records(self.label, bad)
+
+    def test_missing_record_raises(self):
+        with tempfile.TemporaryDirectory() as td:
+            bad = Path(td) / "bad.TAB"
+            lines = TAB_PATH.read_bytes().split(b"\r\n")
+            if lines and lines[-1] == b"":
+                lines = lines[:-1]
+            # Remove one record entirely.
+            bad.write_bytes(b"\r\n".join(lines[:-1]) + b"\r\n")
+            with self.assertRaises(ValueError):
+                parse_records(self.label, bad)
+
+    def test_extra_record_raises(self):
+        with tempfile.TemporaryDirectory() as td:
+            bad = Path(td) / "bad.TAB"
+            lines = TAB_PATH.read_bytes().split(b"\r\n")
+            if lines and lines[-1] == b"":
+                lines = lines[:-1]
+            extra = lines[0] + b"\r\n"
+            bad.write_bytes(b"\r\n".join(lines) + b"\r\n" + extra)
+            with self.assertRaises(ValueError):
+                parse_records(self.label, bad)
+
+    def test_incorrect_record_length_raises(self):
+        with tempfile.TemporaryDirectory() as td:
+            bad = Path(td) / "bad.TAB"
+            # Write a record with wrong number of bytes (10) + CRLF.
+            bad.write_bytes(b"1234567890\r\n")
+            with self.assertRaises(ValueError):
+                parse_records(self.label, bad)
+
+    def test_field_boundary_exceeds_record_raises(self):
+        from team.gale.weather.rems_schema import FieldSpec
+        bad_label = parse_label(XML_PATH)
+        # Move last field beyond record boundary.
+        bad_label.fields[-1].location = 400
+        with tempfile.TemporaryDirectory() as td:
+            bad = Path(td) / "bad.TAB"
+            bad.write_bytes(TAB_PATH.read_bytes()[:372])
+            with self.assertRaises(ValueError):
+                parse_records(bad_label, bad)
+
+    def test_wrong_delimiter_handling(self):
+        with tempfile.TemporaryDirectory() as td:
+            bad = Path(td) / "bad.TAB"
+            # LF-only file should be rejected because label declares CRLF records.
+            raw = TAB_PATH.read_bytes().replace(b"\r\n", b"\n")
+            bad.write_bytes(raw)
+            with self.assertRaises(ValueError):
+                parse_records(self.label, bad)
+
+    def test_crlf_handling_valid(self):
+        # The real source uses CRLF and must parse successfully.
+        self.assertEqual(len(self.records), 35344)
 
 
 if __name__ == "__main__":
