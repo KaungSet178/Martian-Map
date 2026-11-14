@@ -81,4 +81,26 @@ export const targets = [
     verification: "verified",
     routing_eligibility,
   },
+  {
+    id: "oxia-objective-4",
+    region_id: "oxia",
+    title: "Hydrous mineral detection (CRISM)",
+    description:
+      "CRISM hydrous-mineral detection in the Mars Trek Hydrous Mineral Detections layer (feature 773), about 3 km south of the primary clay target.",
+    scientific_goal:
+      "Check whether water-bearing minerals continue south of the primary clay detection.",
+    geological_significance:
+      "Hydrous minerals record past interaction with water. The layer does not give the mineral class, so this point complements the nearby phyllosilicate detection rather than confirming it.",
+    priority_category:
+      "Secondary: single Mars Trek detection, 3 km from the primary clay target",
+    coordinates: { latitude: 18.17, longitude_east: 335.82 },
+    coordinate_reference,
+    coordinate_verified: true,
+    source_ids: ["oxia-trek-hydrous"],
+    activity:
+      "Inspect the detection area in orbital imagery and compare it with the clay target 3 km north. Location is approximate (about 0.6 km precision).",
+    evidence: "Interpreted",
+    verification: "verified",
+    routing_eligibility,
+  },
 ] satisfies Target[];

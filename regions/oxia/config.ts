@@ -63,7 +63,8 @@ export const config = {
   // v10: mineral-detections map layer removed; oxia-geology back to pending.
   // v11: THEMIS night IR re-rendered with an inferno display colour ramp.
   // v12: colorized CTX basemap (CTX detail + Viking colour), default on.
-  dataset_version: "oxia-ctx-color-v12",
+  // v13: oxia-objective-4 (CRISM hydrous detection) added.
+  dataset_version: "oxia-objective4-v13",
   routing: {
     enabled: false,
     reason:
