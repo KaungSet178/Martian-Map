@@ -4,7 +4,12 @@
   "source_dataset": "MSL-M-REMS-5-MODRDR-V1.0",
   "calculation_method": "Mars24 / Allison-McEwen (AM2000)",
   "time_scale": "TT (from REMS TIMESTAMP as J2000.0 seconds)",
-  "validation_status": "VALIDATED",
+  "validation_status": "PARTIALLY_VALIDATED",
+  "validation_statuses": {
+    "orbital_algorithm": "VALIDATED_AGAINST_MARS24_REFERENCES",
+    "utc_to_tt_conversion": "VALIDATED_FOR_SUPPORTED_DATE_RANGE",
+    "rems_source_timestamp": "ASSUMED_TIME_SCALE"
+  },
   "ls_range_degrees": [
     207.896385,
     208.495693
@@ -48,7 +53,8 @@
     "REMS TIMESTAMP is synced with SCLK with a maximum deviation of 30 s.",
     "TIMESTAMP-derived JD differs from label START_TIME UTC by about 3.5 minutes; both are reported.",
     "Ls changes by roughly 0.5 deg over one sol.",
-    "Martian Year uses the Clancy convention and is reported separately when verified."
+    "Martian Year uses the Clancy convention and is reported separately when verified.",
+    "REMS source timestamp scale is not independently verified; Ls from TIMESTAMP is provisional."
   ],
   "independent_utc_cross_check": {
     "label_start_time_utc": "2012-11-16T07:48:43.598000+00:00",

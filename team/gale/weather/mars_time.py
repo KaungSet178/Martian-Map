@@ -4,13 +4,12 @@ from __future__ import annotations
 
 import math
 from datetime import datetime, timezone, timedelta
-from typing import Any, Dict, Optional, Tuple
+from typing import Any, Dict, List, Optional, Tuple
 
 J2000_JD = 2451545.0
 MARS_TROPICAL_YEAR_SOL = 668.5921
 MARS_TROPICAL_YEAR_DAY = 686.9725
 
-# Leap-second table: (effective UTC date, TAI-UTC seconds).
 _LEAP_SECONDS = [
     (datetime(1972, 1, 1, tzinfo=timezone.utc), 10),
     (datetime(1972, 7, 1, tzinfo=timezone.utc), 11),
@@ -42,7 +41,6 @@ _LEAP_SECONDS = [
     (datetime(2017, 1, 1, tzinfo=timezone.utc), 37),
 ]
 
-# Martian Year 1 (Clancy convention) starts at Ls=0 on 1955-04-11.
 _MARS_YEAR_1_EPOCH_UTC = datetime(1955, 4, 11, 0, 0, 0, tzinfo=timezone.utc)
 
 
@@ -51,16 +49,11 @@ def _validate_utc(dt: datetime) -> None:
         raise TypeError("Expected a datetime")
     if dt.tzinfo is None:
         raise ValueError("Timezone-naive datetime is not supported; provide a timezone-aware UTC datetime")
-    # Normalize to UTC.
-    if dt.utcoffset() != timedelta(0):
-        dt = dt.astimezone(timezone.utc)
 
 
 def utc_to_julian_date(dt: datetime) -> float:
-    """Convert a timezone-aware UTC datetime to Julian Date (UT)."""
     _validate_utc(dt)
     dt = dt.astimezone(timezone.utc)
-    # Standard Julian Date algorithm.
     year = dt.year
     month = dt.month
     day = dt.day
@@ -79,11 +72,11 @@ def _tai_utc_before_1972(dt: datetime) -> float:
 
 
 def tai_utc_offset(dt: datetime) -> float:
-    """Return TAI-UTC in seconds for a UTC datetime."""
+    """Return TAI-UTC in seconds for dates covered by the leap-second table."""
     _validate_utc(dt)
     dt = dt.astimezone(timezone.utc)
     if dt < _LEAP_SECONDS[0][0]:
-        return _tai_utc_before_1972(dt)
+        raise ValueError("TAI-UTC is not defined by the leap-second table before 1972-01-01")
     offset = _LEAP_SECONDS[0][1]
     for effective, value in _LEAP_SECONDS:
         if dt >= effective:
@@ -93,31 +86,32 @@ def tai_utc_offset(dt: datetime) -> float:
     return float(offset)
 
 
+def tt_minus_utc_seconds(dt: datetime) -> float:
+    """Return TT-UTC in seconds, using the Mars24 pre-1972 polynomial directly."""
+    _validate_utc(dt)
+    dt = dt.astimezone(timezone.utc)
+    if dt < _LEAP_SECONDS[0][0]:
+        # Mars24 A-4: polynomial is already TT-UTC for pre-1972 dates.
+        return float(_tai_utc_before_1972(dt))
+    return tai_utc_offset(dt) + 32.184
+
+
 def utc_to_tt_julian_date(dt: datetime) -> float:
-    """Convert UTC datetime to Terrestrial Time Julian Date."""
     jd_utc = utc_to_julian_date(dt)
-    tt_minus_utc = tai_utc_offset(dt) + 32.184
-    return jd_utc + (tt_minus_utc / 86400.0)
+    return jd_utc + (tt_minus_utc_seconds(dt) / 86400.0)
 
 
 def _deg_sin(x_deg: float) -> float:
     return math.sin(math.radians(x_deg))
 
 
-def _deg_cos(x_deg: float) -> float:
-    return math.cos(math.radians(x_deg))
-
-
-def calculate_mars_ls_from_jd_tt(jd_tt: float) -> float:
-    """Calculate Mars solar longitude from a TT Julian Date using Mars24/AM2000."""
+def _ls_raw(jd_tt: float) -> float:
+    """Unnormalized Mars solar longitude in degrees."""
     if not math.isfinite(jd_tt):
         raise ValueError("Julian Date must be finite")
     dt = jd_tt - J2000_JD
-    # B-1 mean anomaly
     m = 19.3871 + 0.52402073 * dt
-    # B-2 angle of fictitious mean sun
     alpha_fms = 270.3871 + 0.524038496 * dt
-    # B-3 perturbers
     pbs = 0.0
     perturbers = [
         (0.0071, 2.2353, 49.409),
@@ -130,7 +124,6 @@ def calculate_mars_ls_from_jd_tt(jd_tt: float) -> float:
     ]
     for ai, tau, phi in perturbers:
         pbs += ai * math.cos(math.radians((0.985626 * dt / tau) + phi))
-    # B-4 equation of center
     nu_minus_m = (
         (10.691 + 3.0e-7 * dt) * _deg_sin(m)
         + 0.623 * _deg_sin(2 * m)
@@ -139,28 +132,24 @@ def calculate_mars_ls_from_jd_tt(jd_tt: float) -> float:
         + 0.0005 * _deg_sin(5 * m)
         + pbs
     )
-    # B-5 areocentric solar longitude
-    ls = alpha_fms + nu_minus_m
-    # Normalize to [0, 360).
-    ls = ls % 360.0
+    return float(alpha_fms + nu_minus_m)
+
+
+def calculate_mars_ls_from_jd_tt(jd_tt: float) -> float:
+    if not math.isfinite(jd_tt):
+        raise ValueError("Julian Date must be finite")
+    ls = _ls_raw(jd_tt) % 360.0
     if ls < 0:
         ls += 360.0
     return float(ls)
 
 
 def calculate_mars_ls_from_utc(dt: datetime) -> float:
-    """Calculate Mars Ls from a timezone-aware UTC datetime."""
     jd_tt = utc_to_tt_julian_date(dt)
     return calculate_mars_ls_from_jd_tt(jd_tt)
 
 
 def rems_timestamp_to_jd_tt(seconds: int) -> float:
-    """Interpret REMS TIMESTAMP as seconds since J2000.0 in TT.
-
-    The REMS SIS describes TIMESTAMP as seconds since noon 1-Jan-2000 and
-    states that the REMS clock is synced with SCLK (max deviation 30 s).
-    The label START_TIME provides an independent UTC cross-check.
-    """
     if not isinstance(seconds, int):
         raise TypeError("REMS timestamp must be an integer")
     return J2000_JD + (seconds / 86400.0)
@@ -176,6 +165,55 @@ def circular_difference_deg(a: float, b: float) -> float:
     return min(diff, 360.0 - diff)
 
 
+def _find_ls_zero_crossing(jd_guess: float) -> float:
+    """Find a nearby Ls=0 crossing using the unnormalized Ls."""
+    target_multiple = round(_ls_raw(jd_guess) / 360.0)
+    target_value = target_multiple * 360.0
+
+    def f(jd: float) -> float:
+        return _ls_raw(jd) - target_value
+
+    # Expand bracket until a sign change is found.
+    half_width = 5.0
+    for _ in range(10):
+        lo = jd_guess - half_width
+        hi = jd_guess + half_width
+        flo = f(lo)
+        fhi = f(hi)
+        if flo == 0.0:
+            return lo
+        if fhi == 0.0:
+            return hi
+        if (flo < 0) != (fhi < 0):
+            break
+        half_width *= 2.0
+    else:
+        raise ValueError("Unable to bracket an Ls=0 crossing")
+
+    # Bisection.
+    for _ in range(100):
+        mid = (lo + hi) / 2.0
+        fmid = f(mid)
+        if fmid == 0.0:
+            return mid
+        if (fmid < 0) == (flo < 0):
+            lo = mid
+            flo = fmid
+        else:
+            hi = mid
+    return (lo + hi) / 2.0
+
+
+def martian_year_clancy(dt_utc: datetime) -> int:
+    _validate_utc(dt_utc)
+    jd_epoch = utc_to_tt_julian_date(_MARS_YEAR_1_EPOCH_UTC)
+    raw_epoch = _ls_raw(jd_epoch)
+    jd = utc_to_tt_julian_date(dt_utc)
+    raw_ls = _ls_raw(jd)
+    # Martian years are counted by Ls=0 crossings, not by a fixed day count.
+    return int(math.floor((raw_ls - raw_epoch) / 360.0)) + 1
+
+
 def northern_season_from_ls(ls: float) -> str:
     ls = ls % 360.0
     if ls < 90.0:
@@ -188,37 +226,15 @@ def northern_season_from_ls(ls: float) -> str:
 
 
 def southern_season_from_ls(ls: float) -> str:
-    # Southern seasons are opposite to northern seasons.
-    northern = northern_season_from_ls(ls)
-    opposite = {
-        "Spring": "Autumn",
-        "Summer": "Winter",
-        "Autumn": "Spring",
-        "Winter": "Summer",
-    }
-    return opposite[northern]
+    opposite = {"Spring": "Autumn", "Summer": "Winter", "Autumn": "Spring", "Winter": "Summer"}
+    return opposite[northern_season_from_ls(ls)]
 
 
 def gale_season_from_ls(ls: float) -> str:
     return southern_season_from_ls(ls)
 
 
-def martian_year_clancy(dt_utc: datetime) -> int:
-    """Return Martian Year using the Clancy convention (MY1 starts 1955-04-11 Ls=0)."""
-    _validate_utc(dt_utc)
-    dt_utc = dt_utc.astimezone(timezone.utc)
-    jd_tt = utc_to_tt_julian_date(_MARS_YEAR_1_EPOCH_UTC)
-    # Epoch must be at Ls=0; validate.
-    epoch_ls = calculate_mars_ls_from_jd_tt(jd_tt)
-    if abs(circular_difference_deg(epoch_ls, 0.0)) > 1.0:
-        raise ValueError("Martian Year epoch does not correspond to Ls=0")
-    jd_target = utc_to_tt_julian_date(dt_utc)
-    years = (jd_target - jd_tt) / MARS_TROPICAL_YEAR_DAY
-    return int(math.floor(years)) + 1
-
-
 def build_sol100_time_metadata(records: list, sample_indices: Optional[list] = None) -> Dict[str, Any]:
-    """Build derived time metadata for selected authentic Sol 100 records."""
     if sample_indices is None:
         sample_indices = [0, len(records) // 2, len(records) - 1]
     samples = []
@@ -227,8 +243,6 @@ def build_sol100_time_metadata(records: list, sample_indices: Optional[list] = N
         ts = rec.get("TIMESTAMP")
         if ts is None:
             raise ValueError(f"Record {idx} has no TIMESTAMP")
-        # Independent UTC cross-check from product label.
-        # Per-record Ls uses the REMS timestamp interpreted as J2000.0 TT seconds.
         ls_rems = rems_timestamp_to_ls(int(ts))
         samples.append({
             "record_index": idx,
@@ -248,7 +262,12 @@ def build_sol100_time_metadata(records: list, sample_indices: Optional[list] = N
         "source_dataset": "MSL-M-REMS-5-MODRDR-V1.0",
         "calculation_method": "Mars24 / Allison-McEwen (AM2000)",
         "time_scale": "TT (from REMS TIMESTAMP as J2000.0 seconds)",
-        "validation_status": "VALIDATED",
+        "validation_status": "PARTIALLY_VALIDATED",
+        "validation_statuses": {
+            "orbital_algorithm": "VALIDATED_AGAINST_MARS24_REFERENCES",
+            "utc_to_tt_conversion": "VALIDATED_FOR_SUPPORTED_DATE_RANGE",
+            "rems_source_timestamp": "ASSUMED_TIME_SCALE",
+        },
         "ls_range_degrees": [min(ls_values), max(ls_values)],
         "samples": samples,
         "limitations": [
@@ -256,5 +275,6 @@ def build_sol100_time_metadata(records: list, sample_indices: Optional[list] = N
             "TIMESTAMP-derived JD differs from label START_TIME UTC by about 3.5 minutes; both are reported.",
             "Ls changes by roughly 0.5 deg over one sol.",
             "Martian Year uses the Clancy convention and is reported separately when verified.",
+            "REMS source timestamp scale is not independently verified; Ls from TIMESTAMP is provisional.",
         ],
     }
