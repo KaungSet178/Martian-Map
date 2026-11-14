@@ -2,7 +2,7 @@
   "source_layer": "THEMIS_NightIR_ControlledMosaics_100m_v2_oct2018",
   "source": "https://trek.nasa.gov/tiles/Mars/EQ/THEMIS_NightIR_ControlledMosaics_100m_v2_oct2018/1.0.0//default/default028mm",
   "credit": "NASA Mars Odyssey THEMIS; via NASA JPL Mars Trek",
-  "output_scheme": "Web-Mercator XYZ, 256 px gray+alpha PNG",
+  "output_scheme": "Web-Mercator XYZ, 256 px RGBA PNG, gray mapped through matplotlib inferno",
   "zoom_range": [
     5,
     10
@@ -16,12 +16,12 @@
     9
   ],
   "output_tiles_written": 75,
-  "output_bytes": 4766481,
+  "output_bytes": 5578375,
   "source_tiles_fetched_ok": 107,
   "source_tiles_missing": 0,
   "output_samples": 4915200,
   "transparent_samples": 0,
-  "reprojection": "nearest-neighbour from the equirectangular source grid; gray values unchanged",
+  "reprojection": "nearest-neighbour from the equirectangular source grid; gray values unchanged, coloured for display only",
   "extent_east_0_360": {
     "west": 334.6,
     "east": 336.6,
@@ -34,5 +34,5 @@
     "south": 17.11,
     "north": 19.15
   },
-  "generated_at": "2026-11-14T03:58:39.339Z"
+  "generated_at": "2026-11-14T08:33:47.198Z"
 }

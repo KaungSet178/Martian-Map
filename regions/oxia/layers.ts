@@ -175,9 +175,9 @@ export const layers = [
     observation_date: null,
     spatial_resolution_m: 100,
     coverage:
-      "Mars Trek THEMIS night-IR global mosaic over the team-chosen Oxia display area, 17.11-19.15 N, 334.60-336.60 E: 75 derived display tiles, Web-Mercator XYZ, zooms 5-10 (source level 9, about 81 m per pixel). No gaps in this area.",
+      "Mars Trek THEMIS night-IR global mosaic over the team-chosen Oxia display area, 17.11-19.15 N, 334.60-336.60 E: 75 derived display tiles, Web-Mercator XYZ, zooms 5-10 (source level 9, about 81 m per pixel), coloured with an inferno display ramp. No gaps in this area.",
     limitations:
-      "Relative brightness only: the 8-bit mosaic values are not calibrated temperatures and are not thermal-inertia values. Observation period not stated by Mars Trek (the 'oct2018' in the layer name refers to the 2018 mosaic release). Night-time brightness mainly reflects thermal inertia (brighter = holds heat, e.g. rock or indurated surfaces; darker = loose sand or dust), but it can also vary with season, local time and dust. Mosaic of many orbits with stretched brightness between images. Display-grade, nearest-neighbour resampled; not terrain-safety evidence.",
+      "Relative brightness only: the 8-bit mosaic values are not calibrated temperatures and are not thermal-inertia values. Observation period not stated by Mars Trek (the 'oct2018' in the layer name refers to the 2018 mosaic release). Night-time brightness mainly reflects thermal inertia (brighter = holds heat, e.g. rock or indurated surfaces; darker = loose sand or dust), but it can also vary with season, local time and dust. Mosaic of many orbits with stretched brightness between images, so strip-to-strip seams can appear. Colours are a display ramp (matplotlib 'inferno') applied to the uncalibrated 8-bit values; they do not mark temperature or thermal-inertia thresholds. Display-grade, nearest-neighbour resampled; not terrain-safety evidence.",
     evidence: "Observed",
     attribution:
       "NASA Mars Odyssey THEMIS · night-IR global mosaic (2018 release) · via NASA JPL Mars Trek",
@@ -191,17 +191,20 @@ export const layers = [
     default_visible: false,
     default_opacity: 80,
     legend: {
-      title: "Night-time IR brightness (relative, not temperature)",
+      title:
+        "Night-time IR brightness (relative, not °C or K). Display colour ramp on uncalibrated 8-bit values.",
       units: null,
       items: [
         {
-          label: "Bright: holds heat at night (likely rock or indurated surface)",
-          color: "#DADADA",
+          label: "Yellow: brightest, holds heat at night (likely rock or firm ground)",
+          color: "#F4E156",
         },
-        { label: "Medium", color: "#818181" },
+        { label: "Orange", color: "#F98B0B" },
+        { label: "Red-pink: middle", color: "#BC3754" },
+        { label: "Purple", color: "#61136E" },
         {
-          label: "Dark: cools quickly at night (likely loose sand or dust)",
-          color: "#373737",
+          label: "Dark purple: darkest, cools fast at night (likely loose sand or dust)",
+          color: "#1E0C45",
         },
       ],
     },

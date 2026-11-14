@@ -61,7 +61,8 @@ export const config = {
   // v8: slope classes 10-20 / >20 deg aligned with NASA's 20 deg EVA figure.
   // v9: oxia-elevation colour-by-height layer from the same MOLA grid.
   // v10: mineral-detections map layer removed; oxia-geology back to pending.
-  dataset_version: "oxia-geology-removed-v10",
+  // v11: THEMIS night IR re-rendered with an inferno display colour ramp.
+  dataset_version: "oxia-thermal-colour-v11",
   routing: {
     enabled: false,
     reason:
@@ -249,7 +250,7 @@ export const config = {
         "Mars Trek is listed in the Space Apps 2026 challenge resources.",
         "Mars Trek description: geodetically controlled THEMIS night-IR mosaic tied to USGS Viking MDIM 2.1, orthoprojected at 100 m/pixel; 2017 preliminary release with further adjustments in the 2018 release.",
         "WMTS (checked 2026-11-14): EPSG::104905 (Mars 2000 sphere), TopLeftCorner -180/90, 256 px gray+alpha PNG tiles, levels 0-9 (level 9 is the finest; level 10 returns 404).",
-        "Display tiles /maps/oxia/themis-night-tiles/ built by team/oxia/thermal/prepare_themis_night.mjs (nearest-neighbour, gray values unchanged, source alpha kept); see team/oxia/thermal/build_report.json.",
+        "Display tiles /maps/oxia/themis-night-tiles/ built by team/oxia/thermal/prepare_themis_night.mjs (nearest-neighbour, source gray values unchanged and coloured for display with the matplotlib inferno ramp, source alpha kept); see team/oxia/thermal/build_report.json.",
       ],
       limitations: [
         "Pixel values are relative 8-bit brightness, not calibrated temperature (Mars Trek states no units or calibration).",
