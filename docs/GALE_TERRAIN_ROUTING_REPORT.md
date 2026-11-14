@@ -530,7 +530,27 @@ The webpack build produced the expected `/`, `/_not-found`, and `/icon.svg`
 routes. No shared planner, map, science, environment, mission, or contract file
 was modified.
 
-### 11.5 Reproduction
+### 11.5 Optional HTTP service
+
+The optional FastAPI boundary in `team/gale/routing/service.py` was exercised
+with a temporary FastAPI 0.162.7 install (the core engine does not import it):
+
+| Endpoint | Request | Result |
+| --- | --- | --- |
+| `GET /health` | — | 200, status `ok` |
+| `GET /datasets` | — | 200, both dataset specs and manifest |
+| `GET /datasets/gale-hrsc-30m` | — | 200, primary spec |
+| `POST /route` | A → B → C, `lower-terrain-cost` | 200, `unverified`, 15,319.82 m, 468 samples |
+| `POST /route/alternatives` | same request | 200, `comparison.equivalent: false` |
+
+`requirements-routing.txt` therefore declares `fastapi>=0.162` and
+`starlette>=0.46`. Earlier FastAPI 0.115 builds fail to construct the app
+against Starlette 1.x with `Router.__init__() got an unexpected keyword
+argument 'on_startup'`; that mismatch was the reason for the floor. The service
+is a thin optional boundary only — no web dependency is introduced into the
+core routing engine, and the shared planner was not modified.
+
+### 11.6 Reproduction
 
 ```powershell
 # Rebuild the compact routing crops from authentic G4 rasters
@@ -547,6 +567,10 @@ npx tsx --test tests/gale-routing.test.ts
 npm run typecheck
 npm run lint
 npx next build --webpack
+
+# Optional HTTP boundary (separate dependency set)
+python -m pip install -r team/gale/routing/requirements-routing.txt
+python -m uvicorn team.gale.routing.service:app --port 8000
 ```
 
 The preparation script refuses to write into its own source directory and never
@@ -700,14 +724,22 @@ The existing shared timeline/resource engines and UI were not modified.
 
 ## 15. Final commit SHA
 
-Final implementation commit: `a83866ffe62c6dac914c45c854c2f7c74b831f77`
-(`feat(routing): implement Gale terrain-aware route planning`).
+| Role | SHA | Subject |
+| --- | --- | --- |
+| Baseline | `08ccedb7c635ab89603d6444b30e6fe4f7e7d6d4` | `fix(map): harden M3 trajectory slerp limits, fault isolation, and placement safeguards` |
+| Implementation | `a83866ffe62c6dac914c45c854c2f7c74b831f77` | `feat(routing): implement Gale terrain-aware route planning` |
+| Report metadata | `3557b97a4f4e47893ae019671d108845077a7af8` | `docs(routing): record final Gale routing commit and push status` |
+| Dependency and service note | `FOLLOW_UP_SHA_PLACEHOLDER` | `fix(routing): pin compatible FastAPI stack and record service smoke test` |
 
-This commit introduces the routing engine, compact DEM crops, manifest,
-examples, tests, TypeScript adapter, and this report. A follow-up
-documentation-metadata commit records this SHA and the push status; it changes
-only this report, so the branch HEAD advances without changing any code or data.
-This avoids the impossibility of a commit containing its own hash.
+The implementation commit introduces the routing engine, compact DEM crops,
+manifest, examples, tests, TypeScript adapter, and this report. The two later
+commits only record metadata: the report SHA/push status and the optional
+service validation plus dependency floors. Neither changes route code, DEM data,
+or test behaviour.
+
+A short final documentation commit records the SHA above and the push status of
+the branch HEAD. This avoids the impossibility of a commit containing its own
+hash.
 
 ---
 
@@ -720,7 +752,10 @@ Push status: **pushed**.
 - Upstream: `origin/feat/gale-terrain-routing`
 - Implementation commit `a83866ffe62c6dac914c45c854c2f7c74b831f77` was pushed
   successfully.
-- This documentation-metadata commit is pushed immediately afterward.
+- Report-metadata commit `3557b97a4f4e47893ae019671d108845077a7af8` was pushed
+  successfully; remote equalled local HEAD after that push.
+- The dependency/service-note commit and the final documentation commit are
+  pushed immediately afterward.
 - No force-push was used.
 - No shared branch was merged, rebased, or overwritten.
 

@@ -6,7 +6,14 @@ rasterio>=1.4
 pyproj>=3.6
 #
 # Optional HTTP boundary (team/gale/routing/service.py).
-fastapi>=0.115
+#
+# FastAPI 0.162 is the first release compatible with Starlette >= 0.46 and the
+# current Starlette 1.x line; earlier FastAPI 0.115 builds raise
+# "Router.__init__() got an unexpected keyword argument 'on_startup'" against
+# Starlette 1.x.  Both floors are declared so the optional service starts on a
+# clean install.
+fastapi>=0.162
+starlette>=0.46
 uvicorn[standard]>=0.30
 #
 # Tests use the standard library unittest runner; httpx is only needed for
