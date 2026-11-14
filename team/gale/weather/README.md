@@ -31,11 +31,13 @@ python scripts/gale-weather/prepare_sol.py --no-download
 python -B -m unittest tests.test_gale_weather_parser -v
 ```
 
-## Scientific notes
+## Mars time conversion (W1.2B)
 
-- Source data are historical observations from Curiosity's REMS instrument at Gale Crater.
-- They are not forecasts and do not define safe EVA windows.
-- Missing numeric values are converted to JSON `null`.
-- Confidence flags are preserved as strings.
-- LMST and LTST are validated but not converted to each other.
+```python
+from team.gale.weather.mars_time import calculate_mars_ls_from_utc
+
+ls = calculate_mars_ls_from_utc(datetime(2012, 11, 16, tzinfo=timezone.utc))
+```
+
+See `docs/GALE_WEATHER_W1_2B_TIME_VALIDATION_REPORT.md` for algorithm and validation details.
 PY
