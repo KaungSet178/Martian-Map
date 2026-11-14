@@ -393,8 +393,8 @@ Do not implement W1.2 in this branch.
 
 - Branch: `feat/gale-weather-data`
 - Base: `origin/feat/gale-map` @ `a5809da`
-- Commit: (to be filled after commit)
-- Remote push status: (to be filled after push)
+- Commit: cb8bf60 (docs: add Gale REMS W1.1 weather source audit)
+- Remote push status: pushed successfully to origin/feat/gale-weather-data on 2026-11-14
 
 ---
 
