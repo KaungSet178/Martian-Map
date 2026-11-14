@@ -1,0 +1,14 @@
+{
+  "tile": [
+    13,
+    5857,
+    3668
+  ],
+  "scope": "one committed tile only, unit interiors; not an imagery registration test",
+  "interior_pixels_compared": 62434,
+  "interior_mismatches": 0,
+  "all_in_map_pixels": 65536,
+  "all_in_map_mismatches": 0,
+  "paint_order": "source implementation actually sorts native bounding-box area, not exact polygon area as its comment claims",
+  "contact_exclusion": "one-pixel categorical-neighbor exclusion for rasterization-edge differences; not a scientific accuracy threshold"
+}

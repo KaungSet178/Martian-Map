@@ -1,0 +1,88 @@
+TAP version 13
+# Subtest: all region fixtures obey shared contract and cannot imply scientific readiness
+ok 1 - all region fixtures obey shared contract and cannot imply scientific readiness
+  ---
+  duration_ms: 2.2093
+  type: 'test'
+  ...
+# Subtest: individual stop moves preserve membership and boundaries
+ok 2 - individual stop moves preserve membership and boundaries
+  ---
+  duration_ms: 0.6964
+  type: 'test'
+  ...
+# Subtest: one-way endpoints, unknown target locations and stale datasets block readiness
+ok 3 - one-way endpoints, unknown target locations and stale datasets block readiness
+  ---
+  duration_ms: 0.4112
+  type: 'test'
+  ...
+# Subtest: saved plans retain independent reserves, stop order, versions and timestamps
+ok 4 - saved plans retain independent reserves, stop order, versions and timestamps
+  ---
+  duration_ms: 3.3703
+  type: 'test'
+  ...
+# Subtest: imports reject foreign, duplicate and unknown objectives without trusting results
+ok 5 - imports reject foreign, duplicate and unknown objectives without trusting results
+  ---
+  duration_ms: 1.3898
+  type: 'test'
+  ...
+# Subtest: known mandatory failure outranks missing evidence; six checks required for feasible
+ok 6 - known mandatory failure outranks missing evidence; six checks required for feasible
+  ---
+  duration_ms: 0.1329
+  type: 'test'
+  ...
+# Subtest: registry resolves every region, typed metadata and safe unknown IDs
+ok 7 - registry resolves every region, typed metadata and safe unknown IDs
+  ---
+  duration_ms: 4.1624
+  type: 'test'
+  ...
+# Subtest: region modules own their content without importing other regions or UI
+ok 8 - region modules own their content without importing other regions or UI
+  ---
+  duration_ms: 9.8514
+  type: 'test'
+  ...
+# Subtest: validation rejects foreign records, duplicate IDs and missing scientific lineage
+ok 9 - validation rejects foreign records, duplicate IDs and missing scientific lineage
+  ---
+  duration_ms: 2.5747
+  type: 'test'
+  ...
+# Subtest: declarative renderer mounts only current regional sources and cleans them on switch
+ok 10 - declarative renderer mounts only current regional sources and cleans them on switch
+  ---
+  duration_ms: 2.148
+  type: 'test'
+  ...
+# Subtest: Mars east-longitude display conversion and extents never infer Earth distances
+ok 11 - Mars east-longitude display conversion and extents never infer Earth distances
+  ---
+  duration_ms: 0.348
+  type: 'test'
+  ...
+# Subtest: backend boundary rejects missing one-way endpoints and incomplete assessments
+ok 12 - backend boundary rejects missing one-way endpoints and incomplete assessments
+  ---
+  duration_ms: 5.1531
+  type: 'test'
+  ...
+# Subtest: route result geometry is display-only and fails closed without it
+ok 13 - route result geometry is display-only and fails closed without it
+  ---
+  duration_ms: 2.6587
+  type: 'test'
+  ...
+1..13
+# tests 13
+# suites 0
+# pass 13
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 583.6976

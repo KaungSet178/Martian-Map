@@ -1,0 +1,57 @@
+Object = IsisCube
+  Object = Core
+    StartByte = 140230
+    Format    = BandSequential
+
+    Group = Dimensions
+      Samples = 6974
+      Lines   = 17448
+      Bands   = 1
+    End_Group
+
+    Group = Pixels
+      Type       = UnsignedByte
+      ByteOrder  = Lsb
+      Base       = 0.0
+      Multiplier = 1.0
+    End_Group
+    ^Core     = J03_045994_1986_XN_18N282W_6m_ORTHO.tif
+  End_Object
+
+  Group = Mapping
+    ProjectionName     = Equirectangular
+    CenterLongitude    = 180
+    TargetName         = Mars
+    EquatorialRadius   = 3396190 <meters>
+    PolarRadius        = 3376200 <meters>
+    LatitudeType       = Planetocentric
+    LongitudeDirection = PositiveEast
+    LongitudeDomain    = 360
+    MinimumLatitude    = 17.5357943527729994
+    MaximumLatitude    = 19.3197056631629991
+    MinimumLongitude   = 77.0830099700000062
+    MaximumLongitude   = 77.7960217199999988
+    UpperLeftCornerX   = -6100375.77370840032 <meters>
+    UpperLeftCornerY   = 1145171.16684109997 <meters>
+    PixelResolution    = 6.0603893249423999 <meters/pixel>
+    Scale              = 9780.67486181999993 <pixels/degree>
+    CenterLatitude     = 0
+  End_Group
+
+  Group = AlphaCube
+    AlphaSamples        = 6680
+    AlphaLines          = 17613
+    AlphaStartingSample = 0.5
+    AlphaStartingLine   = 0.5
+    AlphaEndingSample   = 6680.5
+    AlphaEndingLine     = 17613.5
+    BetaSamples         = 6609
+    BetaLines           = 17613
+  End_Group
+End_Object
+
+Object = Label
+  Bytes = 1506             
+End_Object
+
+End

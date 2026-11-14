@@ -1,0 +1,97 @@
+[
+  {
+    "name": "sim3464.xml",
+    "url": "https://pubs.usgs.gov/sim/3464/sim3464_metadata.xml",
+    "status": 200,
+    "bytes": 20924,
+    "sha256": "e4ede0b7465190319c81babfb9359d4e84710cb82deebe331219ef26130927fd",
+    "path": "docs\\diagnostics\\jz-t1b\\source\\sim3464.xml",
+    "content_range": null
+  },
+  {
+    "name": "sim3464.html",
+    "url": "https://pubs.usgs.gov/sim/3464/",
+    "status": 200,
+    "bytes": 3879,
+    "sha256": "482b6ef04aaae791b0c2c1f55d168a350065cd44e706a53b9df980dd55b39c4c",
+    "path": "docs\\diagnostics\\jz-t1b\\source\\sim3464.html",
+    "content_range": null
+  },
+  {
+    "name": "ctx-label.lbl",
+    "url": "https://asc-pds-services.s3.us-west-2.amazonaws.com/mosaic/mars2020_trn/CTX/JEZ_ctx_B_soc_008_orthoMosaic_6m_Eqc_latTs0_lon0.lbl",
+    "status": 200,
+    "bytes": 1439,
+    "sha256": "a425525be2695ed727daf179563a5898cb2131691e8b21993426764abcf617ca",
+    "path": "docs\\diagnostics\\jz-t1b\\source\\ctx-label.lbl",
+    "content_range": null
+  },
+  {
+    "name": "ctx-metadata.xml",
+    "url": "https://asc-pds-services.s3.us-west-2.amazonaws.com/mosaic/mars2020_trn/CTX/JEZ_ctx_B_soc_008_orthoMosaic_6m_Eqc_latTs0_lon0.xml",
+    "status": 200,
+    "bytes": 16025,
+    "sha256": "c8011a4aa19deebba164aba21ab2ea6326f5bdc7adc01b72bf7dda3d405a4226",
+    "path": "docs\\diagnostics\\jz-t1b\\source\\ctx-metadata.xml",
+    "content_range": null
+  },
+  {
+    "name": "ctx-index.html",
+    "url": "https://asc-pds-services.s3.us-west-2.amazonaws.com/mosaic/mars2020_trn/CTX/index.html",
+    "status": 200,
+    "bytes": 8692,
+    "sha256": "c11bdbd0a8cee6e91d6a46236c4f3af6c63e8c4a5e04821d75bac0f4aea6c4c6",
+    "path": "docs\\diagnostics\\jz-t1b\\source\\ctx-index.html",
+    "content_range": null
+  },
+  {
+    "name": "trek-capabilities.xml",
+    "url": "https://trek.nasa.gov/tiles/Mars/EQ/JEZ_ctx_B_soc_008_orthoMosaic_6m_Eqc_latTs0_lon0/1.0.0/WMTSCapabilities.xml",
+    "status": 200,
+    "bytes": 8810,
+    "sha256": "bb58f640da78bcc404a9109f613f2b3f0e3e683ff6625e8f48dcb23e602813b8",
+    "path": "docs\\diagnostics\\jz-t1b\\source\\trek-capabilities.xml",
+    "content_range": null
+  },
+  {
+    "name": "hirise.lbl",
+    "url": "https://hirise-pds.lpl.arizona.edu/PDS/RDR/ESP/ORB_045900_045999/ESP_045994_1985/ESP_045994_1985_RED.LBL",
+    "status": 200,
+    "bytes": 8136,
+    "sha256": "ad6fbd7077ce600e57f356db9b98a6540762323956e03b4ba9134b1cb6f62138",
+    "path": "docs\\diagnostics\\jz-t1b\\source\\hirise.lbl",
+    "content_range": null
+  },
+  {
+    "name": "hirise-browse.jpg",
+    "url": "https://hirise-pds.lpl.arizona.edu/PDS/EXTRAS/RDR/ESP/ORB_045900_045999/ESP_045994_1985/ESP_045994_1985_RED.abrowse.jpg",
+    "status": 200,
+    "bytes": 2481063,
+    "sha256": "1ea254909ba6a95e5bb933fa7d7084f8f0dc37851418a5fdbb58f3ffad44537e",
+    "path": "output\\jz-t1b-cache\\hirise-browse.jpg",
+    "content_range": null
+  },
+  {
+    "name": "hirise-prefix.bin",
+    "url": "https://hirise-pds.lpl.arizona.edu/PDS/RDR/ESP/ORB_045900_045999/ESP_045994_1985/ESP_045994_1985_RED.JP2",
+    "status": 206,
+    "bytes": 262144,
+    "sha256": "878efc01cbe018e5c1404d83ef826bbac1f8e59cf5df5782f0fe1c55f59e6aef",
+    "path": "output\\jz-t1b-cache\\hirise-prefix.bin",
+    "content_range": "bytes 0-262143/776829687"
+  },
+  {
+    "name": "geology-layer.json",
+    "url": "https://services.arcgis.com/v01gqwM5QqNysAAi/arcgis/rest/services/Jezero_FeatureServiceFromPro/FeatureServer/8?f=pjson",
+    "error": "('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))"
+  },
+  {
+    "name": "geology-item.json",
+    "url": "https://www.arcgis.com/sharing/rest/content/items/b602bd9a573d447eb07388e5fb9ca884?f=pjson",
+    "status": 200,
+    "bytes": 10021,
+    "sha256": "a351171a4594385eb5c433a73b58d88db7f5e6761ab3e2481349298224541a41",
+    "path": "docs\\diagnostics\\jz-t1b\\source\\geology-item.json",
+    "content_range": null
+  }
+]

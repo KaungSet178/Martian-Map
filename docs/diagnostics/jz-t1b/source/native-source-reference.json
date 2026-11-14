@@ -1,0 +1,7 @@
+{
+  "source_file": "..\\jezero-science-targets\\docs\\diagnostics\\jz-t1\\units-native.json",
+  "sha256": "cb1f6a1ac2ce548cfafa9423647ac5a68655f3d73e6877b23ac6485a5c247a3b",
+  "source_url": "https://services.arcgis.com/v01gqwM5QqNysAAi/arcgis/rest/services/Jezero_FeatureServiceFromPro/FeatureServer/8/query?where=1%3D1&outFields=*&returnGeometry=true&f=json&resultRecordCount=2000",
+  "research_commit": "9670ada94b634ab6a35b660c7e675ee9dfad4ac3",
+  "sample_count": 14506
+}

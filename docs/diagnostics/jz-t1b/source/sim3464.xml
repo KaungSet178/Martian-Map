@@ -1,0 +1,742 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--Record created using version 2.0.6 of the USGS Metadata Wizard tool. (https://github.com/usgs/fort-pymdwizard)-->
+<metadata>
+  <idinfo>
+    <citation>
+      <citeinfo>
+        <origin>Vivian Z. Sun</origin>
+        <origin>Kathryn M. Stack</origin>
+        <pubdate>2020</pubdate>
+        <title>Geologic map of Jezero crater and the Nili Planum region, Mars</title>
+        <geoform>vector digital data</geoform>
+        <serinfo>
+          <sername>SIM</sername>
+          <issue>3464</issue>
+        </serinfo>
+        <pubinfo>
+          <pubplace>Menlo Park, CA</pubplace>
+          <publish>US Geologic Survey</publish>
+        </pubinfo>
+        <onlink>https://doi.org/10.3133/sim3464</onlink>
+      </citeinfo>
+    </citation>
+    <descript>
+      <abstract>The cratered highlands located northwest of Isidis Planitia have been recognized as one of the best preserved Noachian landscapes currently exposed on Mars, hosting a record of diverse surface processes, diagenesis, and aqueous alteration. This region has consistently been considered a high priority for landed-mission exploration, and includes the anticipated landing site of the Mars 2020 Perseverance rover within Jezero crater. Past mapping efforts focused on Jezero crater and the area outside it, Nili Planum, and have varied in spatial extent, map scale, and purpose, though none have provided a continuous, high-resolution geologic map at uniform scale connecting the two locations. This effort represents the first, large-scale, continuous geologic map spanning both Jezero crater and Nili Planum using high-resolution images.  
+The map area contains the majority of both Jezero crater and Nili Planum at a publication map scale of 1:75,000, which was chosen to encompass the Jezero and southern Nili Planum landing sites under consideration for the Mars 2020 mission at the time of project initiation. This map covers an area that is exactly 1 by 1 degree (~60 by 60 km), spanning 76.8° to 77.8° E. in longitude and 17.7° to 18.7° N. in latitude. The primary base map used for this geologic map is composed of Mars Reconnaissance Orbiter’s Context Camera (CTX) images, compiled into a 6 meter per pixel mosaic. A nighttime Thermal Emission Imaging System 100 m/pixel image mosaic, digital terrain models constructed from CTX images, High-Resolution Stereo Camera topographic data, and High Resolution Imaging Science Experiment images also aided in unit identification and the assessment of stratigraphic relationships. We defined map units on the basis of various characteristics visible in the CTX data at map scale, such as their texture, tone, morphology, marginal characteristics, geographic location, and stratigraphic relationship to other units. Some units occur solely within Jezero crater, while Nili Planum contains a sequence of units that are present across the broader northwest Isidis region. Other units occur in both Jezero crater and Nili Planum, including bedrock, aeolian, and crater units. This map product provides a regional geologic framework that connects the geologic units across Jezero crater and Nili Planum and the history they imply, facilitates future local-scale observations by landed missions of the Jezero and Nili Planum region, and enables the extrapolation of units that have been defined primarily by mineralogic composition to areas where there is no existing orbital spectroscopic data.</abstract>
+      <purpose>A 1:75,000-scale geologic map of Jezero Crater and the Nili Planum Region,
+        Mars.</purpose>
+    </descript>
+    <timeperd>
+      <timeinfo>
+        <sngdate>
+          <caldate>Unknown</caldate>
+        </sngdate>
+      </timeinfo>
+      <current>ground condition</current>
+    </timeperd>
+    <status>
+      <progress>Complete</progress>
+      <update/>
+    </status>
+    <spdom>
+      <bounding>
+        <westbc>76.8000</westbc>
+        <eastbc>77.8000</eastbc>
+        <northbc>18.7000</northbc>
+        <southbc>17.7000</southbc>
+      </bounding>
+    </spdom>
+    <keywords>
+      <theme>
+        <themekt>ISO 19115 Topic Category</themekt>
+        <themekey>biota</themekey>
+      </theme>
+      <theme>
+        <themekt>Planetary</themekt>
+        <themekey>Geology </themekey>
+        <themekey>Jezero</themekey>
+        <themekey>Crater</themekey>
+        <themekey>Nili Planum</themekey>
+        <themekey>Mars</themekey>
+      </theme>
+    </keywords>
+    <accconst>None</accconst>
+    <useconst>GIS Software is required to view these data.</useconst>
+    <ptcontac>
+      <cntinfo>
+        <cntperp>
+          <cntper>Vivian Sun</cntper>
+          <cntorg>Jet Propulsion Laboratory</cntorg>
+        </cntperp>
+        <cntaddr>
+          <addrtype>mailing</addrtype>
+          <address>MS 264-850</address>
+          <city>Pasadena</city>
+          <state>CA</state>
+          <postal>91109</postal>
+        </cntaddr>
+        <cntvoice>(626) 314-0121</cntvoice>
+        <cntemail>vivian.sun@jpl.nasa.gov</cntemail>
+      </cntinfo>
+    </ptcontac>
+    <datacred>This map was funded by NASA for publication by the USGS.</datacred>
+  </idinfo>
+  <dataqual>
+    <attracc>
+      <attraccr>All attributes have been reviewed and verified for accuracy.</attraccr>
+    </attracc>
+    <logic>All data have been reviewed and verified for consistency.</logic>
+    <complete>All data have been reviewed and verified for completeness.</complete>
+    <posacc>
+      <horizpa>
+        <horizpar>This map was created on a semi-controlled CTX mosaic prior to the release of the controlled CTX mosaic (https://doi.org/10.5066/P9GV1ND3) released in July 2020 as created for surface operations for the Mars 2020 mission. Thus, this map and included semi-controlled CTX mosaic, will have random offsets of about 100-200 meters from the surface operations CTX mosaic.</horizpar>
+      </horizpa>
+    </posacc>
+    <lineage>
+      <procstep>
+        <procdesc>None</procdesc>
+        <procdate>Unknown</procdate>
+      </procstep>
+    </lineage>
+  </dataqual>
+  <spdoinfo>
+    <direct>Vector</direct>
+    <ptvctinf>
+      <sdtsterm>
+        <sdtstype>G-polygon</sdtstype>
+        <ptvctcnt>1</ptvctcnt>
+      </sdtsterm>
+    </ptvctinf>
+  </spdoinfo>
+  <spref>
+    <horizsys>
+      <planar>
+        <mapproj>
+          <mapprojn>Transverse Mercator</mapprojn>
+          <transmer>
+            <sfctrmer>1.0</sfctrmer>
+            <longcm>77.5</longcm>
+            <latprjo>0.0</latprjo>
+            <feast>0.0</feast>
+            <fnorth>0.0</fnorth>
+          </transmer>
+        </mapproj>
+        <planci>
+          <plance>coordinate pair</plance>
+          <coordrep>
+            <absres>0.6096</absres>
+            <ordres>0.6096</ordres>
+          </coordrep>
+          <plandu>meters</plandu>
+        </planci>
+      </planar>
+      <geodetic>
+        <horizdn>Mars_2000_(Sphere)</horizdn>
+        <ellips>Mars_2000_(Sphere)</ellips>
+        <semiaxis>3396190.0</semiaxis>
+        <denflat>10.E-10</denflat>
+      </geodetic>
+    </horizsys>
+  </spref>
+  <eainfo>
+    <detailed>
+      <enttyp>
+        <enttypl>Jezero_GeoUnits.shp Attribute Table</enttypl>
+        <enttypd>Table containing attribute information associated with the data set.</enttypd>
+        <enttypds>Producer Defined</enttypds>
+      </enttyp>
+      <attr>
+        <attrlabl>FID</attrlabl>
+        <attrdef>Internal feature number.</attrdef>
+        <attrdefs>ESRI</attrdefs>
+        <attrdomv>
+          <udom>Sequential unique whole numbers that are automatically generated.</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Shape</attrlabl>
+        <attrdef>Feature geometry.</attrdef>
+        <attrdefs>ESRI</attrdefs>
+        <attrdomv><udom>Coordinates defining the features.</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>OBJECTID</attrlabl>
+        <attrdef>Feature ID</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv><rdom>
+            <rdommin>1</rdommin>
+            <rdommax>1304</rdommax>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+  <attrlabl>unit</attrlabl><attrdef>Unit number</attrdef><attrdefs>Producer Defined</attrdefs><attrdomv>
+    <edom>
+      <edomv>10</edomv>
+      <edomvd>
+      </edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>7</edomv>
+      <edomvd>
+      </edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>8</edomv>
+      <edomvd>
+      </edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>5</edomv>
+      <edomvd>
+      </edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>9</edomv>
+      <edomvd>
+      </edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>6</edomv>
+      <edomvd>
+      </edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>12</edomv>
+      <edomvd>
+      </edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>13</edomv>
+      <edomvd>
+      </edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>11</edomv>
+      <edomvd>
+      </edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>2</edomv>
+      <edomvd>
+      </edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>3</edomv>
+      <edomvd>
+      </edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>4</edomv>
+      <edomvd>
+      </edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>0</edomv>
+      <edomvd>
+      </edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>1</edomv>
+      <edomvd>
+      </edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+</attr>
+      <attr>
+  <attrlabl>name</attrlabl><attrdef>Unit name</attrdef><attrdefs>Producer Defined</attrdefs><attrdomv>
+    <edom>
+      <edomv>Upper etched unit</edomv>
+      <edomvd>
+      </edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Eolian bedform unit</edomv>
+      <edomvd>
+      </edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Smooth unit, undivided</edomv>
+      <edomvd>
+      </edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Nili Planum 2 unit</edomv>
+      <edomvd>
+      </edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Rugged bright unit</edomv>
+      <edomvd>
+      </edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Nili Planum 1 unit</edomv>
+      <edomvd>
+      </edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Crater ejecta unit</edomv>
+      <edomvd>
+      </edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Crater interior unit</edomv>
+      <edomvd>
+      </edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Crater rim unit</edomv>
+      <edomvd>
+      </edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Jezero floor unit</edomv>
+      <edomvd>
+      </edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Lower etched unit</edomv>
+      <edomvd>
+      </edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Nili Planum fan unit</edomv>
+      <edomvd>
+      </edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Jezero fan 2 unit</edomv>
+      <edomvd>
+      </edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Crater riim unit</edomv>
+      <edomvd>
+      </edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Jezero fan 1 unit</edomv>
+      <edomvd>
+      </edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+</attr>
+      <attr>
+  <attrlabl>symbol_noS</attrlabl><attrdef>Unit symbol without subscript</attrdef><attrdefs>Producer Defined</attrdefs><attrdomv>
+    <edom>
+      <edomv>Nue</edomv>
+      <edomvd>
+      </edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Aeb</edomv>
+      <edomvd>
+      </edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>su</edomv>
+      <edomvd>
+      </edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Nnp</edomv>
+      <edomvd>
+      </edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Nrb</edomv>
+      <edomvd>
+      </edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>ce</edomv>
+      <edomvd>
+      </edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>ci</edomv>
+      <edomvd>
+      </edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>cr</edomv>
+      <edomvd>
+      </edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Njf</edomv>
+      <edomvd>
+      </edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Nle</edomv>
+      <edomvd>
+      </edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Hnpf</edomv>
+      <edomvd>
+      </edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>NHjf</edomv>
+      <edomvd>
+      </edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+</attr>
+      <attr>
+  <attrlabl>subscript</attrlabl><attrdef>Subscript for unit symbol</attrdef><attrdefs>Producer Defined</attrdefs><attrdomv>
+    <edom>
+      <edomv>empty cell</edomv>
+      <edomvd>
+      </edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>2</edomv>
+      <edomvd>
+      </edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>1</edomv>
+      <edomvd>
+      </edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+</attr>
+      <attr>
+  <attrlabl>symbol</attrlabl><attrdef>Abbreviated unit name</attrdef><attrdefs>Producer Defined</attrdefs><attrdomv>
+    <edom>
+      <edomv>Nue</edomv>
+      <edomvd>
+      </edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Aeb</edomv>
+      <edomvd>
+      </edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>su</edomv>
+      <edomvd>
+      </edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Nnp2</edomv>
+      <edomvd>
+      </edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Nrb</edomv>
+      <edomvd>
+      </edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Nnp1</edomv>
+      <edomvd>
+      </edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>ce</edomv>
+      <edomvd>
+      </edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>ci</edomv>
+      <edomvd>
+      </edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>cr</edomv>
+      <edomvd>
+      </edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Njf</edomv>
+      <edomvd>
+      </edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Nle</edomv>
+      <edomvd>
+      </edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>Hnpf</edomv>
+      <edomvd>
+      </edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>CR</edomv>
+      <edomvd>
+      </edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>NHjf2</edomv>
+      <edomvd>
+      </edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+  <attrdomv>
+    <edom>
+      <edomv>NHjf1</edomv>
+      <edomvd>
+      </edomvd>
+      <edomvds>Producer defined</edomvds>
+    </edom>
+  </attrdomv>
+</attr>
+      <attr>
+        <attrlabl>ORIG_FID</attrlabl>
+        <attrdef>Feature ID</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv><rdom>
+            <rdommin>1</rdommin>
+            <rdommax>1308</rdommax>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>SHAPE_Leng</attrlabl>
+        <attrdef>Length</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv><rdom>
+            <rdommin>535.784353011</rdommin>
+            <rdommax>1073714.87194</rdommax>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>SHAPE_Area</attrlabl>
+        <attrdef>Area</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv><rdom>
+            <rdommin>20014.3504697</rdommin>
+            <rdommax>533443741.309</rdommax>
+          </rdom>
+        </attrdomv>
+      </attr>
+    </detailed>
+  </eainfo>
+  <distinfo>
+    <distrib>
+      <cntinfo>
+        <cntperp>
+          <cntper>James A. Skinner</cntper>
+          <cntorg>U.S. Geological Survey, Southwest Region</cntorg>
+        </cntperp>
+        <cntpos>Research Geologist</cntpos>
+        <cntaddr>
+          <addrtype>mailing address</addrtype>
+          <address>2255 North Gemini Drive</address>
+          <city>Flagstaff</city>
+          <state>AZ</state>
+          <postal>86001</postal>
+          <country>United States</country>
+        </cntaddr>
+        <cntvoice>928-556-7043</cntvoice>
+        <cntfax>928-556-7014</cntfax>
+        <cntemail>jskinner@usgs.gov</cntemail>
+      </cntinfo>
+    </distrib>
+    <distliab>Unless otherwise stated, all data, metadata and related materials are considered to satisfy the quality standards relative to the purpose for which the data were collected. Although these data and associated metadata have been reviewed for accuracy and completeness and approved for release by the U.S. Geological Survey (USGS), no warranty expressed or implied is made regarding the display or utility of the data on any other system or for general or scientific purposes, nor shall the act of distribution constitute any such warranty.</distliab>
+    <stdorder>
+      <digform><digtinfo>
+          <formname>Digital Data</formname>
+        </digtinfo>
+        <digtopt><onlinopt><computer><networka><networkr>https://doi.org/10.3133/sim3464</networkr></networka></computer></onlinopt></digtopt></digform>
+      <fees>None</fees>
+    </stdorder>
+  </distinfo>
+  <metainfo>
+    <metd>20200814</metd>
+    <metc>
+      <cntinfo>
+        <cntperp>
+          <cntper>Anderson Moyers</cntper>
+          <cntorg>USGS Astrogeology Science Center</cntorg>
+        </cntperp>
+        <cntpos>IT Specialist (Applications Software)</cntpos>
+        <cntaddr>
+          <addrtype>mailing and physical</addrtype>
+          <address>2255 North Gemini Drive</address>
+          <city>Flagstaff</city>
+          <state>AZ</state>
+          <postal>86001</postal>
+          <country>US</country>
+        </cntaddr>
+        <cntvoice>928-556-7220</cntvoice>
+        <cntfax>928-556-7014</cntfax>
+        <cntemail>amoyers@usgs.gov</cntemail>
+      </cntinfo>
+    </metc>
+    <metstdn>FGDC Content Standard for Digital Geospatial Metadata</metstdn>
+    <metstdv>FGDC-STD-001-1998</metstdv>
+  </metainfo>
+</metadata>

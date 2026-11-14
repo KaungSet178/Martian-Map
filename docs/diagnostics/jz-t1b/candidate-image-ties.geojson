@@ -1,0 +1,222 @@
+{
+  "type": "FeatureCollection",
+  "coordinate_convention": "Mars planetocentric/east; diagnostic ties only",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "window-0-0",
+        "role": "calibration",
+        "kind": "candidate image correlation tie; NOT surveyed/accepted ground control",
+        "longitude_east": 77.24807451025185,
+        "planetocentric_latitude": 18.490252771970063,
+        "match_dx_pixels": 0,
+        "match_dy_pixels": -6,
+        "east_m": 0.0,
+        "north_m": 36,
+        "ncc_peak": 0.9875379493681934,
+        "search_boundary_hit": false,
+        "translation_holdout_residual_m": 8.269839763952204
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.24807451025185,
+          18.490252771970063
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "window-0-1",
+        "role": "validation",
+        "kind": "candidate image correlation tie; NOT surveyed/accepted ground control",
+        "longitude_east": 77.34008678914802,
+        "planetocentric_latitude": 18.490252771970063,
+        "match_dx_pixels": -1,
+        "match_dy_pixels": -7,
+        "east_m": -5.690265730434161,
+        "north_m": 42,
+        "ncc_peak": 0.989848207406582,
+        "search_boundary_hit": false,
+        "translation_holdout_residual_m": 0.0009775187553362485
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.34008678914802,
+          18.490252771970063
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "window-0-2",
+        "role": "calibration",
+        "kind": "candidate image correlation tie; NOT surveyed/accepted ground control",
+        "longitude_east": 77.43199784441504,
+        "planetocentric_latitude": 18.490252771970063,
+        "match_dx_pixels": -2,
+        "match_dy_pixels": -8,
+        "east_m": -11.380531460868323,
+        "north_m": 48,
+        "ncc_peak": 0.9976949893068925,
+        "search_boundary_hit": false,
+        "translation_holdout_residual_m": 8.26849444309831
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.43199784441504,
+          18.490252771970063
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "window-1-0",
+        "role": "validation",
+        "kind": "candidate image correlation tie; NOT surveyed/accepted ground control",
+        "longitude_east": 77.24807451025185,
+        "planetocentric_latitude": 18.460796695887794,
+        "match_dx_pixels": 0,
+        "match_dy_pixels": -7,
+        "east_m": 0.0,
+        "north_m": 42,
+        "ncc_peak": 0.9899837227033073,
+        "search_boundary_hit": false,
+        "translation_holdout_residual_m": 5.6912432491894975
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.24807451025185,
+          18.460796695887794
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "window-1-1",
+        "role": "calibration",
+        "kind": "candidate image correlation tie; NOT surveyed/accepted ground control",
+        "longitude_east": 77.34008678914802,
+        "planetocentric_latitude": 18.460796695887794,
+        "match_dx_pixels": -1,
+        "match_dy_pixels": -7,
+        "east_m": -5.6912432491894975,
+        "north_m": 42,
+        "ncc_peak": 0.9678027769468122,
+        "search_boundary_hit": false,
+        "translation_holdout_residual_m": 0.0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.34008678914802,
+          18.460796695887794
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "window-1-2",
+        "role": "validation",
+        "kind": "candidate image correlation tie; NOT surveyed/accepted ground control",
+        "longitude_east": 77.43199784441504,
+        "planetocentric_latitude": 18.460796695887794,
+        "match_dx_pixels": -2,
+        "match_dy_pixels": -8,
+        "east_m": -11.382486498378995,
+        "north_m": 48,
+        "ncc_peak": 0.9930599184010828,
+        "search_boundary_hit": false,
+        "translation_holdout_residual_m": 8.269839763952204
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.43199784441504,
+          18.460796695887794
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "window-2-0",
+        "role": "calibration",
+        "kind": "candidate image correlation tie; NOT surveyed/accepted ground control",
+        "longitude_east": 77.24807451025185,
+        "planetocentric_latitude": 18.431340619805525,
+        "match_dx_pixels": 0,
+        "match_dy_pixels": -7,
+        "east_m": 0.0,
+        "north_m": 42,
+        "ncc_peak": 0.9929325432398284,
+        "search_boundary_hit": false,
+        "translation_holdout_residual_m": 5.6912432491894975
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.24807451025185,
+          18.431340619805525
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "window-2-1",
+        "role": "validation",
+        "kind": "candidate image correlation tie; NOT surveyed/accepted ground control",
+        "longitude_east": 77.34008678914802,
+        "planetocentric_latitude": 18.431340619805525,
+        "match_dx_pixels": -1,
+        "match_dy_pixels": -7,
+        "east_m": -5.692219263723792,
+        "north_m": 42,
+        "ncc_peak": 0.9661274805600769,
+        "search_boundary_hit": false,
+        "translation_holdout_residual_m": 0.0009760145342943005
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.34008678914802,
+          18.431340619805525
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "window-2-2",
+        "role": "calibration",
+        "kind": "candidate image correlation tie; NOT surveyed/accepted ground control",
+        "longitude_east": 77.43199784441504,
+        "planetocentric_latitude": 18.431340619805525,
+        "match_dx_pixels": -2,
+        "match_dy_pixels": -8,
+        "east_m": -11.384438527447584,
+        "north_m": 48,
+        "ncc_peak": 0.9900971867194216,
+        "search_boundary_hit": false,
+        "translation_holdout_residual_m": 8.271183257332664
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.43199784441504,
+          18.431340619805525
+        ]
+      }
+    }
+  ]
+}

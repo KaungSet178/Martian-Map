@@ -1,0 +1,7 @@
+﻿# Preserve exact audit artifact bytes so SHA-256 evidence survives checkout.
+* -text
+# Verbatim published metadata contains trailing whitespace; retain it unchanged.
+source/*.xml -diff
+source/*.lbl -diff
+source/*.html -diff
+* whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol

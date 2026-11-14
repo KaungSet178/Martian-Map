@@ -1,0 +1,255 @@
+{
+  "description": "Artifact hashes excluding this self-referential index; source response and byte-range hashes are separately retained under source/.",
+  "files": [
+    {
+      "path": "docs\\diagnostics\\jz-t1b\\.gitattributes",
+      "bytes": 295,
+      "sha256": "7c66bbd7fda143dd369c78dd8386c66d56d61eb4445cdd7eeda3616f9eb19bcf"
+    },
+    {
+      "path": "docs\\diagnostics\\jz-t1b\\application-geology-coverage.png",
+      "bytes": 3071423,
+      "sha256": "979a927e80ab522f2881e70a97514da7ccf068c5535f8482a86cf6a19ab16952"
+    },
+    {
+      "path": "docs\\diagnostics\\jz-t1b\\audit.py",
+      "bytes": 13866,
+      "sha256": "5b62a1b609785c7bba3da0993dae93d037ea76ec4569908e87f2f36acbb25a93"
+    },
+    {
+      "path": "docs\\diagnostics\\jz-t1b\\candidate-image-ties.geojson",
+      "bytes": 6813,
+      "sha256": "03c60a83c2a8abccfb6282ce957fb7fcb1dce3cc93450e393cb5296a25eb57f6"
+    },
+    {
+      "path": "docs\\diagnostics\\jz-t1b\\candidate-image-vectors.geojson",
+      "bytes": 9980,
+      "sha256": "bcc464fdd80e16039e7a7af41f0a65506d89081369bcce10223616eda69fd755"
+    },
+    {
+      "path": "docs\\diagnostics\\jz-t1b\\coverage.geojson",
+      "bytes": 772,
+      "sha256": "36f3c84c988fd7f9898753942a3aae76ab6efe99d04f061d967c53ccffd5f598"
+    },
+    {
+      "path": "docs\\diagnostics\\jz-t1b\\ctx-tile-validation.json",
+      "bytes": 439,
+      "sha256": "b77ffcf47d6c25b7e3921095de8a6fdd741a75a6c57ee949d9e1dd15c8ff8cea"
+    },
+    {
+      "path": "docs\\diagnostics\\jz-t1b\\enrich_registration.py",
+      "bytes": 3308,
+      "sha256": "6e7d406c579b35ae43c4b187ac258a4340ea6af7f9f5900f56beda94d91b8e34"
+    },
+    {
+      "path": "docs\\diagnostics\\jz-t1b\\extract_application.py",
+      "bytes": 1734,
+      "sha256": "3b4513630dcf26e3b05e1e3279b52eabb263c6f38043de478d264104af925e18"
+    },
+    {
+      "path": "docs\\diagnostics\\jz-t1b\\independent-hirise-browse.png",
+      "bytes": 1842418,
+      "sha256": "55a34340d2aa017a8fbf3dbaf7f9cd83d19a9ee752e4556cfd480676afc8f8d7"
+    },
+    {
+      "path": "docs\\diagnostics\\jz-t1b\\inspect_and_test.py",
+      "bytes": 2249,
+      "sha256": "e38b8a5a104437e36a8a33ae27988178da611b8601e7fa4fc361ca88899dd62e"
+    },
+    {
+      "path": "docs\\diagnostics\\jz-t1b\\measurements.json",
+      "bytes": 23980,
+      "sha256": "1d9a31c91e9b5e70544514ab7954574f9086a78d71f98bbf2152dd8dbeaf2f9e"
+    },
+    {
+      "path": "docs\\diagnostics\\jz-t1b\\original-intersecting-polygons.geojson.gz",
+      "bytes": 2533883,
+      "sha256": "489e5178ede649dc6f3cbfe24de58d419649e87c19ae1a95099947a7f42940a7"
+    },
+    {
+      "path": "docs\\diagnostics\\jz-t1b\\plot_reference.py",
+      "bytes": 2008,
+      "sha256": "83784ee0d081d7fd1d6b4f2d3f2d982128a84cea6a4f857e538175117a5dfc4d"
+    },
+    {
+      "path": "docs\\diagnostics\\jz-t1b\\prepare_native.py",
+      "bytes": 951,
+      "sha256": "f0b6e2c68c5b339c57bfbca00a0f66c9292c13fed0dc10a7ad9b70b9f3664fdc"
+    },
+    {
+      "path": "docs\\diagnostics\\jz-t1b\\reference-geology-overlay.png",
+      "bytes": 2400796,
+      "sha256": "0323e7c8162067a6e70b4fffadb02b0ecdb13818d8fa4d198e1433d4006d66a7"
+    },
+    {
+      "path": "docs\\diagnostics\\jz-t1b\\regional-tests.txt",
+      "bytes": 3051,
+      "sha256": "7460585b89e889985749030b02bc9d42563034098f773924d40d961deb85e2f2"
+    },
+    {
+      "path": "docs\\diagnostics\\jz-t1b\\relative-image-registration.png",
+      "bytes": 2315995,
+      "sha256": "0bcb363689b689f69fa9aa673665092eb18785e9d847f202f8cfe97770ae5b25"
+    },
+    {
+      "path": "docs\\diagnostics\\jz-t1b\\requirements.txt",
+      "bytes": 119,
+      "sha256": "e6f8ab6d152a9c39184e6b0d0f4c9c6821ced600d97b27e516bbcbe4a68e5ead"
+    },
+    {
+      "path": "docs\\diagnostics\\jz-t1b\\retrieve.py",
+      "bytes": 2390,
+      "sha256": "dc6b916297dc683c00b31b04e03cd4a2e8c4af6a9fc6a78bc14bd49d71e5c221"
+    },
+    {
+      "path": "docs\\diagnostics\\jz-t1b\\retrieve_ranges.py",
+      "bytes": 1423,
+      "sha256": "5ebb81961b3432afd5d52ecb2540e05f741565b1c5c7144aa873894c1cec55c9"
+    },
+    {
+      "path": "docs\\diagnostics\\jz-t1b\\retrieve_reference_window.py",
+      "bytes": 2922,
+      "sha256": "61c452d3c26fcff3e29cba1b0b1cdf5f0ef640fa5f50b4306e7c9949f68356d6"
+    },
+    {
+      "path": "docs\\diagnostics\\jz-t1b\\retrieve_sidecars.py",
+      "bytes": 935,
+      "sha256": "68d7eace935320660b32214919c7513ff0d33c1306dc06fb59e1585dd066f1ac"
+    },
+    {
+      "path": "docs\\diagnostics\\jz-t1b\\retrieve_window.py",
+      "bytes": 2399,
+      "sha256": "e6d23bfbc6421e7dfe3cc2ed37dc68dd5631eca4aad911e5e57f03bb04c74261"
+    },
+    {
+      "path": "docs\\diagnostics\\jz-t1b\\scientific-tests.txt",
+      "bytes": 1107,
+      "sha256": "8ffe63baf2831dbf708b7995baebbb738af05979f3a7130717a15a546541ad74"
+    },
+    {
+      "path": "docs\\diagnostics\\jz-t1b\\source\\application-ctx-tile.png",
+      "bytes": 62014,
+      "sha256": "5d8e090e739840e76cd110e3ffe50cdb8682caa13c2c4be91297f97ed298b736"
+    },
+    {
+      "path": "docs\\diagnostics\\jz-t1b\\source\\application-geology-tile.png",
+      "bytes": 1426,
+      "sha256": "f3d7703db04f56aa8c1329230f9ba777aea5af853379c174163bc0011de6c7aa"
+    },
+    {
+      "path": "docs\\diagnostics\\jz-t1b\\source\\application-transform-samples.json",
+      "bytes": 1087029,
+      "sha256": "f7faf42f45495e5a7dd2496a275cef389bd32d201dfa0147cfe4214d93e3b466"
+    },
+    {
+      "path": "docs\\diagnostics\\jz-t1b\\source\\ctx-index.html",
+      "bytes": 8692,
+      "sha256": "c11bdbd0a8cee6e91d6a46236c4f3af6c63e8c4a5e04821d75bac0f4aea6c4c6"
+    },
+    {
+      "path": "docs\\diagnostics\\jz-t1b\\source\\ctx-label.lbl",
+      "bytes": 1439,
+      "sha256": "a425525be2695ed727daf179563a5898cb2131691e8b21993426764abcf617ca"
+    },
+    {
+      "path": "docs\\diagnostics\\jz-t1b\\source\\ctx-metadata.xml",
+      "bytes": 16025,
+      "sha256": "c8011a4aa19deebba164aba21ab2ea6326f5bdc7adc01b72bf7dda3d405a4226"
+    },
+    {
+      "path": "docs\\diagnostics\\jz-t1b\\source\\ctx-window-ranges.json",
+      "bytes": 4026,
+      "sha256": "0df7f97392fab107667fc2842142575d0ea6996bbdbde337344c530b99179228"
+    },
+    {
+      "path": "docs\\diagnostics\\jz-t1b\\source\\geology-item.json",
+      "bytes": 10021,
+      "sha256": "a351171a4594385eb5c433a73b58d88db7f5e6761ab3e2481349298224541a41"
+    },
+    {
+      "path": "docs\\diagnostics\\jz-t1b\\source\\geology-layer-snapshot.json",
+      "bytes": 18307,
+      "sha256": "7ba8d301ce56f8ae544017c2d141166dbb3ad0910ebfe19d98cfb9604ea287be"
+    },
+    {
+      "path": "docs\\diagnostics\\jz-t1b\\source\\hirise.lbl",
+      "bytes": 8136,
+      "sha256": "ad6fbd7077ce600e57f356db9b98a6540762323956e03b4ba9134b1cb6f62138"
+    },
+    {
+      "path": "docs\\diagnostics\\jz-t1b\\source\\native-source-reference.json",
+      "bytes": 480,
+      "sha256": "c763f6ffa2188d20d3c6950861b08fc4cc9df7f7828fa2071989401739a32cd3"
+    },
+    {
+      "path": "docs\\diagnostics\\jz-t1b\\source\\range-retrieval.json",
+      "bytes": 1058,
+      "sha256": "8f26564205678374e4c3f778d1b95c02a96f68e03116ab904c845e1769e06476"
+    },
+    {
+      "path": "docs\\diagnostics\\jz-t1b\\source\\reference-J03_045994_1986_XN_18N282W_6m_ORTHO.lbl",
+      "bytes": 1506,
+      "sha256": "e2d75f3179881b4e866665f2c6c68cc0fb401b14309a324f27145a0178376494"
+    },
+    {
+      "path": "docs\\diagnostics\\jz-t1b\\source\\reference-sidecars-retrieval.json",
+      "bytes": 1827,
+      "sha256": "83c238e2e2dd0251c26ccd7d55cb0e4995de2009231354f3574e963f6b1b62d4"
+    },
+    {
+      "path": "docs\\diagnostics\\jz-t1b\\source\\reference-window-ranges.json",
+      "bytes": 5063,
+      "sha256": "49c222ed4bd028ef7e0483c44710b8e87ea35cb59b46103fe1c4980c56b00fed"
+    },
+    {
+      "path": "docs\\diagnostics\\jz-t1b\\source\\retrieval.json",
+      "bytes": 4004,
+      "sha256": "17e73d9185ffe462f3da3bfa8660043a50fe35e3803df2f3c727049ab340d6ac"
+    },
+    {
+      "path": "docs\\diagnostics\\jz-t1b\\source\\sim3464.html",
+      "bytes": 3879,
+      "sha256": "482b6ef04aaae791b0c2c1f55d168a350065cd44e706a53b9df980dd55b39c4c"
+    },
+    {
+      "path": "docs\\diagnostics\\jz-t1b\\source\\sim3464.xml",
+      "bytes": 20924,
+      "sha256": "e4ede0b7465190319c81babfb9359d4e84710cb82deebe331219ef26130927fd"
+    },
+    {
+      "path": "docs\\diagnostics\\jz-t1b\\source\\trek-capabilities.xml",
+      "bytes": 8810,
+      "sha256": "bb58f640da78bcc404a9109f613f2b3f0e3e683ff6625e8f48dcb23e602813b8"
+    },
+    {
+      "path": "docs\\diagnostics\\jz-t1b\\test_audit.py",
+      "bytes": 3631,
+      "sha256": "b0698dd56b2d8be8b29eca936ca5671c3e37abbc2cd8e29f03a73f41a35dfbc5"
+    },
+    {
+      "path": "docs\\diagnostics\\jz-t1b\\tile-validation.json",
+      "bytes": 539,
+      "sha256": "bb542ab058b2a1514971e4001c16a439e433f28cca505146ac875faeb6f7b760"
+    },
+    {
+      "path": "docs\\diagnostics\\jz-t1b\\validate_ctx_tile.py",
+      "bytes": 2435,
+      "sha256": "d76d3a541e545fee0e998b5ad0f3ff86375c203e111de63da5a54c13728b4f99"
+    },
+    {
+      "path": "docs\\diagnostics\\jz-t1b\\validate_tile.py",
+      "bytes": 2906,
+      "sha256": "ce1c22c8738e3e6eb421ec94c401722b3ead556a86c2a5276dadc4f049523ef5"
+    },
+    {
+      "path": "docs\\diagnostics\\jz-t1b\\versions.json",
+      "bytes": 303,
+      "sha256": "20e5bf536e64f26c5210fd99eb65b02bb994ac46063666328cececef703c12ce"
+    },
+    {
+      "path": "docs\\diagnostics\\jz-t1b\\write_report.py",
+      "bytes": 25050,
+      "sha256": "399ba8bbcbdd2bc735e8af2c0c9244ae7ef73185bb9176fb37e387fb2a6ed7e4"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "tile": [
+    13,
+    5857,
+    3668
+  ],
+  "best_offset_pixels": [
+    1,
+    1
+  ],
+  "ncc_peak": 0.9938676322228193,
+  "method": "Application committed tile versus native official CTX window sampled at exact Web Mercator pixel centers, bilinear diagnostic sampling, normalized cross correlation; no output changed",
+  "scope": "Single tile relative check, not absolute control or a byte-for-byte resampling assertion"
+}

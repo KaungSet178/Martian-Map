@@ -1,0 +1,694 @@
+{
+  "milestone": "JZ-T1B",
+  "starting_commit": "d9fbe2f2bf845ef76e69b61cfa0f874246630ca6",
+  "map_footprint_wsen": [
+    77.186786,
+    18.401964,
+    77.493133,
+    18.519663
+  ],
+  "projection_checks": {
+    "feature_count": 1308,
+    "valid_count": 1306,
+    "invalid": [
+      {
+        "objectid": 669,
+        "name": "Upper etched unit",
+        "reason": "Ring Self-intersection[-21522.3253000006 1077592.8085]",
+        "bounds_native": [
+          -21849.0095999986,
+          1075581.5617,
+          -19373.0917000026,
+          1078250.1936
+        ]
+      },
+      {
+        "objectid": 1159,
+        "name": "Upper etched unit",
+        "reason": "Ring Self-intersection[-37977.3708000034 1085921.3172]",
+        "bounds_native": [
+          -39397.5769999996,
+          1078361.0552,
+          -13313.9855000004,
+          1103499.4766
+        ]
+      }
+    ],
+    "sample_count": 14506,
+    "application_vs_pyproj_max_m": 1.5082113336006837e-09,
+    "roundtrip_max_m": 3.2608473642537922e-09,
+    "axis_order": "always_xy (easting,northing -> longitude,latitude)",
+    "geology_wkt": "PROJCRS[\"MTM_clon77_5E\",BASEGEOGCRS[\"GCS_Mars_2000_Sphere\",DATUM[\"Mars_2000_(Sphere)\",ELLIPSOID[\"Mars_2000_Sphere\",3396190,0,LENGTHUNIT[\"metre\",1]],ID[\"ESRI\",106971]],PRIMEM[\"Reference_Meridian\",0,ANGLEUNIT[\"Degree\",0.0174532925199433]]],CONVERSION[\"unnamed\",METHOD[\"Transverse Mercator\",ID[\"EPSG\",9807]],PARAMETER[\"Latitude of natural origin\",0,ANGLEUNIT[\"Degree\",0.0174532925199433],ID[\"EPSG\",8801]],PARAMETER[\"Longitude of natural origin\",77.5,ANGLEUNIT[\"Degree\",0.0174532925199433],ID[\"EPSG\",8802]],PARAMETER[\"Scale factor at natural origin\",1,SCALEUNIT[\"unity\",1],ID[\"EPSG\",8805]],PARAMETER[\"False easting\",0,LENGTHUNIT[\"metre\",1],ID[\"EPSG\",8806]],PARAMETER[\"False northing\",0,LENGTHUNIT[\"metre\",1],ID[\"EPSG\",8807]]],CS[Cartesian,2],AXIS[\"(E)\",east,ORDER[1],LENGTHUNIT[\"metre\",1,ID[\"EPSG\",9001]]],AXIS[\"(N)\",north,ORDER[2],LENGTHUNIT[\"metre\",1,ID[\"EPSG\",9001]]]]"
+  },
+  "application_ctx": {
+    "crs_wkt": "PROJCS[\"Equirectangular Mars 2000 Sphere IAU\",GEOGCS[\"GCS_Mars_2000_Sphere\",DATUM[\"Mars_2000_(Sphere)\",SPHEROID[\"Mars_2000_Sphere_IAU\",3396190,0]],PRIMEM[\"Reference_Meridian\",0],UNIT[\"degree\",0.0174532925199433,AUTHORITY[\"EPSG\",\"9122\"]]],PROJECTION[\"Equirectangular\"],PARAMETER[\"standard_parallel_1\",0],PARAMETER[\"central_meridian\",0],PARAMETER[\"false_easting\",0],PARAMETER[\"false_northing\",0],UNIT[\"metre\",1,AUTHORITY[\"EPSG\",\"9001\"]],AXIS[\"Easting\",EAST],AXIS[\"Northing\",NORTH]]",
+    "affine": [
+      6.0,
+      0.0,
+      4573663.250853,
+      0.0,
+      -6.0,
+      1109693.140188
+    ],
+    "width": 5322,
+    "height": 5040,
+    "nodata": 0.0,
+    "pixel_corner_vs_center": "affine maps corners; pixel centers add 0.5 to row/column",
+    "window": [
+      260,
+      1990,
+      3028,
+      1165
+    ]
+  },
+  "supported_map_valid_CTX_pixel_fraction": 1.0,
+  "unit_groups": [
+    {
+      "name": "Crater ejecta unit",
+      "classification": "OUT_OF_COVERAGE",
+      "alignment": "NOT_EVALUATED",
+      "selectable": false,
+      "positional_uncertainty_m": null,
+      "source_reported_offset_range_m": [
+        100,
+        200
+      ],
+      "intersecting_objectids": [],
+      "extends_beyond_supported_extent": false,
+      "extends_beyond_imagery_within_map": false
+    },
+    {
+      "name": "Crater interior unit",
+      "classification": "OUT_OF_COVERAGE",
+      "alignment": "NOT_EVALUATED",
+      "selectable": false,
+      "positional_uncertainty_m": null,
+      "source_reported_offset_range_m": [
+        100,
+        200
+      ],
+      "intersecting_objectids": [],
+      "extends_beyond_supported_extent": false,
+      "extends_beyond_imagery_within_map": false
+    },
+    {
+      "name": "Crater riim unit",
+      "classification": "OUT_OF_COVERAGE",
+      "alignment": "NOT_EVALUATED",
+      "selectable": false,
+      "positional_uncertainty_m": null,
+      "source_reported_offset_range_m": [
+        100,
+        200
+      ],
+      "intersecting_objectids": [],
+      "extends_beyond_supported_extent": false,
+      "extends_beyond_imagery_within_map": false
+    },
+    {
+      "name": "Crater rim unit",
+      "classification": "PARTIALLY_VERIFIED",
+      "alignment": "UNVERIFIED",
+      "selectable": false,
+      "positional_uncertainty_m": null,
+      "source_reported_offset_range_m": [
+        100,
+        200
+      ],
+      "intersecting_objectids": [
+        989,
+        1008,
+        1012,
+        1139
+      ],
+      "extends_beyond_supported_extent": true,
+      "extends_beyond_imagery_within_map": false
+    },
+    {
+      "name": "Eolian bedform unit",
+      "classification": "PARTIALLY_VERIFIED",
+      "alignment": "UNVERIFIED",
+      "selectable": false,
+      "positional_uncertainty_m": null,
+      "source_reported_offset_range_m": [
+        100,
+        200
+      ],
+      "intersecting_objectids": [
+        945,
+        961,
+        977,
+        978,
+        979,
+        986,
+        997,
+        1004,
+        1007,
+        1010,
+        1033,
+        1036,
+        1043,
+        1064,
+        1074,
+        1233
+      ],
+      "extends_beyond_supported_extent": true,
+      "extends_beyond_imagery_within_map": false
+    },
+    {
+      "name": "Jezero fan 1 unit",
+      "classification": "OUT_OF_COVERAGE",
+      "alignment": "NOT_EVALUATED",
+      "selectable": false,
+      "positional_uncertainty_m": null,
+      "source_reported_offset_range_m": [
+        100,
+        200
+      ],
+      "intersecting_objectids": [],
+      "extends_beyond_supported_extent": false,
+      "extends_beyond_imagery_within_map": false
+    },
+    {
+      "name": "Jezero fan 2 unit",
+      "classification": "PARTIALLY_VERIFIED",
+      "alignment": "UNVERIFIED",
+      "selectable": false,
+      "positional_uncertainty_m": null,
+      "source_reported_offset_range_m": [
+        100,
+        200
+      ],
+      "intersecting_objectids": [
+        948,
+        952,
+        957,
+        960,
+        996,
+        1002,
+        1013,
+        1025,
+        1026,
+        1031,
+        1044,
+        1051,
+        1105
+      ],
+      "extends_beyond_supported_extent": true,
+      "extends_beyond_imagery_within_map": false
+    },
+    {
+      "name": "Jezero floor unit",
+      "classification": "PARTIALLY_VERIFIED",
+      "alignment": "UNVERIFIED",
+      "selectable": false,
+      "positional_uncertainty_m": null,
+      "source_reported_offset_range_m": [
+        100,
+        200
+      ],
+      "intersecting_objectids": [
+        1150
+      ],
+      "extends_beyond_supported_extent": true,
+      "extends_beyond_imagery_within_map": false
+    },
+    {
+      "name": "Lower etched unit",
+      "classification": "PARTIALLY_VERIFIED",
+      "alignment": "UNVERIFIED",
+      "selectable": false,
+      "positional_uncertainty_m": null,
+      "source_reported_offset_range_m": [
+        100,
+        200
+      ],
+      "intersecting_objectids": [
+        987,
+        1063
+      ],
+      "extends_beyond_supported_extent": true,
+      "extends_beyond_imagery_within_map": false
+    },
+    {
+      "name": "Nili Planum 1 unit",
+      "classification": "PARTIALLY_VERIFIED",
+      "alignment": "UNVERIFIED",
+      "selectable": false,
+      "positional_uncertainty_m": null,
+      "source_reported_offset_range_m": [
+        100,
+        200
+      ],
+      "intersecting_objectids": [
+        934,
+        955,
+        958,
+        974,
+        1016,
+        1032,
+        1037,
+        1077
+      ],
+      "extends_beyond_supported_extent": true,
+      "extends_beyond_imagery_within_map": false
+    },
+    {
+      "name": "Nili Planum 2 unit",
+      "classification": "OUT_OF_COVERAGE",
+      "alignment": "NOT_EVALUATED",
+      "selectable": false,
+      "positional_uncertainty_m": null,
+      "source_reported_offset_range_m": [
+        100,
+        200
+      ],
+      "intersecting_objectids": [],
+      "extends_beyond_supported_extent": false,
+      "extends_beyond_imagery_within_map": false
+    },
+    {
+      "name": "Nili Planum fan unit",
+      "classification": "OUT_OF_COVERAGE",
+      "alignment": "NOT_EVALUATED",
+      "selectable": false,
+      "positional_uncertainty_m": null,
+      "source_reported_offset_range_m": [
+        100,
+        200
+      ],
+      "intersecting_objectids": [],
+      "extends_beyond_supported_extent": false,
+      "extends_beyond_imagery_within_map": false
+    },
+    {
+      "name": "Rugged bright unit",
+      "classification": "PARTIALLY_VERIFIED",
+      "alignment": "UNVERIFIED",
+      "selectable": false,
+      "positional_uncertainty_m": null,
+      "source_reported_offset_range_m": [
+        100,
+        200
+      ],
+      "intersecting_objectids": [
+        964,
+        966,
+        1042
+      ],
+      "extends_beyond_supported_extent": true,
+      "extends_beyond_imagery_within_map": false
+    },
+    {
+      "name": "Smooth unit, undivided",
+      "classification": "PARTIALLY_VERIFIED",
+      "alignment": "UNVERIFIED",
+      "selectable": false,
+      "positional_uncertainty_m": null,
+      "source_reported_offset_range_m": [
+        100,
+        200
+      ],
+      "intersecting_objectids": [
+        973,
+        980,
+        992,
+        1030,
+        1034,
+        1046,
+        1123
+      ],
+      "extends_beyond_supported_extent": true,
+      "extends_beyond_imagery_within_map": false
+    },
+    {
+      "name": "Upper etched unit",
+      "classification": "PARTIALLY_VERIFIED",
+      "alignment": "UNVERIFIED",
+      "selectable": false,
+      "positional_uncertainty_m": null,
+      "source_reported_offset_range_m": [
+        100,
+        200
+      ],
+      "intersecting_objectids": [
+        929,
+        937,
+        942,
+        967,
+        972,
+        1019,
+        1041,
+        1303
+      ],
+      "extends_beyond_supported_extent": true,
+      "extends_beyond_imagery_within_map": false
+    }
+  ],
+  "hirise_header_discrepancy": {
+    "pds_radius_m": 3394839.8133163,
+    "pds_proj": "PROJCRS[\"unknown\",BASEGEOGCRS[\"unknown\",DATUM[\"unknown\",ELLIPSOID[\"unknown\",3394839.8133163,0,LENGTHUNIT[\"metre\",1,ID[\"EPSG\",9001]]]],PRIMEM[\"Reference meridian\",0,ANGLEUNIT[\"degree\",0.0174532925199433,ID[\"EPSG\",9122]]]],CONVERSION[\"unknown\",METHOD[\"Equidistant Cylindrical (Spherical)\",ID[\"EPSG\",1029]],PARAMETER[\"Latitude of 1st standard parallel\",15,ANGLEUNIT[\"degree\",0.0174532925199433],ID[\"EPSG\",8823]],PARAMETER[\"Longitude of natural origin\",180,ANGLEUNIT[\"degree\",0.0174532925199433],ID[\"EPSG\",8802]],PARAMETER[\"False easting\",0,LENGTHUNIT[\"metre\",1],ID[\"EPSG\",8806]],PARAMETER[\"False northing\",0,LENGTHUNIT[\"metre\",1],ID[\"EPSG\",8807]]],CS[Cartesian,2],AXIS[\"(E)\",east,ORDER[1],LENGTHUNIT[\"metre\",1,ID[\"EPSG\",9001]]],AXIS[\"(N)\",north,ORDER[2],LENGTHUNIT[\"metre\",1,ID[\"EPSG\",9001]]]]",
+    "embedded_wkt": "PROJCRS[\"Equirectangular MARS\",BASEGEOGCRS[\"GCS_MARS\",DATUM[\"unnamed\",ELLIPSOID[\"unnamed\",3394839.8133163,0,LENGTHUNIT[\"metre\",1,ID[\"EPSG\",9001]]]],PRIMEM[\"Reference meridian\",0,ANGLEUNIT[\"degree\",0.0174532925199433,ID[\"EPSG\",9122]]]],CONVERSION[\"unnamed\",METHOD[\"Equidistant Cylindrical (Spherical)\",ID[\"EPSG\",1029]],PARAMETER[\"Latitude of natural origin\",15,ANGLEUNIT[\"degree\",0.0174532925199433],ID[\"EPSG\",8801]],PARAMETER[\"Longitude of natural origin\",180,ANGLEUNIT[\"degree\",0.0174532925199433],ID[\"EPSG\",8802]],PARAMETER[\"Latitude of 1st standard parallel\",0,ANGLEUNIT[\"degree\",0.0174532925199433],ID[\"EPSG\",8823]],PARAMETER[\"False easting\",0,LENGTHUNIT[\"metre\",1],ID[\"EPSG\",8806]],PARAMETER[\"False northing\",0,LENGTHUNIT[\"metre\",1],ID[\"EPSG\",8807]]],CS[Cartesian,2],AXIS[\"easting\",east,ORDER[1],LENGTHUNIT[\"metre\",1,ID[\"EPSG\",9001]]],AXIS[\"northing\",north,ORDER[2],LENGTHUNIT[\"metre\",1,ID[\"EPSG\",9001]]]]",
+    "affine": [
+      0.25,
+      0.0,
+      -5873046.625,
+      0.0,
+      -0.25,
+      1099108.875
+    ],
+    "comparisons": [
+      {
+        "pixel_corner": [
+          0,
+          0
+        ],
+        "pds_label_lonlat": [
+          77.38212521498686,
+          18.55000625238767
+        ],
+        "embedded_wkt_lonlat": [
+          80.87874450625804,
+          33.550006252387675
+        ],
+        "difference_m": 908220.5683394499
+      },
+      {
+        "pixel_corner": [
+          27505,
+          58222
+        ],
+        "pds_label_lonlat": [
+          77.50227174310854,
+          18.30434849986827
+        ],
+        "embedded_wkt_lonlat": [
+          80.99479714070972,
+          33.30434849986827
+        ],
+        "difference_m": 908256.8279522253
+      },
+      {
+        "pixel_corner": [
+          13752.5,
+          29111.0
+        ],
+        "pds_label_lonlat": [
+          77.4421984790477,
+          18.42717737612797
+        ],
+        "embedded_wkt_lonlat": [
+          80.93677082348388,
+          33.42717737612797
+        ],
+        "difference_m": 908238.8068608441
+      }
+    ],
+    "status": "CONFLICT: embedded WKT must not be used blindly; PDS label reconstruction retained as diagnostic only",
+    "browse_dimensions": [
+      2048,
+      4531
+    ],
+    "native_dimensions": [
+      27505,
+      58222
+    ],
+    "browse_georeferencing": "not established; no control points extracted"
+  },
+  "registration": {
+    "absolute_status": "UNVERIFIED",
+    "accepted_ground_control_points": 0,
+    "control_points": [],
+    "correction_applied": false,
+    "relative_image_registration": {
+      "source": "USGS J03_045994_1986_XN_18N282W_6m_ORTHO versus application SOC_008",
+      "independence_limitation": "Separate processing/publication; overlapping acquisition lineage and no independently surveyed control. Does not certify geological boundaries.",
+      "template_pixels": 64,
+      "search_radius_pixels": 80,
+      "sample_spacing_m": 6,
+      "candidate_ties": [
+        {
+          "id": "window-0-0",
+          "role": "calibration",
+          "kind": "candidate image correlation tie; NOT surveyed/accepted ground control",
+          "longitude_east": 77.24807451025185,
+          "planetocentric_latitude": 18.490252771970063,
+          "match_dx_pixels": 0,
+          "match_dy_pixels": -6,
+          "east_m": 0.0,
+          "north_m": 36,
+          "ncc_peak": 0.9875379493681934,
+          "search_boundary_hit": false,
+          "translation_holdout_residual_m": 8.269839763952204,
+          "application_anchor_pixel_column_row": [
+            865.0,
+            2281.0
+          ],
+          "reference_anchor_pixel_column_row": [
+            1614.3253588268506,
+            8112.349524492774
+          ]
+        },
+        {
+          "id": "window-0-1",
+          "role": "validation",
+          "kind": "candidate image correlation tie; NOT surveyed/accepted ground control",
+          "longitude_east": 77.34008678914802,
+          "planetocentric_latitude": 18.490252771970063,
+          "match_dx_pixels": -1,
+          "match_dy_pixels": -7,
+          "east_m": -5.690265730434161,
+          "north_m": 42,
+          "ncc_peak": 0.989848207406582,
+          "search_boundary_hit": false,
+          "translation_holdout_residual_m": 0.0009775187553362485,
+          "application_anchor_pixel_column_row": [
+            1774.0,
+            2281.0
+          ],
+          "reference_anchor_pixel_column_row": [
+            2514.2675420052947,
+            8112.349524492774
+          ]
+        },
+        {
+          "id": "window-0-2",
+          "role": "calibration",
+          "kind": "candidate image correlation tie; NOT surveyed/accepted ground control",
+          "longitude_east": 77.43199784441504,
+          "planetocentric_latitude": 18.490252771970063,
+          "match_dx_pixels": -2,
+          "match_dy_pixels": -8,
+          "east_m": -11.380531460868323,
+          "north_m": 48,
+          "ncc_peak": 0.9976949893068925,
+          "search_boundary_hit": false,
+          "translation_holdout_residual_m": 8.26849444309831,
+          "application_anchor_pixel_column_row": [
+            2682.000000000155,
+            2281.0
+          ],
+          "reference_anchor_pixel_column_row": [
+            3413.219689778702,
+            8112.349524492774
+          ]
+        },
+        {
+          "id": "window-1-0",
+          "role": "validation",
+          "kind": "candidate image correlation tie; NOT surveyed/accepted ground control",
+          "longitude_east": 77.24807451025185,
+          "planetocentric_latitude": 18.460796695887794,
+          "match_dx_pixels": 0,
+          "match_dy_pixels": -7,
+          "east_m": 0.0,
+          "north_m": 42,
+          "ncc_peak": 0.9899837227033073,
+          "search_boundary_hit": false,
+          "translation_holdout_residual_m": 5.6912432491894975,
+          "application_anchor_pixel_column_row": [
+            865.0,
+            2572.0
+          ],
+          "reference_anchor_pixel_column_row": [
+            1614.3253588268506,
+            8400.449827358481
+          ]
+        },
+        {
+          "id": "window-1-1",
+          "role": "calibration",
+          "kind": "candidate image correlation tie; NOT surveyed/accepted ground control",
+          "longitude_east": 77.34008678914802,
+          "planetocentric_latitude": 18.460796695887794,
+          "match_dx_pixels": -1,
+          "match_dy_pixels": -7,
+          "east_m": -5.6912432491894975,
+          "north_m": 42,
+          "ncc_peak": 0.9678027769468122,
+          "search_boundary_hit": false,
+          "translation_holdout_residual_m": 0.0,
+          "application_anchor_pixel_column_row": [
+            1774.0,
+            2572.0
+          ],
+          "reference_anchor_pixel_column_row": [
+            2514.2675420052947,
+            8400.449827358481
+          ]
+        },
+        {
+          "id": "window-1-2",
+          "role": "validation",
+          "kind": "candidate image correlation tie; NOT surveyed/accepted ground control",
+          "longitude_east": 77.43199784441504,
+          "planetocentric_latitude": 18.460796695887794,
+          "match_dx_pixels": -2,
+          "match_dy_pixels": -8,
+          "east_m": -11.382486498378995,
+          "north_m": 48,
+          "ncc_peak": 0.9930599184010828,
+          "search_boundary_hit": false,
+          "translation_holdout_residual_m": 8.269839763952204,
+          "application_anchor_pixel_column_row": [
+            2682.000000000155,
+            2572.0
+          ],
+          "reference_anchor_pixel_column_row": [
+            3413.219689778702,
+            8400.449827358481
+          ]
+        },
+        {
+          "id": "window-2-0",
+          "role": "calibration",
+          "kind": "candidate image correlation tie; NOT surveyed/accepted ground control",
+          "longitude_east": 77.24807451025185,
+          "planetocentric_latitude": 18.431340619805525,
+          "match_dx_pixels": 0,
+          "match_dy_pixels": -7,
+          "east_m": 0.0,
+          "north_m": 42,
+          "ncc_peak": 0.9929325432398284,
+          "search_boundary_hit": false,
+          "translation_holdout_residual_m": 5.6912432491894975,
+          "application_anchor_pixel_column_row": [
+            865.0,
+            2863.0
+          ],
+          "reference_anchor_pixel_column_row": [
+            1614.3253588268506,
+            8688.550130224188
+          ]
+        },
+        {
+          "id": "window-2-1",
+          "role": "validation",
+          "kind": "candidate image correlation tie; NOT surveyed/accepted ground control",
+          "longitude_east": 77.34008678914802,
+          "planetocentric_latitude": 18.431340619805525,
+          "match_dx_pixels": -1,
+          "match_dy_pixels": -7,
+          "east_m": -5.692219263723792,
+          "north_m": 42,
+          "ncc_peak": 0.9661274805600769,
+          "search_boundary_hit": false,
+          "translation_holdout_residual_m": 0.0009760145342943005,
+          "application_anchor_pixel_column_row": [
+            1774.0,
+            2863.0
+          ],
+          "reference_anchor_pixel_column_row": [
+            2514.2675420052947,
+            8688.550130224188
+          ]
+        },
+        {
+          "id": "window-2-2",
+          "role": "calibration",
+          "kind": "candidate image correlation tie; NOT surveyed/accepted ground control",
+          "longitude_east": 77.43199784441504,
+          "planetocentric_latitude": 18.431340619805525,
+          "match_dx_pixels": -2,
+          "match_dy_pixels": -8,
+          "east_m": -11.384438527447584,
+          "north_m": 48,
+          "ncc_peak": 0.9900971867194216,
+          "search_boundary_hit": false,
+          "translation_holdout_residual_m": 8.271183257332664,
+          "application_anchor_pixel_column_row": [
+            2682.000000000155,
+            2863.0
+          ],
+          "reference_anchor_pixel_column_row": [
+            3413.219689778702,
+            8688.550130224188
+          ]
+        }
+      ],
+      "calibration_translation_east_north_m": [
+        -5.6912432491894975,
+        42.0
+      ],
+      "holdout_count": 4,
+      "holdout_rmse_m": 5.019474607741266,
+      "rotation_scale_local_distortion": "Diagnostic affine hypothesis fitted on five calibration windows only; four held-out windows evaluated. Model is not independently landmark-validated and is not applied.",
+      "diagnostic_affine_hypothesis": {
+        "interpretation": "Relative image ties only, not a geological correction or approved datum transform",
+        "local_origin_lonlat": [
+          77.33995949999999,
+          18.4608135
+        ],
+        "local_sphere_radius_m": 3396190.0,
+        "displacement_coefficients_rows_x_y_constant": [
+          [
+            -0.0011007153606967185,
+            0.0008702910461893521
+          ],
+          [
+            5.594310659162716e-07,
+            -0.0008591065291980726
+          ],
+          [
+            -5.685870307591324,
+            43.19489702853539
+          ]
+        ],
+        "linear_matrix": [
+          [
+            0.9988992846393033,
+            5.594310659162716e-07
+          ],
+          [
+            0.0008702910461893521,
+            0.9991408934708019
+          ]
+        ],
+        "scale_singular_values": [
+          0.9994720563004547,
+          0.9985683111034032
+        ],
+        "polar_rotation_deg": 0.024940413238050015,
+        "calibration_ties": 5,
+        "validation_ties": 4,
+        "holdout_rmse_m": 2.1431347065119493,
+        "applied": false
+      }
+    }
+  },
+  "no_production_changes": true,
+  "source_reported_geology_offsets_m": [
+    100,
+    200
+  ],
+  "diagnostic_scope": "Coordinate correctness is separate from absolute geographic alignment. No selectable targets certified.",
+  "source_integrity": {
+    "native_source_sha256": "cb1f6a1ac2ce548cfafa9423647ac5a68655f3d73e6877b23ac6485a5c247a3b",
+    "application_script_sha256": {
+      "regions\\jezero\\config.ts": "24398956216a62621eb0c757fc71d1665c69f2d1bbfed390987da6ec865623bc",
+      "regions\\jezero\\layers.ts": "6379eafffc7c7d3f9e9900c5557742e12c648d9e2c9efeacde5906e6bd5d5a02",
+      "team\\jezero\\geology\\build_geology.mjs": "7a9a6109552579d2cd3647e65a79fe7351419b193a48d8253571b7d2a1b079b5",
+      "team\\jezero\\basemap\\prepare_trek_basemap.mjs": "0bbb190b2dac297e1364f3d76f3eebd9a916de47aa44b444b5bccf305c29a66c"
+    }
+  }
+}

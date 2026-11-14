@@ -1,0 +1,303 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!--Record created using version 2.0.5 of the USGS Metadata Wizard tool. (https://github.com/usgs/fort-pymdwizard)-->
+<metadata>
+  <idinfo>
+    <citation>
+      <citeinfo>
+        <origin>Robin Fergason</origin>
+        <origin>Donna Galuszka</origin>
+        <origin>Trent Hare</origin>
+        <origin>David Mayer</origin>
+        <origin>Bonnie Redding</origin>
+        <origin>Ethan Smith</origin>
+        <pubdate>20200724</pubdate>
+        <title>Context Camera Orthorectifiedimage Mosaic for Mars 2020 Terrain Relative Navigation</title>
+        <geoform>raster digital data</geoform>
+        <onlink>https://doi.org/10.5066/P9GV1ND3</onlink>
+        <lworkcit>
+          <citeinfo>
+            <origin>Mars 2020 Terrain Relative Navigation</origin>
+            <pubdate>20200724</pubdate>
+            <title>JEZ_ctx_B_soc_008_orthoMosaic_6m_Eqc_latTs0_lon0.tif</title>
+            <geoform>raster digital data</geoform>
+            <pubinfo>
+              <pubplace>Flagstaff, Arizona</pubplace>
+              <publish>United States Geological Survey, Astrogeology Science Center</publish>
+            </pubinfo>
+            <onlink>http://astrogeology.usgs.gov</onlink>
+          </citeinfo>
+        </lworkcit>
+      </citeinfo>
+    </citation>
+    <descript>
+      <abstract>This is a visible image mosaic generated from the Context Camera (CTX) images from the Mars Reconnaissance Orbiter mission. This product is the Lander Visions System (LVS) map that will be onboard the spacecraft and will be considered the truth dataset that TRN will use to orient itself relative to the surface during Entry, Decent, and Landing. The images were orthorectified using digital terrain models (DTMs) created from CTX stereo images.  The mosaic is generated at the same resolution at which the individual CTX images were acquired, which is approximately 6 meters per pixel. This mosaic was created in support of the Mars 2020 rover, which will explore Jezero crater, Mars to investigate an ancient delta for evidence of past microbial life and to better understand the geologic history of the region. The landing system onboard Mars 2020 will use technology developed at the Jet Propulsion Laboratory (JPL) called Terrain Relative Navigation (TRN), which will enable the spacecraft to autonomously avoid hazards (e.g., rock fields, crater rims) that exceed the safety requirements of the landing system. This capability allows small-scale hazards to be present in the landing ellipse, providing greater flexibility in selecting a landing location. In support of TRN, the USGS Astrogeology Science Center has generated and delivered this product, which is the Lander Vision System (LVS) map.</abstract>
+      <purpose>The purpose of this work was to generate and deliver the Lander Vision System (LVS) map generated from three Context Camera (CTX) orthorectified images that will be onboard the spacecraft and will be considered the truth dataset that TRN will use to orient itself relative to the surface during Entry, Decent, and Landing. This mosaic also served as the ground truth data set for the High-Resolution Imaging Science Experiment (HiRISE) orthomosaic that was the basemap onto which surface hazards were mapped.</purpose>
+    </descript>
+    <timeperd>
+      <timeinfo>
+        <sngdate>
+          <caldate>20190820</caldate>
+        </sngdate>
+      </timeinfo>
+      <current>Publication date</current>
+    </timeperd>
+    <status>
+      <progress>Complete</progress>
+      <update>None</update>
+    </status>
+    <spdom>
+      <bounding>
+        <westbc>77.1605</westbc>
+        <eastbc>77.6992</eastbc>
+        <northbc>18.7212</northbc>
+        <southbc>18.2110</southbc>
+      </bounding>
+    </spdom>
+    <keywords>
+      <theme>
+        <themekt>Planetary</themekt>
+        <themekey>Mars 2020</themekey>
+        <themekey>Terrain Relative Navigation</themekey>
+        <themekey>Entry, Decent, and Landing (EDL)</themekey>
+        <themekey>Context Camera</themekey>
+        <themekey>Mars Reconnaissance Orbiter</themekey>
+        <themekey>Orthoimage</themekey>
+        <themekey>Orthorectified image</themekey>
+        <themekey>Mosaic</themekey>
+        <themekey>Mars</themekey>
+      </theme>
+      <place>
+        <placekt>http://science.nasa.gov/glossary</placekt>
+        <placekey>Mars</placekey>
+      </place>
+    </keywords>
+    <accconst>None</accconst>
+    <useconst>None</useconst>
+    <ptcontac>
+      <cntinfo>
+        <cntperp>
+          <cntper>Robin L Fergason</cntper>
+          <cntorg>U.S. Geological Survey, Southwest Region</cntorg>
+        </cntperp>
+        <cntpos>Supervisory Physical Scientist</cntpos>
+        <cntaddr>
+          <addrtype>mailing address</addrtype>
+          <address>2255 North Gemini Drive</address>
+          <city>Flagstaff</city>
+          <state>AZ</state>
+          <postal>86001</postal>
+          <country>US</country>
+        </cntaddr>
+        <cntvoice>928-556-7034</cntvoice>
+        <cntfax>928-556-7014</cntfax>
+        <cntemail>rfergason@usgs.gov</cntemail>
+      </cntinfo>
+    </ptcontac>
+    <datacred>Mars Reconnaissance Orbiter Context Camera</datacred>
+    <secinfo>
+      <secsys>None</secsys>
+      <secclass>Unclassified</secclass>
+      <sechandl>None</sechandl>
+    </secinfo>
+    <native>ISIS 3.5.2, GDAL 2.3.1, SOCET SET 5.6, Ames Stereo Pipeline 3.6.0, ArcMap 10.6</native>
+  </idinfo>
+  <dataqual>
+    <attracc>
+      <attraccr>See Process Steps.</attraccr>
+    </attracc>
+    <logic>See Process Steps.</logic>
+    <complete>When selecting Context Camera (CTX) images for this mosaic, we incorporated the minimum number of high quality stereo pairs that fully covered the Mars 2020 Terrain Relative Navigation (TRN) Enty, Decent, and Landing (EDL) region. This resulted in three CTX stereo pairs: J03_046060_1986_XN_18N282W.cal.pgm/J03_045994_1986_XN_18N282W.cal.pgm; F05_037607_2008_XN_20N282W.cal_sub.pgm/F05_037752_2008_XN_20N282W.cal_sub.pgm; and J21_052811_1983_XN_18N282W.pgm/J22_053233_1984_XN_18N282W.pgm. There was a small gap in the northwest corner of the mosaic region, which was filled with CTX image J03_046060_1986_XN_18N282W that was orthorectified to the High-Reslution Stereo Camera (HRSC) Digital Terrain Model (DTM), since we did not generate a CTX DTM over this area.</complete>
+    <posacc>
+      <horizpa>
+        <horizpar>To assess the horizontal registration, measurements between orthorectified images were made using the Open Source software package IMCORR (https://nsidc.org/data/velmap/imcorr.html). The approach used by IMCORR is the same basic matching strategy used in a variety of stereo photogrammetry software packages, and when applied to a pair of orthorectified images, the results can be interpreted as a measure of the co-registration of the images.</horizpar>
+        <qhorizpa>
+          <horizpav>9.6</horizpav>
+          <horizpae>The individual CTX images have an average displacement of 9.6 meters. Thus, these products and the resulting mosaic meet, and often exceed, the requirements for TRN</horizpae>
+        </qhorizpa>
+      </horizpa>
+      <vertacc>
+        <vertaccr>To assess the vertical differences, DTMs were simply differenced.</vertaccr>
+        <qvertpa>
+          <vertaccv>3.8</vertaccv>
+          <vertacce>The vertical registration between individual CTX DTMs is 3.8 meters after adjusting the mosaic by 183.3 meters vertically to align with HRSC. This value is within the theoretical maximum vertical precision of the HRSC DTM (~13 meters) and is within the stated TRN requirements of measured vertical offsets of less than 20 meters.</vertacce>
+        </qvertpa>
+      </vertacc>
+    </posacc>
+    <lineage>
+      <srcinfo>
+        <srccite>
+          <citeinfo>
+            <origin>Malin, M.C. et al.</origin>
+            <origin>Malin, M.C. et al., Context Camera Investigation on board the Mars Reconnaissance Orbiter, J. Geophys. Res. 112, E05S04 (2007). doi:10.1029/2006JE002808</origin>
+            <pubdate>2007</pubdate>
+            <title>Context Camera Investigation on board the Mars Reconnaissance Orbiter</title>
+            <geoform>document</geoform>
+            <onlink>https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2006JE002808%4010.1002/%28ISSN%292169-9100.MARSROM1</onlink>
+          </citeinfo>
+        </srccite>
+        <typesrc>Planetary Data System (PDS) Reduced Data Record (RDR)</typesrc>
+        <srctime>
+          <timeinfo>
+            <rngdates>
+              <begdate>2006</begdate>
+              <enddate>2020</enddate>
+            </rngdates>
+          </timeinfo>
+          <srccurr>ground condition</srccurr>
+        </srctime>
+        <srccitea>CTX visible</srccitea>
+        <srccontr>https://pds-imaging.jpl.nasa.gov/volumes/mro.html</srccontr>
+      </srcinfo>
+      <procstep>
+        <procdesc>To achieve the required horizontal and vertical co-registration requirements, we have developed a DTM mosaic generation pipeline using a combination of SOCET SET from BAE Systems and the Ames Stereo Pipeline (ASP) software. The original data product is a DTM from stereo images acquired at approximately 6 meters/pixel resolution, which allows an output DTM resolution of 20 meters/pixel using a softcopy photogrammetry system. The CTX images used were further processed from those in the Planetary Data System to remove any remaining focal and lens distortion, to dejitter the images, and to correct timing information. These processing steps were developed in collaboration with the Jet Propulsion Laboratory (JPL) and image processing script version 7.1 was used. These modifications have significantly improved the positional knowledge of the images relative to the martian surface and have allowed us to generate DTMs without the need for a typically required bundle adjustment. Omitting this step was desirable, as TRN is sensitive to non-linear distortions that could potentially be introduced by a bundle adjustment. 
+
+After DTMs were produced using SOCET SET from input images and image metadata provided by JPL, the initial DTMs were then rigidly aligned to one another using the pc_align program from Ames Stereo Pipeline (ASP), allowing only a translation adjustment. The relatively-aligned DTMs were then simultaneously aligned using ASP to the High Resolution Stereo Camera (HRSC) Level 5 DTM provided for the Mars 2020 mission by the German Aerospace Center (DLR) and the HRSC team to bring them into absolute alignment with an independent reference.  CTX DTMs were exported at 20 meters per pixel.  Elevation values are in meters and refer to the Mars 2020 IAU Sphere with a radius of 3396190m.
+</procdesc>
+        <procdate>20190820</procdate>
+        <proccont>
+          <cntinfo>
+            <cntperp>
+              <cntper>Robin L Fergason</cntper>
+              <cntorg>U.S. Geological Survey, Southwest Region</cntorg>
+            </cntperp>
+            <cntpos>Supervisory Physical Scientist</cntpos>
+            <cntaddr>
+              <addrtype>mailing address</addrtype>
+              <address>2255 North Gemini Drive</address>
+              <city>Flagstaff</city>
+              <state>AZ</state>
+              <postal>86001</postal>
+              <country>US</country>
+            </cntaddr>
+            <cntvoice>928-556-7034</cntvoice>
+            <cntfax>928-556-7014</cntfax>
+            <cntemail>rfergason@usgs.gov</cntemail>
+          </cntinfo>
+        </proccont>
+      </procstep>
+    </lineage>
+  </dataqual>
+  <spdoinfo>
+    <direct>Raster</direct>
+    <rastinfo>
+      <rasttype>Grid Cell</rasttype>
+      <rowcount>5040</rowcount>
+      <colcount>5322</colcount>
+      <vrtcount>1</vrtcount>
+    </rastinfo>
+  </spdoinfo>
+  <spref>
+    <horizsys>
+      <planar>
+        <mapproj>
+          <mapprojn>Equirectangular</mapprojn>
+          <equirect>
+            <stdparll>0.0</stdparll>
+            <longcm>0.0</longcm>
+            <feast>0.0</feast>
+            <fnorth>0.0</fnorth>
+          </equirect>
+        </mapproj>
+        <planci>
+          <plance>row and column</plance>
+          <coordrep>
+            <absres>6.0</absres>
+            <ordres>6.0</ordres>
+          </coordrep>
+          <plandu>meters</plandu>
+        </planci>
+      </planar>
+      <geodetic>
+        <horizdn>D_Mars_2000_Sphere</horizdn>
+        <ellips>Mars_2000_Sphere_IAU</ellips>
+        <semiaxis>3396190.0</semiaxis>
+        <denflat>1.0E-10</denflat>
+      </geodetic>
+    </horizsys>
+  </spref>
+  <eainfo>
+    <detailed>
+      <enttyp>
+        <enttypl>JEZ_ctx_B_soc_008_orthoMosaic_6m_Eqc_latTs0_lon0.tif</enttypl>
+        <enttypd>Raster geospatial data file.</enttypd>
+        <enttypds>Producer Defined</enttypds>
+      </enttyp>
+      <attr>
+        <attrlabl>Value</attrlabl>
+        <attrdef>Unique numeric values contained in each raster cell.</attrdef>
+        <attrdefs>Producer Defined</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>3.0</rdommin>
+            <rdommax>255.0</rdommax>
+          </rdom>
+        </attrdomv>
+      </attr>
+    </detailed>
+  </eainfo>
+  <distinfo>
+    <distrib>
+      <cntinfo>
+        <cntperp>
+          <cntper>Trent M Hare</cntper>
+          <cntorg>U.S. Geological Survey, Southwest Region</cntorg>
+        </cntperp>
+        <cntpos>Cartographer</cntpos>
+        <cntaddr>
+          <addrtype>mailing address</addrtype>
+          <address>2255 North Gemini Drive</address>
+          <city>Flagstaff</city>
+          <state>AZ</state>
+          <postal>86001</postal>
+          <country>US</country>
+        </cntaddr>
+        <cntvoice>928-556-7126</cntvoice>
+        <cntemail>thare@usgs.gov</cntemail>
+      </cntinfo>
+    </distrib>
+    <distliab>Unless otherwise stated, all data, metadata and related materials are considered to satisfy the quality standards relative to the purpose for which the data were collected. Although these data and associated metadata have been reviewed for accuracy and completeness and approved for release by the U.S. Geological Survey (USGS), no warranty expressed or implied is made regarding the display or utility of the data for other purposes, nor on all computer systems, nor shall the act of distribution constitute any such warranty. Any use of trade, firm, or product names is for descriptive purposes only and does not imply endorsement by the U.S. Government.
+</distliab>
+    <stdorder>
+      <digform>
+        <digtinfo>
+          <formname>Digital Data</formname>
+        </digtinfo>
+        <digtopt>
+          <onlinopt>
+            <computer>
+              <networka>
+                <networkr>https://astrogeology.usgs.gov/search/map/Mars/Mars2020/JEZ_ctx_B_soc_008_orthoMosaic_6m_Eqc_latTs0_lon0</networkr>
+              </networka>
+            </computer>
+          </onlinopt>
+        </digtopt>
+      </digform>
+      <fees>None.</fees>
+    </stdorder>
+  </distinfo>
+  <metainfo>
+    <metd>20200630</metd>
+    <metc>
+      <cntinfo>
+        <cntperp>
+          <cntper>Robin L Fergason</cntper>
+          <cntorg>U.S. Geological Survey, Southwest Region</cntorg>
+        </cntperp>
+        <cntpos>Supervisory Physical Scientist</cntpos>
+        <cntaddr>
+          <addrtype>mailing address</addrtype>
+          <address>2255 North Gemini Drive</address>
+          <city>Flagstaff</city>
+          <state>AZ</state>
+          <postal>86001</postal>
+          <country>US</country>
+        </cntaddr>
+        <cntvoice>928-556-7034</cntvoice>
+        <cntfax>928-556-7014</cntfax>
+        <cntemail>rfergason@usgs.gov</cntemail>
+      </cntinfo>
+    </metc>
+    <metstdn>FGDC Content Standards for Digital Geospatial Metadata</metstdn>
+    <metstdv>FGDC-STD-001-1998</metstdv>
+  </metainfo>
+</metadata>

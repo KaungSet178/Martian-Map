@@ -1,0 +1,14 @@
+test_actual_map_and_polygon_coverage (__main__.AlignmentAudit.test_actual_map_and_polygon_coverage) ... ok
+test_axis_and_central_meridian (__main__.AlignmentAudit.test_axis_and_central_meridian) ... ok
+test_committed_tile_matches_independent_geometry (__main__.AlignmentAudit.test_committed_tile_matches_independent_geometry) ... ok
+test_hirise_header_conflict_detected (__main__.AlignmentAudit.test_hirise_header_conflict_detected) ... ok
+test_image_validation_sets_are_independent (__main__.AlignmentAudit.test_image_validation_sets_are_independent) ... ok
+test_independent_projection_and_roundtrip (__main__.AlignmentAudit.test_independent_projection_and_roundtrip) ... ok
+test_independent_registration_gate_remains_closed (__main__.AlignmentAudit.test_independent_registration_gate_remains_closed) ... ok
+test_pixel_centers_roundtrip (__main__.AlignmentAudit.test_pixel_centers_roundtrip) ... ok
+test_source_geometry_integrity (__main__.AlignmentAudit.test_source_geometry_integrity) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.284s
+
+OK

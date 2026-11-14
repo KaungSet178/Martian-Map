@@ -1,0 +1,167 @@
+{
+  "url": "https://asc-pds-services.s3.us-west-2.amazonaws.com/mosaic/mars2020_landing_site_dtm/J03_045994_1986_XN_18N282W_6m_ORTHO.tif",
+  "partial_container": "output/jz-t1b-cache/reference-window.tif",
+  "available_rows_inclusive": [
+    7825,
+    8977
+  ],
+  "range_audit": [
+    {
+      "start": 54711779,
+      "end": 54973922,
+      "sha256": "5270129d50c7ab79167024cfeef1ca383887cd23cb89b07ef2cb7f318c983c40"
+    },
+    {
+      "start": 54973923,
+      "end": 55236066,
+      "sha256": "187a7bc7a356d523874eb37fcf10710804deadd9455d4832a03b378a6a82ea6e"
+    },
+    {
+      "start": 55236067,
+      "end": 55498210,
+      "sha256": "09d5b4ca350f8a4c9199d228f544ac06fe193e77e2613a23acb55b872f787b95"
+    },
+    {
+      "start": 55498211,
+      "end": 55760354,
+      "sha256": "77dca702f8517c3b64c76dc79ef35ba0882f0d62a6c5c0212e8e9eb6f1933c62"
+    },
+    {
+      "start": 55760355,
+      "end": 56022498,
+      "sha256": "2c8f36f6e594c7d5484b65dbec3970557fee238078bf17c7fd579dc7dae18c64"
+    },
+    {
+      "start": 56022499,
+      "end": 56284642,
+      "sha256": "7c81f133edd5bc11c23bc26a3a9179a934860f425192604a247c9336bff39e9d"
+    },
+    {
+      "start": 56284643,
+      "end": 56546786,
+      "sha256": "2b5f1b8548f114878da9c62c61674383973fab9c08ba396e183b4094d7598f8e"
+    },
+    {
+      "start": 56546787,
+      "end": 56808930,
+      "sha256": "e400ec78c54fee78829243a643c498aedb9024f6af6fe6f142c1ee895c5a6e21"
+    },
+    {
+      "start": 56808931,
+      "end": 57071074,
+      "sha256": "3b4f8d2d59b7d87772a1474bc54b8388333e213ac733db4402cf7c5202ac6290"
+    },
+    {
+      "start": 57071075,
+      "end": 57333218,
+      "sha256": "fcbebb5c0165dceb86440e1a4d1d8f75d548ddfad13b300fa00c058cfdb17f77"
+    },
+    {
+      "start": 57333219,
+      "end": 57595362,
+      "sha256": "b8c4ddfe2d6642bc4afbf02ec8e8ade62747b98f1e5750119646ab655e0e0ddd"
+    },
+    {
+      "start": 57595363,
+      "end": 57857506,
+      "sha256": "95f62654979946d3df6ed5d122be03b7ff08f3cb0561111f325fd2ab2942c884"
+    },
+    {
+      "start": 57857507,
+      "end": 58119650,
+      "sha256": "1c83a4e59189424d2b240fa09a754e4727aa8106f91d8a6b88e11d985f07ae55"
+    },
+    {
+      "start": 58119651,
+      "end": 58381794,
+      "sha256": "f5578a6af31d3b7f81d864d0332c2c973b3dfa3bc53d8c7503c10fe411232b43"
+    },
+    {
+      "start": 58381795,
+      "end": 58643938,
+      "sha256": "ed5dec620d792d98377d8d2cf19a930e7b523248b24df3814424166ff8089964"
+    },
+    {
+      "start": 58643939,
+      "end": 58906082,
+      "sha256": "b49058216431f96412d79c7bd9f241b7ab387e2641079fc77a16c6ac781badb5"
+    },
+    {
+      "start": 58906083,
+      "end": 59168226,
+      "sha256": "799121dcf4719f22cfc0ff9949a0b47030e1bb911c32ccdfcaeafaaa669f231a"
+    },
+    {
+      "start": 59168227,
+      "end": 59430370,
+      "sha256": "fd8a9f44e4b38e9239cea6da1495e178830cc6547dfbdf596c81cfdd8368edd8"
+    },
+    {
+      "start": 59430371,
+      "end": 59692514,
+      "sha256": "6cc07bf9fb80dc022b2f36b2a61961faf73e011b5e2aadebf3bdf8c3b5459087"
+    },
+    {
+      "start": 59692515,
+      "end": 59954658,
+      "sha256": "21d47bd14f09c134a5bbddb0e3803a0bff18c78451253011b6f53b96b6f92810"
+    },
+    {
+      "start": 59954659,
+      "end": 60216802,
+      "sha256": "2f2b01d9c160919f29718c167ed6dfa94879ddc4620ee1b14e369ef0a492fb22"
+    },
+    {
+      "start": 60216803,
+      "end": 60478946,
+      "sha256": "9e54285837626c3a2d9fd51f11ca545bb0266b4c22ed543b2282c5eebbe25529"
+    },
+    {
+      "start": 60478947,
+      "end": 60741090,
+      "sha256": "ee4d82ac339b9bba0ec746af65f20d9a113b17613bf5e9a6f7e87930ac93c20c"
+    },
+    {
+      "start": 60741091,
+      "end": 61003234,
+      "sha256": "06e9f1d1fa6f7dbd89f9d9f17e40e8eafd97db01efc5cc062e4c5bf48765ed8b"
+    },
+    {
+      "start": 61003235,
+      "end": 61265378,
+      "sha256": "4a9659f56869e76bf1db4b6d097b9f6015dbad837625c6bd8663c12b7301272c"
+    },
+    {
+      "start": 61265379,
+      "end": 61527522,
+      "sha256": "dc39fedbe1b0770df65cd44682cf5083bae4cf0fa75e8a30bafd866ecd23faa9"
+    },
+    {
+      "start": 61527523,
+      "end": 61789666,
+      "sha256": "643e81e63b877dfc61cd0b129ee2bb2a4a5274e32f4a91eb5c86e0a08656a0fc"
+    },
+    {
+      "start": 61789667,
+      "end": 62051810,
+      "sha256": "03e0174d2ef41a8f727439e9db4ef381a3c821400efbf3f062af3797ab7a0bfb"
+    },
+    {
+      "start": 62051811,
+      "end": 62313954,
+      "sha256": "310f387b1d49f49952a774bf54f26ceb7315a861c78f8575c61d93f4dfaf6297"
+    },
+    {
+      "start": 62313955,
+      "end": 62576098,
+      "sha256": "85cd8821ed1a8f9578825536ab413f660db722fa7fb8456f33badc55ff686474"
+    },
+    {
+      "start": 62576099,
+      "end": 62752800,
+      "sha256": "d64a550e3500e2e6c4f877ef3dc10b5012732d58357dcd3b95ab6836ab514530"
+    }
+  ],
+  "bytes_downloaded": 8041022,
+  "warning": "Partial TIFF container; pixels outside downloaded rows not valid. Read only the recorded row window."
+}
