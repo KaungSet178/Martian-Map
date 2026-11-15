@@ -223,7 +223,7 @@ export function LayerManager({
                 <label className="check-row">
                   <input
                     type="checkbox"
-                    checked={state.visible}
+                    checked={layer.availability === "available" && state.visible}
                     disabled={layer.availability !== "available"}
                     onChange={(e) =>
                       onLayerChange(layer.id, { visible: e.target.checked })
@@ -233,7 +233,8 @@ export function LayerManager({
                   <EvidenceBadge value={layer.evidence} />
                 </label>
                 <p className="supporting">Availability: {layer.availability}</p>
-                {state.visible && (
+                {layer.availability !== "available" && layer.rendering.kind === "unavailable" && <p className="supporting" role="note">{layer.rendering.reason}</p>}
+                {layer.availability === "available" && state.visible && (
                   <>
                     <label
                       className="field-label"

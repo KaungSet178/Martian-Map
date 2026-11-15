@@ -108,7 +108,7 @@ export const layers = [
     type: "Slope",
     display_name: "Slope",
     kind: "topography",
-    availability: "available",
+    availability: "unavailable",
     source_id: "jezero-usgs-trn-dtm",
     observation_date: null,
     spatial_resolution_m: 1,
@@ -119,13 +119,7 @@ export const layers = [
     evidence: "Derived",
     attribution:
       "USGS Astrogeology Science Center · NASA/MRO HiRISE · derived from the Mars 2020 TRN DTM mosaic (DOI 10.5066/P9REJ9JN)",
-    rendering: {
-      kind: "raster-tiles",
-      tiles: ["/maps/jezero/slope-tiles/{z}/{x}/{y}.png"],
-      tile_size: 256,
-      min_zoom: 5,
-      max_zoom: 14,
-    },
+    rendering: { kind: "unavailable", reason: "Temporarily unavailable for the demo: I4C-01 found that missing derivative neighbors are replaced by center elevation, which can flatten unknown terrain into plausible slopes. Corrected display tiles require regeneration and independent validation. The separate 25 m numerical routing grid and its restrictions are unchanged." },
     default_visible: false,
     default_opacity: 60,
     legend: {

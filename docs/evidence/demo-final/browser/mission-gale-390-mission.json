@@ -1,0 +1,83 @@
+{
+  "schema_version": 1,
+  "id": "21a0854d-5e55-4bfa-94ab-7e6358986413",
+  "name": "Gale Crater field plan",
+  "region": "gale",
+  "target_ids": [],
+  "direction": "round",
+  "start": {
+    "latitude": -4.72,
+    "longitude_east": 137.38
+  },
+  "endpoint": null,
+  "recovery_assumption": "",
+  "oxygen_reserve_percent": 30,
+  "battery_reserve_percent": 25,
+  "dataset_version": "gale-g3-2-v1",
+  "model_versions": {},
+  "saved_at": "2026-11-15T04:33:36.489Z",
+  "waypoint_plan": {
+    "schema_version": 1,
+    "id": "plan-7ec5999f-5f21-43c9-8ea7-17a57cd64bba",
+    "name": "Gale Crater field plan",
+    "region_id": "gale",
+    "mode": "round_trip",
+    "waypoints": [
+      {
+        "id": "wp-def077f3-2958-41ac-82a8-2752cb77cb6a",
+        "coordinates": {
+          "latitude": -4.72,
+          "longitude_east": 137.38
+        },
+        "role": "base",
+        "label": "I4B stop 0",
+        "provenance": "user_planning_input",
+        "stop_duration_seconds": 0
+      },
+      {
+        "id": "wp-08c85f31-2155-4a98-87fc-eb61637059ca",
+        "coordinates": {
+          "latitude": -4.74,
+          "longitude_east": 137.4
+        },
+        "role": "intermediate",
+        "label": "I4B stop 1",
+        "provenance": "user_planning_input",
+        "stop_duration_seconds": 0
+      },
+      {
+        "id": "wp-b7e5bed3-6884-4b00-94ea-c166699e90d9",
+        "coordinates": {
+          "latitude": -4.75,
+          "longitude_east": 137.39
+        },
+        "role": "intermediate",
+        "label": "I4B stop 2",
+        "provenance": "user_planning_input",
+        "stop_duration_seconds": 1200
+      }
+    ],
+    "created_at": "2026-11-15T04:33:33.809Z",
+    "updated_at": "2026-11-15T04:33:36.326Z"
+  },
+  "terrain_route": {
+    "version": "terrain-i3a-v1-georeferenced",
+    "requestKey": "[\"terrain-i3a-v1-georeferenced\",\"21a0854d-5e55-4bfa-94ab-7e6358986413\",\"gale\",\"gale-g3-2-v1\",\"gale-hrsc-30m\",100,\"round_trip\",[{\"id\":\"wp-def077f3-2958-41ac-82a8-2752cb77cb6a\",\"coordinates\":{\"latitude\":-4.72,\"longitude_east\":137.38},\"role\":\"base\",\"provenance\":\"user_planning_input\"},{\"id\":\"wp-08c85f31-2155-4a98-87fc-eb61637059ca\",\"coordinates\":{\"latitude\":-4.74,\"longitude_east\":137.4},\"role\":\"intermediate\",\"provenance\":\"user_planning_input\"},{\"id\":\"wp-b7e5bed3-6884-4b00-94ea-c166699e90d9\",\"coordinates\":{\"latitude\":-4.75,\"longitude_east\":137.39},\"role\":\"intermediate\",\"provenance\":\"user_planning_input\"}]]",
+    "preference": "lower-terrain-cost",
+    "datasetId": "gale-hrsc-30m",
+    "maxSnapMeters": 100
+  },
+  "eva_config": {
+    "profileId": "bvad-reference",
+    "coolingArchitecture": "venting",
+    "electricalWatts": 80,
+    "oxygenCapacityKg": 2,
+    "batteryCapacityWh": 2000,
+    "waterCapacityKg": 10,
+    "oxygenMarginPercent": 20,
+    "emergencySeconds": 1800
+  },
+  "terrain_assumptions": {
+    "speed": "2000"
+  }
+}

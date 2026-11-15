@@ -1,0 +1,58 @@
+{
+  "foundation": "994c2ecde29d25fa35b925320b7116019672f9ab",
+  "reviewed_audit": [
+    {
+      "path": "docs/I4C_INDEPENDENT_QA_REPORT.md",
+      "revision": "e0d4795c274450b9275c63d26185b5daeabde62a",
+      "sha256": "6f4fbbea95cf116771549b32f32ddb99ab2ebe95d957ce6170c5c51c4bb1a46b"
+    },
+    {
+      "path": "docs/I4C_LAYER_CONSISTENCY_AUDIT.md",
+      "revision": "e0d4795c274450b9275c63d26185b5daeabde62a",
+      "sha256": "dc5d9a56b5deb0336260acb7aa06e04ab20f0f423757e5251852125ca4e69bb1"
+    }
+  ],
+  "protected_paths_unchanged": [
+    "lib/routing",
+    "lib/eva",
+    "lib/science",
+    "lib/mission",
+    "data",
+    "public",
+    "team",
+    "regions/gale",
+    "regions/oxia",
+    "regions/jezero/targets.ts",
+    "regions/location-evidence.ts",
+    "components/map",
+    "app",
+    "package.json",
+    "package-lock.json"
+  ],
+  "source_worktrees": {
+    "D:/martian-map-i4d-science-routing": {
+      "head": "994c2ecde29d25fa35b925320b7116019672f9ab",
+      "status": ""
+    },
+    "D:/martian-map-i4c-qa": {
+      "head": "e0d4795c274450b9275c63d26185b5daeabde62a",
+      "status": ""
+    }
+  },
+  "original_root_dirty_hashes_unchanged": {
+    "components/map/map-workspace.tsx": true,
+    "team/gale/check_map.mjs": true,
+    "team/gale/test_inject.mjs": true
+  },
+  "restored_test_generated_evidence": [
+    "docs/evidence/i4a/f3-replay-compatibility.json",
+    "docs/evidence/i4a/gale-routes.json",
+    "docs/evidence/i4a/jezero-routes.json",
+    "docs/evidence/i4b/gale-eva.json",
+    "docs/evidence/i4b/jezero-eva.json"
+  ],
+  "intentional_runtime_changes": [
+    "regions/jezero/layers.ts: quarantine jezero-slope display",
+    "components/science/evidence.tsx: disclose unavailable reason and suppress stale controls"
+  ]
+}

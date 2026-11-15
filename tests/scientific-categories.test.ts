@@ -12,8 +12,9 @@ test("all regions expose four independent categories with regional source varian
       const layers = categoryLayers(region, category);
       assert.ok(layers.length);
       for (const layer of layers) {
-        assert.equal(layer.availability,"available");
-        assert.equal(layer.rendering.kind,"raster-tiles");
+        assert.equal(layer.availability,layer.id==="jezero-slope" ? "unavailable" : "available");
+        assert.equal(layer.rendering.kind,layer.id==="jezero-slope" ? "unavailable" : "raster-tiles");
+        if(layer.rendering.kind==="unavailable")assert.match(layer.rendering.reason,/I4C-01/);
         assert.ok(layer.legend);
         assert.ok(layer.source_id?.startsWith(`${region.id}-`));
         assert.ok(!ids.has(layer.id)); ids.add(layer.id);

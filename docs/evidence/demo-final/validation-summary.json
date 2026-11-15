@@ -1,0 +1,34 @@
+{
+  "foundation": "994c2ecde29d25fa35b925320b7116019672f9ab",
+  "i4c_stage_a_reference": "e0d4795c274450b9275c63d26185b5daeabde62a",
+  "p1_disposition": "Mitigated: Jezero slope display quarantined, generator/tiles not claimed corrected",
+  "focused_tests": 188,
+  "all_typescript_tests": 557,
+  "suites": 64,
+  "distinct_production_browser_cases": 15,
+  "repeated_visible_mitigation_cases": 2,
+  "browser_viewports": [
+    [
+      1440,
+      900
+    ],
+    [
+      390,
+      844
+    ]
+  ],
+  "gates": {
+    "typecheck": "passed",
+    "lint": "passed",
+    "build": "passed",
+    "routing health": "passed",
+    "independent route numerical replay": "passed",
+    "I4D site-coordinate verification": "passed"
+  },
+  "source_site_http_rejections": 22,
+  "stage_b_accepted": false,
+  "style_conformance_not_attempted": 47,
+  "numerical_routing_changed": false,
+  "source_assets_changed": false,
+  "full_python_regression_repeated": false
+}

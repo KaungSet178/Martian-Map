@@ -1,0 +1,188 @@
+[
+  {
+    "file": "http-site-policy.json",
+    "raw_sha256": "e72ae822f661ba118cd8e24da721069728b94221755247783d928a78657631c0",
+    "review_copy_sha256": "9a063ddcf7a4c87778b194042ce3717848c805f51405646a463e64bff4af2271",
+    "normalization": "UTF-8/LF and trailing whitespace only; originals retained in output/playwright"
+  },
+  {
+    "file": "mission-gale-1440-brief.html",
+    "raw_sha256": "884c929fa4a9401d2917b627a74639c8c2a4e02b9d1627c034d7b08dbb37bbf7",
+    "review_copy_sha256": "7a47b10410d26f2aec719d22055aac536deb01149f7065ce02e2741f12556b7d",
+    "normalization": "UTF-8/LF and trailing whitespace only; originals retained in output/playwright"
+  },
+  {
+    "file": "mission-gale-1440-mission.json",
+    "raw_sha256": "8305b1cdce0ba7162034d61116f3429cd4f88fc349d8db01594457c43f011b76",
+    "review_copy_sha256": "85799deb21ce4986d00d76d4c3deb7a3981c3c809229096e51e396b2de06df2c",
+    "normalization": "UTF-8/LF and trailing whitespace only; originals retained in output/playwright"
+  },
+  {
+    "file": "mission-gale-1440-receipt.json",
+    "raw_sha256": "f4d8093cd656bd6f563c373326b7cd4690910ceae17c82121cfb6655476d4e09",
+    "review_copy_sha256": "1111728789391b2e288cac65f8f1f1969f259a074f6afe19e8a17c547322d2a2",
+    "normalization": "UTF-8/LF and trailing whitespace only; originals retained in output/playwright"
+  },
+  {
+    "file": "mission-gale-390-brief.html",
+    "raw_sha256": "62899652d1decab50bec8aa9db36af07d2ab18b77a033a2d524ce388b71db000",
+    "review_copy_sha256": "cf77fc7ed935b1b8c234ac0a8d86a2452e5ee00174b2a49b7a4c92f233fd550b",
+    "normalization": "UTF-8/LF and trailing whitespace only; originals retained in output/playwright"
+  },
+  {
+    "file": "mission-gale-390-mission.json",
+    "raw_sha256": "bfcb2f351fa9767d6f2293200693e3f583a4882b6f0360b2b2e75ad45d5f00f4",
+    "review_copy_sha256": "11b568bdace0c0999da9021872d8fb950ee7e8dd850d593e8da83ac72f4cdb80",
+    "normalization": "UTF-8/LF and trailing whitespace only; originals retained in output/playwright"
+  },
+  {
+    "file": "mission-gale-390-receipt.json",
+    "raw_sha256": "d52e03515f2933415cfa3de5d4b970cda121502c1c56a871a9f80c4145372048",
+    "review_copy_sha256": "569b09406e047b8752ca844b9284e27f6b3b9e2487220ada0e6a42b2c8ee7eb5",
+    "normalization": "UTF-8/LF and trailing whitespace only; originals retained in output/playwright"
+  },
+  {
+    "file": "mission-jezero-1440-brief.html",
+    "raw_sha256": "cd7ef93980a3226167c81bdba792695debc1baa44d403b39ba2ded5d5b57650a",
+    "review_copy_sha256": "2ee94b0ed0e309d3f40a8f945b73cbf18f2854895a72295e9a55403d7a8368e9",
+    "normalization": "UTF-8/LF and trailing whitespace only; originals retained in output/playwright"
+  },
+  {
+    "file": "mission-jezero-1440-mission.json",
+    "raw_sha256": "68ef9b5ec72673fffa8a037328c7e080c5ddf0c3afbbcecf509c4457bf4ca047",
+    "review_copy_sha256": "a34217e881441a8880b611d32fccda9648dafdb68ab96e547967ac6405345537",
+    "normalization": "UTF-8/LF and trailing whitespace only; originals retained in output/playwright"
+  },
+  {
+    "file": "mission-jezero-1440-receipt.json",
+    "raw_sha256": "be38586215e9264e245d8bd8c0af4c32ce9b8ef80f8367324aac6c432c5968b2",
+    "review_copy_sha256": "3a60cfa198e0d8c28125cf998c402c2f4ff9a5ae5ea57baadca5f8fbcf02f20c",
+    "normalization": "UTF-8/LF and trailing whitespace only; originals retained in output/playwright"
+  },
+  {
+    "file": "mission-jezero-390-brief.html",
+    "raw_sha256": "4f6722e50bfd167157b670f0e021fbf7d8be99a36f866b96e2a3bb0e4a8a17f6",
+    "review_copy_sha256": "9cd05b150ef93ad5bf1a8853d9a98cc8ee1a84ec5cc1f889f033b770d136de74",
+    "normalization": "UTF-8/LF and trailing whitespace only; originals retained in output/playwright"
+  },
+  {
+    "file": "mission-jezero-390-mission.json",
+    "raw_sha256": "f93e189b80d45b5804097cf50104a0e8be59de7c89b1e5f028ab119c00af77d4",
+    "review_copy_sha256": "aaa7d59f2d628038e1fd6d6c1c8245a1084d9df9b4773adb2468cc83c15dc4c5",
+    "normalization": "UTF-8/LF and trailing whitespace only; originals retained in output/playwright"
+  },
+  {
+    "file": "mission-jezero-390-receipt.json",
+    "raw_sha256": "e45174578d62a330244b6ea528f3242b4efc6122dbef2af09af60e0dd611e14d",
+    "review_copy_sha256": "298f5e952386d885501e370b617d1d156b9d0ff1c8d05147b963398e52728277",
+    "normalization": "UTF-8/LF and trailing whitespace only; originals retained in output/playwright"
+  },
+  {
+    "file": "mission-oxia-1440-brief.html",
+    "raw_sha256": "63869088ce18f42233e91618aa822ff08a4fc310e3fa4be0c3c50b46d263ed83",
+    "review_copy_sha256": "65da90b24090bcfd6217c1a38056443ceb0a9c179c0b529d424061e6218c198c",
+    "normalization": "UTF-8/LF and trailing whitespace only; originals retained in output/playwright"
+  },
+  {
+    "file": "mission-oxia-1440-mission.json",
+    "raw_sha256": "fbc28176ea75f6e5566dd8f658933c954a85688d378840d00ed2bafce9953b03",
+    "review_copy_sha256": "4c9c4c541ed17460fa9b6c829092b32e9803576c4f0630c3d218926309e3a851",
+    "normalization": "UTF-8/LF and trailing whitespace only; originals retained in output/playwright"
+  },
+  {
+    "file": "mission-oxia-1440-receipt.json",
+    "raw_sha256": "ef4692f0a8766078da6eaf3b94c02d9f01d92807eb0c152a0bec8cb1e0e3bb2c",
+    "review_copy_sha256": "654a84842adceee632087f8c1d232c4bc227d2bb81d1c15b48c529b953ddafec",
+    "normalization": "UTF-8/LF and trailing whitespace only; originals retained in output/playwright"
+  },
+  {
+    "file": "mission-oxia-390-brief.html",
+    "raw_sha256": "c1c3ead47da30f90701ad70c121775af76b56d2616bfea62c7cee4d9e7fe4505",
+    "review_copy_sha256": "f712374a94a98fad1d37fe62c32b98ea9c3251e2d7bef04f86f62b56509e6a28",
+    "normalization": "UTF-8/LF and trailing whitespace only; originals retained in output/playwright"
+  },
+  {
+    "file": "mission-oxia-390-mission.json",
+    "raw_sha256": "cb6e2ed4e708971bfb981c7974eac8752a4dbd366d2abf8ae9ae20e513444f53",
+    "review_copy_sha256": "acafbab89d542f53ff250a617696e612d84e151e8f1877a08d76803cc6e97cb0",
+    "normalization": "UTF-8/LF and trailing whitespace only; originals retained in output/playwright"
+  },
+  {
+    "file": "mission-oxia-390-receipt.json",
+    "raw_sha256": "89db74d2bc37ecfae0798fed18caf39c5669a3ef1c8296fd790dbc5a6f654274",
+    "review_copy_sha256": "2ddf7b2fee8e6b98f276f486d47df4aa2ab5bbe3a1f64799db0372b162ec902d",
+    "normalization": "UTF-8/LF and trailing whitespace only; originals retained in output/playwright"
+  },
+  {
+    "file": "site-gale-1440-brief.html",
+    "raw_sha256": "795171cc29f4193dcfde9003d082dc7944315a08670b04e0210856b576e26920",
+    "review_copy_sha256": "9f5fe318a45583e6969ff74b5fc0e5352d43fd2f0960cd942070d32140796d3a",
+    "normalization": "UTF-8/LF and trailing whitespace only; originals retained in output/playwright"
+  },
+  {
+    "file": "site-gale-1440-mission.json",
+    "raw_sha256": "6ce4d2da0fa9a7f9446798a33bc67cd0f3fda00291f5fcac4fa08ebdd81bf15e",
+    "review_copy_sha256": "4ffb3168073775bb3232c897cbd36a363d91f9ef117c5af551a30f9f8febc000",
+    "normalization": "UTF-8/LF and trailing whitespace only; originals retained in output/playwright"
+  },
+  {
+    "file": "site-gale-390-brief.html",
+    "raw_sha256": "ef17ecc0e2a762d517089f04f6e035551b3e92e2fdacc2e92bec3f8fd0b48a19",
+    "review_copy_sha256": "0f6dc03035929ee31c70c9e1e2ea6c5bf9cbb73542f44bd64586193c653353e2",
+    "normalization": "UTF-8/LF and trailing whitespace only; originals retained in output/playwright"
+  },
+  {
+    "file": "site-gale-390-mission.json",
+    "raw_sha256": "b7588286136ac58a6900317c2414fc27d88c51044aeb418a721422ce01e54aad",
+    "review_copy_sha256": "a6bdf957d6557c046c0e53f4cb8930ca342d571f7f48d300d549ee4366e8294e",
+    "normalization": "UTF-8/LF and trailing whitespace only; originals retained in output/playwright"
+  },
+  {
+    "file": "site-jezero-1440-brief.html",
+    "raw_sha256": "0bd05a55fd2dd8c5f11f230cf384527eb46252685e6c2cc4f9fb486475529d13",
+    "review_copy_sha256": "118397f2686f251abc4bc1d91494888f942c7a3c3c6b74dda85f48209f9d8e4b",
+    "normalization": "UTF-8/LF and trailing whitespace only; originals retained in output/playwright"
+  },
+  {
+    "file": "site-jezero-1440-mission.json",
+    "raw_sha256": "c487dca56454d34181a0cec19d7fa17c4700cd9b38bc24b395d39c55dfd6851b",
+    "review_copy_sha256": "e8ec17f55f34516ce91905b16ff473927c94478a0a729570b6ea2ea3ae93bae0",
+    "normalization": "UTF-8/LF and trailing whitespace only; originals retained in output/playwright"
+  },
+  {
+    "file": "site-jezero-390-brief.html",
+    "raw_sha256": "11ef21b12d2836f20dccbfd369c642b3d77532d78ccf3bcdd3dd3c5f6b185917",
+    "review_copy_sha256": "a8f5c8a7c6ebd7946f992485c18164becac442e8efb31b864e27d6fb0ea301e7",
+    "normalization": "UTF-8/LF and trailing whitespace only; originals retained in output/playwright"
+  },
+  {
+    "file": "site-jezero-390-mission.json",
+    "raw_sha256": "922353dc41ae936c210462dbb6c2bd16917268b403f6f595a1872af547710226",
+    "review_copy_sha256": "94120518a40ce78911f9078021270b9190944d344da49859d2c4159d92b6265d",
+    "normalization": "UTF-8/LF and trailing whitespace only; originals retained in output/playwright"
+  },
+  {
+    "file": "site-oxia-1440-brief.html",
+    "raw_sha256": "c2d102a3bafee67151a48516df96c96551f85118fee3352c10a66021cedab058",
+    "review_copy_sha256": "92320b631eac28eb52d5ce659cee3e2dba2e472e015670cc09d051364ae675ee",
+    "normalization": "UTF-8/LF and trailing whitespace only; originals retained in output/playwright"
+  },
+  {
+    "file": "site-oxia-1440-mission.json",
+    "raw_sha256": "095991c0dbc0a865ec6dc9620a8d3f3c5765d338990de08b1849b87f57ef0df1",
+    "review_copy_sha256": "06e16f6e04e781a2f587ecd93fe76a4a59ff840290b8009e03174cfab59b6c2f",
+    "normalization": "UTF-8/LF and trailing whitespace only; originals retained in output/playwright"
+  },
+  {
+    "file": "site-oxia-390-brief.html",
+    "raw_sha256": "70635136c93116fc02990987aa929dd29ad620859125c4cd910dc4246f3b351e",
+    "review_copy_sha256": "8296f628344e9a8e8424affcde0eeaea689ff85dc6dbaf881fb536307cbc4582",
+    "normalization": "UTF-8/LF and trailing whitespace only; originals retained in output/playwright"
+  },
+  {
+    "file": "site-oxia-390-mission.json",
+    "raw_sha256": "9ab4f99fdfb59630c902dd8da1bd0798485ab2738efa76b62e51292e41fe36ae",
+    "review_copy_sha256": "3c52f792a2e25615e16bec9ff87df2dd06d3695f3784497b4fd34ba4e48b6e00",
+    "normalization": "UTF-8/LF and trailing whitespace only; originals retained in output/playwright"
+  }
+]

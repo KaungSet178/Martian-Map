@@ -25,7 +25,7 @@ test("retired unit layers cannot mount, reactivate or survive region cleanup; au
     assert.equal(region.capabilities.experimental_routing.status,region.id==="oxia"?"unavailable":"available");
     assert.equal(region.routing.enabled,false);
     for(const id of retiredUnitLayers) assert.deepEqual(updateLayerState(region,{},id,{visible:true}),{});
-    for(const category of scientificCategories) assert.ok(categoryLayers(region,category).every(l=>l.availability==="available" && l.attribution && l.legend));
+    for(const category of scientificCategories) assert.ok(categoryLayers(region,category).every(l=>l.availability===(l.id==="jezero-slope" ? "unavailable" : "available") && l.attribution && l.legend));
     for(const layer of region.layers) {
       if(layer.rendering.kind==="geojson") assert.ok(!layer.rendering.url.includes("geology"));
     }

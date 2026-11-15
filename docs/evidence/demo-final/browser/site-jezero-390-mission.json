@@ -1,0 +1,82 @@
+{
+  "schema_version": 1,
+  "id": "34d9dbc0-0d33-49c0-b9e1-c5eafd75cdd0",
+  "name": "Jezero Crater field plan",
+  "region": "jezero",
+  "target_ids": [],
+  "direction": "round",
+  "start": null,
+  "endpoint": null,
+  "recovery_assumption": "",
+  "oxygen_reserve_percent": 25,
+  "battery_reserve_percent": 25,
+  "dataset_version": "jezero-four-layers-v10",
+  "model_versions": {},
+  "saved_at": "2026-11-15T04:34:03.808Z",
+  "waypoint_plan": {
+    "schema_version": 1,
+    "id": "plan-9d9dfc19-a386-449f-b5ac-408ee4bb4032",
+    "name": "Jezero Crater field plan",
+    "region_id": "jezero",
+    "mode": "round_trip",
+    "waypoints": [],
+    "created_at": "2026-11-15T04:34:03.507Z",
+    "updated_at": "2026-11-15T04:34:03.507Z"
+  },
+  "science_sites": [
+    {
+      "site_id": "jezero-depot-rover-malay",
+      "objective_id": "jezero-objective-3",
+      "revision": "i4d-f4847993",
+      "source_snapshot": {
+        "id": "jezero-depot-rover-malay",
+        "region": "jezero",
+        "title": "Malay tube-drop rover position",
+        "description": "Perseverance rover position during Malay tube drop on sol 653, site 32, drive 148. This is not the tube endpoint, collection outcrop or depot center.",
+        "objective_ids": [
+          "jezero-objective-3"
+        ],
+        "evidence": "Observed",
+        "source": {
+          "title": "PDS Three Forks sample_tube_locations",
+          "version": "1.0; release 2024-10-15",
+          "url": "https://pds-geosciences.wustl.edu/m2020/urn-nasa-pds-mars2020_sample_depot_three_forks/miscellaneous/sample_metadata/sample_tube_locations.csv",
+          "feature_id": "M2020-00337-08",
+          "locator": "Sample Designation M2020-00337-08; columns Rover Latitude/Rover Longitude",
+          "sha256": "089015bb25bc61415cfa69aea7160ddb7f1b5149446dd50dd84332c7660c5d59"
+        },
+        "coordinates": {
+          "latitude": 18.45262651,
+          "longitude_east": 77.40775601
+        },
+        "coordinate_frame": {
+          "body": "Mars",
+          "latitude_type": "planetocentric",
+          "longitude_direction": "east",
+          "longitude_range": "0-360",
+          "datum": "Mars PLACES cartographic reference; R=3396190 m, standard parallel 18.4663 degrees; MOLA/Airy-0 origin"
+        },
+        "original_precision": {
+          "latitude": "18.45262651",
+          "longitude_east": "77.40775601"
+        },
+        "source_verified": true,
+        "source_coordinate_verified": true,
+        "source_processing_verified": null,
+        "registration_evidence": null,
+        "registration_verified": false,
+        "positional_uncertainty_m": null,
+        "grid_coverage": true,
+        "cell_traversability": true,
+        "snap_displacement_m": null,
+        "interpretation": "Perseverance rover position during Malay tube drop on sol 653, site 32, drive 148. This is not the tube endpoint, collection outcrop or depot center.",
+        "operational_safety": "unverified",
+        "limitations": [
+          "Published digits do not establish positional accuracy.",
+          "Absolute source-to-basemap/DEM registration is unverified.",
+          "No astronaut safety or access certification."
+        ]
+      }
+    }
+  ]
+}

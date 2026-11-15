@@ -13,9 +13,10 @@ test("Jezero has exactly four source-backed categories with safe interpretations
   assert.deepEqual(scientificPresentation.map((item) => item.category), ["Elevation", "Hillshade", "Slope", "Thermal"]);
   assert.equal(new Set(scientificLayers.map((item) => item.id)).size, 4);
   for (const layer of scientificLayers) {
-    assert.equal(layer.availability, "available");
+    assert.equal(layer.availability, layer.id === "jezero-slope" ? "unavailable" : "available");
     assert.ok(jezero.source_references.some((source) => source.id === layer.source_id));
-    assert.equal(layer.rendering.kind, "raster-tiles");
+    assert.equal(layer.rendering.kind, layer.id === "jezero-slope" ? "unavailable" : "raster-tiles");
+    if (layer.rendering.kind === "unavailable") assert.match(layer.rendering.reason, /I4C-01/);
   }
   assert.deepEqual(scientificLayers.map((item) => item.default_opacity), [60, 45, 60, 60]);
   assert.equal(scientificLayers[0].legend?.units, "m");
