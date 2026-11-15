@@ -974,6 +974,7 @@ export function Planner() {
           selectedWaypointId={selectedWaypointId}
           onSelectWaypoint={handleSelectWaypoint}
           onPlacementError={handlePlacementError}
+          siteSelections={mission.science_sites ?? []}
         />
       </main>
       <footer className="app-status">

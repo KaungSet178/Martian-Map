@@ -1,6 +1,6 @@
 "use client";
 
-import { scienceSites, siteFrameCompatible } from "@/lib/science/sites";
+import { scienceSites, siteFrameCompatible, type ScienceSite, type SiteSelection } from "@/lib/science/sites";
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { Map as MapInstance, Marker } from "maplibre-gl";
 import {
@@ -71,6 +71,7 @@ type Props = {
   selectedWaypointId?: string | null;
   onSelectWaypoint?: (id: string) => void;
   onPlacementError?: (error: string) => void;
+  siteSelections?: SiteSelection[];
 };
 
 export default function MapWorkspace({
@@ -100,6 +101,7 @@ export default function MapWorkspace({
   selectedWaypointId = null,
   onSelectWaypoint,
   onPlacementError,
+  siteSelections = [],
 }: Props) {
   const container = useRef<HTMLDivElement>(null);
   const map = useRef<MapInstance | null>(null);
@@ -407,15 +409,26 @@ export default function MapWorkspace({
     if(!ready || preview || !map.current)return;
     import("maplibre-gl").then(({Marker})=>{
       if(disposed || !map.current)return;
-      siteMarkers.current=scienceSites.filter(s=>s.region===region.id && s.region!=="oxia" && siteFrameCompatible(s) && s.objective_ids.some(id=>stops.includes(id) || selected===id)).map(s=>{
-        const button=document.createElement("button");button.className="science-marker";
-        button.setAttribute("aria-label",`Inspect ${s.title}; source-located, registration unverified`);button.textContent="\u25c7";
+      const isSiteActive = (s: ScienceSite) =>
+        s.objective_ids.some(id=>stops.includes(id) || selected===id) ||
+        siteSelections.some(sel => sel.site_id === s.id);
+
+      siteMarkers.current=scienceSites.filter(s=>s.region===region.id && s.region!=="oxia" && siteFrameCompatible(s) && isSiteActive(s)).map(s=>{
+        const isSelected = selected !== null && s.objective_ids.includes(selected);
+        const isAdded = s.objective_ids.some(id => stops.includes(id)) || siteSelections.some(sel => sel.site_id === s.id);
+        const button=document.createElement("button");
+        button.className=`science-marker ${isSelected ? "inspected" : ""} ${isAdded ? "added" : ""}`.trim();
+        button.setAttribute("aria-label",`Inspect ${s.title}; source-located, registration unverified`);
+        button.setAttribute("aria-pressed", String(isSelected));
+        const label = document.createElement("span");
+        label.textContent = "\u25c7";
+        button.append(label);
         button.onclick=e=>{e.stopPropagation();onInspect(s.objective_ids[0]);};
         return new Marker({element:button}).setLngLat(toDisplayCoordinates(s.coordinates!)).addTo(map.current!);
       });
     });
     return ()=>{disposed=true;siteMarkers.current.forEach(m=>m.remove());};
-  },[ready,preview,region,stops,selected,onInspect]);
+  },[ready,preview,region,stops,selected,siteSelections,onInspect]);
 
   // Trajectory layers mounting & updates
   useEffect(() => {
