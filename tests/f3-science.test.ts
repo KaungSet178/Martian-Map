@@ -33,8 +33,9 @@ test("retired unit layers cannot mount, reactivate or survive region cleanup; au
   }
 });
 test("source-backed Oxia coordinates retain interpretation and precision, not independent accuracy",()=>{
-  const source=JSON.parse(readFileSync("docs/evidence/f3/oxia-aqueous-query.json","utf8")).response.features.map((f:{attributes:Record<string,unknown>})=>f.attributes);
   for(const target of regions.oxia.targets) {
+    const compilation=target.id==="oxia-objective-4" ? "hydrous" : "aqueous";
+    const source=JSON.parse(readFileSync(`docs/evidence/f3/oxia-${compilation}-query.json`,"utf8")).response.features.map((f:{attributes:Record<string,unknown>})=>f.attributes);
     assert.equal(target.evidence,"Interpreted"); assert.equal(target.routing_eligibility.status,"unavailable");
     assert.ok(source.some((a:Record<string,number>)=>Number(a.Latitude.toFixed(2))===target.coordinates!.latitude && Number(a.Longitude.toFixed(2))===target.coordinates!.longitude_east));
     assert.match(target.activity,/uncertainty.*unknown/);

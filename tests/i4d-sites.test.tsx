@@ -43,7 +43,7 @@ test("Gale named drill contexts never gain fabricated points or unit centroids",
  const sites=scienceSites.filter(s=>s.region==="gale");assert.equal(sites.length,5);for(const s of sites){assert.equal(s.coordinates,null);assert.equal(sitePolicy(s).state,"Unlocated");assert.equal(sitePolicy(s).terrainEligible,false);}
 });
 test("Oxia source points retain exact coordinates, precision, interpretation and geometric-only capability",()=>{
- for(const n of [1,2,3]){const site=scienceSites.find(s=>s.id===`oxia-mineral-${n}`)!;const target=regions.oxia.targets.find(t=>t.id===`oxia-objective-${n}`)!;assert.deepEqual(site.coordinates,target.coordinates);assert.equal(site.evidence,"Interpreted");assert.equal(site.original_precision!.latitude.split(".")[1].length,2);assert.equal(sitePolicy(site).geometricOnly,true);assert.equal(sitePolicy(site).terrainEligible,false);assert.equal(site.positional_uncertainty_m,null);assert.equal(site.grid_coverage,null);}
+ for(const n of [1,2,3,4]){const site=scienceSites.find(s=>s.id===`oxia-mineral-${n}`)!;const target=regions.oxia.targets.find(t=>t.id===`oxia-objective-${n}`)!;assert.deepEqual(site.coordinates,target.coordinates);assert.equal(site.evidence,"Interpreted");assert.equal(site.original_precision!.latitude.split(".")[1].length,2);assert.equal(sitePolicy(site).geometricOnly,true);assert.equal(sitePolicy(site).terrainEligible,false);assert.equal(site.positional_uncertainty_m,null);assert.equal(site.grid_coverage,null);}
  assert.deepEqual(toDisplayCoordinates({latitude:18.22,longitude_east:335.83}),[-24.170000000000016,18.22]);
 });
 test("planetocentric geographic to native projected coordinates roundtrip without latitude reinterpretation",()=>{
