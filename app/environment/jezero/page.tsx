@@ -44,7 +44,7 @@ export default function JezeroEnvironmentPage() {
               borderRadius: "4px",
               background: "var(--color-surface, #111d30)",
               border: "1px solid var(--color-border, #334761)",
-              color: "var(--color-route, #59e3fa)",
+              color: "var(--citrus-ink, #a84f00)",
             }}
           >
             Workstream: Jezero Environmental Ground Truth (MEDA)

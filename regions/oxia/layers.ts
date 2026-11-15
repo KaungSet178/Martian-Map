@@ -234,7 +234,7 @@ export const layers = [
       kind: "geojson",
       url: "/maps/oxia/candidate-traverse.geojson",
       geometry: "line",
-      color: "#59E3FA",
+      color: "#FF7A00",
       line_pattern: "dashed",
     },
     default_visible: false,
@@ -245,8 +245,8 @@ export const layers = [
       items: [
         {
           label:
-            "Dashed cyan: offline candidate walk Start (Scenario midpoint) -> objective-1 -> objective-4 -> Start. Not a selected or validated route.",
-          color: "#59E3FA",
+            "Dashed citrus: offline candidate walk Start (Scenario midpoint) -> objective-1 -> objective-4 -> Start. Not a selected or validated route.",
+          color: "#FF7A00",
         },
       ],
     },

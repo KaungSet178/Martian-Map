@@ -402,14 +402,14 @@ export function mountTrajectoryLayers(map: MapInstance): () => void {
       type: "line",
       source: TRAJECTORY_SOURCE_ID,
       paint: {
-        "line-color": "#09111F",
+        "line-color": "#0F2747",
         "line-width": 5.5,
         "line-opacity": 0.85,
       },
     });
   }
 
-  // 2. Outbound trajectory: Cyan line with dashes [3, 1]
+  // 2. Outbound trajectory: Citrus line with dashes [3, 1]
   if (!map.getLayer(TRAJECTORY_OUTBOUND_LAYER_ID)) {
     map.addLayer({
       id: TRAJECTORY_OUTBOUND_LAYER_ID,
@@ -417,14 +417,14 @@ export function mountTrajectoryLayers(map: MapInstance): () => void {
       source: TRAJECTORY_SOURCE_ID,
       filter: ["==", ["get", "kind"], "outbound"],
       paint: {
-        "line-color": "#59E3FA",
+        "line-color": "#FF7A00",
         "line-width": 3,
         "line-dasharray": [3, 1],
       },
     });
   }
 
-  // 3. Return closure segment: Cyan line with distinct dash pattern [1, 2]
+  // 3. Return closure segment: Citrus line with distinct dash pattern [1, 2]
   if (!map.getLayer(TRAJECTORY_RETURN_LAYER_ID)) {
     map.addLayer({
       id: TRAJECTORY_RETURN_LAYER_ID,
@@ -432,7 +432,7 @@ export function mountTrajectoryLayers(map: MapInstance): () => void {
       source: TRAJECTORY_SOURCE_ID,
       filter: ["==", ["get", "kind"], "return"],
       paint: {
-        "line-color": "#59E3FA",
+        "line-color": "#FF7A00",
         "line-width": 2.5,
         "line-dasharray": [1, 2],
       },

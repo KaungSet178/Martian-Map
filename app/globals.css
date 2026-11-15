@@ -1,23 +1,46 @@
 :root {
-  color-scheme: dark;
-  --color-bg: #09111f;
-  --color-surface: #111d30;
-  --color-surface-raised: #1b2a40;
-  --color-border: #334761;
-  --color-control-border: #647c9a;
-  --color-text: #f0f5fc;
-  --color-text-muted: #a8b8cd;
-  --color-route: #59e3fa;
-  --color-science: #d0bdff;
-  --color-caution: #ffc36b;
-  --color-critical: #ff8d9a;
-  --color-history: #d6dee8;
-  font-family:
-    Geist,
-    system-ui,
-    -apple-system,
-    "Segoe UI",
-    sans-serif;
+  color-scheme: light;
+  /* Marswalk console palette (branding/references/marswalk-console.html):
+     four colours plus derived tints only. */
+  --navy: #0f2747;
+  --ivory: #fff9f0;
+  --cream: #ffe7d1;
+  --citrus: #ff7a00;
+  --navy-70: rgba(15, 39, 71, 0.7);
+  --navy-50: rgba(15, 39, 71, 0.5);
+  --navy-25: rgba(15, 39, 71, 0.25);
+  --navy-12: rgba(15, 39, 71, 0.12);
+  --navy-06: rgba(15, 39, 71, 0.06);
+  --citrus-15: rgba(255, 122, 0, 0.15);
+  /* Darker citrus for text on ivory/cream (citrus itself is below AA for text). */
+  --citrus-ink: #a84f00;
+  /* Blocked / failed states keep a distinct red so they are never confused
+     with caution. Only deviation from the four-colour palette. */
+  --critical: #b42318;
+  /* Neutral, slightly cool backdrop behind imagery so map colours read true
+     (never mistaken for warm terrain). */
+  --map-backdrop: #e4e7ec;
+
+  --font-sans: "Inter", Geist, "Helvetica Neue", Helvetica, Arial, system-ui, sans-serif;
+  --font-cond: "Roboto Condensed", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "IBM Plex Mono", "JetBrains Mono", ui-monospace, Consolas, monospace;
+  --hair: 1px solid var(--navy-25);
+  --line: 1px solid var(--navy);
+
+  /* Semantic tokens used across the app (names unchanged). */
+  --color-bg: var(--ivory);
+  --color-surface: var(--ivory);
+  --color-surface-raised: var(--cream);
+  --color-border: var(--navy-25);
+  --color-control-border: var(--navy);
+  --color-text: var(--navy);
+  --color-text-muted: var(--navy-70);
+  --color-route: var(--citrus);
+  --color-science: var(--navy);
+  --color-caution: var(--citrus-ink);
+  --color-critical: var(--critical);
+  --color-history: var(--navy-50);
+  font-family: var(--font-sans);
   font-size: 15px;
   background: var(--color-bg);
   color: var(--color-text);
@@ -47,7 +70,7 @@ button,
 .file-button {
   min-height: 44px;
   border: 1px solid var(--color-control-border);
-  border-radius: 8px;
+  border-radius: 0;
   background: var(--color-surface-raised);
   color: var(--color-text);
   padding: 10px 14px;
@@ -63,8 +86,8 @@ button,
 }
 button:hover,
 .file-button:hover {
-  background: #263a53;
-  border-color: #98b0cc;
+  background: var(--navy-06);
+  border-color: var(--navy);
 }
 button:disabled {
   color: var(--color-text-muted);
@@ -78,14 +101,14 @@ button:disabled svg {
 button.primary {
   background: var(--color-route);
   border-color: var(--color-route);
-  color: #051522;
+  color: var(--navy);
   font-weight: 650;
 }
 button.primary:hover {
-  background: #92edf9;
+  background: #e86e00;
 }
 a {
-  color: var(--color-route);
+  color: var(--citrus-ink);
   text-underline-offset: 4px;
 }
 button:focus-visible,
@@ -135,7 +158,7 @@ textarea {
   background: var(--color-bg);
   border: 1px solid var(--color-control-border);
   color: var(--color-text);
-  border-radius: 8px;
+  border-radius: 0;
   padding: 11px 12px;
   min-height: 44px;
 }
@@ -170,7 +193,7 @@ input[type="radio"] {
   font-weight: 500;
 }
 .mono {
-  font-family: "IBM Plex Mono", Consolas, monospace;
+  font-family: var(--font-mono);
   font-size: 13px;
   font-variant-numeric: tabular-nums;
 }
@@ -200,24 +223,24 @@ input[type="radio"] {
   line-height: 1.4;
   font-weight: 500;
   border: 1px solid var(--color-border);
-  border-radius: 5px;
+  border-radius: 0;
   padding: 4px 7px;
   color: var(--color-text-muted);
   background: var(--color-surface);
 }
 .badge.caution {
   color: var(--color-caution);
-  border-color: #80653e;
-  background: #29271f;
+  border-color: var(--citrus);
+  background: var(--cream);
 }
 .badge.science {
   color: var(--color-science);
-  border-color: #6b608d;
-  background: #25263d;
+  border-color: var(--navy);
+  background: var(--ivory);
 }
 .badge.cyan {
-  color: var(--color-route);
-  border-color: #3c778b;
+  color: var(--citrus-ink);
+  border-color: var(--citrus);
 }
 .status-dot {
   display: inline-block;
@@ -257,7 +280,7 @@ input[type="radio"] {
 .error-notice {
   border: 1px solid var(--color-critical);
   padding: 14px;
-  border-radius: 8px;
+  border-radius: 0;
   font-size: 14px;
   line-height: 1.6;
   margin-bottom: 16px;
@@ -287,7 +310,7 @@ input[type="radio"] {
   padding: 12px;
   z-index: 100;
   transform: translateY(-200%);
-  border-radius: 8px;
+  border-radius: 0;
 }
 .skip-link:focus {
   transform: none;
@@ -324,9 +347,9 @@ input[type="radio"] {
   place-items: center;
   width: 40px;
   height: 40px;
-  border: 1px solid #3d758a;
-  border-radius: 9px;
-  color: var(--color-route);
+  border: 1px solid var(--citrus);
+  border-radius: 0;
+  color: var(--citrus-ink);
   font-size: 23px;
   font-weight: 500;
   letter-spacing: -0.08em;
@@ -462,14 +485,14 @@ input[type="radio"] {
   border-bottom: 2px solid transparent;
   font-size: 14px;
 }
-.panel-tabs button[aria-current] {
-  color: var(--color-route);
+.panel-tabs button[aria-selected="true"] {
+  color: var(--citrus-ink);
   border-bottom-color: var(--color-route);
 }
 .tab-count {
   font-size: 11px;
   padding: 2px 5px;
-  border-radius: 4px;
+  border-radius: 0;
   background: var(--color-surface-raised);
   color: var(--color-text);
 }
@@ -566,7 +589,7 @@ input[type="radio"] {
 }
 .small-button[aria-pressed="true"] {
   color: var(--color-science);
-  border-color: #8271ac;
+  border-color: var(--navy);
 }
 .mission-summary {
   padding: 16px 24px 20px;
@@ -611,7 +634,7 @@ input[type="radio"] {
   min-height: 0;
   min-width: 0;
   overflow: hidden;
-  background: #0d1928;
+  background: var(--map-backdrop);
 }
 .map-canvas {
   position: absolute;
@@ -625,8 +648,8 @@ input[type="radio"] {
   inset: 0;
   pointer-events: none;
   background-image:
-    linear-gradient(#1b2a3b55 1px, transparent 1px),
-    linear-gradient(90deg, #1b2a3b55 1px, transparent 1px);
+    linear-gradient(var(--navy-12) 1px, transparent 1px),
+    linear-gradient(90deg, var(--navy-12) 1px, transparent 1px);
   background-size: 72px 72px;
 }
 .map-topline {
@@ -649,7 +672,7 @@ input[type="radio"] {
   width: min(248px, calc(100% - 96px));
   padding: 10px 12px;
   border: 1px solid var(--color-border);
-  border-radius: 10px;
+  border-radius: 0;
   background: var(--color-surface);
   color: var(--color-text);
   font-size: 12px;
@@ -658,10 +681,10 @@ input[type="radio"] {
 .basemap-control select {
   width: 100%; min-height: 36px; background: var(--color-bg);
   color: var(--color-text); border: 1px solid var(--color-border);
-  border-radius: 5px; padding: 4px;
+  border-radius: 0; padding: 4px;
 }
 .basemap-control [role="status"] { margin-top: 6px; line-height: 1.5; }
-.basemap-control strong { color: #f5c58c; font-weight: 500; }
+.basemap-control strong { color: var(--citrus-ink); font-weight: 500; }
 .basemap-control summary { cursor: pointer; padding-top: 4px; }
 .basemap-control p { margin: 7px 0; }
 .basemap-control a { text-decoration: underline; }
@@ -680,12 +703,12 @@ input[type="radio"] {
 .scientific:not(.preview) .map-location {
   background: var(--color-surface);
   border: 1px solid var(--color-border);
-  border-radius: 12px;
+  border-radius: 0;
   padding: 12px 16px;
 }
 .scientific:not(.preview) .map-attribution {
   background: var(--color-bg);
-  border-radius: 4px;
+  border-radius: 0;
   padding: 4px 8px;
   right: 24px;
   width: fit-content;
@@ -703,7 +726,7 @@ input[type="radio"] {
 .surface-button {
   background: var(--color-surface);
   font-size: 14px;
-  box-shadow: 0 4px 16px #09111f55;
+  box-shadow: 0 4px 16px rgba(15, 39, 71, 0.18);
 }
 .map-empty {
   position: absolute;
@@ -720,7 +743,7 @@ input[type="radio"] {
   display: grid;
   place-items: center;
   border: 1px solid var(--color-border);
-  border-radius: 16px;
+  border-radius: 0;
   background: var(--color-surface);
   color: var(--color-text-muted);
   margin: 0 auto 24px;
@@ -755,7 +778,7 @@ input[type="radio"] {
   background: var(--color-surface);
 }
 .north {
-  font-family: "IBM Plex Mono", monospace;
+  font-family: var(--font-mono);
   font-size: 11px;
 }
 .map-navigation .icon-button:first-child {
@@ -766,10 +789,10 @@ input[type="radio"] {
   flex-direction: column;
 }
 .zoom-group button:first-child {
-  border-radius: 8px 8px 0 0;
+  border-radius: 0;
 }
 .zoom-group button:last-child {
-  border-radius: 0 0 8px 8px;
+  border-radius: 0;
   border-top: 0;
 }
 .map-bottomline {
@@ -800,7 +823,7 @@ input[type="radio"] {
   background: var(--color-surface);
   border: 1px solid var(--color-border);
   padding: 8px 12px;
-  border-radius: 8px;
+  border-radius: 0;
 }
 .map-scale span {
   display: block;
@@ -828,7 +851,7 @@ input[type="radio"] {
   background: var(--color-surface);
   padding: 8px 12px;
   border: 1px solid var(--color-border);
-  border-radius: 8px;
+  border-radius: 0;
   max-width: calc(100% - 120px);
   flex-wrap: wrap;
 }
@@ -836,7 +859,7 @@ input[type="radio"] {
   padding: 0 5px;
   border: 0;
   background: none;
-  color: var(--color-route);
+  color: var(--citrus-ink);
   font-size: 12px;
   min-height: 28px;
 }
@@ -844,7 +867,7 @@ input[type="radio"] {
   width: 44px;
   height: 44px;
   padding: 0;
-  border-radius: 8px;
+  border-radius: 0;
   background: transparent;
   border: 0;
   color: var(--color-science);
@@ -856,28 +879,28 @@ input[type="radio"] {
   inset: 7px;
   transform: rotate(45deg);
   border: 2px solid var(--color-science);
-  border-radius: 4px;
-  background: #18233a;
-  box-shadow: 0 0 0 3px #09111f99;
+  border-radius: 0;
+  background: var(--ivory);
+  box-shadow: 0 0 0 3px rgba(255, 249, 240, 0.85);
 }
 .science-marker span {
   position: relative;
-  font-family: "IBM Plex Mono", monospace;
+  font-family: var(--font-mono);
   font-size: 16px;
 }
 .science-marker.added::before {
-  background: #39314f;
+  background: var(--citrus);
 }
 .science-marker.inspected::before {
   border-color: var(--color-route);
-  color: var(--color-route);
-  box-shadow: 0 0 0 5px #59e3fa33;
+  color: var(--citrus-ink);
+  box-shadow: 0 0 0 5px var(--citrus-15);
 }
 .map-loading {
   display: grid;
   place-items: center;
   color: var(--color-text-muted);
-  background: #0d1928;
+  background: var(--map-backdrop);
 }
 .map-failure {
   position: absolute;
@@ -889,7 +912,7 @@ input[type="radio"] {
   background: var(--color-surface);
   padding: 12px;
   border: 1px solid var(--color-caution);
-  border-radius: 8px;
+  border-radius: 0;
 }
 .section-heading {
   display: flex;
@@ -904,7 +927,7 @@ input[type="radio"] {
 .target-photograph {
   margin: 20px 0 28px;
   border: 1px solid var(--color-border);
-  border-radius: 12px;
+  border-radius: 0;
   overflow: hidden;
 }
 .target-photograph img {
@@ -934,7 +957,7 @@ input[type="radio"] {
 .segmented {
   display: flex;
   border: 1px solid var(--color-control-border);
-  border-radius: 8px;
+  border-radius: 0;
   padding: 4px;
   gap: 4px;
 }
@@ -959,11 +982,11 @@ input[type="radio"] {
   padding: 12px 4px;
   font-size: 14px;
   border: 1px solid transparent;
-  border-radius: 5px;
+  border-radius: 0;
 }
 .segmented input:checked + span {
   border-color: var(--color-control-border);
-  color: var(--color-route);
+  color: var(--citrus-ink);
   background: var(--color-surface-raised);
 }
 .segmented input:focus-visible + span {
@@ -994,7 +1017,7 @@ input[type="radio"] {
   padding: 24px 16px;
   text-align: center;
   border: 1px dashed var(--color-control-border);
-  border-radius: 8px;
+  border-radius: 0;
   margin: 16px 0;
   color: var(--color-text-muted);
 }
@@ -1017,10 +1040,10 @@ input[type="radio"] {
   height: 28px;
   display: grid;
   place-items: center;
-  background: #302b46;
-  border: 1px solid #8271ac;
+  background: var(--ivory);
+  border: 1px solid var(--navy);
   color: var(--color-science);
-  border-radius: 5px;
+  border-radius: 0;
   flex-shrink: 0;
   margin-top: 2px;
 }
@@ -1062,7 +1085,7 @@ input[type="radio"] {
 }
 .constraints summary::before {
   content: "+";
-  color: var(--color-route);
+  color: var(--citrus-ink);
 }
 .constraints[open] summary::before {
   content: "−";
@@ -1202,12 +1225,12 @@ input[type="radio"] {
   color: var(--color-text);
   background: var(--color-surface);
   border: 1px solid var(--color-control-border);
-  border-radius: 12px;
+  border-radius: 0;
   padding: 0;
   width: min(560px, calc(100% - 32px));
   max-height: calc(100dvh - 64px);
   overflow: hidden;
-  box-shadow: 0 24px 80px #02081299;
+  box-shadow: 0 24px 80px rgba(15, 39, 71, 0.3);
 }
 .dialog[open] {
   display: flex;
@@ -1217,7 +1240,7 @@ input[type="radio"] {
   width: min(960px, calc(100% - 32px));
 }
 .dialog::backdrop {
-  background: #030b17c9;
+  background: rgba(15, 39, 71, 0.55);
 }
 .dialog-heading {
   padding: 16px 24px;
@@ -1288,7 +1311,7 @@ input[type="radio"] {
   align-items: center;
   gap: 8px;
   font-size: 13px;
-  color: var(--color-route);
+  color: var(--citrus-ink);
   margin-top: 20px;
 }
 .file-actions,
@@ -1365,7 +1388,7 @@ input[type="radio"] {
 }
 .wordmark {
   font-size: 32px;
-  color: var(--color-route);
+  color: var(--citrus-ink);
 }
 @media (min-width: 851px) and (max-width: 1150px) {
   .workspace {
@@ -1470,8 +1493,8 @@ input[type="radio"] {
     height: var(--sheet-height);
     border-right: 0;
     border-top: 1px solid var(--color-control-border);
-    border-radius: 16px 16px 0 0;
-    box-shadow: 0 -12px 36px #030b1733;
+    border-radius: 0;
+    box-shadow: 0 -12px 36px rgba(15, 39, 71, 0.15);
   }
   .sheet-expanded .task-panel {
     height: 62%;
@@ -1499,7 +1522,7 @@ input[type="radio"] {
     left: calc(50% - 16px);
     height: 3px;
     width: 32px;
-    border-radius: 3px;
+    border-radius: 0;
     background: var(--color-control-border);
   }
   .panel-top,
@@ -1569,7 +1592,7 @@ input[type="radio"] {
     width: 48px;
     height: 48px;
     margin-bottom: 16px;
-    border-radius: 12px;
+    border-radius: 0;
   }
   .map-bottomline {
     bottom: 58px;
@@ -1853,7 +1876,7 @@ input[type="radio"] {
 
 .map-placement-button.active-placement {
   background: var(--color-route);
-  color: #051522;
+  color: var(--navy);
   border-color: var(--color-route);
   font-weight: 650;
 }
@@ -1870,9 +1893,9 @@ input[type="radio"] {
 }
 
 .stop-number.base-stop {
-  background: #092c3a;
+  background: var(--navy);
   border-color: var(--color-route);
-  color: var(--color-route);
+  color: var(--citrus);
 }
 
 .waypoint-card-body {
@@ -1895,7 +1918,7 @@ input[type="radio"] {
 }
 
 .waypoint-role-group .role-icon {
-  color: var(--color-route);
+  color: var(--citrus-ink);
 }
 
 .waypoint-role-title {
@@ -1931,7 +1954,7 @@ input[type="radio"] {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border-radius: 4px;
+  border-radius: 0;
 }
 
 .icon-button-subtle:hover {
@@ -1950,7 +1973,7 @@ input[type="radio"] {
   border: 1px solid var(--color-control-border);
   color: var(--color-text);
   padding: 6px 10px;
-  border-radius: 6px;
+  border-radius: 0;
   font-size: 14px;
   flex: 1;
 }
@@ -1971,7 +1994,7 @@ input[type="radio"] {
 }
 
 .waypoint-coords-val {
-  color: var(--color-route);
+  color: var(--citrus-ink);
   font-size: 12px;
 }
 
@@ -2004,7 +2027,7 @@ input[type="radio"] {
   font-size: 12px;
   background: transparent;
   border: 1px solid var(--color-control-border);
-  border-radius: 6px;
+  border-radius: 0;
   color: var(--color-text-muted);
   display: inline-flex;
   align-items: center;
@@ -2028,9 +2051,9 @@ input[type="radio"] {
   position: relative;
   margin: 14px 0 6px 8px;
   padding: 8px 12px 8px 16px;
-  background: #0d1a2c;
+  background: var(--navy-06);
   border-left: 2px solid var(--color-route);
-  border-radius: 0 6px 6px 0;
+  border-radius: 0;
   display: flex;
   align-items: center;
 }
@@ -2049,7 +2072,7 @@ input[type="radio"] {
 }
 
 .leg-metric-bearing {
-  color: var(--color-route);
+  color: var(--citrus-ink);
 }
 
 .leg-metric-separator {
@@ -2064,16 +2087,16 @@ input[type="radio"] {
 .trajectory-return-card {
   margin: 16px 0 8px;
   padding: 12px 14px;
-  background: #0e1e32;
+  background: var(--navy-06);
   border: 1px dashed var(--color-route);
-  border-radius: 8px;
+  border-radius: 0;
 }
 
 .return-leg-header {
   display: flex;
   align-items: center;
   gap: 8px;
-  color: var(--color-route);
+  color: var(--citrus-ink);
   font-size: 13px;
   margin-bottom: 6px;
 }
@@ -2093,7 +2116,7 @@ input[type="radio"] {
   padding: 18px 20px;
   background: var(--color-surface);
   border: 1px solid var(--color-border);
-  border-radius: 12px;
+  border-radius: 0;
 }
 
 .distance-summary-title {
@@ -2112,7 +2135,7 @@ input[type="radio"] {
 .distance-cell {
   background: var(--color-surface-raised);
   padding: 10px 12px;
-  border-radius: 8px;
+  border-radius: 0;
   border: 1px solid var(--color-border);
   display: flex;
   flex-direction: column;
@@ -2121,7 +2144,7 @@ input[type="radio"] {
 
 .distance-cell.highlight {
   border-color: var(--color-route);
-  background: #0d2538;
+  background: var(--cream);
 }
 
 .distance-cell-label {
@@ -2138,7 +2161,7 @@ input[type="radio"] {
 }
 
 .distance-cell.highlight .distance-cell-value {
-  color: var(--color-route);
+  color: var(--citrus-ink);
 }
 
 .trajectory-disclaimer-notice {
@@ -2165,8 +2188,8 @@ input[type="radio"] {
 /* Notice & Warnings */
 .warning-notice {
   border: 1px solid var(--color-caution);
-  background: #2b2210;
-  border-radius: 8px;
+  background: var(--cream);
+  border-radius: 0;
   padding: 14px;
   margin: 16px 0;
 }
@@ -2196,7 +2219,7 @@ input[type="radio"] {
 .origin-coords,
 .destination-coords {
   font-size: 12px;
-  color: var(--color-route);
+  color: var(--citrus-ink);
 }
 
 .destination-status-ok {
@@ -2204,7 +2227,7 @@ input[type="radio"] {
   align-items: center;
   gap: 5px;
   font-size: 12px;
-  color: var(--color-route);
+  color: var(--citrus-ink);
 }
 
 .required-star {
@@ -2243,11 +2266,11 @@ input[type="radio"] {
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  background: rgba(9, 17, 31, 0.95);
+  background: rgba(255, 249, 240, 0.97);
   border: 1px solid var(--color-route);
-  border-radius: 8px;
+  border-radius: 0;
   padding: 8px 14px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(89, 227, 250, 0.25);
+  box-shadow: 0 4px 20px rgba(15, 39, 71, 0.22), 0 0 0 1px rgba(255, 122, 0, 0.25);
   width: calc(100% - 32px);
   max-width: 540px;
   box-sizing: border-box;
@@ -2273,11 +2296,11 @@ input[type="radio"] {
 }
 
 .placement-banner-content strong {
-  color: var(--color-route);
+  color: var(--citrus-ink);
 }
 
 .placement-banner .pulse-icon {
-  color: var(--color-route);
+  color: var(--citrus-ink);
   animation: pulse-ring 2s infinite;
   flex-shrink: 0;
 }
@@ -2287,7 +2310,7 @@ input[type="radio"] {
   padding: 4px 12px;
   font-size: 12px;
   font-weight: 600;
-  border-radius: 6px;
+  border-radius: 0;
   background: var(--color-surface-raised);
   border: 1px solid var(--color-control-border);
   color: var(--color-text);
@@ -2297,8 +2320,8 @@ input[type="radio"] {
 }
 
 .placement-cancel-btn:hover {
-  background: #2a3c54;
-  border-color: #98b0cc;
+  background: var(--navy-06);
+  border-color: var(--navy);
 }
 
 /* Map Waypoint Markers */
@@ -2312,11 +2335,11 @@ input[type="radio"] {
   justify-content: center;
   font-size: 13px;
   font-weight: 700;
-  font-family: "IBM Plex Mono", monospace;
+  font-family: var(--font-mono);
   cursor: pointer;
   border: 2px solid;
   z-index: 5;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 2px 6px rgba(15, 39, 71, 0.3);
   transition: transform 0.15s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.15s;
 }
 
@@ -2328,17 +2351,17 @@ input[type="radio"] {
 
 /* Base Camp */
 .map-waypoint-marker.base {
-  border-radius: 7px;
-  background: #0d2838;
+  border-radius: 0;
+  background: var(--navy);
   border-color: var(--color-route);
-  color: var(--color-route);
+  color: var(--citrus);
 }
 
 /* Science Stop */
 .map-waypoint-marker.science_stop {
-  border-radius: 4px;
+  border-radius: 0;
   transform: rotate(45deg);
-  background: #241738;
+  background: var(--citrus);
   border-color: var(--color-science);
   color: var(--color-science);
 }
@@ -2350,16 +2373,16 @@ input[type="radio"] {
 /* Intermediate Turn Point */
 .map-waypoint-marker.intermediate {
   border-radius: 50%;
-  background: #112033;
-  border-color: #8da4be;
-  color: #f0f5fc;
+  background: var(--ivory);
+  border-color: var(--navy);
+  color: var(--navy);
 }
 
 /* Destination / Recovery Endpoint */
 .map-waypoint-marker.destination,
 .map-waypoint-marker.recovery_endpoint {
-  border-radius: 7px;
-  background: #362208;
+  border-radius: 0;
+  background: var(--cream);
   border-color: var(--color-caution);
   color: var(--color-caution);
 }
@@ -2368,7 +2391,7 @@ input[type="radio"] {
 .map-waypoint-marker:hover,
 .map-waypoint-marker:focus-visible {
   transform: scale(1.15);
-  box-shadow: 0 0 0 3px var(--color-route), 0 4px 12px rgba(0, 0, 0, 0.8);
+  box-shadow: 0 0 0 3px var(--color-route), 0 4px 12px rgba(15, 39, 71, 0.35);
   z-index: 15;
 }
 
@@ -2380,7 +2403,7 @@ input[type="radio"] {
 /* Marker Selected State */
 .map-waypoint-marker.selected {
   transform: scale(1.22);
-  box-shadow: 0 0 0 4px var(--color-route), 0 0 16px rgba(89, 227, 250, 0.6);
+  box-shadow: 0 0 0 4px var(--color-route), 0 0 16px rgba(255, 122, 0, 0.6);
   z-index: 20;
 }
 
@@ -2391,11 +2414,11 @@ input[type="radio"] {
 /* Trajectory Legend / Scientific Disclaimer */
 .trajectory-legend {
   font-size: 11px;
-  color: var(--color-route);
-  background: rgba(9, 17, 31, 0.85);
+  color: var(--citrus-ink);
+  background: rgba(255, 249, 240, 0.95);
   padding: 2px 8px;
-  border-radius: 4px;
-  border: 1px solid rgba(89, 227, 250, 0.35);
+  border-radius: 0;
+  border: 1px solid rgba(255, 122, 0, 0.35);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -2405,8 +2428,8 @@ input[type="radio"] {
 /* Selected Waypoint in Itinerary */
 .waypoint-list-item.selected-waypoint {
   border-color: var(--color-route);
-  box-shadow: 0 0 0 1px var(--color-route), 0 4px 14px rgba(89, 227, 250, 0.15);
-  background: rgba(89, 227, 250, 0.04);
+  box-shadow: 0 0 0 1px var(--color-route), 0 4px 14px rgba(255, 122, 0, 0.15);
+  background: rgba(255, 122, 0, 0.04);
 }
 
 /* Manual Coordinates Card in WaypointEditor */
@@ -2414,7 +2437,7 @@ input[type="radio"] {
   margin-top: 14px;
   background: var(--color-surface);
   border: 1px solid var(--color-border);
-  border-radius: 8px;
+  border-radius: 0;
   padding: 10px 14px;
   transition: border-color 0.15s;
 }
@@ -2427,7 +2450,7 @@ input[type="radio"] {
   cursor: pointer;
   font-size: 13px;
   font-weight: 500;
-  color: var(--color-route);
+  color: var(--citrus-ink);
   display: flex;
   align-items: center;
   gap: 8px;
@@ -2486,6 +2509,411 @@ input[type="radio"] {
     scroll-behavior: auto !important;
   }
 }
+/* ==========================================================================
+   Marswalk console design system (branding/references/marswalk-console.html)
+   Visual layer only: palette, typography, square hairline geometry, header,
+   labels and controls. No layout or behaviour changes.
+   ========================================================================== */
+body {
+  background: var(--ivory);
+  color: var(--navy);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+.mono,
+code,
+kbd,
+samp {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+h1,
+h2,
+h3 {
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--navy);
+}
+
+/* Condensed uppercase labels (reference ".label") */
+.eyebrow,
+.field-label,
+.badge,
+.tab-count,
+.panel-tabs button,
+.app-status,
+.app-status button,
+.science-question summary,
+.region-overview-button,
+.brand-subtitle {
+  font-family: var(--font-cond);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.eyebrow,
+.field-label {
+  font-size: 11px;
+  color: var(--navy-70);
+}
+.badge {
+  font-size: 10.5px;
+  border-color: var(--navy);
+  color: var(--navy);
+  background: var(--ivory);
+}
+.badge.caution {
+  color: var(--navy);
+  border-color: var(--citrus);
+  background: repeating-linear-gradient(
+    135deg,
+    var(--citrus-15) 0 3px,
+    transparent 3px 6px
+  );
+}
+.badge.science {
+  color: var(--navy);
+  border-color: var(--navy);
+  background: var(--cream);
+}
+.badge.cyan {
+  color: var(--navy);
+  border-color: var(--citrus);
+  background: var(--citrus-15);
+}
+.status-dot {
+  border-radius: 0;
+  background: var(--citrus);
+}
+
+/* Links and focus */
+a {
+  color: var(--citrus-ink);
+}
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+summary:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--citrus);
+  outline-offset: 2px;
+}
+
+/* Controls: square, navy hairline, ivory fill */
+button,
+.file-button {
+  border: var(--line);
+  background: var(--ivory);
+  color: var(--navy);
+}
+button:hover,
+.file-button:hover {
+  background: var(--navy-06);
+  border-color: var(--navy);
+}
+button:disabled {
+  color: var(--navy-50);
+  background: var(--ivory);
+  border-color: var(--navy-25);
+}
+button.primary {
+  background: var(--citrus);
+  border-color: var(--citrus);
+  color: var(--navy);
+  font-family: var(--font-cond);
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+button.primary:hover {
+  background: var(--navy);
+  border-color: var(--navy);
+  color: var(--ivory);
+}
+input:not([type="checkbox"], [type="radio"], [type="range"], [type="file"]),
+select,
+textarea {
+  background: var(--ivory);
+  border: var(--line);
+  color: var(--navy);
+}
+input[type="range"],
+input[type="checkbox"],
+input[type="radio"] {
+  accent-color: var(--citrus);
+}
+
+/* Header: navy bar with citrus rule */
+.app-header {
+  background: var(--navy);
+  color: var(--ivory);
+  border-bottom: 3px solid var(--citrus);
+}
+.app-header .brand {
+  color: var(--ivory);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+.app-header .brand-symbol {
+  border-color: var(--citrus);
+  color: var(--citrus);
+  background: transparent;
+}
+.app-header .brand-subtitle,
+.app-header .eyebrow,
+.app-header .supporting,
+.app-header .header-status {
+  color: rgba(255, 249, 240, 0.75);
+}
+.app-header .header-divider {
+  background: rgba(255, 249, 240, 0.2);
+}
+.app-header .region-picker select {
+  color: var(--ivory);
+  background: transparent;
+  border: 0;
+  font-weight: 700;
+}
+.app-header .region-picker select option {
+  color: var(--navy);
+  background: var(--ivory);
+}
+.app-header .header-actions button {
+  color: var(--ivory);
+  background: transparent;
+  border-color: rgba(255, 249, 240, 0.35);
+}
+.app-header .header-actions button:hover {
+  background: rgba(255, 249, 240, 0.08);
+  border-color: var(--ivory);
+}
+
+/* Panels and tabs */
+.task-panel {
+  background: var(--ivory);
+  border-right: var(--line);
+}
+.panel-tabs {
+  border-bottom: var(--line);
+}
+.panel-tabs {
+  gap: 0;
+  padding: 0 12px;
+}
+.panel-tabs button {
+  border: 0;
+  border-bottom: 3px solid transparent;
+  background: transparent;
+  color: var(--navy-70);
+  font-size: 11.5px;
+  letter-spacing: 0.06em;
+  padding: 12px 8px;
+  white-space: nowrap;
+}
+.panel-tabs button:hover {
+  background: var(--navy-06);
+}
+.panel-tabs button[aria-selected="true"] {
+  color: var(--navy);
+  border-bottom-color: var(--citrus);
+}
+.tab-count {
+  background: var(--navy);
+  color: var(--ivory);
+}
+.mission-summary {
+  background: var(--cream);
+  border-top: var(--line);
+}
+.app-status {
+  background: var(--navy);
+  color: rgba(255, 249, 240, 0.75);
+  border-top: 0;
+  font-size: 10.5px;
+}
+.app-status button {
+  color: rgba(255, 249, 240, 0.85);
+  background: none;
+  border: 0;
+}
+.app-status .status-separator {
+  color: rgba(255, 249, 240, 0.35);
+}
+
+/* Notices */
+.notice {
+  color: var(--navy);
+  border-top: var(--line);
+  border-bottom: var(--line);
+}
+.notice > svg {
+  color: var(--citrus);
+}
+.error-notice {
+  color: var(--critical);
+  border-color: var(--critical);
+  background: var(--ivory);
+}
+
+/* Map furniture on imagery: opaque ivory panels with navy hairline */
+.dialog {
+  background: var(--ivory);
+  color: var(--navy);
+  border: var(--line);
+}
+
+/* ==========================================================================
+   Floating windows: planning panel and layers open as windows over the map
+   ========================================================================== */
+.floating-window {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  background: var(--ivory);
+  color: var(--navy);
+  border: var(--line);
+  box-shadow: 0 12px 40px rgba(15, 39, 71, 0.22);
+}
+.floating-window-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px 6px 14px;
+  border-bottom: var(--line);
+  background: var(--ivory);
+  flex-shrink: 0;
+}
+.floating-window-head .eyebrow {
+  flex: 1;
+  color: var(--navy);
+}
+.floating-window-head .icon-button {
+  width: 36px;
+  height: 36px;
+  min-height: 36px;
+  border-color: var(--navy-25);
+}
+.floating-window-mark {
+  width: 8px;
+  height: 8px;
+  background: var(--navy);
+  flex-shrink: 0;
+}
+.floating-window-body {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 16px 20px 20px;
+}
+.layers-window {
+  top: 84px;
+  right: 16px;
+  width: min(380px, calc(100% - 32px));
+  max-height: calc(100% - 168px);
+  z-index: 9;
+}
+.panel-open-button {
+  align-self: flex-start;
+  font-family: var(--font-cond);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+
+@media (min-width: 851px) {
+  .workspace,
+  .panel-collapsed {
+    grid-template-columns: minmax(0, 1fr);
+    --console-width: 380px;
+  }
+  .workspace.console-expanded { --console-width: min(560px, calc(100% - 432px)); }
+  .workspace.panel-collapsed { --console-width: 0px; }
+  .map-workspace {
+    grid-column: 1;
+    grid-row: 1;
+  }
+  .task-panel {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    bottom: 16px;
+    width: var(--console-width);
+    z-index: 8;
+    border: var(--line);
+    box-shadow: 0 12px 40px rgba(15, 39, 71, 0.22);
+  }
+  .panel-collapsed .task-panel {
+    display: none;
+  }
+  /* Keep the region card and Layers button clear of the open panel. */
+  .workspace:not(.panel-collapsed) .map-topline {
+    left: calc(var(--console-width) + 32px);
+  }
+  .layers-window {
+    right: 80px;
+    width: min(380px, calc(100% - var(--console-width) - 128px));
+  }
+}
+
+@media (max-width: 850px) {
+  .layers-window {
+    top: 8px;
+    left: 8px;
+    right: 8px;
+    width: auto;
+    max-height: calc(100% - 16px);
+    z-index: 30;
+  }
+}
+
+/* Expandable Mission Console: retain F2 tokens and keep the body scrollable. */
+.task-panel > .panel-scroll {
+  min-width: 0;
+  padding: 16px;
+  scroll-padding-block: 16px;
+  scrollbar-gutter: stable;
+  overflow-wrap: anywhere;
+}
+.panel-top .region-overview-button { margin-right: auto; }
+.console-resize { flex-shrink: 0; margin-right: 4px; }
+.panel-tabs { padding-inline: 8px; }
+.panel-tabs button { flex: 1 1 auto; padding-inline: 6px; gap: 4px; }
+.mission-summary,
+.sheet-expanded .mission-summary {
+  padding: 8px 16px max(8px, env(safe-area-inset-bottom));
+}
+.summary-line { margin-bottom: 6px; align-items: flex-start; }
+.summary-line > span { min-width: 0; }
+.summary-line strong { font-size: 12px; line-height: 1.4; display: block; }
+.summary-line .badge { font-size: 10px; padding: 2px 6px; flex-shrink: 0; }
+.mission-summary .primary { min-height: 36px; padding: 6px 10px; font-size: 12px; }
+.layers-window .floating-window-body { display: block; }
+.task-panel :is([role="tabpanel"], [role="tab"]):focus-visible {
+  outline: 2px solid var(--citrus-ink);
+  outline-offset: -3px;
+}
+@media (max-width: 850px) {
+  .console-resize { display: none; }
+  .workspace, .workspace.has-selection { --sheet-height: 132px; }
+  .sheet-expanded .task-panel { height: 68%; }
+  .sheet-expanded .panel-top { display: none; }
+  .layers-window { top: auto; bottom: 0; height: 68%; max-height: calc(100% - 120px); }
+  .workspace .map-workspace[data-region] .map-navigation {
+    top: 64px;
+    right: 12px;
+    display: flex;
+    flex-direction: row;
+    gap: 4px;
+    align-items: flex-start;
+  }
+  .map-navigation .zoom-group { display: flex; flex-direction: row; }
+}
+
 @media print {
   html,
   body {

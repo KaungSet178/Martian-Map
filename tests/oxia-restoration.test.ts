@@ -21,7 +21,7 @@ test("restored Oxia color assets and offline overlay preserve geometric-only pla
   assert.match(overlay.limitations, /Not safety-validated; not live routing/);
   assert.equal(overlay.rendering.kind, "geojson");
   if (overlay.rendering.kind === "geojson") {
-    assert.equal(overlay.rendering.color, "#59E3FA");
+    assert.equal(overlay.rendering.color, "#FF7A00");
     assert.equal(overlay.rendering.line_pattern, "dashed");
   }
   const lines = JSON.parse(readFileSync("public/maps/oxia/candidate-traverse.geojson", "utf8"));

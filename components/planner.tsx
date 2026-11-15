@@ -9,6 +9,7 @@ import {
   useRef,
   useState,
   useSyncExternalStore,
+  type KeyboardEvent,
 } from "react";
 import {
   ArrowUpRight,
@@ -18,11 +19,15 @@ import {
   FolderOpen,
   Save,
   PanelLeftClose,
+  Maximize2,
+  Minimize2,
   Download,
   Upload,
   Globe2,
   CircleHelp,
   Sun,
+  X,
+  ArrowLeft,
 } from "lucide-react";
 import { regionIdSchema, type RegionId, type MarsGeographicCoordinates } from "@/lib/contracts/region";
 import { regions, regionIds } from "@/lib/regions/registry";
@@ -96,6 +101,25 @@ const subscribeOnline = (onChange: () => void) => {
   };
 };
 const onlineSnapshot = () => navigator.onLine;
+const focusFloatingWindow = (node: HTMLElement | null) => { node?.focus(); };
+
+// Automatic activation keeps the focused tab and its visible panel in sync.
+function navigateTabs(event: KeyboardEvent<HTMLElement>) {
+  const tabs = Array.from(event.currentTarget.querySelectorAll<HTMLButtonElement>('[role="tab"]'));
+  const index = tabs.indexOf(event.target as HTMLButtonElement);
+  if (index < 0) return;
+  let next: number;
+  switch (event.key) {
+    case "ArrowRight": next = (index + 1) % tabs.length; break;
+    case "ArrowLeft": next = (index - 1 + tabs.length) % tabs.length; break;
+    case "Home": next = 0; break;
+    case "End": next = tabs.length - 1; break;
+    default: return;
+  }
+  event.preventDefault();
+  tabs[next].focus();
+  tabs[next].click();
+}
 
 export function Planner() {
   const [regionId, setRegionId] = useState<RegionId>("jezero");
@@ -107,7 +131,12 @@ export function Planner() {
   const [modal, setModal] = useState<Modal>(null);
   const [selected, setSelected] = useState<string | null>(null);
   const [expanded, setExpanded] = useState(false);
+  // Desktop opens the console; compact screens retain the collapsed bottom sheet.
   const [collapsed, setCollapsed] = useState(false);
+  const [consoleExpanded, setConsoleExpanded] = useState(false);
+  // Layers and the scientific data register open in their own floating
+  // window over the map, separate from the planning panel.
+  const [layersView, setLayersView] = useState<null | "layers" | "evidence">(null);
   const [preview, setPreview] = useState(false);
   const [contours, setContours] = useState(true);
   const [markers, setMarkers] = useState(true);
@@ -351,9 +380,30 @@ export function Planner() {
     );
   }
   function showPanel(next: Panel) {
+    if (next === "layers" || next === "evidence") {
+      setLayersView(next);
+      requestAnimationFrame(() => document.querySelector<HTMLElement>(".layers-window")?.focus());
+      return;
+    }
     setPanel(next);
     setExpanded(true);
     setCollapsed(false);
+  }
+  function closeLayers() {
+    setLayersView(null);
+    requestAnimationFrame(() =>
+      document
+        .querySelector<HTMLElement>(".map-topline .surface-button:last-of-type")
+        ?.focus(),
+    );
+  }
+  function collapsePanel() {
+    setCollapsed(true);
+    setExpanded(false);
+    requestAnimationFrame(() => {
+      const mobile = window.matchMedia("(max-width: 850px)").matches;
+      document.querySelector<HTMLElement>(mobile ? ".sheet-handle" : '[aria-label="Open planning panel"]')?.focus();
+    });
   }
   function save() {
     if (!mission.name.trim()) {
@@ -515,9 +565,14 @@ export function Planner() {
         </nav>
       </header>
       <main
-        className={`workspace ${expanded ? "sheet-expanded" : ""} ${collapsed ? "panel-collapsed" : ""} ${target ? "has-selection" : ""}`}
+        className={`workspace ${expanded ? "sheet-expanded" : ""} ${collapsed ? "panel-collapsed" : ""} ${consoleExpanded ? "console-expanded" : ""} ${target ? "has-selection" : ""}`}
       >
-        <aside className="task-panel" aria-label="Mission planning">
+        <aside className="task-panel" aria-label="Mission planning" onKeyDown={(event) => {
+          if (event.key === "Escape" && !modal && !isPlacingOnMap) {
+            event.stopPropagation();
+            collapsePanel();
+          }
+        }}>
           <button
             className="sheet-handle"
             aria-expanded={expanded}
@@ -542,23 +597,25 @@ export function Planner() {
               <ArrowUpRight size={16} />
             </button>
             <button
+              className="icon-button console-resize"
+              aria-label={consoleExpanded ? "Reduce mission console" : "Expand mission console"}
+              aria-expanded={consoleExpanded}
+              aria-controls="task-content"
+              onClick={() => setConsoleExpanded(value => !value)}
+            >
+              {consoleExpanded ? <Minimize2 size={18} /> : <Maximize2 size={18} />}
+            </button>
+            <button
               className="icon-button collapse-desktop"
               aria-label="Collapse planning panel"
-              onClick={() => {
-                setCollapsed(true);
-                requestAnimationFrame(() =>
-                  document
-                    .querySelector<HTMLElement>(
-                      '[aria-label="Open planning panel"]',
-                    )
-                    ?.focus(),
-                );
-              }}
+              aria-expanded={!collapsed}
+              aria-controls="task-content"
+              onClick={collapsePanel}
             >
               <PanelLeftClose size={19} />
             </button>
           </div>
-          <nav className="panel-tabs" aria-label="Planning views">
+          <div className="panel-tabs" role="tablist" aria-label="Planning views" onKeyDown={navigateTabs}>
             {(
               [
                 ["science", "Science"],
@@ -569,7 +626,11 @@ export function Planner() {
             ).map(([key, label]) => (
               <button
                 key={key}
-                aria-current={panel === key ? "page" : undefined}
+                id={`mission-tab-${key}`}
+                role="tab"
+                aria-controls="task-content"
+                aria-selected={panel === key}
+                tabIndex={panel === key ? 0 : -1}
                 onClick={() => showPanel(key)}
               >
                 {label}
@@ -580,8 +641,8 @@ export function Planner() {
                 )}
               </button>
             ))}
-          </nav>
-          <div className="panel-scroll" id="task-content" tabIndex={-1}>
+          </div>
+          <div className="panel-scroll" id="task-content" role="tabpanel" aria-labelledby={`mission-tab-${panel}`} tabIndex={0} key={panel}>
             {!online && (
               <Notice title="Offline">
                 Saved plans remain available. New calculations and uncached
@@ -631,10 +692,14 @@ export function Planner() {
                   style={{ marginBottom: "1rem" }}
                   role="tablist"
                   aria-label="Planning views sub-navigation"
+                  onKeyDown={navigateTabs}
                 >
                   <button
                     type="button"
                     role="tab"
+                    id="plan-tab-objectives"
+                    aria-controls="plan-view"
+                    tabIndex={planSubView === "objectives" ? 0 : -1}
                     aria-selected={planSubView === "objectives"}
                     className={planSubView === "objectives" ? "active" : ""}
                     onClick={() => setPlanSubView("objectives")}
@@ -644,6 +709,9 @@ export function Planner() {
                   <button
                     type="button"
                     role="tab"
+                    id="plan-tab-waypoints"
+                    aria-controls="plan-view"
+                    tabIndex={planSubView === "waypoints" ? 0 : -1}
                     aria-selected={planSubView === "waypoints"}
                     className={planSubView === "waypoints" ? "active" : ""}
                     onClick={() => setPlanSubView("waypoints")}
@@ -652,6 +720,7 @@ export function Planner() {
                   </button>
                 </div>
                 <SelectedScienceSites snapshot={planningSnapshot} onRemove={id=>updateMission({science_sites:(mission.science_sites ?? []).filter(s=>s.site_id!==id),waypoint_plan:{...activePlan,waypoints:activePlan.waypoints.filter(w=>w.science_site?.site_id!==id)}})}/>
+                <div id="plan-view" role="tabpanel" aria-labelledby={`plan-tab-${planSubView}`} tabIndex={0}>
                 {planSubView === "objectives" ? (
                   <MissionEditor
                     mission={mission}
@@ -772,6 +841,7 @@ export function Planner() {
                   />
                   </>
                 )}
+                </div>
               </>
             )}
             {panel === "compare" && (
@@ -784,7 +854,65 @@ export function Planner() {
                 onEvidence={() => showPanel("evidence")}
               />
             )}
-            {panel === "layers" && (
+          </div>
+          <div className="mission-summary">
+            <div className="summary-line">
+              <span>
+                <strong>
+                  {planningSnapshot.countLabel}
+                </strong>
+              </span>
+              <Badge tone="caution">Unverified</Badge>
+            </div>
+            <button
+              className="primary full"
+              onClick={() =>
+                showPanel(panel === "compare" ? "plan" : "compare")
+              }
+            >
+              {panel === "compare" ? "Edit mission plan" : "Review mission"}
+              <ArrowUpRight size={18} />
+            </button>
+          </div>
+        </aside>
+        {layersView && (
+          <aside
+            className="floating-window layers-window"
+            ref={focusFloatingWindow}
+            tabIndex={-1}
+            aria-label={layersView === "layers" ? "Layers and legend" : "Scientific data register"}
+            onKeyDown={(e) => {
+              if (e.key === "Escape") {
+                e.stopPropagation();
+                closeLayers();
+              }
+            }}
+          >
+            <div className="floating-window-head">
+              {layersView === "evidence" ? (
+                <button
+                  className="icon-button"
+                  aria-label="Back to layers"
+                  onClick={() => showPanel("layers")}
+                >
+                  <ArrowLeft size={18} />
+                </button>
+              ) : (
+                <span className="floating-window-mark" aria-hidden="true" />
+              )}
+              <span className="eyebrow">
+                {layersView === "layers" ? "Map layers" : "Data register"}
+              </span>
+              <button
+                className="icon-button"
+                aria-label="Close layers window"
+                onClick={closeLayers}
+              >
+                <X size={18} />
+              </button>
+            </div>
+            <div className="floating-window-body panel-scroll">
+            {layersView === "layers" && (
               <LayerManager
                 region={region}
                 onZoomToCoverage={(layer_id) => setCoverageFocus((current) => ({
@@ -809,34 +937,10 @@ export function Planner() {
                 onEvidence={() => showPanel("evidence")}
               />
             )}
-            {panel === "evidence" && <EvidenceDetails region={region} />}
-          </div>
-          <div className="mission-summary">
-            <div className="summary-line">
-              <span>
-                <strong>
-                  {planningSnapshot.countLabel}
-                </strong>
-                <span className="supporting">Return margin unavailable</span>
-                {target && (
-                  <span className="supporting" title={target.title}>
-                    Selected: {target.title}
-                  </span>
-                )}
-              </span>
-              <Badge tone="caution">Unverified</Badge>
+            {layersView === "evidence" && <EvidenceDetails region={region} />}
             </div>
-            <button
-              className="primary full"
-              onClick={() =>
-                showPanel(panel === "compare" ? "plan" : "compare")
-              }
-            >
-              {panel === "compare" ? "Edit mission plan" : "Review mission"}
-              <ArrowUpRight size={18} />
-            </button>
-          </div>
-        </aside>
+          </aside>
+        )}
         <MapWorkspace
           region={region}
           preview={preview}
@@ -849,6 +953,7 @@ export function Planner() {
           onExpand={() => {
             setCollapsed(false);
             setExpanded(true);
+            requestAnimationFrame(() => document.getElementById(`mission-tab-${panel}`)?.focus());
           }}
           collapsed={collapsed}
           contours={contours}

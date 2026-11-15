@@ -62,6 +62,7 @@ export function GaleEnvironmentalPanel() {
             <Calendar className="h-4 w-4 text-cyan-400" />
             <span className="text-slate-400 font-medium">Selected Sol:</span>
             <select
+              aria-label="Selected observation sol"
               value={selectedSol}
               onChange={(e) => setSelectedSol(Number(e.target.value))}
               className="bg-transparent font-bold text-white font-mono focus:outline-none cursor-pointer"

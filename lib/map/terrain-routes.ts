@@ -2,9 +2,9 @@ import type { Map as MapInstance, GeoJSONSource } from "maplibre-gl";
 import type { TerrainRoute, TerrainPreference } from "@/lib/routing/contracts";
 export function mountTerrainRoutes(map:MapInstance) {
   map.addSource("terrain-routes",{type:"geojson",data:{type:"FeatureCollection",features:[]}});
-  map.addLayer({id:"terrain-route-casing",type:"line",source:"terrain-routes",paint:{"line-color":"#08101e","line-width":["case",["get","selected"],8,5],"line-opacity":0.9}});
-  map.addLayer({id:"terrain-route-alternative",type:"line",source:"terrain-routes",filter:["==",["get","selected"],false],paint:{"line-color":"#ffc36b","line-width":2,"line-dasharray":[2,2]}});
-  map.addLayer({id:"terrain-route-selected",type:"line",source:"terrain-routes",filter:["==",["get","selected"],true],paint:{"line-color":"#59e3fa","line-width":4}});
+  map.addLayer({id:"terrain-route-casing",type:"line",source:"terrain-routes",paint:{"line-color":"#0F2747","line-width":["case",["get","selected"],8,5],"line-opacity":0.9}});
+  map.addLayer({id:"terrain-route-alternative",type:"line",source:"terrain-routes",filter:["==",["get","selected"],false],paint:{"line-color":"#FFE7D1","line-width":2,"line-dasharray":[2,2]}});
+  map.addLayer({id:"terrain-route-selected",type:"line",source:"terrain-routes",filter:["==",["get","selected"],true],paint:{"line-color":"#FF7A00","line-width":4}});
   return ()=>{for(const id of ["terrain-route-selected","terrain-route-alternative","terrain-route-casing"])if(map.getLayer(id))map.removeLayer(id);if(map.getSource("terrain-routes"))map.removeSource("terrain-routes");};
 }
 export function updateTerrainRoutes(map:MapInstance,routes:TerrainRoute[],preference:TerrainPreference,region:string,preview:boolean) {

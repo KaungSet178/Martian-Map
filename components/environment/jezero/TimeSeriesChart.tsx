@@ -4,12 +4,12 @@ import type { EnvironmentalSeries, SeriesPoint } from "@/lib/environment/jezero/
 import { formatValue } from "@/lib/environment/jezero/format";
 
 export const SERIES_COLORS = [
-  "#59E3FA",
-  "#D0BDFF",
-  "#FFC36B",
-  "#7CE0B8",
-  "#FF8D9A",
-  "#D6DEE8",
+  "#0F2747",
+  "#FF7A00",
+  "#5E7391",
+  "#A84F00",
+  "#2F4F78",
+  "#D9A66F",
 ] as const;
 
 type Bounds = { min: number; max: number };
