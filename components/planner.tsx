@@ -23,6 +23,8 @@ import {
   Globe2,
   CircleHelp,
   Sun,
+  X,
+  ArrowLeft,
 } from "lucide-react";
 import { regionIdSchema, type RegionId, type MarsGeographicCoordinates } from "@/lib/contracts/region";
 import { regions, regionIds } from "@/lib/regions/registry";
@@ -107,7 +109,12 @@ export function Planner() {
   const [modal, setModal] = useState<Modal>(null);
   const [selected, setSelected] = useState<string | null>(null);
   const [expanded, setExpanded] = useState(false);
-  const [collapsed, setCollapsed] = useState(false);
+  // Desktop: the planning panel is a floating window over the map, closed
+  // until opened. (On narrow screens the same panel is the bottom sheet.)
+  const [collapsed, setCollapsed] = useState(true);
+  // Layers and the scientific data register open in their own floating
+  // window over the map, separate from the planning panel.
+  const [layersView, setLayersView] = useState<null | "layers" | "evidence">(null);
   const [preview, setPreview] = useState(false);
   const [contours, setContours] = useState(true);
   const [markers, setMarkers] = useState(true);
@@ -351,9 +358,21 @@ export function Planner() {
     );
   }
   function showPanel(next: Panel) {
+    if (next === "layers" || next === "evidence") {
+      setLayersView(next);
+      return;
+    }
     setPanel(next);
     setExpanded(true);
     setCollapsed(false);
+  }
+  function closeLayers() {
+    setLayersView(null);
+    requestAnimationFrame(() =>
+      document
+        .querySelector<HTMLElement>(".map-topline .surface-button")
+        ?.focus(),
+    );
   }
   function save() {
     if (!mission.name.trim()) {
@@ -784,32 +803,6 @@ export function Planner() {
                 onEvidence={() => showPanel("evidence")}
               />
             )}
-            {panel === "layers" && (
-              <LayerManager
-                region={region}
-                onZoomToCoverage={(layer_id) => setCoverageFocus((current) => ({
-                  region_id: region.id, layer_id, request_id: (current?.request_id ?? 0) + 1,
-                }))}
-                layerStates={layerStates}
-                onLayerChange={(id: string, change: Partial<LayerState>) =>
-                  setLayerStates((current) =>
-                    updateLayerState(region, current, id, change),
-                  )
-                }
-                preview={preview}
-                setPreview={setPreview}
-                contours={contours}
-                setContours={setContours}
-                markers={markers}
-                setMarkers={setMarkers}
-                opacity={opacity}
-                setOpacity={setOpacity}
-                presentationMode={presentationMode}
-                onPresentationModeChange={setPresentationMode}
-                onEvidence={() => showPanel("evidence")}
-              />
-            )}
-            {panel === "evidence" && <EvidenceDetails region={region} />}
           </div>
           <div className="mission-summary">
             <div className="summary-line">
@@ -837,6 +830,70 @@ export function Planner() {
             </button>
           </div>
         </aside>
+        {layersView && (
+          <aside
+            className="floating-window layers-window"
+            aria-label={layersView === "layers" ? "Layers and legend" : "Scientific data register"}
+            onKeyDown={(e) => {
+              if (e.key === "Escape") {
+                e.stopPropagation();
+                closeLayers();
+              }
+            }}
+          >
+            <div className="floating-window-head">
+              {layersView === "evidence" ? (
+                <button
+                  className="icon-button"
+                  aria-label="Back to layers"
+                  onClick={() => setLayersView("layers")}
+                >
+                  <ArrowLeft size={18} />
+                </button>
+              ) : (
+                <span className="floating-window-mark" aria-hidden="true" />
+              )}
+              <span className="eyebrow">
+                {layersView === "layers" ? "Map layers" : "Data register"}
+              </span>
+              <button
+                className="icon-button"
+                aria-label="Close layers window"
+                onClick={closeLayers}
+              >
+                <X size={18} />
+              </button>
+            </div>
+            <div className="floating-window-body panel-scroll">
+            {layersView === "layers" && (
+              <LayerManager
+                region={region}
+                onZoomToCoverage={(layer_id) => setCoverageFocus((current) => ({
+                  region_id: region.id, layer_id, request_id: (current?.request_id ?? 0) + 1,
+                }))}
+                layerStates={layerStates}
+                onLayerChange={(id: string, change: Partial<LayerState>) =>
+                  setLayerStates((current) =>
+                    updateLayerState(region, current, id, change),
+                  )
+                }
+                preview={preview}
+                setPreview={setPreview}
+                contours={contours}
+                setContours={setContours}
+                markers={markers}
+                setMarkers={setMarkers}
+                opacity={opacity}
+                setOpacity={setOpacity}
+                presentationMode={presentationMode}
+                onPresentationModeChange={setPresentationMode}
+                onEvidence={() => showPanel("evidence")}
+              />
+            )}
+            {layersView === "evidence" && <EvidenceDetails region={region} />}
+            </div>
+          </aside>
+        )}
         <MapWorkspace
           region={region}
           preview={preview}

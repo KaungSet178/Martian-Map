@@ -654,11 +654,12 @@ export default function MapWorkspace({
         <div className="map-location">
           {collapsed && (
             <button
-              className="icon-button"
+              className="surface-button panel-open-button"
               onClick={onExpand}
               aria-label="Open planning panel"
             >
-              <PanelLeftOpen size={20} />
+              <PanelLeftOpen size={18} />
+              <span>Mission</span>
             </button>
           )}
           <div>

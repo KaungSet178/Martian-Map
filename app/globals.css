@@ -2765,6 +2765,105 @@ input[type="radio"] {
   border: var(--line);
 }
 
+/* ==========================================================================
+   Floating windows: planning panel and layers open as windows over the map
+   ========================================================================== */
+.floating-window {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  background: var(--ivory);
+  color: var(--navy);
+  border: var(--line);
+  box-shadow: 0 12px 40px rgba(15, 39, 71, 0.22);
+}
+.floating-window-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px 6px 14px;
+  border-bottom: var(--line);
+  background: var(--ivory);
+  flex-shrink: 0;
+}
+.floating-window-head .eyebrow {
+  flex: 1;
+  color: var(--navy);
+}
+.floating-window-head .icon-button {
+  width: 36px;
+  height: 36px;
+  min-height: 36px;
+  border-color: var(--navy-25);
+}
+.floating-window-mark {
+  width: 8px;
+  height: 8px;
+  background: var(--navy);
+  flex-shrink: 0;
+}
+.floating-window-body {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 16px 20px 20px;
+}
+.layers-window {
+  top: 84px;
+  right: 16px;
+  width: min(380px, calc(100% - 32px));
+  max-height: calc(100% - 168px);
+  z-index: 9;
+}
+.panel-open-button {
+  align-self: flex-start;
+  font-family: var(--font-cond);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+
+@media (min-width: 851px) {
+  .workspace,
+  .panel-collapsed {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .map-workspace {
+    grid-column: 1;
+    grid-row: 1;
+  }
+  .task-panel {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    bottom: 16px;
+    width: min(380px, calc(100% - 32px));
+    z-index: 8;
+    border: var(--line);
+    box-shadow: 0 12px 40px rgba(15, 39, 71, 0.22);
+  }
+  .panel-collapsed .task-panel {
+    display: none;
+  }
+  /* Keep the region card and Layers button clear of the open panel. */
+  .workspace:not(.panel-collapsed) .map-topline {
+    left: calc(min(380px, 100% - 32px) + 32px);
+  }
+}
+
+@media (max-width: 850px) {
+  .layers-window {
+    top: 72px;
+    left: 8px;
+    right: 8px;
+    width: auto;
+    max-height: calc(100% - var(--sheet-height, 174px) - 88px);
+    z-index: 30;
+  }
+}
+
 @media print {
   html,
   body {
