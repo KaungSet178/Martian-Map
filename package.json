@@ -7,7 +7,7 @@
     "prebuild": "node scripts/prepare-map-worker.mjs && node scripts/build-routing-worker.mjs",
     "dev": "next dev --hostname 127.0.0.1",
     "build": "next build",
-    "start": "next start --hostname 127.0.0.1",
+    "start": "next start --hostname 0.0.0.0",
     "lint": "eslint .",
     "typecheck": "next typegen && tsc --noEmit",
     "test": "tsx --test tests/mission.test.ts tests/regions.test.ts tests/gale-integration.test.ts tests/gale-coverage.test.ts",

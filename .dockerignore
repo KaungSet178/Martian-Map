@@ -1,0 +1,26 @@
+.git
+.worktrees
+.next
+.routing
+node_modules
+public/generated
+.env*
+!.env.example
+.tools
+.agents
+.codex
+.aws
+.playwright-cli
+__pycache__
+**/__pycache__
+*.pyc
+**/*.pyc
+*.tsbuildinfo
+coverage
+out
+output
+test-results
+playwright-report
+docs
+tests
+# Do not exclude public/, data/, team/gale/routing/ or scientific raster files.
