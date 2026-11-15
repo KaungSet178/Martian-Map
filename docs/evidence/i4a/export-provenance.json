@@ -1,0 +1,65 @@
+[
+  {
+    "delivered_file": "docs\\evidence\\i4a\\browser\\gale-1440-brief.html",
+    "raw_local_download": "output\\playwright\\i4a\\gale-1440-brief.html",
+    "raw_sha256": "79d619df46f4c582178ca2a821db5f8e2132925c3c2db3a55f510240584e07a2",
+    "delivered_sha256": "2243b8a7727b209f410932dbc5fca1f3e9e6c883ef8473292f7108ebb8a51bf4",
+    "normalization": "Trailing whitespace only; raw browser download retained locally."
+  },
+  {
+    "delivered_file": "docs\\evidence\\i4a\\browser\\gale-390-brief.html",
+    "raw_local_download": "output\\playwright\\i4a\\gale-390-brief.html",
+    "raw_sha256": "57f5578d898992ace6ee4fc6901f53ba9fa359fae4ee9de127280694a7d2fd01",
+    "delivered_sha256": "32ee22b94328510c6e1cfd31c5b1ea9ce9b7132a8e01833a62e03859256c3a1e",
+    "normalization": "Trailing whitespace only; raw browser download retained locally."
+  },
+  {
+    "delivered_file": "docs\\evidence\\i4a\\browser\\gale-768-brief.html",
+    "raw_local_download": "output\\playwright\\i4a\\gale-768-brief.html",
+    "raw_sha256": "63cc95b436b5e5eed84146154165b86eedcc51fff401d24077ea5e9eeb2c3e5c",
+    "delivered_sha256": "13ab9214719e0313574ab9eba9e6ada2ce0d0acfea2066f8168a232bced0fa17",
+    "normalization": "Trailing whitespace only; raw browser download retained locally."
+  },
+  {
+    "delivered_file": "docs\\evidence\\i4a\\browser\\jezero-1440-brief.html",
+    "raw_local_download": "output\\playwright\\i4a\\jezero-1440-brief.html",
+    "raw_sha256": "5d8c53bdcf002d5c7a27cd087f4e573a3aec90978233fe1f84140da5396979e0",
+    "delivered_sha256": "d80e2a6a92e7260b39fb00a259f2411815006b08c5333fb651adfb39a5c32aa7",
+    "normalization": "Trailing whitespace only; raw browser download retained locally."
+  },
+  {
+    "delivered_file": "docs\\evidence\\i4a\\browser\\jezero-390-brief.html",
+    "raw_local_download": "output\\playwright\\i4a\\jezero-390-brief.html",
+    "raw_sha256": "70203e0f426bb0b647bfd0c2324dcbd114b41decc79cc010221b2d83921731a7",
+    "delivered_sha256": "989cd093af67422a797266d8f20fc0a13fbe765a8f1777480cbff5a070eb09de",
+    "normalization": "Trailing whitespace only; raw browser download retained locally."
+  },
+  {
+    "delivered_file": "docs\\evidence\\i4a\\browser\\jezero-768-brief.html",
+    "raw_local_download": "output\\playwright\\i4a\\jezero-768-brief.html",
+    "raw_sha256": "2abcde26f7111abebc3fedb2606345ea86b3c84746a85bd3821d4465f82dd30b",
+    "delivered_sha256": "acfdd214ebf98409f21ef11bdc7e9b6d0934dc7f0fa08c294ccee8681f527bef",
+    "normalization": "Trailing whitespace only; raw browser download retained locally."
+  },
+  {
+    "delivered_file": "docs\\evidence\\i4a\\browser\\oxia-1440-brief.html",
+    "raw_local_download": "output\\playwright\\i4a\\oxia-1440-brief.html",
+    "raw_sha256": "2cfb1fc0663631e33d2f9bd1bed8cc1672c020d4cbe7a14b8909bb00ff8cb03b",
+    "delivered_sha256": "7fcc1e641b01e10a1e955cdd7f2899fe69d987318052e683c2a8a5285bcb2182",
+    "normalization": "Trailing whitespace only; raw browser download retained locally."
+  },
+  {
+    "delivered_file": "docs\\evidence\\i4a\\browser\\oxia-390-brief.html",
+    "raw_local_download": "output\\playwright\\i4a\\oxia-390-brief.html",
+    "raw_sha256": "6eb20c9f92131f0519ba1b51145fe618a948338c3d96b8d6931c578e22410f42",
+    "delivered_sha256": "00f9f8727fc4bcf49cd415d9c82ab5ceaac3847a39e73ddd49eac8f4e65070fa",
+    "normalization": "Trailing whitespace only; raw browser download retained locally."
+  },
+  {
+    "delivered_file": "docs\\evidence\\i4a\\browser\\oxia-768-brief.html",
+    "raw_local_download": "output\\playwright\\i4a\\oxia-768-brief.html",
+    "raw_sha256": "62495158b46424e53bea5722482d56d7015197b43bf929efe995f90bb321cf0a",
+    "delivered_sha256": "0725849bf6bff1276b90479b9d0d6949cc8698f1880fa7e57c78676857266b51",
+    "normalization": "Trailing whitespace only; raw browser download retained locally."
+  }
+]

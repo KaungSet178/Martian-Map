@@ -1,0 +1,261 @@
+{
+  "url": "https://trek.nasa.gov/mars/trekarcgis/rest/services/Aquieous_Mineral_Distribution_Options_clon0/MapServer/0/query?f=json&where=1%3D1&outFields=%2A&returnGeometry=true&geometry=334.6%2C17.11%2C336.6%2C19.15&geometryType=esriGeometryEnvelope&spatialRel=esriSpatialRelIntersects",
+  "response": {
+    "displayFieldName": "Feature",
+    "fieldAliases": {
+      "FID": "FID",
+      "Feature": "Feature",
+      "jC_fillclr": "jC_fillclr",
+      "jC_lineclr": "jC_lineclr",
+      "Point size": "Point size",
+      "lwidth": "lwidth",
+      "Class": "Class",
+      "Longitude": "Longitude",
+      "Latitude": "Latitude",
+      "Longi_east": "Longi_east"
+    },
+    "geometryType": "esriGeometryPoint",
+    "spatialReference": {
+      "wkid": 104905,
+      "latestWkid": 104905
+    },
+    "fields": [
+      {
+        "name": "FID",
+        "type": "esriFieldTypeOID",
+        "alias": "FID"
+      },
+      {
+        "name": "Feature",
+        "type": "esriFieldTypeString",
+        "alias": "Feature",
+        "length": 5
+      },
+      {
+        "name": "jC_fillclr",
+        "type": "esriFieldTypeString",
+        "alias": "jC_fillclr",
+        "length": 15
+      },
+      {
+        "name": "jC_lineclr",
+        "type": "esriFieldTypeString",
+        "alias": "jC_lineclr",
+        "length": 15
+      },
+      {
+        "name": "Point size",
+        "type": "esriFieldTypeInteger",
+        "alias": "Point size"
+      },
+      {
+        "name": "lwidth",
+        "type": "esriFieldTypeDouble",
+        "alias": "lwidth"
+      },
+      {
+        "name": "Class",
+        "type": "esriFieldTypeString",
+        "alias": "Class",
+        "length": 14
+      },
+      {
+        "name": "Longitude",
+        "type": "esriFieldTypeDouble",
+        "alias": "Longitude"
+      },
+      {
+        "name": "Latitude",
+        "type": "esriFieldTypeDouble",
+        "alias": "Latitude"
+      },
+      {
+        "name": "Longi_east",
+        "type": "esriFieldTypeDouble",
+        "alias": "Longi_east"
+      }
+    ],
+    "features": [
+      {
+        "attributes": {
+          "FID": 260,
+          "Feature": "point",
+          "jC_fillclr": "153 0 204 255",
+          "jC_lineclr": "0 0 0 255",
+          "Point size": 5,
+          "lwidth": 0.5,
+          "Class": "silica",
+          "Longitude": 336.329986572,
+          "Latitude": 17.8400001526,
+          "Longi_east": -23.6700134277
+        },
+        "geometry": {
+          "x": -23.670013427734375,
+          "y": 17.84000015258789
+        }
+      },
+      {
+        "attributes": {
+          "FID": 261,
+          "Feature": "point",
+          "jC_fillclr": "153 0 204 255",
+          "jC_lineclr": "0 0 0 255",
+          "Point size": 5,
+          "lwidth": 0.5,
+          "Class": "silica",
+          "Longitude": 336.329986572,
+          "Latitude": 17.8400001526,
+          "Longi_east": -23.6700134277
+        },
+        "geometry": {
+          "x": -23.670013427734375,
+          "y": 17.84000015258789
+        }
+      },
+      {
+        "attributes": {
+          "FID": 2450,
+          "Feature": "point",
+          "jC_fillclr": "0 153 255 255",
+          "jC_lineclr": "0 0 0 255",
+          "Point size": 3,
+          "lwidth": 0.5,
+          "Class": "phyllosilicate",
+          "Longitude": 336.380004883,
+          "Latitude": 17.7399997711,
+          "Longi_east": -23.6199951172
+        },
+        "geometry": {
+          "x": -23.6199951171875,
+          "y": 17.739999771118164
+        }
+      },
+      {
+        "attributes": {
+          "FID": 2451,
+          "Feature": "point",
+          "jC_fillclr": "0 153 255 255",
+          "jC_lineclr": "0 0 0 255",
+          "Point size": 3,
+          "lwidth": 0.5,
+          "Class": "phyllosilicate",
+          "Longitude": 336.380004883,
+          "Latitude": 17.7399997711,
+          "Longi_east": -23.6199951172
+        },
+        "geometry": {
+          "x": -23.6199951171875,
+          "y": 17.739999771118164
+        }
+      },
+      {
+        "attributes": {
+          "FID": 2454,
+          "Feature": "point",
+          "jC_fillclr": "0 153 255 255",
+          "jC_lineclr": "0 0 0 255",
+          "Point size": 3,
+          "lwidth": 0.5,
+          "Class": "phyllosilicate",
+          "Longitude": 336.109985352,
+          "Latitude": 18.2199993134,
+          "Longi_east": -23.8900146484
+        },
+        "geometry": {
+          "x": -23.8900146484375,
+          "y": 18.219999313354492
+        }
+      },
+      {
+        "attributes": {
+          "FID": 2455,
+          "Feature": "point",
+          "jC_fillclr": "0 153 255 255",
+          "jC_lineclr": "0 0 0 255",
+          "Point size": 3,
+          "lwidth": 0.5,
+          "Class": "phyllosilicate",
+          "Longitude": 336.109985352,
+          "Latitude": 18.2199993134,
+          "Longi_east": -23.8900146484
+        },
+        "geometry": {
+          "x": -23.8900146484375,
+          "y": 18.219999313354492
+        }
+      },
+      {
+        "attributes": {
+          "FID": 3601,
+          "Feature": "point",
+          "jC_fillclr": "0 153 255 255",
+          "jC_lineclr": "0 0 0 255",
+          "Point size": 3,
+          "lwidth": 0.5,
+          "Class": "phyllosilicate",
+          "Longitude": 336.380004883,
+          "Latitude": 17.7399997711,
+          "Longi_east": -23.6199951172
+        },
+        "geometry": {
+          "x": -23.6199951171875,
+          "y": 17.739999771118164
+        }
+      },
+      {
+        "attributes": {
+          "FID": 3602,
+          "Feature": "point",
+          "jC_fillclr": "0 153 255 255",
+          "jC_lineclr": "0 0 0 255",
+          "Point size": 3,
+          "lwidth": 0.5,
+          "Class": "phyllosilicate",
+          "Longitude": 336.380004883,
+          "Latitude": 17.7399997711,
+          "Longi_east": -23.6199951172
+        },
+        "geometry": {
+          "x": -23.6199951171875,
+          "y": 17.739999771118164
+        }
+      },
+      {
+        "attributes": {
+          "FID": 3603,
+          "Feature": "point",
+          "jC_fillclr": "0 153 255 255",
+          "jC_lineclr": "0 0 0 255",
+          "Point size": 3,
+          "lwidth": 0.5,
+          "Class": "phyllosilicate",
+          "Longitude": 335.829986572,
+          "Latitude": 18.2199993134,
+          "Longi_east": -24.1700134277
+        },
+        "geometry": {
+          "x": -24.170013427734375,
+          "y": 18.219999313354492
+        }
+      },
+      {
+        "attributes": {
+          "FID": 3604,
+          "Feature": "point",
+          "jC_fillclr": "0 153 255 255",
+          "jC_lineclr": "0 0 0 255",
+          "Point size": 3,
+          "lwidth": 0.5,
+          "Class": "phyllosilicate",
+          "Longitude": 335.829986572,
+          "Latitude": 18.2199993134,
+          "Longi_east": -24.1700134277
+        },
+        "geometry": {
+          "x": -24.170013427734375,
+          "y": 18.219999313354492
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,239 @@
+{
+  "milestone": "I4A F1 + F3 unified integration",
+  "date": "2026-11-15",
+  "timezone": "Asia/Rangoon",
+  "branch": "feat/i4a-f1-f3-integration",
+  "worktree": "D:/martian-map-i4a-integration",
+  "sources": {
+    "i3a": "26adc4c2e72c4febc2500de2eb11f8f30ef85ccd",
+    "f1": "f8d633884fd385b57f06f14a983227513c7dd060",
+    "f3": "e0742e5ca8194e6053d762f526bdb61505c314b6"
+  },
+  "common_ancestor": "26adc4c2e72c4febc2500de2eb11f8f30ef85ccd",
+  "foundation": "f8d633884fd385b57f06f14a983227513c7dd060",
+  "strategy": "Selective F3 imports on exact F1 foundation; no source-branch or unrelated history merge",
+  "direct_changed_file_overlap": [],
+  "f3_imported_paths": 108,
+  "tests": [
+    {
+      "command": "node --import tsx --test @(rg --files tests -g *.test.ts -g *.test.tsx)",
+      "result": "passed",
+      "tests": 463,
+      "suites": 64,
+      "failed": 0,
+      "skipped": 0,
+      "evidence": "typescript-tests.tap"
+    },
+    {
+      "command": "node --import tsx --test tests/i4a-integration.test.tsx",
+      "result": "passed",
+      "tests": 11,
+      "included_in_full_count": true,
+      "evidence": "focused-tests.tap"
+    },
+    {
+      "command": "python -m unittest discover -s tests -p test_gale*.py",
+      "result": "passed",
+      "run": 149,
+      "passed": 146,
+      "skipped": 3,
+      "evidence": "python-gale.log"
+    },
+    {
+      "command": "python -m unittest discover -s tests/environment/gale -p test*.py",
+      "result": "passed",
+      "run": 4,
+      "passed": 4,
+      "skipped": 0,
+      "evidence": "python-gale-environment.log"
+    },
+    {
+      "command": "python -m unittest discover -s tests/environment/jezero -p test*.py",
+      "result": "passed",
+      "run": 21,
+      "passed": 20,
+      "skipped": 1,
+      "evidence": "python-jezero-environment.log"
+    },
+    {
+      "command": "python -m unittest discover -s team/jezero/routing -p test_synthetic_routing.py",
+      "result": "passed",
+      "run": 9,
+      "passed": 9,
+      "skipped": 0,
+      "evidence": "python-jezero-routing.log"
+    },
+    {
+      "command": "python -m unittest discover -s team/jezero/terrain -p test_hillshade.py",
+      "result": "passed",
+      "run": 7,
+      "passed": 7,
+      "skipped": 0,
+      "evidence": "python-jezero-hillshade.log"
+    },
+    {
+      "command": "python scripts/verify-i4a-numerical.py",
+      "result": "passed",
+      "evidence": "independent-numerical.json"
+    },
+    {
+      "command": "python scripts/verify-three-region-assets.py",
+      "result": "passed",
+      "evidence": "assets.log"
+    },
+    {
+      "command": "npm.cmd run routing:check",
+      "result": "passed",
+      "evidence": "routing-health.log"
+    },
+    {
+      "command": "npm.cmd run typecheck",
+      "result": "passed",
+      "evidence": "typecheck.log"
+    },
+    {
+      "command": "npm.cmd run lint",
+      "result": "passed",
+      "evidence": "lint.log"
+    },
+    {
+      "command": "npm.cmd run build",
+      "result": "passed",
+      "evidence": "build.log"
+    },
+    {
+      "command": "Production Playwright selected eight-spec batch (exact paths in report)",
+      "result": "passed",
+      "tests": 59,
+      "evidence": "browser-acceptance.log"
+    },
+    {
+      "command": "Production Playwright i4a-integration.spec.ts --grep \"cross-region saved|compact landscape\"",
+      "result": "passed",
+      "tests": 2,
+      "evidence": "browser-isolation-compact.log"
+    }
+  ],
+  "totals": {
+    "typescript_passed": 463,
+    "python_run": 190,
+    "python_passed": 186,
+    "python_skipped": 4,
+    "browser_distinct_passed": 61
+  },
+  "regional_capabilities": {
+    "gale": {
+      "scientific_categories": [
+        "Elevation",
+        "Hillshade",
+        "Slope",
+        "Thermal"
+      ],
+      "active_geological_unit_layers": [],
+      "routing": "authentic numerical research terrain",
+      "registration_verified": false,
+      "operational_mission_feasibility": "unavailable",
+      "environment": "historical REMS/RAD"
+    },
+    "jezero": {
+      "scientific_categories": [
+        "Elevation",
+        "Hillshade",
+        "Slope",
+        "Thermal"
+      ],
+      "active_geological_unit_layers": [],
+      "routing": "authentic numerical research terrain",
+      "registration_verified": false,
+      "operational_mission_feasibility": "unavailable",
+      "environment": "historical MEDA"
+    },
+    "oxia": {
+      "scientific_categories": [
+        "Elevation",
+        "Hillshade",
+        "Slope",
+        "Thermal"
+      ],
+      "active_geological_unit_layers": [],
+      "routing": "geometric only; terrain unavailable",
+      "registration_verified": false,
+      "operational_mission_feasibility": "unavailable",
+      "environment": "unavailable"
+    }
+  },
+  "routing_outcomes": {
+    "gale": [
+      {
+        "preference": "shortest",
+        "cells": 120,
+        "horizontal_m": 4545.862752610344,
+        "surface_m": 4575.491280347095,
+        "ascent_m": 234.8994140625,
+        "descent_m": 234.8994140625,
+        "valid_connected_cells": true,
+        "snapping_checked": true,
+        "native_horizontal_objective_m": 4545.862752610344,
+        "independent_lower_terrain_cost": 5801.63181417916
+      },
+      {
+        "preference": "lower-terrain-cost",
+        "cells": 120,
+        "horizontal_m": 4545.868036743139,
+        "surface_m": 4574.930615170871,
+        "ascent_m": 234.8994140625,
+        "descent_m": 234.8994140625,
+        "valid_connected_cells": true,
+        "snapping_checked": true,
+        "native_horizontal_objective_m": 4545.868036743139,
+        "independent_lower_terrain_cost": 5780.677742212876
+      }
+    ],
+    "jezero": [
+      {
+        "preference": "shortest",
+        "cells": 337,
+        "horizontal_m": 8999.780814262544,
+        "surface_m": 9009.254967821102,
+        "ascent_m": 157.599853515625,
+        "descent_m": 157.599853515625,
+        "valid_connected_cells": true,
+        "snapping_checked": true,
+        "native_horizontal_objective_m": 8999.631797902874,
+        "independent_lower_terrain_cost": 12219.341589169837
+      },
+      {
+        "preference": "lower-terrain-cost",
+        "cells": 337,
+        "horizontal_m": 9085.623329544804,
+        "surface_m": 9091.640329972117,
+        "ascent_m": 121.6005859375,
+        "descent_m": 121.6005859375,
+        "valid_connected_cells": true,
+        "snapping_checked": true,
+        "native_horizontal_objective_m": 9085.58132614235,
+        "independent_lower_terrain_cost": 10507.973552311674
+      }
+    ],
+    "native_source_reaggregation": "Not repeated: committed genuine numeric grids preserved; full-resolution native Jezero source not required for runtime/path validation."
+  },
+  "asset_and_runtime_preservation": "preservation.json",
+  "worktree_preservation": "worktree-preservation.json",
+  "known_limitations": [
+    "Independent absolute registration remains unverified; no surveyed precision, safe EVA access or astronaut certification follows.",
+    "Unknown source/processing dimensions and positional uncertainty stay null. Three Forks landing-circle evidence is not the tube-depot center or a located mission objective.",
+    "Four optional raw-cache Python replays skipped; native full-resolution Jezero source reaggregation not repeated. Genuine committed grids and actual paths are tested.",
+    "Historical rover-local observations are neither future route-wide forecasts nor validated exposure models.",
+    "Oxia terrain routing and local rover observations remain unavailable.",
+    "Resource outputs remain unverified user-assumption scenarios. R1.1 and I4B implementation are not included.",
+    "Chromium software-WebGL acceptance is not physical-device, cross-browser, full accessibility or printer/PDF certification.",
+    "Existing compact-panel density and broader F2 redesign are deferred."
+  ],
+  "unresolved_integration_blockers": [],
+  "i4b": "Deferred; recommendations in docs/I4B_EVA_INPUT_CONTRACT.md",
+  "delivery": {
+    "branch_ref": "refs/heads/feat/i4a-f1-f3-integration",
+    "final_sha_receipt": "output/i4a-delivery.json (written after commit and live remote check)",
+    "note": "Final delivery SHA is supplied after commit; no self-referential tracked Git hash is asserted."
+  }
+}

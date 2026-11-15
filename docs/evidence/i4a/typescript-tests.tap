@@ -1,0 +1,3236 @@
+TAP version 13
+# Subtest: color controller preserves CTX, all overlays, camera and mission; mounts once below terrain
+ok 1 - color controller preserves CTX, all overlays, camera and mission; mounts once below terrain
+  ---
+  duration_ms: 3.7743
+  type: 'test'
+  ...
+# Subtest: Gale adapter strictly conforms to Section 4 EnvironmentalDataset contract
+ok 2 - Gale adapter strictly conforms to Section 4 EnvironmentalDataset contract
+  ---
+  duration_ms: 3.1855
+  type: 'test'
+  ...
+# Subtest: Gale adapter provides clean filtering by instrument and variable
+ok 3 - Gale adapter provides clean filtering by instrument and variable
+  ---
+  duration_ms: 0.9395
+  type: 'test'
+  ...
+# Subtest: Gale adapter preserves nulls for sparse variables and never fabricates synthetic zeros
+ok 4 - Gale adapter preserves nulls for sparse variables and never fabricates synthetic zeros
+  ---
+  duration_ms: 0.3502
+  type: 'test'
+  ...
+# Subtest: Cryptographic provenance manifest matches actual file checksums on disk
+ok 5 - Cryptographic provenance manifest matches actual file checksums on disk
+  ---
+  duration_ms: 2.5367
+  type: 'test'
+  ...
+# Subtest: Gale RAD ionizing radiation verifies authentic PDS PPI dataset and product provenance
+ok 6 - Gale RAD ionizing radiation verifies authentic PDS PPI dataset and product provenance
+  ---
+  duration_ms: 1.6885
+  type: 'test'
+  ...
+# Subtest: Gale RAD contains exactly 43 nominal observations synchronized with spacecraft clock
+ok 7 - Gale RAD contains exactly 43 nominal observations synchronized with spacecraft clock
+  ---
+  duration_ms: 0.758
+  type: 'test'
+  ...
+# Subtest: Gale RAD Detector B (Silicon) dosimetry matches published Hassler et al. 2014 benchmark
+ok 8 - Gale RAD Detector B (Silicon) dosimetry matches published Hassler et al. 2014 benchmark
+  ---
+  duration_ms: 0.37
+  type: 'test'
+  ...
+# Subtest: Gale RAD Detector E (Plastic Scintillator) dosimetry matches published benchmark
+ok 9 - Gale RAD Detector E (Plastic Scintillator) dosimetry matches published benchmark
+  ---
+  duration_ms: 0.2936
+  type: 'test'
+  ...
+# Subtest: Gale RAD series maintains strict physical units and does not fabricate equivalent dose (Sv)
+ok 10 - Gale RAD series maintains strict physical units and does not fabricate equivalent dose (Sv)
+  ---
+  duration_ms: 0.919
+  type: 'test'
+  ...
+# Subtest: Gale REMS weather dataset verifies authentic PDS4 provenance and Sol 100 metadata
+ok 11 - Gale REMS weather dataset verifies authentic PDS4 provenance and Sol 100 metadata
+  ---
+  duration_ms: 2.1394
+  type: 'test'
+  ...
+# Subtest: Gale REMS diurnal cycle covers 24 hourly bins with authentic temperatures
+ok 12 - Gale REMS diurnal cycle covers 24 hourly bins with authentic temperatures
+  ---
+  duration_ms: 2.5781
+  type: 'test'
+  ...
+# Subtest: Gale REMS atmospheric pressure displays authentic diurnal thermal tide
+ok 13 - Gale REMS atmospheric pressure displays authentic diurnal thermal tide
+  ---
+  duration_ms: 0.5536
+  type: 'test'
+  ...
+# Subtest: Gale REMS solar UV irradiance is 0 at night and peaks at solar noon
+ok 14 - Gale REMS solar UV irradiance is 0 at night and peaks at solar noon
+  ---
+  duration_ms: 0.5265
+  type: 'test'
+  ...
+# Subtest: Gale REMS wind preserves sparse observations and never invents synthetic zeros
+ok 15 - Gale REMS wind preserves sparse observations and never invents synthetic zeros
+  ---
+  duration_ms: 0.7302
+  type: 'test'
+  ...
+# Subtest: every Gale and Jezero observation traces to an authentic archival product ID and source URL
+ok 16 - every Gale and Jezero observation traces to an authentic archival product ID and source URL
+  ---
+  duration_ms: 7.2596
+  type: 'test'
+  ...
+# Subtest: physical quantities and units preserve authentic PDS standards
+ok 17 - physical quantities and units preserve authentic PDS standards
+  ---
+  duration_ms: 3.1213
+  type: 'test'
+  ...
+# Subtest: missing-data gaps and quality exclusions are preserved as nulls, never synthetic zeros
+ok 18 - missing-data gaps and quality exclusions are preserved as nulls, never synthetic zeros
+  ---
+  duration_ms: 1.172
+  type: 'test'
+  ...
+# Subtest: no synthetic values or placeholder measurements are introduced
+ok 19 - no synthetic values or placeholder measurements are introduced
+  ---
+  duration_ms: 0.4251
+  type: 'test'
+  ...
+# Subtest: checksums of committed environmental data files match provenance manifests
+ok 20 - checksums of committed environmental data files match provenance manifests
+  ---
+  duration_ms: 2.4411
+  type: 'test'
+  ...
+# Subtest: Jezero six-sol dataset is fully preserved with authentic sols and products
+ok 21 - Jezero six-sol dataset is fully preserved with authentic sols and products
+  ---
+  duration_ms: 1.4564
+  type: 'test'
+  ...
+# Subtest: Gale Sol 100 REMS and RAD datasets are fully preserved
+ok 22 - Gale Sol 100 REMS and RAD datasets are fully preserved
+  ---
+  duration_ms: 0.4685
+  type: 'test'
+  ...
+# Subtest: Curiosity RAD Detector B (Silicon) and Detector E (Plastic) remain distinct
+ok 23 - Curiosity RAD Detector B (Silicon) and Detector E (Plastic) remain distinct
+  ---
+  duration_ms: 0.3899
+  type: 'test'
+  ...
+# Subtest: MEDA ATS five air-temperature detectors remain separate and are not averaged into a single reading
+ok 24 - MEDA ATS five air-temperature detectors remain separate and are not averaged into a single reading
+  ---
+  duration_ms: 0.5909
+  type: 'test'
+  ...
+# Subtest: MEDA TIRS ground temperature is explicitly labeled brightness temperature, not kinetic
+ok 25 - MEDA TIRS ground temperature is explicitly labeled brightness temperature, not kinetic
+  ---
+  duration_ms: 1.0109
+  type: 'test'
+  ...
+# Subtest: RDS is solar/UV radiance, not ionizing dose; Jezero reports ionizing dose as unavailable
+ok 26 - RDS is solar/UV radiance, not ionizing dose; Jezero reports ionizing dose as unavailable
+  ---
+  duration_ms: 0.578
+  type: 'test'
+  ...
+# Subtest: Oxia Planum returns null dataset and renders deliberate unavailable state with no data leakage
+ok 27 - Oxia Planum returns null dataset and renders deliberate unavailable state with no data leakage
+  ---
+  duration_ms: 24.5394
+  type: 'test'
+  ...
+# Subtest: unified EnvironmentalConditionsPanel renders authentic regional content for all three regions
+ok 28 - unified EnvironmentalConditionsPanel renders authentic regional content for all three regions
+  ---
+  duration_ms: 207.998
+  type: 'test'
+  ...
+# Subtest: adapter exposes every aggregated point in the shared contract shape
+ok 29 - adapter exposes every aggregated point in the shared contract shape
+  ---
+  duration_ms: 47.1662
+  type: 'test'
+  ...
+# Subtest: adapter never fabricates UTC timestamps for per-sample observations
+ok 30 - adapter never fabricates UTC timestamps for per-sample observations
+  ---
+  duration_ms: 36.7988
+  type: 'test'
+  ...
+# Subtest: adapter marks the statistic as derived from native samples
+ok 31 - adapter marks the statistic as derived from native samples
+  ---
+  duration_ms: 4.5889
+  type: 'test'
+  ...
+# Subtest: sol filter returns only that sol and matches the panel selection
+ok 32 - sol filter returns only that sol and matches the panel selection
+  ---
+  duration_ms: 22.5501
+  type: 'test'
+  ...
+# Subtest: shared dataset wrapper reuses the Gale-compatible contract fields
+ok 33 - shared dataset wrapper reuses the Gale-compatible contract fields
+  ---
+  duration_ms: 3.2211
+  type: 'test'
+  ...
+# Subtest: no observation is an ionizing-dose quantity
+ok 34 - no observation is an ionizing-dose quantity
+  ---
+  duration_ms: 7.3442
+  type: 'test'
+  ...
+# Subtest: panel renders the required title, subtitle and verification strip
+ok 35 - panel renders the required title, subtitle and verification strip
+  ---
+  duration_ms: 116.5371
+  type: 'test'
+  ...
+# Subtest: panel renders every measured weather card with its unit
+ok 36 - panel renders every measured weather card with its unit
+  ---
+  duration_ms: 63.7762
+  type: 'test'
+  ...
+# Subtest: panel keeps five ATS detectors in the temperature legend
+ok 37 - panel keeps five ATS detectors in the temperature legend
+  ---
+  duration_ms: 58.7098
+  type: 'test'
+  ...
+# Subtest: panel reports solar/UV channels and refuses to invent ionizing dose
+ok 38 - panel reports solar/UV channels and refuses to invent ionizing dose
+  ---
+  duration_ms: 111.4235
+  type: 'test'
+  ...
+# Subtest: empty dataset renders unavailable states instead of zeros
+ok 39 - empty dataset renders unavailable states instead of zeros
+  ---
+  duration_ms: 18.0124
+  type: 'test'
+  ...
+# Subtest: initialSol selects the requested sol and its label-info
+ok 40 - initialSol selects the requested sol and its label-info
+  ---
+  duration_ms: 77.9926
+  type: 'test'
+  ...
+# Subtest: panel states the aggregation method and the historical limitation
+ok 41 - panel states the aggregation method and the historical limitation
+  ---
+  duration_ms: 95.2325
+  type: 'test'
+  ...
+# Subtest: dataset is structurally consistent and Jezero-only
+ok 42 - dataset is structurally consistent and Jezero-only
+  ---
+  duration_ms: 8.0232
+  type: 'test'
+  ...
+# Subtest: product identity is preserved as the original PDS product id
+ok 43 - product identity is preserved as the original PDS product id
+  ---
+  duration_ms: 1.2845
+  type: 'test'
+  ...
+# Subtest: every series maps to a documented source column and physical unit
+ok 44 - every series maps to a documented source column and physical unit
+  ---
+  duration_ms: 0.7001
+  type: 'test'
+  ...
+# Subtest: air temperature keeps five ATS detectors separate
+ok 45 - air temperature keeps five ATS detectors separate
+  ---
+  duration_ms: 1.1001
+  type: 'test'
+  ...
+# Subtest: TIRS ground temperature is a brightness temperature, not kinetic
+ok 46 - TIRS ground temperature is a brightness temperature, not kinetic
+  ---
+  duration_ms: 0.438
+  type: 'test'
+  ...
+# Subtest: wind series are valid, non-sentinel, and direction is bounded
+ok 47 - wind series are valid, non-sentinel, and direction is bounded
+  ---
+  duration_ms: 1.5757
+  type: 'test'
+  ...
+# Subtest: pressure and humidity are physically plausible and never zero-filled
+ok 48 - pressure and humidity are physically plausible and never zero-filled
+  ---
+  duration_ms: 0.7886
+  type: 'test'
+  ...
+# Subtest: bins are ten-minute LMST means with no interpolation
+ok 49 - bins are ten-minute LMST means with no interpolation
+  ---
+  duration_ms: 5.4458
+  type: 'test'
+  ...
+# Subtest: sol metadata comes from the PDS label and covers every parsed sol
+ok 50 - sol metadata comes from the PDS label and covers every parsed sol
+  ---
+  duration_ms: 1.0948
+  type: 'test'
+  ...
+# Subtest: solar/UV quantities are radiance channels, never ionizing dose
+ok 51 - solar/UV quantities are radiance channels, never ionizing dose
+  ---
+  duration_ms: 1.3237
+  type: 'test'
+  ...
+# Subtest: jezero round_trip: canonical itinerary, Save/Open, JSON, Review and HTML export agree
+ok 52 - jezero round_trip: canonical itinerary, Save/Open, JSON, Review and HTML export agree
+  ---
+  duration_ms: 115.0792
+  type: 'test'
+  ...
+# Subtest: jezero one_way: canonical itinerary, Save/Open, JSON, Review and HTML export agree
+ok 53 - jezero one_way: canonical itinerary, Save/Open, JSON, Review and HTML export agree
+  ---
+  duration_ms: 25.8815
+  type: 'test'
+  ...
+# Subtest: gale round_trip: canonical itinerary, Save/Open, JSON, Review and HTML export agree
+ok 54 - gale round_trip: canonical itinerary, Save/Open, JSON, Review and HTML export agree
+  ---
+  duration_ms: 27.7369
+  type: 'test'
+  ...
+# Subtest: gale one_way: canonical itinerary, Save/Open, JSON, Review and HTML export agree
+ok 55 - gale one_way: canonical itinerary, Save/Open, JSON, Review and HTML export agree
+  ---
+  duration_ms: 28.3451
+  type: 'test'
+  ...
+# Subtest: oxia round_trip: canonical itinerary, Save/Open, JSON, Review and HTML export agree
+ok 56 - oxia round_trip: canonical itinerary, Save/Open, JSON, Review and HTML export agree
+  ---
+  duration_ms: 23.7733
+  type: 'test'
+  ...
+# Subtest: oxia one_way: canonical itinerary, Save/Open, JSON, Review and HTML export agree
+ok 57 - oxia one_way: canonical itinerary, Save/Open, JSON, Review and HTML export agree
+  ---
+  duration_ms: 25.5271
+  type: 'test'
+  ...
+# Subtest: endpoint identities survive moves, repeated promotions, modes, removals and persisted reordering
+ok 58 - endpoint identities survive moves, repeated promotions, modes, removals and persisted reordering
+  ---
+  duration_ms: 2.9238
+  type: 'test'
+  ...
+# Subtest: Oxia catalog-first mission remains interpreted, repairable, and preserves independent evidence through every path
+ok 59 - Oxia catalog-first mission remains interpreted, repairable, and preserves independent evidence through every path
+  ---
+  duration_ms: 39.9238
+  type: 'test'
+  ...
+# Subtest: unlocated and geological-area objectives remain objectives without synthesizing waypoint locations
+ok 60 - unlocated and geological-area objectives remain objectives without synthesizing waypoint locations
+  ---
+  duration_ms: 3.3961
+  type: 'test'
+  ...
+# Subtest: retired targets and newly unlocated objectives retain historical coordinates, roles, labels and evidence but cannot route
+ok 61 - retired targets and newly unlocated objectives retain historical coordinates, roles, labels and evidence but cannot route
+  ---
+  duration_ms: 7.6687
+  type: 'test'
+  ...
+# Subtest: region imports isolate missions and preserve retired IDs instead of silently deleting them
+ok 62 - region imports isolate missions and preserve retired IDs instead of silently deleting them
+  ---
+  duration_ms: 1.3269
+  type: 'test'
+  ...
+# Subtest: gale: authentic three-point return leg, receipt validity, scenarios, and stale endpoint invalidation
+ok 63 - gale: authentic three-point return leg, receipt validity, scenarios, and stale endpoint invalidation
+  ---
+  duration_ms: 4133.6031
+  type: 'test'
+  ...
+# Subtest: jezero: authentic three-point return leg, receipt validity, scenarios, and stale endpoint invalidation
+ok 64 - jezero: authentic three-point return leg, receipt validity, scenarios, and stale endpoint invalidation
+  ---
+  duration_ms: 741.9257
+  type: 'test'
+  ...
+# Subtest: legacy optional regional plan ID and temporarily blank title preserve manual data
+ok 65 - legacy optional regional plan ID and temporarily blank title preserve manual data
+  ---
+  duration_ms: 2.0422
+  type: 'test'
+  ...
+# Subtest: objective order persists and deselecting a scientific endpoint cannot relabel its coordinates as manual
+ok 66 - objective order persists and deselecting a scientific endpoint cannot relabel its coordinates as manual
+  ---
+  duration_ms: 1.8243
+  type: 'test'
+  ...
+# Subtest: retired unit layers cannot mount, reactivate or survive region cleanup; authentic categories unchanged
+ok 67 - retired unit layers cannot mount, reactivate or survive region cleanup; authentic categories unchanged
+  ---
+  duration_ms: 5.5787
+  type: 'test'
+  ...
+# Subtest: source-backed Oxia coordinates retain interpretation and precision, not independent accuracy
+ok 68 - source-backed Oxia coordinates retain interpretation and precision, not independent accuracy
+  ---
+  duration_ms: 96.5534
+  type: 'test'
+  ...
+# Subtest: unlocated IDs remain identifiable and never gain coordinates from saved objective selection
+ok 69 - unlocated IDs remain identifiable and never gain coordinates from saved objective selection
+  ---
+  duration_ms: 18.0519
+  type: 'test'
+  ...
+# Subtest: regional evidence agrees with historical observation adapters
+ok 70 - regional evidence agrees with historical observation adapters
+  ---
+  duration_ms: 0.6574
+  type: 'test'
+  ...
+# Subtest: actual objective compatibility receipt separates scientific eligibility and numerical feasibility
+ok 71 - actual objective compatibility receipt separates scientific eligibility and numerical feasibility
+  ---
+  duration_ms: 5023.9249
+  type: 'test'
+  ...
+# Subtest: coverage uses the audited valid grid geometry and unchanged coverage assets
+ok 72 - coverage uses the audited valid grid geometry and unchanged coverage assets
+  ---
+  duration_ms: 52.6554
+  type: 'test'
+  ...
+# Subtest: all six terrain themes distinguish source/crop/validity/posting/support and correct attribution
+ok 73 - all six terrain themes distinguish source/crop/validity/posting/support and correct attribution
+  ---
+  duration_ms: 1.7338
+  type: 'test'
+  ...
+# Subtest: coverage lines and casings mount once, follow independent state, and clean up shared sources
+ok 74 - coverage lines and casings mount once, follow independent state, and clean up shared sources
+  ---
+  duration_ms: 6.2995
+  type: 'test'
+  ...
+# Subtest: explicit coverage fits use authoritative bounds and existing responsive camera policy
+ok 75 - explicit coverage fits use authoritative bounds and existing responsive camera policy
+  ---
+  duration_ms: 1.4454
+  type: 'test'
+  ...
+# Subtest: fresh Gale entry fits a real viewport-aspect close-up inside the detailed footprint
+ok 76 - fresh Gale entry fits a real viewport-aspect close-up inside the detailed footprint
+  ---
+  duration_ms: 50.9411
+  type: 'test'
+  ...
+# Subtest: focus padding reserves real furniture but does not letterbox the close-up
+ok 77 - focus padding reserves real furniture but does not letterbox the close-up
+  ---
+  duration_ms: 0.8503
+  type: 'test'
+  ...
+# Subtest: wider context stays hidden by default while its assets and provenance remain intact
+ok 78 - wider context stays hidden by default while its assets and provenance remain intact
+  ---
+  duration_ms: 8.7723
+  type: 'test'
+  ...
+# Subtest: detailed CTX source, mission view and complete-mission action are independent of context
+ok 79 - detailed CTX source, mission view and complete-mission action are independent of context
+  ---
+  duration_ms: 6.9697
+  type: 'test'
+  ...
+# Subtest: Jezero and Oxia keep their untouched initial cameras and four-category catalogs
+ok 80 - Jezero and Oxia keep their untouched initial cameras and four-category catalogs
+  ---
+  duration_ms: 0.8705
+  type: 'test'
+  ...
+# Subtest: Gale standardized four scientific categories exist and are available
+ok 81 - Gale standardized four scientific categories exist and are available
+  ---
+  duration_ms: 2.572
+  type: 'test'
+  ...
+# Subtest: recommended initial opacities match shared four-layer design specification
+ok 82 - recommended initial opacities match shared four-layer design specification
+  ---
+  duration_ms: 0.5142
+  type: 'test'
+  ...
+# Subtest: slope layer uses standardized ordered color classes and preserves degrees units
+ok 83 - slope layer uses standardized ordered color classes and preserves degrees units
+  ---
+  duration_ms: 1.6013
+  type: 'test'
+  ...
+# Subtest: elevation layer uses low-to-high ordered color ramp with MOLA areoid units
+ok 84 - elevation layer uses low-to-high ordered color ramp with MOLA areoid units
+  ---
+  duration_ms: 0.5617
+  type: 'test'
+  ...
+# Subtest: hillshade layer uses neutral grayscale with artificial illumination metadata
+ok 85 - hillshade layer uses neutral grayscale with artificial illumination metadata
+  ---
+  duration_ms: 0.3776
+  type: 'test'
+  ...
+# Subtest: thermal layer derives from authentic THEMIS daytime IR mosaic v2
+ok 86 - thermal layer derives from authentic THEMIS daytime IR mosaic v2
+  ---
+  duration_ms: 1.2302
+  type: 'test'
+  ...
+# Subtest: Mission View visual clipping restricts presentation footprint while preserving full data coverage
+ok 87 - Mission View visual clipping restricts presentation footprint while preserving full data coverage
+  ---
+  duration_ms: 1.2607
+  type: 'test'
+  ...
+# Subtest: retired geological units stay absent while the rover traverse remains outside the four categories
+ok 88 - retired geological units stay absent while the rover traverse remains outside the four categories
+  ---
+  duration_ms: 0.452
+  type: 'test'
+  ...
+# Subtest: Gale terrain alternatives preserve optical imagery and traverse and reject retired geology in both directions
+ok 89 - Gale terrain alternatives preserve optical imagery and traverse and reject retired geology in both directions
+  ---
+  duration_ms: 3.4159
+  type: 'test'
+  ...
+# Subtest: Jezero and Oxia retain the original availability and visibility policy
+ok 90 - Jezero and Oxia retain the original availability and visibility policy
+  ---
+  duration_ms: 1.2053
+  type: 'test'
+  ...
+# Subtest: regional terrain selection preserves camera policy and neutral numeric legends
+ok 91 - regional terrain selection preserves camera policy and neutral numeric legends
+  ---
+  duration_ms: 1.0851
+  type: 'test'
+  ...
+# Subtest: committed Gale routes validate and keep evidence states separate
+ok 92 - committed Gale routes validate and keep evidence states separate
+  ---
+  duration_ms: 63.639
+  type: 'test'
+  ...
+# Subtest: shared adapter preserves [longitude, latitude] order and status
+ok 93 - shared adapter preserves [longitude, latitude] order and status
+  ---
+  duration_ms: 10.0804
+  type: 'test'
+  ...
+# Subtest: app coordinate conversion is explicit and reversible
+ok 94 - app coordinate conversion is explicit and reversible
+  ---
+  duration_ms: 27.486
+  type: 'test'
+  ...
+# Subtest: mission summary makes the terrain-graph distance authoritative
+ok 95 - mission summary makes the terrain-graph distance authoritative
+  ---
+  duration_ms: 6.542
+  type: 'test'
+  ...
+# Subtest: mission summary does not substitute straight-line distance when unavailable
+ok 96 - mission summary does not substitute straight-line distance when unavailable
+  ---
+  duration_ms: 3.8135
+  type: 'test'
+  ...
+# Subtest: geometry diagnostics confirm segment continuity and coverage on real data
+ok 97 - geometry diagnostics confirm segment continuity and coverage on real data
+  ---
+  duration_ms: 22.5106
+  type: 'test'
+  ...
+# Subtest: real routes are graph detours, not straight-line connections
+ok 98 - real routes are graph detours, not straight-line connections
+  ---
+  duration_ms: 5.9331
+  type: 'test'
+  ...
+# Subtest: alternatives are genuine and compared honestly
+ok 99 - alternatives are genuine and compared honestly
+  ---
+  duration_ms: 4.7129
+  type: 'test'
+  ...
+# Subtest: validation rejects invalid coordinates, statuses, and malformed JSON
+ok 100 - validation rejects invalid coordinates, statuses, and malformed JSON
+  ---
+  duration_ms: 28.0524
+  type: 'test'
+  ...
+# Subtest: GeoJSON conversion keeps longitude-latitude order
+ok 101 - GeoJSON conversion keeps longitude-latitude order
+  ---
+  duration_ms: 5.9773
+  type: 'test'
+  ...
+# Subtest: mission integration notes require terrain distance and shared resources
+ok 102 - mission integration notes require terrain distance and shared resources
+  ---
+  duration_ms: 0.5894
+  type: 'test'
+  ...
+# Subtest: parsing is deterministic
+ok 103 - parsing is deterministic
+  ---
+  duration_ms: 8.2436
+  type: 'test'
+  ...
+# Subtest: broader context retains authenticated existing source, original mission bounds and checked tile hashes
+ok 104 - broader context retains authenticated existing source, original mission bounds and checked tile hashes
+  ---
+  duration_ms: 1934.7021
+  type: 'test'
+  ...
+# Subtest: initial exploration is separate from complete mission fit and other regions remain unchanged
+ok 105 - initial exploration is separate from complete mission fit and other regions remain unchanged
+  ---
+  duration_ms: 2.9336
+  type: 'test'
+  ...
+# Subtest: scientific alpha clips conservatively to true geographic cell edges at multiple zooms
+ok 106 - scientific alpha clips conservatively to true geographic cell edges at multiple zooms
+  ---
+  duration_ms: 1.5005
+  type: 'test'
+  ...
+# Subtest: only scientific raster tiles switch at coverage changes; basemaps and vectors keep their stack, opacity and sources
+ok 107 - only scientific raster tiles switch at coverage changes; basemaps and vectors keep their stack, opacity and sources
+  ---
+  duration_ms: 4.8521
+  type: 'test'
+  ...
+# Subtest: mask protocol registration is shared and released after the last map
+ok 108 - mask protocol registration is shared and released after the last map
+  ---
+  duration_ms: 0.3969
+  type: 'test'
+  ...
+# Subtest: MARS_RADIUS_M
+    # Subtest: equals 3 396 190
+    ok 1 - equals 3 396 190
+      ---
+      duration_ms: 1.3376
+      type: 'test'
+      ...
+    1..1
+ok 109 - MARS_RADIUS_M
+  ---
+  duration_ms: 3.2051
+  type: 'suite'
+  ...
+# Subtest: marsDistance
+    # Subtest: identical points → 0
+    ok 1 - identical points → 0
+      ---
+      duration_ms: 1.2159
+      type: 'test'
+      ...
+    # Subtest: north pole to north pole → 0
+    ok 2 - north pole to north pole → 0
+      ---
+      duration_ms: 0.2858
+      type: 'test'
+      ...
+    # Subtest: 1° of latitude at the equator ≈ π/180 × R = 59,274.6975 m
+    ok 3 - 1° of latitude at the equator ≈ π/180 × R = 59,274.6975 m
+      ---
+      duration_ms: 0.5296
+      type: 'test'
+      ...
+    # Subtest: 1° of longitude at the equator ≈ π/180 × R = 59,274.6975 m
+    ok 4 - 1° of longitude at the equator ≈ π/180 × R = 59,274.6975 m
+      ---
+      duration_ms: 0.3142
+      type: 'test'
+      ...
+    # Subtest: 90° angular separation (pole to equator) ≈ 5,334,722.7771 m
+    ok 5 - 90° angular separation (pole to equator) ≈ 5,334,722.7771 m
+      ---
+      duration_ms: 0.2642
+      type: 'test'
+      ...
+    # Subtest: 180° angular separation (pole to pole)
+    ok 6 - 180° angular separation (pole to pole)
+      ---
+      duration_ms: 0.3971
+      type: 'test'
+      ...
+    # Subtest: distance(a, b) === distance(b, a)
+    ok 7 - distance(a, b) === distance(b, a)
+      ---
+      duration_ms: 0.5191
+      type: 'test'
+      ...
+    # Subtest: antimeridian crossing: lon 359° to lon 1° ≈ 2° arc at equator = 118,549.3950 m
+    ok 8 - antimeridian crossing: lon 359° to lon 1° ≈ 2° arc at equator = 118,549.3950 m
+      ---
+      duration_ms: 0.3518
+      type: 'test'
+      ...
+    # Subtest: antimeridian crossing: lon 0.5° to lon 359.5° ≈ 1° arc at equator
+    ok 9 - antimeridian crossing: lon 0.5° to lon 359.5° ≈ 1° arc at equator
+      ---
+      duration_ms: 0.5666
+      type: 'test'
+      ...
+    # Subtest: 1° latitude near pole, different longitudes → same result
+    ok 10 - 1° latitude near pole, different longitudes → same result
+      ---
+      duration_ms: 0.2664
+      type: 'test'
+      ...
+    # Subtest: Gale Crater center to Jezero Crater center ≈ 3,789,056.38 m
+    ok 11 - Gale Crater center to Jezero Crater center ≈ 3,789,056.38 m
+      ---
+      duration_ms: 0.2887
+      type: 'test'
+      ...
+    # Subtest: throws on NaN latitude
+    ok 12 - throws on NaN latitude
+      ---
+      duration_ms: 0.6935
+      type: 'test'
+      ...
+    # Subtest: throws on Infinity longitude
+    ok 13 - throws on Infinity longitude
+      ---
+      duration_ms: 0.2392
+      type: 'test'
+      ...
+    # Subtest: throws on latitude > 90
+    ok 14 - throws on latitude > 90
+      ---
+      duration_ms: 0.2437
+      type: 'test'
+      ...
+    # Subtest: throws on latitude < -90
+    ok 15 - throws on latitude < -90
+      ---
+      duration_ms: 0.2904
+      type: 'test'
+      ...
+    # Subtest: throws on longitude < 0
+    ok 16 - throws on longitude < 0
+      ---
+      duration_ms: 0.2109
+      type: 'test'
+      ...
+    # Subtest: throws on longitude >= 360
+    ok 17 - throws on longitude >= 360
+      ---
+      duration_ms: 0.1916
+      type: 'test'
+      ...
+    # Subtest: throws on -Infinity
+    ok 18 - throws on -Infinity
+      ---
+      duration_ms: 0.169
+      type: 'test'
+      ...
+    1..18
+ok 110 - marsDistance
+  ---
+  duration_ms: 8.6119
+  type: 'suite'
+  ...
+# Subtest: marsInitialBearing
+    # Subtest: due north → 0°
+    ok 1 - due north → 0°
+      ---
+      duration_ms: 0.5276
+      type: 'test'
+      ...
+    # Subtest: due south → 180°
+    ok 2 - due south → 180°
+      ---
+      duration_ms: 0.1988
+      type: 'test'
+      ...
+    # Subtest: due east at equator → 90°
+    ok 3 - due east at equator → 90°
+      ---
+      duration_ms: 0.1744
+      type: 'test'
+      ...
+    # Subtest: due west at equator → 270°
+    ok 4 - due west at equator → 270°
+      ---
+      duration_ms: 0.1908
+      type: 'test'
+      ...
+    # Subtest: bearing from North Pole → NaN (polar singularity)
+    ok 5 - bearing from North Pole → NaN (polar singularity)
+      ---
+      duration_ms: 0.2757
+      type: 'test'
+      ...
+    # Subtest: bearing from South Pole → NaN (polar singularity)
+    ok 6 - bearing from South Pole → NaN (polar singularity)
+      ---
+      duration_ms: 0.1898
+      type: 'test'
+      ...
+    # Subtest: bearing to North Pole → 0° (due north)
+    ok 7 - bearing to North Pole → 0° (due north)
+      ---
+      duration_ms: 0.2001
+      type: 'test'
+      ...
+    # Subtest: bearing to South Pole → 180° (due south)
+    ok 8 - bearing to South Pole → 180° (due south)
+      ---
+      duration_ms: 0.2478
+      type: 'test'
+      ...
+    # Subtest: coincident points → NaN
+    ok 9 - coincident points → NaN
+      ---
+      duration_ms: 0.256
+      type: 'test'
+      ...
+    # Subtest: antipodal points → NaN
+    ok 10 - antipodal points → NaN
+      ---
+      duration_ms: 4.3066
+      type: 'test'
+      ...
+    # Subtest: result is in [0, 360)
+    ok 11 - result is in [0, 360)
+      ---
+      duration_ms: 1.0795
+      type: 'test'
+      ...
+    # Subtest: throws on invalid input
+    ok 12 - throws on invalid input
+      ---
+      duration_ms: 0.3192
+      type: 'test'
+      ...
+    1..12
+ok 111 - marsInitialBearing
+  ---
+  duration_ms: 8.8403
+  type: 'suite'
+  ...
+# Subtest: marsInterpolate
+    # Subtest: t=0 → start point
+    ok 1 - t=0 → start point
+      ---
+      duration_ms: 0.7918
+      type: 'test'
+      ...
+    # Subtest: t=1 → end point
+    ok 2 - t=1 → end point
+      ---
+      duration_ms: 0.2204
+      type: 'test'
+      ...
+    # Subtest: t=0.5 → midpoint is equidistant from both endpoints
+    ok 3 - t=0.5 → midpoint is equidistant from both endpoints
+      ---
+      duration_ms: 0.2063
+      type: 'test'
+      ...
+    # Subtest: midpoint of meridional arc preserves longitude
+    ok 4 - midpoint of meridional arc preserves longitude
+      ---
+      duration_ms: 0.1989
+      type: 'test'
+      ...
+    # Subtest: coincident points → same point for any t
+    ok 5 - coincident points → same point for any t
+      ---
+      duration_ms: 0.1987
+      type: 'test'
+      ...
+    # Subtest: antipodal points throw RangeError (ambiguous geodesic)
+    ok 6 - antipodal points throw RangeError (ambiguous geodesic)
+      ---
+      duration_ms: 0.5777
+      type: 'test'
+      ...
+    # Subtest: nearly antipodal points (179.9° separation) interpolate successfully
+    ok 7 - nearly antipodal points (179.9° separation) interpolate successfully
+      ---
+      duration_ms: 0.2143
+      type: 'test'
+      ...
+    # Subtest: result longitude is in [0, 360)
+    ok 8 - result longitude is in [0, 360)
+      ---
+      duration_ms: 0.2022
+      type: 'test'
+      ...
+    # Subtest: throws on non-finite t
+    ok 9 - throws on non-finite t
+      ---
+      duration_ms: 0.2764
+      type: 'test'
+      ...
+    # Subtest: throws on invalid coordinates
+    ok 10 - throws on invalid coordinates
+      ---
+      duration_ms: 0.2038
+      type: 'test'
+      ...
+    1..10
+ok 112 - marsInterpolate
+  ---
+  duration_ms: 3.6359
+  type: 'suite'
+  ...
+# Subtest: marsPathDistance
+    # Subtest: empty array → 0
+    ok 1 - empty array → 0
+      ---
+      duration_ms: 0.5081
+      type: 'test'
+      ...
+    # Subtest: single waypoint → 0
+    ok 2 - single waypoint → 0
+      ---
+      duration_ms: 0.1878
+      type: 'test'
+      ...
+    # Subtest: two waypoints → same as marsDistance
+    ok 3 - two waypoints → same as marsDistance
+      ---
+      duration_ms: 0.1874
+      type: 'test'
+      ...
+    # Subtest: three collinear equatorial waypoints = sum of segments
+    ok 4 - three collinear equatorial waypoints = sum of segments
+      ---
+      duration_ms: 0.1823
+      type: 'test'
+      ...
+    # Subtest: out-and-back doubles the distance
+    ok 5 - out-and-back doubles the distance
+      ---
+      duration_ms: 0.179
+      type: 'test'
+      ...
+    # Subtest: throws if any waypoint is invalid
+    ok 6 - throws if any waypoint is invalid
+      ---
+      duration_ms: 0.3672
+      type: 'test'
+      ...
+    1..6
+ok 113 - marsPathDistance
+  ---
+  duration_ms: 1.9525
+  type: 'suite'
+  ...
+# Subtest: marsResamplePath
+    # Subtest: preserves first and last waypoint
+    ok 1 - preserves first and last waypoint
+      ---
+      duration_ms: 0.7914
+      type: 'test'
+      ...
+    # Subtest: short segment (< step) emits exactly 2 points
+    ok 2 - short segment (< step) emits exactly 2 points
+      ---
+      duration_ms: 0.2386
+      type: 'test'
+      ...
+    # Subtest: resampled path cumulative distance ≈ original
+    ok 3 - resampled path cumulative distance ≈ original
+      ---
+      duration_ms: 0.3363
+      type: 'test'
+      ...
+    # Subtest: more points when step is smaller
+    ok 4 - more points when step is smaller
+      ---
+      duration_ms: 0.2567
+      type: 'test'
+      ...
+    # Subtest: throws on fewer than 2 waypoints
+    ok 5 - throws on fewer than 2 waypoints
+      ---
+      duration_ms: 0.422
+      type: 'test'
+      ...
+    # Subtest: throws on non-positive stepMetres
+    ok 6 - throws on non-positive stepMetres
+      ---
+      duration_ms: 0.2983
+      type: 'test'
+      ...
+    # Subtest: throws on non-finite stepMetres
+    ok 7 - throws on non-finite stepMetres
+      ---
+      duration_ms: 0.2802
+      type: 'test'
+      ...
+    # Subtest: multi-segment path with mixed lengths
+    ok 8 - multi-segment path with mixed lengths
+      ---
+      duration_ms: 0.2641
+      type: 'test'
+      ...
+    # Subtest: resamples across multiple unequal-length segments with endpoint and distance fidelity
+    ok 9 - resamples across multiple unequal-length segments with endpoint and distance fidelity
+      ---
+      duration_ms: 0.2648
+      type: 'test'
+      ...
+    1..9
+ok 114 - marsResamplePath
+  ---
+  duration_ms: 3.6205
+  type: 'suite'
+  ...
+# Subtest: I4A gale-glen-torridon: source, selection, snapshot, storage, JSON, Review and HTML agree
+ok 115 - I4A gale-glen-torridon: source, selection, snapshot, storage, JSON, Review and HTML agree
+  ---
+  duration_ms: 84.072
+  type: 'test'
+  ...
+# Subtest: I4A gale-gediz-vallis: source, selection, snapshot, storage, JSON, Review and HTML agree
+ok 116 - I4A gale-gediz-vallis: source, selection, snapshot, storage, JSON, Review and HTML agree
+  ---
+  duration_ms: 18.1797
+  type: 'test'
+  ...
+# Subtest: I4A jezero-objective-3: source, selection, snapshot, storage, JSON, Review and HTML agree
+ok 117 - I4A jezero-objective-3: source, selection, snapshot, storage, JSON, Review and HTML agree
+  ---
+  duration_ms: 11.1015
+  type: 'test'
+  ...
+# Subtest: I4A jezero-objective-5: source, selection, snapshot, storage, JSON, Review and HTML agree
+ok 118 - I4A jezero-objective-5: source, selection, snapshot, storage, JSON, Review and HTML agree
+  ---
+  duration_ms: 9.1136
+  type: 'test'
+  ...
+# Subtest: I4A oxia-objective-1: source, selection, snapshot, storage, JSON, Review and HTML agree
+ok 119 - I4A oxia-objective-1: source, selection, snapshot, storage, JSON, Review and HTML agree
+  ---
+  duration_ms: 24.1039
+  type: 'test'
+  ...
+# Subtest: I4A oxia-objective-2: source, selection, snapshot, storage, JSON, Review and HTML agree
+ok 120 - I4A oxia-objective-2: source, selection, snapshot, storage, JSON, Review and HTML agree
+  ---
+  duration_ms: 17.6186
+  type: 'test'
+  ...
+# Subtest: I4A missing evidence dimensions stay unknown and Scenario/user-defined remain distinct
+ok 121 - I4A missing evidence dimensions stay unknown and Scenario/user-defined remain distinct
+  ---
+  duration_ms: 1.3544
+  type: 'test'
+  ...
+# Subtest: I4A legacy same-region references preserve unrelated points, foreign references in all saved fields reject
+ok 122 - I4A legacy same-region references preserve unrelated points, foreign references in all saved fields reject
+  ---
+  duration_ms: 10.2964
+  type: 'test'
+  ...
+# Subtest: I4A gale: recompute real ordered round trips and compare F3 independent reference
+ok 123 - I4A gale: recompute real ordered round trips and compare F3 independent reference
+  ---
+  duration_ms: 3896.8543
+  type: 'test'
+  ...
+# Subtest: I4A jezero: recompute real ordered round trips and compare F3 independent reference
+ok 124 - I4A jezero: recompute real ordered round trips and compare F3 independent reference
+  ---
+  duration_ms: 434.5241
+  type: 'test'
+  ...
+# Subtest: I4A Oxia interpreted planning and one-way/round-trip geography never borrow terrain
+ok 125 - I4A Oxia interpreted planning and one-way/round-trip geography never borrow terrain
+  ---
+  duration_ms: 5.2353
+  type: 'test'
+  ...
+# Subtest: Jezero has exactly four source-backed categories with safe interpretations
+ok 126 - Jezero has exactly four source-backed categories with safe interpretations
+  ---
+  duration_ms: 4.5307
+  type: 'test'
+  ...
+# Subtest: real DEM lineage, extrema, strict nodata, tile positioning and native affine
+ok 127 - real DEM lineage, extrema, strict nodata, tile positioning and native affine
+  ---
+  duration_ms: 4.9598
+  type: 'test'
+  ...
+# Subtest: all real retained scientific PNGs preserve baseline bytes; generated assets match hashes
+ok 128 - all real retained scientific PNGs preserve baseline bytes; generated assets match hashes
+  ---
+  duration_ms: 4400.8732
+  type: 'test'
+  ...
+# Subtest: existing renderer mounts real Jezero hillshade, switches layers, applies opacity and cleans up
+ok 129 - existing renderer mounts real Jezero hillshade, switches layers, applies opacity and cleans up
+  ---
+  duration_ms: 3.716
+  type: 'test'
+  ...
+# Subtest: Planetary Geodesic & Coordinate Transforms
+    # Subtest: Mars sphere radius is used; Earth radius is strictly rejected
+    ok 1 - Mars sphere radius is used; Earth radius is strictly rejected
+      ---
+      duration_ms: 1.5606
+      type: 'test'
+      ...
+    # Subtest: Equirectangular forward and inverse projections roundtrip exactly
+    ok 2 - Equirectangular forward and inverse projections roundtrip exactly
+      ---
+      duration_ms: 0.7087
+      type: 'test'
+      ...
+    1..2
+ok 130 - Planetary Geodesic & Coordinate Transforms
+  ---
+  duration_ms: 4.5094
+  type: 'suite'
+  ...
+# Subtest: Synthetic Algorithm Correctness Tests
+    # Subtest: A* straight-line horizontal path on flat terrain
+    ok 1 - A* straight-line horizontal path on flat terrain
+      ---
+      duration_ms: 3.5272
+      type: 'test'
+      ...
+    # Subtest: Diagonal movement correctly scales physical distance
+    ok 2 - Diagonal movement correctly scales physical distance
+      ---
+      duration_ms: 0.5347
+      type: 'test'
+      ...
+    # Subtest: Nodata barrier is circumnavigated without stepping on nodata
+    ok 3 - Nodata barrier is circumnavigated without stepping on nodata
+      ---
+      duration_ms: 0.641
+      type: 'test'
+      ...
+    # Subtest: Steep slopes exceeding max threshold are impassable
+    ok 4 - Steep slopes exceeding max threshold are impassable
+      ---
+      duration_ms: 0.9343
+      type: 'test'
+      ...
+    # Subtest: Unreachable goal completely surrounded by nodata fails closed
+    ok 5 - Unreachable goal completely surrounded by nodata fails closed
+      ---
+      duration_ms: 1.2259
+      type: 'test'
+      ...
+    # Subtest: Lower-terrain-cost detour avoids moderate steep hill that shortest path traverses
+    ok 6 - Lower-terrain-cost detour avoids moderate steep hill that shortest path traverses
+      ---
+      duration_ms: 6.5561
+      type: 'test'
+      ...
+    1..6
+ok 131 - Synthetic Algorithm Correctness Tests
+  ---
+  duration_ms: 14.4532
+  type: 'suite'
+  ...
+# Subtest: Waypoint Validation and Scientific Safeguards
+    # Subtest: JZ-T1A unverified science target is strictly rejected
+    ok 1 - JZ-T1A unverified science target is strictly rejected
+      ---
+      duration_ms: 1.6045
+      type: 'test'
+      ...
+    # Subtest: Null or missing coordinates are rejected
+    ok 2 - Null or missing coordinates are rejected
+      ---
+      duration_ms: 0.5426
+      type: 'test'
+      ...
+    # Subtest: Out-of-coverage coordinate outside DEM is rejected without large shift
+    ok 3 - Out-of-coverage coordinate outside DEM is rejected without large shift
+      ---
+      duration_ms: 0.4562
+      type: 'test'
+      ...
+    1..3
+ok 132 - Waypoint Validation and Scientific Safeguards
+  ---
+  duration_ms: 2.973
+  type: 'suite'
+  ...
+# Subtest: Authentic Jezero DEM Route Planning & Output Contract
+    # Subtest: Computes valid route from Perseverance Landing Site to Western Delta
+    ok 1 - Computes valid route from Perseverance Landing Site to Western Delta
+      ---
+      duration_ms: 51.4637
+      type: 'test'
+      ...
+    # Subtest: Genuine route alternatives produce distinct optimized paths on authentic terrain
+    ok 2 - Genuine route alternatives produce distinct optimized paths on authentic terrain
+      ---
+      duration_ms: 72.0608
+      type: 'test'
+      ...
+    # Subtest: Multi-waypoint routing computes all segments in order
+    ok 3 - Multi-waypoint routing computes all segments in order
+      ---
+      duration_ms: 21.4046
+      type: 'test'
+      ...
+    1..3
+ok 133 - Authentic Jezero DEM Route Planning & Output Contract
+  ---
+  duration_ms: 145.2196
+  type: 'suite'
+  ...
+# Subtest: M4-INT: Mission Engine Integration Suite
+    # Subtest: Scenario A: Existing Gale Mission Compatibility
+        # Subtest: preserves waypoint identifiers, serialization roundtrip, and consumes mission into timeline and resource engines
+        ok 1 - preserves waypoint identifiers, serialization roundtrip, and consumes mission into timeline and resource engines
+          ---
+          duration_ms: 31.4918
+          type: 'test'
+          ...
+        1..1
+    ok 1 - Scenario A: Existing Gale Mission Compatibility
+      ---
+      duration_ms: 33.298
+      type: 'suite'
+      ...
+    # Subtest: Scenario B: One-Way Mission Verification
+        # Subtest: includes only intended travel and science-stop stages without return legs
+        ok 1 - includes only intended travel and science-stop stages without return legs
+          ---
+          duration_ms: 2.7333
+          type: 'test'
+          ...
+        1..1
+    ok 2 - Scenario B: One-Way Mission Verification
+      ---
+      duration_ms: 3.0666
+      type: 'suite'
+      ...
+    # Subtest: Scenario C: Round-Trip Mission Verification
+        # Subtest: includes return journey exactly once with return segment flagged
+        ok 1 - includes return journey exactly once with return segment flagged
+          ---
+          duration_ms: 2.103
+          type: 'test'
+          ...
+        1..1
+    ok 3 - Scenario C: Round-Trip Mission Verification
+      ---
+      duration_ms: 2.5894
+      type: 'suite'
+      ...
+    # Subtest: Scenario D: Incomplete Route Handling
+        # Subtest: preserves unsupported segments as null, leaves totals unavailable, retains prefix, and sets INSUFFICIENT_DATA
+        ok 1 - preserves unsupported segments as null, leaves totals unavailable, retains prefix, and sets INSUFFICIENT_DATA
+          ---
+          duration_ms: 2.7111
+          type: 'test'
+          ...
+        1..1
+    ok 4 - Scenario D: Incomplete Route Handling
+      ---
+      duration_ms: 3.0013
+      type: 'suite'
+      ...
+    # Subtest: Scenario E: Missing Resource Assumptions
+        # Subtest: reports INSUFFICIENT_DATA when oxygen or battery configurations are absent
+        ok 1 - reports INSUFFICIENT_DATA when oxygen or battery configurations are absent
+          ---
+          duration_ms: 4.6878
+          type: 'test'
+          ...
+        1..1
+    ok 5 - Scenario E: Missing Resource Assumptions
+      ---
+      duration_ms: 5.1207
+      type: 'suite'
+      ...
+    # Subtest: Scenario F: Region Independence
+        # Subtest: executes identically across Gale, Jezero, Oxia, and equatorial regions without environmental coupling
+        ok 1 - executes identically across Gale, Jezero, Oxia, and equatorial regions without environmental coupling
+          ---
+          duration_ms: 5.533
+          type: 'test'
+          ...
+        1..1
+    ok 6 - Scenario F: Region Independence
+      ---
+      duration_ms: 5.8059
+      type: 'suite'
+      ...
+    # Subtest: Scenario G: Scientific Safety & Disclaimers
+        # Subtest: attaches mandatory hypothetical disclaimers and makes no claim of operational EVA safety certification
+        ok 1 - attaches mandatory hypothetical disclaimers and makes no claim of operational EVA safety certification
+          ---
+          duration_ms: 2.3389
+          type: 'test'
+          ...
+        1..1
+    ok 7 - Scenario G: Scientific Safety & Disclaimers
+      ---
+      duration_ms: 2.8536
+      type: 'suite'
+      ...
+    1..7
+ok 134 - M4-INT: Mission Engine Integration Suite
+  ---
+  duration_ms: 58.3106
+  type: 'suite'
+  ...
+# Subtest: M4.2 Group A: Basic Resource Calculations
+    # Subtest: 1. calculates correct oxygen consumption during travel
+    ok 1 - 1. calculates correct oxygen consumption during travel
+      ---
+      duration_ms: 14.3844
+      type: 'test'
+      ...
+    # Subtest: 2. calculates correct oxygen consumption during stops
+    ok 2 - 2. calculates correct oxygen consumption during stops
+      ---
+      duration_ms: 1.1046
+      type: 'test'
+      ...
+    # Subtest: 3. calculates correct battery energy consumption during travel
+    ok 3 - 3. calculates correct battery energy consumption during travel
+      ---
+      duration_ms: 1.1593
+      type: 'test'
+      ...
+    # Subtest: 4. calculates correct battery energy consumption during stops
+    ok 4 - 4. calculates correct battery energy consumption during stops
+      ---
+      duration_ms: 0.6421
+      type: 'test'
+      ...
+    # Subtest: 5. calculates correct combined consumption totals
+    ok 5 - 5. calculates correct combined consumption totals
+      ---
+      duration_ms: 1.4695
+      type: 'test'
+      ...
+    # Subtest: 6. calculates correct remaining resource values
+    ok 6 - 6. calculates correct remaining resource values
+      ---
+      duration_ms: 0.5952
+      type: 'test'
+      ...
+    # Subtest: 7. calculates correct reserve subtraction
+    ok 7 - 7. calculates correct reserve subtraction
+      ---
+      duration_ms: 0.6196
+      type: 'test'
+      ...
+    1..7
+ok 135 - M4.2 Group A: Basic Resource Calculations
+  ---
+  duration_ms: 22.3417
+  type: 'suite'
+  ...
+# Subtest: M4.2 Group B: Boundary Conditions
+    # Subtest: 8. verifies exactly sufficient oxygen capacity and reserve
+    ok 1 - 8. verifies exactly sufficient oxygen capacity and reserve
+      ---
+      duration_ms: 0.9744
+      type: 'test'
+      ...
+    # Subtest: 9. verifies exactly sufficient battery capacity and reserve
+    ok 2 - 9. verifies exactly sufficient battery capacity and reserve
+      ---
+      duration_ms: 1.3015
+      type: 'test'
+      ...
+    # Subtest: 10. identifies when oxygen budget is exceeded
+    ok 3 - 10. identifies when oxygen budget is exceeded
+      ---
+      duration_ms: 1.1421
+      type: 'test'
+      ...
+    # Subtest: 11. identifies when battery budget is exceeded
+    ok 4 - 11. identifies when battery budget is exceeded
+      ---
+      duration_ms: 0.4846
+      type: 'test'
+      ...
+    # Subtest: 12. identifies when both oxygen and battery budgets are exceeded
+    ok 5 - 12. identifies when both oxygen and battery budgets are exceeded
+      ---
+      duration_ms: 0.6164
+      type: 'test'
+      ...
+    # Subtest: 13. handles zero consumption rates cleanly
+    ok 6 - 13. handles zero consumption rates cleanly
+      ---
+      duration_ms: 0.4329
+      type: 'test'
+      ...
+    # Subtest: 14. handles zero reserves cleanly
+    ok 7 - 14. handles zero reserves cleanly
+      ---
+      duration_ms: 0.3267
+      type: 'test'
+      ...
+    # Subtest: 15. calculates accurate fractional rates and durations
+    ok 8 - 15. calculates accurate fractional rates and durations
+      ---
+      duration_ms: 0.5043
+      type: 'test'
+      ...
+    1..8
+ok 136 - M4.2 Group B: Boundary Conditions
+  ---
+  duration_ms: 6.674
+  type: 'suite'
+  ...
+# Subtest: M4.2 Group C: Missing Inputs
+    # Subtest: 16. leaves remaining amounts null when oxygen capacity is missing
+    ok 1 - 16. leaves remaining amounts null when oxygen capacity is missing
+      ---
+      duration_ms: 0.5936
+      type: 'test'
+      ...
+    # Subtest: 17. leaves total oxygen usage null when oxygen rate is missing
+    ok 2 - 17. leaves total oxygen usage null when oxygen rate is missing
+      ---
+      duration_ms: 0.3748
+      type: 'test'
+      ...
+    # Subtest: 18. leaves remaining battery null when battery capacity is missing
+    ok 3 - 18. leaves remaining battery null when battery capacity is missing
+      ---
+      duration_ms: 0.3237
+      type: 'test'
+      ...
+    # Subtest: 19. leaves total battery usage null when battery power is missing
+    ok 4 - 19. leaves total battery usage null when battery power is missing
+      ---
+      duration_ms: 0.3305
+      type: 'test'
+      ...
+    # Subtest: 20. leaves remaining after reserve null when reserve is missing
+    ok 5 - 20. leaves remaining after reserve null when reserve is missing
+      ---
+      duration_ms: 0.4614
+      type: 'test'
+      ...
+    # Subtest: 21. preserves valid oxygen assessment when battery is unknown
+    ok 6 - 21. preserves valid oxygen assessment when battery is unknown
+      ---
+      duration_ms: 0.4284
+      type: 'test'
+      ...
+    # Subtest: 22. preserves valid battery assessment when oxygen is unknown
+    ok 7 - 22. preserves valid battery assessment when oxygen is unknown
+      ---
+      duration_ms: 0.9308
+      type: 'test'
+      ...
+    1..7
+ok 137 - M4.2 Group C: Missing Inputs
+  ---
+  duration_ms: 4.096
+  type: 'suite'
+  ...
+# Subtest: M4.2 Group D: Timeline Integrity
+    # Subtest: 23. calculates full resource budget for a complete one-way mission
+    ok 1 - 23. calculates full resource budget for a complete one-way mission
+      ---
+      duration_ms: 5.6161
+      type: 'test'
+      ...
+    # Subtest: 24. calculates full resource budget for a complete round-trip mission
+    ok 2 - 24. calculates full resource budget for a complete round-trip mission
+      ---
+      duration_ms: 0.9208
+      type: 'test'
+      ...
+    # Subtest: 25. marks round-trip with missing return leg as INSUFFICIENT_DATA with null totals
+    ok 3 - 25. marks round-trip with missing return leg as INSUFFICIENT_DATA with null totals
+      ---
+      duration_ms: 1.1394
+      type: 'test'
+      ...
+    # Subtest: 26. truncates stage generation before an unsupported travel segment
+    ok 4 - 26. truncates stage generation before an unsupported travel segment
+      ---
+      duration_ms: 0.5381
+      type: 'test'
+      ...
+    # Subtest: 27. evaluates invalid timeline as INVALID_INPUT
+    ok 5 - 27. evaluates invalid timeline as INVALID_INPUT
+      ---
+      duration_ms: 0.5468
+      type: 'test'
+      ...
+    # Subtest: 28. preserves partial timeline stage consumption while full totals remain null
+    ok 6 - 28. preserves partial timeline stage consumption while full totals remain null
+      ---
+      duration_ms: 0.4961
+      type: 'test'
+      ...
+    # Subtest: 29. accounts for return leg distance and travel time in travel consumption
+    ok 7 - 29. accounts for return leg distance and travel time in travel consumption
+      ---
+      duration_ms: 1.2163
+      type: 'test'
+      ...
+    # Subtest: 30. ensures stationary time is counted once per stop without double-counting
+    ok 8 - 30. ensures stationary time is counted once per stop without double-counting
+      ---
+      duration_ms: 0.5272
+      type: 'test'
+      ...
+    1..8
+ok 138 - M4.2 Group D: Timeline Integrity
+  ---
+  duration_ms: 11.6345
+  type: 'suite'
+  ...
+# Subtest: M4.2 Group E: Numerical Protection
+    # Subtest: 31. rejects negative oxygen capacity as INVALID_INPUT
+    ok 1 - 31. rejects negative oxygen capacity as INVALID_INPUT
+      ---
+      duration_ms: 0.6083
+      type: 'test'
+      ...
+    # Subtest: 32. rejects negative reserve as INVALID_INPUT
+    ok 2 - 32. rejects negative reserve as INVALID_INPUT
+      ---
+      duration_ms: 22.9968
+      type: 'test'
+      ...
+    # Subtest: 33. rejects negative consumption rate as INVALID_INPUT
+    ok 3 - 33. rejects negative consumption rate as INVALID_INPUT
+      ---
+      duration_ms: 0.81
+      type: 'test'
+      ...
+    # Subtest: 34. rejects non-finite input (NaN, Infinity) as INVALID_INPUT
+    ok 4 - 34. rejects non-finite input (NaN, Infinity) as INVALID_INPUT
+      ---
+      duration_ms: 1.5818
+      type: 'test'
+      ...
+    # Subtest: 35. rejects arithmetic values exceeding MAX_SAFE_INTEGER as INVALID_INPUT
+    ok 5 - 35. rejects arithmetic values exceeding MAX_SAFE_INTEGER as INVALID_INPUT
+      ---
+      duration_ms: 0.4632
+      type: 'test'
+      ...
+    # Subtest: 36. handles very small finite rates without underflow or precision failure
+    ok 6 - 36. handles very small finite rates without underflow or precision failure
+      ---
+      duration_ms: 0.349
+      type: 'test'
+      ...
+    # Subtest: 37. computes large but valid scenario cleanly within safe integer limits
+    ok 7 - 37. computes large but valid scenario cleanly within safe integer limits
+      ---
+      duration_ms: 0.4185
+      type: 'test'
+      ...
+    1..7
+ok 139 - M4.2 Group E: Numerical Protection
+  ---
+  duration_ms: 28.0219
+  type: 'suite'
+  ...
+# Subtest: M4.2 Group F: Engineering Integrity
+    # Subtest: 38. performs calculations region-independently without regional hardcoding
+    ok 1 - 38. performs calculations region-independently without regional hardcoding
+      ---
+      duration_ms: 0.4844
+      type: 'test'
+      ...
+    # Subtest: 39. produces deterministic identical results across repeated invocations
+    ok 2 - 39. produces deterministic identical results across repeated invocations
+      ---
+      duration_ms: 2.0134
+      type: 'test'
+      ...
+    # Subtest: 40. preserves input objects without mutation
+    ok 3 - 40. preserves input objects without mutation
+      ---
+      duration_ms: 0.6695
+      type: 'test'
+      ...
+    # Subtest: 41. reconciles stage consumption totals exactly with mission-wide totals
+    ok 4 - 41. reconciles stage consumption totals exactly with mission-wide totals
+      ---
+      duration_ms: 0.6012
+      type: 'test'
+      ...
+    # Subtest: 42. attaches mandatory scientific disclaimer to every result
+    ok 5 - 42. attaches mandatory scientific disclaimer to every result
+      ---
+      duration_ms: 0.4586
+      type: 'test'
+      ...
+    # Subtest: 43. formats physical units into human-readable strings correctly
+    ok 6 - 43. formats physical units into human-readable strings correctly
+      ---
+      duration_ms: 37.0344
+      type: 'test'
+      ...
+    # Subtest: 44. handles root input errors gracefully
+    ok 7 - 44. handles root input errors gracefully
+      ---
+      duration_ms: 0.2885
+      type: 'test'
+      ...
+    1..7
+ok 140 - M4.2 Group F: Engineering Integrity
+  ---
+  duration_ms: 42.0733
+  type: 'suite'
+  ...
+# Subtest: M4.2A Hardening Group A: Numerical Overflow & Stage Bounds
+    # Subtest: 45. catches stage oxygen overflow while keeping valid battery intact
+    ok 1 - 45. catches stage oxygen overflow while keeping valid battery intact
+      ---
+      duration_ms: 0.609
+      type: 'test'
+      ...
+    # Subtest: 46. catches stage battery overflow while keeping valid oxygen intact
+    ok 2 - 46. catches stage battery overflow while keeping valid oxygen intact
+      ---
+      duration_ms: 0.7092
+      type: 'test'
+      ...
+    # Subtest: 47. rejects large finite input producing nonfinite multiplication
+    ok 3 - 47. rejects large finite input producing nonfinite multiplication
+      ---
+      duration_ms: 0.3802
+      type: 'test'
+      ...
+    # Subtest: 48. rejects stage value exceeding configured safe numerical bounds
+    ok 4 - 48. rejects stage value exceeding configured safe numerical bounds
+      ---
+      duration_ms: 0.4888
+      type: 'test'
+      ...
+    # Subtest: 49. catches cumulative stage total overflow across multiple legs
+    ok 5 - 49. catches cumulative stage total overflow across multiple legs
+      ---
+      duration_ms: 0.4107
+      type: 'test'
+      ...
+    # Subtest: 50. handles fractional values accurately without precision degradation
+    ok 6 - 50. handles fractional values accurately without precision degradation
+      ---
+      duration_ms: 0.4067
+      type: 'test'
+      ...
+    # Subtest: 51. accepts large but mathematically valid scenario within bounds
+    ok 7 - 51. accepts large but mathematically valid scenario within bounds
+      ---
+      duration_ms: 0.4046
+      type: 'test'
+      ...
+    1..7
+ok 141 - M4.2A Hardening Group A: Numerical Overflow & Stage Bounds
+  ---
+  duration_ms: 3.872
+  type: 'suite'
+  ...
+# Subtest: M4.2A Hardening Group B: Subsystem Independence
+    # Subtest: 52. preserves valid oxygen calculations when battery has invalid negative capacity (Example A)
+    ok 1 - 52. preserves valid oxygen calculations when battery has invalid negative capacity (Example A)
+      ---
+      duration_ms: 0.5442
+      type: 'test'
+      ...
+    # Subtest: 53. preserves valid battery calculations when oxygen has invalid non-finite rate (Example B)
+    ok 2 - 53. preserves valid battery calculations when oxygen has invalid non-finite rate (Example B)
+      ---
+      duration_ms: 0.4084
+      type: 'test'
+      ...
+    # Subtest: 54. preserves valid battery calculations when oxygen assumptions are missing (Example C)
+    ok 3 - 54. preserves valid battery calculations when oxygen assumptions are missing (Example C)
+      ---
+      duration_ms: 0.2958
+      type: 'test'
+      ...
+    # Subtest: 55. preserves valid oxygen calculations when battery assumptions are missing
+    ok 4 - 55. preserves valid oxygen calculations when battery assumptions are missing
+      ---
+      duration_ms: 0.2952
+      type: 'test'
+      ...
+    # Subtest: 56. sets overall EXCEEDS_CONFIGURED_BUDGET when one subsystem exceeds budget while other is within budget
+    ok 5 - 56. sets overall EXCEEDS_CONFIGURED_BUDGET when one subsystem exceeds budget while other is within budget
+      ---
+      duration_ms: 0.3023
+      type: 'test'
+      ...
+    # Subtest: 57. ensures that one subsystem overflow does not erase valid results from the other
+    ok 6 - 57. ensures that one subsystem overflow does not erase valid results from the other
+      ---
+      duration_ms: 0.3694
+      type: 'test'
+      ...
+    1..6
+ok 142 - M4.2A Hardening Group B: Subsystem Independence
+  ---
+  duration_ms: 2.5636
+  type: 'suite'
+  ...
+# Subtest: M4.2A Hardening Group C: Timeline Structure & Consistency Validation
+    # Subtest: 58. accepts a valid complete timeline meeting all 11 consistency checks
+    ok 1 - 58. accepts a valid complete timeline meeting all 11 consistency checks
+      ---
+      duration_ms: 1.3579
+      type: 'test'
+      ...
+    # Subtest: 59. accepts a valid incomplete timeline without manufacturing missing values
+    ok 2 - 59. accepts a valid incomplete timeline without manufacturing missing values
+      ---
+      duration_ms: 0.5064
+      type: 'test'
+      ...
+    # Subtest: 60. returns INVALID_INPUT for timeline with INVALID_INPUT status
+    ok 3 - 60. returns INVALID_INPUT for timeline with INVALID_INPUT status
+      ---
+      duration_ms: 0.4384
+      type: 'test'
+      ...
+    # Subtest: 61. rejects timeline with missing required runtime fields as INVALID_INPUT
+    ok 4 - 61. rejects timeline with missing required runtime fields as INVALID_INPUT
+      ---
+      duration_ms: 1.9865
+      type: 'test'
+      ...
+    # Subtest: 62. rejects timeline with non-finite segment duration as INVALID_INPUT
+    ok 5 - 62. rejects timeline with non-finite segment duration as INVALID_INPUT
+      ---
+      duration_ms: 0.9081
+      type: 'test'
+      ...
+    # Subtest: 63. rejects timeline with negative stop duration as INVALID_INPUT
+    ok 6 - 63. rejects timeline with negative stop duration as INVALID_INPUT
+      ---
+      duration_ms: 0.8156
+      type: 'test'
+      ...
+    # Subtest: 64. rejects timeline where arrival is after departure as INVALID_INPUT
+    ok 7 - 64. rejects timeline where arrival is after departure as INVALID_INPUT
+      ---
+      duration_ms: 0.537
+      type: 'test'
+      ...
+    # Subtest: 65. rejects complete timeline with mismatched segment count as INVALID_INPUT
+    ok 8 - 65. rejects complete timeline with mismatched segment count as INVALID_INPUT
+      ---
+      duration_ms: 0.4408
+      type: 'test'
+      ...
+    # Subtest: 66. rejects complete timeline with disconnected segment endpoints as INVALID_INPUT
+    ok 9 - 66. rejects complete timeline with disconnected segment endpoints as INVALID_INPUT
+      ---
+      duration_ms: 0.4562
+      type: 'test'
+      ...
+    # Subtest: 67. rejects complete timeline where total_travel_seconds does not match segments sum as INVALID_INPUT
+    ok 10 - 67. rejects complete timeline where total_travel_seconds does not match segments sum as INVALID_INPUT
+      ---
+      duration_ms: 0.4059
+      type: 'test'
+      ...
+    # Subtest: 68. rejects complete timeline where total_stop_seconds does not match stops sum as INVALID_INPUT
+    ok 11 - 68. rejects complete timeline where total_stop_seconds does not match stops sum as INVALID_INPUT
+      ---
+      duration_ms: 0.5323
+      type: 'test'
+      ...
+    # Subtest: 69. rejects complete timeline where total_mission_seconds does not equal travel + stop as INVALID_INPUT
+    ok 12 - 69. rejects complete timeline where total_mission_seconds does not equal travel + stop as INVALID_INPUT
+      ---
+      duration_ms: 0.4491
+      type: 'test'
+      ...
+    # Subtest: 70. validates partial prefix in incomplete timeline while keeping downstream null
+    ok 13 - 70. validates partial prefix in incomplete timeline while keeping downstream null
+      ---
+      duration_ms: 0.3976
+      type: 'test'
+      ...
+    1..13
+ok 143 - M4.2A Hardening Group C: Timeline Structure & Consistency Validation
+  ---
+  duration_ms: 10.0296
+  type: 'suite'
+  ...
+# Subtest: M4.2A Hardening Group D: Stage Reconciliation
+    # Subtest: 71. verifies stage oxygen totals reconcile exactly with overall oxygen totals
+    ok 1 - 71. verifies stage oxygen totals reconcile exactly with overall oxygen totals
+      ---
+      duration_ms: 0.8049
+      type: 'test'
+      ...
+    # Subtest: 72. verifies stage battery totals reconcile exactly with overall battery totals
+    ok 2 - 72. verifies stage battery totals reconcile exactly with overall battery totals
+      ---
+      duration_ms: 0.5838
+      type: 'test'
+      ...
+    # Subtest: 73. ensures travel-stage timing is strictly chronological and non-overlapping
+    ok 3 - 73. ensures travel-stage timing is strictly chronological and non-overlapping
+      ---
+      duration_ms: 0.408
+      type: 'test'
+      ...
+    # Subtest: 74. ensures each stop duration is counted once across stages
+    ok 4 - 74. ensures each stop duration is counted once across stages
+      ---
+      duration_ms: 0.3915
+      type: 'test'
+      ...
+    # Subtest: 75. includes return journey once in stages for round-trip mission
+    ok 5 - 75. includes return journey once in stages for round-trip mission
+      ---
+      duration_ms: 2.9953
+      type: 'test'
+      ...
+    # Subtest: 76. preserves incomplete status on partial consumption
+    ok 6 - 76. preserves incomplete status on partial consumption
+      ---
+      duration_ms: 0.6451
+      type: 'test'
+      ...
+    # Subtest: 77. terminates stage generation after an unsupported segment
+    ok 7 - 77. terminates stage generation after an unsupported segment
+      ---
+      duration_ms: 0.3702
+      type: 'test'
+      ...
+    1..7
+ok 144 - M4.2A Hardening Group D: Stage Reconciliation
+  ---
+  duration_ms: 6.8333
+  type: 'suite'
+  ...
+# Subtest: M4.2A Hardening Group E: Regression & Preservation
+    # Subtest: 78. confirms all existing 44 M4.2 tests pass
+    ok 1 - 78. confirms all existing 44 M4.2 tests pass
+      ---
+      duration_ms: 0.2347
+      type: 'test'
+      ...
+    # Subtest: 79. confirms existing timeline output compatibility
+    ok 2 - 79. confirms existing timeline output compatibility
+      ---
+      duration_ms: 0.4708
+      type: 'test'
+      ...
+    # Subtest: 80. confirms public input/output API signatures remain unchanged
+    ok 3 - 80. confirms public input/output API signatures remain unchanged
+      ---
+      duration_ms: 0.353
+      type: 'test'
+      ...
+    # Subtest: 81. ensures valid input objects remain unmodified after hardened checks
+    ok 4 - 81. ensures valid input objects remain unmodified after hardened checks
+      ---
+      duration_ms: 0.4739
+      type: 'test'
+      ...
+    # Subtest: 82. ensures repeated calculations produce deterministic identical results
+    ok 5 - 82. ensures repeated calculations produce deterministic identical results
+      ---
+      duration_ms: 0.7186
+      type: 'test'
+      ...
+    # Subtest: 83. ensures scientific disclaimer is always present on every result
+    ok 6 - 83. ensures scientific disclaimer is always present on every result
+      ---
+      duration_ms: 0.3492
+      type: 'test'
+      ...
+    # Subtest: 84. preserves regional independence across Gale, Jezero, and Oxia
+    ok 7 - 84. preserves regional independence across Gale, Jezero, and Oxia
+      ---
+      duration_ms: 2.1982
+      type: 'test'
+      ...
+    1..7
+ok 145 - M4.2A Hardening Group E: Regression & Preservation
+  ---
+  duration_ms: 5.213
+  type: 'suite'
+  ...
+# Subtest: Unit Conversion Helpers
+    # Subtest: converts minutes to seconds and vice versa
+    ok 1 - converts minutes to seconds and vice versa
+      ---
+      duration_ms: 1.4433
+      type: 'test'
+      ...
+    # Subtest: converts hours to seconds and vice versa
+    ok 2 - converts hours to seconds and vice versa
+      ---
+      duration_ms: 0.5076
+      type: 'test'
+      ...
+    # Subtest: formats elapsed seconds to HH:MM:SS string safely
+    ok 3 - formats elapsed seconds to HH:MM:SS string safely
+      ---
+      duration_ms: 0.3456
+      type: 'test'
+      ...
+    1..3
+ok 146 - Unit Conversion Helpers
+  ---
+  duration_ms: 4.1268
+  type: 'suite'
+  ...
+# Subtest: Scenario A: Basic Route
+    # Subtest: computes duration for 1,000 m at 500 m/h as exactly 7,200 seconds
+    ok 1 - computes duration for 1,000 m at 500 m/h as exactly 7,200 seconds
+      ---
+      duration_ms: 10.1377
+      type: 'test'
+      ...
+    1..1
+ok 147 - Scenario A: Basic Route
+  ---
+  duration_ms: 10.3602
+  type: 'suite'
+  ...
+# Subtest: Scenario B: Multiple Segments & Cumulative Tracking
+    # Subtest: tracks sequential arrival and departure across multiple legs
+    ok 1 - tracks sequential arrival and departure across multiple legs
+      ---
+      duration_ms: 0.9855
+      type: 'test'
+      ...
+    1..1
+ok 148 - Scenario B: Multiple Segments & Cumulative Tracking
+  ---
+  duration_ms: 1.3568
+  type: 'suite'
+  ...
+# Subtest: Scenario C: Science Stops
+    # Subtest: adds 15-minute science stop (900 s) exactly once to total duration
+    ok 1 - adds 15-minute science stop (900 s) exactly once to total duration
+      ---
+      duration_ms: 1.1121
+      type: 'test'
+      ...
+    # Subtest: does not apply default science stop duration to intermediate waypoints
+    ok 2 - does not apply default science stop duration to intermediate waypoints
+      ---
+      duration_ms: 0.7822
+      type: 'test'
+      ...
+    # Subtest: supports explicit per-waypoint stop durations overriding defaults
+    ok 3 - supports explicit per-waypoint stop durations overriding defaults
+      ---
+      duration_ms: 1.0239
+      type: 'test'
+      ...
+    1..3
+ok 149 - Scenario C: Science Stops
+  ---
+  duration_ms: 3.6056
+  type: 'suite'
+  ...
+# Subtest: Scenario D: Zero-Duration Stop
+    # Subtest: keeps total time unchanged when stop duration is zero
+    ok 1 - keeps total time unchanged when stop duration is zero
+      ---
+      duration_ms: 0.9102
+      type: 'test'
+      ...
+    1..1
+ok 150 - Scenario D: Zero-Duration Stop
+  ---
+  duration_ms: 1.3615
+  type: 'suite'
+  ...
+# Subtest: Scenario E: Invalid Speed Inputs
+    # Subtest: rejects zero walking speed
+    ok 1 - rejects zero walking speed
+      ---
+      duration_ms: 0.8844
+      type: 'test'
+      ...
+    # Subtest: rejects negative walking speed
+    ok 2 - rejects negative walking speed
+      ---
+      duration_ms: 0.3475
+      type: 'test'
+      ...
+    # Subtest: rejects NaN walking speed
+    ok 3 - rejects NaN walking speed
+      ---
+      duration_ms: 0.4469
+      type: 'test'
+      ...
+    # Subtest: rejects Infinity walking speed
+    ok 4 - rejects Infinity walking speed
+      ---
+      duration_ms: 0.2689
+      type: 'test'
+      ...
+    # Subtest: rejects -Infinity walking speed
+    ok 5 - rejects -Infinity walking speed
+      ---
+      duration_ms: 0.2751
+      type: 'test'
+      ...
+    1..5
+ok 151 - Scenario E: Invalid Speed Inputs
+  ---
+  duration_ms: 2.6962
+  type: 'suite'
+  ...
+# Subtest: Scenario F: Invalid Distance Inputs
+    # Subtest: rejects negative segment distance as INVALID_INPUT
+    ok 1 - rejects negative segment distance as INVALID_INPUT
+      ---
+      duration_ms: 0.5371
+      type: 'test'
+      ...
+    # Subtest: rejects NaN segment distance as INVALID_INPUT
+    ok 2 - rejects NaN segment distance as INVALID_INPUT
+      ---
+      duration_ms: 0.4905
+      type: 'test'
+      ...
+    # Subtest: rejects Infinity segment distance as INVALID_INPUT
+    ok 3 - rejects Infinity segment distance as INVALID_INPUT
+      ---
+      duration_ms: 0.3135
+      type: 'test'
+      ...
+    # Subtest: marks missing distance (null) as INCOMPLETE_SCENARIO without crashing
+    ok 4 - marks missing distance (null) as INCOMPLETE_SCENARIO without crashing
+      ---
+      duration_ms: 0.3509
+      type: 'test'
+      ...
+    1..4
+ok 152 - Scenario F: Invalid Distance Inputs
+  ---
+  duration_ms: 1.9893
+  type: 'suite'
+  ...
+# Subtest: Scenario G: Unsupported Segment Handling
+    # Subtest: does not report a complete total when a segment is unsupported
+    ok 1 - does not report a complete total when a segment is unsupported
+      ---
+      duration_ms: 0.6021
+      type: 'test'
+      ...
+    1..1
+ok 153 - Scenario G: Unsupported Segment Handling
+  ---
+  duration_ms: 0.7545
+  type: 'suite'
+  ...
+# Subtest: Scenario H: One-Way Route Behavior
+    # Subtest: does not silently create a return leg for one-way trajectories
+    ok 1 - does not silently create a return leg for one-way trajectories
+      ---
+      duration_ms: 4.929
+      type: 'test'
+      ...
+    1..1
+ok 154 - Scenario H: One-Way Route Behavior
+  ---
+  duration_ms: 5.0762
+  type: 'suite'
+  ...
+# Subtest: Scenario I: Round-Trip Route Behavior
+    # Subtest: includes explicit return leg back to base camp in total duration
+    ok 1 - includes explicit return leg back to base camp in total duration
+      ---
+      duration_ms: 1.2941
+      type: 'test'
+      ...
+    1..1
+ok 155 - Scenario I: Round-Trip Route Behavior
+  ---
+  duration_ms: 1.5078
+  type: 'suite'
+  ...
+# Subtest: Scenario J: Missing Return Leg in Round-Trip Mode
+    # Subtest: flags incomplete status when a round-trip route has no return leg
+    ok 1 - flags incomplete status when a round-trip route has no return leg
+      ---
+      duration_ms: 0.5932
+      type: 'test'
+      ...
+    1..1
+ok 156 - Scenario J: Missing Return Leg in Round-Trip Mode
+  ---
+  duration_ms: 0.7267
+  type: 'suite'
+  ...
+# Subtest: Scenario K: Fractional Distances & Numerical Stability
+    # Subtest: handles fractional metres and speeds with high numerical precision
+    ok 1 - handles fractional metres and speeds with high numerical precision
+      ---
+      duration_ms: 0.4674
+      type: 'test'
+      ...
+    # Subtest: handles zero-length segments without division-by-zero errors
+    ok 2 - handles zero-length segments without division-by-zero errors
+      ---
+      duration_ms: 0.3069
+      type: 'test'
+      ...
+    1..2
+ok 157 - Scenario K: Fractional Distances & Numerical Stability
+  ---
+  duration_ms: 0.9335
+  type: 'suite'
+  ...
+# Subtest: Scenario L: Long Itinerary
+    # Subtest: evaluates a 50-segment itinerary without floating-point accumulation drift
+    ok 1 - evaluates a 50-segment itinerary without floating-point accumulation drift
+      ---
+      duration_ms: 4.0073
+      type: 'test'
+      ...
+    1..1
+ok 158 - Scenario L: Long Itinerary
+  ---
+  duration_ms: 4.1608
+  type: 'suite'
+  ...
+# Subtest: Scenario M: Repeated Calculation & Determinism
+    # Subtest: produces identical output on repeated runs with identical input
+    ok 1 - produces identical output on repeated runs with identical input
+      ---
+      duration_ms: 1.8267
+      type: 'test'
+      ...
+    1..1
+ok 159 - Scenario M: Repeated Calculation & Determinism
+  ---
+  duration_ms: 1.9991
+  type: 'suite'
+  ...
+# Subtest: Scenario N: Input Immutability
+    # Subtest: does not mutate input route, waypoints, segments, or assumptions
+    ok 1 - does not mutate input route, waypoints, segments, or assumptions
+      ---
+      duration_ms: 0.7337
+      type: 'test'
+      ...
+    1..1
+ok 160 - Scenario N: Input Immutability
+  ---
+  duration_ms: 0.9614
+  type: 'suite'
+  ...
+# Subtest: Scenario O: Regional Independence
+    # Subtest: executes identically for coordinates across Gale, Jezero, and Oxia
+    ok 1 - executes identically for coordinates across Gale, Jezero, and Oxia
+      ---
+      duration_ms: 2.0171
+      type: 'test'
+      ...
+    1..1
+ok 161 - Scenario O: Regional Independence
+  ---
+  duration_ms: 2.1844
+  type: 'suite'
+  ...
+# Subtest: Additional Structural & Operational Scenarios
+    # Subtest: rejects empty itinerary as INVALID_INPUT
+    ok 1 - rejects empty itinerary as INVALID_INPUT
+      ---
+      duration_ms: 0.5081
+      type: 'test'
+      ...
+    # Subtest: handles single-waypoint itinerary as INCOMPLETE_SCENARIO
+    ok 2 - handles single-waypoint itinerary as INCOMPLETE_SCENARIO
+      ---
+      duration_ms: 0.4027
+      type: 'test'
+      ...
+    # Subtest: rejects duplicate waypoint IDs as INVALID_INPUT
+    ok 3 - rejects duplicate waypoint IDs as INVALID_INPUT
+      ---
+      duration_ms: 0.4471
+      type: 'test'
+      ...
+    # Subtest: rejects unknown waypoint reference in segment as INVALID_INPUT
+    ok 4 - rejects unknown waypoint reference in segment as INVALID_INPUT
+      ---
+      duration_ms: 0.3911
+      type: 'test'
+      ...
+    # Subtest: applies base preparation and final recovery duration correctly without double counting
+    ok 5 - applies base preparation and final recovery duration correctly without double counting
+      ---
+      duration_ms: 0.622
+      type: 'test'
+      ...
+    # Subtest: contains mandatory scientific disclaimer on all results
+    ok 6 - contains mandatory scientific disclaimer on all results
+      ---
+      duration_ms: 0.5387
+      type: 'test'
+      ...
+    1..6
+ok 162 - Additional Structural & Operational Scenarios
+  ---
+  duration_ms: 3.2988
+  type: 'suite'
+  ...
+# Subtest: M4.1A Group A: Segment Continuity
+    # Subtest: 1. accepts valid explicit sequence A -> B -> C
+    ok 1 - 1. accepts valid explicit sequence A -> B -> C
+      ---
+      duration_ms: 0.5153
+      type: 'test'
+      ...
+    # Subtest: 2. rejects invalid disconnected sequence A -> B, C -> A as INVALID_INPUT
+    ok 2 - 2. rejects invalid disconnected sequence A -> B, C -> A as INVALID_INPUT
+      ---
+      duration_ms: 0.3511
+      type: 'test'
+      ...
+    # Subtest: 3. rejects invalid reversed segment B -> A when A -> B expected
+    ok 3 - 3. rejects invalid reversed segment B -> A when A -> B expected
+      ---
+      duration_ms: 0.3115
+      type: 'test'
+      ...
+    # Subtest: 4. rejects extra explicit segment beyond expected itinerary length
+    ok 4 - 4. rejects extra explicit segment beyond expected itinerary length
+      ---
+      duration_ms: 0.2902
+      type: 'test'
+      ...
+    # Subtest: 5. rejects duplicate explicit segment
+    ok 5 - 5. rejects duplicate explicit segment
+      ---
+      duration_ms: 0.2877
+      type: 'test'
+      ...
+    # Subtest: 6. rejects incorrect supplied segment index
+    ok 6 - 6. rejects incorrect supplied segment index
+      ---
+      duration_ms: 0.2786
+      type: 'test'
+      ...
+    # Subtest: 7. marks missing expected explicit segment as INCOMPLETE_SCENARIO
+    ok 7 - 7. marks missing expected explicit segment as INCOMPLETE_SCENARIO
+      ---
+      duration_ms: 0.3024
+      type: 'test'
+      ...
+    1..7
+ok 163 - M4.1A Group A: Segment Continuity
+  ---
+  duration_ms: 2.7345
+  type: 'suite'
+  ...
+# Subtest: M4.1A Group B: Return Closure
+    # Subtest: 8. accepts valid Base -> A -> B -> Base in round-trip mode
+    ok 1 - 8. accepts valid Base -> A -> B -> Base in round-trip mode
+      ---
+      duration_ms: 0.5263
+      type: 'test'
+      ...
+    # Subtest: 9. rejects return marker on B -> C instead of B -> Base
+    ok 2 - 9. rejects return marker on B -> C instead of B -> Base
+      ---
+      duration_ms: 0.3833
+      type: 'test'
+      ...
+    # Subtest: 10. rejects return marker before the final leg
+    ok 3 - 10. rejects return marker before the final leg
+      ---
+      duration_ms: 0.3111
+      type: 'test'
+      ...
+    # Subtest: 11. rejects multiple return markers
+    ok 4 - 11. rejects multiple return markers
+      ---
+      duration_ms: 0.3021
+      type: 'test'
+      ...
+    # Subtest: 12. rejects return destination that is not the starting base
+    ok 5 - 12. rejects return destination that is not the starting base
+      ---
+      duration_ms: 0.2869
+      type: 'test'
+      ...
+    # Subtest: 13. marks missing return segment in a round-trip input as INCOMPLETE_SCENARIO
+    ok 6 - 13. marks missing return segment in a round-trip input as INCOMPLETE_SCENARIO
+      ---
+      duration_ms: 0.2708
+      type: 'test'
+      ...
+    # Subtest: 14. validates auto-generated geometric return segment
+    ok 7 - 14. validates auto-generated geometric return segment
+      ---
+      duration_ms: 0.653
+      type: 'test'
+      ...
+    1..7
+ok 164 - M4.1A Group B: Return Closure
+  ---
+  duration_ms: 3.0914
+  type: 'suite'
+  ...
+# Subtest: M4.1A Group C: Timeline Consistency
+    # Subtest: 15. verifies timeline visit count equals expected route visits
+    ok 1 - 15. verifies timeline visit count equals expected route visits
+      ---
+      duration_ms: 0.4136
+      type: 'test'
+      ...
+    # Subtest: 16. verifies segment count matches expected travel legs
+    ok 2 - 16. verifies segment count matches expected travel legs
+      ---
+      duration_ms: 0.2388
+      type: 'test'
+      ...
+    # Subtest: 17. verifies every arrival corresponds to the preceding segment duration
+    ok 3 - 17. verifies every arrival corresponds to the preceding segment duration
+      ---
+      duration_ms: 0.2512
+      type: 'test'
+      ...
+    # Subtest: 18. propagates unknown downstream times when an intermediate segment is unsupported
+    ok 4 - 18. propagates unknown downstream times when an intermediate segment is unsupported
+      ---
+      duration_ms: 0.2566
+      type: 'test'
+      ...
+    # Subtest: 19. preserves valid partial timeline prior to unsupported segment
+    ok 5 - 19. preserves valid partial timeline prior to unsupported segment
+      ---
+      duration_ms: 0.7415
+      type: 'test'
+      ...
+    1..5
+ok 165 - M4.1A Group C: Timeline Consistency
+  ---
+  duration_ms: 2.1921
+  type: 'suite'
+  ...
+# Subtest: M4.1A Group D: Numerical Stability
+    # Subtest: 20. rejects finite inputs causing duration overflow as INVALID_INPUT
+    ok 1 - 20. rejects finite inputs causing duration overflow as INVALID_INPUT
+      ---
+      duration_ms: 1.3778
+      type: 'test'
+      ...
+    # Subtest: 21. rejects cumulative time overflow across segments as INVALID_INPUT
+    ok 2 - 21. rejects cumulative time overflow across segments as INVALID_INPUT
+      ---
+      duration_ms: 1.564
+      type: 'test'
+      ...
+    # Subtest: 22. handles very small positive speed without crashing or overflow
+    ok 3 - 22. handles very small positive speed without crashing or overflow
+      ---
+      duration_ms: 0.9142
+      type: 'test'
+      ...
+    # Subtest: 23. handles fractional duration accurately without rounding loss
+    ok 4 - 23. handles fractional duration accurately without rounding loss
+      ---
+      duration_ms: 0.4884
+      type: 'test'
+      ...
+    # Subtest: 24. handles zero-length valid segment safely
+    ok 5 - 24. handles zero-length valid segment safely
+      ---
+      duration_ms: 0.3173
+      type: 'test'
+      ...
+    1..5
+ok 166 - M4.1A Group D: Numerical Stability
+  ---
+  duration_ms: 5.0706
+  type: 'suite'
+  ...
+# Subtest: M4.1A Group E: Regression & Preservation
+    # Subtest: 25. preserves existing WaypointPlan calculations
+    ok 1 - 25. preserves existing WaypointPlan calculations
+      ---
+      duration_ms: 1.3991
+      type: 'test'
+      ...
+    # Subtest: 26. preserves existing ProposedGeometricTrajectory calculations
+    ok 2 - 26. preserves existing ProposedGeometricTrajectory calculations
+      ---
+      duration_ms: 0.993
+      type: 'test'
+      ...
+    # Subtest: 27. preserves existing one-way scenario semantics
+    ok 3 - 27. preserves existing one-way scenario semantics
+      ---
+      duration_ms: 0.7154
+      type: 'test'
+      ...
+    # Subtest: 28. preserves existing science-stop duration behavior
+    ok 4 - 28. preserves existing science-stop duration behavior
+      ---
+      duration_ms: 0.5636
+      type: 'test'
+      ...
+    # Subtest: 29. ensures input objects remain unmodified after hardened checks
+    ok 5 - 29. ensures input objects remain unmodified after hardened checks
+      ---
+      duration_ms: 0.4472
+      type: 'test'
+      ...
+    # Subtest: 30. confirms all existing 34 dedicated M4.1 tests remain passing
+    ok 6 - 30. confirms all existing 34 dedicated M4.1 tests remain passing
+      ---
+      duration_ms: 0.1598
+      type: 'test'
+      ...
+    1..6
+ok 167 - M4.1A Group E: Regression & Preservation
+  ---
+  duration_ms: 4.8305
+  type: 'suite'
+  ...
+# Subtest: all region fixtures obey shared contract and cannot imply scientific readiness
+ok 168 - all region fixtures obey shared contract and cannot imply scientific readiness
+  ---
+  duration_ms: 14.9589
+  type: 'test'
+  ...
+# Subtest: individual stop moves preserve membership and boundaries
+ok 169 - individual stop moves preserve membership and boundaries
+  ---
+  duration_ms: 0.7636
+  type: 'test'
+  ...
+# Subtest: one-way endpoints, unknown target locations and stale datasets block readiness
+ok 170 - one-way endpoints, unknown target locations and stale datasets block readiness
+  ---
+  duration_ms: 1.2714
+  type: 'test'
+  ...
+# Subtest: saved plans retain independent reserves, stop order, versions and timestamps
+ok 171 - saved plans retain independent reserves, stop order, versions and timestamps
+  ---
+  duration_ms: 9.7784
+  type: 'test'
+  ...
+# Subtest: imports reject foreign, duplicate and unknown objectives without trusting results
+ok 172 - imports reject foreign, duplicate and unknown objectives without trusting results
+  ---
+  duration_ms: 5.6644
+  type: 'test'
+  ...
+# Subtest: known mandatory failure outranks missing evidence; six checks required for feasible
+ok 173 - known mandatory failure outranks missing evidence; six checks required for feasible
+  ---
+  duration_ms: 0.5912
+  type: 'test'
+  ...
+# Subtest: DEM derivatives retain audited bytes, bounded support, units and conservative readiness
+ok 174 - DEM derivatives retain audited bytes, bounded support, units and conservative readiness
+  ---
+  duration_ms: 117.0839
+  type: 'test'
+  ...
+# Subtest: per-product raster request bounds and nearest resampling preserve legacy defaults
+ok 175 - per-product raster request bounds and nearest resampling preserve legacy defaults
+  ---
+  duration_ms: 4.8226
+  type: 'test'
+  ...
+# Subtest: G4 regional and global terrain layers preserve multi-resolution hierarchy, audited tiles, and scientific bounds
+ok 176 - G4 regional and global terrain layers preserve multi-resolution hierarchy, audited tiles, and scientific bounds
+  ---
+  duration_ms: 35.1029
+  type: 'test'
+  ...
+# Subtest: Arc Pass asset preserves all source classifications and audited geometry identity
+ok 177 - Arc Pass asset preserves all source classifications and audited geometry identity
+  ---
+  duration_ms: 14.3147
+  type: 'test'
+  ...
+# Subtest: categorical layer contracts reject missing or duplicate legend values and preserve legacy manifests
+ok 178 - categorical layer contracts reject missing or duplicate legend values and preserve legacy manifests
+  ---
+  duration_ms: 17.9746
+  type: 'test'
+  ...
+# Subtest: optional photo evidence preserves legacy manifests and cannot promote an area to a point
+ok 179 - optional photo evidence preserves legacy manifests and cannot promote an area to a point
+  ---
+  duration_ms: 10.44
+  type: 'test'
+  ...
+# Subtest: photographs require acquisition metadata, local source lineage and consistent product identity
+ok 180 - photographs require acquisition metadata, local source lineage and consistent product identity
+  ---
+  duration_ms: 30.2944
+  type: 'test'
+  ...
+# Subtest: committed NASA browse assets match the reviewed evidence register without local image alteration
+ok 181 - committed NASA browse assets match the reviewed evidence register without local image alteration
+  ---
+  duration_ms: 16.616
+  type: 'test'
+  ...
+# Subtest: registry resolves every region, typed metadata and safe unknown IDs
+ok 182 - registry resolves every region, typed metadata and safe unknown IDs
+  ---
+  duration_ms: 5.2787
+  type: 'test'
+  ...
+# Subtest: region modules own their content without importing other regions or UI
+ok 183 - region modules own their content without importing other regions or UI
+  ---
+  duration_ms: 22.9705
+  type: 'test'
+  ...
+# Subtest: validation rejects foreign records, duplicate IDs and missing scientific lineage
+ok 184 - validation rejects foreign records, duplicate IDs and missing scientific lineage
+  ---
+  duration_ms: 4.8592
+  type: 'test'
+  ...
+# Subtest: declarative renderer mounts only current regional sources and cleans them on switch
+ok 185 - declarative renderer mounts only current regional sources and cleans them on switch
+  ---
+  duration_ms: 4.6034
+  type: 'test'
+  ...
+# Subtest: Mars east-longitude display conversion and extents never infer Earth distances
+ok 186 - Mars east-longitude display conversion and extents never infer Earth distances
+  ---
+  duration_ms: 1.2208
+  type: 'test'
+  ...
+# Subtest: overview fits the reviewed extent without constraining navigation or accumulating padding
+ok 187 - overview fits the reviewed extent without constraining navigation or accumulating padding
+  ---
+  duration_ms: 1.6534
+  type: 'test'
+  ...
+# Subtest: regional raster bounds limit sparse tile requests without changing Mars registration
+ok 188 - regional raster bounds limit sparse tile requests without changing Mars registration
+  ---
+  duration_ms: 0.8269
+  type: 'test'
+  ...
+# Subtest: backend boundary rejects missing one-way endpoints and incomplete assessments
+ok 189 - backend boundary rejects missing one-way endpoints and incomplete assessments
+  ---
+  duration_ms: 19.4279
+  type: 'test'
+  ...
+# Subtest: all regions expose four independent categories with regional source variants
+ok 190 - all regions expose four independent categories with regional source variants
+  ---
+  duration_ms: 5.7974
+  type: 'test'
+  ...
+# Subtest: Derived is a display evidence class with mandatory lineage, not geographic or routing verification
+ok 191 - Derived is a display evidence class with mandatory lineage, not geographic or routing verification
+  ---
+  duration_ms: 61.1136
+  type: 'test'
+  ...
+# Subtest: gale: real worker, ordered round trip, canonical metrics, scenarios and persistence
+ok 192 - gale: real worker, ordered round trip, canonical metrics, scenarios and persistence
+  ---
+  duration_ms: 2958.4909
+  type: 'test'
+  ...
+# Subtest: jezero: real worker, ordered round trip, canonical metrics, scenarios and persistence
+ok 193 - jezero: real worker, ordered round trip, canonical metrics, scenarios and persistence
+  ---
+  duration_ms: 419.2231
+  type: 'test'
+  ...
+# Subtest: strict source selection, region isolation and unverified objective rejection
+ok 194 - strict source selection, region isolation and unverified objective rejection
+  ---
+  duration_ms: 263.4975
+  type: 'test'
+  ...
+# Subtest: Jezero geography follows native projected posting and round trips every sampled cell
+ok 195 - Jezero geography follows native projected posting and round trips every sampled cell
+  ---
+  duration_ms: 64.2411
+  type: 'test'
+  ...
+# Subtest: missing Python dependency and cancellation never substitute a geometric result
+ok 196 - missing Python dependency and cancellation never substitute a geometric result
+  ---
+  duration_ms: 17.6049
+  type: 'test'
+  ...
+# Subtest: Jezero default slope restriction cannot be disabled by an undefined option
+ok 197 - Jezero default slope restriction cannot be disabled by an undefined option
+  ---
+  duration_ms: 2.7043
+  type: 'test'
+  ...
+# Subtest: gale: three distinct ordered waypoints keep segment junctions
+ok 198 - gale: three distinct ordered waypoints keep segment junctions
+  ---
+  duration_ms: 3477.4125
+  type: 'test'
+  ...
+# Subtest: jezero: three distinct ordered waypoints keep segment junctions
+ok 199 - jezero: three distinct ordered waypoints keep segment junctions
+  ---
+  duration_ms: 317.1417
+  type: 'test'
+  ...
+# Subtest: Gale coarse comparison stays a separate authentic dataset
+ok 200 - Gale coarse comparison stays a separate authentic dataset
+  ---
+  duration_ms: 1398.3734
+  type: 'test'
+  ...
+# Subtest: initWaypointPlanFromMission: empty mission produces valid baseline plan
+ok 201 - initWaypointPlanFromMission: empty mission produces valid baseline plan
+  ---
+  duration_ms: 22.7064
+  type: 'test'
+  ...
+# Subtest: initWaypointPlanFromMission: start coordinates become Base Camp waypoint
+ok 202 - initWaypointPlanFromMission: start coordinates become Base Camp waypoint
+  ---
+  duration_ms: 7.8547
+  type: 'test'
+  ...
+# Subtest: initWaypointPlanFromMission: unverified targets are NOT converted to geographic waypoints
+ok 203 - initWaypointPlanFromMission: unverified targets are NOT converted to geographic waypoints
+  ---
+  duration_ms: 1.4531
+  type: 'test'
+  ...
+# Subtest: initWaypointPlanFromMission: verified targets are converted to science_stop waypoints
+ok 204 - initWaypointPlanFromMission: verified targets are converted to science_stop waypoints
+  ---
+  duration_ms: 14.3529
+  type: 'test'
+  ...
+# Subtest: initWaypointPlanFromMission: one-way mission with endpoint creates recovery waypoint
+ok 205 - initWaypointPlanFromMission: one-way mission with endpoint creates recovery waypoint
+  ---
+  duration_ms: 6.9385
+  type: 'test'
+  ...
+# Subtest: initWaypointPlanFromMission: existing valid waypoint_plan is returned as-is
+ok 206 - initWaypointPlanFromMission: existing valid waypoint_plan is returned as-is
+  ---
+  duration_ms: 1.8116
+  type: 'test'
+  ...
+# Subtest: syncMissionWithWaypointPlan: syncs base, endpoint, target_ids, and preserves unverified targets
+ok 207 - syncMissionWithWaypointPlan: syncs base, endpoint, target_ids, and preserves unverified targets
+  ---
+  duration_ms: 2.2349
+  type: 'test'
+  ...
+# Subtest: syncWaypointPlanWithMission: preserves intermediate waypoints when science targets change
+ok 208 - syncWaypointPlanWithMission: preserves intermediate waypoints when science targets change
+  ---
+  duration_ms: 3.3686
+  type: 'test'
+  ...
+# Subtest: persistence: backward-compatible save and load of missions with and without waypoint_plan
+ok 209 - persistence: backward-compatible save and load of missions with and without waypoint_plan
+  ---
+  duration_ms: 7.723
+  type: 'test'
+  ...
+# Subtest: parseMission: enforces regional state isolation for waypoint_plan
+ok 210 - parseMission: enforces regional state isolation for waypoint_plan
+  ---
+  duration_ms: 2.8307
+  type: 'test'
+  ...
+# Subtest: fromDisplayCoordinates
+    # Subtest: converts standard coordinates to Mars planetocentric and East-positive
+    ok 1 - converts standard coordinates to Mars planetocentric and East-positive
+      ---
+      duration_ms: 2.1447
+      type: 'test'
+      ...
+    # Subtest: handles multi-world and negative longitude wrapping
+    ok 2 - handles multi-world and negative longitude wrapping
+      ---
+      duration_ms: 0.6389
+      type: 'test'
+      ...
+    # Subtest: clamps extreme latitudes to [-90, 90]
+    ok 3 - clamps extreme latitudes to [-90, 90]
+      ---
+      duration_ms: 0.5407
+      type: 'test'
+      ...
+    # Subtest: throws on non-finite inputs
+    ok 4 - throws on non-finite inputs
+      ---
+      duration_ms: 1.0213
+      type: 'test'
+      ...
+    1..4
+ok 211 - fromDisplayCoordinates
+  ---
+  duration_ms: 6.7545
+  type: 'suite'
+  ...
+# Subtest: isCoordinateWithinExtent
+    # Subtest: returns true for coordinates strictly inside Gale extent
+    ok 1 - returns true for coordinates strictly inside Gale extent
+      ---
+      duration_ms: 0.5998
+      type: 'test'
+      ...
+    # Subtest: returns false for coordinates outside extent in any direction
+    ok 2 - returns false for coordinates outside extent in any direction
+      ---
+      duration_ms: 0.3412
+      type: 'test'
+      ...
+    # Subtest: returns false when extent is null or undefined
+    ok 3 - returns false when extent is null or undefined
+      ---
+      duration_ms: 0.7388
+      type: 'test'
+      ...
+    # Subtest: handles extents that cross the 360/0 degree antimeridian
+    ok 4 - handles extents that cross the 360/0 degree antimeridian
+      ---
+      duration_ms: 1.1319
+      type: 'test'
+      ...
+    1..4
+ok 212 - isCoordinateWithinExtent
+  ---
+  duration_ms: 4.2717
+  type: 'suite'
+  ...
+# Subtest: buildTrajectoryGeoJSON
+    # Subtest: returns empty FeatureCollection when plan has < 2 waypoints
+    ok 1 - returns empty FeatureCollection when plan has < 2 waypoints
+      ---
+      duration_ms: 13.7195
+      type: 'test'
+      ...
+    # Subtest: builds outbound and return LineString features with scientific metadata
+    ok 2 - builds outbound and return LineString features with scientific metadata
+      ---
+      duration_ms: 5.1778
+      type: 'test'
+      ...
+    # Subtest: segment isolation: an unsupported long segment does not hide valid segments
+    ok 3 - segment isolation: an unsupported long segment does not hide valid segments
+      ---
+      duration_ms: 3.9215
+      type: 'test'
+      ...
+    1..3
+ok 213 - buildTrajectoryGeoJSON
+  ---
+  duration_ms: 23.3956
+  type: 'suite'
+  ...
+# Subtest: densifyTrajectorySegment — Numerical & Geometric Verification
+    # Subtest: short segment (< 1 km): preserves exact endpoints and respects <= 100m step length
+    ok 1 - short segment (< 1 km): preserves exact endpoints and respects <= 100m step length
+      ---
+      duration_ms: 0.6212
+      type: 'test'
+      ...
+    # Subtest: 10 km segment: exactly 100 steps, step length <= 100m
+    ok 2 - 10 km segment: exactly 100 steps, step length <= 100m
+      ---
+      duration_ms: 0.613
+      type: 'test'
+      ...
+    # Subtest: 20 km segment: 200 steps, step length <= 100m (not clamped to 100 steps)
+    ok 3 - 20 km segment: 200 steps, step length <= 100m (not clamped to 100 steps)
+      ---
+      duration_ms: 0.9281
+      type: 'test'
+      ...
+    # Subtest: 50 km segment within 1000-step limit: 500 steps, status=supported
+    ok 4 - 50 km segment within 1000-step limit: 500 steps, status=supported
+      ---
+      duration_ms: 2.0134
+      type: 'test'
+      ...
+    # Subtest: longer segment (150 km) exceeding 1000 steps: returns explicit unsupported result
+    ok 5 - longer segment (150 km) exceeding 1000 steps: returns explicit unsupported result
+      ---
+      duration_ms: 0.5528
+      type: 'test'
+      ...
+    # Subtest: custom complexity limit enforcement (20 km with maxSteps=100 returns unsupported)
+    ok 6 - custom complexity limit enforcement (20 km with maxSteps=100 returns unsupported)
+      ---
+      duration_ms: 0.3914
+      type: 'test'
+      ...
+    # Subtest: antimeridian crossing segment: splits into multiple LineString vertex sets
+    ok 7 - antimeridian crossing segment: splits into multiple LineString vertex sets
+      ---
+      duration_ms: 0.6531
+      type: 'test'
+      ...
+    1..7
+ok 214 - densifyTrajectorySegment — Numerical & Geometric Verification
+  ---
+  duration_ms: 6.6709
+  type: 'suite'
+  ...
+# Subtest: Waypoint Creation & Provenance
+    # Subtest: creates a user-defined waypoint with default provenance
+    ok 1 - creates a user-defined waypoint with default provenance
+      ---
+      duration_ms: 16.4083
+      type: 'test'
+      ...
+    # Subtest: throws on invalid coordinates (latitude out of range)
+    ok 2 - throws on invalid coordinates (latitude out of range)
+      ---
+      duration_ms: 2.9727
+      type: 'test'
+      ...
+    # Subtest: throws on invalid coordinates (longitude out of range)
+    ok 3 - throws on invalid coordinates (longitude out of range)
+      ---
+      duration_ms: 1.3163
+      type: 'test'
+      ...
+    # Subtest: creates a waypoint from a verified Target record
+    ok 4 - creates a waypoint from a verified Target record
+      ---
+      duration_ms: 6.2363
+      type: 'test'
+      ...
+    # Subtest: throws when attempting to create waypoint from unverified or null-coordinate target
+    ok 5 - throws when attempting to create waypoint from unverified or null-coordinate target
+      ---
+      duration_ms: 0.6198
+      type: 'test'
+      ...
+    1..5
+ok 215 - Waypoint Creation & Provenance
+  ---
+  duration_ms: 31.6958
+  type: 'suite'
+  ...
+# Subtest: Pure Immutable Plan Management
+    # Subtest: initializes a clean default plan
+    ok 1 - initializes a clean default plan
+      ---
+      duration_ms: 6.0072
+      type: 'test'
+      ...
+    # Subtest: addWaypoint appends and preserves immutability
+    ok 2 - addWaypoint appends and preserves immutability
+      ---
+      duration_ms: 1.6296
+      type: 'test'
+      ...
+    # Subtest: addWaypoint inserts at specified index
+    ok 3 - addWaypoint inserts at specified index
+      ---
+      duration_ms: 2.6814
+      type: 'test'
+      ...
+    # Subtest: addWaypoint rejects duplicate waypoint IDs
+    ok 4 - addWaypoint rejects duplicate waypoint IDs
+      ---
+      duration_ms: 1.1292
+      type: 'test'
+      ...
+    # Subtest: removeWaypoint removes stop and preserves immutability
+    ok 5 - removeWaypoint removes stop and preserves immutability
+      ---
+      duration_ms: 1.5269
+      type: 'test'
+      ...
+    # Subtest: removeWaypoint throws if waypoint ID is not found
+    ok 6 - removeWaypoint throws if waypoint ID is not found
+      ---
+      duration_ms: 0.7862
+      type: 'test'
+      ...
+    # Subtest: updateWaypoint updates attributes immutably
+    ok 7 - updateWaypoint updates attributes immutably
+      ---
+      duration_ms: 0.9702
+      type: 'test'
+      ...
+    # Subtest: updateWaypoint throws if waypoint ID is not found
+    ok 8 - updateWaypoint throws if waypoint ID is not found
+      ---
+      duration_ms: 0.7709
+      type: 'test'
+      ...
+    # Subtest: reorderWaypoints preserves the selected base and orders intermediate stops
+    ok 9 - reorderWaypoints preserves the selected base and orders intermediate stops
+      ---
+      duration_ms: 1.4654
+      type: 'test'
+      ...
+    # Subtest: reorderWaypoints throws on length mismatch or unknown IDs
+    ok 10 - reorderWaypoints throws on length mismatch or unknown IDs
+      ---
+      duration_ms: 1.1717
+      type: 'test'
+      ...
+    # Subtest: moveWaypoint shifts stop position by delta
+    ok 11 - moveWaypoint shifts stop position by delta
+      ---
+      duration_ms: 1.1866
+      type: 'test'
+      ...
+    # Subtest: setOrigin designates base and places at index 0
+    ok 12 - setOrigin designates base and places at index 0
+      ---
+      duration_ms: 2.9728
+      type: 'test'
+      ...
+    # Subtest: setDestination sets destination at last index
+    ok 13 - setDestination sets destination at last index
+      ---
+      duration_ms: 1.08
+      type: 'test'
+      ...
+    # Subtest: setTrajectoryMode updates mode and recovery context
+    ok 14 - setTrajectoryMode updates mode and recovery context
+      ---
+      duration_ms: 0.5784
+      type: 'test'
+      ...
+    1..14
+ok 216 - Pure Immutable Plan Management
+  ---
+  duration_ms: 25.8012
+  type: 'suite'
+  ...
+# Subtest: Plan Validation Rules
+    # Subtest: rejects empty plan
+    ok 1 - rejects empty plan
+      ---
+      duration_ms: 1.3068
+      type: 'test'
+      ...
+    # Subtest: detects duplicate waypoint IDs
+    ok 2 - detects duplicate waypoint IDs
+      ---
+      duration_ms: 0.6705
+      type: 'test'
+      ...
+    # Subtest: requires a selected base when no waypoint has the base role
+    ok 3 - requires a selected base when no waypoint has the base role
+      ---
+      duration_ms: 0.5941
+      type: 'test'
+      ...
+    # Subtest: enforces one-way mode constraints: destination role & recovery assumption
+    ok 4 - enforces one-way mode constraints: destination role & recovery assumption
+      ---
+      duration_ms: 1.5125
+      type: 'test'
+      ...
+    # Subtest: warns on consecutive coincident waypoints
+    ok 5 - warns on consecutive coincident waypoints
+      ---
+      duration_ms: 0.7359
+      type: 'test'
+      ...
+    1..5
+ok 217 - Plan Validation Rules
+  ---
+  duration_ms: 5.3039
+  type: 'suite'
+  ...
+# Subtest: Trajectory Generation & Distance Metrics
+    # Subtest: generates empty trajectory for empty plan
+    ok 1 - generates empty trajectory for empty plan
+      ---
+      duration_ms: 0.9191
+      type: 'test'
+      ...
+    # Subtest: generates 0 segments for single-waypoint plan
+    ok 2 - generates 0 segments for single-waypoint plan
+      ---
+      duration_ms: 0.4902
+      type: 'test'
+      ...
+    # Subtest: calculates one-way trajectory segment and distance accurately
+    ok 3 - calculates one-way trajectory segment and distance accurately
+      ---
+      duration_ms: 1.2258
+      type: 'test'
+      ...
+    # Subtest: calculates round-trip trajectory with return closure leg
+    ok 4 - calculates round-trip trajectory with return closure leg
+      ---
+      duration_ms: 0.8596
+      type: 'test'
+      ...
+    # Subtest: verifies multi-waypoint loop: total distance strictly equals sum of segments
+    ok 5 - verifies multi-waypoint loop: total distance strictly equals sum of segments
+      ---
+      duration_ms: 1.3132
+      type: 'test'
+      ...
+    # Subtest: handles antimeridian crossing across 0° / 360° boundary
+    ok 6 - handles antimeridian crossing across 0° / 360° boundary
+      ---
+      duration_ms: 0.7336
+      type: 'test'
+      ...
+    # Subtest: resamples geometric trajectory preserving start and end points
+    ok 7 - resamples geometric trajectory preserving start and end points
+      ---
+      duration_ms: 1.7501
+      type: 'test'
+      ...
+    1..7
+ok 218 - Trajectory Generation & Distance Metrics
+  ---
+  duration_ms: 8.05
+  type: 'suite'
+  ...
+# Subtest: Serialization & Schema Integrity
+    # Subtest: serializes and deserializes a plan with zero information loss
+    ok 1 - serializes and deserializes a plan with zero information loss
+      ---
+      duration_ms: 1.9354
+      type: 'test'
+      ...
+    # Subtest: deserializeWaypointPlan throws on invalid JSON or corrupt schema
+    ok 2 - deserializeWaypointPlan throws on invalid JSON or corrupt schema
+      ---
+      duration_ms: 2.84
+      type: 'test'
+      ...
+    1..2
+ok 219 - Serialization & Schema Integrity
+  ---
+  duration_ms: 5.33
+  type: 'suite'
+  ...
+# Subtest: Waypoint Formatting Helpers
+    # Subtest: formatDistance correctly formats sub-kilometer and multi-kilometer metrics
+    ok 1 - formatDistance correctly formats sub-kilometer and multi-kilometer metrics
+      ---
+      duration_ms: 74.3277
+      type: 'test'
+      ...
+    # Subtest: formatBearing normalizes degrees to 3-digit zero-padded representations
+    ok 2 - formatBearing normalizes degrees to 3-digit zero-padded representations
+      ---
+      duration_ms: 0.7689
+      type: 'test'
+      ...
+    # Subtest: formatCoordinates formats planetocentric lat and East lon with signs
+    ok 3 - formatCoordinates formats planetocentric lat and East lon with signs
+      ---
+      duration_ms: 0.7694
+      type: 'test'
+      ...
+    # Subtest: roleDisplay returns human-readable labels and icons
+    ok 4 - roleDisplay returns human-readable labels and icons
+      ---
+      duration_ms: 0.454
+      type: 'test'
+      ...
+    1..4
+ok 220 - Waypoint Formatting Helpers
+  ---
+  duration_ms: 91.5834
+  type: 'suite'
+  ...
+# Subtest: WaypointItinerary Component Rendering
+    # Subtest: renders empty state when plan has 0 waypoints
+    ok 1 - renders empty state when plan has 0 waypoints
+      ---
+      duration_ms: 52.6518
+      type: 'test'
+      ...
+    # Subtest: renders ordered waypoint list with correct numbers, titles, and coordinates
+    ok 2 - renders ordered waypoint list with correct numbers, titles, and coordinates
+      ---
+      duration_ms: 30.092
+      type: 'test'
+      ...
+    # Subtest: renders non-color-dependent provenance badges
+    ok 3 - renders non-color-dependent provenance badges
+      ---
+      duration_ms: 16.1973
+      type: 'test'
+      ...
+    # Subtest: renders inter-segment leg distances and bearings
+    ok 4 - renders inter-segment leg distances and bearings
+      ---
+      duration_ms: 18.0067
+      type: 'test'
+      ...
+    # Subtest: renders closing return leg card in round-trip mode
+    ok 5 - renders closing return leg card in round-trip mode
+      ---
+      duration_ms: 20.0916
+      type: 'test'
+      ...
+    # Subtest: does NOT render return leg card in one-way mode
+    ok 6 - does NOT render return leg card in one-way mode
+      ---
+      duration_ms: 15.4015
+      type: 'test'
+      ...
+    # Subtest: renders distance summary with additive breakdown and mandatory scientific disclaimer
+    ok 7 - renders distance summary with additive breakdown and mandatory scientific disclaimer
+      ---
+      duration_ms: 39.2818
+      type: 'test'
+      ...
+    1..7
+ok 221 - WaypointItinerary Component Rendering
+  ---
+  duration_ms: 192.8754
+  type: 'suite'
+  ...
+# Subtest: WaypointEditor Component Rendering & Validation
+    # Subtest: renders plan title, mode selector, and origin status
+    ok 1 - renders plan title, mode selector, and origin status
+      ---
+      duration_ms: 22.1248
+      type: 'test'
+      ...
+    # Subtest: renders validation error notice when one-way mode is missing required destination and recovery note
+    ok 2 - renders validation error notice when one-way mode is missing required destination and recovery note
+      ---
+      duration_ms: 28.5022
+      type: 'test'
+      ...
+    # Subtest: renders recoverable validation errors when no origin base is selected
+    ok 3 - renders recoverable validation errors when no origin base is selected
+      ---
+      duration_ms: 25.7882
+      type: 'test'
+      ...
+    # Subtest: renders interactive placement button when onRequestMapPlacement is provided
+    ok 4 - renders interactive placement button when onRequestMapPlacement is provided
+      ---
+      duration_ms: 58.0588
+      type: 'test'
+      ...
+    1..4
+ok 222 - WaypointEditor Component Rendering & Validation
+  ---
+  duration_ms: 136.573
+  type: 'suite'
+  ...
+# Subtest: Waypoint Component Callback Interactions
+    # Subtest: triggers onWaypointMove when move buttons are clicked
+    ok 1 - triggers onWaypointMove when move buttons are clicked
+      ---
+      duration_ms: 7.8308
+      type: 'test'
+      ...
+    # Subtest: triggers onWaypointRemove when delete button is clicked
+    ok 2 - triggers onWaypointRemove when delete button is clicked
+      ---
+      duration_ms: 5.971
+      type: 'test'
+      ...
+    # Subtest: triggers onSetOrigin when Make Base button is clicked on a non-origin waypoint
+    ok 3 - triggers onSetOrigin when Make Base button is clicked on a non-origin waypoint
+      ---
+      duration_ms: 6.7645
+      type: 'test'
+      ...
+    # Subtest: triggers onModeChange in WaypointEditor when direction radio changes
+    ok 4 - triggers onModeChange in WaypointEditor when direction radio changes
+      ---
+      duration_ms: 3.5181
+      type: 'test'
+      ...
+    # Subtest: triggers onPlanNameChange in WaypointEditor when plan title is edited
+    ok 5 - triggers onPlanNameChange in WaypointEditor when plan title is edited
+      ---
+      duration_ms: 3.6553
+      type: 'test'
+      ...
+    # Subtest: triggers onRecoveryAssumptionChange in WaypointEditor in one-way mode
+    ok 6 - triggers onRecoveryAssumptionChange in WaypointEditor in one-way mode
+      ---
+      duration_ms: 13.042
+      type: 'test'
+      ...
+    1..6
+ok 223 - Waypoint Component Callback Interactions
+  ---
+  duration_ms: 51.8064
+  type: 'suite'
+  ...
+1..223
+# tests 463
+# suites 64
+# pass 463
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 17641.8022

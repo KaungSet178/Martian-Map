@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "id": "e7370395-9bc6-4165-a150-8e65d685ae93",
+  "name": "Jezero Crater field plan",
+  "region": "jezero",
+  "target_ids": [
+    "jezero-objective-3",
+    "jezero-objective-5"
+  ],
+  "direction": "round",
+  "start": {
+    "latitude": 18.444627,
+    "longitude_east": 77.450886
+  },
+  "endpoint": null,
+  "recovery_assumption": "I4A user-defined rendezvous scenario",
+  "oxygen_reserve_percent": 25,
+  "battery_reserve_percent": 25,
+  "dataset_version": "jezero-four-layers-v10",
+  "model_versions": {},
+  "saved_at": "2026-11-15T01:15:16.998Z",
+  "waypoint_plan": {
+    "schema_version": 1,
+    "id": "plan-810b0796-6cc7-4397-817f-b7ed590dbac9",
+    "name": "Jezero Crater field plan",
+    "region_id": "jezero",
+    "mode": "round_trip",
+    "waypoints": [
+      {
+        "id": "wp-aed850fe-16f2-4f4c-b0d1-995814df25e5",
+        "coordinates": {
+          "latitude": 18.444627,
+          "longitude_east": 77.450886
+        },
+        "role": "base",
+        "label": "I4A Manual Base",
+        "provenance": "user_planning_input"
+      },
+      {
+        "id": "wp-d4382c6f-779d-4bba-8553-295961d98183",
+        "coordinates": {
+          "latitude": 18.455,
+          "longitude_east": 77.38
+        },
+        "role": "intermediate",
+        "label": "I4A Manual Science",
+        "provenance": "user_planning_input",
+        "stop_duration_seconds": 123
+      },
+      {
+        "id": "wp-997518f2-46c0-4f12-9cb5-db300d03cbbe",
+        "coordinates": {
+          "latitude": 18.435,
+          "longitude_east": 77.43
+        },
+        "role": "intermediate",
+        "label": "I4A Manual Final",
+        "provenance": "user_planning_input"
+      }
+    ],
+    "recovery_assumption": "I4A user-defined rendezvous scenario",
+    "created_at": "2026-11-15T01:15:15.427Z",
+    "updated_at": "2026-11-15T01:15:16.464Z"
+  },
+  "terrain_route": {
+    "version": "terrain-i3a-v1-georeferenced",
+    "requestKey": "[\"terrain-i3a-v1-georeferenced\",\"e7370395-9bc6-4165-a150-8e65d685ae93\",\"jezero\",\"jezero-four-layers-v10\",\"jezero-usgs-trn-dtm-routing-25m\",100,\"round_trip\",[{\"id\":\"wp-aed850fe-16f2-4f4c-b0d1-995814df25e5\",\"coordinates\":{\"latitude\":18.444627,\"longitude_east\":77.450886},\"role\":\"base\",\"label\":\"I4A Manual Base\",\"provenance\":\"user_planning_input\"},{\"id\":\"wp-d4382c6f-779d-4bba-8553-295961d98183\",\"coordinates\":{\"latitude\":18.455,\"longitude_east\":77.38},\"role\":\"intermediate\",\"label\":\"I4A Manual Science\",\"provenance\":\"user_planning_input\",\"stop_duration_seconds\":123},{\"id\":\"wp-997518f2-46c0-4f12-9cb5-db300d03cbbe\",\"coordinates\":{\"latitude\":18.435,\"longitude_east\":77.43},\"role\":\"intermediate\",\"label\":\"I4A Manual Final\",\"provenance\":\"user_planning_input\"}]]",
+    "preference": "lower-terrain-cost",
+    "datasetId": "jezero-usgs-trn-dtm-routing-25m",
+    "maxSnapMeters": 100
+  },
+  "terrain_assumptions": {
+    "speed": "1000"
+  }
+}

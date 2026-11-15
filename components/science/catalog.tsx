@@ -3,6 +3,7 @@
 import { ArrowUpRight, Check, Plus } from "lucide-react";
 import type { RegionManifest, Target } from "@/lib/contracts/region";
 import { Badge, Notice, EvidenceBadge } from "@/components/ui/primitives";
+import { objectiveLocationEvidence } from "@/regions/location-evidence";
 import { PhotographEvidence } from "./photograph";
 
 export function TargetCatalog({
@@ -120,6 +121,7 @@ export function TargetDetails({
           {target.photographs.map((photo) => <PhotographEvidence key={photo.id} photo={photo} />)}
         </section>
       )}
+      <p className="supporting">Independent geographic registration: {objectiveLocationEvidence(region.id, target.id).registration_verified ? "verified" : "unverified"}. Positional uncertainty: unknown. Source verification does not establish navigation eligibility.</p>
       <h3>Proposed field activity</h3>
       <p>{target.activity}</p>
       {target.routing_eligibility.status === "unavailable" && (

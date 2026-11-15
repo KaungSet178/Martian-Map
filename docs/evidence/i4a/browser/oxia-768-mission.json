@@ -1,0 +1,118 @@
+{
+  "schema_version": 1,
+  "id": "dbf87d81-1e58-42fd-9ab5-44d9b69f53b2",
+  "name": "Oxia Planum field plan",
+  "region": "oxia",
+  "target_ids": [
+    "oxia-objective-1",
+    "oxia-objective-2"
+  ],
+  "direction": "round",
+  "start": {
+    "latitude": 18.2,
+    "longitude_east": 335.4
+  },
+  "endpoint": null,
+  "recovery_assumption": "I4A user-defined rendezvous scenario",
+  "oxygen_reserve_percent": 25,
+  "battery_reserve_percent": 25,
+  "dataset_version": "oxia-thermal-colour-v11",
+  "model_versions": {},
+  "saved_at": "2026-11-15T01:15:21.269Z",
+  "waypoint_plan": {
+    "schema_version": 1,
+    "id": "plan-043fecf5-97d5-4091-97f5-4917d14baf81",
+    "name": "Oxia Planum field plan",
+    "region_id": "oxia",
+    "mode": "round_trip",
+    "waypoints": [
+      {
+        "id": "wp-774892a5-df3f-4b66-9fb5-369005bbd542",
+        "coordinates": {
+          "latitude": 18.2,
+          "longitude_east": 335.4
+        },
+        "role": "base",
+        "label": "I4A Manual Base",
+        "provenance": "user_planning_input"
+      },
+      {
+        "id": "wp-oxia-objective-1",
+        "coordinates": {
+          "latitude": 18.22,
+          "longitude_east": 335.83
+        },
+        "role": "science_stop",
+        "label": "Clay-rich bedrock study",
+        "target_id": "oxia-objective-1",
+        "provenance": "verified_science_target",
+        "evidence": {
+          "classification": "Interpreted",
+          "source_ids": [
+            "oxia-trek-aqueous",
+            "oxia-trek-hydrous"
+          ],
+          "source_verified": null,
+          "processing_verified": null,
+          "coordinate_verified": true,
+          "registration_verified": false,
+          "positional_uncertainty_m": null,
+          "representation": "point",
+          "precision_disclosure": "Catalog coordinate values retained as supplied. Source-supported positional uncertainty and absolute registration are unverified; displayed digits do not establish survey accuracy.",
+          "routing_eligible": false
+        },
+        "notes": "Examine clay-bearing material as a record of past water-rock alteration."
+      },
+      {
+        "id": "wp-oxia-objective-2",
+        "coordinates": {
+          "latitude": 17.84,
+          "longitude_east": 336.33
+        },
+        "role": "science_stop",
+        "label": "Hydrated silica detection",
+        "target_id": "oxia-objective-2",
+        "provenance": "verified_science_target",
+        "evidence": {
+          "classification": "Interpreted",
+          "source_ids": [
+            "oxia-trek-aqueous"
+          ],
+          "source_verified": null,
+          "processing_verified": null,
+          "coordinate_verified": true,
+          "registration_verified": false,
+          "positional_uncertainty_m": null,
+          "representation": "point",
+          "precision_disclosure": "Catalog coordinate values retained as supplied. Source-supported positional uncertainty and absolute registration are unverified; displayed digits do not establish survey accuracy.",
+          "routing_eligible": false
+        },
+        "notes": "Examine silica-bearing material and compare it with nearby clay detections."
+      },
+      {
+        "id": "wp-5e548cab-136f-48cf-a804-ad9a757c9922",
+        "coordinates": {
+          "latitude": 18.21,
+          "longitude_east": 335.41
+        },
+        "role": "intermediate",
+        "label": "I4A Manual Science",
+        "provenance": "user_planning_input",
+        "stop_duration_seconds": 123
+      },
+      {
+        "id": "wp-df15e7c7-19cc-48fe-b581-0fbfdee6dfd9",
+        "coordinates": {
+          "latitude": 18.22,
+          "longitude_east": 335.42
+        },
+        "role": "intermediate",
+        "label": "I4A Manual Final",
+        "provenance": "user_planning_input"
+      }
+    ],
+    "recovery_assumption": "I4A user-defined rendezvous scenario",
+    "created_at": "2026-11-15T01:15:19.851Z",
+    "updated_at": "2026-11-15T01:15:21.165Z"
+  }
+}

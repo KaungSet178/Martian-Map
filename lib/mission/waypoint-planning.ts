@@ -1,3 +1,4 @@
+import { objectiveGeographicEvidence } from "@/lib/science/objective-location-adapter";
 /**
  * Mars geometric waypoint planning foundation.
  *
@@ -89,6 +90,7 @@ export const waypointEvidenceSchema = z.object({
 });
 
 export function targetWaypointEvidence(target: Target): z.infer<typeof waypointEvidenceSchema> {
+  const geography = objectiveGeographicEvidence(target);
   return {
     classification: target.evidence,
     source_ids: [...target.source_ids],
@@ -96,8 +98,8 @@ export function targetWaypointEvidence(target: Target): z.infer<typeof waypointE
     source_verified: null,
     processing_verified: null,
     coordinate_verified: target.coordinate_verified,
-    registration_verified: null,
-    positional_uncertainty_m: null,
+    registration_verified: geography.registration_verified,
+    positional_uncertainty_m: geography.positional_uncertainty_m,
     representation: target.feature_kind === "geological_area" ? "approximate_area" : target.coordinates ? "point" : "unavailable",
     precision_disclosure: (target.location_notes ? `${target.location_notes} ` : "") + (target.coordinates
       ? "Catalog coordinate values retained as supplied. Source-supported positional uncertainty and absolute registration are unverified; displayed digits do not establish survey accuracy."

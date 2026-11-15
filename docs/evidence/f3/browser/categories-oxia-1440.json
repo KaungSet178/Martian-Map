@@ -1,0 +1,259 @@
+{
+  "checks": [
+    {
+      "category": "Elevation",
+      "layer": "oxia-elevation",
+      "visible_pixels": 239304,
+      "opacity_pixels": 239304
+    },
+    {
+      "category": "Hillshade",
+      "layer": "oxia-terrain",
+      "visible_pixels": 238421,
+      "opacity_pixels": 238162
+    },
+    {
+      "category": "Slope",
+      "layer": "oxia-slope",
+      "visible_pixels": 239304,
+      "opacity_pixels": 239304
+    },
+    {
+      "category": "Thermal",
+      "layer": "oxia-thermal-night",
+      "visible_pixels": 239304,
+      "opacity_pixels": 239304
+    }
+  ],
+  "errors": [],
+  "responses": [
+    {
+      "url": "/maps/oxia/ctx-tiles/8/110/114.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/oxia/ctx-tiles/8/110/115.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/oxia/ctx-tiles/8/111/114.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/oxia/ctx-tiles/8/109/115.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/oxia/ctx-tiles/8/111/115.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/oxia/ctx-tiles/8/109/114.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/oxia/elevation-tiles/8/110/114.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/oxia/elevation-tiles/8/111/114.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/oxia/elevation-tiles/8/110/115.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/oxia/elevation-tiles/8/109/115.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/oxia/elevation-tiles/8/111/115.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/oxia/elevation-tiles/8/109/114.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/oxia/hillshade-tiles/8/110/115.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/oxia/hillshade-tiles/8/110/114.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/oxia/hillshade-tiles/8/111/114.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/oxia/hillshade-tiles/8/109/114.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/oxia/hillshade-tiles/8/111/115.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/oxia/hillshade-tiles/8/109/115.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/oxia/slope-tiles/8/110/115.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/oxia/slope-tiles/8/109/115.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/oxia/slope-tiles/8/111/115.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/oxia/slope-tiles/8/111/114.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/oxia/slope-tiles/8/110/114.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/oxia/slope-tiles/8/109/114.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/oxia/themis-night-tiles/8/110/114.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/oxia/themis-night-tiles/8/110/115.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/oxia/themis-night-tiles/8/109/114.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/oxia/themis-night-tiles/8/111/115.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/oxia/themis-night-tiles/8/111/114.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/oxia/themis-night-tiles/8/109/115.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/terrain-regional/coverage.geojson",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/terrain-global/coverage.geojson",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/curiosity-traverse.geojson",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/ctx-tiles/13/7222/4204.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/ctx-tiles/13/7223/4204.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/ctx-tiles/13/7222/4203.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/ctx-tiles/13/7223/4203.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/ctx-tiles/13/7222/4205.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/ctx-tiles/13/7221/4204.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/ctx-tiles/13/7221/4203.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/ctx-tiles/13/7223/4205.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/ctx-tiles/13/7221/4205.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/perseverance-traverse.geojson",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/ctx-lvs-tiles/12/2928/1834.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/ctx-lvs-tiles/12/2927/1834.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/ctx-lvs-tiles/12/2928/1833.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/ctx-lvs-tiles/12/2927/1833.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/ctx-lvs-tiles/12/2926/1834.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/ctx-lvs-tiles/12/2926/1833.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/ctx-lvs-tiles/12/2929/1834.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/ctx-lvs-tiles/12/2929/1833.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/oxia/ctx-tiles/8/110/114.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/oxia/ctx-tiles/8/110/115.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/oxia/ctx-tiles/8/111/114.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/oxia/ctx-tiles/8/111/115.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/oxia/ctx-tiles/8/109/114.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/oxia/ctx-tiles/8/109/115.png",
+      "status": 200
+    }
+  ]
+}

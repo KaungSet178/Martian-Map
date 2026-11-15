@@ -39,7 +39,6 @@ test("all region fixtures obey shared contract and cannot imply scientific readi
           "gale-terrain",
           "gale-hillshade",
           "gale-slope",
-          "gale-geology",
           "gale-traverse-recorded",
           "gale-coverage-regional",
           "gale-coverage-global",

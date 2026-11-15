@@ -50,7 +50,9 @@ export function missionPlanningSnapshot(mission: Mission, region: RegionManifest
   }));
   const objectives = mission.target_ids.flatMap(id => {
     const target = region.targets.find(t => t.id === id);
-    return target ? [{...target, evidence_text:evidenceText(targetWaypointEvidence(target)), is_waypoint:itinerary.some(w => w.target_id === id)}] : [];
+    if (!target) return [];
+    const planning_evidence = targetWaypointEvidence(target);
+    return [{...target, planning_evidence, evidence_text:evidenceText(planning_evidence), location_disclosure:planning_evidence.precision_disclosure, is_waypoint:itinerary.some(w => w.target_id === id)}];
   });
   const retiredObjectives = mission.target_ids.filter(id => !region.targets.some(t => t.id === id)).map(id => ({id,title:mission.retired_objectives?.find(t => t.id === id)?.title ?? id,reason:mission.retired_objectives?.find(t => t.id === id)?.reason ?? "Retired or unavailable objective; retained for historical context. Not a route destination."}));
   const bases = itinerary.filter(w => w.role === "base");

@@ -103,7 +103,7 @@ export function parseMission(value: unknown, region: RegionManifest): Mission {
   const mission = missionSchema.parse(value);
   if (
     mission.region !== region.id ||
-    mission.target_ids.some((id) => /^(gale|jezero|oxia)[-_]/.test(id) && !id.startsWith(region.id))
+    [...mission.target_ids, ...(mission.waypoint_plan?.waypoints.flatMap(w => w.target_id ? [w.target_id] : []) ?? []), ...(mission.retired_objectives?.map(t => t.id) ?? [])].some((id) => /^(gale|jezero|oxia)[-_]/.test(id) && !id.startsWith(`${region.id}-`) && !id.startsWith(`${region.id}_`))
   ) {
     throw new Error(
       "This plan contains unknown region or objective IDs. Its source catalog is required before opening.",

@@ -16,7 +16,7 @@ export function PlanningSummary({snapshot:s}:{snapshot:MissionPlanningSnapshot})
       {w.notes && <p>{w.notes}</p>}
     </li>)}</ol> : <p>No planning waypoints.</p>}
     <h3>Science objectives</h3>
-    {s.objectives.length ? <ol>{s.objectives.map(t=><li key={t.id}><strong>{t.title}</strong><p>{t.evidence_text}</p><p>{t.is_waypoint ? "Included as a planning waypoint; registration unverified." : "Objective only; no waypoint inferred."} {t.activity}</p></li>)}</ol> : <p>No scientific objectives selected.</p>}
+    {s.objectives.length ? <ol>{s.objectives.map(t=><li key={t.id}><strong>{t.title}</strong><p>{t.evidence_text}</p><p>{t.location_disclosure}</p><p>{t.is_waypoint ? "Included as a planning waypoint; registration unverified." : "Objective only; no waypoint inferred."} {t.activity}</p></li>)}</ol> : <p>No scientific objectives selected.</p>}
     {s.retiredObjectives.length > 0 && <><h3>Retired or unavailable objectives</h3><ul>{s.retiredObjectives.map(t=><li key={t.id}><strong>{t.title}</strong> — {t.reason}</li>)}</ul></>}
     <h3>Research route outputs</h3>
     {!s.geometric.available && <p>Geometric preview unavailable: add two active planning waypoints and resolve retired or unavailable locations.</p>}

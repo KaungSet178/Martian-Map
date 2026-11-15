@@ -1,0 +1,32 @@
+[
+  {
+    "path": "D:\\martian-map-audits\\2026-11-15\\MARSWALK_THREE_REGION_COMPREHENSIVE_AUDIT.md",
+    "bytes": 67050,
+    "sha256": "ea5aa3a53ef33e36dc83f2678a2e96521f2b92e52ed945406b4bb7b1d9ffb434"
+  },
+  {
+    "path": "D:\\martian-map-f1-mission-integrity\\docs\\F1_MISSION_INTEGRITY_REPORT.md",
+    "bytes": 16769,
+    "sha256": "4fd9437f47df6b071d7162d85fa345caf4c635df3180f680a5371830c746ff38"
+  },
+  {
+    "path": "D:\\martian-map-f3-science\\docs\\F3_SCIENTIFIC_VERIFICATION_REPORT.md",
+    "bytes": 25822,
+    "sha256": "bf6950352234824dfc8642f07349765a6a465f82ea956fd3246a9dd03c3c2646"
+  },
+  {
+    "path": "D:\\martian-map-f3-science\\docs\\F3_F1_INTEGRATION_NOTES.md",
+    "bytes": 3276,
+    "sha256": "39313015d06927d0929ddfacb2b0cd53fdf6249cb8a8f966f22f38c12e5191bb"
+  },
+  {
+    "path": "D:\\martian-map-f3-science\\docs\\evidence\\f3\\objective-routing-compatibility.json",
+    "bytes": 30729,
+    "sha256": "ca0979110febe07c51cdc8ecf4233433e239582d874ae30e5041f609b2a98210"
+  },
+  {
+    "path": "D:\\martian-map-routing-integration\\docs\\MAP_ROUTING_FEATURE_INTEGRATION_REPORT.md",
+    "bytes": 25276,
+    "sha256": "4660b6d4a53167702df235bb59fe17d4a97731a35e1596a7a46711ac16fc970b"
+  }
+]

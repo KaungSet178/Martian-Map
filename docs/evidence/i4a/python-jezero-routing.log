@@ -1,0 +1,11 @@
+python : .........
+At line:2 char:1
++ python -m unittest discover -s team/jezero/routing -p test_synthetic_ ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (.........:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.033s
+
+OK

@@ -78,6 +78,7 @@ export const targets = [
     id: "jezero-objective-3",
     region_id: "jezero",
     title: "Sample caching for Mars Sample Return",
+    location_notes: "Three Forks is a particular sample-depot site associated with this goal, not a location for every sample-return activity. Associated proposed landing-circle center (not the tube depot): 18.453697 N, 77.413598 E (planetocentric, east-positive; Williams et al., LPSC 2023 #2618). Published decimal places are not positional accuracy. The 60 m landing-circle radius is not coordinate uncertainty. Independent registration and positional uncertainty remain unknown; the mission objective stays unlocated and non-routable.",
     description:
       "Published Mars 2020 objective: collect and cache the most promising samples representing Jezero's geologic diversity, with documented context, for potential return to Earth.",
     scientific_goal:
@@ -95,6 +96,7 @@ export const targets = [
     coordinate_verified: false,
     source_ids: [
       "jezero-m2020-sample-dossier",
+      "jezero-three-forks-primary-f3",
       "jezero-m2020-science-objectives",
     ],
     activity:

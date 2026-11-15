@@ -1,0 +1,354 @@
+[
+  {
+    "region": "gale",
+    "category": "Elevation",
+    "layer_id": "gale-regional-elevation",
+    "identical_to_I3A": true,
+    "rendering": {
+      "kind": "raster-tiles",
+      "tiles": [
+        "/maps/gale/terrain-regional/elevation/{z}/{x}/{y}.png"
+      ],
+      "tile_size": 256,
+      "min_zoom": 5,
+      "max_zoom": 13,
+      "bounds": {
+        "west_east": 137.32743882663516,
+        "east_east": 137.47471920704652,
+        "south_latitude": -4.838798324880672,
+        "north_latitude": -4.563976171741976
+      },
+      "resampling": "nearest"
+    }
+  },
+  {
+    "region": "gale",
+    "category": "Elevation",
+    "layer_id": "gale-global-elevation",
+    "identical_to_I3A": true,
+    "rendering": {
+      "kind": "raster-tiles",
+      "tiles": [
+        "/maps/gale/terrain-global/elevation/{z}/{x}/{y}.png"
+      ],
+      "tile_size": 256,
+      "min_zoom": 5,
+      "max_zoom": 13,
+      "bounds": {
+        "west_east": 137.09987566364117,
+        "east_east": 137.69709505066461,
+        "south_latitude": -5.096221490785939,
+        "north_latitude": -4.299928974754662
+      },
+      "resampling": "nearest"
+    }
+  },
+  {
+    "region": "gale",
+    "category": "Elevation",
+    "layer_id": "gale-terrain",
+    "identical_to_I3A": true,
+    "rendering": {
+      "kind": "raster-tiles",
+      "tiles": [
+        "/maps/gale/dem/elevation/{z}/{x}/{y}.png"
+      ],
+      "tile_size": 256,
+      "min_zoom": 5,
+      "max_zoom": 14,
+      "bounds": {
+        "west_east": 137.37111842010495,
+        "east_east": 137.38798902496305,
+        "south_latitude": -4.737705748385843,
+        "north_latitude": -4.7208351435277285
+      },
+      "resampling": "nearest"
+    }
+  },
+  {
+    "region": "gale",
+    "category": "Hillshade",
+    "layer_id": "gale-regional-hillshade",
+    "identical_to_I3A": true,
+    "rendering": {
+      "kind": "raster-tiles",
+      "tiles": [
+        "/maps/gale/terrain-regional/hillshade/{z}/{x}/{y}.png"
+      ],
+      "tile_size": 256,
+      "min_zoom": 5,
+      "max_zoom": 13,
+      "bounds": {
+        "west_east": 137.32743882663516,
+        "east_east": 137.47471920704652,
+        "south_latitude": -4.838798324880672,
+        "north_latitude": -4.563976171741976
+      },
+      "resampling": "nearest"
+    }
+  },
+  {
+    "region": "gale",
+    "category": "Hillshade",
+    "layer_id": "gale-global-hillshade",
+    "identical_to_I3A": true,
+    "rendering": {
+      "kind": "raster-tiles",
+      "tiles": [
+        "/maps/gale/terrain-global/hillshade/{z}/{x}/{y}.png"
+      ],
+      "tile_size": 256,
+      "min_zoom": 5,
+      "max_zoom": 13,
+      "bounds": {
+        "west_east": 137.09987566364117,
+        "east_east": 137.69709505066461,
+        "south_latitude": -5.096221490785939,
+        "north_latitude": -4.299928974754662
+      },
+      "resampling": "nearest"
+    }
+  },
+  {
+    "region": "gale",
+    "category": "Hillshade",
+    "layer_id": "gale-hillshade",
+    "identical_to_I3A": true,
+    "rendering": {
+      "kind": "raster-tiles",
+      "tiles": [
+        "/maps/gale/dem/hillshade/{z}/{x}/{y}.png"
+      ],
+      "tile_size": 256,
+      "min_zoom": 5,
+      "max_zoom": 14,
+      "bounds": {
+        "west_east": 137.37111842010495,
+        "east_east": 137.38798902496305,
+        "south_latitude": -4.737705748385843,
+        "north_latitude": -4.7208351435277285
+      },
+      "resampling": "nearest"
+    }
+  },
+  {
+    "region": "gale",
+    "category": "Slope",
+    "layer_id": "gale-regional-slope",
+    "identical_to_I3A": true,
+    "rendering": {
+      "kind": "raster-tiles",
+      "tiles": [
+        "/maps/gale/terrain-regional/slope/{z}/{x}/{y}.png"
+      ],
+      "tile_size": 256,
+      "min_zoom": 5,
+      "max_zoom": 13,
+      "bounds": {
+        "west_east": 137.32743882663516,
+        "east_east": 137.47471920704652,
+        "south_latitude": -4.838798324880672,
+        "north_latitude": -4.563976171741976
+      },
+      "resampling": "nearest"
+    }
+  },
+  {
+    "region": "gale",
+    "category": "Slope",
+    "layer_id": "gale-global-slope",
+    "identical_to_I3A": true,
+    "rendering": {
+      "kind": "raster-tiles",
+      "tiles": [
+        "/maps/gale/terrain-global/slope/{z}/{x}/{y}.png"
+      ],
+      "tile_size": 256,
+      "min_zoom": 5,
+      "max_zoom": 13,
+      "bounds": {
+        "west_east": 137.09987566364117,
+        "east_east": 137.69709505066461,
+        "south_latitude": -5.096221490785939,
+        "north_latitude": -4.299928974754662
+      },
+      "resampling": "nearest"
+    }
+  },
+  {
+    "region": "gale",
+    "category": "Slope",
+    "layer_id": "gale-slope",
+    "identical_to_I3A": true,
+    "rendering": {
+      "kind": "raster-tiles",
+      "tiles": [
+        "/maps/gale/dem/slope/{z}/{x}/{y}.png"
+      ],
+      "tile_size": 256,
+      "min_zoom": 5,
+      "max_zoom": 14,
+      "bounds": {
+        "west_east": 137.37111842010495,
+        "east_east": 137.38798902496305,
+        "south_latitude": -4.737705748385843,
+        "north_latitude": -4.7208351435277285
+      },
+      "resampling": "nearest"
+    }
+  },
+  {
+    "region": "gale",
+    "category": "Thermal",
+    "layer_id": "gale-thermal",
+    "identical_to_I3A": true,
+    "rendering": {
+      "kind": "raster-tiles",
+      "tiles": [
+        "/maps/gale/thermal-tiles/{z}/{x}/{y}.png"
+      ],
+      "tile_size": 256,
+      "min_zoom": 5,
+      "max_zoom": 9,
+      "bounds": {
+        "west_east": 137.327439,
+        "east_east": 137.474719,
+        "south_latitude": -4.838798,
+        "north_latitude": -4.563976
+      },
+      "resampling": "nearest"
+    }
+  },
+  {
+    "region": "jezero",
+    "category": "Elevation",
+    "layer_id": "jezero-elevation",
+    "identical_to_I3A": true,
+    "rendering": {
+      "kind": "raster-tiles",
+      "tiles": [
+        "/maps/jezero/terrain-tiles/{z}/{x}/{y}.png"
+      ],
+      "tile_size": 256,
+      "min_zoom": 5,
+      "max_zoom": 14
+    }
+  },
+  {
+    "region": "jezero",
+    "category": "Hillshade",
+    "layer_id": "jezero-hillshade",
+    "identical_to_I3A": true,
+    "rendering": {
+      "kind": "raster-tiles",
+      "tiles": [
+        "/maps/jezero/hillshade-tiles/{z}/{x}/{y}.png"
+      ],
+      "tile_size": 256,
+      "min_zoom": 5,
+      "max_zoom": 14
+    }
+  },
+  {
+    "region": "jezero",
+    "category": "Slope",
+    "layer_id": "jezero-slope",
+    "identical_to_I3A": true,
+    "rendering": {
+      "kind": "raster-tiles",
+      "tiles": [
+        "/maps/jezero/slope-tiles/{z}/{x}/{y}.png"
+      ],
+      "tile_size": 256,
+      "min_zoom": 5,
+      "max_zoom": 14
+    }
+  },
+  {
+    "region": "jezero",
+    "category": "Thermal",
+    "layer_id": "jezero-thermal",
+    "identical_to_I3A": true,
+    "rendering": {
+      "kind": "raster-tiles",
+      "tiles": [
+        "/maps/jezero/thermal-tiles/{z}/{x}/{y}.png"
+      ],
+      "tile_size": 256,
+      "min_zoom": 5,
+      "max_zoom": 9
+    }
+  },
+  {
+    "region": "oxia",
+    "category": "Elevation",
+    "layer_id": "oxia-elevation",
+    "identical_to_I3A": true,
+    "rendering": {
+      "kind": "raster-tiles",
+      "tiles": [
+        "/maps/oxia/elevation-tiles/{z}/{x}/{y}.png"
+      ],
+      "tile_size": 256,
+      "min_zoom": 5,
+      "max_zoom": 9
+    }
+  },
+  {
+    "region": "oxia",
+    "category": "Hillshade",
+    "layer_id": "oxia-terrain",
+    "identical_to_I3A": true,
+    "rendering": {
+      "kind": "raster-tiles",
+      "tiles": [
+        "/maps/oxia/hillshade-tiles/{z}/{x}/{y}.png"
+      ],
+      "tile_size": 256,
+      "min_zoom": 5,
+      "max_zoom": 9
+    }
+  },
+  {
+    "region": "oxia",
+    "category": "Slope",
+    "layer_id": "oxia-slope",
+    "identical_to_I3A": true,
+    "rendering": {
+      "kind": "raster-tiles",
+      "tiles": [
+        "/maps/oxia/slope-tiles/{z}/{x}/{y}.png"
+      ],
+      "tile_size": 256,
+      "min_zoom": 5,
+      "max_zoom": 9
+    }
+  },
+  {
+    "region": "oxia",
+    "category": "Thermal",
+    "layer_id": "oxia-thermal-night",
+    "identical_to_I3A": true,
+    "rendering": {
+      "kind": "raster-tiles",
+      "tiles": [
+        "/maps/oxia/themis-night-tiles/{z}/{x}/{y}.png"
+      ],
+      "tile_size": 256,
+      "min_zoom": 5,
+      "max_zoom": 10
+    }
+  },
+  {
+    "file": "data/routing/gale/gale-hrsc-30m-routing.tif",
+    "sha256": "b0212c310f1b9fa7cca8f5566d4b3c1dc4c0069e2a1eee59b350b6836d643e4b"
+  },
+  {
+    "file": "data/routing/gale/gale-hrsc-mola-200m-routing.tif",
+    "sha256": "b5b53e2c04e513bb167dde6db893e69b7e79f4c9e266f2a0b70e7bb511bb2bf1"
+  },
+  {
+    "file": "data/routing/jezero/jezero_routing_grid.json",
+    "sha256": "55ba6f1b6a00ff2a674b191fc1698df9c112a8329a6863021afa7675c4766abb"
+  }
+]

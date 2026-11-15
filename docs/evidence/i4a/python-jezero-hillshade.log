@@ -1,0 +1,11 @@
+python : .......
+At line:2 char:129
++ ... outing.log; python -m unittest discover -s team/jezero/terrain -p tes ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (.......:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.031s
+
+OK

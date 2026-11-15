@@ -1,0 +1,177 @@
+MARS SAMPLE RETURN “THREE FORKS” LANDING AND DEPOT SITE SELECTIONS.
+N. R. Williams1, M. P. Golombek1, S. Do1, F. Calef1, H. Lethcoe1, M. Cameron1, A. Trussell1,2, C. Brooks1,3, F.
+Russo1,4, M. Deahn1,5, M. Morris1,6, S. Hibbard1, M. Heverly1, D. Spencer1, E. Fosse1, J. Maki1, 1Jet Propulsion
+Laboratory, California Institute of Technology, Pasadena, CA, 91109, Nathan.R.Williams@jpl.nasa.gov, 2School of
+Earth and Space Exploration, Arizona State University, 3Kansas State University, 4University of Pittsburgh, 5Wesleyan
+University, 6Stony Brook University.
+
+Introduction:  Since landing on Feb. 18, 2021,
+NASA’s Mars 2020 Perseverance rover has collected
+rock, regolith, atmosphere, and witness samples [1] for
+potential future return to Earth through the NASA-ESA
+Mars Sample Return (MSR) campaign. Each sample is
+sealed within a Returnable Sample Tube Assembly
+(RSTA) and attached glove assembly (RGA). As the
+rover approaches completion of its prime mission, an
+initial subset of 10 samples is being deposited onto the
+surface within Jezero crater. These 10 samples serve as
+a backup set to be placed on a benign surface for
+possible retrieval if the rover is unable to deliver its
+primary collection directly to MSR’s Sample Retrieval
+Lander (SRL) in the extended mission. In this backup
+scenario, two Sample Recovery Helicopters (SRH)
+would be employed to retrieve RGAs from the surface
+(collectively, the “depot”) to SRL.
+SRL and SRH must land safely and interact with the
+surface to collect the RGAs, prompting requirements for
+acceptable landing site and depot terrain properties.
+Previous Mars landings and surface operations have
+relied upon analyses of images and other data acquired
+from orbit, as well as extrapolating ground data from
+other previous landing sites [e.g., 2-4]. Orbital data’s
+resolution (>0.25 m/pixel [5]) limits assessments of
+terrain features at ~1 m length scales, and extrapolated
+comparisons to other landing sites don’t capture the
+inherent variability and uncertainty for geologic surface
+properties across a planet.
+The Perseverance rover presents the first ever use of
+in situ reconnaissance to collect surface data for a future
+Mars mission at its planned landing and operations site.
+MSR’s Council of Terrains has leveraged this data to
+select safe locations for SRL and SRH to land and
+operate, as well as to feed back into system design and
+testing. This abstract presents a summary of the
+requirements, surface evaluation and site selection for
+the landing site and depot.
+Requirements:  The SRL landing ellipse is a circle
+60 m in radius, enabled by terrain relative navigation
+and sufficient fuel to divert and fly out other errors
+during descent. Landing circle slopes must be <10°
+measured at the length scale of the vehicle landing gear
+(~2 m). SRL landing gear can tolerate rocks up to 0.19
+m in height and the cumulative fractional area of rocks
+must be <4%. RGAs must be deposited at a distance of
+200-700 m away from the landing site to prevent
+interactions between the lander plume and the RGAs,
+yet still be within the range of an SRH flight.
+RGAs would be deposited by the Perseverance rover
+spaced ≥4.9 m apart. The 0.70-0.95 m radius circular
+drop zones must have no rocks >0.02 m in height.
+Surrounding an RGA drop zone, an SRH approach
+annulus out to an additional 0.9 m must have at most
+one rock between 0.03-0.05 m in height. Also bordering
+each RGA drop zone, we define an SRH helipad
+extending 4.9 m beyond the drop zone, containing no
+rocks >0.05 m in height. RGA’s must be approached by
+the SRH along one axis for pick up, so the percent area
+around the RGA drop zone where potential helipads
+meet the rock/relief requirement should be maximized
+and be at least >90%. Similar to the landing site, SRH-
+scale (0.6 m baseline) slopes must be <10° within each
+of the RGA drop zones, SRH approach annuli, and
+helipads. RGAs are also desired to be visible from
+anywhere within a helipad.
+Data and Methods:  An initial suite of candidate
+sites was preliminarily mapped using orbital data [6].
+On sols 408 and 409 of Perseverance’s mission, the
+rover drove through a candidate landing site,
+subsequently named “Three Forks.” The rover made
+two stops in this region and acquired two high-
+resolution stereo Navcam [7] panoramas plus low-
+resolution stereo images every 7 m, from which 0.01
+m/pixel orthoimage mosaics (ORRs) and digital
+elevation models (DEMs) were derived and then co-
+registered to orbital maps in a global coordinate system.
+Similarly for the depot, on sols 413, 414, 432, 433, and
+434 the rover stopped 13 times to take a mixture of high-
+and medium-resolution panoramas of candidate drop
+zones. A high-zoom (110 mm focal length) Mastcam-Z
+[8] panorama containing the entire landing site was also
+taken on sol 470 from ~30 m higher in elevation on the
+Jezero delta.
+Preliminary rock reliefs were estimated as the max-
+min DEM pixel differences within a 0.1 m or 0.02 m
+radius moving window. These fixed-size windows
+include non-rock relief contributions, such as from
+slopes or image artifacts, so individual rocks >0.03 m in
+diameter were then manually mapped in a geographical
+information system (GIS) to derive diameter and re-
+evaluated for total relief within the mapped rock
+boundary plus a 0.03 m buffer of background terrain.
+2618.pdf
+54th Lunar and Planetary Science Conference 2023 (LPI Contrib. No. 2806)
+Slopes were calculated over 2 and 0.6 m length
+scales using Horn’s method [9] on resampled Navcam
+DEMs. Maximum SRH tilts were also calculated at 0.01
+m/pixel from DEM values at the corners of a square 0.6
+m on a side (representing the 4 SRH wheel contact
+points), and rotating the square footprint through all
+possible clock angles. Geometric viewsheds for each
+depot helipad range were calculated and merged from
+each of 8 observer points in cardinal and ordinal
+directions around the outer helipad range to assess
+visibility of the RGAs from these extremities.
+Results:  The Three Forks landing site is defined as
+a 60 m radius circle centered at 18.45369687°N latitude,
+77.41359752°E longitude, and -2548.673 m elevation
+(relative to the controlled HiRISE basemap [5,10] and
+MOLA geoid [11]). No rocks exceed 0.19 m in height
+within the landing circle (tallest measured is 0.16 m),
+and lander-scale slopes are <10°. The cumulative
+fractional area of rocks in the landing site is measured
+to be 0.6-0.8%, the lowest of any Mars landing site
+assessed to date [12]. The landing site is 216 m from the
+closest RGA drop zone and 395 m from the farthest (see
+Figure 1 and sections below).
+
+Figure 1: Map of the Three Forks Landing Site and
+Depot. For a detailed map of the depot, see Figure 2.
+Eleven RGA drop zones were certified to meet all
+rock and slope requirements for the selected RGA drop
+zones and SRH approach annuli (Fig. 2, Table 1). All
+helipads satisfy approach azimuths for >95% of their
+full annuli, with the exception of drop zone #15 (>90%
+area due to two rocks), which is being retained as a
+contingency location. Slopes are ~1-2° towards the
+southeast. Viewsheds show any RGA would be visible
+from anywhere within any defined helipad.
+
+Figure 2: Map of Three Forks Depot, with RGA drop
+zones, SRH Approach Annuli, and Helipad Ranges.
+Table 1: Locations and sizes of Depot RGA drop zones.
+Drop
+Zone # Latitude (°) Longitude (°) Elevation (m) Drop Zone Radius (m)
+13 18.45335876° 77.40845187° -2545.06 m 0.7
+15 18.45310211° 77.40840831° -2545.13 m 0.95
+16 18.45305613° 77.40861382° -2545.23 m 0.95
+17 18.45302517° 77.40850874° -2545.16 m 0.95
+18 18.45282019° 77.40825046° -2545.28 m 0.7
+19 18.45273305° 77.40831719° -2545.36 m 0.7
+20 18.4527171° 77.40818728° -2545.36 m 0.95
+21 18.45278117° 77.40807742° -2545.28 m 0.95
+22 18.45267194° 77.40804345° -2545.36 m 0.95
+25 18.45252828° 77.40783165° -2545.42 m 0.95
+26 18.45264516° 77.40776224° -2545.28 m 0.95
+Acknowledgments: We gratefully acknowledge the
+broader MSR and Mars 2020 Perseverance rover
+engineering and science teams for their contributions to
+this endeavor. The decision to implement MSR will not
+be finalized until NASA’s completion of the National
+Environmental Policy Act (NEPA) process. This
+document is being made available for information
+purposes only.
+References: [1] Maki J.N. et al. (2023) LPS LIV, this
+session. [2] Golombek M. et al. (2012) Space Sci. Rev.
+170, 641-737. [3] Golombek M.P. et al. (2017) Space
+Sci. Rev. 211, 5-95. [4] Golombek M.P. et al. (2017)
+LPS XLVIII, 2333. [5] McEwen A.S. et al. (2007) J.
+Geophys. Res. 112, E05S04. [6] Brooks C.L. et al.
+(2022) LPS LIII, 2772. [7] Maki J.N. et al. (2020) Space
+Sci. Rev. 216, 137. [8] Bell J.F. et al. (2021) Space Sci.
+Rev. 217, 24. [9] Burrough P.A. and McDonell R.A.
+(1998). Prin. of GIS. [10] Fergason R.L. et al (2020)
+LPS LI, 2020. [11] Smith D.E. et al. (2001) J. Geophys.
+Res. 106(E10), 23689–23722. [12] Golombek M.P. et
+al. (2021) Earth Space Sci. 8, 12, e2021EA001959.
+2618.pdf
+54th Lunar and Planetary Science Conference 2023 (LPI Contrib. No. 2806)

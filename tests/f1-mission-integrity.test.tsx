@@ -77,7 +77,7 @@ test("Oxia catalog-first mission remains interpreted, repairable, and preserves 
   const s=missionPlanningSnapshot(restored,region);
   assert.equal(s.itinerary[0].evidence?.classification,"Interpreted");
   assert.equal(s.itinerary[0].evidence?.source_verified,null);assert.equal(s.itinerary[0].evidence?.processing_verified,null);
-  assert.equal(s.itinerary[0].evidence?.coordinate_verified,true);assert.equal(s.itinerary[0].evidence?.registration_verified,null);
+  assert.equal(s.itinerary[0].evidence?.coordinate_verified,true);assert.equal(s.itinerary[0].evidence?.registration_verified,false);
   assert.equal(s.itinerary[0].evidence?.positional_uncertainty_m,null);
   assert.ok(s.itinerary[0].coordinate_text.includes(String(target.coordinates!.latitude)));
   assert.ok(!s.itinerary[0].coordinate_text.includes(target.coordinates!.latitude.toFixed(4)));

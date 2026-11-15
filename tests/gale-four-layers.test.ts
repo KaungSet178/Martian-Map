@@ -156,10 +156,8 @@ test("Mission View visual clipping restricts presentation footprint while preser
   ]);
 });
 
-test("geological units and rover traverse remain auxiliary overlays outside the four categories", () => {
-  const geology = gale.layers.find((l) => l.id === "gale-geology")!;
-  assert.equal(geology.kind, "geology");
-  assert.equal(geology.type, "Geological mapping");
+test("retired geological units stay absent while the rover traverse remains outside the four categories", () => {
+  assert.equal(gale.layers.find((l) => l.id === "gale-geology"),undefined);
 
   const traverse = gale.layers.find((l) => l.id === "gale-traverse-recorded")!;
   assert.equal(traverse.kind, "overlay");

@@ -1,0 +1,1217 @@
+[
+  {
+    "path": "components/mission/planning-summary.tsx",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "components/science/catalog.tsx",
+    "category": "shared science UI",
+    "f3_source_path": true
+  },
+  {
+    "path": "docs/F3_F1_INTEGRATION_NOTES.md",
+    "category": "report/evidence",
+    "f3_source_path": true
+  },
+  {
+    "path": "docs/F3_SCIENTIFIC_VERIFICATION_REPORT.md",
+    "category": "report/evidence",
+    "f3_source_path": true
+  },
+  {
+    "path": "docs/I4A_F1_F3_INTEGRATION_REPORT.md",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/I4B_EVA_INPUT_CONTRACT.md",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/f3/baseline-routing.tap",
+    "category": "report/evidence",
+    "f3_source_path": true
+  },
+  {
+    "path": "docs/evidence/f3/browser.log",
+    "category": "report/evidence",
+    "f3_source_path": true
+  },
+  {
+    "path": "docs/evidence/f3/browser/categories-gale-1440.json",
+    "category": "report/evidence",
+    "f3_source_path": true
+  },
+  {
+    "path": "docs/evidence/f3/browser/categories-gale-390.json",
+    "category": "report/evidence",
+    "f3_source_path": true
+  },
+  {
+    "path": "docs/evidence/f3/browser/categories-gale-768.json",
+    "category": "report/evidence",
+    "f3_source_path": true
+  },
+  {
+    "path": "docs/evidence/f3/browser/categories-jezero-1440.json",
+    "category": "report/evidence",
+    "f3_source_path": true
+  },
+  {
+    "path": "docs/evidence/f3/browser/categories-jezero-390.json",
+    "category": "report/evidence",
+    "f3_source_path": true
+  },
+  {
+    "path": "docs/evidence/f3/browser/categories-jezero-768.json",
+    "category": "report/evidence",
+    "f3_source_path": true
+  },
+  {
+    "path": "docs/evidence/f3/browser/categories-oxia-1440.json",
+    "category": "report/evidence",
+    "f3_source_path": true
+  },
+  {
+    "path": "docs/evidence/f3/browser/categories-oxia-390.json",
+    "category": "report/evidence",
+    "f3_source_path": true
+  },
+  {
+    "path": "docs/evidence/f3/browser/categories-oxia-768.json",
+    "category": "report/evidence",
+    "f3_source_path": true
+  },
+  {
+    "path": "docs/evidence/f3/browser/gale-environment-1440.png",
+    "category": "report/evidence",
+    "f3_source_path": true
+  },
+  {
+    "path": "docs/evidence/f3/browser/gale-environment-390.png",
+    "category": "report/evidence",
+    "f3_source_path": true
+  },
+  {
+    "path": "docs/evidence/f3/browser/gale-environment-768.png",
+    "category": "report/evidence",
+    "f3_source_path": true
+  },
+  {
+    "path": "docs/evidence/f3/browser/gale-evidence-register-1440.png",
+    "category": "report/evidence",
+    "f3_source_path": true
+  },
+  {
+    "path": "docs/evidence/f3/browser/gale-evidence-register-390.png",
+    "category": "report/evidence",
+    "f3_source_path": true
+  },
+  {
+    "path": "docs/evidence/f3/browser/gale-evidence-register-768.png",
+    "category": "report/evidence",
+    "f3_source_path": true
+  },
+  {
+    "path": "docs/evidence/f3/browser/gale-no-units-1440.png",
+    "category": "report/evidence",
+    "f3_source_path": true
+  },
+  {
+    "path": "docs/evidence/f3/browser/gale-no-units-390.png",
+    "category": "report/evidence",
+    "f3_source_path": true
+  },
+  {
+    "path": "docs/evidence/f3/browser/gale-no-units-768.png",
+    "category": "report/evidence",
+    "f3_source_path": true
+  },
+  {
+    "path": "docs/evidence/f3/browser/gale-objective-1440.png",
+    "category": "report/evidence",
+    "f3_source_path": true
+  },
+  {
+    "path": "docs/evidence/f3/browser/gale-objective-390.png",
+    "category": "report/evidence",
+    "f3_source_path": true
+  },
+  {
+    "path": "docs/evidence/f3/browser/gale-objective-768.png",
+    "category": "report/evidence",
+    "f3_source_path": true
+  },
+  {
+    "path": "docs/evidence/f3/browser/gale-pan-zoom-1440.png",
+    "category": "report/evidence",
+    "f3_source_path": true
+  },
+  {
+    "path": "docs/evidence/f3/browser/gale-pan-zoom-390.png",
+    "category": "report/evidence",
+    "f3_source_path": true
+  },
+  {
+    "path": "docs/evidence/f3/browser/gale-pan-zoom-768.png",
+    "category": "report/evidence",
+    "f3_source_path": true
+  },
+  {
+    "path": "docs/evidence/f3/browser/gale-route-summary-1440.png",
+    "category": "report/evidence",
+    "f3_source_path": true
+  },
+  {
+    "path": "docs/evidence/f3/browser/gale-route-summary-390.png",
+    "category": "report/evidence",
+    "f3_source_path": true
+  },
+  {
+    "path": "docs/evidence/f3/browser/gale-route-summary-768.png",
+    "category": "report/evidence",
+    "f3_source_path": true
+  },
+  {
+    "path": "docs/evidence/f3/browser/jezero-environment-1440.png",
+    "category": "report/evidence",
+    "f3_source_path": true
+  },
+  {
+    "path": "docs/evidence/f3/browser/jezero-environment-390.png",
+    "category": "report/evidence",
+    "f3_source_path": true
+  },
+  {
+    "path": "docs/evidence/f3/browser/jezero-environment-768.png",
+    "category": "report/evidence",
+    "f3_source_path": true
+  },
+  {
+    "path": "docs/evidence/f3/browser/jezero-evidence-register-1440.png",
+    "category": "report/evidence",
+    "f3_source_path": true
+  },
+  {
+    "path": "docs/evidence/f3/browser/jezero-evidence-register-390.png",
+    "category": "report/evidence",
+    "f3_source_path": true
+  },
+  {
+    "path": "docs/evidence/f3/browser/jezero-evidence-register-768.png",
+    "category": "report/evidence",
+    "f3_source_path": true
+  },
+  {
+    "path": "docs/evidence/f3/browser/jezero-no-units-1440.png",
+    "category": "report/evidence",
+    "f3_source_path": true
+  },
+  {
+    "path": "docs/evidence/f3/browser/jezero-no-units-390.png",
+    "category": "report/evidence",
+    "f3_source_path": true
+  },
+  {
+    "path": "docs/evidence/f3/browser/jezero-no-units-768.png",
+    "category": "report/evidence",
+    "f3_source_path": true
+  },
+  {
+    "path": "docs/evidence/f3/browser/jezero-objective-1440.png",
+    "category": "report/evidence",
+    "f3_source_path": true
+  },
+  {
+    "path": "docs/evidence/f3/browser/jezero-objective-390.png",
+    "category": "report/evidence",
+    "f3_source_path": true
+  },
+  {
+    "path": "docs/evidence/f3/browser/jezero-objective-768.png",
+    "category": "report/evidence",
+    "f3_source_path": true
+  },
+  {
+    "path": "docs/evidence/f3/browser/jezero-pan-zoom-1440.png",
+    "category": "report/evidence",
+    "f3_source_path": true
+  },
+  {
+    "path": "docs/evidence/f3/browser/jezero-pan-zoom-390.png",
+    "category": "report/evidence",
+    "f3_source_path": true
+  },
+  {
+    "path": "docs/evidence/f3/browser/jezero-pan-zoom-768.png",
+    "category": "report/evidence",
+    "f3_source_path": true
+  },
+  {
+    "path": "docs/evidence/f3/browser/jezero-route-summary-1440.png",
+    "category": "report/evidence",
+    "f3_source_path": true
+  },
+  {
+    "path": "docs/evidence/f3/browser/jezero-route-summary-390.png",
+    "category": "report/evidence",
+    "f3_source_path": true
+  },
+  {
+    "path": "docs/evidence/f3/browser/jezero-route-summary-768.png",
+    "category": "report/evidence",
+    "f3_source_path": true
+  },
+  {
+    "path": "docs/evidence/f3/browser/oxia-environment-1440.png",
+    "category": "report/evidence",
+    "f3_source_path": true
+  },
+  {
+    "path": "docs/evidence/f3/browser/oxia-environment-390.png",
+    "category": "report/evidence",
+    "f3_source_path": true
+  },
+  {
+    "path": "docs/evidence/f3/browser/oxia-environment-768.png",
+    "category": "report/evidence",
+    "f3_source_path": true
+  },
+  {
+    "path": "docs/evidence/f3/browser/oxia-evidence-register-1440.png",
+    "category": "report/evidence",
+    "f3_source_path": true
+  },
+  {
+    "path": "docs/evidence/f3/browser/oxia-evidence-register-390.png",
+    "category": "report/evidence",
+    "f3_source_path": true
+  },
+  {
+    "path": "docs/evidence/f3/browser/oxia-evidence-register-768.png",
+    "category": "report/evidence",
+    "f3_source_path": true
+  },
+  {
+    "path": "docs/evidence/f3/browser/oxia-no-units-1440.png",
+    "category": "report/evidence",
+    "f3_source_path": true
+  },
+  {
+    "path": "docs/evidence/f3/browser/oxia-no-units-390.png",
+    "category": "report/evidence",
+    "f3_source_path": true
+  },
+  {
+    "path": "docs/evidence/f3/browser/oxia-no-units-768.png",
+    "category": "report/evidence",
+    "f3_source_path": true
+  },
+  {
+    "path": "docs/evidence/f3/browser/oxia-objective-1440.png",
+    "category": "report/evidence",
+    "f3_source_path": true
+  },
+  {
+    "path": "docs/evidence/f3/browser/oxia-objective-390.png",
+    "category": "report/evidence",
+    "f3_source_path": true
+  },
+  {
+    "path": "docs/evidence/f3/browser/oxia-objective-768.png",
+    "category": "report/evidence",
+    "f3_source_path": true
+  },
+  {
+    "path": "docs/evidence/f3/browser/oxia-pan-zoom-1440.png",
+    "category": "report/evidence",
+    "f3_source_path": true
+  },
+  {
+    "path": "docs/evidence/f3/browser/oxia-pan-zoom-390.png",
+    "category": "report/evidence",
+    "f3_source_path": true
+  },
+  {
+    "path": "docs/evidence/f3/browser/oxia-pan-zoom-768.png",
+    "category": "report/evidence",
+    "f3_source_path": true
+  },
+  {
+    "path": "docs/evidence/f3/browser/removal-1440.json",
+    "category": "report/evidence",
+    "f3_source_path": true
+  },
+  {
+    "path": "docs/evidence/f3/browser/removal-390.json",
+    "category": "report/evidence",
+    "f3_source_path": true
+  },
+  {
+    "path": "docs/evidence/f3/browser/removal-768.json",
+    "category": "report/evidence",
+    "f3_source_path": true
+  },
+  {
+    "path": "docs/evidence/f3/browser/science-environment-1440.json",
+    "category": "report/evidence",
+    "f3_source_path": true
+  },
+  {
+    "path": "docs/evidence/f3/browser/science-environment-390.json",
+    "category": "report/evidence",
+    "f3_source_path": true
+  },
+  {
+    "path": "docs/evidence/f3/browser/science-environment-768.json",
+    "category": "report/evidence",
+    "f3_source_path": true
+  },
+  {
+    "path": "docs/evidence/f3/build.log",
+    "category": "report/evidence",
+    "f3_source_path": true
+  },
+  {
+    "path": "docs/evidence/f3/catalog-regression.tap",
+    "category": "report/evidence",
+    "f3_source_path": true
+  },
+  {
+    "path": "docs/evidence/f3/final-evidence-browser.log",
+    "category": "report/evidence",
+    "f3_source_path": true
+  },
+  {
+    "path": "docs/evidence/f3/final-science-navigation-browser.log",
+    "category": "report/evidence",
+    "f3_source_path": true
+  },
+  {
+    "path": "docs/evidence/f3/independent-path-validation.json",
+    "category": "report/evidence",
+    "f3_source_path": true
+  },
+  {
+    "path": "docs/evidence/f3/lint.log",
+    "category": "report/evidence",
+    "f3_source_path": true
+  },
+  {
+    "path": "docs/evidence/f3/objective-routing-compatibility.json",
+    "category": "report/evidence",
+    "f3_source_path": true
+  },
+  {
+    "path": "docs/evidence/f3/oxia-aqueous-query.json",
+    "category": "report/evidence",
+    "f3_source_path": true
+  },
+  {
+    "path": "docs/evidence/f3/oxia-hydrous-query.json",
+    "category": "report/evidence",
+    "f3_source_path": true
+  },
+  {
+    "path": "docs/evidence/f3/preserved-scientific-layers.json",
+    "category": "report/evidence",
+    "f3_source_path": true
+  },
+  {
+    "path": "docs/evidence/f3/python-routing.log",
+    "category": "report/evidence",
+    "f3_source_path": true
+  },
+  {
+    "path": "docs/evidence/f3/science-routing.tap",
+    "category": "report/evidence",
+    "f3_source_path": true
+  },
+  {
+    "path": "docs/evidence/f3/source-verification.json",
+    "category": "report/evidence",
+    "f3_source_path": true
+  },
+  {
+    "path": "docs/evidence/f3/three-forks-2618.pdf",
+    "category": "report/evidence",
+    "f3_source_path": true
+  },
+  {
+    "path": "docs/evidence/f3/three-forks-2618.txt",
+    "category": "report/evidence",
+    "f3_source_path": true
+  },
+  {
+    "path": "docs/evidence/f3/typecheck.log",
+    "category": "report/evidence",
+    "f3_source_path": true
+  },
+  {
+    "path": "docs/evidence/f3/unit-tests.tap",
+    "category": "report/evidence",
+    "f3_source_path": true
+  },
+  {
+    "path": "docs/evidence/i4a/assets.log",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/browser-acceptance.log",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/browser-isolation-compact.log",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/browser/categories-gale-1440.json",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/browser/categories-gale-390.json",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/browser/categories-gale-768.json",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/browser/categories-jezero-1440.json",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/browser/categories-jezero-390.json",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/browser/categories-jezero-768.json",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/browser/categories-oxia-1440.json",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/browser/categories-oxia-390.json",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/browser/categories-oxia-768.json",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/browser/compact-landscape-brief.png",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/browser/cross-region-return-gale.png",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/browser/cross-region-route.json",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/browser/environment-gale-environment-1440.png",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/browser/environment-gale-environment-390.png",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/browser/environment-jezero-environment-1440.png",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/browser/environment-jezero-environment-390.png",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/browser/environment-oxia-environment-1440.png",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/browser/environment-oxia-environment-390.png",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/browser/f3-removal-1440.json",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/browser/f3-removal-390.json",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/browser/f3-removal-768.json",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/browser/f3-science-environment-1440.json",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/browser/f3-science-environment-390.json",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/browser/f3-science-environment-768.json",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/browser/gale-1440-brief.html",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/browser/gale-1440-brief.png",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/browser/gale-1440-mission.json",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/browser/gale-1440-review.png",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/browser/gale-1440-route.json",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/browser/gale-390-brief.html",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/browser/gale-390-brief.png",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/browser/gale-390-mission.json",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/browser/gale-390-review.png",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/browser/gale-390-route.json",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/browser/gale-768-brief.html",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/browser/gale-768-brief.png",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/browser/gale-768-mission.json",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/browser/gale-768-review.png",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/browser/gale-768-route.json",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/browser/gale-gediz-vallis-1440.png",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/browser/gale-gediz-vallis-390.png",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/browser/gale-gediz-vallis-768.png",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/browser/gale-glen-torridon-1440.png",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/browser/gale-glen-torridon-390.png",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/browser/gale-glen-torridon-768.png",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/browser/gale-no-units-1440.png",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/browser/gale-no-units-390.png",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/browser/gale-no-units-768.png",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/browser/jezero-1440-brief.html",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/browser/jezero-1440-brief.png",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/browser/jezero-1440-mission.json",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/browser/jezero-1440-review.png",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/browser/jezero-1440-route.json",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/browser/jezero-390-brief.html",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/browser/jezero-390-brief.png",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/browser/jezero-390-mission.json",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/browser/jezero-390-review.png",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/browser/jezero-390-route.json",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/browser/jezero-768-brief.html",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/browser/jezero-768-brief.png",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/browser/jezero-768-mission.json",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/browser/jezero-768-review.png",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/browser/jezero-768-route.json",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/browser/jezero-no-units-1440.png",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/browser/jezero-no-units-390.png",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/browser/jezero-no-units-768.png",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/browser/jezero-objective-3-1440.png",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/browser/jezero-objective-3-390.png",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/browser/jezero-objective-3-768.png",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/browser/jezero-objective-5-1440.png",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/browser/jezero-objective-5-390.png",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/browser/jezero-objective-5-768.png",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/browser/oxia-1440-brief.html",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/browser/oxia-1440-brief.png",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/browser/oxia-1440-mission.json",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/browser/oxia-1440-review.png",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/browser/oxia-1440-route.json",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/browser/oxia-390-brief.html",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/browser/oxia-390-brief.png",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/browser/oxia-390-mission.json",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/browser/oxia-390-review.png",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/browser/oxia-390-route.json",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/browser/oxia-768-brief.html",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/browser/oxia-768-brief.png",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/browser/oxia-768-mission.json",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/browser/oxia-768-review.png",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/browser/oxia-768-route.json",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/browser/oxia-no-units-1440.png",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/browser/oxia-no-units-390.png",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/browser/oxia-no-units-768.png",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/browser/oxia-objective-1-1440.png",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/browser/oxia-objective-1-390.png",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/browser/oxia-objective-1-768.png",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/browser/oxia-objective-2-1440.png",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/browser/oxia-objective-2-390.png",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/browser/oxia-objective-2-768.png",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/build.log",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/changed-file-inventory.json",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/export-provenance.json",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/f3-replay-compatibility.json",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/focused-tests.tap",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/gale-routes.json",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/independent-numerical.json",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/jezero-routes.json",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/lint.log",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/numerical.log",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/preservation.json",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/python-gale-environment.log",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/python-gale.log",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/python-jezero-environment.log",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/python-jezero-hillshade.log",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/python-jezero-routing.log",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/reference-reports.json",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/routing-health.log",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/starting-state.json",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/typecheck.log",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/typescript-tests.tap",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/validation-summary.json",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "docs/evidence/i4a/worktree-preservation.json",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "lib/map/scientific-categories.ts",
+    "category": "shared map grouping",
+    "f3_source_path": true
+  },
+  {
+    "path": "lib/mission/brief-html.ts",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "lib/mission/model.ts",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "lib/mission/planning-snapshot.ts",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "lib/mission/waypoint-planning.ts",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "lib/science/objective-location-adapter.ts",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "regions/gale/config.ts",
+    "category": "regional science/map",
+    "f3_source_path": true
+  },
+  {
+    "path": "regions/gale/layers.ts",
+    "category": "regional science/map",
+    "f3_source_path": true
+  },
+  {
+    "path": "regions/gale/targets.ts",
+    "category": "regional science/map",
+    "f3_source_path": true
+  },
+  {
+    "path": "regions/jezero/config.ts",
+    "category": "regional science/map",
+    "f3_source_path": true
+  },
+  {
+    "path": "regions/jezero/layers.ts",
+    "category": "regional science/map",
+    "f3_source_path": true
+  },
+  {
+    "path": "regions/jezero/targets.ts",
+    "category": "regional science/map",
+    "f3_source_path": true
+  },
+  {
+    "path": "regions/location-evidence.ts",
+    "category": "regional science/map",
+    "f3_source_path": true
+  },
+  {
+    "path": "regions/oxia/layers.ts",
+    "category": "regional science/map",
+    "f3_source_path": true
+  },
+  {
+    "path": "regions/oxia/targets.ts",
+    "category": "regional science/map",
+    "f3_source_path": true
+  },
+  {
+    "path": "scripts/verify-i4a-numerical.py",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "scripts/verify-routing-independent.py",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "tests/browser/f3-navigation.spec.ts",
+    "category": "test",
+    "f3_source_path": true
+  },
+  {
+    "path": "tests/browser/f3-science.spec.ts",
+    "category": "test",
+    "f3_source_path": true
+  },
+  {
+    "path": "tests/browser/gale-geology.spec.ts",
+    "category": "test",
+    "f3_source_path": true
+  },
+  {
+    "path": "tests/browser/gale-science.spec.ts",
+    "category": "test",
+    "f3_source_path": true
+  },
+  {
+    "path": "tests/browser/i4a-integration.spec.ts",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "tests/f1-mission-integrity.test.tsx",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "tests/f3-science.test.ts",
+    "category": "test",
+    "f3_source_path": true
+  },
+  {
+    "path": "tests/gale-coverage.test.ts",
+    "category": "test",
+    "f3_source_path": true
+  },
+  {
+    "path": "tests/gale-four-layers.test.ts",
+    "category": "test",
+    "f3_source_path": true
+  },
+  {
+    "path": "tests/gale-integration.test.ts",
+    "category": "test",
+    "f3_source_path": true
+  },
+  {
+    "path": "tests/i4a-integration.test.tsx",
+    "category": "I4A integration/test/report/evidence",
+    "f3_source_path": false
+  },
+  {
+    "path": "tests/mission.test.ts",
+    "category": "test",
+    "f3_source_path": true
+  },
+  {
+    "path": "tests/regions.test.ts",
+    "category": "test",
+    "f3_source_path": true
+  }
+]

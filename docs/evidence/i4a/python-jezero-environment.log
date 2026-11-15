@@ -1,0 +1,11 @@
+python : s....................
+At line:2 char:284
++ ... onment.log; python -m unittest discover -s tests/environment/jezero - ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (s....................:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+----------------------------------------------------------------------
+Ran 21 tests in 0.063s
+
+OK (skipped=1)

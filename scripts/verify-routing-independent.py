@@ -104,8 +104,9 @@ def check_native_jezero(path):
     assert checked
     return {"source_sha256":digest,"samples":checked}
 
-parser=argparse.ArgumentParser();parser.add_argument("--jezero-dem",required=True);args=parser.parse_args()
-report={region:check_region(region) for region in ["gale","jezero"]}
-report["native_jezero"]=check_native_jezero(args.jezero_dem)
-Path("output/routing-qa/independent-validation.json").write_text(json.dumps(report,indent=2)+"\n")
-print(json.dumps(report,indent=2))
+if __name__ == "__main__":
+    parser=argparse.ArgumentParser();parser.add_argument("--jezero-dem",required=True);args=parser.parse_args()
+    report={region:check_region(region) for region in ["gale","jezero"]}
+    report["native_jezero"]=check_native_jezero(args.jezero_dem)
+    Path("output/routing-qa/independent-validation.json").write_text(json.dumps(report,indent=2)+"\n")
+    print(json.dumps(report,indent=2))

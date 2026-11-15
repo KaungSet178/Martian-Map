@@ -1,0 +1,76 @@
+TAP version 13
+# Subtest: I4A gale-glen-torridon: source, selection, snapshot, storage, JSON, Review and HTML agree
+ok 1 - I4A gale-glen-torridon: source, selection, snapshot, storage, JSON, Review and HTML agree
+  ---
+  duration_ms: 21.6705
+  type: 'test'
+  ...
+# Subtest: I4A gale-gediz-vallis: source, selection, snapshot, storage, JSON, Review and HTML agree
+ok 2 - I4A gale-gediz-vallis: source, selection, snapshot, storage, JSON, Review and HTML agree
+  ---
+  duration_ms: 3.7737
+  type: 'test'
+  ...
+# Subtest: I4A jezero-objective-3: source, selection, snapshot, storage, JSON, Review and HTML agree
+ok 3 - I4A jezero-objective-3: source, selection, snapshot, storage, JSON, Review and HTML agree
+  ---
+  duration_ms: 3.5286
+  type: 'test'
+  ...
+# Subtest: I4A jezero-objective-5: source, selection, snapshot, storage, JSON, Review and HTML agree
+ok 4 - I4A jezero-objective-5: source, selection, snapshot, storage, JSON, Review and HTML agree
+  ---
+  duration_ms: 2.5612
+  type: 'test'
+  ...
+# Subtest: I4A oxia-objective-1: source, selection, snapshot, storage, JSON, Review and HTML agree
+ok 5 - I4A oxia-objective-1: source, selection, snapshot, storage, JSON, Review and HTML agree
+  ---
+  duration_ms: 7.6912
+  type: 'test'
+  ...
+# Subtest: I4A oxia-objective-2: source, selection, snapshot, storage, JSON, Review and HTML agree
+ok 6 - I4A oxia-objective-2: source, selection, snapshot, storage, JSON, Review and HTML agree
+  ---
+  duration_ms: 4.6615
+  type: 'test'
+  ...
+# Subtest: I4A missing evidence dimensions stay unknown and Scenario/user-defined remain distinct
+ok 7 - I4A missing evidence dimensions stay unknown and Scenario/user-defined remain distinct
+  ---
+  duration_ms: 0.4144
+  type: 'test'
+  ...
+# Subtest: I4A legacy same-region references preserve unrelated points, foreign references in all saved fields reject
+ok 8 - I4A legacy same-region references preserve unrelated points, foreign references in all saved fields reject
+  ---
+  duration_ms: 2.7242
+  type: 'test'
+  ...
+# Subtest: I4A gale: recompute real ordered round trips and compare F3 independent reference
+ok 9 - I4A gale: recompute real ordered round trips and compare F3 independent reference
+  ---
+  duration_ms: 733.195
+  type: 'test'
+  ...
+# Subtest: I4A jezero: recompute real ordered round trips and compare F3 independent reference
+ok 10 - I4A jezero: recompute real ordered round trips and compare F3 independent reference
+  ---
+  duration_ms: 171.8614
+  type: 'test'
+  ...
+# Subtest: I4A Oxia interpreted planning and one-way/round-trip geography never borrow terrain
+ok 11 - I4A Oxia interpreted planning and one-way/round-trip geography never borrow terrain
+  ---
+  duration_ms: 1.8088
+  type: 'test'
+  ...
+1..11
+# tests 11
+# suites 0
+# pass 11
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1630.7112

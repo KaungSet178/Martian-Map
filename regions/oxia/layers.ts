@@ -143,29 +143,6 @@ export const layers = [
     },
   },
   {
-    id: "oxia-geology",
-    type: "Geology & mineralogy",
-    display_name: "Geology & mineralogy",
-    kind: "geology",
-    availability: "pending",
-    source_id: null,
-    observation_date: null,
-    spatial_resolution_m: null,
-    coverage: null,
-    limitations:
-      "No geology or mineralogy map layer is shown for Oxia (removed by the region owner). Mars Trek mineral-detection points are used only to locate the science targets (sources oxia-trek-aqueous and oxia-trek-hydrous), not drawn as a layer. No mapped geologic units are integrated.",
-    evidence: "Unavailable",
-    attribution: null,
-    rendering: {
-      kind: "unavailable",
-      reason:
-        "Removed by the region owner; no geology or mineralogy map layer is integrated for Oxia.",
-    },
-    default_visible: false,
-    default_opacity: 70,
-    legend: null,
-  },
-  {
     id: "oxia-thermal-night",
     type: "Thermal context",
     display_name: "THEMIS night IR",

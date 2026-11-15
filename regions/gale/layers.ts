@@ -1,5 +1,4 @@
 import type { ScientificLayer } from "@/lib/contracts/region";
-import { geologyLegend } from "./geology-legend";
 import { terrainLayers } from "./terrain-layers";
 import { coverageLayers } from "./coverage-layers";
 
@@ -57,46 +56,6 @@ export const layers = [
     "legend": null
   },
   ...terrainLayers,
-  {
-    "id": "gale-geology",
-    "type": "Geological mapping",
-    "display_name": "Arc Pass geological units",
-    "kind": "geology",
-    "availability": "available",
-    "source_id": "gale-arc-pass-geology",
-    data_details: {
-      source_product: "Geomap.gdb.zip / map_unit_polygons_v2 · Joel Davis (2025), DOI 10.6084/m9.figshare.30401788.v1",
-      source_coverage: "Local Arc Pass study only; about 263.233 × 221.575 ground metres. Not the whole Gediz Vallis or Lower Mount Sharp.",
-      display_crop: "All 53 original geological features retained at exact source coordinates; no clipping, enlargement or fitted offset.",
-      valid_coverage: "Seven original Unit categories; small original topology gaps retained. Outside the interpreted polygons is unmapped.",
-      nominal_posting_m: null,
-      gradient_support_north_m: null,
-      crs: "Source Mars 2000 sphere R=3,396,190 m, equirectangular meridian/standard parallel 0; inverse to planetocentric latitude and east longitude. Constant zero Z omitted.",
-    },
-    "observation_date": null,
-    "spatial_resolution_m": null,
-    "coverage": "Arc Pass only: 137.406597..137.411053 E, -4.789073..-4.785335 N; about 264 x 222 m. Outside the source footprint is unmapped, not a missing or safe unit. Opening the layer fits this mapped area.",
-    "limitations": "Davis (2025) source Unit codes preserved; interpreted photogeology, not terrain safety or mineral abundance. Digitized at 1:250 on HiRISE; CTX context is much coarser and becomes pixelated at close zoom. Absolute positional accuracy is unspecified; tiny source topology gaps remain. Not the whole Gediz Vallis or a boundary for any catalog target.",
-    "evidence": "Interpreted",
-    "attribution": "Joel Davis (2025), Figshare, CC BY 4.0; Davis et al. (2026), JGR Planets; display conversion by Marswalk",
-    "rendering": {
-      "kind": "geojson",
-      "url": "/maps/gale/arc-pass-geology.geojson",
-      "geometry": "fill",
-      "color": "#647C9A",
-      "category_property": "Unit",
-      "max_zoom": 18,
-      "focus_extent": {
-        "west_east": 137.4065970458571,
-        "east_east": 137.4110534954222,
-        "south_latitude": -4.789072816244821,
-        "north_latitude": -4.785334720408685
-      }
-    },
-    "default_visible": false,
-    "default_opacity": 45,
-    "legend": geologyLegend
-  },
   {
     "id": "gale-traverse-recorded",
     "type": "Recorded rover traverse",
