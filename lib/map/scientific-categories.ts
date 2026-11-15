@@ -4,9 +4,9 @@ export const scientificCategories = ["Elevation", "Hillshade", "Slope", "Thermal
 export type ScientificCategory = typeof scientificCategories[number];
 const datasets: Record<RegionManifest["id"], Record<ScientificCategory, string[]>> = {
   gale: {
-    Elevation: ["gale-regional-elevation", "gale-global-elevation", "gale-terrain"],
-    Hillshade: ["gale-regional-hillshade", "gale-global-hillshade", "gale-hillshade"],
-    Slope: ["gale-regional-slope", "gale-global-slope", "gale-slope"],
+    Elevation: ["gale-regional-elevation"],
+    Hillshade: ["gale-regional-hillshade"],
+    Slope: ["gale-regional-slope"],
     Thermal: ["gale-thermal"],
   },
   jezero: { Elevation: ["jezero-elevation"], Hillshade: ["jezero-hillshade"], Slope: ["jezero-slope"], Thermal: ["jezero-thermal"] },
@@ -21,10 +21,16 @@ export const categoryInterpretation: Record<ScientificCategory, string> = {
 export function categoryLayers(region: RegionManifest, category: ScientificCategory): ScientificLayer[] {
   return datasets[region.id][category].map((id) => region.layers.find((layer) => layer.id === id)).filter((layer): layer is ScientificLayer => !!layer);
 }
+// Keep dataset metadata intact while limiting Gale's selectable display products.
+export function isLayerSelectable(region: RegionManifest, layer: ScientificLayer): boolean {
+  if (region.id !== "gale") return true;
+  if (layer.zoom_extent) return false;
+  return layer.kind !== "topography" || Object.values(datasets.gale).some((ids) => ids.includes(layer.id));
+}
 export function layerGroups(region: RegionManifest) {
   const scientific = scientificCategories.map((title) => ({ title, description: categoryInterpretation[title], layers: categoryLayers(region, title) }));
   const ids = new Set(scientific.flatMap((group) => group.layers.map((layer) => layer.id)));
-  const remaining = region.layers.filter((layer) => !ids.has(layer.id) && !layer.zoom_extent);
+  const remaining = region.layers.filter((layer) => !ids.has(layer.id) && !layer.zoom_extent && isLayerSelectable(region, layer));
   return [...scientific,
     { title: "Basemaps", description: "Optical context and mission imagery.", layers: remaining.filter((layer) => layer.kind === "optical") },
     { title: "Map overlays", description: "Recorded traverses and dataset coverage outlines; these do not establish waypoint eligibility.", layers: remaining.filter((layer) => layer.kind !== "optical") },

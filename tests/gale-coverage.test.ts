@@ -5,7 +5,7 @@ import type { Map as MapInstance } from "maplibre-gl";
 import { getRegion } from "../lib/regions/registry";
 import { regionalExtent, globalExtent } from "../regions/gale/terrain-layers";
 import { fitLayerCoverage, fitOverview } from "../lib/map/camera";
-import { applyLayerStates, displayBounds, mountRegionLayers, updateLayerState } from "../lib/map/region-layers";
+import { applyLayerStates, displayBounds, layerState, mountRegionLayers, updateLayerState, type LayerStates } from "../lib/map/region-layers";
 import { layerSchema } from "../lib/contracts/science";
 
 const gale = getRegion("gale")!;
@@ -54,7 +54,7 @@ test("all six terrain themes distinguish source/crop/validity/posting/support an
   assert.equal(gale.layers.find(l=>l.id==="gale-geology"),undefined);
 });
 
-test("coverage lines and casings mount once, follow independent state, and clean up shared sources", () => {
+test("coverage metadata mounts and cleans up, but hidden outlines reject saved visibility", () => {
   const sources = new Map<string, unknown>();
   const layers = new Map<string, { type: string; source: string; layout: Record<string, unknown>; paint: Record<string, unknown> }>();
   const fake = {
@@ -80,15 +80,17 @@ test("coverage lines and casings mount once, follow independent state, and clean
   assert.equal(layers.has("region-presentation-mask"),false);
   const science=sources.get("region-gale-regional-hillshade") as {tiles:string[]};
   assert.match(science.tiles[0],/^marswalk-mission:/);
-  let state=updateLayerState(gale,{},"gale-coverage-regional",{visible:true});
-  state=updateLayerState(gale,state,"gale-coverage-global",{visible:true});
+  let state: LayerStates = {
+    "gale-coverage-regional": { visible: true, opacity: 100 },
+    "gale-coverage-global": { visible: true, opacity: 100 },
+  };
   for (let i=0;i<3;i++) for (const theme of ["elevation","slope","hillshade"]) {
     state=updateLayerState(gale,state,`gale-regional-${theme}`,{visible:true});
     applyLayerStates(fake,gale,state,false);
     assert.equal(layers.size,count);
     for(const id of ["regional","global"]) for(const suffix of ["","-halo"]) {
       const line=layers.get(`region-gale-coverage-${id}${suffix}`)!;
-      assert.equal(line.type,"line"); assert.equal(line.layout.visibility,"visible");
+      assert.equal(line.type,"line"); assert.equal(line.layout.visibility,"none");
       assert.equal(line.paint["fill-opacity"],undefined);
     }
   }
@@ -100,8 +102,8 @@ test("coverage lines and casings mount once, follow independent state, and clean
   state=updateLayerState(gale,state,"gale-coverage-global",{opacity:35});
   applyLayerStates(fake,gale,state,false);
   assert.equal(solid.layout.visibility,"none");
-  assert.equal(dashed.layout.visibility,"visible");
-  assert.equal(layers.get("region-gale-coverage-global-halo")!.paint["line-opacity"],.35);
+  assert.equal(dashed.layout.visibility,"none");
+  assert.equal(layerState(gale, state, "gale-coverage-global").visible, false);
   assert.equal(layers.get("region-gale-regional-hillshade")!.layout.visibility,"visible");
   assert.match(science.tiles[0],/^marswalk-mission:/);
   // Test switching between Mission View and Full Data Coverage modes
