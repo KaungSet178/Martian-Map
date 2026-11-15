@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element -- Existing local project logo. */
 import { ArrowRight } from 'lucide-react';
 import { useLandingData } from './landing-data';
+import { FutureDevelopment } from './FutureDevelopment';
 
 interface WorkflowAndFooterProps {
   onOpenPlanner: () => void;
@@ -63,7 +64,9 @@ export function WorkflowAndFooter({ onOpenPlanner }: WorkflowAndFooterProps) {
         </div>
       </section>
 
-      {/* Section 9: Final Call to Action (Navy) */}
+      <FutureDevelopment />
+
+      {/* Final Call to Action (Navy) */}
       <section className="bg-[#0F2747] navy-grid-bg text-[#FFF9F0] py-20 lg:py-24">
         <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="max-w-2xl mx-auto space-y-6">
@@ -149,6 +152,11 @@ export function WorkflowAndFooter({ onOpenPlanner }: WorkflowAndFooterProps) {
                 <li>
                   <a href="#technology" className="hover:text-[#0F2747] transition-colors">
                     Technology
+                  </a>
+                </li>
+                <li>
+                  <a href="#future-development" className="hover:text-[#0F2747] transition-colors">
+                    Future development
                   </a>
                 </li>
               </ul>

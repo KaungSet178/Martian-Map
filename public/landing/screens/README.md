@@ -19,6 +19,10 @@ The application calculated both alternatives using `gale-hrsc-30m`. Absolute
 registration and operational feasibility remain unverified. No sample mission
 is installed in visitors' storage.
 
+Route captures use the application's collapsed planning panel and a camera pan
+to keep the map and both route endpoints visible. No application controls,
+source geometry or route results were edited for these images.
+
 Imagery credits and processing limitations are maintained in the existing
 regional source registers: `regions/jezero`, `regions/gale`, and `regions/oxia`.
 These screenshots are presentation assets, not scientific data products.

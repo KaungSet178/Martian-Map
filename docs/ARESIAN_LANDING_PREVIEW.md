@@ -20,8 +20,10 @@ Landing: http://127.0.0.1:3110/
 
 Planner: http://127.0.0.1:3110/planner
 
-This is a local preview. No deployment branch was updated and no hosted Site
-was created or published.
+The initial delivery was a local preview. The user subsequently approved
+publishing the landing page to `deploy/railway-marswalk` after adding the future
+development section and refreshing the route screenshots. No separate hosted
+Site is used; deployment continues through the existing Railway service.
 
 ## Content and compatibility
 
@@ -40,6 +42,11 @@ was created or published.
   scientific-objective routing, which remains unavailable.
 - The layer section is explicitly a Gale example, including available regional
   elevation, hillshade, slope, thermal imagery and historical REMS observations.
+- Future development lists the four user-supplied priorities: geographic and
+  terrain validation, science-objective location verification, resource and
+  feasibility models, and offline planning/revalidation/reporting.
+- Both route-preview captures use the real app with its planning panel
+  collapsed and the camera positioned to show the route and both endpoints.
 - Mission storage remains `marswalk.missions.v1`; scientific calculations,
   source coordinates, export formats, Docker configuration and API endpoints
   are unchanged. Leaving an unsaved planner through its home link prompts for
@@ -77,7 +84,7 @@ Keyboard checks passed for skip-to-content, visible focus, mobile-menu Escape
 dismissal and focus return. Canceling the planner's unsaved-draft warning
 preserves the draft; accepting it returns to the landing page.
 
-Known design limitation: Axe reports color-contrast findings on 12 elements
+Known design limitation: the initial preview Axe scan reported color-contrast findings on 12 elements
 using the reference's orange/white and small orange text choices. The rendered
 ZIP reference reports 30 such findings. These colors were retained to follow
 the requested exact palette. No other Axe WCAG A/AA rule violations were found
