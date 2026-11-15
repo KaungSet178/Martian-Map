@@ -96,12 +96,12 @@ export const jezeroEnvironmentCss = `
 .jz-section-title { font-size: 20px; }
 .jz-section-note { font-size: 13px; color: var(--jz-muted); }
 
-.jz-cards { margin-top: 16px; display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(168px, 1fr)); }
+.jz-cards { margin-top: 16px; display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr)); }
 .jz-card {
   background: var(--jz-raised); border: 1px solid var(--jz-border); border-radius: 0;
   padding: 14px; display: flex; flex-direction: column; gap: 6px; min-width: 0;
 }
-.jz-card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; }
+.jz-card-top { display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: space-between; gap: 8px; }
 .jz-card-label { font-size: 13px; color: var(--jz-muted); font-weight: 500; }
 .jz-card-value { display: flex; align-items: baseline; gap: 6px; flex-wrap: wrap; }
 .jz-value { font-family: var(--jz-mono); font-variant-numeric: tabular-nums; font-size: 26px; line-height: 1.15; font-weight: 600; }
@@ -111,7 +111,7 @@ export const jezeroEnvironmentCss = `
 .jz-spark { display: block; width: 100%; margin: 2px 0; }
 .jz-card--empty { border-style: dashed; background: transparent; }
 
-.jz-charts { margin-top: 16px; display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); }
+.jz-charts { margin-top: 16px; display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); }
 .jz-chartcard {
   border: 1px solid var(--jz-border); border-radius: 0; padding: 14px;
   background: rgba(15, 39, 71, 0.04); display: grid; gap: 8px; min-width: 0;
@@ -146,12 +146,12 @@ export const jezeroEnvironmentCss = `
 .jz-empty-title { font-size: 14px; font-weight: 600; color: var(--jz-caution); }
 .jz-empty-text { font-size: 13px; color: var(--jz-muted); }
 
-.jz-notes { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); margin-top: 16px; }
+.jz-notes { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); margin-top: 16px; }
 .jz-note { border: 1px solid var(--jz-border); border-radius: 0; padding: 12px 14px; background: rgba(15, 39, 71, 0.04); }
 .jz-note-title { font-size: 13px; font-weight: 600; margin-bottom: 4px; }
 .jz-note-body { font-size: 12.5px; color: var(--jz-muted); }
 
-.jz-dl { margin: 16px 0 0; display: grid; gap: 10px 24px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+.jz-dl { margin: 16px 0 0; display: grid; gap: 10px 24px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); }
 .jz-dl div { min-width: 0; }
 .jz-dl dt { font-family: var(--jz-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--jz-muted); }
 .jz-dl dd { margin: 2px 0 0; font-size: 13px; }
@@ -184,7 +184,7 @@ export const jezeroEnvironmentCss = `
   overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
 }
 
-@media (max-width: 720px) {
+@container (max-width: 600px) {
   .jz-env { padding: 16px; border-radius: 0; }
   .jz-title { font-size: 22px; }
   .jz-verify { grid-template-columns: 1fr; }
@@ -192,8 +192,10 @@ export const jezeroEnvironmentCss = `
   .jz-chart-xaxis, .jz-chart-caption { padding-left: 54px; }
   .jz-value { font-size: 22px; }
 }
-@media (max-width: 420px) {
-  .jz-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+@container (max-width: 340px) {
+  .jz-cards { grid-template-columns: 1fr; }
+  .jz-product { grid-template-columns: 1fr; }
+  .jz-product-meta { text-align: left; }
   .jz-card { padding: 11px; }
   .jz-value { font-size: 20px; }
   .jz-chart-yaxis { width: 40px; font-size: 10px; }

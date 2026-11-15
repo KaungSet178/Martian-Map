@@ -43,7 +43,8 @@ ${jezeroEnvironmentCss}
   width: 100%;
   max-width: 100%;
   box-sizing: border-box;
-  overflow-x: hidden;
+  container-type: inline-size;
+  overflow-wrap: anywhere;
 }
 
 .env-container * {
@@ -359,12 +360,12 @@ ${jezeroEnvironmentCss}
 .gale-env .gap-3 { gap: 0.75rem; }
 .gale-env .gap-4 { gap: 1rem; }
 
-@media (min-width: 640px) {
+@container (min-width: 640px) {
   .gale-env .sm\\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .gale-env .sm\\:grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 }
 
-@media (min-width: 768px) {
+@container (min-width: 768px) {
   .gale-env .md\\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .gale-env .md\\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .gale-env .md\\:flex-row { flex-direction: row; }
@@ -373,7 +374,7 @@ ${jezeroEnvironmentCss}
   .gale-env .md\\:justify-between { justify-content: space-between; }
 }
 
-@media (min-width: 1024px) {
+@container (min-width: 1024px) {
   .gale-env .lg\\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .gale-env .lg\\:grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 }
@@ -500,4 +501,27 @@ ${jezeroEnvironmentCss}
     font-size: 20px;
   }
 }
+
+/* Cards follow the console width, including when it is expanded on desktop. */
+.env-container { padding: 12px; }
+.env-container :is(.jz-env, .gale-env > div) { padding: 12px; }
+.gale-env { min-width: 0; }
+.gale-env :is(.grid, .flex) > * { min-width: 0; }
+.gale-env .flex { flex-wrap: wrap; }
+.gale-env svg { flex-shrink: 0; max-width: 100%; }
+.gale-env .grid {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr));
+}
+.gale-env .grid-cols-2 {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 130px), 1fr));
+}
+.gale-env :is(select, pre) { max-width: 100%; }
+.gale-env select { width: 100%; }
+.gale-env pre { white-space: pre-wrap; overflow-wrap: anywhere; }
+.gale-env .block { display: block; }
+.gale-env .gap-1 { gap: 0.25rem; }
+.gale-env .gap-1\\.5 { gap: 0.375rem; }
+.gale-env button { min-height: 36px; }
+.gale-env :is(button, a):focus-visible { outline: 2px solid var(--env-cyan); outline-offset: 2px; }
+.env-tag, .jz-tag { white-space: normal; }
 `;

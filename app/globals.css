@@ -485,7 +485,7 @@ input[type="radio"] {
   border-bottom: 2px solid transparent;
   font-size: 14px;
 }
-.panel-tabs button[aria-current] {
+.panel-tabs button[aria-selected="true"] {
   color: var(--citrus-ink);
   border-bottom-color: var(--color-route);
 }
@@ -2716,7 +2716,7 @@ input[type="radio"] {
 .panel-tabs button:hover {
   background: var(--navy-06);
 }
-.panel-tabs button[aria-current] {
+.panel-tabs button[aria-selected="true"] {
   color: var(--navy);
   border-bottom-color: var(--citrus);
 }
@@ -2829,7 +2829,10 @@ input[type="radio"] {
   .workspace,
   .panel-collapsed {
     grid-template-columns: minmax(0, 1fr);
+    --console-width: 380px;
   }
+  .workspace.console-expanded { --console-width: min(560px, calc(100% - 432px)); }
+  .workspace.panel-collapsed { --console-width: 0px; }
   .map-workspace {
     grid-column: 1;
     grid-row: 1;
@@ -2839,7 +2842,7 @@ input[type="radio"] {
     top: 16px;
     left: 16px;
     bottom: 16px;
-    width: min(380px, calc(100% - 32px));
+    width: var(--console-width);
     z-index: 8;
     border: var(--line);
     box-shadow: 0 12px 40px rgba(15, 39, 71, 0.22);
@@ -2849,19 +2852,66 @@ input[type="radio"] {
   }
   /* Keep the region card and Layers button clear of the open panel. */
   .workspace:not(.panel-collapsed) .map-topline {
-    left: calc(min(380px, 100% - 32px) + 32px);
+    left: calc(var(--console-width) + 32px);
+  }
+  .layers-window {
+    right: 80px;
+    width: min(380px, calc(100% - var(--console-width) - 128px));
   }
 }
 
 @media (max-width: 850px) {
   .layers-window {
-    top: 72px;
+    top: 8px;
     left: 8px;
     right: 8px;
     width: auto;
-    max-height: calc(100% - var(--sheet-height, 174px) - 88px);
+    max-height: calc(100% - 16px);
     z-index: 30;
   }
+}
+
+/* Expandable Mission Console: retain F2 tokens and keep the body scrollable. */
+.task-panel > .panel-scroll {
+  min-width: 0;
+  padding: 16px;
+  scroll-padding-block: 16px;
+  scrollbar-gutter: stable;
+  overflow-wrap: anywhere;
+}
+.panel-top .region-overview-button { margin-right: auto; }
+.console-resize { flex-shrink: 0; margin-right: 4px; }
+.panel-tabs { padding-inline: 8px; }
+.panel-tabs button { flex: 1 1 auto; padding-inline: 6px; gap: 4px; }
+.mission-summary,
+.sheet-expanded .mission-summary {
+  padding: 8px 16px max(8px, env(safe-area-inset-bottom));
+}
+.summary-line { margin-bottom: 6px; align-items: flex-start; }
+.summary-line > span { min-width: 0; }
+.summary-line strong { font-size: 12px; line-height: 1.4; display: block; }
+.summary-line .badge { font-size: 10px; padding: 2px 6px; flex-shrink: 0; }
+.mission-summary .primary { min-height: 36px; padding: 6px 10px; font-size: 12px; }
+.layers-window .floating-window-body { display: block; }
+.task-panel :is([role="tabpanel"], [role="tab"]):focus-visible {
+  outline: 2px solid var(--citrus-ink);
+  outline-offset: -3px;
+}
+@media (max-width: 850px) {
+  .console-resize { display: none; }
+  .workspace, .workspace.has-selection { --sheet-height: 132px; }
+  .sheet-expanded .task-panel { height: 68%; }
+  .sheet-expanded .panel-top { display: none; }
+  .layers-window { top: auto; bottom: 0; height: 68%; max-height: calc(100% - 120px); }
+  .workspace .map-workspace[data-region] .map-navigation {
+    top: 64px;
+    right: 12px;
+    display: flex;
+    flex-direction: row;
+    gap: 4px;
+    align-items: flex-start;
+  }
+  .map-navigation .zoom-group { display: flex; flex-direction: row; }
 }
 
 @media print {
