@@ -59,8 +59,9 @@ for(const [width,height] of [[1440,900],[768,1024],[390,844]]) {
       await page.screenshot({path:`output/playwright/i3a/${region}-route-summary-${width}.png`});
       const settings=page.getByText("Timeline and resource scenario inputs",{exact:true});await settings.click();
       await page.getByLabel("Walking speed (m/hour)",{exact:true}).fill("1000");
-      await expect(page.getByTestId("terrain-timeline")).toContainText("Terrain scenario distance:");
-      await expect(page.locator('[aria-label="Terrain routing"]')).toContainText("INSUFFICIENT_DATA");
+      await expect(page.getByTestId("terrain-timeline")).toContainText("Travel-time scenario:");
+      await expect(page.getByTestId("eva-assessment").getByText("Electrical energy total required",{exact:true}).locator("..").locator("dd")).toHaveText("Unavailable");
+      await expect(page.getByTestId("eva-assessment")).toContainText("capacity unknown; feasibility unverified");
       await page.screenshot({path:`output/playwright/i3a/${region}-terrain-${width}.png`});
       await writeFile(`output/playwright/i3a/${region}-terrain-${width}.json`,JSON.stringify(data,null,2));
       await page.getByRole("button",{name:"Review mission",exact:true}).click();

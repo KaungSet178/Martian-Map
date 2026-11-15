@@ -1,0 +1,10 @@
+
+Running 3 tests using 1 worker
+
+(node:18712) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 1 tests\browser\i4b-eva.spec.ts:7:133 › I4B gale production EVA workflow 1440x900 (12.8s)
+  ok 2 tests\browser\i4b-eva.spec.ts:7:133 › I4B jezero production EVA workflow 1440x900 (8.5s)
+  ok 3 tests\browser\i4b-eva.spec.ts:7:133 › I4B oxia production EVA workflow 1440x900 (7.2s)
+
+  3 passed (29.6s)

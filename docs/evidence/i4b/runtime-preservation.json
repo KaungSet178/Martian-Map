@@ -1,0 +1,29 @@
+{
+  "foundation": "3b52ad137728c57324aa020ac4321a299a1d6d98",
+  "unchanged_tracked_paths": [
+    "regions",
+    "data",
+    "public",
+    "lib/routing/gale",
+    "lib/routing/jezero",
+    "lib/routing/server.ts",
+    "lib/routing/contracts.ts",
+    "lib/routing/use-terrain-routing.ts",
+    "lib/routing/metrics.ts",
+    "lib/map",
+    "lib/contracts",
+    "app/api/terrain-route",
+    "components/map"
+  ],
+  "asset_check": "assets.log",
+  "numerical_check": "numerical.log",
+  "assets_identical": 7282,
+  "routing_engine_changes": [],
+  "active_geological_unit_layers": [],
+  "scientific_categories": [
+    "Elevation",
+    "Hillshade",
+    "Slope",
+    "Thermal"
+  ]
+}

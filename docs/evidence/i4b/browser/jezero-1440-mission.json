@@ -1,0 +1,83 @@
+{
+  "schema_version": 1,
+  "id": "4dc5acd5-a698-41c4-b81c-0444611529ae",
+  "name": "Jezero Crater field plan",
+  "region": "jezero",
+  "target_ids": [],
+  "direction": "round",
+  "start": {
+    "latitude": 18.444627,
+    "longitude_east": 77.450886
+  },
+  "endpoint": null,
+  "recovery_assumption": "",
+  "oxygen_reserve_percent": 30,
+  "battery_reserve_percent": 25,
+  "dataset_version": "jezero-four-layers-v10",
+  "model_versions": {},
+  "saved_at": "2026-11-15T03:05:39.750Z",
+  "waypoint_plan": {
+    "schema_version": 1,
+    "id": "plan-6b480417-881c-496e-8e55-9ee3b61e663d",
+    "name": "Jezero Crater field plan",
+    "region_id": "jezero",
+    "mode": "round_trip",
+    "waypoints": [
+      {
+        "id": "wp-449cb51a-5ad9-49da-a2e2-408f2e1445e9",
+        "coordinates": {
+          "latitude": 18.444627,
+          "longitude_east": 77.450886
+        },
+        "role": "base",
+        "label": "I4B stop 0",
+        "provenance": "user_planning_input",
+        "stop_duration_seconds": 0
+      },
+      {
+        "id": "wp-3b69a447-d9fd-4166-8f40-5b614c1d8966",
+        "coordinates": {
+          "latitude": 18.455,
+          "longitude_east": 77.38
+        },
+        "role": "intermediate",
+        "label": "I4B stop 1",
+        "provenance": "user_planning_input",
+        "stop_duration_seconds": 0
+      },
+      {
+        "id": "wp-3780b5e8-226c-465e-a6fe-444a139230f9",
+        "coordinates": {
+          "latitude": 18.435,
+          "longitude_east": 77.43
+        },
+        "role": "intermediate",
+        "label": "I4B stop 2",
+        "provenance": "user_planning_input",
+        "stop_duration_seconds": 1200
+      }
+    ],
+    "created_at": "2026-11-15T03:05:36.213Z",
+    "updated_at": "2026-11-15T03:05:39.460Z"
+  },
+  "terrain_route": {
+    "version": "terrain-i3a-v1-georeferenced",
+    "requestKey": "[\"terrain-i3a-v1-georeferenced\",\"4dc5acd5-a698-41c4-b81c-0444611529ae\",\"jezero\",\"jezero-four-layers-v10\",\"jezero-usgs-trn-dtm-routing-25m\",100,\"round_trip\",[{\"id\":\"wp-449cb51a-5ad9-49da-a2e2-408f2e1445e9\",\"coordinates\":{\"latitude\":18.444627,\"longitude_east\":77.450886},\"role\":\"base\",\"provenance\":\"user_planning_input\"},{\"id\":\"wp-3b69a447-d9fd-4166-8f40-5b614c1d8966\",\"coordinates\":{\"latitude\":18.455,\"longitude_east\":77.38},\"role\":\"intermediate\",\"provenance\":\"user_planning_input\"},{\"id\":\"wp-3780b5e8-226c-465e-a6fe-444a139230f9\",\"coordinates\":{\"latitude\":18.435,\"longitude_east\":77.43},\"role\":\"intermediate\",\"provenance\":\"user_planning_input\"}]]",
+    "preference": "lower-terrain-cost",
+    "datasetId": "jezero-usgs-trn-dtm-routing-25m",
+    "maxSnapMeters": 100
+  },
+  "eva_config": {
+    "profileId": "bvad-reference",
+    "coolingArchitecture": "venting",
+    "electricalWatts": 80,
+    "oxygenCapacityKg": 2,
+    "batteryCapacityWh": 2000,
+    "waterCapacityKg": 10,
+    "oxygenMarginPercent": 20,
+    "emergencySeconds": 1800
+  },
+  "terrain_assumptions": {
+    "speed": "2000"
+  }
+}

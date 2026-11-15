@@ -22,7 +22,7 @@ import {
   type OxygenBudgetAssumptions,
   type BatteryBudgetAssumptions,
   type ResourceBudgetInput,
-} from "../lib/mission/resource-budget";
+} from "./support/legacy-resource-budget";
 import {
   calculateMissionTimeline,
   type MissionTimelineResult,

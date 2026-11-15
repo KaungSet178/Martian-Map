@@ -1,0 +1,874 @@
+{
+  "baseline": "26adc4c2e72c4febc2500de2eb11f8f30ef85ccd",
+  "records": [
+    {
+      "region": "jezero",
+      "objective_id": "jezero-objective-1",
+      "scientific_title": "Jezero geology and climate record",
+      "source_evidence": [
+        "jezero-m2020-mission-overview",
+        "jezero-m2020-science-objectives"
+      ],
+      "source_references": [
+        {
+          "id": "jezero-m2020-mission-overview",
+          "url": "https://doi.org/10.1007/s11214-020-00762-y"
+        },
+        {
+          "id": "jezero-m2020-science-objectives",
+          "url": "https://science.nasa.gov/mission/mars-2020-perseverance/science-objectives/"
+        }
+      ],
+      "evidence_classification": "Interpreted",
+      "coordinate_verified": false,
+      "coordinate_reference": {
+        "body": "Mars",
+        "latitude_type": "planetocentric",
+        "longitude_direction": "east",
+        "longitude_range": "0-360"
+      },
+      "geometry_type": "unlocated",
+      "source_coordinates": null,
+      "terrain_coverage_availability": "no objective coordinate",
+      "snap_status": "not applicable",
+      "numerical_routing_result": "not attempted for ineligible objective",
+      "registration_verified": false,
+      "positional_uncertainty_m": null,
+      "objective_waypoint_eligible": false,
+      "eligibility_basis": "Regional scientific routing policy, separate from legacy geometric waypoint creation",
+      "legacy_geometric_waypoint_creation": false,
+      "warnings": [
+        "Source coordinates and scientific interpretation do not establish operational safety."
+      ]
+    },
+    {
+      "region": "jezero",
+      "objective_id": "jezero-objective-2",
+      "scientific_title": "Ancient habitability assessment",
+      "source_evidence": [
+        "jezero-m2020-mission-overview",
+        "jezero-m2020-science-objectives"
+      ],
+      "source_references": [
+        {
+          "id": "jezero-m2020-mission-overview",
+          "url": "https://doi.org/10.1007/s11214-020-00762-y"
+        },
+        {
+          "id": "jezero-m2020-science-objectives",
+          "url": "https://science.nasa.gov/mission/mars-2020-perseverance/science-objectives/"
+        }
+      ],
+      "evidence_classification": "Interpreted",
+      "coordinate_verified": false,
+      "coordinate_reference": {
+        "body": "Mars",
+        "latitude_type": "planetocentric",
+        "longitude_direction": "east",
+        "longitude_range": "0-360"
+      },
+      "geometry_type": "unlocated",
+      "source_coordinates": null,
+      "terrain_coverage_availability": "no objective coordinate",
+      "snap_status": "not applicable",
+      "numerical_routing_result": "not attempted for ineligible objective",
+      "registration_verified": false,
+      "positional_uncertainty_m": null,
+      "objective_waypoint_eligible": false,
+      "eligibility_basis": "Regional scientific routing policy, separate from legacy geometric waypoint creation",
+      "legacy_geometric_waypoint_creation": false,
+      "warnings": [
+        "Source coordinates and scientific interpretation do not establish operational safety."
+      ]
+    },
+    {
+      "region": "jezero",
+      "objective_id": "jezero-objective-3",
+      "scientific_title": "Sample caching for Mars Sample Return",
+      "source_evidence": [
+        "jezero-m2020-sample-dossier",
+        "jezero-three-forks-primary-f3",
+        "jezero-m2020-science-objectives"
+      ],
+      "source_references": [
+        {
+          "id": "jezero-three-forks-primary-f3",
+          "url": "https://www.hou.usra.edu/meetings/lpsc2023/pdf/2618.pdf"
+        },
+        {
+          "id": "jezero-m2020-sample-dossier",
+          "url": "https://pds-geosciences.wustl.edu/missions/mars2020/returned_sample_science.htm"
+        },
+        {
+          "id": "jezero-m2020-science-objectives",
+          "url": "https://science.nasa.gov/mission/mars-2020-perseverance/science-objectives/"
+        }
+      ],
+      "evidence_classification": "Interpreted",
+      "coordinate_verified": false,
+      "coordinate_reference": {
+        "body": "Mars",
+        "latitude_type": "planetocentric",
+        "longitude_direction": "east",
+        "longitude_range": "0-360"
+      },
+      "geometry_type": "unlocated",
+      "source_coordinates": null,
+      "terrain_coverage_availability": "no objective coordinate",
+      "snap_status": "not applicable",
+      "numerical_routing_result": "not attempted for ineligible objective",
+      "registration_verified": false,
+      "positional_uncertainty_m": null,
+      "objective_waypoint_eligible": false,
+      "eligibility_basis": "Regional scientific routing policy, separate from legacy geometric waypoint creation",
+      "legacy_geometric_waypoint_creation": false,
+      "warnings": [
+        "Source coordinates and scientific interpretation do not establish operational safety."
+      ]
+    },
+    {
+      "region": "jezero",
+      "objective_id": "jezero-objective-4",
+      "scientific_title": "Biosignature search",
+      "source_evidence": [
+        "jezero-m2020-mission-overview",
+        "jezero-m2020-science-objectives"
+      ],
+      "source_references": [
+        {
+          "id": "jezero-m2020-mission-overview",
+          "url": "https://doi.org/10.1007/s11214-020-00762-y"
+        },
+        {
+          "id": "jezero-m2020-science-objectives",
+          "url": "https://science.nasa.gov/mission/mars-2020-perseverance/science-objectives/"
+        }
+      ],
+      "evidence_classification": "Interpreted",
+      "coordinate_verified": false,
+      "coordinate_reference": {
+        "body": "Mars",
+        "latitude_type": "planetocentric",
+        "longitude_direction": "east",
+        "longitude_range": "0-360"
+      },
+      "geometry_type": "unlocated",
+      "source_coordinates": null,
+      "terrain_coverage_availability": "no objective coordinate",
+      "snap_status": "not applicable",
+      "numerical_routing_result": "not attempted for ineligible objective",
+      "registration_verified": false,
+      "positional_uncertainty_m": null,
+      "objective_waypoint_eligible": false,
+      "eligibility_basis": "Regional scientific routing policy, separate from legacy geometric waypoint creation",
+      "legacy_geometric_waypoint_creation": false,
+      "warnings": [
+        "Source coordinates and scientific interpretation do not establish operational safety."
+      ]
+    },
+    {
+      "region": "jezero",
+      "objective_id": "jezero-objective-5",
+      "scientific_title": "Human-exploration preparation",
+      "source_evidence": [
+        "jezero-meda-environment",
+        "jezero-m2020-science-objectives"
+      ],
+      "source_references": [
+        {
+          "id": "jezero-meda-environment",
+          "url": "https://atmos.nmsu.edu/data_and_services/atmospheres_data/PERSEVERANCE/meda.html"
+        },
+        {
+          "id": "jezero-m2020-science-objectives",
+          "url": "https://science.nasa.gov/mission/mars-2020-perseverance/science-objectives/"
+        }
+      ],
+      "evidence_classification": "Interpreted",
+      "coordinate_verified": false,
+      "coordinate_reference": {
+        "body": "Mars",
+        "latitude_type": "planetocentric",
+        "longitude_direction": "east",
+        "longitude_range": "0-360"
+      },
+      "geometry_type": "unlocated",
+      "source_coordinates": null,
+      "terrain_coverage_availability": "no objective coordinate",
+      "snap_status": "not applicable",
+      "numerical_routing_result": "not attempted for ineligible objective",
+      "registration_verified": false,
+      "positional_uncertainty_m": null,
+      "objective_waypoint_eligible": false,
+      "eligibility_basis": "Regional scientific routing policy, separate from legacy geometric waypoint creation",
+      "legacy_geometric_waypoint_creation": false,
+      "warnings": [
+        "Source coordinates and scientific interpretation do not establish operational safety."
+      ]
+    },
+    {
+      "region": "gale",
+      "objective_id": "gale-objective-1",
+      "scientific_title": "Layered sedimentary unit",
+      "source_evidence": [
+        "gale-geology-publication",
+        "gale-clay-sulfate"
+      ],
+      "source_references": [
+        {
+          "id": "gale-clay-sulfate",
+          "url": "https://science.nasa.gov/resource/nasas-curiosity-finds-climate-clues-on-a-martian-mountain/"
+        },
+        {
+          "id": "gale-geology-publication",
+          "url": "https://www.usgs.gov/publications/geology-and-stratigraphic-correlation-murray-and-carolyn-shoemaker-formations-across"
+        }
+      ],
+      "evidence_classification": "Scenario",
+      "coordinate_verified": false,
+      "coordinate_reference": {
+        "body": "Mars",
+        "latitude_type": "planetocentric",
+        "longitude_direction": "east",
+        "longitude_range": "0-360"
+      },
+      "geometry_type": "unlocated",
+      "source_coordinates": null,
+      "terrain_coverage_availability": "no objective coordinate",
+      "snap_status": "not applicable",
+      "numerical_routing_result": "not attempted for ineligible objective",
+      "registration_verified": false,
+      "positional_uncertainty_m": null,
+      "objective_waypoint_eligible": false,
+      "eligibility_basis": "Regional scientific routing policy, separate from legacy geometric waypoint creation",
+      "legacy_geometric_waypoint_creation": false,
+      "warnings": [
+        "Source coordinates and scientific interpretation do not establish operational safety."
+      ]
+    },
+    {
+      "region": "gale",
+      "objective_id": "gale-objective-2",
+      "scientific_title": "Clay-to-sulfate transition",
+      "source_evidence": [
+        "gale-geology-publication",
+        "gale-clay-sulfate"
+      ],
+      "source_references": [
+        {
+          "id": "gale-clay-sulfate",
+          "url": "https://science.nasa.gov/resource/nasas-curiosity-finds-climate-clues-on-a-martian-mountain/"
+        },
+        {
+          "id": "gale-geology-publication",
+          "url": "https://www.usgs.gov/publications/geology-and-stratigraphic-correlation-murray-and-carolyn-shoemaker-formations-across"
+        }
+      ],
+      "evidence_classification": "Scenario",
+      "coordinate_verified": false,
+      "coordinate_reference": {
+        "body": "Mars",
+        "latitude_type": "planetocentric",
+        "longitude_direction": "east",
+        "longitude_range": "0-360"
+      },
+      "geometry_type": "unlocated",
+      "source_coordinates": null,
+      "terrain_coverage_availability": "no objective coordinate",
+      "snap_status": "not applicable",
+      "numerical_routing_result": "not attempted for ineligible objective",
+      "registration_verified": false,
+      "positional_uncertainty_m": null,
+      "objective_waypoint_eligible": false,
+      "eligibility_basis": "Regional scientific routing policy, separate from legacy geometric waypoint creation",
+      "legacy_geometric_waypoint_creation": false,
+      "warnings": [
+        "Source coordinates and scientific interpretation do not establish operational safety."
+      ]
+    },
+    {
+      "region": "gale",
+      "objective_id": "gale-objective-3",
+      "scientific_title": "Sulfate-bearing outcrop",
+      "source_evidence": [
+        "gale-geology-publication",
+        "gale-clay-sulfate"
+      ],
+      "source_references": [
+        {
+          "id": "gale-clay-sulfate",
+          "url": "https://science.nasa.gov/resource/nasas-curiosity-finds-climate-clues-on-a-martian-mountain/"
+        },
+        {
+          "id": "gale-geology-publication",
+          "url": "https://www.usgs.gov/publications/geology-and-stratigraphic-correlation-murray-and-carolyn-shoemaker-formations-across"
+        }
+      ],
+      "evidence_classification": "Scenario",
+      "coordinate_verified": false,
+      "coordinate_reference": {
+        "body": "Mars",
+        "latitude_type": "planetocentric",
+        "longitude_direction": "east",
+        "longitude_range": "0-360"
+      },
+      "geometry_type": "unlocated",
+      "source_coordinates": null,
+      "terrain_coverage_availability": "no objective coordinate",
+      "snap_status": "not applicable",
+      "numerical_routing_result": "not attempted for ineligible objective",
+      "registration_verified": false,
+      "positional_uncertainty_m": null,
+      "objective_waypoint_eligible": false,
+      "eligibility_basis": "Regional scientific routing policy, separate from legacy geometric waypoint creation",
+      "legacy_geometric_waypoint_creation": false,
+      "warnings": [
+        "Source coordinates and scientific interpretation do not establish operational safety."
+      ]
+    },
+    {
+      "region": "gale",
+      "objective_id": "gale-glen-torridon",
+      "scientific_title": "Glen Torridon",
+      "source_evidence": [
+        "gale-glen-torridon-reference",
+        "gale-geology-publication",
+        "gale-photo-source-glen"
+      ],
+      "source_references": [
+        {
+          "id": "gale-glen-torridon-reference",
+          "url": "https://science.nasa.gov/photojournal/curiosity-on-the-clay-unit/"
+        },
+        {
+          "id": "gale-geology-publication",
+          "url": "https://www.usgs.gov/publications/geology-and-stratigraphic-correlation-murray-and-carolyn-shoemaker-formations-across"
+        },
+        {
+          "id": "gale-photo-source-glen",
+          "url": "https://science.nasa.gov/photojournal/curiosity-on-the-clay-unit/"
+        }
+      ],
+      "evidence_classification": "Interpreted",
+      "coordinate_verified": false,
+      "coordinate_reference": {
+        "body": "Mars",
+        "latitude_type": "planetocentric",
+        "longitude_direction": "east",
+        "longitude_range": "0-360"
+      },
+      "geometry_type": "unlocated",
+      "source_coordinates": null,
+      "terrain_coverage_availability": "no objective coordinate",
+      "snap_status": "not applicable",
+      "numerical_routing_result": "not attempted for ineligible objective",
+      "registration_verified": false,
+      "positional_uncertainty_m": null,
+      "objective_waypoint_eligible": false,
+      "eligibility_basis": "Regional scientific routing policy, separate from legacy geometric waypoint creation",
+      "legacy_geometric_waypoint_creation": false,
+      "warnings": [
+        "Source coordinates and scientific interpretation do not establish operational safety."
+      ]
+    },
+    {
+      "region": "gale",
+      "objective_id": "gale-vera-rubin-ridge",
+      "scientific_title": "Vera Rubin Ridge",
+      "source_evidence": [
+        "gale-vera-rubin",
+        "gale-geology-publication",
+        "gale-photo-source-ridge"
+      ],
+      "source_references": [
+        {
+          "id": "gale-vera-rubin",
+          "url": "https://science.nasa.gov/blog/sols-1734-1735-gazing-longingly-towards-vera-rubin-ridge/"
+        },
+        {
+          "id": "gale-geology-publication",
+          "url": "https://www.usgs.gov/publications/geology-and-stratigraphic-correlation-murray-and-carolyn-shoemaker-formations-across"
+        },
+        {
+          "id": "gale-photo-source-ridge",
+          "url": "https://science.nasa.gov/photojournal/looking-up-at-layers-of-vera-rubin-ridge-on-sol-1790/"
+        }
+      ],
+      "evidence_classification": "Interpreted",
+      "coordinate_verified": false,
+      "coordinate_reference": {
+        "body": "Mars",
+        "latitude_type": "planetocentric",
+        "longitude_direction": "east",
+        "longitude_range": "0-360"
+      },
+      "geometry_type": "unlocated",
+      "source_coordinates": null,
+      "terrain_coverage_availability": "no objective coordinate",
+      "snap_status": "not applicable",
+      "numerical_routing_result": "not attempted for ineligible objective",
+      "registration_verified": false,
+      "positional_uncertainty_m": null,
+      "objective_waypoint_eligible": false,
+      "eligibility_basis": "Regional scientific routing policy, separate from legacy geometric waypoint creation",
+      "legacy_geometric_waypoint_creation": false,
+      "warnings": [
+        "Source coordinates and scientific interpretation do not establish operational safety."
+      ]
+    },
+    {
+      "region": "gale",
+      "objective_id": "gale-sulfate-units",
+      "scientific_title": "Sulfate-bearing terrain investigation",
+      "source_evidence": [
+        "gale-clay-sulfate",
+        "gale-photo-source-sulfate",
+        "gale-usgs-sulfate-study"
+      ],
+      "source_references": [
+        {
+          "id": "gale-clay-sulfate",
+          "url": "https://science.nasa.gov/resource/nasas-curiosity-finds-climate-clues-on-a-martian-mountain/"
+        },
+        {
+          "id": "gale-photo-source-sulfate",
+          "url": "https://science.nasa.gov/photojournal/curiosity-looks-downslope-from-the-sulfate-unit/"
+        },
+        {
+          "id": "gale-usgs-sulfate-study",
+          "url": "https://www.usgs.gov/publications/geological-context-and-significance-clay-sulfate-transition-region-mount-sharp-gale"
+        }
+      ],
+      "evidence_classification": "Interpreted",
+      "coordinate_verified": false,
+      "coordinate_reference": {
+        "body": "Mars",
+        "latitude_type": "planetocentric",
+        "longitude_direction": "east",
+        "longitude_range": "0-360"
+      },
+      "geometry_type": "unlocated",
+      "source_coordinates": null,
+      "terrain_coverage_availability": "no objective coordinate",
+      "snap_status": "not applicable",
+      "numerical_routing_result": "not attempted for ineligible objective",
+      "registration_verified": false,
+      "positional_uncertainty_m": null,
+      "objective_waypoint_eligible": false,
+      "eligibility_basis": "Regional scientific routing policy, separate from legacy geometric waypoint creation",
+      "legacy_geometric_waypoint_creation": false,
+      "warnings": [
+        "Source coordinates and scientific interpretation do not establish operational safety."
+      ]
+    },
+    {
+      "region": "gale",
+      "objective_id": "gale-gediz-vallis",
+      "scientific_title": "Gediz Vallis",
+      "source_evidence": [
+        "gale-gediz-vallis-reference",
+        "gale-photo-source-navcam",
+        "gale-gediz-gazetteer"
+      ],
+      "source_references": [
+        {
+          "id": "gale-gediz-vallis-reference",
+          "url": "https://science.nasa.gov/resource/curiosity-takes-a-360-degree-view-of-gediz-vallis-channel/"
+        },
+        {
+          "id": "gale-photo-source-navcam",
+          "url": "https://science.nasa.gov/blog/sols-4327-4328-on-the-road-again/"
+        },
+        {
+          "id": "gale-gediz-gazetteer",
+          "url": "https://planetarynames.wr.usgs.gov/Feature/15571"
+        }
+      ],
+      "evidence_classification": "Interpreted",
+      "coordinate_verified": false,
+      "coordinate_reference": {
+        "body": "Mars",
+        "latitude_type": "planetocentric",
+        "longitude_direction": "east",
+        "longitude_range": "0-360"
+      },
+      "geometry_type": "unlocated",
+      "source_coordinates": null,
+      "terrain_coverage_availability": "no objective coordinate",
+      "snap_status": "not applicable",
+      "numerical_routing_result": "not attempted for ineligible objective",
+      "registration_verified": false,
+      "positional_uncertainty_m": null,
+      "objective_waypoint_eligible": false,
+      "eligibility_basis": "Regional scientific routing policy, separate from legacy geometric waypoint creation",
+      "legacy_geometric_waypoint_creation": false,
+      "warnings": [
+        "Source coordinates and scientific interpretation do not establish operational safety."
+      ]
+    },
+    {
+      "region": "oxia",
+      "objective_id": "oxia-objective-1",
+      "scientific_title": "Clay-rich bedrock study",
+      "source_evidence": [
+        "oxia-trek-aqueous",
+        "oxia-trek-hydrous"
+      ],
+      "source_references": [
+        {
+          "id": "oxia-trek-hydrous",
+          "url": "https://trek.nasa.gov/mars/trekarcgis/rest/services/Hydrous_Mineral_Detections_OMEGA_CRISM_clon0/MapServer/0"
+        },
+        {
+          "id": "oxia-trek-aqueous",
+          "url": "https://trek.nasa.gov/mars/trekarcgis/rest/services/Aquieous_Mineral_Distribution_Options_clon0/MapServer/0"
+        }
+      ],
+      "evidence_classification": "Interpreted",
+      "coordinate_verified": true,
+      "coordinate_reference": {
+        "body": "Mars",
+        "latitude_type": "planetocentric",
+        "longitude_direction": "east",
+        "longitude_range": "0-360"
+      },
+      "geometry_type": "Point",
+      "source_coordinates": {
+        "latitude": 18.22,
+        "longitude_east": 335.83
+      },
+      "terrain_coverage_availability": "unavailable",
+      "snap_status": "not applicable",
+      "numerical_routing_result": "not attempted for ineligible objective",
+      "registration_verified": false,
+      "positional_uncertainty_m": null,
+      "objective_waypoint_eligible": false,
+      "eligibility_basis": "Regional scientific routing policy, separate from legacy geometric waypoint creation",
+      "legacy_geometric_waypoint_creation": true,
+      "warnings": [
+        "Source coordinates and scientific interpretation do not establish operational safety."
+      ]
+    },
+    {
+      "region": "oxia",
+      "objective_id": "oxia-objective-2",
+      "scientific_title": "Hydrated silica detection",
+      "source_evidence": [
+        "oxia-trek-aqueous"
+      ],
+      "source_references": [
+        {
+          "id": "oxia-trek-aqueous",
+          "url": "https://trek.nasa.gov/mars/trekarcgis/rest/services/Aquieous_Mineral_Distribution_Options_clon0/MapServer/0"
+        }
+      ],
+      "evidence_classification": "Interpreted",
+      "coordinate_verified": true,
+      "coordinate_reference": {
+        "body": "Mars",
+        "latitude_type": "planetocentric",
+        "longitude_direction": "east",
+        "longitude_range": "0-360"
+      },
+      "geometry_type": "Point",
+      "source_coordinates": {
+        "latitude": 17.84,
+        "longitude_east": 336.33
+      },
+      "terrain_coverage_availability": "unavailable",
+      "snap_status": "not applicable",
+      "numerical_routing_result": "not attempted for ineligible objective",
+      "registration_verified": false,
+      "positional_uncertainty_m": null,
+      "objective_waypoint_eligible": false,
+      "eligibility_basis": "Regional scientific routing policy, separate from legacy geometric waypoint creation",
+      "legacy_geometric_waypoint_creation": true,
+      "warnings": [
+        "Source coordinates and scientific interpretation do not establish operational safety."
+      ]
+    },
+    {
+      "region": "oxia",
+      "objective_id": "oxia-objective-3",
+      "scientific_title": "Second clay detection",
+      "source_evidence": [
+        "oxia-trek-aqueous"
+      ],
+      "source_references": [
+        {
+          "id": "oxia-trek-aqueous",
+          "url": "https://trek.nasa.gov/mars/trekarcgis/rest/services/Aquieous_Mineral_Distribution_Options_clon0/MapServer/0"
+        }
+      ],
+      "evidence_classification": "Interpreted",
+      "coordinate_verified": true,
+      "coordinate_reference": {
+        "body": "Mars",
+        "latitude_type": "planetocentric",
+        "longitude_direction": "east",
+        "longitude_range": "0-360"
+      },
+      "geometry_type": "Point",
+      "source_coordinates": {
+        "latitude": 18.22,
+        "longitude_east": 336.11
+      },
+      "terrain_coverage_availability": "unavailable",
+      "snap_status": "not applicable",
+      "numerical_routing_result": "not attempted for ineligible objective",
+      "registration_verified": false,
+      "positional_uncertainty_m": null,
+      "objective_waypoint_eligible": false,
+      "eligibility_basis": "Regional scientific routing policy, separate from legacy geometric waypoint creation",
+      "legacy_geometric_waypoint_creation": true,
+      "warnings": [
+        "Source coordinates and scientific interpretation do not establish operational safety."
+      ]
+    },
+    {
+      "region": "jezero",
+      "site_id": "jezero-three-forks-landing-circle",
+      "source_evidence": [
+        "https://www.hou.usra.edu/meetings/lpsc2023/pdf/2618.pdf"
+      ],
+      "geometry_type": "Point",
+      "source_coordinates": {
+        "latitude": 18.453697,
+        "longitude_east": 77.413598
+      },
+      "published_source_coordinates": {
+        "latitude": 18.45369687,
+        "longitude_east": 77.41359752
+      },
+      "coordinate_system": "Mars planetocentric latitude, east-positive longitude",
+      "source_verified": true,
+      "coordinate_verified": true,
+      "processing_verified": false,
+      "landing_circle_radius_m": 60,
+      "terrain_coverage_availability": true,
+      "cell": [
+        447,
+        97
+      ],
+      "snap_status": [
+        {
+          "preference": "shortest",
+          "requested": [
+            [
+              77.450886,
+              18.444627
+            ],
+            [
+              77.413598,
+              18.453697
+            ]
+          ],
+          "snapped": [
+            [
+              77.45089722253802,
+              18.444607067986382
+            ],
+            [
+              77.41378189185018,
+              18.453885900658346
+            ]
+          ],
+          "displacement_m": [
+            1.3394288019789937,
+            15.240788620684324
+          ]
+        },
+        {
+          "preference": "lower-terrain-cost",
+          "requested": [
+            [
+              77.450886,
+              18.444627
+            ],
+            [
+              77.413598,
+              18.453697
+            ]
+          ],
+          "snapped": [
+            [
+              77.45089722253802,
+              18.444607067986382
+            ],
+            [
+              77.41378189185018,
+              18.453885900658346
+            ]
+          ],
+          "displacement_m": [
+            1.3394288019789937,
+            15.240788620684324
+          ]
+        }
+      ],
+      "numerical_routing_result": [
+        {
+          "preference": "shortest",
+          "status": "unverified",
+          "distance_m": 2325.0782022995118,
+          "horizontal_m": 2323.2913262526386,
+          "ascent_m": 46.2998046875,
+          "descent_m": 25.2998046875,
+          "failure": null
+        },
+        {
+          "preference": "lower-terrain-cost",
+          "status": "unverified",
+          "distance_m": 2323.714391223676,
+          "horizontal_m": 2323.2531187045793,
+          "ascent_m": 28.199951171875,
+          "descent_m": 7.199951171875,
+          "failure": null
+        }
+      ],
+      "registration_verified": false,
+      "objective_waypoint_eligible": false,
+      "warnings": [
+        "Manual algorithm probe only; source location is a proposed landing circle, not the tube depot or an eligible objective waypoint."
+      ]
+    },
+    {
+      "region": "gale",
+      "site_id": "manual-ordered-round-trip",
+      "source_evidence": [
+        "gale-hrsc-30m"
+      ],
+      "geometry_type": "LineString",
+      "source_coordinates": null,
+      "terrain_coverage_availability": true,
+      "snap_status": [
+        [
+          12.481381141888157,
+          9.608465196755796,
+          3.6129968130555277,
+          12.481381141888157
+        ],
+        [
+          12.481381141888157,
+          9.608465196755796,
+          3.6129968130555277,
+          12.481381141888157
+        ]
+      ],
+      "numerical_routing_result": [
+        {
+          "preference": "shortest",
+          "status": "unverified",
+          "vertices": 120,
+          "distance_m": 4575.491280346902,
+          "horizontal_m": 4545.862752610159,
+          "ascent_m": 234.8994140625,
+          "descent_m": 234.8994140625,
+          "segments": 3
+        },
+        {
+          "preference": "lower-terrain-cost",
+          "status": "unverified",
+          "vertices": 120,
+          "distance_m": 4574.930615170687,
+          "horizontal_m": 4545.868036742955,
+          "ascent_m": 234.8994140625,
+          "descent_m": 234.8994140625,
+          "segments": 3
+        }
+      ],
+      "registration_verified": false,
+      "objective_waypoint_eligible": false,
+      "warnings": [
+        "Manual planning points; no science feature accessibility inference."
+      ]
+    },
+    {
+      "region": "jezero",
+      "site_id": "manual-ordered-round-trip",
+      "source_evidence": [
+        "jezero-usgs-trn-dtm",
+        "jezero-hirise-soc-006"
+      ],
+      "geometry_type": "LineString",
+      "source_coordinates": null,
+      "terrain_coverage_availability": true,
+      "snap_status": [
+        [
+          1.3394288019789937,
+          9.249402169243194,
+          12.088587860597576,
+          1.3394288019789937
+        ],
+        [
+          1.3394288019789937,
+          9.249402169243194,
+          12.088587860597576,
+          1.3394288019789937
+        ]
+      ],
+      "numerical_routing_result": [
+        {
+          "preference": "shortest",
+          "status": "unverified",
+          "vertices": 337,
+          "distance_m": 9009.254967822235,
+          "horizontal_m": 8999.780814263684,
+          "ascent_m": 157.599853515625,
+          "descent_m": 157.599853515625,
+          "segments": 3
+        },
+        {
+          "preference": "lower-terrain-cost",
+          "status": "unverified",
+          "vertices": 337,
+          "distance_m": 9091.640329973143,
+          "horizontal_m": 9085.623329545828,
+          "ascent_m": 121.6005859375,
+          "descent_m": 121.6005859375,
+          "segments": 3
+        }
+      ],
+      "registration_verified": false,
+      "objective_waypoint_eligible": false,
+      "warnings": [
+        "Manual planning points; no science feature accessibility inference."
+      ]
+    },
+    {
+      "region": "oxia",
+      "site_id": "manual-geometric-plan",
+      "source_evidence": [
+        "Mars sphere R=3396190 m"
+      ],
+      "geometry_type": "LineString",
+      "source_coordinates": [
+        {
+          "latitude": 18.22,
+          "longitude_east": 335.83
+        },
+        {
+          "latitude": 17.84,
+          "longitude_east": 336.33
+        },
+        {
+          "latitude": 18.22,
+          "longitude_east": 336.11
+        }
+      ],
+      "terrain_coverage_availability": false,
+      "snap_status": "not applicable",
+      "numerical_routing_result": {
+        "terrain": "unavailable",
+        "one_way_m": 61789.29781967176,
+        "round_trip_m": 77554.09152205153,
+        "elevation_metrics": null
+      },
+      "registration_verified": false,
+      "objective_waypoint_eligible": false,
+      "warnings": [
+        "Geometric distance only; no Gale/Jezero terrain substitution."
+      ]
+    }
+  ]
+}

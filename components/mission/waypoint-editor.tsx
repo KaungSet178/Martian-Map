@@ -522,8 +522,8 @@ export function WaypointEditor({
       {/* Scientific Baseline Notice */}
       <Notice title="Proposed geometric trajectory">
         Calculations use {GEOMETRIC_TRAJECTORY_LABEL}. No 3D terrain slopes,
-        boulder hazards, walking speeds, or life-support consumption models are
-        connected. Traversal feasibility remains <strong>Unverified</strong>.
+        boulder hazards or validated astronaut physiology are represented in this preview.
+        The separate EVA panel uses current route and explicit resource assumptions. Traversal feasibility remains <strong>Unverified</strong>.
       </Notice>
     </div>
   );

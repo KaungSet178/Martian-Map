@@ -51,6 +51,7 @@ import { EnvironmentalConditionsPanel } from "@/components/environment/environme
 import { MissionEditor } from "@/components/mission/editor";
 import { RouteComparison } from "@/components/mission/analysis";
 import { useTerrainRouting } from "@/lib/routing/use-terrain-routing";
+import { EVAPanel } from "@/components/mission/eva-panel";
 import { TerrainRoutingPanel } from "@/components/mission/terrain-routing";
 import { missionPlanningSnapshot } from "@/lib/mission/planning-snapshot";
 import { MissionBrief } from "@/components/mission/brief";
@@ -639,6 +640,7 @@ export function Planner() {
                 ) : (
                   <>
                   <TerrainRoutingPanel mission={mission} plan={activePlan} routing={terrainRouting} onChange={updateMission} />
+                  <EVAPanel snapshot={planningSnapshot} onChange={updateMission} />
                   <WaypointEditor
                     plan={activePlan}
                     regionName={region.name}

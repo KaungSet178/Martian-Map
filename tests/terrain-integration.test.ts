@@ -24,15 +24,15 @@ for(const region of ["gale","jezero"] as const)test(`${region}: real worker, ord
     assert.ok(route.snapDistancesMeters.every(d=>d<=100));
     assert.deepEqual(route.coordinates[0],route.coordinates.at(-1));
     const summary=terrainPlanningSummary(request.plan,route,{speed:"1000",scienceMinutes:"10",oxygenCapacity:"5000",oxygenTravel:"100",oxygenStop:"50",batteryCapacity:"2000",batteryTravel:"100",batteryStop:"30"},{oxygen:25,battery:30})!;
-    assert.equal(summary.timeline.status,"COMPLETE_SCENARIO");
-    assert.ok(Math.abs(summary.timeline.total_distance_metres!-route.distanceMeters!)<1e-6);
-    assert.ok(Math.abs(summary.timeline.total_travel_seconds!-route.distanceMeters!*3.6)<1e-6);
-    assert.ok(summary.timeline.total_stop_seconds>=600);
-    assert.ok(Math.abs(summary.resources.oxygen.travel_used_g!-route.distanceMeters!/1000*100)<1e-6);
-    assert.equal(terrainPlanningSummary(request.plan,null,{speed:"1000"},{oxygen:25,battery:25}),null);
-    assert.equal(terrainPlanningSummary(request.plan,route,{}, {oxygen:25,battery:25}),null);
+    assert.equal(summary.timeline!.status,"COMPLETE_SCENARIO");
+    assert.ok(Math.abs(summary.timeline!.total_distance_metres!-route.distanceMeters!)<1e-6);
+    assert.ok(Math.abs(summary.timeline!.total_travel_seconds!-route.distanceMeters!*3.6)<1e-6);
+    assert.ok(summary.timeline!.total_stop_seconds>=600);
+    assert.ok(Math.abs(summary.resources.oxygen.baseline!-(route.distanceMeters!/1000*100+50/6)/1000)<1e-6);
+    assert.equal(terrainPlanningSummary(request.plan,null,{speed:"1000"},{oxygen:25,battery:25}).resources.oxygen.required,null);
+    assert.equal(terrainPlanningSummary(request.plan,route,{}, {oxygen:25,battery:25}).resources.oxygen.required,null);
     const incomplete=terrainPlanningSummary(request.plan,route,{speed:"1000"},{oxygen:25,battery:25})!;
-    assert.equal(incomplete.resources.oxygen.total_used_g,null);
+    assert.equal(incomplete.resources.oxygen.required,null);
     assert.match(terrainBriefSummary(newMission(regions[region]),route),/3D distance.*Absolute registration unverified/);
   }
   const mission={...newMission(regions[region]),waypoint_plan:request.plan,terrain_route:{version:response.version,requestKey:"qa",preference:"shortest" as const,datasetId:request.datasetId}};

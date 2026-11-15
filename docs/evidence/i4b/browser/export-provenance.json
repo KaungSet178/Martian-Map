@@ -1,0 +1,317 @@
+[
+  {
+    "source": "output\\playwright\\i4b\\gale-1440-brief.html",
+    "evidence": "docs\\evidence\\i4b\\browser\\gale-1440-brief.html",
+    "raw_sha256": "0b16a074ef14c3e557dd42f6d25fc4efc942edb0038d1ccdec7c663ab3a48e81",
+    "evidence_sha256": "bf3270c46cb6d357d9201aae1119a7dc2125489d6667ab5dc2103c8639fd283b",
+    "normalization": "HTML trailing whitespace only"
+  },
+  {
+    "source": "output\\playwright\\i4b\\gale-1440-mission.json",
+    "evidence": "docs\\evidence\\i4b\\browser\\gale-1440-mission.json",
+    "raw_sha256": "c4ede624248923042573d98844c0005982293d7f27a920e0a03c24dc5601acd9",
+    "evidence_sha256": "c4ede624248923042573d98844c0005982293d7f27a920e0a03c24dc5601acd9",
+    "normalization": "none"
+  },
+  {
+    "source": "output\\playwright\\i4b\\gale-1440-review.png",
+    "evidence": "docs\\evidence\\i4b\\browser\\gale-1440-review.png",
+    "raw_sha256": "980a160082ccbfb8fea50c156a5ea028e0dee168c193eea48e33087430d789c1",
+    "evidence_sha256": "980a160082ccbfb8fea50c156a5ea028e0dee168c193eea48e33087430d789c1",
+    "normalization": "none"
+  },
+  {
+    "source": "output\\playwright\\i4b\\gale-320-brief.html",
+    "evidence": "docs\\evidence\\i4b\\browser\\gale-320-brief.html",
+    "raw_sha256": "9581dcfe27adc6b6a140aa8f5b4fcd813938108a6c6a1c257e4332a8aadc5e60",
+    "evidence_sha256": "c50958badb7905eb8a00488da5f4433ead7a956ecbaf5b0aacac2c4a305d0b44",
+    "normalization": "HTML trailing whitespace only"
+  },
+  {
+    "source": "output\\playwright\\i4b\\gale-320-mission.json",
+    "evidence": "docs\\evidence\\i4b\\browser\\gale-320-mission.json",
+    "raw_sha256": "1747c531be7dabdd69567d94b8d614b2a3990d31bf9339355149070ed1516468",
+    "evidence_sha256": "1747c531be7dabdd69567d94b8d614b2a3990d31bf9339355149070ed1516468",
+    "normalization": "none"
+  },
+  {
+    "source": "output\\playwright\\i4b\\gale-320-review.png",
+    "evidence": "docs\\evidence\\i4b\\browser\\gale-320-review.png",
+    "raw_sha256": "e83bdbe2273068931c23bab78df0da8e6eefae3581419fd77037132b5ac003f2",
+    "evidence_sha256": "e83bdbe2273068931c23bab78df0da8e6eefae3581419fd77037132b5ac003f2",
+    "normalization": "none"
+  },
+  {
+    "source": "output\\playwright\\i4b\\gale-390-brief.html",
+    "evidence": "docs\\evidence\\i4b\\browser\\gale-390-brief.html",
+    "raw_sha256": "4c3310306e9eaf86fb358375056bcf991eb6dc086500551fd98316a7ec3ab142",
+    "evidence_sha256": "26b72faa03f8a0e20a7ea82ad97ade276932999030fe4f33c68ebfc6fc345d0f",
+    "normalization": "HTML trailing whitespace only"
+  },
+  {
+    "source": "output\\playwright\\i4b\\gale-390-mission.json",
+    "evidence": "docs\\evidence\\i4b\\browser\\gale-390-mission.json",
+    "raw_sha256": "96b0dbfdade9c55100a931a83a97ebcb859a5e7c30b2c2b5c543a1e6110ae420",
+    "evidence_sha256": "96b0dbfdade9c55100a931a83a97ebcb859a5e7c30b2c2b5c543a1e6110ae420",
+    "normalization": "none"
+  },
+  {
+    "source": "output\\playwright\\i4b\\gale-390-review.png",
+    "evidence": "docs\\evidence\\i4b\\browser\\gale-390-review.png",
+    "raw_sha256": "b9192660497da2c7d6b3a7298a0b234e9e9e41b604c472a219c34e27c703fd24",
+    "evidence_sha256": "b9192660497da2c7d6b3a7298a0b234e9e9e41b604c472a219c34e27c703fd24",
+    "normalization": "none"
+  },
+  {
+    "source": "output\\playwright\\i4b\\gale-768-brief.html",
+    "evidence": "docs\\evidence\\i4b\\browser\\gale-768-brief.html",
+    "raw_sha256": "0124d17d9d51d558cddb311882f35f72a706e99f5d5ce06a282f9ffac6d1abb8",
+    "evidence_sha256": "eecfe938a0d111a6e8b450504f4425be175cb5bcca47046d00199e16a50f19ba",
+    "normalization": "HTML trailing whitespace only"
+  },
+  {
+    "source": "output\\playwright\\i4b\\gale-768-mission.json",
+    "evidence": "docs\\evidence\\i4b\\browser\\gale-768-mission.json",
+    "raw_sha256": "40e25f1a8cbb9e378a3f553083040dc27f7d31d67b8962c41bb046384f303135",
+    "evidence_sha256": "40e25f1a8cbb9e378a3f553083040dc27f7d31d67b8962c41bb046384f303135",
+    "normalization": "none"
+  },
+  {
+    "source": "output\\playwright\\i4b\\gale-768-review.png",
+    "evidence": "docs\\evidence\\i4b\\browser\\gale-768-review.png",
+    "raw_sha256": "889283358e393d5b52659f3c998819fa67830791ccc276e754183025cd416ad8",
+    "evidence_sha256": "889283358e393d5b52659f3c998819fa67830791ccc276e754183025cd416ad8",
+    "normalization": "none"
+  },
+  {
+    "source": "output\\playwright\\i4b\\gale-844-brief.html",
+    "evidence": "docs\\evidence\\i4b\\browser\\gale-844-brief.html",
+    "raw_sha256": "0aeb799adc646d1cfdd4d2ef606cf729574ce0d56fbda2ae029503e7d98318fc",
+    "evidence_sha256": "353f19b577a20d3f049f98a9cc104fa4105c885f123abf15ef15c0ad8223c83b",
+    "normalization": "HTML trailing whitespace only"
+  },
+  {
+    "source": "output\\playwright\\i4b\\gale-844-mission.json",
+    "evidence": "docs\\evidence\\i4b\\browser\\gale-844-mission.json",
+    "raw_sha256": "e150a2a80a68def39294d4fcec4146ceba8e1b44324e77602f44970d6e1f5b76",
+    "evidence_sha256": "e150a2a80a68def39294d4fcec4146ceba8e1b44324e77602f44970d6e1f5b76",
+    "normalization": "none"
+  },
+  {
+    "source": "output\\playwright\\i4b\\gale-844-review.png",
+    "evidence": "docs\\evidence\\i4b\\browser\\gale-844-review.png",
+    "raw_sha256": "f38fd87777845b9983f2e6f85759bbc5870d8e6ec6e77e8d5c4a7bc7b5984391",
+    "evidence_sha256": "f38fd87777845b9983f2e6f85759bbc5870d8e6ec6e77e8d5c4a7bc7b5984391",
+    "normalization": "none"
+  },
+  {
+    "source": "output\\playwright\\i4b\\jezero-1440-brief.html",
+    "evidence": "docs\\evidence\\i4b\\browser\\jezero-1440-brief.html",
+    "raw_sha256": "3af5308d373fc693a9297b94512890a78e6a7aa5c9be7e321cf5bac24fb22b0c",
+    "evidence_sha256": "4321e3001a255399f98f42178f9b41b8de84ddaa3c52ab4c2c35376ad6725c2f",
+    "normalization": "HTML trailing whitespace only"
+  },
+  {
+    "source": "output\\playwright\\i4b\\jezero-1440-mission.json",
+    "evidence": "docs\\evidence\\i4b\\browser\\jezero-1440-mission.json",
+    "raw_sha256": "08167a187ceb4ae773019b795df99cc850a637a84758b6829b68b0cae635db79",
+    "evidence_sha256": "08167a187ceb4ae773019b795df99cc850a637a84758b6829b68b0cae635db79",
+    "normalization": "none"
+  },
+  {
+    "source": "output\\playwright\\i4b\\jezero-1440-review.png",
+    "evidence": "docs\\evidence\\i4b\\browser\\jezero-1440-review.png",
+    "raw_sha256": "25bc008f8eff26532b423a5823dbf62412c37f03cde9ce846ff54cc3910b73fc",
+    "evidence_sha256": "25bc008f8eff26532b423a5823dbf62412c37f03cde9ce846ff54cc3910b73fc",
+    "normalization": "none"
+  },
+  {
+    "source": "output\\playwright\\i4b\\jezero-320-brief.html",
+    "evidence": "docs\\evidence\\i4b\\browser\\jezero-320-brief.html",
+    "raw_sha256": "7d34d3215e79d8bc85b18e431efed1e040714ee17ab51ed80bd3e5cadc650d39",
+    "evidence_sha256": "f012d3c123370d3b78a482c97ed2d4e623a7ec3ca5bc9dca4b37fd99a99fa476",
+    "normalization": "HTML trailing whitespace only"
+  },
+  {
+    "source": "output\\playwright\\i4b\\jezero-320-mission.json",
+    "evidence": "docs\\evidence\\i4b\\browser\\jezero-320-mission.json",
+    "raw_sha256": "33eb863dc990d8aca1b9e6a4a8962d409a051ebd551afb1c8d728ec39317a5fe",
+    "evidence_sha256": "33eb863dc990d8aca1b9e6a4a8962d409a051ebd551afb1c8d728ec39317a5fe",
+    "normalization": "none"
+  },
+  {
+    "source": "output\\playwright\\i4b\\jezero-320-review.png",
+    "evidence": "docs\\evidence\\i4b\\browser\\jezero-320-review.png",
+    "raw_sha256": "bb50f7a6fc8b56160d6ac19dcfed0db5d42f2b11319a613ce9607b3adc266237",
+    "evidence_sha256": "bb50f7a6fc8b56160d6ac19dcfed0db5d42f2b11319a613ce9607b3adc266237",
+    "normalization": "none"
+  },
+  {
+    "source": "output\\playwright\\i4b\\jezero-390-brief.html",
+    "evidence": "docs\\evidence\\i4b\\browser\\jezero-390-brief.html",
+    "raw_sha256": "5c5517dad327294c95d2956965c6fecc5bdac1091b5f38c17ff257e96159540b",
+    "evidence_sha256": "b7da8381816c3dc4fd1eda9de1399229f81510f89c23ee76182bd345eae0d96b",
+    "normalization": "HTML trailing whitespace only"
+  },
+  {
+    "source": "output\\playwright\\i4b\\jezero-390-mission.json",
+    "evidence": "docs\\evidence\\i4b\\browser\\jezero-390-mission.json",
+    "raw_sha256": "d1542926af4c51d3d7b70935b9dd1795d76995a388cf8cfb0e261ed28c2fa32a",
+    "evidence_sha256": "d1542926af4c51d3d7b70935b9dd1795d76995a388cf8cfb0e261ed28c2fa32a",
+    "normalization": "none"
+  },
+  {
+    "source": "output\\playwright\\i4b\\jezero-390-review.png",
+    "evidence": "docs\\evidence\\i4b\\browser\\jezero-390-review.png",
+    "raw_sha256": "a7522c96565dace30bb19bc7a55bb844286f2069504488c5d43295f6a7c3d111",
+    "evidence_sha256": "a7522c96565dace30bb19bc7a55bb844286f2069504488c5d43295f6a7c3d111",
+    "normalization": "none"
+  },
+  {
+    "source": "output\\playwright\\i4b\\jezero-768-brief.html",
+    "evidence": "docs\\evidence\\i4b\\browser\\jezero-768-brief.html",
+    "raw_sha256": "27cc95d6a4142f0dd76f3460befea8e369d54a2b5d861ef11f96f2b66458dadf",
+    "evidence_sha256": "27ffcaf90121a5b90f24907c758281602fa6f42c8d2294189ddbfddc6d78320f",
+    "normalization": "HTML trailing whitespace only"
+  },
+  {
+    "source": "output\\playwright\\i4b\\jezero-768-mission.json",
+    "evidence": "docs\\evidence\\i4b\\browser\\jezero-768-mission.json",
+    "raw_sha256": "d0dec8d50d4771f25be1b947101d1ab658193363c0af2258e213818a3b1653a5",
+    "evidence_sha256": "d0dec8d50d4771f25be1b947101d1ab658193363c0af2258e213818a3b1653a5",
+    "normalization": "none"
+  },
+  {
+    "source": "output\\playwright\\i4b\\jezero-768-review.png",
+    "evidence": "docs\\evidence\\i4b\\browser\\jezero-768-review.png",
+    "raw_sha256": "48c1cf5c214045bfbf70ff2501226d408338251ee499d41b37d89b1739a072f7",
+    "evidence_sha256": "48c1cf5c214045bfbf70ff2501226d408338251ee499d41b37d89b1739a072f7",
+    "normalization": "none"
+  },
+  {
+    "source": "output\\playwright\\i4b\\jezero-844-brief.html",
+    "evidence": "docs\\evidence\\i4b\\browser\\jezero-844-brief.html",
+    "raw_sha256": "66ad370ae4b277a70d8af68b83258f602a74447b1c0fac3b6a08889cda177168",
+    "evidence_sha256": "e81c9efb54337f18c5d40a3501e35572323632a72597e47d842a32eb88af962f",
+    "normalization": "HTML trailing whitespace only"
+  },
+  {
+    "source": "output\\playwright\\i4b\\jezero-844-mission.json",
+    "evidence": "docs\\evidence\\i4b\\browser\\jezero-844-mission.json",
+    "raw_sha256": "ab5eb079328ecdf8e69aa4283b444725a8232429a3f53b1b1a110c206eb16498",
+    "evidence_sha256": "ab5eb079328ecdf8e69aa4283b444725a8232429a3f53b1b1a110c206eb16498",
+    "normalization": "none"
+  },
+  {
+    "source": "output\\playwright\\i4b\\jezero-844-review.png",
+    "evidence": "docs\\evidence\\i4b\\browser\\jezero-844-review.png",
+    "raw_sha256": "6724a03b3da0dd16fd3accf827eb1235ae361105c544fe856dafdcbbeacc2398",
+    "evidence_sha256": "6724a03b3da0dd16fd3accf827eb1235ae361105c544fe856dafdcbbeacc2398",
+    "normalization": "none"
+  },
+  {
+    "source": "output\\playwright\\i4b\\oxia-1440-brief.html",
+    "evidence": "docs\\evidence\\i4b\\browser\\oxia-1440-brief.html",
+    "raw_sha256": "8ffb91bf581e5b6f7d4a0cdf33f9fb538be09fbfb396aff55084ec885b0dc029",
+    "evidence_sha256": "171f37b25d9788b3e77e47d6e998a30faa1155936044dc7589e80ff682d010c6",
+    "normalization": "HTML trailing whitespace only"
+  },
+  {
+    "source": "output\\playwright\\i4b\\oxia-1440-mission.json",
+    "evidence": "docs\\evidence\\i4b\\browser\\oxia-1440-mission.json",
+    "raw_sha256": "6f86ae29d122f974dd33a615f43382a6b694a00e45f152f2774437a7d174b9f9",
+    "evidence_sha256": "6f86ae29d122f974dd33a615f43382a6b694a00e45f152f2774437a7d174b9f9",
+    "normalization": "none"
+  },
+  {
+    "source": "output\\playwright\\i4b\\oxia-1440-review.png",
+    "evidence": "docs\\evidence\\i4b\\browser\\oxia-1440-review.png",
+    "raw_sha256": "e00ff1bfdf7733ea3aa97c5a5b5f318916c32dbef087d24ba29c3a2380e0ed59",
+    "evidence_sha256": "e00ff1bfdf7733ea3aa97c5a5b5f318916c32dbef087d24ba29c3a2380e0ed59",
+    "normalization": "none"
+  },
+  {
+    "source": "output\\playwright\\i4b\\oxia-320-brief.html",
+    "evidence": "docs\\evidence\\i4b\\browser\\oxia-320-brief.html",
+    "raw_sha256": "199a800a416d88f956951b5a1f1a4fa0e1da05d57e720a548d532ee0fb09cd06",
+    "evidence_sha256": "fbcc92fe8fbc19926735efb55426f91a659332c2da860ced460ed1a8ffcbba2b",
+    "normalization": "HTML trailing whitespace only"
+  },
+  {
+    "source": "output\\playwright\\i4b\\oxia-320-mission.json",
+    "evidence": "docs\\evidence\\i4b\\browser\\oxia-320-mission.json",
+    "raw_sha256": "81e198dd2323df0d019f86b31cf8811d9cf5e55b0819f765510008120a44fbf7",
+    "evidence_sha256": "81e198dd2323df0d019f86b31cf8811d9cf5e55b0819f765510008120a44fbf7",
+    "normalization": "none"
+  },
+  {
+    "source": "output\\playwright\\i4b\\oxia-320-review.png",
+    "evidence": "docs\\evidence\\i4b\\browser\\oxia-320-review.png",
+    "raw_sha256": "1b1a09230d637734d35c7a7259de911ebe6055c2aafaed6e285a6503ce48c03a",
+    "evidence_sha256": "1b1a09230d637734d35c7a7259de911ebe6055c2aafaed6e285a6503ce48c03a",
+    "normalization": "none"
+  },
+  {
+    "source": "output\\playwright\\i4b\\oxia-390-brief.html",
+    "evidence": "docs\\evidence\\i4b\\browser\\oxia-390-brief.html",
+    "raw_sha256": "68921a4bf313d7414efe6056d0530a5be83daa3609ce3062512eb22ec6650fab",
+    "evidence_sha256": "b5a182398ae50797e6d418762d336878841341f012267b7ea052c62ca323e426",
+    "normalization": "HTML trailing whitespace only"
+  },
+  {
+    "source": "output\\playwright\\i4b\\oxia-390-mission.json",
+    "evidence": "docs\\evidence\\i4b\\browser\\oxia-390-mission.json",
+    "raw_sha256": "911f2fcfb68b2b267b93b44ae2d1aea14e9a8b5e0ef57d62a1591fb5aa2cc9e9",
+    "evidence_sha256": "911f2fcfb68b2b267b93b44ae2d1aea14e9a8b5e0ef57d62a1591fb5aa2cc9e9",
+    "normalization": "none"
+  },
+  {
+    "source": "output\\playwright\\i4b\\oxia-390-review.png",
+    "evidence": "docs\\evidence\\i4b\\browser\\oxia-390-review.png",
+    "raw_sha256": "46e156d6e287714c24600d93f6f463035114d21c043b9390a0686414ab54ec4a",
+    "evidence_sha256": "46e156d6e287714c24600d93f6f463035114d21c043b9390a0686414ab54ec4a",
+    "normalization": "none"
+  },
+  {
+    "source": "output\\playwright\\i4b\\oxia-768-brief.html",
+    "evidence": "docs\\evidence\\i4b\\browser\\oxia-768-brief.html",
+    "raw_sha256": "3275d983d49adee43f032c92ac83df2c2845de567f36d631f6d3f9a800008a40",
+    "evidence_sha256": "cb3a5b53c0f641d67890b3c7dd75689a8d5b9d417c40c213a9013ac8019aea08",
+    "normalization": "HTML trailing whitespace only"
+  },
+  {
+    "source": "output\\playwright\\i4b\\oxia-768-mission.json",
+    "evidence": "docs\\evidence\\i4b\\browser\\oxia-768-mission.json",
+    "raw_sha256": "7aa4af4cfa5038e6369ac90c65cbb17c37df4d566f43338fbdf721a29b188ed8",
+    "evidence_sha256": "7aa4af4cfa5038e6369ac90c65cbb17c37df4d566f43338fbdf721a29b188ed8",
+    "normalization": "none"
+  },
+  {
+    "source": "output\\playwright\\i4b\\oxia-768-review.png",
+    "evidence": "docs\\evidence\\i4b\\browser\\oxia-768-review.png",
+    "raw_sha256": "7f09e66903eca895b39ae90530182287c81555bfed36c07c6a95019f3f319da4",
+    "evidence_sha256": "7f09e66903eca895b39ae90530182287c81555bfed36c07c6a95019f3f319da4",
+    "normalization": "none"
+  },
+  {
+    "source": "output\\playwright\\i4b\\oxia-844-brief.html",
+    "evidence": "docs\\evidence\\i4b\\browser\\oxia-844-brief.html",
+    "raw_sha256": "cfb4bae9dfccd62a6da1ae8873a70b35ff76839d21d495e4cc03c46c2a736b69",
+    "evidence_sha256": "19fa4a483a9bccf69d198e0d0d91d6fcc2f3da40e8ab6b71f4c1afc09e423ca2",
+    "normalization": "HTML trailing whitespace only"
+  },
+  {
+    "source": "output\\playwright\\i4b\\oxia-844-mission.json",
+    "evidence": "docs\\evidence\\i4b\\browser\\oxia-844-mission.json",
+    "raw_sha256": "8a9e12345832705408f2d31a416c3cde3acb26034cd704584e09ca836e2ec5d1",
+    "evidence_sha256": "8a9e12345832705408f2d31a416c3cde3acb26034cd704584e09ca836e2ec5d1",
+    "normalization": "none"
+  },
+  {
+    "source": "output\\playwright\\i4b\\oxia-844-review.png",
+    "evidence": "docs\\evidence\\i4b\\browser\\oxia-844-review.png",
+    "raw_sha256": "f778e63da36a2daa1d8c463143fc6fe441dd0a53d9b2898c25a61224b8278f75",
+    "evidence_sha256": "f778e63da36a2daa1d8c463143fc6fe441dd0a53d9b2898c25a61224b8278f75",
+    "normalization": "none"
+  }
+]

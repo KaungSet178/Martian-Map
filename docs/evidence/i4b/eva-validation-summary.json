@@ -1,0 +1,466 @@
+{
+  "milestone": "I4B Unified EVA Resource Planner Integration",
+  "date": "2026-11-15",
+  "timezone": "Asia/Rangoon",
+  "branch": "feat/i4b-eva-integration",
+  "worktree": "D:\\martian-map-i4b-eva",
+  "sources": {
+    "i4a": "3b52ad137728c57324aa020ac4321a299a1d6d98",
+    "r11": "4434ebb6505d184cb9954634668d3e31939b1336",
+    "r1": "e60d894d959514c881312ed85f677b51a199cf3f"
+  },
+  "historical_objective_sources": {
+    "gale": "10f6f795f0a73f01ff151e86e033263359ae94a0",
+    "jezero": "c39b7a32a28efee2dc9a8c7bc8f969b7b0d946d4"
+  },
+  "architecture": "Canonical missionPlanningSnapshot -> current selected terrain/geometric legs -> existing validated timeline -> one production lib/eva/estimate engine -> shared assessment rows for Plan/Review/HTML. Former M4 engine exists only in tests/support.",
+  "profile_parameters_and_provenance": [
+    {
+      "parameter": "metabolicKgPerHour",
+      "value": 0.076,
+      "unit": "kg/h/person",
+      "document": "NASA/TP-2015-218570/REV2",
+      "revision": "2; February 2022",
+      "locator": "4.6.2, printed p.134; PDF p.148",
+      "url": "https://ntrs.nasa.gov/api/citations/20210024855/downloads/BVAD_2.15.22-final.pdf",
+      "status": "verified reference text; modeled coefficient",
+      "conditions": "Conditional oxygen-use scenario; separate Table 4-70 gives 0.086. Not a universal physiological rate; separately adding leakage is a planner assumption."
+    },
+    {
+      "parameter": "leakageKgPerHour",
+      "value": 0.005,
+      "unit": "kg/h/person",
+      "document": "NASA/TP-2015-218570/REV2",
+      "revision": "2; February 2022",
+      "locator": "4.6.2, printed p.134; PDF p.148",
+      "url": "https://ntrs.nasa.gov/api/citations/20210024855/downloads/BVAD_2.15.22-final.pdf",
+      "status": "verified reference text; architecture assumption",
+      "conditions": "Closed-loop scenario; excludes sweep gas, purge and cryogenic oxygen losses. Not a Mars suit qualification limit."
+    },
+    {
+      "parameter": "coolingKgPerHour",
+      "value": 0.57,
+      "unit": "kg/h/person",
+      "document": "NASA/TP-2015-218570/REV2",
+      "revision": "2; February 2022",
+      "locator": "4.6.2, printed p.133; PDF p.147",
+      "url": "https://ntrs.nasa.gov/api/citations/20210024855/downloads/BVAD_2.15.22-final.pdf",
+      "status": "verified conditional reference",
+      "conditions": "No-radiator consumptive cooling; 295 W metabolic heat. Not a SWME hardware specification."
+    },
+    {
+      "parameter": "nonVentingLoss",
+      "value": 0,
+      "unit": "kg/h",
+      "document": null,
+      "revision": null,
+      "locator": null,
+      "url": null,
+      "status": "idealized engineering assumption",
+      "conditions": "Explicit non-venting scenario only; thermal capacity, working fluid and drinking water excluded."
+    },
+    {
+      "parameter": "apolloBattery",
+      "value": null,
+      "unit": "Wh",
+      "document": "NASA TN D-8093",
+      "revision": "November 1975",
+      "locator": "printed p.39; PDF p.49",
+      "url": "https://ntrs.nasa.gov/api/citations/19760003073/downloads/19760003073.pdf",
+      "status": "390 Wh unsupported; excluded",
+      "conditions": "21.4 Ah and 16.8 +/- 0.8 V stated separately. Nominal product 359.52 Wh is not usable-energy certification; source also pairs 59.8 kC with 21.4 Ah, an unresolved conversion discrepancy."
+    },
+    {
+      "parameter": "electricalWatts,batteryCapacityWh,oxygenCapacityKg,waterCapacityKg",
+      "value": null,
+      "unit": "W,Wh,kg,kg",
+      "document": null,
+      "revision": null,
+      "locator": null,
+      "url": null,
+      "status": "requires user assumptions",
+      "conditions": "Unknown hardware values remain null, including historical Apollo profile coefficients not independently established."
+    },
+    {
+      "parameter": "delaySeconds,emergencySeconds,resourceMargins",
+      "value": 0,
+      "unit": "s,s,%",
+      "document": null,
+      "revision": null,
+      "locator": null,
+      "url": null,
+      "status": "visible configurable engineering assumptions",
+      "conditions": "No universal NASA 30-minute rule asserted; baseline has no added allowance. Legacy oxygen/battery capacity holdbacks remain separately applied."
+    }
+  ],
+  "tests": [
+    {
+      "name": "python-gale",
+      "command": [
+        "python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_gale*.py"
+      ],
+      "exit_code": 0,
+      "seconds": 16.03,
+      "log": "python-gale.log"
+    },
+    {
+      "name": "python-gale-environment",
+      "command": [
+        "python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests/environment/gale",
+        "-p",
+        "test*.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.43,
+      "log": "python-gale-environment.log"
+    },
+    {
+      "name": "python-jezero-environment",
+      "command": [
+        "python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests/environment/jezero",
+        "-p",
+        "test*.py"
+      ],
+      "exit_code": 0,
+      "seconds": 1.26,
+      "log": "python-jezero-environment.log"
+    },
+    {
+      "name": "python-jezero-routing",
+      "command": [
+        "python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "team/jezero/routing",
+        "-p",
+        "test_synthetic_routing.py"
+      ],
+      "exit_code": 0,
+      "seconds": 1.76,
+      "log": "python-jezero-routing.log"
+    },
+    {
+      "name": "python-jezero-hillshade",
+      "command": [
+        "python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "team/jezero/terrain",
+        "-p",
+        "test_hillshade.py"
+      ],
+      "exit_code": 0,
+      "seconds": 1.7,
+      "log": "python-jezero-hillshade.log"
+    },
+    {
+      "name": "numerical",
+      "command": [
+        "python",
+        "scripts/verify-i4a-numerical.py"
+      ],
+      "exit_code": 0,
+      "seconds": 1.52,
+      "log": "numerical.log"
+    },
+    {
+      "name": "assets",
+      "command": [
+        "python",
+        "scripts/verify-three-region-assets.py"
+      ],
+      "exit_code": 0,
+      "seconds": 85.26,
+      "log": "assets.log"
+    },
+    {
+      "name": "routing-health",
+      "command": [
+        "npm.cmd",
+        "run",
+        "routing:check"
+      ],
+      "exit_code": 0,
+      "seconds": 1.82,
+      "log": "routing-health.log"
+    },
+    {
+      "name": "typescript-tests",
+      "command": [
+        "node",
+        "--import",
+        "tsx",
+        "--test",
+        "tests\\waypoint-ui.test.ts",
+        "tests\\waypoint-planning.test.ts",
+        "tests\\waypoint-layers.test.ts",
+        "tests\\waypoint-bridge.test.ts",
+        "tests\\terrain-integration.test.ts",
+        "tests\\scientific-categories.test.ts",
+        "tests\\regions.test.ts",
+        "tests\\mission.test.ts",
+        "tests\\mission-timeline.test.ts",
+        "tests\\mission-resource-budget.test.ts",
+        "tests\\mission-m4-integration.test.ts",
+        "tests\\jezero-routing.test.ts",
+        "tests\\jezero-four-layers.test.ts",
+        "tests\\i4b-eva.test.tsx",
+        "tests\\i4a-integration.test.tsx",
+        "tests\\geodesy.test.ts",
+        "tests\\gale-viewport.test.ts",
+        "tests\\gale-routing.test.ts",
+        "tests\\gale-integration.test.ts",
+        "tests\\gale-four-layers.test.ts",
+        "tests\\gale-focused-view.test.ts",
+        "tests\\gale-coverage.test.ts",
+        "tests\\f3-science.test.ts",
+        "tests\\f1-mission-integrity.test.tsx",
+        "tests\\color-basemap.test.ts",
+        "tests\\environment\\jezero\\dataset.test.ts",
+        "tests\\environment\\jezero\\component.test.tsx",
+        "tests\\environment\\jezero\\adapter.test.ts",
+        "tests\\environment\\integrity.test.tsx",
+        "tests\\environment\\gale\\rems.test.ts",
+        "tests\\environment\\gale\\rad.test.ts",
+        "tests\\environment\\gale\\adapter.test.ts"
+      ],
+      "exit_code": 0,
+      "seconds": 18.29,
+      "log": "typescript-tests.log"
+    },
+    {
+      "name": "lint",
+      "command": [
+        "npm.cmd",
+        "run",
+        "lint"
+      ],
+      "exit_code": 0,
+      "seconds": 29.2,
+      "log": "lint.log"
+    },
+    {
+      "name": "typecheck",
+      "command": [
+        "npm.cmd",
+        "run",
+        "typecheck"
+      ],
+      "exit_code": 0,
+      "seconds": 11.27,
+      "log": "typecheck.log"
+    },
+    {
+      "name": "build",
+      "command": [
+        "npm.cmd",
+        "run",
+        "build"
+      ],
+      "exit_code": 0,
+      "seconds": null,
+      "log": "build.log",
+      "note": "Final production build executed after one-way identity correction; final log supersedes initial build."
+    },
+    {
+      "command": [
+        "node",
+        "node_modules/@playwright/test/cli.js",
+        "test",
+        "tests/browser/i4b-eva.spec.ts",
+        "tests/browser/environmental-conditions.spec.ts",
+        "tests/browser/f1-mission-integrity.spec.ts",
+        "tests/browser/f3-navigation.spec.ts",
+        "tests/browser/f3-science.spec.ts",
+        "tests/browser/gale-geology.spec.ts",
+        "tests/browser/i4a-integration.spec.ts",
+        "tests/browser/terrain-routing-integration.spec.ts",
+        "tests/browser/three-region-integration.spec.ts"
+      ],
+      "base_url": "http://127.0.0.1:3342",
+      "exit_code": 1,
+      "seconds": 569.89,
+      "result": "70 passed; six legacy panel assertions failed and were subsequently migrated"
+    },
+    {
+      "command": [
+        "node",
+        "node_modules/@playwright/test/cli.js",
+        "test",
+        "tests/browser/i4b-eva.spec.ts",
+        "tests/browser/environmental-conditions.spec.ts",
+        "tests/browser/f1-mission-integrity.spec.ts",
+        "tests/browser/f3-navigation.spec.ts",
+        "tests/browser/f3-science.spec.ts",
+        "tests/browser/gale-geology.spec.ts",
+        "tests/browser/i4a-integration.spec.ts",
+        "tests/browser/terrain-routing-integration.spec.ts",
+        "tests/browser/three-region-integration.spec.ts",
+        "--last-failed"
+      ],
+      "base_url": "http://127.0.0.1:3342",
+      "exit_code": 0,
+      "seconds": 48.66,
+      "result": "6 passed; resolves all failed cases"
+    }
+  ],
+  "totals": {
+    "typescript_passed": 510,
+    "new_i4b_tests_included": 47,
+    "python_run": 190,
+    "python_passed": 186,
+    "python_skipped": 4,
+    "browser_distinct_passed": 76,
+    "new_eva_browser_workflows_included": 15
+  },
+  "browser_viewports": [
+    [
+      1440,
+      900
+    ],
+    [
+      768,
+      1024
+    ],
+    [
+      390,
+      844
+    ],
+    [
+      320,
+      640
+    ],
+    [
+      844,
+      390
+    ]
+  ],
+  "regional_route_basis": {
+    "gale": "Current selected authentic HRSC 3D route, independently searched return",
+    "jezero": "Current selected corrected HiRISE-derived numerical route, independently searched return",
+    "oxia": "Validated Mars geometric plan only; terrain/ascent/descent unavailable"
+  },
+  "representative_results": {
+    "gale": [
+      {
+        "preference": "shortest",
+        "distance_m": 4575.491280346902,
+        "timeline": {
+          "travelSeconds": 16471.768609248844,
+          "stopSeconds": 1800,
+          "delaySeconds": 0,
+          "baselineSeconds": 18271.768609248844,
+          "emergencySeconds": 1800,
+          "totalSeconds": 20071.768609248844
+        },
+        "oxygen_kg": 0.4516147937080989,
+        "energy_wh": 446.0393024277521,
+        "water_kg": 3.1780300297977333,
+        "registration_verified": false
+      },
+      {
+        "preference": "lower-terrain-cost",
+        "distance_m": 4574.930615170687,
+        "timeline": {
+          "travelSeconds": 16469.750214614472,
+          "stopSeconds": 1800,
+          "delaySeconds": 0,
+          "baselineSeconds": 18269.750214614472,
+          "emergencySeconds": 1800,
+          "totalSeconds": 20069.750214614472
+        },
+        "oxygen_kg": 0.45156937982882567,
+        "energy_wh": 445.99444921365495,
+        "water_kg": 3.1777104506472913,
+        "registration_verified": false
+      }
+    ],
+    "jezero": [
+      {
+        "preference": "shortest",
+        "distance_m": 9009.254967822235,
+        "timeline": {
+          "travelSeconds": 32433.31788416006,
+          "stopSeconds": 1800,
+          "delaySeconds": 0,
+          "baselineSeconds": 34233.31788416006,
+          "emergencySeconds": 1800,
+          "totalSeconds": 36033.31788416006
+        },
+        "oxygen_kg": 0.8107496523936013,
+        "energy_wh": 800.7403974257791,
+        "water_kg": 5.705275331658676,
+        "registration_verified": false
+      },
+      {
+        "preference": "lower-terrain-cost",
+        "distance_m": 9091.640329973143,
+        "timeline": {
+          "travelSeconds": 32729.905187903318,
+          "stopSeconds": 1800,
+          "delaySeconds": 0,
+          "baselineSeconds": 34529.90518790332,
+          "emergencySeconds": 1800,
+          "totalSeconds": 36329.90518790332
+        },
+        "oxygen_kg": 0.8174228667278247,
+        "energy_wh": 807.3312263978514,
+        "water_kg": 5.752234988084691,
+        "registration_verified": false
+      }
+    ]
+  },
+  "browser_results": "browser/regional-workflows.json",
+  "resource_assumptions": "Saved eva_config + existing terrain_assumptions and oxygen/battery holdback preferences. Unsupported hardware values remain null. Reserves use explicit additive consumption margin plus separately displayed capacity holdback.",
+  "missing_data_behavior": {
+    "no_route_or_stale_receipt": "Requirements unavailable; no Gale/Jezero geometric fallback",
+    "missing_speed": "No complete duration or requirement",
+    "missing_science_stop_duration": "Complete resource estimates unavailable; explicit zero permitted",
+    "unknown_power": "Energy unavailable",
+    "unknown_capacity": "Requirement retained; capacity feasibility unknown",
+    "unknown_thermal_architecture": "Cooling requirement unavailable",
+    "reopen": "Inputs restored; no trusted persisted computed outputs; terrain route recomputation required"
+  },
+  "scientific_objective_location_integration": "Deferred follow-up; pending-objective-locations.json; no location payload imported",
+  "known_limitations": [
+    "Conditional arithmetic per person; not NASA certification, astronaut safety, validated physiology or recovery authorization.",
+    "Absolute registration and positional uncertainties remain unverified.",
+    "BVAD 0.076 coefficient plus separately added leakage is a disclosed modeling assumption; different source scenarios must not be conflated.",
+    "Apollo 390 Wh and unverified historical coefficients are excluded; exact CSD-A-096 pages remain unchecked.",
+    "Zero non-venting water loss is idealized; thermal sufficiency and potable water are not modeled.",
+    "Four optional raw-cache Python tests skipped; native full-resolution Jezero reaggregation not repeated.",
+    "Oxia geometric-only: no numerical terrain, ascent/descent or rover observations.",
+    "Historical observations are not future route-wide forecasts.",
+    "Chromium software-WebGL only; no physical-device, other-browser, full accessibility or printer/PDF certification.",
+    "Scientific objective locations remain pending a separate point/site integration; no new objective-linked routing is claimed.",
+    "Broader F2 visual redesign and I4C are outside scope."
+  ],
+  "unresolved_i4b_implementation_blockers": [],
+  "delivery": {
+    "branch_ref": "refs/heads/feat/i4b-eva-integration",
+    "final_sha_receipt": "output/i4b-delivery.json",
+    "note": "Final commit and live remote equality are recorded after commit/push. No self-referential tracked commit hash."
+  },
+  "browser_acceptance": "browser-acceptance.json"
+}

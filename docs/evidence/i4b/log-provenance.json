@@ -1,0 +1,122 @@
+[
+  {
+    "file": "assets.log",
+    "raw_backup": "output\\i4b-raw-evidence\\assets.log",
+    "raw_encoding": "utf-8",
+    "raw_sha256": "5f626708294491d504775bda30a19c4a0b4cdf94af5409853b853af21725cac1",
+    "normalized_sha256": "3026fe469d9ba49445e6148ecccb1ac88998091380e3c8d13817270feaf37525",
+    "normalization": "UTF-8 encoding and trailing whitespace/newlines only; no result changes"
+  },
+  {
+    "file": "browser-all.log",
+    "raw_backup": "output\\i4b-raw-evidence\\browser-all.log",
+    "raw_encoding": "utf-8",
+    "raw_sha256": "c6f1bc1e47050fadfbdb6502351a8ed5b1b1344d8bb36148954d23f46e506344",
+    "normalized_sha256": "d4a224f6407dfb0d9c141566706027647b5464bbffcc54ee09941144f9f3df8e",
+    "normalization": "UTF-8 encoding and trailing whitespace/newlines only; no result changes"
+  },
+  {
+    "file": "browser-last-failed.log",
+    "raw_backup": "output\\i4b-raw-evidence\\browser-last-failed.log",
+    "raw_encoding": "utf-8",
+    "raw_sha256": "5e40aefe9a3bfa9fc76f984cd16434d00f47b053994312820275393c2bc8c2de",
+    "normalized_sha256": "7958a37875e299827e06b033e1ef714605642ba3ec261c10979944a599ac5ee9",
+    "normalization": "UTF-8 encoding and trailing whitespace/newlines only; no result changes"
+  },
+  {
+    "file": "browser-smoke.log",
+    "raw_backup": "output\\i4b-raw-evidence\\browser-smoke.log",
+    "raw_encoding": "utf-8",
+    "raw_sha256": "c7f695b709dfa9a78b0290aa5fa1a58d98985f296d94abe1864987019f2b4f90",
+    "normalized_sha256": "130f402ed0a39f5be467f7352f97725431c0c4d655f5cbe3d2e74d1a2659b975",
+    "normalization": "UTF-8 encoding and trailing whitespace/newlines only; no result changes"
+  },
+  {
+    "file": "build.log",
+    "raw_backup": "output\\i4b-raw-evidence\\build.log",
+    "raw_encoding": "utf-16",
+    "raw_sha256": "37eed84b617a686e0c0389b9d716eb728e2e1c23db80aedc403157cf785db833",
+    "normalized_sha256": "fb03095b70a82115ebd10b3450a1800ba0834212c7d5dcc64f73652b4cf523d9",
+    "normalization": "UTF-8 encoding and trailing whitespace/newlines only; no result changes"
+  },
+  {
+    "file": "lint.log",
+    "raw_backup": "output\\i4b-raw-evidence\\lint.log",
+    "raw_encoding": "utf-16",
+    "raw_sha256": "85b34b3ffe42bbcf5bf14a98531eaea6f3a73578e2098afe19cf8540cd1f0477",
+    "normalized_sha256": "b7815ab2c74245d7d547aab7707681991d7c33a1af887e62ffaf941b543a5b64",
+    "normalization": "UTF-8 encoding and trailing whitespace/newlines only; no result changes"
+  },
+  {
+    "file": "numerical.log",
+    "raw_backup": "output\\i4b-raw-evidence\\numerical.log",
+    "raw_encoding": "utf-8",
+    "raw_sha256": "5b519a230b7512e667076c2269451e8ad2c2855cb9729f5120710b357cb5b743",
+    "normalized_sha256": "e61769f1c721a6de989e86a696bd4429f6cfc653213410a4961ead8b08135d90",
+    "normalization": "UTF-8 encoding and trailing whitespace/newlines only; no result changes"
+  },
+  {
+    "file": "python-gale-environment.log",
+    "raw_backup": "output\\i4b-raw-evidence\\python-gale-environment.log",
+    "raw_encoding": "utf-8",
+    "raw_sha256": "e52984cd55991ec48fd2554a407a0c6b386525dd38870c30cc8c0864a923affa",
+    "normalized_sha256": "d606de2c8feeb55869c4314faa3e37e8481a7705fa9001ddc307c4f85fceb85a",
+    "normalization": "UTF-8 encoding and trailing whitespace/newlines only; no result changes"
+  },
+  {
+    "file": "python-gale.log",
+    "raw_backup": "output\\i4b-raw-evidence\\python-gale.log",
+    "raw_encoding": "utf-8",
+    "raw_sha256": "53517e3e53f44a3f3206b7cf0d682a23496b6d1c322c261c91263729b743255a",
+    "normalized_sha256": "5f343d627e35d7da23e69b312f17d340f37bcd2346a97d642c6a54d783dfbc20",
+    "normalization": "UTF-8 encoding and trailing whitespace/newlines only; no result changes"
+  },
+  {
+    "file": "python-jezero-environment.log",
+    "raw_backup": "output\\i4b-raw-evidence\\python-jezero-environment.log",
+    "raw_encoding": "utf-8",
+    "raw_sha256": "0cb150900db8fc79e7564f4db42e59a705f7c0656204a59a51eeaafebb18d990",
+    "normalized_sha256": "b31f4be66e95324e9a14bf28d70328a788a28d82bc3a65dabc5796af71f64429",
+    "normalization": "UTF-8 encoding and trailing whitespace/newlines only; no result changes"
+  },
+  {
+    "file": "python-jezero-hillshade.log",
+    "raw_backup": "output\\i4b-raw-evidence\\python-jezero-hillshade.log",
+    "raw_encoding": "utf-8",
+    "raw_sha256": "13ea485c4f1bd4a8ed955a07f379544a2ff16d3c111b69f3bd183bf85eb746d7",
+    "normalized_sha256": "5bbba979b48870fe0a4ba1dba9b137a48562c6008dd83ae30ad48d6e70bb4b10",
+    "normalization": "UTF-8 encoding and trailing whitespace/newlines only; no result changes"
+  },
+  {
+    "file": "python-jezero-routing.log",
+    "raw_backup": "output\\i4b-raw-evidence\\python-jezero-routing.log",
+    "raw_encoding": "utf-8",
+    "raw_sha256": "8c8ce8ea6b4b122ef34c4b1b19bc1952a343befea63e6040e157bf8e176ac22b",
+    "normalized_sha256": "cd9ac161c7661506e4c3c20e180bcbb21c3463dfaed5eb5f34f494bf9ca6d0bf",
+    "normalization": "UTF-8 encoding and trailing whitespace/newlines only; no result changes"
+  },
+  {
+    "file": "routing-health.log",
+    "raw_backup": "output\\i4b-raw-evidence\\routing-health.log",
+    "raw_encoding": "utf-8",
+    "raw_sha256": "89202b81c25ecf4818f47299279669c45a831787bacead31c15f7c5ff2d27f81",
+    "normalized_sha256": "1e52f74ffca246bdaba816998cf7a7387714fcc22d8ea2d6e0a5a80aa839e742",
+    "normalization": "UTF-8 encoding and trailing whitespace/newlines only; no result changes"
+  },
+  {
+    "file": "typecheck.log",
+    "raw_backup": "output\\i4b-raw-evidence\\typecheck.log",
+    "raw_encoding": "utf-16",
+    "raw_sha256": "3da9ffe28eb6c3e895ea90bb60488ee6b89dceb01c7286acd11ce49cf9d4adb1",
+    "normalized_sha256": "1f89457b5e717e8beedebdf5ff09fab293aaffb343c6f44c4aeac96737fa6eda",
+    "normalization": "UTF-8 encoding and trailing whitespace/newlines only; no result changes"
+  },
+  {
+    "file": "typescript-tests.log",
+    "raw_backup": "output\\i4b-raw-evidence\\typescript-tests.log",
+    "raw_encoding": "utf-8",
+    "raw_sha256": "5cc5012a6b0cb3d21f90b083c5c9242873ca25682f2eb8e0336dbaed86ba9042",
+    "normalized_sha256": "e66b0e55fbb6a89eb98a02018c89ac532a734ad408c4e863f426d774e137cebe",
+    "normalization": "UTF-8 encoding and trailing whitespace/newlines only; no result changes"
+  }
+]

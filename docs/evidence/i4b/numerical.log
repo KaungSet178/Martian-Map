@@ -1,0 +1,55 @@
+{
+  "gale": [
+    {
+      "preference": "shortest",
+      "cells": 120,
+      "horizontal_m": 4545.862752610344,
+      "surface_m": 4575.491280347095,
+      "ascent_m": 234.8994140625,
+      "descent_m": 234.8994140625,
+      "valid_connected_cells": true,
+      "snapping_checked": true,
+      "native_horizontal_objective_m": 4545.862752610344,
+      "independent_lower_terrain_cost": 5801.63181417916
+    },
+    {
+      "preference": "lower-terrain-cost",
+      "cells": 120,
+      "horizontal_m": 4545.868036743139,
+      "surface_m": 4574.930615170871,
+      "ascent_m": 234.8994140625,
+      "descent_m": 234.8994140625,
+      "valid_connected_cells": true,
+      "snapping_checked": true,
+      "native_horizontal_objective_m": 4545.868036743139,
+      "independent_lower_terrain_cost": 5780.677742212876
+    }
+  ],
+  "jezero": [
+    {
+      "preference": "shortest",
+      "cells": 337,
+      "horizontal_m": 8999.780814262544,
+      "surface_m": 9009.254967821102,
+      "ascent_m": 157.599853515625,
+      "descent_m": 157.599853515625,
+      "valid_connected_cells": true,
+      "snapping_checked": true,
+      "native_horizontal_objective_m": 8999.631797902874,
+      "independent_lower_terrain_cost": 12219.341589169837
+    },
+    {
+      "preference": "lower-terrain-cost",
+      "cells": 337,
+      "horizontal_m": 9085.623329544804,
+      "surface_m": 9091.640329972117,
+      "ascent_m": 121.6005859375,
+      "descent_m": 121.6005859375,
+      "valid_connected_cells": true,
+      "snapping_checked": true,
+      "native_horizontal_objective_m": 9085.58132614235,
+      "independent_lower_terrain_cost": 10507.973552311674
+    }
+  ],
+  "native_source_reaggregation": "Not repeated: committed genuine numeric grids preserved; full-resolution native Jezero source not required for runtime/path validation."
+}

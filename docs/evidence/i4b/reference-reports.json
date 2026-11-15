@@ -1,0 +1,26 @@
+[
+  {
+    "path": "D:\\martian-map-i4a-integration\\docs\\I4A_F1_F3_INTEGRATION_REPORT.md",
+    "sha256": "87ce2d86a5f80dc84b3f54cffe719e5653c54fc1a7a39e4c3bdefe13b7210450"
+  },
+  {
+    "path": "D:\\martian-map-i4a-integration\\docs\\I4B_EVA_INPUT_CONTRACT.md",
+    "sha256": "7b734f1324dc5210f9f09be665ec0c3f984505bad2189deb3f32588204e42291"
+  },
+  {
+    "path": "D:\\martian-map-i4a-integration\\docs\\evidence\\i4a\\validation-summary.json",
+    "sha256": "b112752ae4544efa249ad9d5277ccc6fc0b386f216a943cf6b02d3362af47077"
+  },
+  {
+    "path": "D:\\martian-map-eva-science-audit\\docs\\EVA_SCIENTIFIC_CORRECTION_REPORT.md",
+    "sha256": "f9eba199729dd30c6a5b1dd57682a734263014ea6cb9d68097691d5accf457f4"
+  },
+  {
+    "path": "D:\\martian-map-eva-science-audit\\docs\\EVA_RESOURCE_MODEL_REPORT.md",
+    "sha256": "f0304b43c85c683d9360f11271c46d79d905a1aace1ca2a7247baef3c95520cc"
+  },
+  {
+    "path": "D:\\martian-map-audits\\2026-11-15\\MARSWALK_THREE_REGION_COMPREHENSIVE_AUDIT.md",
+    "sha256": "ea5aa3a53ef33e36dc83f2678a2e96521f2b92e52ed945406b4bb7b1d9ffb434"
+  }
+]

@@ -1,3 +1,4 @@
+import { EVAAssessment } from "./eva-assessment";
 import type { MissionPlanningSnapshot } from "@/lib/mission/planning-snapshot";
 
 export function PlanningSummary({snapshot:s}:{snapshot:MissionPlanningSnapshot}) {
@@ -22,7 +23,7 @@ export function PlanningSummary({snapshot:s}:{snapshot:MissionPlanningSnapshot})
     {!s.geometric.available && <p>Geometric preview unavailable: add two active planning waypoints and resolve retired or unavailable locations.</p>}
     <p>{s.geometric.label}. Total geometric distance: {s.geometric.total_surface_distance_m.toFixed(1)} m; outbound {s.geometric.outbound_distance_m.toFixed(1)} m; return {s.geometric.return_distance_m.toFixed(1)} m. {s.geometric.is_closed_loop ? "Return closure included exactly once." : "No return closure."}</p>
     {s.terrain ? <p>Selected terrain alternative: {s.terrain.preference}; 3D DEM distance {s.terrain.distanceMeters ?? "Unavailable"} m; horizontal {s.terrain.horizontalDistanceMeters ?? "Unavailable"} m; ascent {s.terrain.ascentMeters ?? "Unavailable"} m; descent {s.terrain.descentMeters ?? "Unavailable"} m. Absolute registration unverified.</p> : <p>No current computed terrain route. {s.mission.terrain_route ? "Saved preference requires recalculation; stored results are not trusted." : "Recompute after waypoint or endpoint changes."}</p>}
-    {s.scenario ? <><p>Travel-time scenario: {s.scenario.timeline.total_travel_seconds ?? "Unavailable"} seconds; stationary stops {s.scenario.timeline.total_stop_seconds} seconds.</p><p>Oxygen scenario: {s.scenario.resources.oxygen.status}; battery scenario: {s.scenario.resources.battery.status}. Unverified user assumptions.</p><details><summary>Resource scenario breakdown</summary><pre style={{whiteSpace:"pre-wrap",overflowWrap:"anywhere"}}>{JSON.stringify(s.scenario.resources,null,2)}</pre></details></> : <p>Travel-time and resource scenario estimates unavailable without a current terrain route and supported user assumptions.</p>}
+    <EVAAssessment assessment={s.scenario}/>
     <h3>Planning assumptions</h3>
     <p>Recovery assumption: {s.mission.recovery_assumption || "Not documented"}</p>
     <p>Scenario reserves: oxygen {s.mission.oxygen_reserve_percent}%; battery {s.mission.battery_reserve_percent}%.</p>

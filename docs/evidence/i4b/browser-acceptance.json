@@ -1,0 +1,47 @@
+{
+  "distinct_cases_passed": 76,
+  "original_batch": {
+    "command": [
+      "node",
+      "node_modules/@playwright/test/cli.js",
+      "test",
+      "tests/browser/i4b-eva.spec.ts",
+      "tests/browser/environmental-conditions.spec.ts",
+      "tests/browser/f1-mission-integrity.spec.ts",
+      "tests/browser/f3-navigation.spec.ts",
+      "tests/browser/f3-science.spec.ts",
+      "tests/browser/gale-geology.spec.ts",
+      "tests/browser/i4a-integration.spec.ts",
+      "tests/browser/terrain-routing-integration.spec.ts",
+      "tests/browser/three-region-integration.spec.ts"
+    ],
+    "base_url": "http://127.0.0.1:3342",
+    "exit_code": 1,
+    "seconds": 569.89
+  },
+  "original_batch_passed": 70,
+  "original_batch_failed_on_retired_ui_assertion": 6,
+  "resolved_rerun": {
+    "command": [
+      "node",
+      "node_modules/@playwright/test/cli.js",
+      "test",
+      "tests/browser/i4b-eva.spec.ts",
+      "tests/browser/environmental-conditions.spec.ts",
+      "tests/browser/f1-mission-integrity.spec.ts",
+      "tests/browser/f3-navigation.spec.ts",
+      "tests/browser/f3-science.spec.ts",
+      "tests/browser/gale-geology.spec.ts",
+      "tests/browser/i4a-integration.spec.ts",
+      "tests/browser/terrain-routing-integration.spec.ts",
+      "tests/browser/three-region-integration.spec.ts",
+      "--last-failed"
+    ],
+    "base_url": "http://127.0.0.1:3342",
+    "exit_code": 0,
+    "seconds": 48.66
+  },
+  "rerun_passed": 6,
+  "status": "passed after migrating retired panel assertions; no runtime change",
+  "note": "70 unaffected full-batch passes plus 6 latest scoped passes. No duplicate acceptance count."
+}

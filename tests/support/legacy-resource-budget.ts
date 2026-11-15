@@ -34,11 +34,12 @@
  * @module lib/mission/resource-budget
  */
 
+/** @deprecated Historical M4 compatibility API. The application uses lib/eva/estimate via the canonical snapshot. */
 import { z } from "zod";
 import {
   type MissionTimelineResult,
   missionTimelineResultSchema,
-} from "./timeline";
+} from "../../lib/mission/timeline";
 
 // ---------------------------------------------------------------------------
 // Constants & Disclaimers

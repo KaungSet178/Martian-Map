@@ -1,0 +1,48 @@
+{
+  "review_date": "2026-11-15",
+  "timezone": "Asia/Rangoon",
+  "bvad": {
+    "document": "NASA/TP-2015-218570/REV2",
+    "revision": "February 2022",
+    "url": "https://ntrs.nasa.gov/api/citations/20210024855/downloads/BVAD_2.15.22-final.pdf",
+    "checked": [
+      "title page",
+      "4.6.2; printed pp.133-135; PDF pp.147-149"
+    ],
+    "correction": "R1.1 table/section locators are superseded by the independently checked section. 0.076 is a conditional oxygen-use reference; its decomposition with separately added leakage is explicitly a planner assumption. Table 4-70 has a distinct 0.086 metabolic entry. No universal suit physiology or capacity inferred.",
+    "venting": "0.57 kg/h no-radiator reference at 295 W. Zero non-venting loss is an idealized user architecture assumption; radiator alone is not proven to eliminate water loss."
+  },
+  "apollo": {
+    "document": "NASA TN D-8093",
+    "revision": "November 1975",
+    "url": "https://ntrs.nasa.gov/api/citations/19760003073/downloads/19760003073.pdf",
+    "checked": [
+      "title",
+      "Apollo 11 PLSS description, printed p.39; PDF p.49",
+      "Table VII, printed p.47; PDF p.57"
+    ],
+    "ah": 21.4,
+    "voltage": 16.8,
+    "voltage_tolerance": 0.8,
+    "nominal_product_wh": 359.52,
+    "claimed_wh": 390,
+    "table_vii_later_plss_wh": 360,
+    "resolution": "The nominal product is close to the separate table energy, not 390 Wh. No discharge-curve or qualification explanation for 390 was verified. Early/later configuration context must not be conflated. No automatic historical battery default or other unverified Apollo coefficient is imported. Source text also pairs 59.8 kC with 21.4 Ah; conversion remains unresolved."
+  },
+  "standard": {
+    "document": "NASA-STD-3001 Volume 2 Revision D",
+    "approved": "2023-09-15",
+    "url": "https://standards.nasa.gov/sites/default/files/standards/NASA/D/nasa-std-3001-vol-2-rev-d-signature.pdf",
+    "checked": [
+      "title",
+      "11.2; pp.242-245",
+      "text searches: 30 minutes; 30-minute"
+    ],
+    "finding": "No applicable universal 30-minute EVA emergency requirement independently supported. 11.2.2 is suited nutrition, not leakage. No R1.1 standard-attributed numeric profile imported. Search absence is not certification of absence across every NASA standard. Emergency seconds stay configurable engineering input."
+  },
+  "r11_adaptation": "Reused dimensional equations and subsystem separation, not unverified citations, hidden speed/hardware defaults, old regional adapters, local component config or competing timelines.",
+  "pending": [
+    "CSD-A-096 exact cited pages not independently verified; no associated coefficients adopted.",
+    "Operational applicability and full hardware/physiology/thermal qualification remain unverified."
+  ]
+}

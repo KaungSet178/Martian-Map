@@ -1,0 +1,13 @@
+{
+  "command": [
+    "node",
+    "node_modules/@playwright/test/cli.js",
+    "test",
+    "tests/browser/i4b-eva.spec.ts",
+    "--grep",
+    "1440x900"
+  ],
+  "base_url": "http://127.0.0.1:3342",
+  "exit_code": 0,
+  "seconds": 30.49
+}

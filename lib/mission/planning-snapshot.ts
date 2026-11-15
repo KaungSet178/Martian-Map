@@ -21,10 +21,12 @@ export function evidenceText(evidence?: ReturnType<typeof targetWaypointEvidence
 
 /** Live outputs are accepted only against the current mission receipt and endpoint sequence. */
 export function currentTerrainRoute(mission: Mission, region: RegionManifest, route?: TerrainRoute | null): TerrainRoute | null {
-  if (!route || route.status === "unavailable" || route.regionId !== region.id || region.id === "oxia") return null;
+  if (mission.region !== region.id || !route || route.status === "unavailable" || route.regionId !== region.id || region.id === "oxia") return null;
   const plan = initWaypointPlanFromMission(mission, region);
   const receipt = mission.terrain_route;
   if (!receipt || receipt.version !== ROUTING_VERSION || receipt.preference !== route.preference || receipt.requestKey !== terrainRequestKey(mission, plan, receipt.datasetId, receipt.maxSnapMeters ?? 100)) return null;
+  const requiredSources = receipt.datasetId === "jezero-usgs-trn-dtm-routing-25m" ? ["jezero-usgs-trn-dtm", "jezero-hirise-soc-006"] : [receipt.datasetId];
+  if (!requiredSources.every(id => route.sourceDatasetIds.includes(id))) return null;
   const requested = plan.waypoints.map(w => [w.coordinates.longitude_east, w.coordinates.latitude]);
   if (plan.mode === "round_trip" && requested.length) requested.push(requested[0]);
   if (JSON.stringify(requested) !== JSON.stringify(route.requestedWaypoints)) return null;
@@ -66,8 +68,9 @@ export function missionPlanningSnapshot(mission: Mission, region: RegionManifest
     validation: validateWaypointPlan(plan),
     geometric: { available: !plan.waypoints.some(w => w.inactive_reason) && plan.waypoints.length >= 2, ...calculateDistanceSummary(trajectory), label:trajectory.scientific_label, segments:trajectory.segments },
     terrain,
-    scenario: terrainPlanningSummary(plan, terrain, assumptions, {oxygen:mission.oxygen_reserve_percent,battery:mission.battery_reserve_percent}),
+    scenario: terrainPlanningSummary(plan, terrain, assumptions, {oxygen:mission.oxygen_reserve_percent,battery:mission.battery_reserve_percent}, mission.eva_config),
     assumptions,
+    evaInputIdentity: JSON.stringify([mission.id, mission.region, mission.dataset_version, mission.terrain_route ?? null, plan, assumptions, mission.eva_config ?? null, mission.oxygen_reserve_percent, mission.battery_reserve_percent]),
     operational: "Certified route safety, astronaut trafficability, radiation exposure limits, full life-support validation and recovery authorization remain unavailable. Research estimates do not provide operational clearance.",
   };
 }

@@ -1,0 +1,96 @@
+{
+  "branches": [
+    {
+      "region": "gale",
+      "branch": "feat/gale-science-objective-verification",
+      "sha": "10f6f795f0a73f01ff151e86e033263359ae94a0",
+      "mode": "read-only",
+      "files": [
+        {
+          "path": "docs/GALE_SCIENCE_OBJECTIVE_VERIFICATION_REPORT.md",
+          "git_blob": "ca763da6ea98c3e08641be7ffede8d071dfeaf11",
+          "sha256": "e5f7584250d52a6c0fae05dbe93c10b033f7860b88bb4014d518197a4de1bb78"
+        },
+        {
+          "path": "regions/gale/targets.ts",
+          "git_blob": "76da2a8d347878539fc81d8ab44f8bf1c04af90c",
+          "sha256": "5a93ba4a1803bd1e222dfcf4f4d4c86ddeedd70a25dff44a611b348d01fc1db8"
+        },
+        {
+          "path": "regions/gale/config.ts",
+          "git_blob": "78965d24cc54104a7daf48a4ad68014e3567b887",
+          "sha256": "483bca574225bbd3d37de2cde3a54530b8c5863c15515b6b9330bbeff7b3f769"
+        }
+      ],
+      "comparison_with_i4a": "regions/gale/config.ts          |  45 ++-\n regions/gale/layers.ts          |  41 ---\n regions/gale/retired-targets.ts | 131 -------\n regions/gale/targets.ts         | 792 ++++++++++++++--------------------------\n 4 files changed, 312 insertions(+), 697 deletions(-)"
+    },
+    {
+      "region": "jezero",
+      "branch": "feat/jezero-objective-location-verification",
+      "sha": "c39b7a32a28efee2dc9a8c7bc8f969b7b0d946d4",
+      "mode": "read-only",
+      "files": [
+        {
+          "path": "docs/JEZERO_OBJECTIVE_LOCATION_VERIFICATION_REPORT.md",
+          "git_blob": "7180351974ea05b0af6b3d78504fb11f7733a082",
+          "sha256": "2248a24c480d0d0d292aa95bdf91751de2703bf3c5d14b7584f055608f3e914c"
+        },
+        {
+          "path": "regions/jezero/targets.ts",
+          "git_blob": "9ef89b4c4d3cb74d7ad6b94f4c0e987d45190ac5",
+          "sha256": "66f37a9bb9c9554a25deabc72757e6adce4af62eed7f9e4144313bf195905b1f"
+        },
+        {
+          "path": "regions/jezero/config.ts",
+          "git_blob": "20994e43e35d4adf8c5d87c24a76037653bce19f",
+          "sha256": "f1874f94a3dcf5fe37c9a06097764579a6ca15d188a0e8fa665e9df2418e2bea"
+        }
+      ],
+      "comparison_with_i4a": "regions/jezero/config.ts  |  90 +++++--------------\n regions/jezero/layers.ts  |  48 +---------\n regions/jezero/targets.ts | 217 +++++++---------------------------------------\n 3 files changed, 54 insertions(+), 301 deletions(-)"
+    }
+  ],
+  "already_available": {
+    "gale": "Four named investigation contexts and three unlocated Scenario concepts; all objective coordinates null and automatic terrain eligibility unavailable.",
+    "jezero": "Five mission-level objectives with null coordinates; separate Three Forks proposed landing-circle evidence in regions/location-evidence.ts. Existing rover/map context is not permission to route objectives."
+  },
+  "unintegrated": [
+    {
+      "region": "gale",
+      "candidates": [
+        "Glen Torridon",
+        "Vera Rubin Ridge",
+        "sulfate-bearing terrain",
+        "Gediz Vallis"
+      ],
+      "finding": "Historical branch provides area geometries, not independently registered point destinations. Scientific contexts already exist in I4A. Future discrete published rover sampling/observation sites require new source-to-site reconciliation, not polygon centroids."
+    },
+    {
+      "region": "jezero",
+      "candidates": [
+        "crater-floor investigations",
+        "western delta/Kodiak investigations",
+        "Wildcat Ridge/Skinner Ridge/Hogwallow Flats site associations",
+        "actual sample-depot/tube localizations"
+      ],
+      "finding": "Named research contexts are candidates for a separate site catalog after primary-source/localization review. Historical branch does not establish acceptable point coordinates for these. Its sole claimed target point is the misidentified Three Forks landing circle, already separated and corrected in I4A."
+    }
+  ],
+  "rejected_claims": [
+    "Gale 5 m absolute registration and unverified polygon extraction/alignment",
+    "Approximate rectangles/corridors as navigation areas or point centroids",
+    "Jezero landing-circle center as sample-depot or complete sample-caching objective",
+    "60 m circle radius as positional uncertainty",
+    "Published precision as source-to-map registration or astronaut trafficability",
+    "Area evidence or source existence as automatic route eligibility"
+  ],
+  "routing_dependencies": [
+    "Distinct site ID and objective association; primary publication/PDS localization with version/hash",
+    "Mars coordinate/datum/epoch and native grid transformation audit",
+    "Independent basemap/DEM tie points and measured registration error budget; unknowns remain null",
+    "Actual selected DEM coverage, nodata, slope/corner barriers and bounded snapping",
+    "Explicit objective-routing policy separate from scientific evidence and operational safety",
+    "Canonical mission, persistence, worker invalidation and Review/HTML tests without unit overlays"
+  ],
+  "decision": "No objective runtime change is necessary for I4B EVA correctness. No new objective-linked routing is claimed; manual waypoints and valid current terrain routes remain supported.",
+  "follow_up": "Separate point/site provenance integration only; no geological-unit overlays, arbitrary coordinates or wholesale history merge."
+}

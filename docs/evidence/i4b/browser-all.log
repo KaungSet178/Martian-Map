@@ -1,0 +1,679 @@
+
+Running 76 tests using 1 worker
+
+(node:7588) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  1 tests\browser\environmental-conditions.spec.ts:42:3 › Environmental Conditions Integration › Desktop (1440px): Gale Crater REMS & RAD environmental panel renders and updates (1.7s)
+  ok  2 tests\browser\environmental-conditions.spec.ts:119:3 › Environmental Conditions Integration › Mobile (390px): Gale Crater responsive layout without overflow (737ms)
+  ok  3 tests\browser\environmental-conditions.spec.ts:146:3 › Environmental Conditions Integration › Desktop (1440px): Jezero Crater Perseverance MEDA panel with 6 sols and sensor distinctions (1.3s)
+  ok  4 tests\browser\environmental-conditions.spec.ts:223:3 › Environmental Conditions Integration › Mobile (390px): Jezero Crater responsive layout without overflow (728ms)
+  ok  5 tests\browser\environmental-conditions.spec.ts:250:3 › Environmental Conditions Integration › Desktop (1440px): Oxia Planum deliberate unavailable state and no foreign data leakage (972ms)
+  ok  6 tests\browser\environmental-conditions.spec.ts:297:3 › Environmental Conditions Integration › Mobile (390px): Oxia Planum deliberate unavailable state without overflow (640ms)
+  ok  7 tests\browser\environmental-conditions.spec.ts:321:3 › Environmental Conditions Integration › Tablet (768px): Tablet layout across regions without horizontal overflow (1.4s)
+  ok  8 tests\browser\environmental-conditions.spec.ts:337:3 › Environmental Conditions Integration › Region Switching: Switch Gale -> Jezero -> Oxia -> Gale cleanly maintains environment tab and updates data (2.3s)
+  ok  9 tests\browser\environmental-conditions.spec.ts:375:3 › Environmental Conditions Integration › Standalone Route: /environment with region selector functions seamlessly (491ms)
+  ok 10 tests\browser\f1-mission-integrity.spec.ts:14:106 › F1 gale three-point mission, roles, review, Save/Open, JSON and brief at 1440px (5.6s)
+  ok 11 tests\browser\f1-mission-integrity.spec.ts:14:106 › F1 jezero three-point mission, roles, review, Save/Open, JSON and brief at 1440px (8.4s)
+  ok 12 tests\browser\f1-mission-integrity.spec.ts:14:106 › F1 oxia three-point mission, roles, review, Save/Open, JSON and brief at 1440px (13.4s)
+  ok 13 tests\browser\f1-mission-integrity.spec.ts:14:106 › F1 gale three-point mission, roles, review, Save/Open, JSON and brief at 390px (6.6s)
+  ok 14 tests\browser\f1-mission-integrity.spec.ts:14:106 › F1 jezero three-point mission, roles, review, Save/Open, JSON and brief at 390px (6.7s)
+  ok 15 tests\browser\f1-mission-integrity.spec.ts:14:106 › F1 oxia three-point mission, roles, review, Save/Open, JSON and brief at 390px (6.9s)
+  ok 16 tests\browser\f1-mission-integrity.spec.ts:56:1 › F1 Oxia interpreted catalog evidence and target-first base recovery (3.1s)
+  ok 17 tests\browser\f1-mission-integrity.spec.ts:66:48 › F1 gale endpoint changes invalidate actual terrain, timeline and brief (4.8s)
+  ok 18 tests\browser\f1-mission-integrity.spec.ts:66:48 › F1 jezero endpoint changes invalidate actual terrain, timeline and brief (3.6s)
+  ok 19 tests\browser\f1-mission-integrity.spec.ts:78:1 › F1 retired objective JSON remains readable and editable without active route geometry (3.5s)
+  ok 20 tests\browser\f1-mission-integrity.spec.ts:88:30 › F1 current terrain scenario Review and downloadable brief fit 390px (2.8s)
+  ok 21 tests\browser\f1-mission-integrity.spec.ts:88:30 › F1 current terrain scenario Review and downloadable brief fit 320px (2.9s)
+  ok 22 tests\browser\f3-navigation.spec.ts:3:64 › F3 cross-region zoom and pan at 1440px (19.6s)
+  ok 23 tests\browser\f3-navigation.spec.ts:3:64 › F3 cross-region zoom and pan at 768px (13.3s)
+  ok 24 tests\browser\f3-navigation.spec.ts:3:64 › F3 cross-region zoom and pan at 390px (8.7s)
+  ok 25 tests\browser\f3-science.spec.ts:4:64 › F3 scientific objectives and environment at 1440px (5.0s)
+  ok 26 tests\browser\f3-science.spec.ts:4:64 › F3 scientific objectives and environment at 768px (5.0s)
+  ok 27 tests\browser\f3-science.spec.ts:4:64 › F3 scientific objectives and environment at 390px (3.6s)
+  ok 28 tests\browser\gale-geology.spec.ts:4:3 › F3 retired units absent across region switches at 1440px (3.8s)
+  ok 29 tests\browser\gale-geology.spec.ts:4:3 › F3 retired units absent across region switches at 768px (3.8s)
+  ok 30 tests\browser\gale-geology.spec.ts:4:3 › F3 retired units absent across region switches at 390px (2.1s)
+  ok 31 tests\browser\i4a-integration.spec.ts:7:113 › I4A gale complete science-to-saved-route-and-export workflow at 1440px (7.6s)
+  ok 32 tests\browser\i4a-integration.spec.ts:7:113 › I4A jezero complete science-to-saved-route-and-export workflow at 1440px (5.4s)
+  ok 33 tests\browser\i4a-integration.spec.ts:7:113 › I4A oxia complete science-to-saved-route-and-export workflow at 1440px (5.3s)
+  ok 34 tests\browser\i4a-integration.spec.ts:7:113 › I4A gale complete science-to-saved-route-and-export workflow at 768px (7.9s)
+  ok 35 tests\browser\i4a-integration.spec.ts:7:113 › I4A jezero complete science-to-saved-route-and-export workflow at 768px (6.4s)
+  ok 36 tests\browser\i4a-integration.spec.ts:7:113 › I4A oxia complete science-to-saved-route-and-export workflow at 768px (5.6s)
+  ok 37 tests\browser\i4a-integration.spec.ts:7:113 › I4A gale complete science-to-saved-route-and-export workflow at 390px (9.0s)
+  ok 38 tests\browser\i4a-integration.spec.ts:7:113 › I4A jezero complete science-to-saved-route-and-export workflow at 390px (6.7s)
+  ok 39 tests\browser\i4a-integration.spec.ts:7:113 › I4A oxia complete science-to-saved-route-and-export workflow at 390px (4.7s)
+  ok 40 tests\browser\i4a-integration.spec.ts:43:1 › I4A cross-region saved mission isolation returns to original Gale inputs and fresh route (8.9s)
+  ok 41 tests\browser\i4a-integration.spec.ts:63:1 › I4A compact landscape role repair and complete brief remain reachable (2.1s)
+  ok 42 tests\browser\i4b-eva.spec.ts:7:133 › I4B gale production EVA workflow 1440x900 (10.5s)
+  ok 43 tests\browser\i4b-eva.spec.ts:7:133 › I4B jezero production EVA workflow 1440x900 (6.9s)
+  ok 44 tests\browser\i4b-eva.spec.ts:7:133 › I4B oxia production EVA workflow 1440x900 (5.1s)
+  ok 45 tests\browser\i4b-eva.spec.ts:7:133 › I4B gale production EVA workflow 768x1024 (9.5s)
+  ok 46 tests\browser\i4b-eva.spec.ts:7:133 › I4B jezero production EVA workflow 768x1024 (7.0s)
+  ok 47 tests\browser\i4b-eva.spec.ts:7:133 › I4B oxia production EVA workflow 768x1024 (5.6s)
+  ok 48 tests\browser\i4b-eva.spec.ts:7:133 › I4B gale production EVA workflow 390x844 (7.8s)
+  ok 49 tests\browser\i4b-eva.spec.ts:7:133 › I4B jezero production EVA workflow 390x844 (4.2s)
+  ok 50 tests\browser\i4b-eva.spec.ts:7:133 › I4B oxia production EVA workflow 390x844 (3.5s)
+  ok 51 tests\browser\i4b-eva.spec.ts:7:133 › I4B gale production EVA workflow 320x640 (5.9s)
+  ok 52 tests\browser\i4b-eva.spec.ts:7:133 › I4B jezero production EVA workflow 320x640 (3.9s)
+  ok 53 tests\browser\i4b-eva.spec.ts:7:133 › I4B oxia production EVA workflow 320x640 (3.0s)
+  ok 54 tests\browser\i4b-eva.spec.ts:7:133 › I4B gale production EVA workflow 844x390 (5.8s)
+  ok 55 tests\browser\i4b-eva.spec.ts:7:133 › I4B jezero production EVA workflow 844x390 (4.2s)
+  ok 56 tests\browser\i4b-eva.spec.ts:7:133 › I4B oxia production EVA workflow 844x390 (3.4s)
+  x  57 tests\browser\terrain-routing-integration.spec.ts:22:5 › gale authentic route alternatives, propagation, persistence and isolation at 1440px (16.7s)
+(node:11016) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  58 tests\browser\terrain-routing-integration.spec.ts:22:5 › jezero authentic route alternatives, propagation, persistence and isolation at 1440px (14.5s)
+(node:9060) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 59 tests\browser\terrain-routing-integration.spec.ts:125:3 › Oxia map, unavailable terrain and environment at 1440px (2.8s)
+  x  60 tests\browser\terrain-routing-integration.spec.ts:22:5 › gale authentic route alternatives, propagation, persistence and isolation at 768px (15.3s)
+(node:20120) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  61 tests\browser\terrain-routing-integration.spec.ts:22:5 › jezero authentic route alternatives, propagation, persistence and isolation at 768px (14.7s)
+(node:19956) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 62 tests\browser\terrain-routing-integration.spec.ts:125:3 › Oxia map, unavailable terrain and environment at 768px (1.8s)
+  x  63 tests\browser\terrain-routing-integration.spec.ts:22:5 › gale authentic route alternatives, propagation, persistence and isolation at 390px (16.5s)
+(node:1480) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  64 tests\browser\terrain-routing-integration.spec.ts:22:5 › jezero authentic route alternatives, propagation, persistence and isolation at 390px (14.7s)
+(node:17720) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 65 tests\browser\terrain-routing-integration.spec.ts:125:3 › Oxia map, unavailable terrain and environment at 390px (1.4s)
+  ok 66 tests\browser\terrain-routing-integration.spec.ts:145:1 › unavailable terrain and stale responses never leave terrain lines (3.1s)
+  ok 67 tests\browser\three-region-integration.spec.ts:29:5 › gale four categories render, opacity, metadata and switching at 1440px (33.3s)
+  ok 68 tests\browser\three-region-integration.spec.ts:29:5 › jezero four categories render, opacity, metadata and switching at 1440px (14.3s)
+  ok 69 tests\browser\three-region-integration.spec.ts:29:5 › oxia four categories render, opacity, metadata and switching at 1440px (13.7s)
+  ok 70 tests\browser\three-region-integration.spec.ts:29:5 › gale four categories render, opacity, metadata and switching at 768px (25.4s)
+  ok 71 tests\browser\three-region-integration.spec.ts:29:5 › jezero four categories render, opacity, metadata and switching at 768px (11.7s)
+  ok 72 tests\browser\three-region-integration.spec.ts:29:5 › oxia four categories render, opacity, metadata and switching at 768px (11.8s)
+  ok 73 tests\browser\three-region-integration.spec.ts:29:5 › gale four categories render, opacity, metadata and switching at 390px (23.6s)
+  ok 74 tests\browser\three-region-integration.spec.ts:29:5 › jezero four categories render, opacity, metadata and switching at 390px (11.9s)
+  ok 75 tests\browser\three-region-integration.spec.ts:29:5 › oxia four categories render, opacity, metadata and switching at 390px (11.1s)
+  ok 76 tests\browser\three-region-integration.spec.ts:75:1 › verified Oxia stops retain markers while Jezero objectives never fabricate waypoints (1.7s)
+
+
+  1) tests\browser\terrain-routing-integration.spec.ts:22:5 › gale authentic route alternatives, propagation, persistence and isolation at 1440px
+
+    Error: expect(locator).toContainText(expected) failed
+
+    Locator: locator('[aria-label="Terrain routing"]')
+    Timeout: 10000ms
+    - Expected substring  -  1
+    + Received string     + 34
+
+    - INSUFFICIENT_DATA
+    + Terrain routingResearch planning estimate. Use 2 to 12 ordered surface waypoints; unverified science objectives cannot become route endpoints. Round trips include an independently searched return leg.Terrain sourceRegional HRSC 30 mRegional HRSC/MOLA 200 m comparisonMaximum waypoint snap (m)Calculate terrain routesClear terrain routesTerrain route alternativesShortest distance 3382.3 mLower terrain cost 3382.7 mTerrain route computed — absolute registration unverifiedScientific planning estimate, not an approved EVA navigation path. Shortest minimizes native horizontal graph distance; lower terrain cost uses regional weights. The summary below reports canonical 3D DEM distance.3D DEM distance3382.7 mHorizontal Mars distance3363.4 mAscent / descent161.2 m / 161.2 mMaximum / mean path grade11.65 / 5.46 degrees (distance-weighted mean)Source datasetgale-hrsc-30mVerificationSource: true; processing: true; absolute registration: falseWaypoint displacement1: 12.5 m; 2: 9.6 m; 3: 12.5 mTerrain model, native metrics and limitationsEight-connected HRSC search; 3 x 3 Horn slope support. Lower-cost weights: uphill 3, downhill 0.75, cross-slope 0.5; slope reference 20 degrees. No certified hazard model.A computed path is a lower-terrain-cost path through the declared DEM model. It is not an astronaut traversability, hazard, trafficability, or safety certification.DEM-to-CTX optical co-registration is unverified. Preserve published coordinates and do not use this route for fine-feature matching or operational navigation.No verified Gale roughness, sand, rock-abundance, boulder, or obstacle dataset was available. The route avoids slope and elevation cost only; unmapped physical hazards are not represented.Cost weights are documented algorithmic preferences, not validated EVA physiology, metabolic rate, oxygen use, battery drain, or safety thresholds.Ascent and descent are raw sums of 30 m DEM elevation differences and include DEM noise; they are not surveyed rover-odometry values.This route uses the 30 m HRSC regional DEM with approximately 90 m Horn gradient support. Boulders, small scarps, sand traps, and suit-scale obstacles are unresolved.status is 'unverified': the graph search is deterministic and the source DEM provenance is verified, but local CTX co-registration is not.Canonical summary: 3D DEM distance on the Mars sphere; native engine metrics are retained separately. Not approved EVA navigation.Native Gale slope statistics describe directional edge grade. Native Jezero slopes describe computational cell slopes; those statistics are not interchangeable.{
+    +   "distanceMeters": 3363.4252512201683,
+    +   "maximumSlopeDegrees": 11.649111840956769,
+    +   "meanSlopeDegrees": 5.461710288825078,
+    +   "coverage": {
+    +     "status": "partial",
+    +     "datasetId": "gale-hrsc-30m",
+    +     "validRouteCells": 158013,
+    +     "totalCells": 159685,
+    +     "validFraction": 0.9895293859786455,
+    +     "validAreaKm2": 141.7330790138141,
+    +     "extentWsen": [
+    +       137.32693270848944,
+    +       -4.839304443026415,
+    +       137.47522532519224,
+    +       -4.563470053596232
+    +     ],
+    +     "routeWithinValidCoverage": true,
+    +     "missingTerrain": "No numeric DEM is available outside the declared crop. Cells outside it are not treated as traversable.",
+    +     "nodataPolicy": "Nodata and cells without a complete valid 3x3 slope neighbourhood are blocked. No interpolation, gap filling, or synthetic surface is used.",
+    +     "note": "Coverage applies only to the audited regional crop for this dataset; it is not a claim of whole-Gale coverage."
+    +   },
+    +   "cost": {
+    +     "name": "gale-terrain-penalty-v1",
+    +     "units": "equivalent horizontal metres",
+    +     "formula": "distance * (1 + uphill_weight*min(tan(theta_up), max_grade) + downhill_weight*min(tan(theta_down), max_grade) + cross_slope_weight*(max_endpoint_horn_slope/reference_slope)^2)",
+    +     "uphillWeight": 3,
+    +     "downhillWeight": 0.75,
+    +     "crossSlopeWeight": 0.5,
+    +     "slopeReferenceDegrees": 20,
+    +     "maxGradeTangent": 3,
+    +     "interpretation": "Algorithmic terrain preference, not astronaut physiology, metabolic cost, or a certified safety threshold."
+    +   }
+    + }
+
+    Call log:
+      - Expect "toContainText" locator('[aria-label="Terrain routing"]') with timeout 10000ms
+      - waiting for locator('[aria-label="Terrain routing"]')
+        23 × locator resolved to <section class="terrain-routing" aria-label="Terrain routing">…</section>
+           - unexpected value "Terrain routingResearch planning estimate. Use 2 to 12 ordered surface waypoints; unverified science objectives cannot become route endpoints. Round trips include an independently searched return leg.Terrain sourceRegional HRSC 30 mRegional HRSC/MOLA 200 m comparisonMaximum waypoint snap (m)Calculate terrain routesClear terrain routesTerrain route alternativesShortest distance 3382.3 mLower terrain cost 3382.7 mTerrain route computed — absolute registration unverifiedScientific planning estimate, not an approved EVA navigation path. Shortest minimizes native horizontal graph distance; lower terrain cost uses regional weights. The summary below reports canonical 3D DEM distance.3D DEM distance3382.7 mHorizontal Mars distance3363.4 mAscent / descent161.2 m / 161.2 mMaximum / mean path grade11.65 / 5.46 degrees (distance-weighted mean)Source datasetgale-hrsc-30mVerificationSource: true; processing: true; absolute registration: falseWaypoint displacement1: 12.5 m; 2: 9.6 m; 3: 12.5 mTerrain model, native metrics and limitationsEight-connected HRSC search; 3 x 3 Horn slope support. Lower-cost weights: uphill 3, downhill 0.75, cross-slope 0.5; slope reference 20 degrees. No certified hazard model.A computed path is a lower-terrain-cost path through the declared DEM model. It is not an astronaut traversability, hazard, trafficability, or safety certification.DEM-to-CTX optical co-registration is unverified. Preserve published coordinates and do not use this route for fine-feature matching or operational navigation.No verified Gale roughness, sand, rock-abundance, boulder, or obstacle dataset was available. The route avoids slope and elevation cost only; unmapped physical hazards are not represented.Cost weights are documented algorithmic preferences, not validated EVA physiology, metabolic rate, oxygen use, battery drain, or safety thresholds.Ascent and descent are raw sums of 30 m DEM elevation differences and include DEM noise; they are not surveyed rover-odometry values.This route uses the 30 m HRSC regional DEM with approximately 90 m Horn gradient support. Boulders, small scarps, sand traps, and suit-scale obstacles are unresolved.status is 'unverified': the graph search is deterministic and the source DEM provenance is verified, but local CTX co-registration is not.Canonical summary: 3D DEM distance on the Mars sphere; native engine metrics are retained separately. Not approved EVA navigation.Native Gale slope statistics describe directional edge grade. Native Jezero slopes describe computational cell slopes; those statistics are not interchangeable.{
+      "distanceMeters": 3363.4252512201683,
+      "maximumSlopeDegrees": 11.649111840956769,
+      "meanSlopeDegrees": 5.461710288825078,
+      "coverage": {
+        "status": "partial",
+        "datasetId": "gale-hrsc-30m",
+        "validRouteCells": 158013,
+        "totalCells": 159685,
+        "validFraction": 0.9895293859786455,
+        "validAreaKm2": 141.7330790138141,
+        "extentWsen": [
+          137.32693270848944,
+          -4.839304443026415,
+          137.47522532519224,
+          -4.563470053596232
+        ],
+        "routeWithinValidCoverage": true,
+        "missingTerrain": "No numeric DEM is available outside the declared crop. Cells outside it are not treated as traversable.",
+        "nodataPolicy": "Nodata and cells without a complete valid 3x3 slope neighbourhood are blocked. No interpolation, gap filling, or synthetic surface is used.",
+        "note": "Coverage applies only to the audited regional crop for this dataset; it is not a claim of whole-Gale coverage."
+      },
+      "cost": {
+        "name": "gale-terrain-penalty-v1",
+        "units": "equivalent horizontal metres",
+        "formula": "distance * (1 + uphill_weight*min(tan(theta_up), max_grade) + downhill_weight*min(tan(theta_down), max_grade) + cross_slope_weight*(max_endpoint_horn_slope/reference_slope)^2)",
+        "uphillWeight": 3,
+        "downhillWeight": 0.75,
+        "crossSlopeWeight": 0.5,
+        "slopeReferenceDegrees": 20,
+        "maxGradeTangent": 3,
+        "interpretation": "Algorithmic terrain preference, not astronaut physiology, metabolic cost, or a certified safety threshold."
+      }
+    }"
+
+
+      61 |       await page.getByLabel("Walking speed (m/hour)",{exact:true}).fill("1000");
+      62 |       await expect(page.getByTestId("terrain-timeline")).toContainText("Travel-time scenario:");
+    > 63 |       await expect(page.locator('[aria-label="Terrain routing"]')).toContainText("INSUFFICIENT_DATA");
+         |                                                                    ^
+      64 |       await page.screenshot({path:`output/playwright/i3a/${region}-terrain-${width}.png`});
+      65 |       await writeFile(`output/playwright/i3a/${region}-terrain-${width}.json`,JSON.stringify(data,null,2));
+      66 |       await page.getByRole("button",{name:"Review mission",exact:true}).click();
+        at D:\martian-map-i4b-eva\tests\browser\terrain-routing-integration.spec.ts:63:68
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\terrain-routing-integratio-1b7d2-nce-and-isolation-at-1440px\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\terrain-routing-integratio-1b7d2-nce-and-isolation-at-1440px\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\terrain-routing-integratio-1b7d2-nce-and-isolation-at-1440px\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\terrain-routing-integratio-1b7d2-nce-and-isolation-at-1440px\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) tests\browser\terrain-routing-integration.spec.ts:22:5 › jezero authentic route alternatives, propagation, persistence and isolation at 1440px
+
+    Error: expect(locator).toContainText(expected) failed
+
+    Locator: locator('[aria-label="Terrain routing"]')
+    Timeout: 10000ms
+    - Expected substring  -  1
+    + Received string     + 22
+
+    - INSUFFICIENT_DATA
+    + Terrain routingResearch planning estimate. Use 2 to 12 ordered surface waypoints; unverified science objectives cannot become route endpoints. Round trips include an independently searched return leg.Maximum waypoint snap (m)Calculate terrain routesClear terrain routesTerrain route alternativesShortest distance 8514.7 mLower terrain cost 8681.4 mTerrain route computed — absolute registration unverifiedScientific planning estimate, not an approved EVA navigation path. Shortest minimizes native horizontal graph distance; lower terrain cost uses regional weights. The summary below reports canonical 3D DEM distance.3D DEM distance8681.4 mHorizontal Mars distance8677.2 mAscent / descent98.9 m / 98.9 mMaximum / mean path grade6.02 / 1.30 degrees (distance-weighted mean)Source datasetjezero-usgs-trn-dtm, jezero-hirise-soc-006VerificationSource: true; processing: true; absolute registration: falseWaypoint displacement1: 1.3 m; 2: 9.2 m; 3: 1.3 mTerrain model, native metrics and limitations25 m computational grid; cell slope above 25 degrees is a computational barrier, not an astronaut safety threshold. Cost weights: slope 2, ascent 3, descent 1, reference 10 degrees.USGS Mars 2020 TRN HiRISE DTM mosaic has UNVERIFIED absolute horizontal registration. Path coordinates and elevations are mathematically derived from authentic USGS DEM data, but operational absolute placement requires independent ground control.Waypoint #1 at [77.45089, 18.44463] was snapped by 1.3m to nearest traversable DEM cell.Waypoint #2 at [77.38000, 18.45500] was snapped by 9.2m to nearest traversable DEM cell.Waypoint #3 at [77.45089, 18.44463] was snapped by 1.3m to nearest traversable DEM cell.Canonical summary: 3D DEM distance on the Mars sphere; native engine metrics are retained separately. Not approved EVA navigation.Native Gale slope statistics describe directional edge grade. Native Jezero slopes describe computational cell slopes; those statistics are not interchangeable.{
+    +   "distanceMeters": 8681.5,
+    +   "maximumSlopeDegrees": 6,
+    +   "meanSlopeDegrees": 1.7,
+    +   "coverage": [
+    +     "Derived computational grid for pathfinding; not a substitute for full 1m DTM posts.",
+    +     "Slope is an algorithmic traversal penalty, NOT a certified EVA or astronaut safety limit.",
+    +     "Nodata cells outside valid DEM coverage are strictly impassable.",
+    +     "Registration accuracy reflects USGS TRN HiRISE baseline; absolute horizontal registration is UNVERIFIED."
+    +   ],
+    +   "cost": {
+    +     "preference": "lower-terrain-cost",
+    +     "maxTraversableSlopeDegrees": 25,
+    +     "baseDistanceWeight": 1,
+    +     "slopePenaltyFactor": 2,
+    +     "slopeReferenceDegrees": 10,
+    +     "ascentPenaltyFactor": 3,
+    +     "descentPenaltyFactor": 1,
+    +     "formula": "cost = step_distance_m * (1.0 + 2.0 * (slope / 10.0)^2 + 3.0 * max(0, dz/d) + 1.0 * max(0, -dz/d))",
+    +     "description": "Algorithmic preference penalizing quadratic slope steepness and net ascent/descent. Not a NASA-certified EVA safety standard."
+    +   }
+    + }
+
+    Call log:
+      - Expect "toContainText" locator('[aria-label="Terrain routing"]') with timeout 10000ms
+      - waiting for locator('[aria-label="Terrain routing"]')
+        23 × locator resolved to <section class="terrain-routing" aria-label="Terrain routing">…</section>
+           - unexpected value "Terrain routingResearch planning estimate. Use 2 to 12 ordered surface waypoints; unverified science objectives cannot become route endpoints. Round trips include an independently searched return leg.Maximum waypoint snap (m)Calculate terrain routesClear terrain routesTerrain route alternativesShortest distance 8514.7 mLower terrain cost 8681.4 mTerrain route computed — absolute registration unverifiedScientific planning estimate, not an approved EVA navigation path. Shortest minimizes native horizontal graph distance; lower terrain cost uses regional weights. The summary below reports canonical 3D DEM distance.3D DEM distance8681.4 mHorizontal Mars distance8677.2 mAscent / descent98.9 m / 98.9 mMaximum / mean path grade6.02 / 1.30 degrees (distance-weighted mean)Source datasetjezero-usgs-trn-dtm, jezero-hirise-soc-006VerificationSource: true; processing: true; absolute registration: falseWaypoint displacement1: 1.3 m; 2: 9.2 m; 3: 1.3 mTerrain model, native metrics and limitations25 m computational grid; cell slope above 25 degrees is a computational barrier, not an astronaut safety threshold. Cost weights: slope 2, ascent 3, descent 1, reference 10 degrees.USGS Mars 2020 TRN HiRISE DTM mosaic has UNVERIFIED absolute horizontal registration. Path coordinates and elevations are mathematically derived from authentic USGS DEM data, but operational absolute placement requires independent ground control.Waypoint #1 at [77.45089, 18.44463] was snapped by 1.3m to nearest traversable DEM cell.Waypoint #2 at [77.38000, 18.45500] was snapped by 9.2m to nearest traversable DEM cell.Waypoint #3 at [77.45089, 18.44463] was snapped by 1.3m to nearest traversable DEM cell.Canonical summary: 3D DEM distance on the Mars sphere; native engine metrics are retained separately. Not approved EVA navigation.Native Gale slope statistics describe directional edge grade. Native Jezero slopes describe computational cell slopes; those statistics are not interchangeable.{
+      "distanceMeters": 8681.5,
+      "maximumSlopeDegrees": 6,
+      "meanSlopeDegrees": 1.7,
+      "coverage": [
+        "Derived computational grid for pathfinding; not a substitute for full 1m DTM posts.",
+        "Slope is an algorithmic traversal penalty, NOT a certified EVA or astronaut safety limit.",
+        "Nodata cells outside valid DEM coverage are strictly impassable.",
+        "Registration accuracy reflects USGS TRN HiRISE baseline; absolute horizontal registration is UNVERIFIED."
+      ],
+      "cost": {
+        "preference": "lower-terrain-cost",
+        "maxTraversableSlopeDegrees": 25,
+        "baseDistanceWeight": 1,
+        "slopePenaltyFactor": 2,
+        "slopeReferenceDegrees": 10,
+        "ascentPenaltyFactor": 3,
+        "descentPenaltyFactor": 1,
+        "formula": "cost = step_distance_m * (1.0 + 2.0 * (slope / 10.0)^2 + 3.0 * max(0, dz/d) + 1.0 * max(0, -dz/d))",
+        "description": "Algorithmic preference penalizing quadratic slope steepness and net ascent/descent. Not a NASA-certified EVA safety standard."
+      }
+    }"
+
+
+      61 |       await page.getByLabel("Walking speed (m/hour)",{exact:true}).fill("1000");
+      62 |       await expect(page.getByTestId("terrain-timeline")).toContainText("Travel-time scenario:");
+    > 63 |       await expect(page.locator('[aria-label="Terrain routing"]')).toContainText("INSUFFICIENT_DATA");
+         |                                                                    ^
+      64 |       await page.screenshot({path:`output/playwright/i3a/${region}-terrain-${width}.png`});
+      65 |       await writeFile(`output/playwright/i3a/${region}-terrain-${width}.json`,JSON.stringify(data,null,2));
+      66 |       await page.getByRole("button",{name:"Review mission",exact:true}).click();
+        at D:\martian-map-i4b-eva\tests\browser\terrain-routing-integration.spec.ts:63:68
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\terrain-routing-integratio-670d7-nce-and-isolation-at-1440px\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\terrain-routing-integratio-670d7-nce-and-isolation-at-1440px\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\terrain-routing-integratio-670d7-nce-and-isolation-at-1440px\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\terrain-routing-integratio-670d7-nce-and-isolation-at-1440px\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) tests\browser\terrain-routing-integration.spec.ts:22:5 › gale authentic route alternatives, propagation, persistence and isolation at 768px
+
+    Error: expect(locator).toContainText(expected) failed
+
+    Locator: locator('[aria-label="Terrain routing"]')
+    Timeout: 10000ms
+    - Expected substring  -  1
+    + Received string     + 34
+
+    - INSUFFICIENT_DATA
+    + Terrain routingResearch planning estimate. Use 2 to 12 ordered surface waypoints; unverified science objectives cannot become route endpoints. Round trips include an independently searched return leg.Terrain sourceRegional HRSC 30 mRegional HRSC/MOLA 200 m comparisonMaximum waypoint snap (m)Calculate terrain routesClear terrain routesTerrain route alternativesShortest distance 3382.3 mLower terrain cost 3382.7 mTerrain route computed — absolute registration unverifiedScientific planning estimate, not an approved EVA navigation path. Shortest minimizes native horizontal graph distance; lower terrain cost uses regional weights. The summary below reports canonical 3D DEM distance.3D DEM distance3382.7 mHorizontal Mars distance3363.4 mAscent / descent161.2 m / 161.2 mMaximum / mean path grade11.65 / 5.46 degrees (distance-weighted mean)Source datasetgale-hrsc-30mVerificationSource: true; processing: true; absolute registration: falseWaypoint displacement1: 12.5 m; 2: 9.6 m; 3: 12.5 mTerrain model, native metrics and limitationsEight-connected HRSC search; 3 x 3 Horn slope support. Lower-cost weights: uphill 3, downhill 0.75, cross-slope 0.5; slope reference 20 degrees. No certified hazard model.A computed path is a lower-terrain-cost path through the declared DEM model. It is not an astronaut traversability, hazard, trafficability, or safety certification.DEM-to-CTX optical co-registration is unverified. Preserve published coordinates and do not use this route for fine-feature matching or operational navigation.No verified Gale roughness, sand, rock-abundance, boulder, or obstacle dataset was available. The route avoids slope and elevation cost only; unmapped physical hazards are not represented.Cost weights are documented algorithmic preferences, not validated EVA physiology, metabolic rate, oxygen use, battery drain, or safety thresholds.Ascent and descent are raw sums of 30 m DEM elevation differences and include DEM noise; they are not surveyed rover-odometry values.This route uses the 30 m HRSC regional DEM with approximately 90 m Horn gradient support. Boulders, small scarps, sand traps, and suit-scale obstacles are unresolved.status is 'unverified': the graph search is deterministic and the source DEM provenance is verified, but local CTX co-registration is not.Canonical summary: 3D DEM distance on the Mars sphere; native engine metrics are retained separately. Not approved EVA navigation.Native Gale slope statistics describe directional edge grade. Native Jezero slopes describe computational cell slopes; those statistics are not interchangeable.{
+    +   "distanceMeters": 3363.4252512201683,
+    +   "maximumSlopeDegrees": 11.649111840956769,
+    +   "meanSlopeDegrees": 5.461710288825078,
+    +   "coverage": {
+    +     "status": "partial",
+    +     "datasetId": "gale-hrsc-30m",
+    +     "validRouteCells": 158013,
+    +     "totalCells": 159685,
+    +     "validFraction": 0.9895293859786455,
+    +     "validAreaKm2": 141.7330790138141,
+    +     "extentWsen": [
+    +       137.32693270848944,
+    +       -4.839304443026415,
+    +       137.47522532519224,
+    +       -4.563470053596232
+    +     ],
+    +     "routeWithinValidCoverage": true,
+    +     "missingTerrain": "No numeric DEM is available outside the declared crop. Cells outside it are not treated as traversable.",
+    +     "nodataPolicy": "Nodata and cells without a complete valid 3x3 slope neighbourhood are blocked. No interpolation, gap filling, or synthetic surface is used.",
+    +     "note": "Coverage applies only to the audited regional crop for this dataset; it is not a claim of whole-Gale coverage."
+    +   },
+    +   "cost": {
+    +     "name": "gale-terrain-penalty-v1",
+    +     "units": "equivalent horizontal metres",
+    +     "formula": "distance * (1 + uphill_weight*min(tan(theta_up), max_grade) + downhill_weight*min(tan(theta_down), max_grade) + cross_slope_weight*(max_endpoint_horn_slope/reference_slope)^2)",
+    +     "uphillWeight": 3,
+    +     "downhillWeight": 0.75,
+    +     "crossSlopeWeight": 0.5,
+    +     "slopeReferenceDegrees": 20,
+    +     "maxGradeTangent": 3,
+    +     "interpretation": "Algorithmic terrain preference, not astronaut physiology, metabolic cost, or a certified safety threshold."
+    +   }
+    + }
+
+    Call log:
+      - Expect "toContainText" locator('[aria-label="Terrain routing"]') with timeout 10000ms
+      - waiting for locator('[aria-label="Terrain routing"]')
+        23 × locator resolved to <section class="terrain-routing" aria-label="Terrain routing">…</section>
+           - unexpected value "Terrain routingResearch planning estimate. Use 2 to 12 ordered surface waypoints; unverified science objectives cannot become route endpoints. Round trips include an independently searched return leg.Terrain sourceRegional HRSC 30 mRegional HRSC/MOLA 200 m comparisonMaximum waypoint snap (m)Calculate terrain routesClear terrain routesTerrain route alternativesShortest distance 3382.3 mLower terrain cost 3382.7 mTerrain route computed — absolute registration unverifiedScientific planning estimate, not an approved EVA navigation path. Shortest minimizes native horizontal graph distance; lower terrain cost uses regional weights. The summary below reports canonical 3D DEM distance.3D DEM distance3382.7 mHorizontal Mars distance3363.4 mAscent / descent161.2 m / 161.2 mMaximum / mean path grade11.65 / 5.46 degrees (distance-weighted mean)Source datasetgale-hrsc-30mVerificationSource: true; processing: true; absolute registration: falseWaypoint displacement1: 12.5 m; 2: 9.6 m; 3: 12.5 mTerrain model, native metrics and limitationsEight-connected HRSC search; 3 x 3 Horn slope support. Lower-cost weights: uphill 3, downhill 0.75, cross-slope 0.5; slope reference 20 degrees. No certified hazard model.A computed path is a lower-terrain-cost path through the declared DEM model. It is not an astronaut traversability, hazard, trafficability, or safety certification.DEM-to-CTX optical co-registration is unverified. Preserve published coordinates and do not use this route for fine-feature matching or operational navigation.No verified Gale roughness, sand, rock-abundance, boulder, or obstacle dataset was available. The route avoids slope and elevation cost only; unmapped physical hazards are not represented.Cost weights are documented algorithmic preferences, not validated EVA physiology, metabolic rate, oxygen use, battery drain, or safety thresholds.Ascent and descent are raw sums of 30 m DEM elevation differences and include DEM noise; they are not surveyed rover-odometry values.This route uses the 30 m HRSC regional DEM with approximately 90 m Horn gradient support. Boulders, small scarps, sand traps, and suit-scale obstacles are unresolved.status is 'unverified': the graph search is deterministic and the source DEM provenance is verified, but local CTX co-registration is not.Canonical summary: 3D DEM distance on the Mars sphere; native engine metrics are retained separately. Not approved EVA navigation.Native Gale slope statistics describe directional edge grade. Native Jezero slopes describe computational cell slopes; those statistics are not interchangeable.{
+      "distanceMeters": 3363.4252512201683,
+      "maximumSlopeDegrees": 11.649111840956769,
+      "meanSlopeDegrees": 5.461710288825078,
+      "coverage": {
+        "status": "partial",
+        "datasetId": "gale-hrsc-30m",
+        "validRouteCells": 158013,
+        "totalCells": 159685,
+        "validFraction": 0.9895293859786455,
+        "validAreaKm2": 141.7330790138141,
+        "extentWsen": [
+          137.32693270848944,
+          -4.839304443026415,
+          137.47522532519224,
+          -4.563470053596232
+        ],
+        "routeWithinValidCoverage": true,
+        "missingTerrain": "No numeric DEM is available outside the declared crop. Cells outside it are not treated as traversable.",
+        "nodataPolicy": "Nodata and cells without a complete valid 3x3 slope neighbourhood are blocked. No interpolation, gap filling, or synthetic surface is used.",
+        "note": "Coverage applies only to the audited regional crop for this dataset; it is not a claim of whole-Gale coverage."
+      },
+      "cost": {
+        "name": "gale-terrain-penalty-v1",
+        "units": "equivalent horizontal metres",
+        "formula": "distance * (1 + uphill_weight*min(tan(theta_up), max_grade) + downhill_weight*min(tan(theta_down), max_grade) + cross_slope_weight*(max_endpoint_horn_slope/reference_slope)^2)",
+        "uphillWeight": 3,
+        "downhillWeight": 0.75,
+        "crossSlopeWeight": 0.5,
+        "slopeReferenceDegrees": 20,
+        "maxGradeTangent": 3,
+        "interpretation": "Algorithmic terrain preference, not astronaut physiology, metabolic cost, or a certified safety threshold."
+      }
+    }"
+
+
+      61 |       await page.getByLabel("Walking speed (m/hour)",{exact:true}).fill("1000");
+      62 |       await expect(page.getByTestId("terrain-timeline")).toContainText("Travel-time scenario:");
+    > 63 |       await expect(page.locator('[aria-label="Terrain routing"]')).toContainText("INSUFFICIENT_DATA");
+         |                                                                    ^
+      64 |       await page.screenshot({path:`output/playwright/i3a/${region}-terrain-${width}.png`});
+      65 |       await writeFile(`output/playwright/i3a/${region}-terrain-${width}.json`,JSON.stringify(data,null,2));
+      66 |       await page.getByRole("button",{name:"Review mission",exact:true}).click();
+        at D:\martian-map-i4b-eva\tests\browser\terrain-routing-integration.spec.ts:63:68
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\terrain-routing-integratio-84e3f-ence-and-isolation-at-768px\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\terrain-routing-integratio-84e3f-ence-and-isolation-at-768px\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\terrain-routing-integratio-84e3f-ence-and-isolation-at-768px\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\terrain-routing-integratio-84e3f-ence-and-isolation-at-768px\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  4) tests\browser\terrain-routing-integration.spec.ts:22:5 › jezero authentic route alternatives, propagation, persistence and isolation at 768px
+
+    Error: expect(locator).toContainText(expected) failed
+
+    Locator: locator('[aria-label="Terrain routing"]')
+    Timeout: 10000ms
+    - Expected substring  -  1
+    + Received string     + 22
+
+    - INSUFFICIENT_DATA
+    + Terrain routingResearch planning estimate. Use 2 to 12 ordered surface waypoints; unverified science objectives cannot become route endpoints. Round trips include an independently searched return leg.Maximum waypoint snap (m)Calculate terrain routesClear terrain routesTerrain route alternativesShortest distance 8514.7 mLower terrain cost 8681.4 mTerrain route computed — absolute registration unverifiedScientific planning estimate, not an approved EVA navigation path. Shortest minimizes native horizontal graph distance; lower terrain cost uses regional weights. The summary below reports canonical 3D DEM distance.3D DEM distance8681.4 mHorizontal Mars distance8677.2 mAscent / descent98.9 m / 98.9 mMaximum / mean path grade6.02 / 1.30 degrees (distance-weighted mean)Source datasetjezero-usgs-trn-dtm, jezero-hirise-soc-006VerificationSource: true; processing: true; absolute registration: falseWaypoint displacement1: 1.3 m; 2: 9.2 m; 3: 1.3 mTerrain model, native metrics and limitations25 m computational grid; cell slope above 25 degrees is a computational barrier, not an astronaut safety threshold. Cost weights: slope 2, ascent 3, descent 1, reference 10 degrees.USGS Mars 2020 TRN HiRISE DTM mosaic has UNVERIFIED absolute horizontal registration. Path coordinates and elevations are mathematically derived from authentic USGS DEM data, but operational absolute placement requires independent ground control.Waypoint #1 at [77.45089, 18.44463] was snapped by 1.3m to nearest traversable DEM cell.Waypoint #2 at [77.38000, 18.45500] was snapped by 9.2m to nearest traversable DEM cell.Waypoint #3 at [77.45089, 18.44463] was snapped by 1.3m to nearest traversable DEM cell.Canonical summary: 3D DEM distance on the Mars sphere; native engine metrics are retained separately. Not approved EVA navigation.Native Gale slope statistics describe directional edge grade. Native Jezero slopes describe computational cell slopes; those statistics are not interchangeable.{
+    +   "distanceMeters": 8681.5,
+    +   "maximumSlopeDegrees": 6,
+    +   "meanSlopeDegrees": 1.7,
+    +   "coverage": [
+    +     "Derived computational grid for pathfinding; not a substitute for full 1m DTM posts.",
+    +     "Slope is an algorithmic traversal penalty, NOT a certified EVA or astronaut safety limit.",
+    +     "Nodata cells outside valid DEM coverage are strictly impassable.",
+    +     "Registration accuracy reflects USGS TRN HiRISE baseline; absolute horizontal registration is UNVERIFIED."
+    +   ],
+    +   "cost": {
+    +     "preference": "lower-terrain-cost",
+    +     "maxTraversableSlopeDegrees": 25,
+    +     "baseDistanceWeight": 1,
+    +     "slopePenaltyFactor": 2,
+    +     "slopeReferenceDegrees": 10,
+    +     "ascentPenaltyFactor": 3,
+    +     "descentPenaltyFactor": 1,
+    +     "formula": "cost = step_distance_m * (1.0 + 2.0 * (slope / 10.0)^2 + 3.0 * max(0, dz/d) + 1.0 * max(0, -dz/d))",
+    +     "description": "Algorithmic preference penalizing quadratic slope steepness and net ascent/descent. Not a NASA-certified EVA safety standard."
+    +   }
+    + }
+
+    Call log:
+      - Expect "toContainText" locator('[aria-label="Terrain routing"]') with timeout 10000ms
+      - waiting for locator('[aria-label="Terrain routing"]')
+        23 × locator resolved to <section class="terrain-routing" aria-label="Terrain routing">…</section>
+           - unexpected value "Terrain routingResearch planning estimate. Use 2 to 12 ordered surface waypoints; unverified science objectives cannot become route endpoints. Round trips include an independently searched return leg.Maximum waypoint snap (m)Calculate terrain routesClear terrain routesTerrain route alternativesShortest distance 8514.7 mLower terrain cost 8681.4 mTerrain route computed — absolute registration unverifiedScientific planning estimate, not an approved EVA navigation path. Shortest minimizes native horizontal graph distance; lower terrain cost uses regional weights. The summary below reports canonical 3D DEM distance.3D DEM distance8681.4 mHorizontal Mars distance8677.2 mAscent / descent98.9 m / 98.9 mMaximum / mean path grade6.02 / 1.30 degrees (distance-weighted mean)Source datasetjezero-usgs-trn-dtm, jezero-hirise-soc-006VerificationSource: true; processing: true; absolute registration: falseWaypoint displacement1: 1.3 m; 2: 9.2 m; 3: 1.3 mTerrain model, native metrics and limitations25 m computational grid; cell slope above 25 degrees is a computational barrier, not an astronaut safety threshold. Cost weights: slope 2, ascent 3, descent 1, reference 10 degrees.USGS Mars 2020 TRN HiRISE DTM mosaic has UNVERIFIED absolute horizontal registration. Path coordinates and elevations are mathematically derived from authentic USGS DEM data, but operational absolute placement requires independent ground control.Waypoint #1 at [77.45089, 18.44463] was snapped by 1.3m to nearest traversable DEM cell.Waypoint #2 at [77.38000, 18.45500] was snapped by 9.2m to nearest traversable DEM cell.Waypoint #3 at [77.45089, 18.44463] was snapped by 1.3m to nearest traversable DEM cell.Canonical summary: 3D DEM distance on the Mars sphere; native engine metrics are retained separately. Not approved EVA navigation.Native Gale slope statistics describe directional edge grade. Native Jezero slopes describe computational cell slopes; those statistics are not interchangeable.{
+      "distanceMeters": 8681.5,
+      "maximumSlopeDegrees": 6,
+      "meanSlopeDegrees": 1.7,
+      "coverage": [
+        "Derived computational grid for pathfinding; not a substitute for full 1m DTM posts.",
+        "Slope is an algorithmic traversal penalty, NOT a certified EVA or astronaut safety limit.",
+        "Nodata cells outside valid DEM coverage are strictly impassable.",
+        "Registration accuracy reflects USGS TRN HiRISE baseline; absolute horizontal registration is UNVERIFIED."
+      ],
+      "cost": {
+        "preference": "lower-terrain-cost",
+        "maxTraversableSlopeDegrees": 25,
+        "baseDistanceWeight": 1,
+        "slopePenaltyFactor": 2,
+        "slopeReferenceDegrees": 10,
+        "ascentPenaltyFactor": 3,
+        "descentPenaltyFactor": 1,
+        "formula": "cost = step_distance_m * (1.0 + 2.0 * (slope / 10.0)^2 + 3.0 * max(0, dz/d) + 1.0 * max(0, -dz/d))",
+        "description": "Algorithmic preference penalizing quadratic slope steepness and net ascent/descent. Not a NASA-certified EVA safety standard."
+      }
+    }"
+
+
+      61 |       await page.getByLabel("Walking speed (m/hour)",{exact:true}).fill("1000");
+      62 |       await expect(page.getByTestId("terrain-timeline")).toContainText("Travel-time scenario:");
+    > 63 |       await expect(page.locator('[aria-label="Terrain routing"]')).toContainText("INSUFFICIENT_DATA");
+         |                                                                    ^
+      64 |       await page.screenshot({path:`output/playwright/i3a/${region}-terrain-${width}.png`});
+      65 |       await writeFile(`output/playwright/i3a/${region}-terrain-${width}.json`,JSON.stringify(data,null,2));
+      66 |       await page.getByRole("button",{name:"Review mission",exact:true}).click();
+        at D:\martian-map-i4b-eva\tests\browser\terrain-routing-integration.spec.ts:63:68
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\terrain-routing-integratio-26df1-ence-and-isolation-at-768px\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\terrain-routing-integratio-26df1-ence-and-isolation-at-768px\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\terrain-routing-integratio-26df1-ence-and-isolation-at-768px\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\terrain-routing-integratio-26df1-ence-and-isolation-at-768px\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  5) tests\browser\terrain-routing-integration.spec.ts:22:5 › gale authentic route alternatives, propagation, persistence and isolation at 390px
+
+    Error: expect(locator).toContainText(expected) failed
+
+    Locator: locator('[aria-label="Terrain routing"]')
+    Timeout: 10000ms
+    - Expected substring  -  1
+    + Received string     + 34
+
+    - INSUFFICIENT_DATA
+    + Terrain routingResearch planning estimate. Use 2 to 12 ordered surface waypoints; unverified science objectives cannot become route endpoints. Round trips include an independently searched return leg.Terrain sourceRegional HRSC 30 mRegional HRSC/MOLA 200 m comparisonMaximum waypoint snap (m)Calculate terrain routesClear terrain routesTerrain route alternativesShortest distance 3382.3 mLower terrain cost 3382.7 mTerrain route computed — absolute registration unverifiedScientific planning estimate, not an approved EVA navigation path. Shortest minimizes native horizontal graph distance; lower terrain cost uses regional weights. The summary below reports canonical 3D DEM distance.3D DEM distance3382.7 mHorizontal Mars distance3363.4 mAscent / descent161.2 m / 161.2 mMaximum / mean path grade11.65 / 5.46 degrees (distance-weighted mean)Source datasetgale-hrsc-30mVerificationSource: true; processing: true; absolute registration: falseWaypoint displacement1: 12.5 m; 2: 9.6 m; 3: 12.5 mTerrain model, native metrics and limitationsEight-connected HRSC search; 3 x 3 Horn slope support. Lower-cost weights: uphill 3, downhill 0.75, cross-slope 0.5; slope reference 20 degrees. No certified hazard model.A computed path is a lower-terrain-cost path through the declared DEM model. It is not an astronaut traversability, hazard, trafficability, or safety certification.DEM-to-CTX optical co-registration is unverified. Preserve published coordinates and do not use this route for fine-feature matching or operational navigation.No verified Gale roughness, sand, rock-abundance, boulder, or obstacle dataset was available. The route avoids slope and elevation cost only; unmapped physical hazards are not represented.Cost weights are documented algorithmic preferences, not validated EVA physiology, metabolic rate, oxygen use, battery drain, or safety thresholds.Ascent and descent are raw sums of 30 m DEM elevation differences and include DEM noise; they are not surveyed rover-odometry values.This route uses the 30 m HRSC regional DEM with approximately 90 m Horn gradient support. Boulders, small scarps, sand traps, and suit-scale obstacles are unresolved.status is 'unverified': the graph search is deterministic and the source DEM provenance is verified, but local CTX co-registration is not.Canonical summary: 3D DEM distance on the Mars sphere; native engine metrics are retained separately. Not approved EVA navigation.Native Gale slope statistics describe directional edge grade. Native Jezero slopes describe computational cell slopes; those statistics are not interchangeable.{
+    +   "distanceMeters": 3363.4252512201683,
+    +   "maximumSlopeDegrees": 11.649111840956769,
+    +   "meanSlopeDegrees": 5.461710288825078,
+    +   "coverage": {
+    +     "status": "partial",
+    +     "datasetId": "gale-hrsc-30m",
+    +     "validRouteCells": 158013,
+    +     "totalCells": 159685,
+    +     "validFraction": 0.9895293859786455,
+    +     "validAreaKm2": 141.7330790138141,
+    +     "extentWsen": [
+    +       137.32693270848944,
+    +       -4.839304443026415,
+    +       137.47522532519224,
+    +       -4.563470053596232
+    +     ],
+    +     "routeWithinValidCoverage": true,
+    +     "missingTerrain": "No numeric DEM is available outside the declared crop. Cells outside it are not treated as traversable.",
+    +     "nodataPolicy": "Nodata and cells without a complete valid 3x3 slope neighbourhood are blocked. No interpolation, gap filling, or synthetic surface is used.",
+    +     "note": "Coverage applies only to the audited regional crop for this dataset; it is not a claim of whole-Gale coverage."
+    +   },
+    +   "cost": {
+    +     "name": "gale-terrain-penalty-v1",
+    +     "units": "equivalent horizontal metres",
+    +     "formula": "distance * (1 + uphill_weight*min(tan(theta_up), max_grade) + downhill_weight*min(tan(theta_down), max_grade) + cross_slope_weight*(max_endpoint_horn_slope/reference_slope)^2)",
+    +     "uphillWeight": 3,
+    +     "downhillWeight": 0.75,
+    +     "crossSlopeWeight": 0.5,
+    +     "slopeReferenceDegrees": 20,
+    +     "maxGradeTangent": 3,
+    +     "interpretation": "Algorithmic terrain preference, not astronaut physiology, metabolic cost, or a certified safety threshold."
+    +   }
+    + }
+
+    Call log:
+      - Expect "toContainText" locator('[aria-label="Terrain routing"]') with timeout 10000ms
+      - waiting for locator('[aria-label="Terrain routing"]')
+        23 × locator resolved to <section class="terrain-routing" aria-label="Terrain routing">…</section>
+           - unexpected value "Terrain routingResearch planning estimate. Use 2 to 12 ordered surface waypoints; unverified science objectives cannot become route endpoints. Round trips include an independently searched return leg.Terrain sourceRegional HRSC 30 mRegional HRSC/MOLA 200 m comparisonMaximum waypoint snap (m)Calculate terrain routesClear terrain routesTerrain route alternativesShortest distance 3382.3 mLower terrain cost 3382.7 mTerrain route computed — absolute registration unverifiedScientific planning estimate, not an approved EVA navigation path. Shortest minimizes native horizontal graph distance; lower terrain cost uses regional weights. The summary below reports canonical 3D DEM distance.3D DEM distance3382.7 mHorizontal Mars distance3363.4 mAscent / descent161.2 m / 161.2 mMaximum / mean path grade11.65 / 5.46 degrees (distance-weighted mean)Source datasetgale-hrsc-30mVerificationSource: true; processing: true; absolute registration: falseWaypoint displacement1: 12.5 m; 2: 9.6 m; 3: 12.5 mTerrain model, native metrics and limitationsEight-connected HRSC search; 3 x 3 Horn slope support. Lower-cost weights: uphill 3, downhill 0.75, cross-slope 0.5; slope reference 20 degrees. No certified hazard model.A computed path is a lower-terrain-cost path through the declared DEM model. It is not an astronaut traversability, hazard, trafficability, or safety certification.DEM-to-CTX optical co-registration is unverified. Preserve published coordinates and do not use this route for fine-feature matching or operational navigation.No verified Gale roughness, sand, rock-abundance, boulder, or obstacle dataset was available. The route avoids slope and elevation cost only; unmapped physical hazards are not represented.Cost weights are documented algorithmic preferences, not validated EVA physiology, metabolic rate, oxygen use, battery drain, or safety thresholds.Ascent and descent are raw sums of 30 m DEM elevation differences and include DEM noise; they are not surveyed rover-odometry values.This route uses the 30 m HRSC regional DEM with approximately 90 m Horn gradient support. Boulders, small scarps, sand traps, and suit-scale obstacles are unresolved.status is 'unverified': the graph search is deterministic and the source DEM provenance is verified, but local CTX co-registration is not.Canonical summary: 3D DEM distance on the Mars sphere; native engine metrics are retained separately. Not approved EVA navigation.Native Gale slope statistics describe directional edge grade. Native Jezero slopes describe computational cell slopes; those statistics are not interchangeable.{
+      "distanceMeters": 3363.4252512201683,
+      "maximumSlopeDegrees": 11.649111840956769,
+      "meanSlopeDegrees": 5.461710288825078,
+      "coverage": {
+        "status": "partial",
+        "datasetId": "gale-hrsc-30m",
+        "validRouteCells": 158013,
+        "totalCells": 159685,
+        "validFraction": 0.9895293859786455,
+        "validAreaKm2": 141.7330790138141,
+        "extentWsen": [
+          137.32693270848944,
+          -4.839304443026415,
+          137.47522532519224,
+          -4.563470053596232
+        ],
+        "routeWithinValidCoverage": true,
+        "missingTerrain": "No numeric DEM is available outside the declared crop. Cells outside it are not treated as traversable.",
+        "nodataPolicy": "Nodata and cells without a complete valid 3x3 slope neighbourhood are blocked. No interpolation, gap filling, or synthetic surface is used.",
+        "note": "Coverage applies only to the audited regional crop for this dataset; it is not a claim of whole-Gale coverage."
+      },
+      "cost": {
+        "name": "gale-terrain-penalty-v1",
+        "units": "equivalent horizontal metres",
+        "formula": "distance * (1 + uphill_weight*min(tan(theta_up), max_grade) + downhill_weight*min(tan(theta_down), max_grade) + cross_slope_weight*(max_endpoint_horn_slope/reference_slope)^2)",
+        "uphillWeight": 3,
+        "downhillWeight": 0.75,
+        "crossSlopeWeight": 0.5,
+        "slopeReferenceDegrees": 20,
+        "maxGradeTangent": 3,
+        "interpretation": "Algorithmic terrain preference, not astronaut physiology, metabolic cost, or a certified safety threshold."
+      }
+    }"
+
+
+      61 |       await page.getByLabel("Walking speed (m/hour)",{exact:true}).fill("1000");
+      62 |       await expect(page.getByTestId("terrain-timeline")).toContainText("Travel-time scenario:");
+    > 63 |       await expect(page.locator('[aria-label="Terrain routing"]')).toContainText("INSUFFICIENT_DATA");
+         |                                                                    ^
+      64 |       await page.screenshot({path:`output/playwright/i3a/${region}-terrain-${width}.png`});
+      65 |       await writeFile(`output/playwright/i3a/${region}-terrain-${width}.json`,JSON.stringify(data,null,2));
+      66 |       await page.getByRole("button",{name:"Review mission",exact:true}).click();
+        at D:\martian-map-i4b-eva\tests\browser\terrain-routing-integration.spec.ts:63:68
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\terrain-routing-integratio-28c70-ence-and-isolation-at-390px\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\terrain-routing-integratio-28c70-ence-and-isolation-at-390px\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\terrain-routing-integratio-28c70-ence-and-isolation-at-390px\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\terrain-routing-integratio-28c70-ence-and-isolation-at-390px\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  6) tests\browser\terrain-routing-integration.spec.ts:22:5 › jezero authentic route alternatives, propagation, persistence and isolation at 390px
+
+    Error: expect(locator).toContainText(expected) failed
+
+    Locator: locator('[aria-label="Terrain routing"]')
+    Timeout: 10000ms
+    - Expected substring  -  1
+    + Received string     + 22
+
+    - INSUFFICIENT_DATA
+    + Terrain routingResearch planning estimate. Use 2 to 12 ordered surface waypoints; unverified science objectives cannot become route endpoints. Round trips include an independently searched return leg.Maximum waypoint snap (m)Calculate terrain routesClear terrain routesTerrain route alternativesShortest distance 8514.7 mLower terrain cost 8681.4 mTerrain route computed — absolute registration unverifiedScientific planning estimate, not an approved EVA navigation path. Shortest minimizes native horizontal graph distance; lower terrain cost uses regional weights. The summary below reports canonical 3D DEM distance.3D DEM distance8681.4 mHorizontal Mars distance8677.2 mAscent / descent98.9 m / 98.9 mMaximum / mean path grade6.02 / 1.30 degrees (distance-weighted mean)Source datasetjezero-usgs-trn-dtm, jezero-hirise-soc-006VerificationSource: true; processing: true; absolute registration: falseWaypoint displacement1: 1.3 m; 2: 9.2 m; 3: 1.3 mTerrain model, native metrics and limitations25 m computational grid; cell slope above 25 degrees is a computational barrier, not an astronaut safety threshold. Cost weights: slope 2, ascent 3, descent 1, reference 10 degrees.USGS Mars 2020 TRN HiRISE DTM mosaic has UNVERIFIED absolute horizontal registration. Path coordinates and elevations are mathematically derived from authentic USGS DEM data, but operational absolute placement requires independent ground control.Waypoint #1 at [77.45089, 18.44463] was snapped by 1.3m to nearest traversable DEM cell.Waypoint #2 at [77.38000, 18.45500] was snapped by 9.2m to nearest traversable DEM cell.Waypoint #3 at [77.45089, 18.44463] was snapped by 1.3m to nearest traversable DEM cell.Canonical summary: 3D DEM distance on the Mars sphere; native engine metrics are retained separately. Not approved EVA navigation.Native Gale slope statistics describe directional edge grade. Native Jezero slopes describe computational cell slopes; those statistics are not interchangeable.{
+    +   "distanceMeters": 8681.5,
+    +   "maximumSlopeDegrees": 6,
+    +   "meanSlopeDegrees": 1.7,
+    +   "coverage": [
+    +     "Derived computational grid for pathfinding; not a substitute for full 1m DTM posts.",
+    +     "Slope is an algorithmic traversal penalty, NOT a certified EVA or astronaut safety limit.",
+    +     "Nodata cells outside valid DEM coverage are strictly impassable.",
+    +     "Registration accuracy reflects USGS TRN HiRISE baseline; absolute horizontal registration is UNVERIFIED."
+    +   ],
+    +   "cost": {
+    +     "preference": "lower-terrain-cost",
+    +     "maxTraversableSlopeDegrees": 25,
+    +     "baseDistanceWeight": 1,
+    +     "slopePenaltyFactor": 2,
+    +     "slopeReferenceDegrees": 10,
+    +     "ascentPenaltyFactor": 3,
+    +     "descentPenaltyFactor": 1,
+    +     "formula": "cost = step_distance_m * (1.0 + 2.0 * (slope / 10.0)^2 + 3.0 * max(0, dz/d) + 1.0 * max(0, -dz/d))",
+    +     "description": "Algorithmic preference penalizing quadratic slope steepness and net ascent/descent. Not a NASA-certified EVA safety standard."
+    +   }
+    + }
+
+    Call log:
+      - Expect "toContainText" locator('[aria-label="Terrain routing"]') with timeout 10000ms
+      - waiting for locator('[aria-label="Terrain routing"]')
+        23 × locator resolved to <section class="terrain-routing" aria-label="Terrain routing">…</section>
+           - unexpected value "Terrain routingResearch planning estimate. Use 2 to 12 ordered surface waypoints; unverified science objectives cannot become route endpoints. Round trips include an independently searched return leg.Maximum waypoint snap (m)Calculate terrain routesClear terrain routesTerrain route alternativesShortest distance 8514.7 mLower terrain cost 8681.4 mTerrain route computed — absolute registration unverifiedScientific planning estimate, not an approved EVA navigation path. Shortest minimizes native horizontal graph distance; lower terrain cost uses regional weights. The summary below reports canonical 3D DEM distance.3D DEM distance8681.4 mHorizontal Mars distance8677.2 mAscent / descent98.9 m / 98.9 mMaximum / mean path grade6.02 / 1.30 degrees (distance-weighted mean)Source datasetjezero-usgs-trn-dtm, jezero-hirise-soc-006VerificationSource: true; processing: true; absolute registration: falseWaypoint displacement1: 1.3 m; 2: 9.2 m; 3: 1.3 mTerrain model, native metrics and limitations25 m computational grid; cell slope above 25 degrees is a computational barrier, not an astronaut safety threshold. Cost weights: slope 2, ascent 3, descent 1, reference 10 degrees.USGS Mars 2020 TRN HiRISE DTM mosaic has UNVERIFIED absolute horizontal registration. Path coordinates and elevations are mathematically derived from authentic USGS DEM data, but operational absolute placement requires independent ground control.Waypoint #1 at [77.45089, 18.44463] was snapped by 1.3m to nearest traversable DEM cell.Waypoint #2 at [77.38000, 18.45500] was snapped by 9.2m to nearest traversable DEM cell.Waypoint #3 at [77.45089, 18.44463] was snapped by 1.3m to nearest traversable DEM cell.Canonical summary: 3D DEM distance on the Mars sphere; native engine metrics are retained separately. Not approved EVA navigation.Native Gale slope statistics describe directional edge grade. Native Jezero slopes describe computational cell slopes; those statistics are not interchangeable.{
+      "distanceMeters": 8681.5,
+      "maximumSlopeDegrees": 6,
+      "meanSlopeDegrees": 1.7,
+      "coverage": [
+        "Derived computational grid for pathfinding; not a substitute for full 1m DTM posts.",
+        "Slope is an algorithmic traversal penalty, NOT a certified EVA or astronaut safety limit.",
+        "Nodata cells outside valid DEM coverage are strictly impassable.",
+        "Registration accuracy reflects USGS TRN HiRISE baseline; absolute horizontal registration is UNVERIFIED."
+      ],
+      "cost": {
+        "preference": "lower-terrain-cost",
+        "maxTraversableSlopeDegrees": 25,
+        "baseDistanceWeight": 1,
+        "slopePenaltyFactor": 2,
+        "slopeReferenceDegrees": 10,
+        "ascentPenaltyFactor": 3,
+        "descentPenaltyFactor": 1,
+        "formula": "cost = step_distance_m * (1.0 + 2.0 * (slope / 10.0)^2 + 3.0 * max(0, dz/d) + 1.0 * max(0, -dz/d))",
+        "description": "Algorithmic preference penalizing quadratic slope steepness and net ascent/descent. Not a NASA-certified EVA safety standard."
+      }
+    }"
+
+
+      61 |       await page.getByLabel("Walking speed (m/hour)",{exact:true}).fill("1000");
+      62 |       await expect(page.getByTestId("terrain-timeline")).toContainText("Travel-time scenario:");
+    > 63 |       await expect(page.locator('[aria-label="Terrain routing"]')).toContainText("INSUFFICIENT_DATA");
+         |                                                                    ^
+      64 |       await page.screenshot({path:`output/playwright/i3a/${region}-terrain-${width}.png`});
+      65 |       await writeFile(`output/playwright/i3a/${region}-terrain-${width}.json`,JSON.stringify(data,null,2));
+      66 |       await page.getByRole("button",{name:"Review mission",exact:true}).click();
+        at D:\martian-map-i4b-eva\tests\browser\terrain-routing-integration.spec.ts:63:68
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\terrain-routing-integratio-f71c9-ence-and-isolation-at-390px\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\terrain-routing-integratio-f71c9-ence-and-isolation-at-390px\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\terrain-routing-integratio-f71c9-ence-and-isolation-at-390px\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\terrain-routing-integratio-f71c9-ence-and-isolation-at-390px\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  6 failed
+    tests\browser\terrain-routing-integration.spec.ts:22:5 › gale authentic route alternatives, propagation, persistence and isolation at 1440px
+    tests\browser\terrain-routing-integration.spec.ts:22:5 › jezero authentic route alternatives, propagation, persistence and isolation at 1440px
+    tests\browser\terrain-routing-integration.spec.ts:22:5 › gale authentic route alternatives, propagation, persistence and isolation at 768px
+    tests\browser\terrain-routing-integration.spec.ts:22:5 › jezero authentic route alternatives, propagation, persistence and isolation at 768px
+    tests\browser\terrain-routing-integration.spec.ts:22:5 › gale authentic route alternatives, propagation, persistence and isolation at 390px
+    tests\browser\terrain-routing-integration.spec.ts:22:5 › jezero authentic route alternatives, propagation, persistence and isolation at 390px
+  70 passed (9.5m)

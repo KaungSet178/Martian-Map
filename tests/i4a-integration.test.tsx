@@ -80,7 +80,7 @@ test("I4A Oxia interpreted planning and one-way/round-trip geography never borro
   assert.ok(response.alternatives.every(r=>r.status==="unavailable"&&r.distanceMeters===null&&r.ascentMeters===null&&r.coordinates.length===0));
   const m=syncMissionWithWaypointPlan(newMission(regions.oxia),p,regions.oxia),s=missionPlanningSnapshot(m,regions.oxia);
   assert.equal(s.geometric.available,true);assert.equal(s.geometric.segments.length,round?3:2);
-  assert.equal(s.terrain,null);assert.equal(s.scenario,null);assert.match(briefHtml(m,regions.oxia,"date"),/User-defined waypoint/);
+  assert.equal(s.terrain,null);assert.equal(s.scenario.resources.oxygen.required,null);assert.match(briefHtml(m,regions.oxia,"date"),/User-defined waypoint/);
  }
  const wp=createWaypointFromTarget(regions.oxia.targets[0]);assert.equal(wp.evidence?.classification,"Interpreted");assert.equal(wp.evidence?.routing_eligible,false);
 });

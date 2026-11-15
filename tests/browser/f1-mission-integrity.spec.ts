@@ -91,7 +91,7 @@ for(const width of [390,320])test(`F1 current terrain scenario Review and downlo
   await page.getByRole("button",{name:"Calculate terrain routes",exact:true}).click();await expect(page.getByTestId("terrain-map-status")).toBeVisible({timeout:45000});
   await page.getByText("Timeline and resource scenario inputs",{exact:true}).click();await page.getByLabel("Walking speed (m/hour)",{exact:true}).fill("1000");
   await page.getByRole("button",{name:"Review mission",exact:true}).click();const snapshot=page.getByTestId("mission-planning-snapshot");await expect(snapshot).toContainText("Travel-time scenario");
-  await snapshot.getByText("Resource scenario breakdown",{exact:true}).click();await snapshot.locator("pre").scrollIntoViewIfNeeded();expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
+  await snapshot.getByText("Resource assumptions, breakdown and provenance",{exact:true}).click();await snapshot.locator("dl").last().scrollIntoViewIfNeeded();expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
   await page.getByRole("button",{name:"Open mission brief",exact:true}).click();await expect(page.getByRole("dialog")).toContainText("Terrain-derived shortest route");
-  const pending=page.waitForEvent("download");await page.getByRole("button",{name:"Download brief",exact:true}).click();const html=await text(await pending);expect(html).toContain("travel_used_g");expect(html).toContain("Travel-time scenario");expect(html).toContain("Absolute registration unverified");
+  const pending=page.waitForEvent("download");await page.getByRole("button",{name:"Download brief",exact:true}).click();const html=await text(await pending);expect(html).toContain("Oxygen total required");expect(html).toContain("Travel duration");expect(html).toContain("Absolute registration unverified");
 });

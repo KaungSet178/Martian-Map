@@ -1,0 +1,137 @@
+[
+  {
+    "region": "gale",
+    "width": 1440,
+    "height": 900,
+    "oxygen": "0.3033 kg",
+    "energy": "249.66 Wh",
+    "routeRequests": 3,
+    "errors": []
+  },
+  {
+    "region": "gale",
+    "width": 320,
+    "height": 640,
+    "oxygen": "0.3033 kg",
+    "energy": "249.66 Wh",
+    "routeRequests": 3,
+    "errors": []
+  },
+  {
+    "region": "gale",
+    "width": 390,
+    "height": 844,
+    "oxygen": "0.3033 kg",
+    "energy": "249.66 Wh",
+    "routeRequests": 3,
+    "errors": []
+  },
+  {
+    "region": "gale",
+    "width": 768,
+    "height": 1024,
+    "oxygen": "0.3033 kg",
+    "energy": "249.66 Wh",
+    "routeRequests": 3,
+    "errors": []
+  },
+  {
+    "region": "gale",
+    "width": 844,
+    "height": 390,
+    "oxygen": "0.3033 kg",
+    "energy": "249.66 Wh",
+    "routeRequests": 3,
+    "errors": []
+  },
+  {
+    "region": "jezero",
+    "width": 1440,
+    "height": 900,
+    "oxygen": "0.5229 kg",
+    "energy": "430.33 Wh",
+    "routeRequests": 3,
+    "errors": []
+  },
+  {
+    "region": "jezero",
+    "width": 320,
+    "height": 640,
+    "oxygen": "0.5229 kg",
+    "energy": "430.33 Wh",
+    "routeRequests": 3,
+    "errors": []
+  },
+  {
+    "region": "jezero",
+    "width": 390,
+    "height": 844,
+    "oxygen": "0.5229 kg",
+    "energy": "430.33 Wh",
+    "routeRequests": 3,
+    "errors": []
+  },
+  {
+    "region": "jezero",
+    "width": 768,
+    "height": 1024,
+    "oxygen": "0.5229 kg",
+    "energy": "430.33 Wh",
+    "routeRequests": 3,
+    "errors": []
+  },
+  {
+    "region": "jezero",
+    "width": 844,
+    "height": 390,
+    "oxygen": "0.5229 kg",
+    "energy": "430.33 Wh",
+    "routeRequests": 3,
+    "errors": []
+  },
+  {
+    "region": "oxia",
+    "width": 1440,
+    "height": 900,
+    "oxygen": "0.2399 kg",
+    "energy": "197.47 Wh",
+    "routeRequests": 0,
+    "errors": []
+  },
+  {
+    "region": "oxia",
+    "width": 320,
+    "height": 640,
+    "oxygen": "0.2399 kg",
+    "energy": "197.47 Wh",
+    "routeRequests": 0,
+    "errors": []
+  },
+  {
+    "region": "oxia",
+    "width": 390,
+    "height": 844,
+    "oxygen": "0.2399 kg",
+    "energy": "197.47 Wh",
+    "routeRequests": 0,
+    "errors": []
+  },
+  {
+    "region": "oxia",
+    "width": 768,
+    "height": 1024,
+    "oxygen": "0.2399 kg",
+    "energy": "197.47 Wh",
+    "routeRequests": 0,
+    "errors": []
+  },
+  {
+    "region": "oxia",
+    "width": 844,
+    "height": 390,
+    "oxygen": "0.2399 kg",
+    "energy": "197.47 Wh",
+    "routeRequests": 0,
+    "errors": []
+  }
+]

@@ -32,7 +32,7 @@ for(const id of regionIds) for(const mode of ["round_trip","one_way"] as const) 
   assert.deepEqual(s.counts,{objectives:0,waypoints:3,science_stops:1});
   assert.equal(s.itinerary[1].stop_seconds,123);assert.equal(s.itinerary[0].stop_seconds,null);
   assert.equal(s.geometric.segments.filter(leg=>leg.is_return_segment).length,mode==="round_trip"?1:0);
-  assert.ok(s.geometric.total_surface_distance_m>0);assert.equal(s.terrain,null);assert.equal(s.scenario,null);
+  assert.ok(s.geometric.total_surface_distance_m>0);assert.equal(s.terrain,null);assert.equal(s.scenario.resources.oxygen.required,null);
   const html=briefHtml(opened,region,"2026-11-15T00:00:00Z");
   const review=renderToStaticMarkup(<RouteComparison mission={opened} region={region} online onEvidence={()=>{}}/>);
   const brief=renderToStaticMarkup(<MissionBrief mission={opened} region={region} generatedAt="2026-11-15T00:00:00Z"/>);
@@ -137,11 +137,11 @@ for(const id of ["gale","jezero"] as const)test(`${id}: authentic three-point re
   assert.deepEqual(route.coordinates[0],route.coordinates.at(-1));assert.equal(route.requestedWaypoints.length,4);
   mission={...mission,terrain_assumptions:{speed:"1000",scienceMinutes:"10"},terrain_route:{version:ROUTING_VERSION,requestKey:terrainRequestKey(mission,plan,datasetId,100),datasetId,maxSnapMeters:100,preference:route.preference}};
   const snapshot=missionPlanningSnapshot(mission,region,route);
-  assert.equal(snapshot.terrain,route);assert.equal(snapshot.scenario?.timeline.status,"COMPLETE_SCENARIO");
-  assert.equal(snapshot.scenario?.timeline.total_stop_seconds,123);
+  assert.equal(snapshot.terrain,route);assert.equal(snapshot.scenario.timeline!.status,"COMPLETE_SCENARIO");
+  assert.equal(snapshot.scenario.timeline!.total_stop_seconds,123);
   assert.ok(briefHtml(mission,region,"date",route).includes("3D DEM distance"));
   const changed=applyMissionChange(mission,{waypoint_plan:setOrigin(plan,"f1-1")},region);
-  assert.equal(changed.terrain_route,undefined);assert.equal(missionPlanningSnapshot(changed,region,route).scenario,null);
+  assert.equal(changed.terrain_route,undefined);assert.equal(missionPlanningSnapshot(changed,region,route).scenario.resources.oxygen.required,null);
   const reordered=applyMissionChange(mission,{waypoint_plan:moveWaypoint(plan,"f1-2",-1)},region);assert.equal(reordered.terrain_route,undefined);
   const store=storage();saveMission(store,mission);const reopened=parseMission(readMissions(store)[0],region);
   assert.equal(missionPlanningSnapshot(reopened,region).terrain,null);assert.match(briefHtml(reopened,region,"date"),/requires recalculation/);

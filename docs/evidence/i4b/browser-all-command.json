@@ -1,0 +1,19 @@
+{
+  "command": [
+    "node",
+    "node_modules/@playwright/test/cli.js",
+    "test",
+    "tests/browser/i4b-eva.spec.ts",
+    "tests/browser/environmental-conditions.spec.ts",
+    "tests/browser/f1-mission-integrity.spec.ts",
+    "tests/browser/f3-navigation.spec.ts",
+    "tests/browser/f3-science.spec.ts",
+    "tests/browser/gale-geology.spec.ts",
+    "tests/browser/i4a-integration.spec.ts",
+    "tests/browser/terrain-routing-integration.spec.ts",
+    "tests/browser/three-region-integration.spec.ts"
+  ],
+  "base_url": "http://127.0.0.1:3342",
+  "exit_code": 1,
+  "seconds": 569.89
+}

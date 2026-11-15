@@ -1,0 +1,191 @@
+[
+  {
+    "name": "python-gale",
+    "command": [
+      "python",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tests",
+      "-p",
+      "test_gale*.py"
+    ],
+    "exit_code": 0,
+    "seconds": 16.03,
+    "log": "python-gale.log"
+  },
+  {
+    "name": "python-gale-environment",
+    "command": [
+      "python",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tests/environment/gale",
+      "-p",
+      "test*.py"
+    ],
+    "exit_code": 0,
+    "seconds": 0.43,
+    "log": "python-gale-environment.log"
+  },
+  {
+    "name": "python-jezero-environment",
+    "command": [
+      "python",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tests/environment/jezero",
+      "-p",
+      "test*.py"
+    ],
+    "exit_code": 0,
+    "seconds": 1.26,
+    "log": "python-jezero-environment.log"
+  },
+  {
+    "name": "python-jezero-routing",
+    "command": [
+      "python",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "team/jezero/routing",
+      "-p",
+      "test_synthetic_routing.py"
+    ],
+    "exit_code": 0,
+    "seconds": 1.76,
+    "log": "python-jezero-routing.log"
+  },
+  {
+    "name": "python-jezero-hillshade",
+    "command": [
+      "python",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "team/jezero/terrain",
+      "-p",
+      "test_hillshade.py"
+    ],
+    "exit_code": 0,
+    "seconds": 1.7,
+    "log": "python-jezero-hillshade.log"
+  },
+  {
+    "name": "numerical",
+    "command": [
+      "python",
+      "scripts/verify-i4a-numerical.py"
+    ],
+    "exit_code": 0,
+    "seconds": 1.52,
+    "log": "numerical.log"
+  },
+  {
+    "name": "assets",
+    "command": [
+      "python",
+      "scripts/verify-three-region-assets.py"
+    ],
+    "exit_code": 0,
+    "seconds": 85.26,
+    "log": "assets.log"
+  },
+  {
+    "name": "routing-health",
+    "command": [
+      "npm.cmd",
+      "run",
+      "routing:check"
+    ],
+    "exit_code": 0,
+    "seconds": 1.82,
+    "log": "routing-health.log"
+  },
+  {
+    "name": "typescript-tests",
+    "command": [
+      "node",
+      "--import",
+      "tsx",
+      "--test",
+      "tests\\waypoint-ui.test.ts",
+      "tests\\waypoint-planning.test.ts",
+      "tests\\waypoint-layers.test.ts",
+      "tests\\waypoint-bridge.test.ts",
+      "tests\\terrain-integration.test.ts",
+      "tests\\scientific-categories.test.ts",
+      "tests\\regions.test.ts",
+      "tests\\mission.test.ts",
+      "tests\\mission-timeline.test.ts",
+      "tests\\mission-resource-budget.test.ts",
+      "tests\\mission-m4-integration.test.ts",
+      "tests\\jezero-routing.test.ts",
+      "tests\\jezero-four-layers.test.ts",
+      "tests\\i4b-eva.test.tsx",
+      "tests\\i4a-integration.test.tsx",
+      "tests\\geodesy.test.ts",
+      "tests\\gale-viewport.test.ts",
+      "tests\\gale-routing.test.ts",
+      "tests\\gale-integration.test.ts",
+      "tests\\gale-four-layers.test.ts",
+      "tests\\gale-focused-view.test.ts",
+      "tests\\gale-coverage.test.ts",
+      "tests\\f3-science.test.ts",
+      "tests\\f1-mission-integrity.test.tsx",
+      "tests\\color-basemap.test.ts",
+      "tests\\environment\\jezero\\dataset.test.ts",
+      "tests\\environment\\jezero\\component.test.tsx",
+      "tests\\environment\\jezero\\adapter.test.ts",
+      "tests\\environment\\integrity.test.tsx",
+      "tests\\environment\\gale\\rems.test.ts",
+      "tests\\environment\\gale\\rad.test.ts",
+      "tests\\environment\\gale\\adapter.test.ts"
+    ],
+    "exit_code": 0,
+    "seconds": 18.29,
+    "log": "typescript-tests.log"
+  },
+  {
+    "name": "lint",
+    "command": [
+      "npm.cmd",
+      "run",
+      "lint"
+    ],
+    "exit_code": 0,
+    "seconds": 29.2,
+    "log": "lint.log"
+  },
+  {
+    "name": "typecheck",
+    "command": [
+      "npm.cmd",
+      "run",
+      "typecheck"
+    ],
+    "exit_code": 0,
+    "seconds": 11.27,
+    "log": "typecheck.log"
+  },
+  {
+    "name": "build",
+    "command": [
+      "npm.cmd",
+      "run",
+      "build"
+    ],
+    "exit_code": 0,
+    "seconds": null,
+    "log": "build.log",
+    "note": "Final production build executed after one-way identity correction; final log supersedes initial build."
+  }
+]

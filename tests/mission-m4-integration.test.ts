@@ -37,7 +37,7 @@ import {
   RESOURCE_BUDGET_DISCLAIMER,
   type OxygenBudgetAssumptions,
   type BatteryBudgetAssumptions,
-} from "../lib/mission/resource-budget.js";
+} from "./support/legacy-resource-budget.js";
 import { regions } from "../lib/regions/registry.js";
 import {
   newMission,

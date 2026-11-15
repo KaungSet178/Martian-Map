@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { evaConfigSchema } from "@/lib/eva/config";
 import { routeReceiptSchema } from "@/lib/routing/contracts";
 import {
   coordinatesSchema,
@@ -32,6 +33,7 @@ export const missionSchema = z.object({
   waypoint_plan: waypointPlanSchema.optional(),
   terrain_route: routeReceiptSchema.optional(),
   retired_objectives: z.array(z.object({id:z.string().max(100),title:z.string().max(200).optional(),reason:z.string().max(2000)})).max(100).optional(),
+  eva_config: evaConfigSchema.optional(),
   terrain_assumptions: z.record(z.string().max(40), z.string().max(50)).optional(),
 });
 export type Mission = z.infer<typeof missionSchema>;
