@@ -133,7 +133,7 @@ test("ordered objectives, one-way requirements, no fabricated paths, save/reopen
 test("target dialogs support Escape/focus return and region-scoped selection", async ({
   page,
 }) => {
-  await page.goto("/");
+  await page.goto("/planner");
   const target = page.getByRole("button", {
     name: "Jezero geology and climate record",
     exact: true,
@@ -163,7 +163,7 @@ test("target dialogs support Escape/focus return and region-scoped selection", a
 test("MapLibre preview, camera, layer visibility and opacity work without scientific claims", async ({
   page,
 }) => {
-  await page.goto("/");
+  await page.goto("/planner");
   await page.getByRole("button", { name: "Layers", exact: true }).click();
   await page.getByRole("checkbox", { name: /Show schematic preview/ }).check();
   await expect(
@@ -268,7 +268,7 @@ for (const [width, height] of [
 test("invalid imports preserve drafts; stale mission versions require revalidation", async ({
   page,
 }) => {
-  await page.goto("/");
+  await page.goto("/planner");
   await page
     .getByRole("button", { name: "Open saved missions", exact: true })
     .click();
@@ -296,7 +296,7 @@ test("invalid imports preserve drafts; stale mission versions require revalidati
 test("keyboard focus, native dialog trapping and core view accessibility", async ({
   page,
 }) => {
-  await page.goto("/");
+  await page.goto("/planner");
   await expect(page.locator(".map-empty")).toHaveCount(0);
   await page.keyboard.press("Tab");
   await expect(
@@ -338,7 +338,7 @@ test("mobile selection, review action and collapsed sheet remain reachable", asy
   page,
 }) => {
   await page.setViewportSize({ width: 390, height: 844 });
-  await page.goto("/");
+  await page.goto("/planner");
   await expand(page);
   await page.getByRole("button", { name: "Jezero geology and climate record", exact: true }).click();
   await page
@@ -373,7 +373,7 @@ test("offline saved plans and downloadable brief remain useful", async ({
   page,
   context,
 }) => {
-  await page.goto("/");
+  await page.goto("/planner");
   await page
     .getByRole("button", { name: "Add Jezero geology and climate record", exact: true })
     .click();

@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 
 import dynamic from "next/dynamic";
 import Image from "next/image";
@@ -308,6 +309,10 @@ export function Planner() {
       if (panelParam === "environment") {
         setPanel("environment");
         setExpanded(true);
+      } else if (panelParam === "plan") {
+        setPanel("plan");
+        setPlanSubView("waypoints");
+        setExpanded(true);
       }
       try {
         const stored = readMissions(localStorage);
@@ -510,13 +515,15 @@ export function Planner() {
         Skip to planning controls
       </a>
       <header className="app-header">
-        <a className="brand" href="?region=jezero" aria-label="Aresian home">
+        <Link className="brand" href="/" aria-label="Aresian home" onNavigate={event => {
+          if (dirty && !window.confirm("Leave this mission? Unsaved changes will be lost.")) event.preventDefault();
+        }}>
           <Image className="brand-logo" src="/branding/aresian-logo.png" alt="Aresian logo" width={60} height={40} loading="eager" />
           <span>
             Aresian
             <span className="brand-subtitle">Surface mission planner</span>
           </span>
-        </a>
+        </Link>
         <div className="header-divider" />
         <div className="region-picker">
           <label className="eyebrow" htmlFor="region">

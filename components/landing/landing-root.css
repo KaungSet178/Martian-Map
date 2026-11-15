@@ -1,0 +1,6 @@
+/* Tailwind's reference dimensions use a 16px rem. This condition only applies
+   while the landing page is present, including after client-side navigation. */
+html:has(.aresian-landing) { font-size: 16px; scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) {
+  html:has(.aresian-landing) { scroll-behavior: auto; }
+}

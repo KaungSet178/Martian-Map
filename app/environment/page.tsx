@@ -43,7 +43,7 @@ function EnvironmentContent() {
         >
           <div>
             <Link
-              href="/"
+              href="/planner"
               style={{
                 color: "var(--citrus-ink, #a84f00)",
                 fontSize: "13px",

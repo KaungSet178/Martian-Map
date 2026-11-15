@@ -2,10 +2,17 @@
 
 ## Shared frontend
 
+The Aresian landing page is available at `/`; the working mission planner is
+at `/planner`. Existing region links redirect to the planner. See the
+[landing preview handoff](docs/ARESIAN_LANDING_PREVIEW.md) for the ZIP-based
+design, screenshot provenance, and local review instructions.
+
 The shared Next.js / TypeScript / MapLibre frontend lives at the repository root.
 It implements the approved mission-console design for Jezero, Gale and Oxia.
-**Scientific imagery, verified target geometry and planning services are not yet connected.**
-The optional interface preview is schematic artwork, not a scientific map or calculated route.
+Regional imagery, source-backed science catalogs and experimental terrain
+routing are integrated where supported. Source registration and operational
+mission feasibility remain explicitly unverified. The optional schematic
+preview is illustrative artwork, not a scientific map or calculated route.
 
 Requires Node.js 20.9 or later and npm. Node 22 was used for verification.
 
