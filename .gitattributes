@@ -1,2 +1,2 @@
-# Preserve delivered scientific evidence bytes, including source-table and log hashes.
-docs/evidence/i4d/** -text
+# Raw scientific source/output receipts retain original line endings and whitespace.
+docs/evidence/i4d/** -text -whitespace
