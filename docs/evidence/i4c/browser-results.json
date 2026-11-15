@@ -1,0 +1,3323 @@
+{
+  "config": {
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "D:\\martian-map-i4c-qa\\node_modules\\@playwright\\test\\cli.js",
+      "test",
+      "--config",
+      "tests/i4c/playwright.config.ts"
+    ],
+    "configFile": "D:\\martian-map-i4c-qa\\tests\\i4c\\playwright.config.ts",
+    "rootDir": "D:/martian-map-i4c-qa/tests",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "D:/martian-map-i4c-qa/output/playwright/i4c-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "",
+        "name": "",
+        "testDir": "D:/martian-map-i4c-qa/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "browser/i4b-eva.spec.ts",
+          "browser/environmental-conditions.spec.ts",
+          "browser/f1-mission-integrity.spec.ts",
+          "browser/f3-navigation.spec.ts",
+          "browser/f3-science.spec.ts",
+          "browser/gale-geology.spec.ts",
+          "browser/i4a-integration.spec.ts",
+          "browser/terrain-routing-integration.spec.ts",
+          "browser/three-region-integration.spec.ts",
+          "i4c/layer-interaction.spec.ts"
+        ],
+        "timeout": 90000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "D:\\martian-map-i4c-qa\\output\\playwright\\i4c-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "",
+        "testDir": "D:\\martian-map-i4c-qa\\tests",
+        "snapshotDir": "D:\\martian-map-i4c-qa\\tests",
+        "testIgnore": [],
+        "testMatch": [
+          "browser/i4b-eva.spec.ts",
+          "browser/environmental-conditions.spec.ts",
+          "browser/f1-mission-integrity.spec.ts",
+          "browser/f3-navigation.spec.ts",
+          "browser/f3-science.spec.ts",
+          "browser/gale-geology.spec.ts",
+          "browser/i4a-integration.spec.ts",
+          "browser/terrain-routing-integration.spec.ts",
+          "browser/three-region-integration.spec.ts",
+          "i4c/layer-interaction.spec.ts"
+        ],
+        "timeout": 90000,
+        "use": {
+          "baseURL": "http://127.0.0.1:3346",
+          "browserName": "chromium",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "trace": "retain-on-failure",
+          "screenshot": "only-on-failure",
+          "launchOptions": {
+            "args": [
+              "--enable-unsafe-swiftshader"
+            ]
+          }
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": ""
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "docs/evidence/i4c/browser-results.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.65.0",
+    "workers": 1,
+    "webServer": {
+      "command": "npm.cmd run start -- --port 3346",
+      "url": "http://127.0.0.1:3346",
+      "reuseExistingServer": false,
+      "timeout": 120000
+    }
+  },
+  "suites": [
+    {
+      "title": "browser\\environmental-conditions.spec.ts",
+      "file": "browser/environmental-conditions.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Environmental Conditions Integration",
+          "file": "browser/environmental-conditions.spec.ts",
+          "line": 41,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Desktop (1440px): Gale Crater REMS & RAD environmental panel renders and updates",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1722,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-15T03:43:35.325Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "b5168badbef02b87cce6-47b01b7f6294bea9fc79",
+              "file": "browser/environmental-conditions.spec.ts",
+              "line": 42,
+              "column": 3
+            },
+            {
+              "title": "Mobile (390px): Gale Crater responsive layout without overflow",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 731,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-15T03:43:37.171Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "b5168badbef02b87cce6-9e8c5ceb45f7f94bc128",
+              "file": "browser/environmental-conditions.spec.ts",
+              "line": 119,
+              "column": 3
+            },
+            {
+              "title": "Desktop (1440px): Jezero Crater Perseverance MEDA panel with 6 sols and sensor distinctions",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1251,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-15T03:43:37.911Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "b5168badbef02b87cce6-57e52926abd412e8d662",
+              "file": "browser/environmental-conditions.spec.ts",
+              "line": 146,
+              "column": 3
+            },
+            {
+              "title": "Mobile (390px): Jezero Crater responsive layout without overflow",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 708,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-15T03:43:39.171Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "b5168badbef02b87cce6-8060fb5c9c1c2dfa1735",
+              "file": "browser/environmental-conditions.spec.ts",
+              "line": 223,
+              "column": 3
+            },
+            {
+              "title": "Desktop (1440px): Oxia Planum deliberate unavailable state and no foreign data leakage",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1026,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-15T03:43:39.887Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "b5168badbef02b87cce6-e21a44adfaba1c5f27d2",
+              "file": "browser/environmental-conditions.spec.ts",
+              "line": 250,
+              "column": 3
+            },
+            {
+              "title": "Mobile (390px): Oxia Planum deliberate unavailable state without overflow",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 742,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-15T03:43:40.923Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "b5168badbef02b87cce6-e2a6619cc1c30fce58a8",
+              "file": "browser/environmental-conditions.spec.ts",
+              "line": 297,
+              "column": 3
+            },
+            {
+              "title": "Tablet (768px): Tablet layout across regions without horizontal overflow",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1473,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-15T03:43:41.673Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "b5168badbef02b87cce6-21c0f90bfcc22c9864b1",
+              "file": "browser/environmental-conditions.spec.ts",
+              "line": 321,
+              "column": 3
+            },
+            {
+              "title": "Region Switching: Switch Gale -> Jezero -> Oxia -> Gale cleanly maintains environment tab and updates data",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2485,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-15T03:43:43.157Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "b5168badbef02b87cce6-64d3fae682dc2fbdaeb4",
+              "file": "browser/environmental-conditions.spec.ts",
+              "line": 337,
+              "column": 3
+            },
+            {
+              "title": "Standalone Route: /environment with region selector functions seamlessly",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 90000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 606,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-15T03:43:45.655Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "b5168badbef02b87cce6-decc6dd312f9d7eac5ff",
+              "file": "browser/environmental-conditions.spec.ts",
+              "line": 375,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "browser\\f1-mission-integrity.spec.ts",
+      "file": "browser/f1-mission-integrity.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "F1 gale three-point mission, roles, review, Save/Open, JSON and brief at 1440px",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5964,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T03:43:46.283Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "96754558eb726708fd7a-2aa1f9b3f71e82b63a30",
+          "file": "browser/f1-mission-integrity.spec.ts",
+          "line": 14,
+          "column": 106
+        },
+        {
+          "title": "F1 jezero three-point mission, roles, review, Save/Open, JSON and brief at 1440px",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6485,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T03:43:52.260Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "96754558eb726708fd7a-61900913e8f69fa5c6ec",
+          "file": "browser/f1-mission-integrity.spec.ts",
+          "line": 14,
+          "column": 106
+        },
+        {
+          "title": "F1 oxia three-point mission, roles, review, Save/Open, JSON and brief at 1440px",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6365,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T03:43:58.756Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "96754558eb726708fd7a-4e397aa9310888d4d3df",
+          "file": "browser/f1-mission-integrity.spec.ts",
+          "line": 14,
+          "column": 106
+        },
+        {
+          "title": "F1 gale three-point mission, roles, review, Save/Open, JSON and brief at 390px",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6183,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T03:44:05.132Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "96754558eb726708fd7a-4459848e3ae686289b95",
+          "file": "browser/f1-mission-integrity.spec.ts",
+          "line": 14,
+          "column": 106
+        },
+        {
+          "title": "F1 jezero three-point mission, roles, review, Save/Open, JSON and brief at 390px",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 7709,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T03:44:11.329Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "96754558eb726708fd7a-26bf81a70d6de837cb3d",
+          "file": "browser/f1-mission-integrity.spec.ts",
+          "line": 14,
+          "column": 106
+        },
+        {
+          "title": "F1 oxia three-point mission, roles, review, Save/Open, JSON and brief at 390px",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5616,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T03:44:19.057Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "96754558eb726708fd7a-05e52bac828e48ef5103",
+          "file": "browser/f1-mission-integrity.spec.ts",
+          "line": 14,
+          "column": 106
+        },
+        {
+          "title": "F1 Oxia interpreted catalog evidence and target-first base recovery",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2899,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T03:44:24.687Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "96754558eb726708fd7a-eb89022f28e6eceb732c",
+          "file": "browser/f1-mission-integrity.spec.ts",
+          "line": 56,
+          "column": 1
+        },
+        {
+          "title": "F1 gale endpoint changes invalidate actual terrain, timeline and brief",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6232,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T03:44:27.601Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "96754558eb726708fd7a-5c80d2c4648f2a7858a9",
+          "file": "browser/f1-mission-integrity.spec.ts",
+          "line": 66,
+          "column": 48
+        },
+        {
+          "title": "F1 jezero endpoint changes invalidate actual terrain, timeline and brief",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5004,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T03:44:33.857Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "96754558eb726708fd7a-81b40fc03badd4615f18",
+          "file": "browser/f1-mission-integrity.spec.ts",
+          "line": 66,
+          "column": 48
+        },
+        {
+          "title": "F1 retired objective JSON remains readable and editable without active route geometry",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5240,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T03:44:38.882Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "96754558eb726708fd7a-ff7ac5ebdc84b2db4129",
+          "file": "browser/f1-mission-integrity.spec.ts",
+          "line": 78,
+          "column": 1
+        },
+        {
+          "title": "F1 current terrain scenario Review and downloadable brief fit 390px",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3189,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T03:44:44.141Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "96754558eb726708fd7a-0f5e4c869fadb3e13924",
+          "file": "browser/f1-mission-integrity.spec.ts",
+          "line": 88,
+          "column": 30
+        },
+        {
+          "title": "F1 current terrain scenario Review and downloadable brief fit 320px",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2890,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T03:44:47.353Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "96754558eb726708fd7a-3147b25fbe08f7ce8392",
+          "file": "browser/f1-mission-integrity.spec.ts",
+          "line": 88,
+          "column": 30
+        }
+      ]
+    },
+    {
+      "title": "browser\\f3-navigation.spec.ts",
+      "file": "browser/f3-navigation.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "F3 cross-region zoom and pan at 1440px",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 19543,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T03:44:50.274Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "4d590453a84a4a6bbd3e-d35fb1f07a679decca09",
+          "file": "browser/f3-navigation.spec.ts",
+          "line": 3,
+          "column": 64
+        },
+        {
+          "title": "F3 cross-region zoom and pan at 768px",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 15283,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T03:45:09.840Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "4d590453a84a4a6bbd3e-933f07dff6b5d34ad3a3",
+          "file": "browser/f3-navigation.spec.ts",
+          "line": 3,
+          "column": 64
+        },
+        {
+          "title": "F3 cross-region zoom and pan at 390px",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 10725,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T03:45:25.141Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "4d590453a84a4a6bbd3e-91f352718844ab5d65e1",
+          "file": "browser/f3-navigation.spec.ts",
+          "line": 3,
+          "column": 64
+        }
+      ]
+    },
+    {
+      "title": "browser\\f3-science.spec.ts",
+      "file": "browser/f3-science.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "F3 scientific objectives and environment at 1440px",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5781,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T03:45:36.290Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5eab9e16cb7cd5837c70-0014f78ae49f1c2a700d",
+          "file": "browser/f3-science.spec.ts",
+          "line": 4,
+          "column": 64
+        },
+        {
+          "title": "F3 scientific objectives and environment at 768px",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3726,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T03:45:42.087Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5eab9e16cb7cd5837c70-2e0e54b47eed00272e01",
+          "file": "browser/f3-science.spec.ts",
+          "line": 4,
+          "column": 64
+        },
+        {
+          "title": "F3 scientific objectives and environment at 390px",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2784,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T03:45:45.820Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5eab9e16cb7cd5837c70-39f57d14189fd4676adb",
+          "file": "browser/f3-science.spec.ts",
+          "line": 4,
+          "column": 64
+        }
+      ]
+    },
+    {
+      "title": "browser\\gale-geology.spec.ts",
+      "file": "browser/gale-geology.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "F3 retired units absent across region switches at 1440px",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3416,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T03:45:48.618Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "9d0134f3b4e9175411b5-8c40d84cb36269e1717c",
+          "file": "browser/gale-geology.spec.ts",
+          "line": 4,
+          "column": 3
+        },
+        {
+          "title": "F3 retired units absent across region switches at 768px",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3553,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T03:45:52.043Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "9d0134f3b4e9175411b5-e65fead6b10ffbb3de1d",
+          "file": "browser/gale-geology.spec.ts",
+          "line": 4,
+          "column": 3
+        },
+        {
+          "title": "F3 retired units absent across region switches at 390px",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1932,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T03:45:55.605Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "9d0134f3b4e9175411b5-64a9bdf29928ad06f061",
+          "file": "browser/gale-geology.spec.ts",
+          "line": 4,
+          "column": 3
+        }
+      ]
+    },
+    {
+      "title": "browser\\i4a-integration.spec.ts",
+      "file": "browser/i4a-integration.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "I4A gale complete science-to-saved-route-and-export workflow at 1440px",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6533,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T03:45:57.560Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "b4a19ea9987aa493bed7-02a5575e7c5bf89a377c",
+          "file": "browser/i4a-integration.spec.ts",
+          "line": 7,
+          "column": 113
+        },
+        {
+          "title": "I4A jezero complete science-to-saved-route-and-export workflow at 1440px",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5305,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T03:46:04.103Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "b4a19ea9987aa493bed7-ff211fecd8cb5c5c3bea",
+          "file": "browser/i4a-integration.spec.ts",
+          "line": 7,
+          "column": 113
+        },
+        {
+          "title": "I4A oxia complete science-to-saved-route-and-export workflow at 1440px",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5226,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T03:46:09.421Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "b4a19ea9987aa493bed7-31a1db13f2d3fb2c1e60",
+          "file": "browser/i4a-integration.spec.ts",
+          "line": 7,
+          "column": 113
+        },
+        {
+          "title": "I4A gale complete science-to-saved-route-and-export workflow at 768px",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6173,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T03:46:14.663Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "b4a19ea9987aa493bed7-3f2fdba2b85e9b52e75b",
+          "file": "browser/i4a-integration.spec.ts",
+          "line": 7,
+          "column": 113
+        },
+        {
+          "title": "I4A jezero complete science-to-saved-route-and-export workflow at 768px",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6491,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T03:46:20.852Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "b4a19ea9987aa493bed7-e1db76f139625a0bf7be",
+          "file": "browser/i4a-integration.spec.ts",
+          "line": 7,
+          "column": 113
+        },
+        {
+          "title": "I4A oxia complete science-to-saved-route-and-export workflow at 768px",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 7664,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T03:46:27.364Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "b4a19ea9987aa493bed7-7459455efdbc9c5296f2",
+          "file": "browser/i4a-integration.spec.ts",
+          "line": 7,
+          "column": 113
+        },
+        {
+          "title": "I4A gale complete science-to-saved-route-and-export workflow at 390px",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 7338,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T03:46:35.052Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "b4a19ea9987aa493bed7-472986fcbd6810c2d7ab",
+          "file": "browser/i4a-integration.spec.ts",
+          "line": 7,
+          "column": 113
+        },
+        {
+          "title": "I4A jezero complete science-to-saved-route-and-export workflow at 390px",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4963,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T03:46:42.414Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "b4a19ea9987aa493bed7-6dd7ffa394dd6995a0a2",
+          "file": "browser/i4a-integration.spec.ts",
+          "line": 7,
+          "column": 113
+        },
+        {
+          "title": "I4A oxia complete science-to-saved-route-and-export workflow at 390px",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4444,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T03:46:47.396Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "b4a19ea9987aa493bed7-c216827e601a08e17865",
+          "file": "browser/i4a-integration.spec.ts",
+          "line": 7,
+          "column": 113
+        },
+        {
+          "title": "I4A cross-region saved mission isolation returns to original Gale inputs and fresh route",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 8380,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T03:46:51.866Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "b4a19ea9987aa493bed7-99bb55902474541bc0df",
+          "file": "browser/i4a-integration.spec.ts",
+          "line": 43,
+          "column": 1
+        },
+        {
+          "title": "I4A compact landscape role repair and complete brief remain reachable",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1886,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T03:47:00.258Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "b4a19ea9987aa493bed7-f388ce4b9b1d040fd432",
+          "file": "browser/i4a-integration.spec.ts",
+          "line": 63,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "browser\\i4b-eva.spec.ts",
+      "file": "browser/i4b-eva.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "I4B gale production EVA workflow 1440x900",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 11691,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T03:47:02.168Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "72db9f888a513037ca96-1de18486d0c275394e3e",
+          "file": "browser/i4b-eva.spec.ts",
+          "line": 7,
+          "column": 133
+        },
+        {
+          "title": "I4B jezero production EVA workflow 1440x900",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6601,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T03:47:13.875Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "72db9f888a513037ca96-300b68ef3daaf82e26e5",
+          "file": "browser/i4b-eva.spec.ts",
+          "line": 7,
+          "column": 133
+        },
+        {
+          "title": "I4B oxia production EVA workflow 1440x900",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5963,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T03:47:20.487Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "72db9f888a513037ca96-1bbe2408ea468098ac0f",
+          "file": "browser/i4b-eva.spec.ts",
+          "line": 7,
+          "column": 133
+        },
+        {
+          "title": "I4B gale production EVA workflow 768x1024",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 9473,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T03:47:26.464Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "72db9f888a513037ca96-b12b00a7ab46522307fb",
+          "file": "browser/i4b-eva.spec.ts",
+          "line": 7,
+          "column": 133
+        },
+        {
+          "title": "I4B jezero production EVA workflow 768x1024",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 7033,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T03:47:35.950Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "72db9f888a513037ca96-d8e18e2f0f55c07ec167",
+          "file": "browser/i4b-eva.spec.ts",
+          "line": 7,
+          "column": 133
+        },
+        {
+          "title": "I4B oxia production EVA workflow 768x1024",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4072,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T03:47:42.993Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "72db9f888a513037ca96-11b22668a824d276a331",
+          "file": "browser/i4b-eva.spec.ts",
+          "line": 7,
+          "column": 133
+        },
+        {
+          "title": "I4B gale production EVA workflow 390x844",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5798,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T03:47:47.075Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "72db9f888a513037ca96-4a67e86e5b872932e75f",
+          "file": "browser/i4b-eva.spec.ts",
+          "line": 7,
+          "column": 133
+        },
+        {
+          "title": "I4B jezero production EVA workflow 390x844",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4151,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T03:47:52.882Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "72db9f888a513037ca96-1396326838205ee1590d",
+          "file": "browser/i4b-eva.spec.ts",
+          "line": 7,
+          "column": 133
+        },
+        {
+          "title": "I4B oxia production EVA workflow 390x844",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3391,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T03:47:57.041Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "72db9f888a513037ca96-914b463e0c965ed2a565",
+          "file": "browser/i4b-eva.spec.ts",
+          "line": 7,
+          "column": 133
+        },
+        {
+          "title": "I4B gale production EVA workflow 320x640",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 9098,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T03:48:00.441Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "72db9f888a513037ca96-9baba532bbd457485806",
+          "file": "browser/i4b-eva.spec.ts",
+          "line": 7,
+          "column": 133
+        },
+        {
+          "title": "I4B jezero production EVA workflow 320x640",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6131,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T03:48:09.554Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "72db9f888a513037ca96-f0bab8bff8abdddcfca6",
+          "file": "browser/i4b-eva.spec.ts",
+          "line": 7,
+          "column": 133
+        },
+        {
+          "title": "I4B oxia production EVA workflow 320x640",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4915,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T03:48:15.705Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "72db9f888a513037ca96-4c5de2e632ef423e6bc8",
+          "file": "browser/i4b-eva.spec.ts",
+          "line": 7,
+          "column": 133
+        },
+        {
+          "title": "I4B gale production EVA workflow 844x390",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 7751,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T03:48:20.642Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "72db9f888a513037ca96-1e45ae8bbe5d9e3dd1c5",
+          "file": "browser/i4b-eva.spec.ts",
+          "line": 7,
+          "column": 133
+        },
+        {
+          "title": "I4B jezero production EVA workflow 844x390",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4594,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T03:48:28.409Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "72db9f888a513037ca96-5fb1df7ccd94327f0d21",
+          "file": "browser/i4b-eva.spec.ts",
+          "line": 7,
+          "column": 133
+        },
+        {
+          "title": "I4B oxia production EVA workflow 844x390",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3395,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T03:48:33.014Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "72db9f888a513037ca96-93c83ab7c1c4df3c2f3c",
+          "file": "browser/i4b-eva.spec.ts",
+          "line": 7,
+          "column": 133
+        }
+      ]
+    },
+    {
+      "title": "browser\\terrain-routing-integration.spec.ts",
+      "file": "browser/terrain-routing-integration.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "gale authentic route alternatives, propagation, persistence and isolation at 1440px",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 16817,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T03:48:36.487Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "908788c1945d3d843700-d18227cd2c715f40064f",
+          "file": "browser/terrain-routing-integration.spec.ts",
+          "line": 22,
+          "column": 5
+        },
+        {
+          "title": "jezero authentic route alternatives, propagation, persistence and isolation at 1440px",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 9034,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T03:48:53.318Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "908788c1945d3d843700-4e6c71e7ad227ce59a7e",
+          "file": "browser/terrain-routing-integration.spec.ts",
+          "line": 22,
+          "column": 5
+        },
+        {
+          "title": "Oxia map, unavailable terrain and environment at 1440px",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5415,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T03:49:02.371Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "908788c1945d3d843700-3acdfafb5a28c71fce02",
+          "file": "browser/terrain-routing-integration.spec.ts",
+          "line": 126,
+          "column": 3
+        },
+        {
+          "title": "gale authentic route alternatives, propagation, persistence and isolation at 768px",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 13347,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T03:49:07.804Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "908788c1945d3d843700-8baa8e22ea2741f28385",
+          "file": "browser/terrain-routing-integration.spec.ts",
+          "line": 22,
+          "column": 5
+        },
+        {
+          "title": "jezero authentic route alternatives, propagation, persistence and isolation at 768px",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 9186,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T03:49:21.172Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "908788c1945d3d843700-ac4d8de2a4e5d5daa9b5",
+          "file": "browser/terrain-routing-integration.spec.ts",
+          "line": 22,
+          "column": 5
+        },
+        {
+          "title": "Oxia map, unavailable terrain and environment at 768px",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2748,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T03:49:30.375Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "908788c1945d3d843700-443fb94085ebfaf479b6",
+          "file": "browser/terrain-routing-integration.spec.ts",
+          "line": 126,
+          "column": 3
+        },
+        {
+          "title": "gale authentic route alternatives, propagation, persistence and isolation at 390px",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 11900,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T03:49:33.138Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "908788c1945d3d843700-03805b84a4db9d5e7448",
+          "file": "browser/terrain-routing-integration.spec.ts",
+          "line": 22,
+          "column": 5
+        },
+        {
+          "title": "jezero authentic route alternatives, propagation, persistence and isolation at 390px",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 8554,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T03:49:45.053Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "908788c1945d3d843700-ce991efb739c65b3f6cf",
+          "file": "browser/terrain-routing-integration.spec.ts",
+          "line": 22,
+          "column": 5
+        },
+        {
+          "title": "Oxia map, unavailable terrain and environment at 390px",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2561,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T03:49:53.625Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "908788c1945d3d843700-21bad304974ae0fc694c",
+          "file": "browser/terrain-routing-integration.spec.ts",
+          "line": 126,
+          "column": 3
+        },
+        {
+          "title": "unavailable terrain and stale responses never leave terrain lines",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4048,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T03:49:56.201Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "908788c1945d3d843700-c995fd4bee9c0f0b88ca",
+          "file": "browser/terrain-routing-integration.spec.ts",
+          "line": 146,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "browser\\three-region-integration.spec.ts",
+      "file": "browser/three-region-integration.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "gale four categories render, opacity, metadata and switching at 1440px",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 46544,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T03:50:00.288Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "13e2edb75295213cda03-e345089461081e3df962",
+          "file": "browser/three-region-integration.spec.ts",
+          "line": 29,
+          "column": 5
+        },
+        {
+          "title": "jezero four categories render, opacity, metadata and switching at 1440px",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 19400,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T03:50:46.848Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "13e2edb75295213cda03-d27ae7b2612c3d1bad89",
+          "file": "browser/three-region-integration.spec.ts",
+          "line": 29,
+          "column": 5
+        },
+        {
+          "title": "oxia four categories render, opacity, metadata and switching at 1440px",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 18391,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T03:51:06.263Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "13e2edb75295213cda03-6176963f40326200b12c",
+          "file": "browser/three-region-integration.spec.ts",
+          "line": 29,
+          "column": 5
+        },
+        {
+          "title": "gale four categories render, opacity, metadata and switching at 768px",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 32280,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T03:51:24.675Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "13e2edb75295213cda03-653f9a955ac64e4e8396",
+          "file": "browser/three-region-integration.spec.ts",
+          "line": 29,
+          "column": 5
+        },
+        {
+          "title": "jezero four categories render, opacity, metadata and switching at 768px",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 16087,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T03:51:56.972Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "13e2edb75295213cda03-1dc72ce7abe79f82d8af",
+          "file": "browser/three-region-integration.spec.ts",
+          "line": 29,
+          "column": 5
+        },
+        {
+          "title": "oxia four categories render, opacity, metadata and switching at 768px",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 15137,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T03:52:13.078Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "13e2edb75295213cda03-2f31debaa1e1cc87e693",
+          "file": "browser/three-region-integration.spec.ts",
+          "line": 29,
+          "column": 5
+        },
+        {
+          "title": "gale four categories render, opacity, metadata and switching at 390px",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 27073,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T03:52:28.240Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "13e2edb75295213cda03-a39d2677472b01ba93bb",
+          "file": "browser/three-region-integration.spec.ts",
+          "line": 29,
+          "column": 5
+        },
+        {
+          "title": "jezero four categories render, opacity, metadata and switching at 390px",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 12814,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T03:52:55.328Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "13e2edb75295213cda03-fe92cf4900a3824b8c24",
+          "file": "browser/three-region-integration.spec.ts",
+          "line": 29,
+          "column": 5
+        },
+        {
+          "title": "oxia four categories render, opacity, metadata and switching at 390px",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 12615,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T03:53:08.155Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "13e2edb75295213cda03-0cc2b9539c88e33c5438",
+          "file": "browser/three-region-integration.spec.ts",
+          "line": 29,
+          "column": 5
+        },
+        {
+          "title": "verified Oxia stops retain markers while Jezero objectives never fabricate waypoints",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2638,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T03:53:20.783Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "13e2edb75295213cda03-78feb6e63c74a0d9d8f6",
+          "file": "browser/three-region-integration.spec.ts",
+          "line": 75,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "i4c\\layer-interaction.spec.ts",
+      "file": "i4c/layer-interaction.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "I4C layer interaction gale 1440x900",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 15028,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T03:53:23.447Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "9baf6aef95003b6666a2-7103fdd7e87ec14d733c",
+          "file": "i4c/layer-interaction.spec.ts",
+          "line": 3,
+          "column": 128
+        },
+        {
+          "title": "I4C layer interaction jezero 1440x900",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 7954,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T03:53:38.495Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "9baf6aef95003b6666a2-92f5d908f4c0f5b17824",
+          "file": "i4c/layer-interaction.spec.ts",
+          "line": 3,
+          "column": 128
+        },
+        {
+          "title": "I4C layer interaction oxia 1440x900",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 7628,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T03:53:46.478Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "9baf6aef95003b6666a2-663dbf819371464691f5",
+          "file": "i4c/layer-interaction.spec.ts",
+          "line": 3,
+          "column": 128
+        },
+        {
+          "title": "I4C layer interaction gale 768x1024",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 9900,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T03:53:54.120Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "9baf6aef95003b6666a2-f48c43e202650f924d6c",
+          "file": "i4c/layer-interaction.spec.ts",
+          "line": 3,
+          "column": 128
+        },
+        {
+          "title": "I4C layer interaction jezero 768x1024",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4558,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T03:54:04.035Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "9baf6aef95003b6666a2-027d959bf402b9b59b62",
+          "file": "i4c/layer-interaction.spec.ts",
+          "line": 3,
+          "column": 128
+        },
+        {
+          "title": "I4C layer interaction oxia 768x1024",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4349,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T03:54:08.614Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "9baf6aef95003b6666a2-f5636f108f4a819de4ce",
+          "file": "i4c/layer-interaction.spec.ts",
+          "line": 3,
+          "column": 128
+        },
+        {
+          "title": "I4C layer interaction gale 390x844",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6436,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T03:54:12.989Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "9baf6aef95003b6666a2-e9531345d16721dc2530",
+          "file": "i4c/layer-interaction.spec.ts",
+          "line": 3,
+          "column": 128
+        },
+        {
+          "title": "I4C layer interaction jezero 390x844",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3406,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T03:54:19.447Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "9baf6aef95003b6666a2-cbc4df07a8ddde066e07",
+          "file": "i4c/layer-interaction.spec.ts",
+          "line": 3,
+          "column": 128
+        },
+        {
+          "title": "I4C layer interaction oxia 390x844",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3821,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T03:54:22.873Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "9baf6aef95003b6666a2-18443cc6533e1af269e7",
+          "file": "i4c/layer-interaction.spec.ts",
+          "line": 3,
+          "column": 128
+        },
+        {
+          "title": "I4C layer interaction gale 320x640",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5654,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T03:54:26.720Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "9baf6aef95003b6666a2-1ac43fae0f183d82f804",
+          "file": "i4c/layer-interaction.spec.ts",
+          "line": 3,
+          "column": 128
+        },
+        {
+          "title": "I4C layer interaction jezero 320x640",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2913,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T03:54:32.390Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "9baf6aef95003b6666a2-bd1d2d2491c11f5fd3cc",
+          "file": "i4c/layer-interaction.spec.ts",
+          "line": 3,
+          "column": 128
+        },
+        {
+          "title": "I4C layer interaction oxia 320x640",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2382,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T03:54:35.321Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "9baf6aef95003b6666a2-5313709b017df86af23d",
+          "file": "i4c/layer-interaction.spec.ts",
+          "line": 3,
+          "column": 128
+        },
+        {
+          "title": "I4C layer interaction gale 844x390",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5684,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T03:54:37.716Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "9baf6aef95003b6666a2-14aea900284331e5438e",
+          "file": "i4c/layer-interaction.spec.ts",
+          "line": 3,
+          "column": 128
+        },
+        {
+          "title": "I4C layer interaction jezero 844x390",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3675,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T03:54:43.418Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "9baf6aef95003b6666a2-cd1b62b8671e009b51fb",
+          "file": "i4c/layer-interaction.spec.ts",
+          "line": 3,
+          "column": 128
+        },
+        {
+          "title": "I4C layer interaction oxia 844x390",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3063,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T03:54:47.113Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "9baf6aef95003b6666a2-7d3ced8105e101b14fd5",
+          "file": "i4c/layer-interaction.spec.ts",
+          "line": 3,
+          "column": 128
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-11-15T03:43:33.534Z",
+    "duration": 679003.146,
+    "expected": 91,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

@@ -1,0 +1,315 @@
+{
+  "checks": [
+    {
+      "category": "Elevation",
+      "layer": "jezero-elevation",
+      "visible_pixels": 299797,
+      "opacity_pixels": 299681
+    },
+    {
+      "category": "Hillshade",
+      "layer": "jezero-hillshade",
+      "visible_pixels": 292892,
+      "opacity_pixels": 290584
+    },
+    {
+      "category": "Slope",
+      "layer": "jezero-slope",
+      "visible_pixels": 299850,
+      "opacity_pixels": 299799
+    },
+    {
+      "category": "Thermal",
+      "layer": "jezero-thermal",
+      "visible_pixels": 363909,
+      "opacity_pixels": 360091
+    }
+  ],
+  "errors": [],
+  "responses": [
+    {
+      "url": "/maps/jezero/ctx-lvs-tiles/12/2927/1834.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/ctx-lvs-tiles/12/2928/1834.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/ctx-lvs-tiles/12/2927/1833.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/ctx-lvs-tiles/12/2928/1833.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/ctx-lvs-tiles/12/2926/1834.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/ctx-lvs-tiles/12/2929/1834.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/ctx-lvs-tiles/12/2926/1833.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/ctx-lvs-tiles/12/2929/1833.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/perseverance-traverse.geojson",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/terrain-tiles/12/2927/1834.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/terrain-tiles/12/2928/1834.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/terrain-tiles/12/2927/1833.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/terrain-tiles/12/2928/1833.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/terrain-tiles/12/2926/1834.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/terrain-tiles/12/2929/1834.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/terrain-tiles/12/2926/1833.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/terrain-tiles/12/2929/1833.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/hillshade-tiles/12/2927/1834.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/hillshade-tiles/12/2927/1833.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/hillshade-tiles/12/2928/1834.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/hillshade-tiles/12/2928/1833.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/hillshade-tiles/12/2926/1834.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/hillshade-tiles/12/2929/1834.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/hillshade-tiles/12/2926/1833.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/hillshade-tiles/12/2929/1833.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/slope-tiles/12/2928/1834.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/slope-tiles/12/2927/1834.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/slope-tiles/12/2928/1833.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/slope-tiles/12/2927/1833.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/slope-tiles/12/2926/1834.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/slope-tiles/12/2929/1834.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/slope-tiles/12/2926/1833.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/slope-tiles/12/2929/1833.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/thermal-tiles/9/365/229.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/thermal-tiles/9/366/229.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/curiosity-traverse.geojson",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/terrain-regional/coverage.geojson",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/terrain-global/coverage.geojson",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/ctx-tiles/13/7222/4204.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/ctx-tiles/13/7223/4204.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/ctx-tiles/13/7222/4203.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/ctx-tiles/13/7222/4205.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/ctx-tiles/13/7223/4203.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/ctx-tiles/13/7221/4204.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/ctx-tiles/13/7223/4205.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/ctx-tiles/13/7221/4203.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/ctx-tiles/13/7221/4205.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/perseverance-traverse.geojson",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/ctx-lvs-tiles/12/2928/1834.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/ctx-lvs-tiles/12/2927/1833.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/ctx-lvs-tiles/12/2928/1833.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/ctx-lvs-tiles/12/2926/1834.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/ctx-lvs-tiles/12/2929/1834.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/ctx-lvs-tiles/12/2927/1834.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/ctx-lvs-tiles/12/2926/1833.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/ctx-lvs-tiles/12/2929/1833.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/oxia/ctx-tiles/8/110/114.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/oxia/ctx-tiles/8/110/115.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/oxia/ctx-tiles/8/111/114.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/oxia/ctx-tiles/8/109/114.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/oxia/ctx-tiles/8/109/115.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/oxia/ctx-tiles/8/111/115.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/perseverance-traverse.geojson",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/ctx-lvs-tiles/12/2927/1834.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/ctx-lvs-tiles/12/2928/1834.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/ctx-lvs-tiles/12/2927/1833.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/ctx-lvs-tiles/12/2928/1833.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/ctx-lvs-tiles/12/2926/1834.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/ctx-lvs-tiles/12/2929/1834.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/ctx-lvs-tiles/12/2926/1833.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/ctx-lvs-tiles/12/2929/1833.png",
+      "status": 200
+    }
+  ]
+}

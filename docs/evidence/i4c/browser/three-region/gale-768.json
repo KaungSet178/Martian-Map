@@ -1,0 +1,443 @@
+{
+  "checks": [
+    {
+      "category": "Elevation",
+      "layer": "gale-regional-elevation",
+      "visible_pixels": 251522,
+      "opacity_pixels": 251507
+    },
+    {
+      "category": "Elevation",
+      "layer": "gale-global-elevation",
+      "visible_pixels": 251522,
+      "opacity_pixels": 251507
+    },
+    {
+      "category": "Elevation",
+      "layer": "gale-terrain",
+      "visible_pixels": 3577,
+      "opacity_pixels": 3576
+    },
+    {
+      "category": "Hillshade",
+      "layer": "gale-regional-hillshade",
+      "visible_pixels": 251551,
+      "opacity_pixels": 251523
+    },
+    {
+      "category": "Hillshade",
+      "layer": "gale-global-hillshade",
+      "visible_pixels": 251553,
+      "opacity_pixels": 251527
+    },
+    {
+      "category": "Hillshade",
+      "layer": "gale-hillshade",
+      "visible_pixels": 3577,
+      "opacity_pixels": 3576
+    },
+    {
+      "category": "Slope",
+      "layer": "gale-regional-slope",
+      "visible_pixels": 251505,
+      "opacity_pixels": 251480
+    },
+    {
+      "category": "Slope",
+      "layer": "gale-global-slope",
+      "visible_pixels": 251511,
+      "opacity_pixels": 251498
+    },
+    {
+      "category": "Slope",
+      "layer": "gale-slope",
+      "visible_pixels": 3575,
+      "opacity_pixels": 3570
+    },
+    {
+      "category": "Thermal",
+      "layer": "gale-thermal",
+      "visible_pixels": 242511,
+      "opacity_pixels": 241742
+    }
+  ],
+  "errors": [],
+  "responses": [
+    {
+      "url": "/maps/gale/terrain-regional/coverage.geojson",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/terrain-global/coverage.geojson",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/curiosity-traverse.geojson",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/ctx-tiles/13/7222/4204.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/ctx-tiles/13/7223/4204.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/ctx-tiles/13/7223/4203.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/ctx-tiles/13/7222/4203.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/ctx-tiles/13/7222/4205.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/ctx-tiles/13/7221/4204.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/ctx-tiles/13/7223/4205.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/ctx-tiles/13/7221/4203.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/ctx-tiles/13/7221/4205.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/terrain-regional/elevation/13/7222/4204.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/terrain-regional/elevation/13/7223/4204.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/terrain-regional/elevation/13/7222/4203.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/terrain-regional/elevation/13/7223/4203.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/terrain-regional/elevation/13/7221/4204.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/terrain-regional/elevation/13/7221/4203.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/terrain-regional/elevation/13/7224/4204.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/terrain-regional/elevation/13/7224/4203.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/terrain-global/elevation/13/7222/4204.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/terrain-global/elevation/13/7223/4204.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/terrain-global/elevation/13/7222/4203.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/terrain-global/elevation/13/7223/4203.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/terrain-global/elevation/13/7221/4204.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/terrain-global/elevation/13/7221/4203.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/terrain-global/elevation/13/7224/4203.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/terrain-global/elevation/13/7224/4204.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/dem/elevation/13/7221/4203.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/dem/elevation/13/7222/4203.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/terrain-regional/hillshade/13/7222/4204.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/terrain-regional/hillshade/13/7223/4204.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/terrain-regional/hillshade/13/7222/4203.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/terrain-regional/hillshade/13/7221/4204.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/terrain-regional/hillshade/13/7224/4204.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/terrain-regional/hillshade/13/7221/4203.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/terrain-regional/hillshade/13/7223/4203.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/terrain-regional/hillshade/13/7224/4203.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/terrain-global/hillshade/13/7222/4204.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/terrain-global/hillshade/13/7223/4204.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/terrain-global/hillshade/13/7222/4203.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/terrain-global/hillshade/13/7221/4203.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/terrain-global/hillshade/13/7223/4203.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/terrain-global/hillshade/13/7221/4204.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/terrain-global/hillshade/13/7224/4204.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/terrain-global/hillshade/13/7224/4203.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/dem/hillshade/13/7222/4203.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/dem/hillshade/13/7221/4203.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/terrain-regional/slope/13/7222/4204.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/terrain-regional/slope/13/7223/4204.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/terrain-regional/slope/13/7222/4203.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/terrain-regional/slope/13/7223/4203.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/terrain-regional/slope/13/7221/4204.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/terrain-regional/slope/13/7221/4203.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/terrain-regional/slope/13/7224/4204.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/terrain-regional/slope/13/7224/4203.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/terrain-global/slope/13/7222/4204.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/terrain-global/slope/13/7223/4204.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/terrain-global/slope/13/7222/4203.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/terrain-global/slope/13/7221/4203.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/terrain-global/slope/13/7221/4204.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/terrain-global/slope/13/7224/4204.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/terrain-global/slope/13/7224/4203.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/terrain-global/slope/13/7223/4203.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/dem/slope/13/7222/4203.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/dem/slope/13/7221/4203.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/thermal-tiles/9/451/262.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/perseverance-traverse.geojson",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/ctx-lvs-tiles/12/2927/1834.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/ctx-lvs-tiles/12/2928/1834.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/ctx-lvs-tiles/12/2927/1833.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/ctx-lvs-tiles/12/2928/1833.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/ctx-lvs-tiles/12/2926/1834.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/ctx-lvs-tiles/12/2929/1834.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/ctx-lvs-tiles/12/2926/1833.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/ctx-lvs-tiles/12/2929/1833.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/oxia/ctx-tiles/8/110/114.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/oxia/ctx-tiles/8/110/115.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/oxia/ctx-tiles/8/111/114.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/oxia/ctx-tiles/8/111/115.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/oxia/ctx-tiles/8/109/114.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/oxia/ctx-tiles/8/109/115.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/curiosity-traverse.geojson",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/terrain-regional/coverage.geojson",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/terrain-global/coverage.geojson",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/ctx-tiles/13/7222/4204.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/ctx-tiles/13/7223/4204.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/ctx-tiles/13/7222/4203.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/ctx-tiles/13/7223/4203.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/ctx-tiles/13/7221/4204.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/ctx-tiles/13/7222/4205.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/ctx-tiles/13/7223/4205.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/ctx-tiles/13/7221/4203.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/ctx-tiles/13/7221/4205.png",
+      "status": 200
+    }
+  ]
+}

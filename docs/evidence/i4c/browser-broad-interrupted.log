@@ -1,0 +1,48 @@
+npx.cmd : [WebServer] (node:1732) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+At line:2 char:1
++ npx.cmd playwright test --config tests/i4c/playwright.config.ts > doc ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ([WebServer] (no... env being set.:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:4676) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 169 tests using 1 worker
+
+(node:7788) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok   1 tests\browser\environmental-conditions.spec.ts:42:3 › Environmental Conditions Integration › Desktop (1440px): Gale Crater REMS & RAD environmental panel renders and updates (2.1s)
+  ok   2 tests\browser\environmental-conditions.spec.ts:119:3 › Environmental Conditions Integration › Mobile (390px): Gale Crater responsive layout without overflow (812ms)
+  ok   3 tests\browser\environmental-conditions.spec.ts:146:3 › Environmental Conditions Integration › Desktop (1440px): Jezero Crater Perseverance MEDA panel with 6 sols and sensor distinctions (1.4s)
+  ok   4 tests\browser\environmental-conditions.spec.ts:223:3 › Environmental Conditions Integration › Mobile (390px): Jezero Crater responsive layout without overflow (853ms)
+  ok   5 tests\browser\environmental-conditions.spec.ts:250:3 › Environmental Conditions Integration › Desktop (1440px): Oxia Planum deliberate unavailable state and no foreign data leakage (1.2s)
+  ok   6 tests\browser\environmental-conditions.spec.ts:297:3 › Environmental Conditions Integration › Mobile (390px): Oxia Planum deliberate unavailable state without overflow (727ms)
+  ok   7 tests\browser\environmental-conditions.spec.ts:321:3 › Environmental Conditions Integration › Tablet (768px): Tablet layout across regions without horizontal overflow (1.2s)
+  ok   8 tests\browser\environmental-conditions.spec.ts:337:3 › Environmental Conditions Integration › Region Switching: Switch Gale -> Jezero -> Oxia -> Gale cleanly maintains environment tab and updates data (2.1s)
+  ok   9 tests\browser\environmental-conditions.spec.ts:375:3 › Environmental Conditions Integration › Standalone Route: /environment with region selector functions seamlessly (521ms)
+  ok  10 tests\browser\f1-mission-integrity.spec.ts:14:106 › F1 gale three-point mission, roles, review, Save/Open, JSON and brief at 1440px (7.5s)
+  ok  11 tests\browser\f1-mission-integrity.spec.ts:14:106 › F1 jezero three-point mission, roles, review, Save/Open, JSON and brief at 1440px (8.1s)
+  ok  12 tests\browser\f1-mission-integrity.spec.ts:14:106 › F1 oxia three-point mission, roles, review, Save/Open, JSON and brief at 1440px (6.8s)
+  ok  13 tests\browser\f1-mission-integrity.spec.ts:14:106 › F1 gale three-point mission, roles, review, Save/Open, JSON and brief at 390px (4.8s)
+  ok  14 tests\browser\f1-mission-integrity.spec.ts:14:106 › F1 jezero three-point mission, roles, review, Save/Open, JSON and brief at 390px (6.3s)
+  ok  15 tests\browser\f1-mission-integrity.spec.ts:14:106 › F1 oxia three-point mission, roles, review, Save/Open, JSON and brief at 390px (6.2s)
+  ok  16 tests\browser\f1-mission-integrity.spec.ts:56:1 › F1 Oxia interpreted catalog evidence and target-first base recovery (2.8s)
+  ok  17 tests\browser\f1-mission-integrity.spec.ts:66:48 › F1 gale endpoint changes invalidate actual terrain, timeline and brief (4.6s)
+  ok  18 tests\browser\f1-mission-integrity.spec.ts:66:48 › F1 jezero endpoint changes invalidate actual terrain, timeline and brief (2.8s)
+  ok  19 tests\browser\f1-mission-integrity.spec.ts:78:1 › F1 retired objective JSON remains readable and editable without active route geometry (2.9s)
+  ok  20 tests\browser\f1-mission-integrity.spec.ts:88:30 › F1 current terrain scenario Review and downloadable brief fit 390px (2.2s)
+  ok  21 tests\browser\f1-mission-integrity.spec.ts:88:30 › F1 current terrain scenario Review and downloadable brief fit 320px (1.8s)
+  ok  22 tests\browser\f3-navigation.spec.ts:3:64 › F3 cross-region zoom and pan at 1440px (14.8s)
+  ok  23 tests\browser\f3-navigation.spec.ts:3:64 › F3 cross-region zoom and pan at 768px (10.5s)
+  ok  24 tests\browser\f3-navigation.spec.ts:3:64 › F3 cross-region zoom and pan at 390px (8.3s)
+  ok  25 tests\browser\f3-science.spec.ts:4:64 › F3 scientific objectives and environment at 1440px (4.1s)
+  ok  26 tests\browser\f3-science.spec.ts:4:64 › F3 scientific objectives and environment at 768px (4.4s)
+  ok  27 tests\browser\f3-science.spec.ts:4:64 › F3 scientific objectives and environment at 390px (5.0s)
+  x   28 tests\browser\gale-color.spec.ts:66:3 › G5 real color, stable M3 geometry, navigation and accessibility at 1440px (1.5m)
+(node:20016) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x   29 tests\browser\gale-color.spec.ts:66:3 › G5 real color, stable M3 geometry, navigation and accessibility at 1024px (1.5m)
+(node:18224) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)

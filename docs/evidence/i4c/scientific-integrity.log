@@ -1,0 +1,50 @@
+TAP version 13
+# Subtest: I4C source-rounded Oxia detections and independent target separation
+ok 1 - I4C source-rounded Oxia detections and independent target separation
+  ---
+  duration_ms: 3.1498
+  type: 'test'
+  ...
+# Subtest: I4C Three Forks local primary capture means landing circle, not depot
+ok 2 - I4C Three Forks local primary capture means landing circle, not depot
+  ---
+  duration_ms: 1.1826
+  type: 'test'
+  ...
+# Subtest: I4C unknown resolution visibly disclosed in data register
+ok 3 - I4C unknown resolution visibly disclosed in data register
+  ---
+  duration_ms: 72.3781
+  type: 'test'
+  ...
+# Subtest: I4C Jezero generator: missing derivative neighbor must remain unknown
+not ok 4 - I4C Jezero generator: missing derivative neighbor must remain unknown
+  ---
+  duration_ms: 3.4561
+  type: 'test'
+  location: 'D:\\martian-map-i4c-qa\\tests\\i4c\\scientific-integrity.test.ts:2:3066'
+  failureType: 'testCodeFailure'
+  error: 'Missing west support was replaced by a valid center elevation; derivative can flatten nodata edges'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (D:\martian-map-i4c-qa\tests\i4c\scientific-integrity.test.ts:35:9)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+1..4
+# tests 4
+# suites 0
+# pass 3
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1303.4262

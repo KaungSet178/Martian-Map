@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "id": "cd2c6637-dd4b-4c09-a741-f6426f9c1758",
+  "name": "Oxia Planum field plan",
+  "region": "oxia",
+  "target_ids": [],
+  "direction": "round",
+  "start": {
+    "latitude": 18.2,
+    "longitude_east": 335.4
+  },
+  "endpoint": null,
+  "recovery_assumption": "",
+  "oxygen_reserve_percent": 30,
+  "battery_reserve_percent": 25,
+  "dataset_version": "oxia-thermal-colour-v11",
+  "model_versions": {},
+  "saved_at": "2026-11-15T03:47:58.945Z",
+  "waypoint_plan": {
+    "schema_version": 1,
+    "id": "plan-7c509f34-e544-40ef-8122-83d9a518e716",
+    "name": "Oxia Planum field plan",
+    "region_id": "oxia",
+    "mode": "round_trip",
+    "waypoints": [
+      {
+        "id": "wp-f12dbf19-6227-4d40-aaf3-30f26d95cb62",
+        "coordinates": {
+          "latitude": 18.2,
+          "longitude_east": 335.4
+        },
+        "role": "base",
+        "label": "I4B stop 0",
+        "provenance": "user_planning_input",
+        "stop_duration_seconds": 0
+      },
+      {
+        "id": "wp-05ab9adc-3600-4bfa-a988-0d3c6ba712f3",
+        "coordinates": {
+          "latitude": 18.21,
+          "longitude_east": 335.41
+        },
+        "role": "intermediate",
+        "label": "I4B stop 1",
+        "provenance": "user_planning_input",
+        "stop_duration_seconds": 0
+      },
+      {
+        "id": "wp-de44d54e-5bda-45c9-8c74-a5ad5d4690d7",
+        "coordinates": {
+          "latitude": 18.22,
+          "longitude_east": 335.42
+        },
+        "role": "intermediate",
+        "label": "I4B stop 2",
+        "provenance": "user_planning_input",
+        "stop_duration_seconds": 1200
+      }
+    ],
+    "created_at": "2026-11-15T03:47:57.364Z",
+    "updated_at": "2026-11-15T03:47:58.773Z"
+  },
+  "eva_config": {
+    "profileId": "bvad-reference",
+    "coolingArchitecture": "venting",
+    "electricalWatts": 80,
+    "oxygenCapacityKg": 2,
+    "batteryCapacityWh": 2000,
+    "waterCapacityKg": 10,
+    "oxygenMarginPercent": 20,
+    "emergencySeconds": 1800
+  },
+  "terrain_assumptions": {
+    "speed": "2000"
+  }
+}

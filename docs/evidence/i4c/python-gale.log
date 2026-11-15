@@ -1,0 +1,16 @@
+python.exe : ......<USER_HOME>\AppData\Local\Programs\Python\Python313\Lib\site-packages\pyproj\crs\crs.py:1295:
+UserWarning: You will likely lose important projection information when converting to a PROJ string from another
+format. See: https://proj.org/faq.html#what-is-the-best-format-for-describing-coordinate-reference-systems
+At D:\martian-map-i4c-qa\tests\i4c\validate.ps1:22 char:2
++  & $exe @arguments *> "docs/evidence/i4c/$($c.id).log"
++  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (......<USER_HOME> [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+  proj = self._crs.to_proj4(version=version)
+.......................................................................................................................
+....................s...ss
+----------------------------------------------------------------------
+Ran 149 tests in 2.124s
+
+OK (skipped=3)

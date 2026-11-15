@@ -1,0 +1,532 @@
+{
+  "stage": "A",
+  "sourceRevision": "870f282c0b9349b1d36c058970d2220cc4ea5a5e",
+  "specification": "docs/SCIENTIFIC_LAYER_STYLE_GUIDE.md",
+  "specificationStatus": "proposed; not applied",
+  "summary": {
+    "tests": 86,
+    "pass": 39,
+    "fail": 47,
+    "cancelled": 0,
+    "skipped": 0
+  },
+  "records": [
+    {
+      "region": "jezero",
+      "id": "jezero-elevation",
+      "expectedNameStem": "Elevation",
+      "actualName": "Elevation",
+      "expectedEvidence": "Derived",
+      "actualEvidence": "Observed",
+      "expectedColors": [
+        "#352A68",
+        "#286B9E",
+        "#4A9C9A",
+        "#B89B55",
+        "#F3E8C8"
+      ],
+      "actualColors": [
+        "#4655ac",
+        "#5288b6",
+        "#82aca6",
+        "#c8be8a",
+        "#e6d4a8",
+        "#f8f0e0"
+      ],
+      "expectedResolutionField": "Explicit immediately associated Resolution field, unavailable when unknown",
+      "actualResolutionMetadata": 1,
+      "source": "jezero-usgs-trn-dtm",
+      "evidenceReference": "layer-inventory.json#jezero-elevation",
+      "failures": [
+        "I4C jezero-elevation: derived evidence",
+        "I4C jezero-elevation: common numeric color contract",
+        "I4C jezero-elevation: source and resolution immediately associated with legend"
+      ]
+    },
+    {
+      "region": "jezero",
+      "id": "jezero-hillshade",
+      "expectedNameStem": "Hillshade",
+      "actualName": "Hillshade",
+      "expectedEvidence": "Derived",
+      "actualEvidence": "Derived",
+      "expectedColors": "neutral grayscale with source-specific intensity metadata",
+      "actualColors": [
+        "#000000",
+        "#808080",
+        "#b4b4b4",
+        "#ffffff"
+      ],
+      "expectedResolutionField": "Explicit immediately associated Resolution field, unavailable when unknown",
+      "actualResolutionMetadata": 1,
+      "source": "jezero-usgs-trn-dtm",
+      "evidenceReference": "layer-inventory.json#jezero-hillshade",
+      "failures": [
+        "I4C jezero-hillshade: source and resolution immediately associated with legend"
+      ]
+    },
+    {
+      "region": "jezero",
+      "id": "jezero-slope",
+      "expectedNameStem": "Slope",
+      "actualName": "Slope",
+      "expectedEvidence": "Derived",
+      "actualEvidence": "Derived",
+      "expectedColors": [
+        "#357F78",
+        "#DCCB67",
+        "#DF8B45",
+        "#A83232"
+      ],
+      "actualColors": [
+        "#264653",
+        "#2a9d8f",
+        "#e9c46a",
+        "#f4a261",
+        "#e76f51",
+        "#9d2a26"
+      ],
+      "expectedResolutionField": "Explicit immediately associated Resolution field, unavailable when unknown",
+      "actualResolutionMetadata": 1,
+      "source": "jezero-usgs-trn-dtm",
+      "evidenceReference": "layer-inventory.json#jezero-slope",
+      "failures": [
+        "I4C jezero-slope: common numeric color contract",
+        "I4C jezero-slope: source and resolution immediately associated with legend"
+      ]
+    },
+    {
+      "region": "jezero",
+      "id": "jezero-thermal",
+      "expectedNameStem": "Thermal (day IR)",
+      "actualName": "Thermal (THEMIS daytime IR)",
+      "expectedEvidence": "Observed with processing disclosure",
+      "actualEvidence": "Observed",
+      "expectedColors": [
+        "#1E0C45",
+        "#61136E",
+        "#BC3754",
+        "#F98B0B",
+        "#F4E156"
+      ],
+      "actualColors": [
+        "#1b1b1b",
+        "#4d4d4d",
+        "#808080",
+        "#b3b3b3",
+        "#e6e6e6"
+      ],
+      "expectedResolutionField": "Explicit immediately associated Resolution field, unavailable when unknown",
+      "actualResolutionMetadata": 100,
+      "source": "jezero-mars-trek-themis",
+      "evidenceReference": "layer-inventory.json#jezero-thermal",
+      "failures": [
+        "I4C jezero-thermal: standard name",
+        "I4C jezero-thermal: common numeric color contract",
+        "I4C jezero-thermal: source and resolution immediately associated with legend"
+      ]
+    },
+    {
+      "region": "gale",
+      "id": "gale-regional-elevation",
+      "expectedNameStem": "Elevation",
+      "actualName": "Regional HRSC elevation",
+      "expectedEvidence": "Derived",
+      "actualEvidence": "Derived",
+      "expectedColors": [
+        "#352A68",
+        "#286B9E",
+        "#4A9C9A",
+        "#B89B55",
+        "#F3E8C8"
+      ],
+      "actualColors": [
+        "#425A78",
+        "#587E91",
+        "#87A39D",
+        "#BCB29C",
+        "#C8A97E"
+      ],
+      "expectedResolutionField": "Explicit immediately associated Resolution field, unavailable when unknown",
+      "actualResolutionMetadata": 30,
+      "source": "gale-hrsc-30m",
+      "evidenceReference": "layer-inventory.json#gale-regional-elevation",
+      "failures": [
+        "I4C gale-regional-elevation: standard name",
+        "I4C gale-regional-elevation: common numeric color contract",
+        "I4C gale-regional-elevation: source and resolution immediately associated with legend"
+      ]
+    },
+    {
+      "region": "gale",
+      "id": "gale-regional-hillshade",
+      "expectedNameStem": "Hillshade",
+      "actualName": "Regional HRSC hillshade",
+      "expectedEvidence": "Derived",
+      "actualEvidence": "Derived",
+      "expectedColors": "neutral grayscale with source-specific intensity metadata",
+      "actualColors": [
+        "#000000",
+        "#FFFFFF"
+      ],
+      "expectedResolutionField": "Explicit immediately associated Resolution field, unavailable when unknown",
+      "actualResolutionMetadata": 30,
+      "source": "gale-hrsc-30m",
+      "evidenceReference": "layer-inventory.json#gale-regional-hillshade",
+      "failures": [
+        "I4C gale-regional-hillshade: standard name",
+        "I4C gale-regional-hillshade: source and resolution immediately associated with legend"
+      ]
+    },
+    {
+      "region": "gale",
+      "id": "gale-regional-slope",
+      "expectedNameStem": "Slope",
+      "actualName": "Regional HRSC slope \u00c2\u00b7 degrees",
+      "expectedEvidence": "Derived",
+      "actualEvidence": "Derived",
+      "expectedColors": [
+        "#357F78",
+        "#DCCB67",
+        "#DF8B45",
+        "#A83232"
+      ],
+      "actualColors": [
+        "#4E8B7C",
+        "#D6C875",
+        "#E08E45",
+        "#C25E2E",
+        "#8C382A"
+      ],
+      "expectedResolutionField": "Explicit immediately associated Resolution field, unavailable when unknown",
+      "actualResolutionMetadata": 30,
+      "source": "gale-hrsc-30m",
+      "evidenceReference": "layer-inventory.json#gale-regional-slope",
+      "failures": [
+        "I4C gale-regional-slope: standard name",
+        "I4C gale-regional-slope: common numeric color contract",
+        "I4C gale-regional-slope: source and resolution immediately associated with legend"
+      ]
+    },
+    {
+      "region": "gale",
+      "id": "gale-thermal",
+      "expectedNameStem": "Thermal (day IR)",
+      "actualName": "Thermal (THEMIS daytime IR)",
+      "expectedEvidence": "Observed with processing disclosure",
+      "actualEvidence": "Observed",
+      "expectedColors": [
+        "#1E0C45",
+        "#61136E",
+        "#BC3754",
+        "#F98B0B",
+        "#F4E156"
+      ],
+      "actualColors": [
+        "#1b1b1b",
+        "#4d4d4d",
+        "#808080",
+        "#b3b3b3",
+        "#e6e6e6"
+      ],
+      "expectedResolutionField": "Explicit immediately associated Resolution field, unavailable when unknown",
+      "actualResolutionMetadata": 100,
+      "source": "gale-mars-trek-themis",
+      "evidenceReference": "layer-inventory.json#gale-thermal",
+      "failures": [
+        "I4C gale-thermal: standard name",
+        "I4C gale-thermal: common numeric color contract",
+        "I4C gale-thermal: source and resolution immediately associated with legend"
+      ]
+    },
+    {
+      "region": "gale",
+      "id": "gale-global-elevation",
+      "expectedNameStem": "Elevation",
+      "actualName": "Global HRSC\u00e2\u20ac\u201cMOLA elevation",
+      "expectedEvidence": "Derived",
+      "actualEvidence": "Derived",
+      "expectedColors": [
+        "#352A68",
+        "#286B9E",
+        "#4A9C9A",
+        "#B89B55",
+        "#F3E8C8"
+      ],
+      "actualColors": [
+        "#425A78",
+        "#587E91",
+        "#87A39D",
+        "#BCB29C",
+        "#C8A97E"
+      ],
+      "expectedResolutionField": "Explicit immediately associated Resolution field, unavailable when unknown",
+      "actualResolutionMetadata": 200,
+      "source": "gale-usgs-200m",
+      "evidenceReference": "layer-inventory.json#gale-global-elevation",
+      "failures": [
+        "I4C gale-global-elevation: standard name",
+        "I4C gale-global-elevation: common numeric color contract",
+        "I4C gale-global-elevation: source and resolution immediately associated with legend"
+      ]
+    },
+    {
+      "region": "gale",
+      "id": "gale-global-hillshade",
+      "expectedNameStem": "Hillshade",
+      "actualName": "Global HRSC\u00e2\u20ac\u201cMOLA hillshade",
+      "expectedEvidence": "Derived",
+      "actualEvidence": "Derived",
+      "expectedColors": "neutral grayscale with source-specific intensity metadata",
+      "actualColors": [
+        "#000000",
+        "#FFFFFF"
+      ],
+      "expectedResolutionField": "Explicit immediately associated Resolution field, unavailable when unknown",
+      "actualResolutionMetadata": 200,
+      "source": "gale-usgs-200m",
+      "evidenceReference": "layer-inventory.json#gale-global-hillshade",
+      "failures": [
+        "I4C gale-global-hillshade: standard name",
+        "I4C gale-global-hillshade: source and resolution immediately associated with legend"
+      ]
+    },
+    {
+      "region": "gale",
+      "id": "gale-global-slope",
+      "expectedNameStem": "Slope",
+      "actualName": "Global HRSC\u00e2\u20ac\u201cMOLA slope \u00c2\u00b7 degrees",
+      "expectedEvidence": "Derived",
+      "actualEvidence": "Derived",
+      "expectedColors": [
+        "#357F78",
+        "#DCCB67",
+        "#DF8B45",
+        "#A83232"
+      ],
+      "actualColors": [
+        "#4E8B7C",
+        "#D6C875",
+        "#E08E45",
+        "#C25E2E",
+        "#8C382A"
+      ],
+      "expectedResolutionField": "Explicit immediately associated Resolution field, unavailable when unknown",
+      "actualResolutionMetadata": 200,
+      "source": "gale-usgs-200m",
+      "evidenceReference": "layer-inventory.json#gale-global-slope",
+      "failures": [
+        "I4C gale-global-slope: standard name",
+        "I4C gale-global-slope: common numeric color contract",
+        "I4C gale-global-slope: source and resolution immediately associated with legend"
+      ]
+    },
+    {
+      "region": "gale",
+      "id": "gale-terrain",
+      "expectedNameStem": "Elevation",
+      "actualName": "Elevation \u00c2\u00b7 MOLA areoid",
+      "expectedEvidence": "Derived",
+      "actualEvidence": "Derived",
+      "expectedColors": [
+        "#352A68",
+        "#286B9E",
+        "#4A9C9A",
+        "#B89B55",
+        "#F3E8C8"
+      ],
+      "actualColors": [
+        "#425A78",
+        "#587E91",
+        "#87A39D",
+        "#BCB29C",
+        "#C8A97E"
+      ],
+      "expectedResolutionField": "Explicit immediately associated Resolution field, unavailable when unknown",
+      "actualResolutionMetadata": 25,
+      "source": "gale-pds-dem-subset",
+      "evidenceReference": "layer-inventory.json#gale-terrain",
+      "failures": [
+        "I4C gale-terrain: common numeric color contract",
+        "I4C gale-terrain: source and resolution immediately associated with legend"
+      ]
+    },
+    {
+      "region": "gale",
+      "id": "gale-hillshade",
+      "expectedNameStem": "Hillshade",
+      "actualName": "DEM hillshade",
+      "expectedEvidence": "Derived",
+      "actualEvidence": "Derived",
+      "expectedColors": "neutral grayscale with source-specific intensity metadata",
+      "actualColors": [
+        "#000000",
+        "#FFFFFF"
+      ],
+      "expectedResolutionField": "Explicit immediately associated Resolution field, unavailable when unknown",
+      "actualResolutionMetadata": 25,
+      "source": "gale-pds-dem-subset",
+      "evidenceReference": "layer-inventory.json#gale-hillshade",
+      "failures": [
+        "I4C gale-hillshade: standard name",
+        "I4C gale-hillshade: source and resolution immediately associated with legend"
+      ]
+    },
+    {
+      "region": "gale",
+      "id": "gale-slope",
+      "expectedNameStem": "Slope",
+      "actualName": "DEM slope \u00c2\u00b7 degrees",
+      "expectedEvidence": "Derived",
+      "actualEvidence": "Derived",
+      "expectedColors": [
+        "#357F78",
+        "#DCCB67",
+        "#DF8B45",
+        "#A83232"
+      ],
+      "actualColors": [
+        "#526B82",
+        "#71989E",
+        "#AAA7BD",
+        "#B49A88",
+        "#C9BDA0"
+      ],
+      "expectedResolutionField": "Explicit immediately associated Resolution field, unavailable when unknown",
+      "actualResolutionMetadata": 25,
+      "source": "gale-pds-dem-subset",
+      "evidenceReference": "layer-inventory.json#gale-slope",
+      "failures": [
+        "I4C gale-slope: standard name",
+        "I4C gale-slope: common numeric color contract",
+        "I4C gale-slope: source and resolution immediately associated with legend"
+      ]
+    },
+    {
+      "region": "oxia",
+      "id": "oxia-terrain",
+      "expectedNameStem": "Hillshade",
+      "actualName": "Regional hillshade (200 m)",
+      "expectedEvidence": "Derived",
+      "actualEvidence": "Derived",
+      "expectedColors": "neutral grayscale with source-specific intensity metadata",
+      "actualColors": [
+        "#DADADA",
+        "#9A9A9A",
+        "#3C3C3C"
+      ],
+      "expectedResolutionField": "Explicit immediately associated Resolution field, unavailable when unknown",
+      "actualResolutionMetadata": 200,
+      "source": "oxia-mola-hrsc-shade-trek",
+      "evidenceReference": "layer-inventory.json#oxia-terrain",
+      "failures": [
+        "I4C oxia-terrain: standard name",
+        "I4C oxia-terrain: source and resolution immediately associated with legend"
+      ]
+    },
+    {
+      "region": "oxia",
+      "id": "oxia-elevation",
+      "expectedNameStem": "Elevation",
+      "actualName": "Elevation (MOLA)",
+      "expectedEvidence": "Derived",
+      "actualEvidence": "Observed",
+      "expectedColors": [
+        "#352A68",
+        "#286B9E",
+        "#4A9C9A",
+        "#B89B55",
+        "#F3E8C8"
+      ],
+      "actualColors": [
+        "#5081B5",
+        "#8DAFA2",
+        "#CEC390",
+        "#E7D6AC",
+        "#F4E9D3"
+      ],
+      "expectedResolutionField": "Explicit immediately associated Resolution field, unavailable when unknown",
+      "actualResolutionMetadata": 463,
+      "source": "oxia-trek-elevation-profile",
+      "evidenceReference": "layer-inventory.json#oxia-elevation",
+      "failures": [
+        "I4C oxia-elevation: standard name",
+        "I4C oxia-elevation: derived evidence",
+        "I4C oxia-elevation: common numeric color contract",
+        "I4C oxia-elevation: source and resolution immediately associated with legend"
+      ]
+    },
+    {
+      "region": "oxia",
+      "id": "oxia-slope",
+      "expectedNameStem": "Slope",
+      "actualName": "Regional slope (MOLA)",
+      "expectedEvidence": "Derived",
+      "actualEvidence": "Derived",
+      "expectedColors": [
+        "#357F78",
+        "#DCCB67",
+        "#DF8B45",
+        "#A83232"
+      ],
+      "actualColors": [
+        "#FFFFCC",
+        "#FED976",
+        "#FD8D3C",
+        "#E31A1C",
+        "#800026"
+      ],
+      "expectedResolutionField": "Explicit immediately associated Resolution field, unavailable when unknown",
+      "actualResolutionMetadata": 463,
+      "source": "oxia-trek-elevation-profile",
+      "evidenceReference": "layer-inventory.json#oxia-slope",
+      "failures": [
+        "I4C oxia-slope: standard name",
+        "I4C oxia-slope: common numeric color contract",
+        "I4C oxia-slope: source and resolution immediately associated with legend"
+      ]
+    },
+    {
+      "region": "oxia",
+      "id": "oxia-thermal-night",
+      "expectedNameStem": "Thermal (night IR)",
+      "actualName": "THEMIS night IR",
+      "expectedEvidence": "Observed with processing disclosure",
+      "actualEvidence": "Observed",
+      "expectedColors": [
+        "#1E0C45",
+        "#61136E",
+        "#BC3754",
+        "#F98B0B",
+        "#F4E156"
+      ],
+      "actualColors": [
+        "#F4E156",
+        "#F98B0B",
+        "#BC3754",
+        "#61136E",
+        "#1E0C45"
+      ],
+      "expectedResolutionField": "Explicit immediately associated Resolution field, unavailable when unknown",
+      "actualResolutionMetadata": 100,
+      "source": "oxia-themis-night-trek",
+      "evidenceReference": "layer-inventory.json#oxia-thermal-night",
+      "failures": [
+        "I4C oxia-thermal-night: standard name",
+        "I4C oxia-thermal-night: common numeric color contract",
+        "I4C oxia-thermal-night: source and resolution immediately associated with legend"
+      ]
+    }
+  ],
+  "unresolvedIssues": [
+    "I4C-01",
+    "I4C-02",
+    "I4C-03",
+    "I4C-04",
+    "I4C-05",
+    "I4C-06",
+    "I4C-07",
+    "I4C-08"
+  ],
+  "log": "style-conformance.log"
+}

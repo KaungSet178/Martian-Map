@@ -1,0 +1,231 @@
+{
+  "stage": "A",
+  "sourceRevision": "870f282c0b9349b1d36c058970d2220cc4ea5a5e",
+  "timezone": "Asia/Rangoon",
+  "date": "2026-11-15",
+  "environment": {
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python": "3.13.7",
+    "node": "v22.20.0",
+    "next": "16.4.6",
+    "dependencies": "private npm ci --offline from unchanged lockfile",
+    "browser": "Chromium, software WebGL; production localhost port 3346"
+  },
+  "commands": [
+    {
+      "exitCode": 0,
+      "command": "node scripts/prepare-map-worker.mjs",
+      "id": "prepare-map",
+      "seconds": 0.17026339999999998,
+      "log": "docs/evidence/i4c/prepare-map.log"
+    },
+    {
+      "exitCode": 0,
+      "command": "node scripts/build-routing-worker.mjs",
+      "id": "build-routing",
+      "seconds": 0.1887341,
+      "log": "docs/evidence/i4c/build-routing.log"
+    },
+    {
+      "exitCode": 0,
+      "command": "node --import tsx --test tests\\waypoint-ui.test.ts tests\\waypoint-planning.test.ts tests\\waypoint-layers.test.ts tests\\waypoint-bridge.test.ts tests\\terrain-integration.test.ts tests\\scientific-categories.test.ts tests\\regions.test.ts tests\\mission.test.ts tests\\mission-timeline.test.ts tests\\mission-resource-budget.test.ts tests\\mission-m4-integration.test.ts tests\\jezero-routing.test.ts tests\\jezero-four-layers.test.ts tests\\i4b-eva.test.tsx tests\\i4a-integration.test.tsx tests\\geodesy.test.ts tests\\gale-viewport.test.ts tests\\gale-routing.test.ts tests\\gale-integration.test.ts tests\\gale-four-layers.test.ts tests\\gale-focused-view.test.ts tests\\gale-coverage.test.ts tests\\f3-science.test.ts tests\\f1-mission-integrity.test.tsx tests\\environment\\jezero\\dataset.test.ts tests\\environment\\jezero\\component.test.tsx tests\\environment\\jezero\\adapter.test.ts tests\\environment\\integrity.test.tsx tests\\environment\\gale\\rems.test.ts tests\\environment\\gale\\rad.test.ts tests\\environment\\gale\\adapter.test.ts tests\\color-basemap.test.ts",
+      "id": "baseline-unit",
+      "seconds": 9.6563211,
+      "log": "docs/evidence/i4c/baseline-unit.log"
+    },
+    {
+      "exitCode": 0,
+      "command": "python scripts/verify-i4a-numerical.py",
+      "id": "numerical",
+      "seconds": 0.5320464,
+      "log": "docs/evidence/i4c/numerical.log"
+    },
+    {
+      "exitCode": 0,
+      "command": "python scripts/verify-three-region-assets.py",
+      "id": "assets",
+      "seconds": 75.8020682,
+      "log": "docs/evidence/i4c/assets.log"
+    },
+    {
+      "exitCode": 0,
+      "command": "python -m unittest discover -s tests -p test_gale*.py",
+      "id": "python-gale",
+      "seconds": 3.674689,
+      "log": "docs/evidence/i4c/python-gale.log"
+    },
+    {
+      "exitCode": 0,
+      "command": "python -m unittest discover -s tests/environment/gale -p test*.py",
+      "id": "python-gale-environment",
+      "seconds": 0.21315099999999998,
+      "log": "docs/evidence/i4c/python-gale-environment.log"
+    },
+    {
+      "exitCode": 0,
+      "command": "python -m unittest discover -s tests/environment/jezero -p test*.py",
+      "id": "python-jezero-environment",
+      "seconds": 0.3222506,
+      "log": "docs/evidence/i4c/python-jezero-environment.log"
+    },
+    {
+      "exitCode": 0,
+      "command": "python -m unittest discover -s team/jezero/routing -p test_synthetic_routing.py",
+      "id": "python-jezero-routing",
+      "seconds": 0.2815175,
+      "log": "docs/evidence/i4c/python-jezero-routing.log"
+    },
+    {
+      "exitCode": 0,
+      "command": "python -m unittest discover -s team/jezero/terrain -p test_hillshade.py",
+      "id": "python-hillshade",
+      "seconds": 0.5182433,
+      "log": "docs/evidence/i4c/python-hillshade.log"
+    },
+    {
+      "exitCode": 0,
+      "command": "npm.cmd run routing:check",
+      "id": "routing-check",
+      "seconds": 1.2750264,
+      "log": "docs/evidence/i4c/routing-check.log"
+    },
+    {
+      "exitCode": 0,
+      "command": "npm.cmd run typecheck",
+      "id": "typecheck",
+      "seconds": 12.498503399999999,
+      "log": "docs/evidence/i4c/typecheck.log"
+    },
+    {
+      "exitCode": 0,
+      "command": "npm.cmd run lint",
+      "id": "lint",
+      "seconds": 16.632331699999998,
+      "log": "docs/evidence/i4c/lint.log"
+    },
+    {
+      "exitCode": 0,
+      "command": "npm.cmd run build",
+      "id": "build",
+      "seconds": 18.0664212,
+      "log": "docs/evidence/i4c/build.log"
+    }
+  ],
+  "unitBaseline": {
+    "tests": 510,
+    "pass": 510,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0
+  },
+  "allUnitIncludingI4C": {
+    "tests": 604,
+    "pass": 556,
+    "fail": 48,
+    "cancelled": 0,
+    "skipped": 0
+  },
+  "newNumerical": {
+    "tests": 4,
+    "pass": 4,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0
+  },
+  "scientificIntegrity": {
+    "tests": 4,
+    "pass": 3,
+    "fail": 1,
+    "cancelled": 0,
+    "skipped": 0
+  },
+  "styleConformance": {
+    "tests": 86,
+    "pass": 39,
+    "fail": 47,
+    "cancelled": 0,
+    "skipped": 0
+  },
+  "python": {
+    "run": 190,
+    "passed": 186,
+    "skipped": 4,
+    "skipReason": "optional raw DEM/weather/PDS caches; not runtime workers"
+  },
+  "assets": {
+    "identical": 7282,
+    "gale": 2163,
+    "jezero": 4124,
+    "oxia": 995
+  },
+  "routing": {
+    "independentReplay": "numerical.log",
+    "freshReceipts": "generated by baseline full unit run before numerical replay",
+    "separateMetrics": [
+      "native graph objective",
+      "Mars horizontal arc",
+      "DEM 3D distance",
+      "ascent/descent",
+      "bounded snap displacement"
+    ],
+    "registrationVerified": false,
+    "jezeroComputationalMaximumDegrees": 25,
+    "oxiaTerrainAvailable": false,
+    "fullNativeJezeroReaggregation": "not repeated"
+  },
+  "sourceReview": "primary-source-review.json",
+  "limitations": [
+    "conditional constant-rate EVA; no operational approval",
+    "no full independent native-sensor recalibration",
+    "live Three Forks and mineral service fetch unavailable; stored source captures reviewed",
+    "NASA lunar 20 degree planning context is not a Mars safety requirement",
+    "perceptual/color-vision palette validation pending implementation"
+  ],
+  "stageB": {
+    "status": "pending",
+    "finalI4DSha": null,
+    "reason": "Exact completed I4D commit not delivered; no final acceptance report or final-acceptance.json created"
+  },
+  "browser": {
+    "scope": "documented I4B 76 cases plus 15 independent I4C cases",
+    "command": "npx.cmd playwright test --config tests/i4c/playwright.config.ts",
+    "stats": {
+      "startTime": "2026-11-15T03:43:33.534Z",
+      "duration": 679003.146,
+      "expected": 91,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "report": "browser-results.json",
+    "log": "browser.log",
+    "viewports": "viewport-results.json",
+    "artifacts": "browser-artifacts.json",
+    "interruptedBroadRun": {
+      "selected": 169,
+      "completedPasses": 27,
+      "completedFailures": 2,
+      "status": "interrupted; not acceptance",
+      "failure": "legacy Gale Fit exploration region selector absent; use current region-specific fit controls",
+      "log": "browser-broad-interrupted.log"
+    },
+    "otherHistoricalBrowserCases": "not completed; no pass claim",
+    "postRunReporterPathCorrection": "JSON reporter path changed from docs/... to ../../docs/... because Playwright resolves it relative to tests/i4c. Completed JSON relocated with contents preserved; no test assertions, app source or browser behavior changed."
+  },
+  "staticFinal": {
+    "typecheck": "pass; typecheck-final.log",
+    "lint": "pass; lint-final.log"
+  },
+  "sourcePreservation": "source-preservation.json",
+  "unresolvedFindings": [
+    "I4C-01 P1",
+    "I4C-02 P2",
+    "I4C-03 P2",
+    "I4C-04 P2",
+    "I4C-05 P2",
+    "I4C-06 P2",
+    "I4C-07 P2",
+    "I4C-08 P3",
+    "I4C-09 P3"
+  ]
+}

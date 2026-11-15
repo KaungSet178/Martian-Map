@@ -1,0 +1,68 @@
+[
+  {
+    "path": "docs/evidence/i4a/gale-routes.json",
+    "generatedSha256": "f35b775c98725a91ca47bb59ecc8246446dcdde8bda5e1cf20003059273dedbc",
+    "preservedCopy": "docs/evidence/i4c/regenerated-reference-evidence/docs/evidence/i4a/gale-routes.json",
+    "restoration": "restored to audited baseline after preserving generated JSON evidence"
+  },
+  {
+    "path": "docs/evidence/i4a/jezero-routes.json",
+    "generatedSha256": "a25f9c32a0505f8404eada2c2553fe1b6ca0049210dd2d43d3ca8f2b1f88c1cb",
+    "preservedCopy": "docs/evidence/i4c/regenerated-reference-evidence/docs/evidence/i4a/jezero-routes.json",
+    "restoration": "restored to audited baseline after preserving generated JSON evidence"
+  },
+  {
+    "path": "docs/evidence/i4b/gale-eva.json",
+    "generatedSha256": "970a16e194313dcb27676c740baccdad6d9ec7633c0479c3f499a01e512b0d38",
+    "preservedCopy": "docs/evidence/i4c/regenerated-reference-evidence/docs/evidence/i4b/gale-eva.json",
+    "restoration": "restored to audited baseline after preserving generated JSON evidence"
+  },
+  {
+    "path": "docs/evidence/i4b/jezero-eva.json",
+    "generatedSha256": "1dfc771b3bfd791d02c51d26f80c1f7c7410eeeb39dab137d0c75fa13976f232",
+    "preservedCopy": "docs/evidence/i4c/regenerated-reference-evidence/docs/evidence/i4b/jezero-eva.json",
+    "restoration": "restored to audited baseline after preserving generated JSON evidence"
+  },
+  {
+    "path": "docs/screenshots/gale-environment-1440.png",
+    "generatedSha256": "9a4de6bdf677b664c9780ee58944697dcd3a62ec1c5ac968644b9dba7776dd42",
+    "preservedCopy": null,
+    "restoration": "restored to audited baseline after preserving generated JSON evidence"
+  },
+  {
+    "path": "docs/screenshots/gale-environment-390.png",
+    "generatedSha256": "80172ff5d5b1ff354179d628a897222e584e49ab96df2523af9c9eb6ac6f0816",
+    "preservedCopy": null,
+    "restoration": "restored to audited baseline after preserving generated JSON evidence"
+  },
+  {
+    "path": "docs/screenshots/jezero-environment-1440.png",
+    "generatedSha256": "a676e1cd6d00d6b6058da0c7cb60b10364f69a0b8c6da110d3675bf84d5bb465",
+    "preservedCopy": null,
+    "restoration": "restored to audited baseline after preserving generated JSON evidence"
+  },
+  {
+    "path": "docs/screenshots/jezero-environment-390.png",
+    "generatedSha256": "bf16da5304c5d1174cb07ce36c3fbe0a3a13ec31d6c865aa607f06b574ab57b6",
+    "preservedCopy": null,
+    "restoration": "restored to audited baseline after preserving generated JSON evidence"
+  },
+  {
+    "path": "docs/screenshots/oxia-environment-1440.png",
+    "generatedSha256": "d85951cca0bce7bea33062142a7e3b34286924f6ae144ae4cad09fd3770aed27",
+    "preservedCopy": null,
+    "restoration": "restored to audited baseline after preserving generated JSON evidence"
+  },
+  {
+    "path": "docs/screenshots/oxia-environment-390.png",
+    "generatedSha256": "ab5ba9f7673a5e6725d33ea5ddc946e42d966933c058c67e4297ac9df8cfc940",
+    "preservedCopy": null,
+    "restoration": "restored to audited baseline after preserving generated JSON evidence"
+  },
+  {
+    "path": "docs/evidence/i4a/f3-replay-compatibility.json",
+    "generatedSha256": "ca0979110febe07c51cdc8ecf4233433e239582d874ae30e5041f609b2a98210",
+    "preservedCopy": "docs/evidence/i4c/regenerated-reference-evidence/docs/evidence/i4a/f3-replay-compatibility.json",
+    "restoration": "restored generated formatting-only change to baseline"
+  }
+]

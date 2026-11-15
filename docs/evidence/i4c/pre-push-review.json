@@ -1,0 +1,30 @@
+{
+  "requestedCommit": "f226643b84b89953df30da37936d71365651bc7e",
+  "action": "amend unpushed audit commit for requested privacy cleanup; original commit will not be pushed",
+  "scope": "audit-only changed files, screenshots and PNG metadata",
+  "findings": {
+    "credentialPatternsDetected": 0,
+    "embeddedEmailsDetected": 0,
+    "localUserDirectoryPrefixesDetected": 2,
+    "localUserDirectoryPrefixesRedacted": 2,
+    "screenshotsVisuallyReviewed": 5,
+    "pngMetadata": "standard IHDR/IDAT/IEND chunks only; no text/EXIF metadata"
+  },
+  "sizeReview": {
+    "originalFiles": 130,
+    "originalBytes": 5775715,
+    "largestFileBytes": 660910,
+    "largestFile": "docs/evidence/i4c/browser/i4b/gale-1440-review.png",
+    "unnecessaryLargeFilesFound": false,
+    "rationale": "logs preserve complete failures; per-viewport route receipts, exports and screenshots substantiate executed acceptance and independent numerical replay; no dependency trees, native source rasters, build output or browser trace archives included"
+  },
+  "testPreservation": {
+    "testsEdited": false,
+    "recordedFailures": 48,
+    "styleConformanceFailures": 47,
+    "jezeroNodataDefect": "P1 I4C-01 explicitly open",
+    "testResultsChanged": false
+  },
+  "stageB": "pending completed I4D commit",
+  "scannerLimit": "pattern scans and human review are bounded checks, not a mathematical guarantee of absence"
+}

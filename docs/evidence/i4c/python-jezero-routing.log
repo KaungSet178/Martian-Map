@@ -1,0 +1,11 @@
+python.exe : .........
+At D:\martian-map-i4c-qa\tests\i4c\validate.ps1:22 char:2
++  & $exe @arguments *> "docs/evidence/i4c/$($c.id).log"
++  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (.........:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.024s
+
+OK

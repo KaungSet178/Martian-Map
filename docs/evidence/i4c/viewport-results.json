@@ -1,0 +1,122 @@
+[
+  {
+    "region": "gale",
+    "width": 1440,
+    "height": 900,
+    "documentOverflow": false,
+    "datasetControls": 10,
+    "evidence": "docs/evidence/i4c/browser/i4c/gale-1440.json"
+  },
+  {
+    "region": "gale",
+    "width": 320,
+    "height": 640,
+    "documentOverflow": false,
+    "datasetControls": 10,
+    "evidence": "docs/evidence/i4c/browser/i4c/gale-320.json"
+  },
+  {
+    "region": "gale",
+    "width": 390,
+    "height": 844,
+    "documentOverflow": false,
+    "datasetControls": 10,
+    "evidence": "docs/evidence/i4c/browser/i4c/gale-390.json"
+  },
+  {
+    "region": "gale",
+    "width": 768,
+    "height": 1024,
+    "documentOverflow": false,
+    "datasetControls": 10,
+    "evidence": "docs/evidence/i4c/browser/i4c/gale-768.json"
+  },
+  {
+    "region": "gale",
+    "width": 844,
+    "height": 390,
+    "documentOverflow": false,
+    "datasetControls": 10,
+    "evidence": "docs/evidence/i4c/browser/i4c/gale-844.json"
+  },
+  {
+    "region": "jezero",
+    "width": 1440,
+    "height": 900,
+    "documentOverflow": false,
+    "datasetControls": 4,
+    "evidence": "docs/evidence/i4c/browser/i4c/jezero-1440.json"
+  },
+  {
+    "region": "jezero",
+    "width": 320,
+    "height": 640,
+    "documentOverflow": false,
+    "datasetControls": 4,
+    "evidence": "docs/evidence/i4c/browser/i4c/jezero-320.json"
+  },
+  {
+    "region": "jezero",
+    "width": 390,
+    "height": 844,
+    "documentOverflow": false,
+    "datasetControls": 4,
+    "evidence": "docs/evidence/i4c/browser/i4c/jezero-390.json"
+  },
+  {
+    "region": "jezero",
+    "width": 768,
+    "height": 1024,
+    "documentOverflow": false,
+    "datasetControls": 4,
+    "evidence": "docs/evidence/i4c/browser/i4c/jezero-768.json"
+  },
+  {
+    "region": "jezero",
+    "width": 844,
+    "height": 390,
+    "documentOverflow": false,
+    "datasetControls": 4,
+    "evidence": "docs/evidence/i4c/browser/i4c/jezero-844.json"
+  },
+  {
+    "region": "oxia",
+    "width": 1440,
+    "height": 900,
+    "documentOverflow": false,
+    "datasetControls": 4,
+    "evidence": "docs/evidence/i4c/browser/i4c/oxia-1440.json"
+  },
+  {
+    "region": "oxia",
+    "width": 320,
+    "height": 640,
+    "documentOverflow": false,
+    "datasetControls": 4,
+    "evidence": "docs/evidence/i4c/browser/i4c/oxia-320.json"
+  },
+  {
+    "region": "oxia",
+    "width": 390,
+    "height": 844,
+    "documentOverflow": false,
+    "datasetControls": 4,
+    "evidence": "docs/evidence/i4c/browser/i4c/oxia-390.json"
+  },
+  {
+    "region": "oxia",
+    "width": 768,
+    "height": 1024,
+    "documentOverflow": false,
+    "datasetControls": 4,
+    "evidence": "docs/evidence/i4c/browser/i4c/oxia-768.json"
+  },
+  {
+    "region": "oxia",
+    "width": 844,
+    "height": 390,
+    "documentOverflow": false,
+    "datasetControls": 4,
+    "evidence": "docs/evidence/i4c/browser/i4c/oxia-844.json"
+  }
+]

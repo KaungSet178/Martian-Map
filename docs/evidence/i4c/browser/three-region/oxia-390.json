@@ -1,0 +1,115 @@
+{
+  "checks": [
+    {
+      "category": "Elevation",
+      "layer": "oxia-elevation",
+      "visible_pixels": 8732,
+      "opacity_pixels": 8730
+    },
+    {
+      "category": "Hillshade",
+      "layer": "oxia-terrain",
+      "visible_pixels": 8781,
+      "opacity_pixels": 8767
+    },
+    {
+      "category": "Slope",
+      "layer": "oxia-slope",
+      "visible_pixels": 8766,
+      "opacity_pixels": 8731
+    },
+    {
+      "category": "Thermal",
+      "layer": "oxia-thermal-night",
+      "visible_pixels": 8820,
+      "opacity_pixels": 8814
+    }
+  ],
+  "errors": [],
+  "responses": [
+    {
+      "url": "/maps/oxia/ctx-tiles/7/55/57.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/oxia/ctx-tiles/7/54/57.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/oxia/ctx-tiles/6/27/28.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/oxia/elevation-tiles/6/27/28.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/oxia/hillshade-tiles/6/27/28.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/oxia/slope-tiles/6/27/28.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/oxia/themis-night-tiles/6/27/28.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/terrain-regional/coverage.geojson",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/terrain-global/coverage.geojson",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/curiosity-traverse.geojson",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/ctx-tiles/13/7222/4204.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/ctx-tiles/13/7223/4204.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/ctx-tiles/13/7222/4203.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/ctx-tiles/13/7223/4203.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/ctx-tiles/13/7222/4205.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/gale/ctx-tiles/13/7223/4205.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/perseverance-traverse.geojson",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/ctx-lvs-tiles/10/731/458.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/jezero/ctx-lvs-tiles/10/732/458.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/oxia/ctx-tiles/7/55/57.png",
+      "status": 200
+    },
+    {
+      "url": "/maps/oxia/ctx-tiles/7/54/57.png",
+      "status": 200
+    }
+  ]
+}

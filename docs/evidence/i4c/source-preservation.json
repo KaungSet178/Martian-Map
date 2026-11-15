@@ -1,0 +1,34 @@
+{
+  "sourceRevision": "870f282c0b9349b1d36c058970d2220cc4ea5a5e",
+  "protectedPaths": [
+    "app",
+    "components",
+    "lib",
+    "regions",
+    "data",
+    "public",
+    "team",
+    "scripts",
+    "package.json",
+    "package-lock.json",
+    "AGENTS.md",
+    "playwright.config.ts"
+  ],
+  "changedProtectedFiles": [],
+  "runtimeChanges": false,
+  "restoredReferenceFiles": [
+    "docs/evidence/i4a/gale-routes.json",
+    "docs/evidence/i4a/jezero-routes.json",
+    "docs/evidence/i4b/gale-eva.json",
+    "docs/evidence/i4b/jezero-eva.json",
+    "docs/screenshots/gale-environment-1440.png",
+    "docs/screenshots/gale-environment-390.png",
+    "docs/screenshots/jezero-environment-1440.png",
+    "docs/screenshots/jezero-environment-390.png",
+    "docs/screenshots/oxia-environment-1440.png",
+    "docs/screenshots/oxia-environment-390.png",
+    "docs/evidence/i4a/f3-replay-compatibility.json"
+  ],
+  "otherWorktrees": "No files intentionally written outside I4C worktree; main initial status recorded in session, no before/after file hash audit claimed",
+  "stageB": "pending exact completed I4D SHA"
+}

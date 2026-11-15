@@ -1,0 +1,100 @@
+﻿[
+    {
+        "exitCode":  0,
+        "command":  "node scripts/prepare-map-worker.mjs",
+        "id":  "prepare-map",
+        "seconds":  0.17026339999999998,
+        "log":  "docs/evidence/i4c/prepare-map.log"
+    },
+    {
+        "exitCode":  0,
+        "command":  "node scripts/build-routing-worker.mjs",
+        "id":  "build-routing",
+        "seconds":  0.1887341,
+        "log":  "docs/evidence/i4c/build-routing.log"
+    },
+    {
+        "exitCode":  0,
+        "command":  "node --import tsx --test tests\\waypoint-ui.test.ts tests\\waypoint-planning.test.ts tests\\waypoint-layers.test.ts tests\\waypoint-bridge.test.ts tests\\terrain-integration.test.ts tests\\scientific-categories.test.ts tests\\regions.test.ts tests\\mission.test.ts tests\\mission-timeline.test.ts tests\\mission-resource-budget.test.ts tests\\mission-m4-integration.test.ts tests\\jezero-routing.test.ts tests\\jezero-four-layers.test.ts tests\\i4b-eva.test.tsx tests\\i4a-integration.test.tsx tests\\geodesy.test.ts tests\\gale-viewport.test.ts tests\\gale-routing.test.ts tests\\gale-integration.test.ts tests\\gale-four-layers.test.ts tests\\gale-focused-view.test.ts tests\\gale-coverage.test.ts tests\\f3-science.test.ts tests\\f1-mission-integrity.test.tsx tests\\environment\\jezero\\dataset.test.ts tests\\environment\\jezero\\component.test.tsx tests\\environment\\jezero\\adapter.test.ts tests\\environment\\integrity.test.tsx tests\\environment\\gale\\rems.test.ts tests\\environment\\gale\\rad.test.ts tests\\environment\\gale\\adapter.test.ts tests\\color-basemap.test.ts",
+        "id":  "baseline-unit",
+        "seconds":  9.6563211,
+        "log":  "docs/evidence/i4c/baseline-unit.log"
+    },
+    {
+        "exitCode":  0,
+        "command":  "python scripts/verify-i4a-numerical.py",
+        "id":  "numerical",
+        "seconds":  0.5320464,
+        "log":  "docs/evidence/i4c/numerical.log"
+    },
+    {
+        "exitCode":  0,
+        "command":  "python scripts/verify-three-region-assets.py",
+        "id":  "assets",
+        "seconds":  75.8020682,
+        "log":  "docs/evidence/i4c/assets.log"
+    },
+    {
+        "exitCode":  0,
+        "command":  "python -m unittest discover -s tests -p test_gale*.py",
+        "id":  "python-gale",
+        "seconds":  3.674689,
+        "log":  "docs/evidence/i4c/python-gale.log"
+    },
+    {
+        "exitCode":  0,
+        "command":  "python -m unittest discover -s tests/environment/gale -p test*.py",
+        "id":  "python-gale-environment",
+        "seconds":  0.21315099999999998,
+        "log":  "docs/evidence/i4c/python-gale-environment.log"
+    },
+    {
+        "exitCode":  0,
+        "command":  "python -m unittest discover -s tests/environment/jezero -p test*.py",
+        "id":  "python-jezero-environment",
+        "seconds":  0.3222506,
+        "log":  "docs/evidence/i4c/python-jezero-environment.log"
+    },
+    {
+        "exitCode":  0,
+        "command":  "python -m unittest discover -s team/jezero/routing -p test_synthetic_routing.py",
+        "id":  "python-jezero-routing",
+        "seconds":  0.2815175,
+        "log":  "docs/evidence/i4c/python-jezero-routing.log"
+    },
+    {
+        "exitCode":  0,
+        "command":  "python -m unittest discover -s team/jezero/terrain -p test_hillshade.py",
+        "id":  "python-hillshade",
+        "seconds":  0.5182433,
+        "log":  "docs/evidence/i4c/python-hillshade.log"
+    },
+    {
+        "exitCode":  0,
+        "command":  "npm.cmd run routing:check",
+        "id":  "routing-check",
+        "seconds":  1.2750264,
+        "log":  "docs/evidence/i4c/routing-check.log"
+    },
+    {
+        "exitCode":  0,
+        "command":  "npm.cmd run typecheck",
+        "id":  "typecheck",
+        "seconds":  12.498503399999999,
+        "log":  "docs/evidence/i4c/typecheck.log"
+    },
+    {
+        "exitCode":  0,
+        "command":  "npm.cmd run lint",
+        "id":  "lint",
+        "seconds":  16.632331699999998,
+        "log":  "docs/evidence/i4c/lint.log"
+    },
+    {
+        "exitCode":  0,
+        "command":  "npm.cmd run build",
+        "id":  "build",
+        "seconds":  18.0664212,
+        "log":  "docs/evidence/i4c/build.log"
+    }
+]

@@ -1,0 +1,156 @@
+[
+  {
+    "path": "docs/evidence/i4c/all-unit.log",
+    "rawEncoding": "utf-16",
+    "rawSha256": "38f054f5205ddb4cf783b9af7fcc0c9268ba0c255e266b927476120d849cfd08",
+    "normalizedSha256": "bee326f4a5b8592cdd7ffceae616959912a5e1361266c34ccada62a643f716af",
+    "operation": "decode BOM; CRLF to LF; remove trailing whitespace and excess trailing blank lines; no semantic edit"
+  },
+  {
+    "path": "docs/evidence/i4c/assets.log",
+    "rawEncoding": "utf-16",
+    "rawSha256": "bae1d994199b1fd7462c9c5d099e11b4203151d9e03a5f4ebd8f435712f086ab",
+    "normalizedSha256": "3026fe469d9ba49445e6148ecccb1ac88998091380e3c8d13817270feaf37525",
+    "operation": "decode BOM; CRLF to LF; remove trailing whitespace and excess trailing blank lines; no semantic edit"
+  },
+  {
+    "path": "docs/evidence/i4c/baseline-unit.log",
+    "rawEncoding": "utf-16",
+    "rawSha256": "b7caf55715aad3eefd0310943ebc49d332e5cca7a29aacc0f019b53d10b9b59e",
+    "normalizedSha256": "9491f4597e9d1f4e532d0a30ca5b2254d926e2d871a362840e0ce6b24954ed62",
+    "operation": "decode BOM; CRLF to LF; remove trailing whitespace and excess trailing blank lines; no semantic edit"
+  },
+  {
+    "path": "docs/evidence/i4c/browser-broad-interrupted.log",
+    "rawEncoding": "utf-16",
+    "rawSha256": "54f2af8178e422e0d96c5f3a262599e75cea8d01787eaf57cf6ecf917205cfae",
+    "normalizedSha256": "d601ff14d802acb3426c32fb0c460c72ac78a4381df6ebb5f86fad6fafcbed36",
+    "operation": "decode BOM; CRLF to LF; remove trailing whitespace and excess trailing blank lines; no semantic edit"
+  },
+  {
+    "path": "docs/evidence/i4c/browser.log",
+    "rawEncoding": "utf-16",
+    "rawSha256": "afa56f85289d0fb08bd414856ffa0e5d7e8749ee08ef296f9b2c8616534225b9",
+    "normalizedSha256": "805b2123a752231be21a5d56dd91e5f0f6f5c9e8b31b67dcffaae9337619f37b",
+    "operation": "decode BOM; CRLF to LF; remove trailing whitespace and excess trailing blank lines; no semantic edit"
+  },
+  {
+    "path": "docs/evidence/i4c/build-routing.log",
+    "rawEncoding": "utf-8-sig",
+    "rawSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "normalizedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "operation": "decode BOM; CRLF to LF; remove trailing whitespace and excess trailing blank lines; no semantic edit"
+  },
+  {
+    "path": "docs/evidence/i4c/build.log",
+    "rawEncoding": "utf-16",
+    "rawSha256": "6eb02b12ace0f7633d85f85ec1b935ba961c950529c78f25328436dfd7bc03ff",
+    "normalizedSha256": "e743e673b106ac1f6426deeaf4ae4dda90fe33de3a0a9d8daed5b9d4ef5e4552",
+    "operation": "decode BOM; CRLF to LF; remove trailing whitespace and excess trailing blank lines; no semantic edit"
+  },
+  {
+    "path": "docs/evidence/i4c/i4c-numerical.log",
+    "rawEncoding": "utf-16",
+    "rawSha256": "af6113b6eb45a273d0ada3670c3eebe7c0d544d34a80b523a871010af1d9bbef",
+    "normalizedSha256": "17460a36f4736626cd18a222c051e951ba9dacfbb7e569be2e602cadd70caef5",
+    "operation": "decode BOM; CRLF to LF; remove trailing whitespace and excess trailing blank lines; no semantic edit"
+  },
+  {
+    "path": "docs/evidence/i4c/lint-final.log",
+    "rawEncoding": "utf-16",
+    "rawSha256": "85b34b3ffe42bbcf5bf14a98531eaea6f3a73578e2098afe19cf8540cd1f0477",
+    "normalizedSha256": "0e46e3bbd381579b6d07c5f02739f08bc77a61bcbf73405a84e5e525e51d937f",
+    "operation": "decode BOM; CRLF to LF; remove trailing whitespace and excess trailing blank lines; no semantic edit"
+  },
+  {
+    "path": "docs/evidence/i4c/lint.log",
+    "rawEncoding": "utf-16",
+    "rawSha256": "85b34b3ffe42bbcf5bf14a98531eaea6f3a73578e2098afe19cf8540cd1f0477",
+    "normalizedSha256": "0e46e3bbd381579b6d07c5f02739f08bc77a61bcbf73405a84e5e525e51d937f",
+    "operation": "decode BOM; CRLF to LF; remove trailing whitespace and excess trailing blank lines; no semantic edit"
+  },
+  {
+    "path": "docs/evidence/i4c/numerical.log",
+    "rawEncoding": "utf-16",
+    "rawSha256": "f9d9a0f99723c279d153dd75752d3b1ea198df154ac4e42e3f93b079d66c7ef7",
+    "normalizedSha256": "e61769f1c721a6de989e86a696bd4429f6cfc653213410a4961ead8b08135d90",
+    "operation": "decode BOM; CRLF to LF; remove trailing whitespace and excess trailing blank lines; no semantic edit"
+  },
+  {
+    "path": "docs/evidence/i4c/prepare-map.log",
+    "rawEncoding": "utf-8-sig",
+    "rawSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "normalizedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "operation": "decode BOM; CRLF to LF; remove trailing whitespace and excess trailing blank lines; no semantic edit"
+  },
+  {
+    "path": "docs/evidence/i4c/python-gale-environment.log",
+    "rawEncoding": "utf-16",
+    "rawSha256": "a64c05d4915e7fa063e7ec918df8b5487a00ee06e7bad6bfb277191cd7f9ab3f",
+    "normalizedSha256": "a682872f4247c040f4316ce0ae2ff7bd8fc79948195b69e640c8319556cf9a39",
+    "operation": "decode BOM; CRLF to LF; remove trailing whitespace and excess trailing blank lines; no semantic edit"
+  },
+  {
+    "path": "docs/evidence/i4c/python-gale.log",
+    "rawEncoding": "utf-16",
+    "rawSha256": "bb9c8295d8506327fff93f6db865d6de8d49815a5dd9004b3d446292a3de3216",
+    "normalizedSha256": "4ceabf64247fd7e21b6ce3050b7c4e73bc41f8d1be856ef6e5be073ccb29cd04",
+    "operation": "decode BOM; CRLF to LF; remove trailing whitespace and excess trailing blank lines; no semantic edit; redact two local user-home directory prefixes as <USER_HOME>; retain test output and results"
+  },
+  {
+    "path": "docs/evidence/i4c/python-hillshade.log",
+    "rawEncoding": "utf-16",
+    "rawSha256": "773310ac185f485c36f6611c79fdb38c3f7ec7a8698d5ade367902e93604864a",
+    "normalizedSha256": "2b3d5a42f1471cd2cc133fa48f2859041f134626aca815e05dbf3034101e25e9",
+    "operation": "decode BOM; CRLF to LF; remove trailing whitespace and excess trailing blank lines; no semantic edit"
+  },
+  {
+    "path": "docs/evidence/i4c/python-jezero-environment.log",
+    "rawEncoding": "utf-16",
+    "rawSha256": "78b95c0fc14e1655cb22c6734b13e39bb2c15a5384c4d99e71e8c68d84af8688",
+    "normalizedSha256": "84e66c8e6c4cfe5d7db14b5adccf69f3e1b7484b08cbe878b734e36505db2e53",
+    "operation": "decode BOM; CRLF to LF; remove trailing whitespace and excess trailing blank lines; no semantic edit"
+  },
+  {
+    "path": "docs/evidence/i4c/python-jezero-routing.log",
+    "rawEncoding": "utf-16",
+    "rawSha256": "a37795825d9b1e52cba0649d9a5a01db33fe8efe5a29194c4dcfe2c07e25ef7b",
+    "normalizedSha256": "680b651fdb54da531766b02c6d7d56b79a888d40cadc668101247f34e0ce1ad5",
+    "operation": "decode BOM; CRLF to LF; remove trailing whitespace and excess trailing blank lines; no semantic edit"
+  },
+  {
+    "path": "docs/evidence/i4c/routing-check.log",
+    "rawEncoding": "utf-16",
+    "rawSha256": "58b870b38511291f9f0383e06019bae292117f3fb401e07aa9bbe360e2612aad",
+    "normalizedSha256": "1e52f74ffca246bdaba816998cf7a7387714fcc22d8ea2d6e0a5a80aa839e742",
+    "operation": "decode BOM; CRLF to LF; remove trailing whitespace and excess trailing blank lines; no semantic edit"
+  },
+  {
+    "path": "docs/evidence/i4c/scientific-integrity.log",
+    "rawEncoding": "utf-16",
+    "rawSha256": "30b201574e500a23adc2bd489aad670fe5e33414e842d51ae6e3fdf3e3e5b277",
+    "normalizedSha256": "56e69f56a5da957464a5dd99d9539305fdd6c02fcd3cd4dbf0fb9769c34b9c5a",
+    "operation": "decode BOM; CRLF to LF; remove trailing whitespace and excess trailing blank lines; no semantic edit"
+  },
+  {
+    "path": "docs/evidence/i4c/style-conformance.log",
+    "rawEncoding": "utf-16",
+    "rawSha256": "4a78a8ff318d5fc500b2e1182f5d8cf1a25663d0871a0bee0a766dc10aacef5a",
+    "normalizedSha256": "54e214b44e7d030e9aa650dc2c8f4dec3a03b12c561fb64f4bdfff6b87ac00f6",
+    "operation": "decode BOM; CRLF to LF; remove trailing whitespace and excess trailing blank lines; no semantic edit"
+  },
+  {
+    "path": "docs/evidence/i4c/typecheck-final.log",
+    "rawEncoding": "utf-16",
+    "rawSha256": "3da9ffe28eb6c3e895ea90bb60488ee6b89dceb01c7286acd11ce49cf9d4adb1",
+    "normalizedSha256": "1f89457b5e717e8beedebdf5ff09fab293aaffb343c6f44c4aeac96737fa6eda",
+    "operation": "decode BOM; CRLF to LF; remove trailing whitespace and excess trailing blank lines; no semantic edit"
+  },
+  {
+    "path": "docs/evidence/i4c/typecheck.log",
+    "rawEncoding": "utf-16",
+    "rawSha256": "3da9ffe28eb6c3e895ea90bb60488ee6b89dceb01c7286acd11ce49cf9d4adb1",
+    "normalizedSha256": "1f89457b5e717e8beedebdf5ff09fab293aaffb343c6f44c4aeac96737fa6eda",
+    "operation": "decode BOM; CRLF to LF; remove trailing whitespace and excess trailing blank lines; no semantic edit"
+  }
+]
