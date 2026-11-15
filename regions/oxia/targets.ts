@@ -92,13 +92,13 @@ export const targets = [
     geological_significance:
       "Hydrous minerals record past interaction with water. The layer does not give the mineral class, so this point complements the nearby phyllosilicate detection rather than confirming it.",
     priority_category:
-      "Secondary: single Mars Trek detection, 3 km from the primary clay target",
+      "Secondary: single Mars Trek compilation, 3 km from the primary clay target",
     coordinates: { latitude: 18.17, longitude_east: 335.82 },
     coordinate_reference,
     coordinate_verified: true,
     source_ids: ["oxia-trek-hydrous"],
     activity:
-      "Inspect the detection area in orbital imagery and compare it with the clay target 3 km north. Location is approximate (about 0.6 km precision).",
+      "Inspect the detection area in orbital imagery and compare it with the clay target 3 km north. Source coordinates are rounded to 0.01 degree (about 0.6 km spacing); positional uncertainty and independent registration are unknown.",
     evidence: "Interpreted",
     verification: "verified",
     routing_eligibility,
