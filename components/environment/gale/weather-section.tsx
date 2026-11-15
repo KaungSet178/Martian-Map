@@ -51,7 +51,7 @@ export function WeatherSection() {
     {
       id: "air-temp",
       name: `Air Temperature (${tempUnit === "C" ? "°C" : "K"})`,
-      color: "#38bdf8", // Sky blue
+      color: "#0F2747", // navy
       unit: tempUnit === "C" ? "°C" : "K",
       data: airSeriesData.map((d) => ({
         x: d.hour,
@@ -62,7 +62,7 @@ export function WeatherSection() {
     {
       id: "ground-temp",
       name: `Ground Temperature (${tempUnit === "C" ? "°C" : "K"})`,
-      color: "#fb923c", // Warm amber/orange
+      color: "#FF7A00", // citrus
       unit: tempUnit === "C" ? "°C" : "K",
       data: groundSeriesData.map((d) => ({
         x: d.hour,
@@ -77,7 +77,7 @@ export function WeatherSection() {
     {
       id: "pressure",
       name: `Pressure (${pressureUnit})`,
-      color: "#a855f7", // Purple
+      color: "#5E7391", // navy tint
       unit: pressureUnit,
       data: pressureRaw.map((d) => ({
         x: d.hour,
@@ -92,7 +92,7 @@ export function WeatherSection() {
     {
       id: "uv-abc",
       name: "UV-ABC Solar Irradiance (W/m²)",
-      color: "#facc15", // Yellow
+      color: "#A84F00", // citrus ink
       unit: "W/m²",
       data: uvRaw.map((d) => ({
         x: d.hour,
@@ -107,7 +107,7 @@ export function WeatherSection() {
     {
       id: "wind-speed",
       name: "Wind Speed (m/s) [Sparse]",
-      color: "#34d399", // Emerald
+      color: "#2F4F78", // mid navy
       unit: "m/s",
       data: windRaw.map((d) => ({
         x: d.hour,

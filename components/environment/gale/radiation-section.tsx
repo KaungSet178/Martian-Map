@@ -31,7 +31,7 @@ export function RadiationSection() {
     {
       id: "det-b-silicon",
       name: `Detector B (Silicon, 300 µm) [${unitMode === "hourly" ? "µGy/hr" : "µGy/day"}]`,
-      color: "#38bdf8", // Sky blue
+      color: "#0F2747", // navy
       unit: unitMode === "hourly" ? "µGy/hr" : "µGy/day",
       data: doseSeriesData.map((d) => ({
         x: d.index,
@@ -42,7 +42,7 @@ export function RadiationSection() {
     {
       id: "det-e-plastic",
       name: `Detector E (Plastic scintillator, 18 mm) [${unitMode === "hourly" ? "µGy/hr" : "µGy/day"}]`,
-      color: "#ec4899", // Rose / pink
+      color: "#FF7A00", // citrus
       unit: unitMode === "hourly" ? "µGy/hr" : "µGy/day",
       data: doseSeriesData.map((d) => ({
         x: d.index,

@@ -158,7 +158,7 @@ export default function MapWorkspace({
                 {
                   id: "background",
                   type: "background",
-                  paint: { "background-color": "#0D1928" },
+                  paint: { "background-color": "#E4E7EC" },
                 },
               ],
             },
@@ -296,7 +296,7 @@ export default function MapWorkspace({
         type: "line",
         source: "schematic",
         paint: {
-          "line-color": ["case", ["get", "major"], "#536477", "#26394D"],
+          "line-color": ["case", ["get", "major"], "rgba(15, 39, 71, 0.45)", "rgba(15, 39, 71, 0.18)"],
           "line-width": ["case", ["get", "major"], 1.2, 0.7],
         },
       });

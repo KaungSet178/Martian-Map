@@ -45,7 +45,7 @@ function EnvironmentContent() {
             <Link
               href="/"
               style={{
-                color: "var(--color-route, #59e3fa)",
+                color: "var(--citrus-ink, #a84f00)",
                 fontSize: "13px",
                 textDecoration: "none",
               }}

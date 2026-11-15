@@ -115,7 +115,7 @@ export function EnvironmentalChart({
                   y1={yPos}
                   x2={width - padRight}
                   y2={yPos}
-                  stroke="#334155"
+                  stroke="rgba(15, 39, 71, 0.18)"
                   strokeDasharray="2,2"
                   strokeWidth="0.8"
                 />
@@ -155,7 +155,7 @@ export function EnvironmentalChart({
                     y1={padTop + plotHeight}
                     x2={xPos}
                     y2={padTop + plotHeight + 4}
-                    stroke="#475569"
+                    stroke="rgba(15, 39, 71, 0.5)"
                     strokeWidth="1"
                   />
                   <text
@@ -259,8 +259,8 @@ export function EnvironmentalChart({
                 width="120"
                 height="32"
                 rx="4"
-                fill="#0f172a"
-                stroke="#475569"
+                fill="#FFF9F0"
+                stroke="rgba(15, 39, 71, 0.5)"
                 strokeWidth="1"
                 className="shadow-lg opacity-95"
               />

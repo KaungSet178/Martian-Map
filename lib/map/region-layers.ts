@@ -189,9 +189,9 @@ export function mountRegionLayers(
       source: PRESENTATION_MASK_SOURCE_ID,
       layout: { visibility: "visible" },
       paint: {
-        "fill-color": "#0D1928",
+        "fill-color": "#E4E7EC",
         "fill-opacity": 1,
-        "fill-outline-color": "#0D1928",
+        "fill-outline-color": "#E4E7EC",
       },
     });
     ids.push(PRESENTATION_MASK_LAYER_ID);
@@ -216,7 +216,7 @@ export function mountRegionLayers(
         map.addLayer({
           id: halo, type: "line", source: id,
           layout: { visibility: "none", "line-join": "round" },
-          paint: { "line-color": "#09111F", "line-width": 5,
+          paint: { "line-color": "#0F2747", "line-width": 5,
             ...(render.line_pattern === "dashed" ? { "line-dasharray": [2.4, 1.6] } : {}) },
         });
         ids.push(halo);
@@ -239,7 +239,7 @@ export function mountRegionLayers(
         layout: { visibility: "none" },
         paint: {
           "fill-color": fillColor(layer),
-          ...(render.category_property ? { "fill-outline-color": "#111D30" } : {}),
+          ...(render.category_property ? { "fill-outline-color": "#0F2747" } : {}),
         },
       });
       ids.push(id);

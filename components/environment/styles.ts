@@ -26,16 +26,16 @@ ${jezeroEnvironmentCss}
   --env-control: var(--color-control-border, #647c9a);
   --env-text: var(--color-text, #f0f5fc);
   --env-muted: var(--color-text-muted, #a8b8cd);
-  --env-cyan: var(--color-route, #59e3fa);
+  --env-cyan: var(--citrus-ink, #a84f00);
   --env-science: var(--color-science, #d0bdff);
   --env-caution: var(--color-caution, #ffc36b);
   --env-critical: var(--color-critical, #ff8d9a);
-  --env-ok: #7ce0b8;
+  --env-ok: var(--navy, #0f2747);
   --env-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   color: var(--env-text);
   background: var(--env-surface);
   border: 1px solid var(--env-border);
-  border-radius: 12px;
+  border-radius: 0;
   padding: 20px;
   font-family: Geist, system-ui, -apple-system, "Segoe UI", sans-serif;
   font-size: 14px;
@@ -99,7 +99,7 @@ ${jezeroEnvironmentCss}
   gap: 6px;
   min-height: 26px;
   padding: 2px 10px;
-  border-radius: 999px;
+  border-radius: 0;
   border: 1px solid var(--env-border);
   background: var(--env-raised);
   color: var(--env-muted);
@@ -112,12 +112,12 @@ ${jezeroEnvironmentCss}
 
 .env-tag--verified {
   color: var(--env-ok);
-  border-color: rgba(124, 224, 184, 0.4);
+  border-color: rgba(15, 39, 71, 0.4);
 }
 
 .env-tag--unavailable {
   color: var(--env-caution);
-  border-color: rgba(255, 195, 107, 0.4);
+  border-color: rgba(255, 122, 0, 0.4);
 }
 
 /* Common Buttons & Actions */
@@ -127,7 +127,7 @@ ${jezeroEnvironmentCss}
   gap: 8px;
   min-height: 36px;
   padding: 6px 14px;
-  border-radius: 8px;
+  border-radius: 0;
   cursor: pointer;
   border: 1px solid var(--env-control);
   background: var(--env-raised);
@@ -141,19 +141,20 @@ ${jezeroEnvironmentCss}
 
 .env-button:hover {
   border-color: var(--env-cyan);
-  background: rgba(89, 227, 250, 0.1);
+  background: rgba(255, 122, 0, 0.1);
 }
 
 .env-button--primary {
-  background: var(--env-cyan);
-  border-color: var(--env-cyan);
-  color: #06212b;
+  background: var(--citrus, #ff7a00);
+  border-color: var(--citrus, #ff7a00);
+  color: var(--navy, #0f2747);
   font-weight: 600;
 }
 
 .env-button--primary:hover {
-  background: #7ef0ff;
-  border-color: #7ef0ff;
+  background: var(--navy, #0f2747);
+  border-color: var(--navy, #0f2747);
+  color: var(--ivory, #fff9f0);
 }
 
 /* Oxia Planum Scoped Styles */
@@ -162,9 +163,9 @@ ${jezeroEnvironmentCss}
 }
 
 .oxia-unavailable-card {
-  background: rgba(9, 17, 31, 0.6);
+  background: rgba(15, 39, 71, 0.04);
   border: 1px solid var(--env-border);
-  border-radius: 12px;
+  border-radius: 0;
   padding: 20px;
   display: flex;
   flex-direction: column;
@@ -181,9 +182,9 @@ ${jezeroEnvironmentCss}
   flex-shrink: 0;
   width: 44px;
   height: 44px;
-  border-radius: 10px;
-  background: rgba(255, 195, 107, 0.12);
-  border: 1px solid rgba(255, 195, 107, 0.35);
+  border-radius: 0;
+  background: rgba(255, 122, 0, 0.12);
+  border: 1px solid rgba(255, 122, 0, 0.35);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -210,9 +211,9 @@ ${jezeroEnvironmentCss}
 }
 
 .oxia-safety-notice {
-  border: 1px solid rgba(255, 141, 154, 0.35);
-  background: rgba(255, 141, 154, 0.08);
-  border-radius: 10px;
+  border: 1px solid rgba(180, 35, 24, 0.35);
+  background: rgba(180, 35, 24, 0.08);
+  border-radius: 0;
   padding: 14px 16px;
 }
 
@@ -233,7 +234,7 @@ ${jezeroEnvironmentCss}
 .oxia-safety-title {
   font-size: 13px;
   font-weight: 600;
-  color: #ffadb6;
+  color: var(--critical, #b42318);
   margin: 0;
 }
 
@@ -253,7 +254,7 @@ ${jezeroEnvironmentCss}
 .oxia-context-card {
   background: var(--env-raised);
   border: 1px solid var(--env-border);
-  border-radius: 10px;
+  border-radius: 0;
   padding: 14px;
 }
 
@@ -390,7 +391,7 @@ ${jezeroEnvironmentCss}
 .gale-env .rounded-xl { border-radius: 0.75rem; }
 .gale-env .rounded-lg { border-radius: 0.5rem; }
 .gale-env .rounded-md { border-radius: 0.375rem; }
-.gale-env .rounded-full { border-radius: 9999px; }
+.gale-env .rounded-full { border-radius: 0; }
 .gale-env .rounded { border-radius: 0.25rem; }
 
 .gale-env .border { border: 1px solid var(--env-border); }
@@ -401,33 +402,33 @@ ${jezeroEnvironmentCss}
 
 .gale-env .bg-slate-950 { background-color: var(--env-bg); }
 .gale-env .bg-slate-900 { background-color: var(--env-surface); }
-.gale-env .bg-slate-900\\/40 { background-color: rgba(17, 29, 48, 0.4); }
-.gale-env .bg-slate-900\\/50 { background-color: rgba(17, 29, 48, 0.5); }
-.gale-env .bg-slate-900\\/60 { background-color: rgba(27, 42, 64, 0.6); }
-.gale-env .bg-slate-900\\/80 { background-color: rgba(27, 42, 64, 0.8); }
-.gale-env .bg-slate-900\\/90 { background-color: rgba(27, 42, 64, 0.9); }
-.gale-env .bg-slate-950\\/40 { background-color: rgba(9, 17, 31, 0.4); }
-.gale-env .bg-slate-950\\/70 { background-color: rgba(9, 17, 31, 0.7); }
-.gale-env .bg-slate-950\\/90 { background-color: rgba(9, 17, 31, 0.9); }
+.gale-env .bg-slate-900\\/40 { background-color: rgba(15, 39, 71, 0.04); }
+.gale-env .bg-slate-900\\/50 { background-color: rgba(15, 39, 71, 0.04); }
+.gale-env .bg-slate-900\\/60 { background-color: rgba(15, 39, 71, 0.07); }
+.gale-env .bg-slate-900\\/80 { background-color: rgba(15, 39, 71, 0.07); }
+.gale-env .bg-slate-900\\/90 { background-color: rgba(15, 39, 71, 0.07); }
+.gale-env .bg-slate-950\\/40 { background-color: rgba(15, 39, 71, 0.04); }
+.gale-env .bg-slate-950\\/70 { background-color: rgba(15, 39, 71, 0.04); }
+.gale-env .bg-slate-950\\/90 { background-color: rgba(15, 39, 71, 0.04); }
 
-.gale-env .text-white { color: #ffffff; }
-.gale-env .text-slate-100 { color: #f0f5fc; }
-.gale-env .text-slate-200 { color: #e2e8f0; }
-.gale-env .text-slate-300 { color: #cbd5e1; }
+.gale-env .text-white { color: var(--navy, #0f2747); }
+.gale-env .text-slate-100 { color: var(--navy, #0f2747); }
+.gale-env .text-slate-200 { color: var(--navy, #0f2747); }
+.gale-env .text-slate-300 { color: var(--navy-70, rgba(15,39,71,.7)); }
 .gale-env .text-slate-400 { color: var(--env-muted); }
-.gale-env .text-slate-500 { color: #718096; }
+.gale-env .text-slate-500 { color: var(--navy-50, rgba(15,39,71,.5)); }
 
-.gale-env .text-sky-300 { color: #7dd3fc; }
+.gale-env .text-sky-300 { color: var(--citrus-ink, #a84f00); }
 .gale-env .text-sky-400 { color: var(--env-cyan); }
-.gale-env .text-amber-200 { color: #fde68a; }
-.gale-env .text-amber-300 { color: #fcd34d; }
+.gale-env .text-amber-200 { color: var(--citrus-ink, #a84f00); }
+.gale-env .text-amber-300 { color: var(--citrus-ink, #a84f00); }
 .gale-env .text-amber-400 { color: var(--env-caution); }
-.gale-env .text-rose-200 { color: #fecdd3; }
-.gale-env .text-rose-300 { color: #fda4af; }
+.gale-env .text-rose-200 { color: var(--critical, #b42318); }
+.gale-env .text-rose-300 { color: var(--critical, #b42318); }
 .gale-env .text-rose-400 { color: var(--env-critical); }
-.gale-env .text-emerald-300 { color: #6ee7b7; }
+.gale-env .text-emerald-300 { color: var(--navy, #0f2747); }
 .gale-env .text-emerald-400 { color: var(--env-ok); }
-.gale-env .text-cyan-300 { color: #67e8f9; }
+.gale-env .text-cyan-300 { color: var(--citrus-ink, #a84f00); }
 .gale-env .text-cyan-400 { color: var(--env-cyan); }
 
 .gale-env .font-mono { font-family: var(--env-mono); }
@@ -493,7 +494,7 @@ ${jezeroEnvironmentCss}
 @media (max-width: 768px) {
   .env-container {
     padding: 14px;
-    border-radius: 10px;
+    border-radius: 0;
   }
   .env-title {
     font-size: 20px;
