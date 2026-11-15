@@ -1,0 +1,56 @@
+[
+  {
+    "revision": "870f282c0b9349b1d36c058970d2220cc4ea5a5e",
+    "path": "docs/I4B_EVA_INTEGRATION_REPORT.md",
+    "sha256": "6312fb92cd0dd12363a99dfbb013eca14efd858c83290e899f1e8c1e06106f80"
+  },
+  {
+    "revision": "870f282c0b9349b1d36c058970d2220cc4ea5a5e",
+    "path": "docs/evidence/i4b/pending-objective-locations.json",
+    "sha256": "bc8e84586968cd41140c22fb97b4b19bb2925a86c5eafc5d24f87243f9cb4589"
+  },
+  {
+    "revision": "870f282c0b9349b1d36c058970d2220cc4ea5a5e",
+    "path": "docs/I4A_F1_F3_INTEGRATION_REPORT.md",
+    "sha256": "87ce2d86a5f80dc84b3f54cffe719e5653c54fc1a7a39e4c3bdefe13b7210450"
+  },
+  {
+    "revision": "870f282c0b9349b1d36c058970d2220cc4ea5a5e",
+    "path": "docs/I4B_EVA_INPUT_CONTRACT.md",
+    "sha256": "7b734f1324dc5210f9f09be665ec0c3f984505bad2189deb3f32588204e42291"
+  },
+  {
+    "revision": "870f282c0b9349b1d36c058970d2220cc4ea5a5e",
+    "path": "docs/F3_SCIENTIFIC_VERIFICATION_REPORT.md",
+    "sha256": "bf6950352234824dfc8642f07349765a6a465f82ea956fd3246a9dd03c3c2646"
+  },
+  {
+    "revision": "870f282c0b9349b1d36c058970d2220cc4ea5a5e",
+    "path": "docs/F3_F1_INTEGRATION_NOTES.md",
+    "sha256": "39313015d06927d0929ddfacb2b0cd53fdf6249cb8a8f966f22f38c12e5191bb"
+  },
+  {
+    "revision": "870f282c0b9349b1d36c058970d2220cc4ea5a5e",
+    "path": "docs/evidence/f3/objective-routing-compatibility.json",
+    "sha256": "07f63b26414161cb79d18884253cb6e62fe6f6ed8f00a2fa8fcef7d558981f1f"
+  },
+  {
+    "revision": "870f282c0b9349b1d36c058970d2220cc4ea5a5e",
+    "path": "docs/F1_MISSION_INTEGRITY_REPORT.md",
+    "sha256": "4fd9437f47df6b071d7162d85fa345caf4c635df3180f680a5371830c746ff38"
+  },
+  {
+    "revision": "10f6f795f0a73f01ff151e86e033263359ae94a0",
+    "path": "docs/GALE_SCIENCE_OBJECTIVE_VERIFICATION_REPORT.md",
+    "sha256": "e5f7584250d52a6c0fae05dbe93c10b033f7860b88bb4014d518197a4de1bb78"
+  },
+  {
+    "revision": "c39b7a32a28efee2dc9a8c7bc8f969b7b0d946d4",
+    "path": "docs/JEZERO_OBJECTIVE_LOCATION_VERIFICATION_REPORT.md",
+    "sha256": "2248a24c480d0d0d292aa95bdf91751de2703bf3c5d14b7584f055608f3e914c"
+  },
+  {
+    "path": "D:\\martian-map-audits\\2026-11-15\\MARSWALK_THREE_REGION_COMPREHENSIVE_AUDIT.md",
+    "sha256": "ea5aa3a53ef33e36dc83f2678a2e96521f2b92e52ed945406b4bb7b1d9ffb434"
+  }
+]

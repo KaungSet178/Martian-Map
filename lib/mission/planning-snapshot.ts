@@ -1,3 +1,5 @@
+import { selectedSiteDetails } from "@/lib/science/sites";
+import { retiredObjective } from "@/regions/gale/retired-targets";
 import type { Mission } from "./model";
 import type { RegionManifest } from "@/lib/contracts/region";
 import { initWaypointPlanFromMission, syncMissionWithWaypointPlan } from "./waypoint-bridge";
@@ -46,7 +48,7 @@ export function missionPlanningSnapshot(mission: Mission, region: RegionManifest
   const itinerary = plan.waypoints.map(w => ({
     ...w,
     coordinate_text: coordinateText(w.coordinates),
-    evidence_text: (w.target_id && !region.targets.some(t => t.id === w.target_id) ? "Retired or unavailable catalog target · Not a route destination · " : "") + evidenceText(w.evidence, w.provenance === "user_planning_input" && !w.target_id),
+    evidence_text: (w.target_id && !region.targets.some(t => t.id === w.target_id) ? "Retired or unavailable catalog target · Not a route destination · " : "") + evidenceText(w.evidence, w.provenance === "user_planning_input" && !w.target_id && !w.science_site),
     precision_disclosure: w.evidence?.precision_disclosure ?? "User planning coordinates; accuracy, positional uncertainty and absolute registration unverified.",
     stop_seconds: w.stop_duration_seconds ?? (w.role === "science_stop" && defaultMinutes !== null && Number.isFinite(defaultMinutes) && defaultMinutes >= 0 ? defaultMinutes * 60 : null),
   }));
@@ -56,13 +58,15 @@ export function missionPlanningSnapshot(mission: Mission, region: RegionManifest
     const planning_evidence = targetWaypointEvidence(target);
     return [{...target, planning_evidence, evidence_text:evidenceText(planning_evidence), location_disclosure:planning_evidence.precision_disclosure, is_waypoint:itinerary.some(w => w.target_id === id)}];
   });
-  const retiredObjectives = mission.target_ids.filter(id => !region.targets.some(t => t.id === id)).map(id => ({id,title:mission.retired_objectives?.find(t => t.id === id)?.title ?? id,reason:mission.retired_objectives?.find(t => t.id === id)?.reason ?? "Retired or unavailable objective; retained for historical context. Not a route destination."}));
+  const retiredObjectives = mission.target_ids.filter(id => !region.targets.some(t => t.id === id)).map(id => ({id,title:mission.retired_objectives?.find(t => t.id === id)?.title ?? retiredObjective(region.id,id)?.title ?? id,reason:mission.retired_objectives?.find(t => t.id === id)?.reason ?? retiredObjective(region.id,id)?.reason ?? "Retired or unavailable objective; retained for historical context. Not a route destination."}));
   const bases = itinerary.filter(w => w.role === "base");
   const ends = itinerary.filter(w => w.role === "destination" || w.role === "recovery_endpoint");
   const counts = { objectives: mission.target_ids.length, waypoints: itinerary.length, science_stops: itinerary.filter(w => w.role === "science_stop" || w.target_id).length };
-  const countLabel = `${counts.objectives} ${counts.objectives === 1 ? "objective" : "objectives"} · ${counts.waypoints} ${counts.waypoints === 1 ? "waypoint" : "waypoints"} · ${counts.science_stops} science ${counts.science_stops === 1 ? "stop" : "stops"}`;
+  const siteContextCount=mission.science_sites?.length ?? 0;
+  const countLabel = `${counts.objectives} ${counts.objectives === 1 ? "objective" : "objectives"} · ${counts.waypoints} ${counts.waypoints === 1 ? "waypoint" : "waypoints"} · ${counts.science_stops} science ${counts.science_stops === 1 ? "stop" : "stops"}${siteContextCount ? ` - ${siteContextCount} site ${siteContextCount===1 ? "context" : "contexts"}` : ""}`;
   return {
-    mission: canonical, plan, itinerary, objectives, retiredObjectives, counts, countLabel,
+    mission: canonical, plan, itinerary, objectives, retiredObjectives, counts, countLabel, siteContextCount,
+    scienceSites:(mission.science_sites ?? []).map(selection=>({...selectedSiteDetails(selection,region.id),objective_title:region.targets.find(t=>t.id===selection.objective_id)?.title ?? selection.objective_id})),
     start: bases.length === 1 ? bases[0] : null,
     destination: plan.mode === "round_trip" ? (bases.length === 1 ? bases[0] : null) : (ends.length === 1 ? ends[0] : null),
     validation: validateWaypointPlan(plan),

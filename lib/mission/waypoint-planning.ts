@@ -1,3 +1,4 @@
+import { siteReferenceSchema } from "@/lib/science/sites";
 import { objectiveGeographicEvidence } from "@/lib/science/objective-location-adapter";
 /**
  * Mars geometric waypoint planning foundation.
@@ -114,6 +115,7 @@ export const waypointSchema = z.object({
   role: waypointRoleSchema,
   label: z.string().trim().min(1).max(200).optional(),
   target_id: z.string().min(1).max(100).optional(),
+  science_site: siteReferenceSchema.optional(),
   provenance: waypointProvenanceSchema,
   evidence: waypointEvidenceSchema.optional(),
   previous_evidence: waypointEvidenceSchema.optional(),
@@ -236,6 +238,7 @@ export interface CreateWaypointParams {
   readonly role?: WaypointRole;
   readonly label?: string;
   readonly target_id?: string;
+  readonly science_site?: z.infer<typeof siteReferenceSchema>;
   readonly provenance?: WaypointProvenance;
   readonly notes?: string;
   readonly evidence?: z.infer<typeof waypointEvidenceSchema>;
@@ -259,6 +262,7 @@ export function createWaypoint(params: CreateWaypointParams): MarsWaypoint {
   };
   if (params.label !== undefined) raw.label = params.label;
   if (params.target_id !== undefined) raw.target_id = params.target_id;
+  if (params.science_site !== undefined) raw.science_site = params.science_site;
   if (params.notes !== undefined) raw.notes = params.notes;
   if (params.evidence !== undefined) raw.evidence = params.evidence;
   if (params.stop_duration_seconds !== undefined) raw.stop_duration_seconds = params.stop_duration_seconds;
@@ -352,7 +356,7 @@ export function isTerminus(waypoint: MarsWaypoint): boolean {
 }
 
 function demotedRole(waypoint: MarsWaypoint): WaypointRole {
-  return waypoint.target_id ? "science_stop" : "intermediate";
+  return waypoint.target_id || waypoint.science_site ? "science_stop" : "intermediate";
 }
 
 /**

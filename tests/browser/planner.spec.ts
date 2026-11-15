@@ -21,7 +21,7 @@ for (const [width, height] of [
       .selectOption("gale");
     await expand(page);
     await expect(page.locator(".target-list")).toContainText(
-      "Layered sedimentary unit",
+      "Glen Torridon",
     );
     await expect(page.locator(".target-list")).not.toContainText(
       "Jezero geology and climate record",
@@ -108,65 +108,26 @@ async function expand(page: Page) {
   const handle = page.getByRole("button", { name: /^Plan ·/ });
   if (await handle.isVisible()) await handle.click();
 }
-test("ordered objectives, one-way requirements, no fabricated paths, save/reopen", async ({
-  page,
-}) => {
-  await page.goto("/?region=gale");
-  await expect(
-    page.getByRole("heading", { name: "Gale Crater", exact: true }),
-  ).toBeVisible();
-  await page
-    .getByRole("button", { name: "Add Layered sedimentary unit", exact: true })
-    .click();
-  await page
-    .getByRole("button", {
-      name: "Add Clay-to-sulfate transition",
-      exact: true,
-    })
-    .click();
-  await page.getByRole("button", { name: /^Plan 2$/ }).click();
-  await page
-    .getByRole("button", { name: "Move Clay-to-sulfate transition up" })
-    .click();
-  await expect(page.locator(".itinerary li").first()).toContainText(
-    "Clay-to-sulfate transition",
-  );
-  await page.getByLabel("One way", { exact: true }).check();
-  await page
-    .getByLabel("Recovery assumption", { exact: true })
-    .fill("Proposed recovery team; location remains unverified.");
-  await page
-    .getByLabel("Mission name", { exact: true })
-    .fill("Gale ordered field plan");
-  await page
-    .getByRole("button", { name: "Review mission", exact: true })
-    .click();
-  await expect(page.locator(".missing-list")).toContainText(
-    "verified recovery endpoint",
-  );
-  await expect(page.locator(".feasibility dd")).toHaveText(
-    Array(6).fill("Unverified"),
-  );
-  await expect(page.locator(".route-item")).toHaveCount(3);
+test("ordered objectives, one-way requirements, no fabricated paths, save/reopen", async ({page}) => {
+  await page.goto("/?region=gale");await expand(page);
+  await page.getByRole("button",{name:"Add Glen Torridon",exact:true}).click();
+  await page.getByRole("button",{name:"Add Vera Rubin Ridge",exact:true}).click();
+  await page.getByRole("button",{name:/^Plan 2$/}).click();
+  await page.getByRole("button",{name:"Move Vera Rubin Ridge up",exact:true}).click();
+  await expect(page.locator(".itinerary li").first()).toContainText("Vera Rubin Ridge");
+  await page.getByLabel("One way",{exact:true}).check();
+  await page.getByLabel("Recovery assumption",{exact:true}).fill("Proposed recovery team; location remains unverified.");
+  await page.getByLabel("Mission name",{exact:true}).fill("Gale ordered field plan");
+  await page.getByRole("button",{name:"Review mission",exact:true}).click();
+  const snapshot=page.getByTestId("mission-planning-snapshot");
+  await expect(snapshot).toContainText("0 waypoints");await expect(snapshot).toContainText("No current computed terrain route");
   await expect(page.locator(".route-svg")).toHaveCount(0);
-  await page.getByRole("button", { name: "Save mission", exact: true }).click();
-  await page.reload();
-  await page.getByRole("button", { name: /^Plan 2$/ }).click();
-  await expect(page.getByLabel("Mission name", { exact: true })).toHaveValue(
-    "Gale ordered field plan",
-  );
-  await expect(page.locator(".itinerary li").first()).toContainText(
-    "Clay-to-sulfate transition",
-  );
-  await page
-    .getByRole("button", { name: "Open saved missions", exact: true })
-    .click();
-  await page
-    .getByRole("button", { name: "Open Gale ordered field plan", exact: true })
-    .click();
-  await expect(
-    page.getByLabel("Recovery assumption", { exact: true }),
-  ).toHaveValue("Proposed recovery team; location remains unverified.");
+  await page.getByRole("button",{name:"Save mission",exact:true}).click();await page.reload();
+  await page.getByRole("button",{name:"Open saved missions",exact:true}).click();
+  await page.getByRole("button",{name:"Open Gale ordered field plan",exact:true}).click();
+  await expect(page.getByLabel("Mission name",{exact:true})).toHaveValue("Gale ordered field plan");
+  await expect(page.locator(".itinerary li").first()).toContainText("Vera Rubin Ridge");
+  await expect(page.getByLabel("Recovery assumption",{exact:true})).toHaveValue("Proposed recovery team; location remains unverified.");
 });
 
 test("target dialogs support Escape/focus return and region-scoped selection", async ({

@@ -1,0 +1,5 @@
+
+> marswalk-planner@0.1.0 routing:check
+> node scripts/check-routing-runtime.mjs
+
+Gale: both compact DEMs checksum-validated through Python. Jezero: authentic grid and Node A* worker operational. No raw DEM or separate HTTP service required.

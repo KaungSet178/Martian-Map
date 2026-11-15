@@ -1,5 +1,6 @@
 "use client";
 
+import { scienceSites, siteFrameCompatible } from "@/lib/science/sites";
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { Map as MapInstance, Marker } from "maplibre-gl";
 import {
@@ -105,6 +106,7 @@ export default function MapWorkspace({
   const map = useRef<MapInstance | null>(null);
   const markers = useRef<Marker[]>([]);
   const waypointMarkers = useRef<Marker[]>([]);
+  const siteMarkers = useRef<Marker[]>([]);
   const markerElements = useRef<Map<string, HTMLButtonElement>>(new Map());
   const overview = useRef<"initial" | "mission" | false>("initial");
   const handledCoverageFocus = useRef<number | null>(null);
@@ -381,6 +383,22 @@ export default function MapWorkspace({
     onInspect,
     scientificMap,
   ]);
+
+  useEffect(()=>{
+    let disposed=false;
+    siteMarkers.current.forEach(m=>m.remove());siteMarkers.current=[];
+    if(!ready || preview || !map.current)return;
+    import("maplibre-gl").then(({Marker})=>{
+      if(disposed || !map.current)return;
+      siteMarkers.current=scienceSites.filter(s=>s.region===region.id && s.region!=="oxia" && siteFrameCompatible(s) && s.objective_ids.some(id=>stops.includes(id) || selected===id)).map(s=>{
+        const button=document.createElement("button");button.className="science-marker";
+        button.setAttribute("aria-label",`Inspect ${s.title}; source-located, registration unverified`);button.textContent="\u25c7";
+        button.onclick=e=>{e.stopPropagation();onInspect(s.objective_ids[0]);};
+        return new Marker({element:button}).setLngLat(toDisplayCoordinates(s.coordinates!)).addTo(map.current!);
+      });
+    });
+    return ()=>{disposed=true;siteMarkers.current.forEach(m=>m.remove());};
+  },[ready,preview,region,stops,selected,onInspect]);
 
   // Trajectory layers mounting & updates
   useEffect(() => {

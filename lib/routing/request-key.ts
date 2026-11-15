@@ -10,7 +10,7 @@ export function terrainRequestKey(mission: Mission, plan: WaypointPlan, datasetI
   const endpoints = plan.waypoints.map(w => ({
     id: w.id, coordinates: w.coordinates, role: w.role,
     target_id: w.target_id, provenance: w.provenance,
-    evidence: w.evidence, inactive_reason: w.inactive_reason,
+    science_site: w.science_site, evidence: w.evidence, inactive_reason: w.inactive_reason,
   }));
   return JSON.stringify([ROUTING_VERSION, mission.id, mission.region, mission.dataset_version, datasetId, maxSnapMeters, plan.mode, endpoints]);
 }

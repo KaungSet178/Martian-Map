@@ -1,0 +1,91 @@
+{
+  "foundation": "870f282c0b9349b1d36c058970d2220cc4ea5a5e",
+  "typescript": {
+    "passed": 554,
+    "suites": 64,
+    "failed": 0,
+    "skipped": 0,
+    "log": "unit-tests.log"
+  },
+  "python": {
+    "passed": 186,
+    "skipped": 4,
+    "failed": 0,
+    "commands": [
+      "python -m unittest discover -s tests -p 'test_gale*.py'",
+      "python -m unittest discover -s tests/environment/gale -p 'test*.py'",
+      "python -m unittest discover -s tests/environment/jezero -p 'test*.py'",
+      "python -m unittest discover -s team/jezero/routing -p test_synthetic_routing.py",
+      "python -m unittest discover -s team/jezero/terrain -p test_hillshade.py"
+    ]
+  },
+  "gates": {
+    "node scripts/prepare-map-worker.mjs": 0,
+    "node scripts/build-routing-worker.mjs": 0,
+    "python scripts/verify-i4a-numerical.py": 0,
+    "python scripts/verify-three-region-assets.py": 0,
+    "python scripts/verify-i4d-sites.py": 0,
+    "npm.cmd run routing:check": 0,
+    "npm.cmd run typecheck": 0,
+    "npm.cmd run lint": 0,
+    "npm.cmd run build": 0
+  },
+  "browser": {
+    "base_url": "http://127.0.0.1:3344",
+    "production": true,
+    "full_batch_passed": 95,
+    "final_source_and_legacy_run_passed": 24,
+    "repeated_i4d_cases": 19,
+    "distinct_passed": 100,
+    "failed": 0,
+    "viewports": [
+      [
+        1440,
+        900
+      ],
+      [
+        768,
+        1024
+      ],
+      [
+        390,
+        844
+      ],
+      [
+        320,
+        640
+      ],
+      [
+        844,
+        390
+      ]
+    ],
+    "workers": "Actual Python HRSC and Node Jezero routing workers; separate stale-response tests do not count mocks as real path acceptance.",
+    "full_batch_specs": [
+      "i4d-sites",
+      "i4b-eva",
+      "environmental-conditions",
+      "f1-mission-integrity",
+      "f3-navigation",
+      "f3-science",
+      "gale-geology",
+      "i4a-integration",
+      "terrain-routing-integration",
+      "three-region-integration"
+    ],
+    "final_command": "node node_modules/@playwright/test/cli.js test tests/browser/i4d-sites.spec.ts tests/browser/planner.spec.ts --grep 'I4D|registry-driven region switching|ordered objectives, one-way requirements'"
+  },
+  "scientific_sites": {
+    "records": 22,
+    "registered_terrain_destinations": 0,
+    "production_http_rejections": 22,
+    "upstream_localization_processing_verified": false,
+    "source_coordinate_transcription": "Ten PDS rover event rows independently reproduced; not tube endpoints."
+  },
+  "limitations": [
+    "No independently verified source-to-grid registration/uncertainty budget.",
+    "Automatic objective-linked terrain routing remains unavailable.",
+    "Four optional raw-cache Python skips.",
+    "Chromium software WebGL acceptance does not certify physical devices or operational EVA safety."
+  ]
+}

@@ -4,6 +4,8 @@ import { ArrowUpRight, Check, Plus } from "lucide-react";
 import type { RegionManifest, Target } from "@/lib/contracts/region";
 import { Badge, Notice, EvidenceBadge } from "@/components/ui/primitives";
 import { objectiveLocationEvidence } from "@/regions/location-evidence";
+import { ScienceSites } from "./sites";
+import type { ScienceSite, SiteSelection } from "@/lib/science/sites";
 import { PhotographEvidence } from "./photograph";
 
 export function TargetCatalog({
@@ -89,11 +91,13 @@ export function TargetDetails({
   region,
   added,
   onToggle,
+  siteSelections = [], onToggleSite, onAddSite,
 }: {
   target: Target;
   region: RegionManifest;
   added: boolean;
   onToggle: () => void;
+  siteSelections?: SiteSelection[]; onToggleSite?:(site:ScienceSite)=>void; onAddSite?:(site:ScienceSite)=>void;
 }) {
   return (
     <>
@@ -122,6 +126,7 @@ export function TargetDetails({
         </section>
       )}
       <p className="supporting">Independent geographic registration: {objectiveLocationEvidence(region.id, target.id).registration_verified ? "verified" : "unverified"}. Positional uncertainty: unknown. Source verification does not establish navigation eligibility.</p>
+      <ScienceSites target={target} region={region} selections={siteSelections} onToggle={onToggleSite} onAdd={onAddSite}/>
       <h3>Proposed field activity</h3>
       <p>{target.activity}</p>
       {target.routing_eligibility.status === "unavailable" && (

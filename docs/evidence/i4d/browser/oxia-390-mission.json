@@ -1,0 +1,131 @@
+{
+  "schema_version": 1,
+  "id": "7774e4ac-cdaa-45e3-8e1d-29b2b84f4061",
+  "name": "Oxia Planum field plan",
+  "region": "oxia",
+  "target_ids": [
+    "oxia-objective-1"
+  ],
+  "direction": "round",
+  "start": null,
+  "endpoint": null,
+  "recovery_assumption": "",
+  "oxygen_reserve_percent": 25,
+  "battery_reserve_percent": 25,
+  "dataset_version": "oxia-thermal-colour-v11",
+  "model_versions": {},
+  "saved_at": "2026-11-15T04:11:55.390Z",
+  "waypoint_plan": {
+    "schema_version": 1,
+    "id": "plan-615e24c2-df07-406d-aec6-6e253d5f3a34",
+    "name": "Oxia Planum field plan",
+    "region_id": "oxia",
+    "mode": "round_trip",
+    "waypoints": [
+      {
+        "id": "wp-oxia-objective-1",
+        "coordinates": {
+          "latitude": 18.22,
+          "longitude_east": 335.83
+        },
+        "role": "science_stop",
+        "label": "Clay-rich bedrock study",
+        "target_id": "oxia-objective-1",
+        "science_site": {
+          "site_id": "oxia-mineral-1",
+          "objective_id": "oxia-objective-1",
+          "revision": "i4d-35fe2350"
+        },
+        "provenance": "verified_science_target",
+        "evidence": {
+          "classification": "Interpreted",
+          "source_ids": [
+            "https://trek.nasa.gov/mars/trekarcgis/rest/services/Aquieous_Mineral_Distribution_Options_clon0/MapServer/0"
+          ],
+          "source_verified": true,
+          "processing_verified": null,
+          "coordinate_verified": true,
+          "registration_verified": false,
+          "positional_uncertainty_m": null,
+          "representation": "point",
+          "precision_disclosure": "Site oxia-mineral-1: Clay-rich bedrock detection. Original interpreted NASA Trek orbital mineral detection; rounded location is not a surveyed outcrop. Source: NASA Trek Aqueous Mineral Distribution compilation (https://trek.nasa.gov/mars/trekarcgis/rest/services/Aquieous_Mineral_Distribution_Options_clon0/MapServer/0); version unknown. Published precision 0.01 degree; spacing is not positional uncertainty. Geometric planning only; terrain routing unavailable. Independent absolute registration and positional uncertainty unknown.",
+          "routing_eligible": false
+        },
+        "previous_evidence": {
+          "classification": "Interpreted",
+          "source_ids": [
+            "oxia-trek-aqueous",
+            "oxia-trek-hydrous"
+          ],
+          "source_verified": null,
+          "processing_verified": null,
+          "coordinate_verified": true,
+          "registration_verified": false,
+          "positional_uncertainty_m": null,
+          "representation": "point",
+          "precision_disclosure": "Catalog coordinate values retained as supplied. Source-supported positional uncertainty and absolute registration are unverified; displayed digits do not establish survey accuracy.",
+          "routing_eligible": false
+        },
+        "notes": "Examine clay-bearing material as a record of past water-rock alteration."
+      }
+    ],
+    "created_at": "2026-11-15T04:11:54.661Z",
+    "updated_at": "2026-11-15T04:11:54.785Z"
+  },
+  "science_sites": [
+    {
+      "site_id": "oxia-mineral-1",
+      "objective_id": "oxia-objective-1",
+      "revision": "i4d-35fe2350",
+      "source_snapshot": {
+        "id": "oxia-mineral-1",
+        "region": "oxia",
+        "title": "Clay-rich bedrock detection",
+        "description": "Original interpreted NASA Trek orbital mineral detection; rounded location is not a surveyed outcrop.",
+        "objective_ids": [
+          "oxia-objective-1"
+        ],
+        "evidence": "Interpreted",
+        "source": {
+          "title": "NASA Trek Aqueous Mineral Distribution compilation",
+          "version": null,
+          "url": "https://trek.nasa.gov/mars/trekarcgis/rest/services/Aquieous_Mineral_Distribution_Options_clon0/MapServer/0",
+          "feature_id": null,
+          "locator": "F3 preserved source query and original catalog",
+          "sha256": null
+        },
+        "coordinates": {
+          "latitude": 18.22,
+          "longitude_east": 335.83
+        },
+        "coordinate_frame": {
+          "body": "Mars",
+          "latitude_type": "planetocentric",
+          "longitude_direction": "east",
+          "longitude_range": "0-360",
+          "datum": null
+        },
+        "original_precision": {
+          "latitude": "18.22",
+          "longitude_east": "335.83"
+        },
+        "source_verified": true,
+        "source_coordinate_verified": true,
+        "source_processing_verified": null,
+        "registration_evidence": null,
+        "registration_verified": false,
+        "positional_uncertainty_m": null,
+        "grid_coverage": null,
+        "cell_traversability": null,
+        "snap_displacement_m": null,
+        "interpretation": "Original interpreted NASA Trek orbital mineral detection; rounded location is not a surveyed outcrop.",
+        "operational_safety": "unverified",
+        "limitations": [
+          "Published precision 0.01 degree; spacing is not positional uncertainty.",
+          "Geometric planning only; terrain routing unavailable.",
+          "Independent absolute registration and positional uncertainty unknown."
+        ]
+      }
+    }
+  ]
+}

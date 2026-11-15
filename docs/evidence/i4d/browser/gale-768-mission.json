@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "id": "865bd700-229f-4c00-b0e1-9ea3f7c324e0",
+  "name": "Gale Crater field plan",
+  "region": "gale",
+  "target_ids": [],
+  "direction": "round",
+  "start": null,
+  "endpoint": null,
+  "recovery_assumption": "",
+  "oxygen_reserve_percent": 25,
+  "battery_reserve_percent": 25,
+  "dataset_version": "gale-g3-2-v1",
+  "model_versions": {},
+  "saved_at": "2026-11-15T04:11:25.578Z",
+  "waypoint_plan": {
+    "schema_version": 1,
+    "id": "plan-9e6181f0-b4ba-4fd5-b482-857237159a07",
+    "name": "Gale Crater field plan",
+    "region_id": "gale",
+    "mode": "round_trip",
+    "waypoints": [],
+    "created_at": "2026-11-15T04:11:24.804Z",
+    "updated_at": "2026-11-15T04:11:24.804Z"
+  },
+  "science_sites": [
+    {
+      "site_id": "gale-aberlady",
+      "objective_id": "gale-glen-torridon",
+      "revision": "i4d-1ce1c86b",
+      "source_snapshot": {
+        "id": "gale-aberlady",
+        "region": "gale",
+        "title": "Aberlady drill investigation",
+        "description": "Documented named sampling investigation. Reviewed context does not reproduce an independently checked point coordinate; rover camera positions and regional map centers are not substituted.",
+        "objective_ids": [
+          "gale-glen-torridon"
+        ],
+        "evidence": "Observed",
+        "source": {
+          "title": "Bennett et al., Glen Torridon campaign overview",
+          "version": "2022",
+          "url": "https://ntrs.nasa.gov/citations/20230001618",
+          "feature_id": null,
+          "locator": null,
+          "sha256": null
+        },
+        "coordinates": null,
+        "coordinate_frame": {
+          "body": "Mars",
+          "latitude_type": null,
+          "longitude_direction": "east",
+          "longitude_range": "0-360",
+          "datum": null
+        },
+        "original_precision": null,
+        "source_verified": true,
+        "source_coordinate_verified": false,
+        "source_processing_verified": null,
+        "registration_evidence": null,
+        "registration_verified": false,
+        "positional_uncertainty_m": null,
+        "grid_coverage": null,
+        "cell_traversability": null,
+        "snap_displacement_m": null,
+        "interpretation": "Documented named sampling investigation. Reviewed context does not reproduce an independently checked point coordinate; rover camera positions and regional map centers are not substituted.",
+        "operational_safety": "unverified",
+        "limitations": [
+          "Published digits do not establish positional accuracy.",
+          "Absolute source-to-basemap/DEM registration is unverified.",
+          "No astronaut safety or access certification."
+        ]
+      }
+    }
+  ]
+}

@@ -39,7 +39,7 @@ test("I4A missing evidence dimensions stay unknown and Scenario/user-defined rem
  const synthetic={...regions.oxia.targets[0],id:"oxia-unreviewed-test",source_ids:[],coordinate_verified:false,coordinates:null,verification:"pending" as const,evidence:"Scenario" as const};
  const e=targetWaypointEvidence(synthetic);assert.equal(e.source_verified,null);assert.equal(e.processing_verified,null);assert.equal(e.registration_verified,null);assert.equal(e.positional_uncertainty_m,null);assert.equal(e.classification,"Scenario");
  const m=applyMissionChange(newMission(regions.gale),{target_ids:["gale-objective-1"]},regions.gale);
- assert.equal(missionPlanningSnapshot(m,regions.gale).objectives[0].planning_evidence.classification,"Scenario");
+ const snapshot=missionPlanningSnapshot(m,regions.gale);assert.equal(snapshot.objectives.length,0);assert.match(snapshot.retiredObjectives[0].reason,/Retired sample Scenario/);assert.equal(snapshot.retiredObjectives[0].title,"Layered sedimentary unit");
 });
 function plan(id:"gale"|"jezero"|"oxia",points:number[][],round=true){return createWaypointPlan({region_id:id,name:"I4A manual research probes",mode:round?"round_trip":"one_way",waypoints:points.map(([longitude_east,latitude],i)=>createWaypoint({id:`i4a-${i}`,label:`Manual probe ${i}`,role:i===0?"base":!round&&i===points.length-1?"destination":"science_stop",coordinates:{longitude_east,latitude},provenance:"user_planning_input",stop_duration_seconds:i===1?123:0}))});}
 test("I4A legacy same-region references preserve unrelated points, foreign references in all saved fields reject",()=>{

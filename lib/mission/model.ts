@@ -1,4 +1,6 @@
+import { siteSelectionSchema, resolveSiteReference } from "@/lib/science/sites";
 import { z } from "zod";
+import { retiredObjective } from "@/regions/gale/retired-targets";
 import { evaConfigSchema } from "@/lib/eva/config";
 import { routeReceiptSchema } from "@/lib/routing/contracts";
 import {
@@ -33,6 +35,7 @@ export const missionSchema = z.object({
   waypoint_plan: waypointPlanSchema.optional(),
   terrain_route: routeReceiptSchema.optional(),
   retired_objectives: z.array(z.object({id:z.string().max(100),title:z.string().max(200).optional(),reason:z.string().max(2000)})).max(100).optional(),
+  science_sites: z.array(siteSelectionSchema).max(50).refine(s=>new Set(s.map(r=>r.site_id)).size===s.length,"Duplicate scientific site selection").optional(),
   eva_config: evaConfigSchema.optional(),
   terrain_assumptions: z.record(z.string().max(40), z.string().max(50)).optional(),
 });
@@ -117,13 +120,21 @@ export function parseMission(value: unknown, region: RegionManifest): Mission {
     );
   }
   if (mission.waypoint_plan && !mission.waypoint_plan.region_id) mission.waypoint_plan.region_id = region.id;
+  for (const selection of mission.science_sites ?? []) {
+    if (selection.source_snapshot.region !== region.id || selection.source_snapshot.id !== selection.site_id || !selection.objective_id.startsWith(region.id+"-")) throw new Error("Invalid regional site provenance");
+  }
+  for (const w of mission.waypoint_plan?.waypoints ?? []) {
+    if(w.science_site && (!w.science_site.site_id.startsWith(region.id+"-") || !w.science_site.objective_id.startsWith(region.id+"-")))throw new Error("Cross-region scientific site association");
+    if(w.science_site){const resolved=resolveSiteReference(w.science_site,region.id,w.coordinates);if(resolved.reason)w.inactive_reason=resolved.reason;}
+  }
   // Retired references remain readable and editable, never silently discarded or routed.
   const retired = new Map((mission.retired_objectives ?? []).map(t => [t.id,t]));
   for (const id of [...mission.target_ids, ...(mission.waypoint_plan?.waypoints.flatMap(w => w.target_id ? [w.target_id] : []) ?? [])]) {
-    if (!region.targets.some(t => t.id === id)) retired.set(id, retired.get(id) ?? {id,reason:"Target absent from the current science catalog; retained as historical planning context, unavailable for terrain routing."});
+    if (!region.targets.some(t => t.id === id)) retired.set(id, retired.get(id) ?? {id,title:retiredObjective(region.id,id)?.title,reason:retiredObjective(region.id,id)?.reason ?? "Target absent from the current science catalog; retained as historical planning context, unavailable for terrain routing."});
   }
   if (retired.size) mission.retired_objectives = [...retired.values()];
   if (mission.waypoint_plan) mission.waypoint_plan.waypoints = mission.waypoint_plan.waypoints.map(w => {
+    if(w.science_site)return w;
     const target = region.targets.find(t => t.id === w.target_id);
     if (target) {
       const evidence = targetWaypointEvidence(target);

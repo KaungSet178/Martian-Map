@@ -91,7 +91,8 @@ export function roleDisplay(role: WaypointRole): { label: string; icon: typeof M
 // Provenance Badge Subcomponent
 // ---------------------------------------------------------------------------
 
-export function WaypointProvenanceBadge({ provenance, evidence }: { provenance: WaypointProvenance; evidence?: MarsWaypoint["evidence"] }) {
+export function WaypointProvenanceBadge({ provenance, evidence, scienceSite }: { provenance: WaypointProvenance; evidence?: MarsWaypoint["evidence"]; scienceSite?: MarsWaypoint["science_site"] }) {
+  if(scienceSite)return <Badge tone="cyan">{evidence?.classification ?? "Evidence unavailable"} - Scientific site</Badge>;
   switch (provenance) {
     case "verified_science_target":
       return (
@@ -233,7 +234,7 @@ export function WaypointItinerary({
                     <RoleIcon size={15} aria-hidden="true" className="role-icon" />
                     <span className="waypoint-role-title">{roleName}</span>
                   </div>
-                  <WaypointProvenanceBadge provenance={wp.provenance} evidence={wp.evidence} />
+                  <WaypointProvenanceBadge provenance={wp.provenance} evidence={wp.evidence} scienceSite={wp.science_site} />
                 </div>
 
                 {/* Title / Label with Inline Editing */}
@@ -300,8 +301,9 @@ export function WaypointItinerary({
                   </span>
                 </div>
 
-                <p className="supporting">{evidenceText(wp.evidence, wp.provenance === "user_planning_input" && !wp.target_id)}</p>
+                <p className="supporting">{evidenceText(wp.evidence, wp.provenance === "user_planning_input" && !wp.target_id && !wp.science_site)}</p>
                 {wp.evidence && <p className="supporting">{wp.evidence.precision_disclosure}</p>}
+                {wp.science_site && <p className="supporting">Scientific site: {wp.science_site.site_id}; associated objective: {wp.science_site.objective_id}. Source association remains subject to current eligibility.</p>}
                 {/* Target Catalog Association */}
                 {wp.target_id && (
                   <div className="waypoint-target-row">

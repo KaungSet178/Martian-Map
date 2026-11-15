@@ -1,0 +1,36 @@
+{
+  "depot-user-guide.pdf": {
+    "sha256": "253c9de911023629c9f353f6ddfa88e85a76b83cc28ea961f72ba9cf8775c1a0",
+    "bytes": 589847,
+    "url": "https://pds-geosciences.wustl.edu/m2020/urn-nasa-pds-mars2020_sample_depot_three_forks/document/User_Guide.pdf",
+    "local_research_copy": "output/i4d-sources/depot-user-guide.pdf"
+  },
+  "places-sis.pdf": {
+    "sha256": "ca3eb9d2a0d992cedf96860f30537ac508e15fb0e2417fb74c5b80cb31418d1a",
+    "bytes": 1700553,
+    "url": "https://pds-geosciences.wustl.edu/m2020/urn-nasa-pds-mars2020_rover_places/document/Mars2020_Rover_PLACES_PDS_SIS.pdf",
+    "local_research_copy": "output/i4d-sources/places-sis.pdf"
+  },
+  "mars2020-initial-reports-v2-r2.pdf": {
+    "sha256": "7a9ed0e1ea15eb3ffa61c5c52082e42da0e884a2d1a11e92795f5265535c6469",
+    "bytes": 34764835,
+    "url": "https://pds-geosciences.wustl.edu/missions/mars2020/Mars%202020%20Initial%20Reports%20Volume%202%20Release%202.pdf",
+    "local_research_copy": "output/i4d-sources/mars2020-initial-reports-v2-r2.pdf"
+  },
+  "sample_tube_identifiers.csv": {
+    "sha256": "c9ceb1c8c73b1d384433fad6bf1ec521315f9e63cd7a18cf973cc5be8b08bf76",
+    "bytes": 692
+  },
+  "sample_tube_locations.csv": {
+    "sha256": "089015bb25bc61415cfa69aea7160ddb7f1b5149446dd50dd84332c7660c5d59",
+    "bytes": 859
+  },
+  "sample_tube_locations.xml": {
+    "sha256": "1b4d14fe315bd2f7fd17584e33b728193682220a71840c446fec218361e9e3c3",
+    "bytes": 6402
+  },
+  "sample_tube_targets.csv": {
+    "sha256": "9b2600e88b762f24411b74e5603f789591050fc9a19e6b6f76d7bcced02f8765",
+    "bytes": 2431
+  }
+}

@@ -19,9 +19,9 @@ export function objectiveLocationEvidence(region: string, id: string) {
 export const retiredUnitLayers = ["gale-geology", "jezero-geology", "oxia-geology"] as const;
 // Historical IDs retain their scientific meanings; none is reassigned to a point.
 export const legacyObjectiveDecisions = {
-  "gale-objective-1": "Retained unlocated Scenario; never restore historical demo coordinates.",
-  "gale-objective-2": "Retained unlocated Scenario; never restore historical demo coordinates.",
-  "gale-objective-3": "Retained unlocated Scenario; never restore historical demo coordinates.",
+  "gale-objective-1": "Retired sample Scenario objective; preserve historical identity without restoring demo coordinates.",
+  "gale-objective-2": "Retired sample Scenario objective; preserve historical identity without restoring demo coordinates.",
+  "gale-objective-3": "Retired sample Scenario objective; preserve historical identity without restoring demo coordinates.",
   "gale-glen-torridon": "Retained unlocated science context; no unit geometry.",
   "gale-vera-rubin-ridge": "Retained unlocated science context; no unit geometry.",
   "gale-sulfate-units": "Retained ID for sulfate investigation context; no unit geometry.",

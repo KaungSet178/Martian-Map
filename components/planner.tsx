@@ -1,6 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
+import { selectScienceSite, sitePolicy, type ScienceSite } from "@/lib/science/sites";
 import {
   useCallback,
   useEffect,
@@ -45,6 +46,7 @@ import {
   Notice,
   downloadFile,
 } from "@/components/ui/primitives";
+import { SelectedScienceSites } from "@/components/science/selected-sites";
 import { TargetCatalog, TargetDetails } from "@/components/science/catalog";
 import { EvidenceDetails, LayerManager } from "@/components/science/evidence";
 import { EnvironmentalConditionsPanel } from "@/components/environment/environmental-conditions-panel";
@@ -64,6 +66,7 @@ import {
 import {
   addWaypoint,
   createWaypoint,
+  createWaypointFromTarget,
   type MarsWaypoint,
   type WaypointRole,
   moveWaypoint,
@@ -146,6 +149,25 @@ export function Planner() {
     },
     [region],
   );
+
+  function toggleScienceSite(site:ScienceSite,objectiveId:string) {
+    if(site.region!==region.id || !site.objective_ids.includes(objectiveId))return;
+    const selected=mission.science_sites?.some(s=>s.site_id===site.id);
+    updateMission({science_sites:selected ? mission.science_sites!.filter(s=>s.site_id!==site.id) : [...(mission.science_sites ?? []),selectScienceSite(site,objectiveId)],
+      ...(selected ? {waypoint_plan:{...activePlan,waypoints:activePlan.waypoints.filter(w=>w.science_site?.site_id!==site.id)}} : {})});
+  }
+  function addScienceSite(site:ScienceSite,objectiveId:string) {
+    if(site.region!==region.id || !sitePolicy(site).geometricOnly || !site.objective_ids.includes(objectiveId))return;
+    const sourceTarget=region.targets.find(t=>t.id===objectiveId);
+    if(!sourceTarget)return;
+    const selection=selectScienceSite(site,objectiveId);
+    const {source_snapshot: _snapshot,...reference}=selection;
+    void _snapshot;
+    const existing=activePlan.waypoints.find(w=>w.science_site?.site_id===site.id || w.target_id===objectiveId);
+    const waypoint={...(existing ?? createWaypointFromTarget(sourceTarget,"science_stop")),science_site:reference};
+    const plan=existing ? {...activePlan,waypoints:activePlan.waypoints.map(w=>w.id===existing.id ? waypoint : w)} : addWaypoint(activePlan,waypoint);
+    updateMission({waypoint_plan:plan,science_sites:[...(mission.science_sites ?? []).filter(s=>s.site_id!==site.id),selection]});
+  }
 
   const terrainRouting = useTerrainRouting(mission, activePlan, updateMission);
   const planningSnapshot = missionPlanningSnapshot(mission, region, terrainRouting.selected);
@@ -553,7 +575,7 @@ export function Planner() {
                 {label}
                 {key === "plan" && (
                   <span className="tab-count mono" title={planningSnapshot.countLabel}>
-                    {planningSnapshot.counts.waypoints + planningSnapshot.objectives.filter(t => !t.is_waypoint).length + planningSnapshot.retiredObjectives.length}
+                    {planningSnapshot.counts.waypoints + planningSnapshot.siteContextCount + planningSnapshot.objectives.filter(t => !t.is_waypoint).length + planningSnapshot.retiredObjectives.length}
                   </span>
                 )}
               </button>
@@ -629,6 +651,7 @@ export function Planner() {
                     Surface Waypoints ({activePlan.waypoints.length})
                   </button>
                 </div>
+                <SelectedScienceSites snapshot={planningSnapshot} onRemove={id=>updateMission({science_sites:(mission.science_sites ?? []).filter(s=>s.site_id!==id),waypoint_plan:{...activePlan,waypoints:activePlan.waypoints.filter(w=>w.science_site?.site_id!==id)}})}/>
                 {planSubView === "objectives" ? (
                   <MissionEditor
                     mission={mission}
@@ -875,6 +898,9 @@ export function Planner() {
             region={region}
             added={mission.target_ids.includes(target.id)}
             onToggle={() => toggleStop(target.id)}
+            siteSelections={mission.science_sites ?? []}
+            onToggleSite={site=>toggleScienceSite(site,target.id)}
+            onAddSite={site=>addScienceSite(site,target.id)}
           />
         </Dialog>
       )}

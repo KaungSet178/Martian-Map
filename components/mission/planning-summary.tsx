@@ -1,3 +1,4 @@
+import { SelectedScienceSites } from "@/components/science/selected-sites";
 import { EVAAssessment } from "./eva-assessment";
 import type { MissionPlanningSnapshot } from "@/lib/mission/planning-snapshot";
 
@@ -19,6 +20,7 @@ export function PlanningSummary({snapshot:s}:{snapshot:MissionPlanningSnapshot})
     <h3>Science objectives</h3>
     {s.objectives.length ? <ol>{s.objectives.map(t=><li key={t.id}><strong>{t.title}</strong><p>{t.evidence_text}</p><p>{t.location_disclosure}</p><p>{t.is_waypoint ? "Included as a planning waypoint; registration unverified." : "Objective only; no waypoint inferred."} {t.activity}</p></li>)}</ol> : <p>No scientific objectives selected.</p>}
     {s.retiredObjectives.length > 0 && <><h3>Retired or unavailable objectives</h3><ul>{s.retiredObjectives.map(t=><li key={t.id}><strong>{t.title}</strong> — {t.reason}</li>)}</ul></>}
+    <SelectedScienceSites snapshot={s}/>
     <h3>Research route outputs</h3>
     {!s.geometric.available && <p>Geometric preview unavailable: add two active planning waypoints and resolve retired or unavailable locations.</p>}
     <p>{s.geometric.label}. Total geometric distance: {s.geometric.total_surface_distance_m.toFixed(1)} m; outbound {s.geometric.outbound_distance_m.toFixed(1)} m; return {s.geometric.return_distance_m.toFixed(1)} m. {s.geometric.is_closed_loop ? "Return closure included exactly once." : "No return closure."}</p>

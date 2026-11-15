@@ -1,0 +1,112 @@
+[
+  {
+    "site_id": "jezero-depot-rover-malay",
+    "status": 400,
+    "error": "Automatic site-linked terrain routing unavailable pending independent source-to-grid registration and uncertainty evidence."
+  },
+  {
+    "site_id": "jezero-depot-rover-mageik",
+    "status": 400,
+    "error": "Automatic site-linked terrain routing unavailable pending independent source-to-grid registration and uncertainty evidence."
+  },
+  {
+    "site_id": "jezero-depot-rover-crosswind-lake",
+    "status": 400,
+    "error": "Automatic site-linked terrain routing unavailable pending independent source-to-grid registration and uncertainty evidence."
+  },
+  {
+    "site_id": "jezero-depot-rover-roubion",
+    "status": 400,
+    "error": "Automatic site-linked terrain routing unavailable pending independent source-to-grid registration and uncertainty evidence."
+  },
+  {
+    "site_id": "jezero-depot-rover-coulettes",
+    "status": 400,
+    "error": "Automatic site-linked terrain routing unavailable pending independent source-to-grid registration and uncertainty evidence."
+  },
+  {
+    "site_id": "jezero-depot-rover-montdenier",
+    "status": 400,
+    "error": "Automatic site-linked terrain routing unavailable pending independent source-to-grid registration and uncertainty evidence."
+  },
+  {
+    "site_id": "jezero-depot-rover-bearwallow",
+    "status": 400,
+    "error": "Automatic site-linked terrain routing unavailable pending independent source-to-grid registration and uncertainty evidence."
+  },
+  {
+    "site_id": "jezero-depot-rover-skyland",
+    "status": 400,
+    "error": "Automatic site-linked terrain routing unavailable pending independent source-to-grid registration and uncertainty evidence."
+  },
+  {
+    "site_id": "jezero-depot-rover-atsah",
+    "status": 400,
+    "error": "Automatic site-linked terrain routing unavailable pending independent source-to-grid registration and uncertainty evidence."
+  },
+  {
+    "site_id": "jezero-depot-rover-amalik-witness",
+    "status": 400,
+    "error": "Automatic site-linked terrain routing unavailable pending independent source-to-grid registration and uncertainty evidence."
+  },
+  {
+    "site_id": "jezero-skinner-ridge",
+    "status": 400,
+    "error": "Coordinate frame/reference-point reconciliation required before map placement or routing."
+  },
+  {
+    "site_id": "jezero-wildcat-ridge",
+    "status": 400,
+    "error": "Coordinate frame/reference-point reconciliation required before map placement or routing."
+  },
+  {
+    "site_id": "jezero-hogwallow-flats",
+    "status": 400,
+    "error": "Waypoint differs from current source coordinates; association invalid."
+  },
+  {
+    "site_id": "jezero-three-forks-landing-circle",
+    "status": 400,
+    "error": "Automatic site-linked terrain routing unavailable pending independent source-to-grid registration and uncertainty evidence."
+  },
+  {
+    "site_id": "gale-aberlady",
+    "status": 400,
+    "error": "Waypoint differs from current source coordinates; association invalid."
+  },
+  {
+    "site_id": "gale-glen-etive",
+    "status": 400,
+    "error": "Waypoint differs from current source coordinates; association invalid."
+  },
+  {
+    "site_id": "gale-highfield",
+    "status": 400,
+    "error": "Waypoint differs from current source coordinates; association invalid."
+  },
+  {
+    "site_id": "gale-canaima",
+    "status": 400,
+    "error": "Waypoint differs from current source coordinates; association invalid."
+  },
+  {
+    "site_id": "gale-mammoth-lakes",
+    "status": 400,
+    "error": "Waypoint differs from current source coordinates; association invalid."
+  },
+  {
+    "site_id": "oxia-mineral-1",
+    "status": 400,
+    "error": "Geometric planning only; no Oxia terrain engine or validated science routing."
+  },
+  {
+    "site_id": "oxia-mineral-2",
+    "status": 400,
+    "error": "Geometric planning only; no Oxia terrain engine or validated science routing."
+  },
+  {
+    "site_id": "oxia-mineral-3",
+    "status": 400,
+    "error": "Geometric planning only; no Oxia terrain engine or validated science routing."
+  }
+]

@@ -1,0 +1,1285 @@
+{
+  "method": "Independent Python source-table reproduction and direct native 25 m grid intersection; no search-engine imports. Cell-center displacement is not route snapping.",
+  "grid_sha256": "55ba6f1b6a00ff2a674b191fc1698df9c112a8329a6863021afa7675c4766abb",
+  "records": [
+    {
+      "site_id": "jezero-depot-rover-malay",
+      "region": "jezero",
+      "objective_associations": [
+        "jezero-objective-3"
+      ],
+      "scientific_evidence": "Observed",
+      "source": {
+        "title": "PDS Three Forks sample_tube_locations",
+        "version": "1.0; release 2024-10-15",
+        "url": "https://pds-geosciences.wustl.edu/m2020/urn-nasa-pds-mars2020_sample_depot_three_forks/miscellaneous/sample_metadata/sample_tube_locations.csv",
+        "feature_id": "M2020-00337-08",
+        "locator": "Sample Designation M2020-00337-08; columns Rover Latitude/Rover Longitude",
+        "sha256": "089015bb25bc61415cfa69aea7160ddb7f1b5149446dd50dd84332c7660c5d59"
+      },
+      "published_coordinates": {
+        "latitude": 18.45262651,
+        "longitude_east": 77.40775601
+      },
+      "coordinate_frame": {
+        "body": "Mars",
+        "latitude_type": "planetocentric",
+        "longitude_direction": "east",
+        "longitude_range": "0-360",
+        "datum": "Mars PLACES cartographic reference; R=3396190 m, standard parallel 18.4663 degrees; MOLA/Airy-0 origin"
+      },
+      "original_precision": {
+        "latitude": "18.45262651",
+        "longitude_east": "77.40775601"
+      },
+      "source_coordinate_verified": true,
+      "source_processing_verified": null,
+      "registration_verified": false,
+      "registration_uncertainty_m": null,
+      "dem_coverage": true,
+      "cell": [
+        433,
+        100
+      ],
+      "cell_traversability_under_25_degree_restriction": true,
+      "cell_center_displacement_m_not_engine_snap": 6.82203399525047,
+      "routing_eligible": false,
+      "attempted_route_result": "Server policy rejection tested independently for this site; no site route claimed.",
+      "requested_snapped_displacement_m": null,
+      "numerical_path_metrics": null,
+      "safety_limitations": [
+        "Published digits do not establish positional accuracy.",
+        "Absolute source-to-basemap/DEM registration is unverified.",
+        "No astronaut safety or access certification."
+      ],
+      "test_evidence": [
+        "tests/i4d-sites.test.tsx",
+        "tests/browser/i4d-sites.spec.ts"
+      ],
+      "decision": "Integrated as source-qualified context; automatic terrain waypoint unavailable",
+      "production_http_rejection": {
+        "site_id": "jezero-depot-rover-malay",
+        "status": 400,
+        "error": "Automatic site-linked terrain routing unavailable pending independent source-to-grid registration and uncertainty evidence."
+      }
+    },
+    {
+      "site_id": "jezero-depot-rover-mageik",
+      "region": "jezero",
+      "objective_associations": [
+        "jezero-objective-3"
+      ],
+      "scientific_evidence": "Observed",
+      "source": {
+        "title": "PDS Three Forks sample_tube_locations",
+        "version": "1.0; release 2024-10-15",
+        "url": "https://pds-geosciences.wustl.edu/m2020/urn-nasa-pds-mars2020_sample_depot_three_forks/miscellaneous/sample_metadata/sample_tube_locations.csv",
+        "feature_id": "M2020-00579-17",
+        "locator": "Sample Designation M2020-00579-17; columns Rover Latitude/Rover Longitude",
+        "sha256": "089015bb25bc61415cfa69aea7160ddb7f1b5149446dd50dd84332c7660c5d59"
+      },
+      "published_coordinates": {
+        "latitude": 18.4525234,
+        "longitude_east": 77.40784692
+      },
+      "coordinate_frame": {
+        "body": "Mars",
+        "latitude_type": "planetocentric",
+        "longitude_direction": "east",
+        "longitude_range": "0-360",
+        "datum": "Mars PLACES cartographic reference; R=3396190 m, standard parallel 18.4663 degrees; MOLA/Airy-0 origin"
+      },
+      "original_precision": {
+        "latitude": "18.4525234",
+        "longitude_east": "77.40784692"
+      },
+      "source_coordinate_verified": true,
+      "source_processing_verified": null,
+      "registration_verified": false,
+      "registration_uncertainty_m": null,
+      "dem_coverage": true,
+      "cell": [
+        433,
+        100
+      ],
+      "cell_traversability_under_25_degree_restriction": true,
+      "cell_center_displacement_m_not_engine_snap": 6.007779100778271,
+      "routing_eligible": false,
+      "attempted_route_result": "Server policy rejection tested independently for this site; no site route claimed.",
+      "requested_snapped_displacement_m": null,
+      "numerical_path_metrics": null,
+      "safety_limitations": [
+        "Published digits do not establish positional accuracy.",
+        "Absolute source-to-basemap/DEM registration is unverified.",
+        "No astronaut safety or access certification."
+      ],
+      "test_evidence": [
+        "tests/i4d-sites.test.tsx",
+        "tests/browser/i4d-sites.spec.ts"
+      ],
+      "decision": "Integrated as source-qualified context; automatic terrain waypoint unavailable",
+      "production_http_rejection": {
+        "site_id": "jezero-depot-rover-mageik",
+        "status": 400,
+        "error": "Automatic site-linked terrain routing unavailable pending independent source-to-grid registration and uncertainty evidence."
+      }
+    },
+    {
+      "site_id": "jezero-depot-rover-crosswind-lake",
+      "region": "jezero",
+      "objective_associations": [
+        "jezero-objective-3"
+      ],
+      "scientific_evidence": "Observed",
+      "source": {
+        "title": "PDS Three Forks sample_tube_locations",
+        "version": "1.0; release 2024-10-15",
+        "url": "https://pds-geosciences.wustl.edu/m2020/urn-nasa-pds-mars2020_sample_depot_three_forks/miscellaneous/sample_metadata/sample_tube_locations.csv",
+        "feature_id": "M2020-00639-21",
+        "locator": "Sample Designation M2020-00639-21; columns Rover Latitude/Rover Longitude",
+        "sha256": "089015bb25bc61415cfa69aea7160ddb7f1b5149446dd50dd84332c7660c5d59"
+      },
+      "published_coordinates": {
+        "latitude": 18.45267034,
+        "longitude_east": 77.408056
+      },
+      "coordinate_frame": {
+        "body": "Mars",
+        "latitude_type": "planetocentric",
+        "longitude_direction": "east",
+        "longitude_range": "0-360",
+        "datum": "Mars PLACES cartographic reference; R=3396190 m, standard parallel 18.4663 degrees; MOLA/Airy-0 origin"
+      },
+      "original_precision": {
+        "latitude": "18.45267034",
+        "longitude_east": "77.408056"
+      },
+      "source_coordinate_verified": true,
+      "source_processing_verified": null,
+      "registration_verified": false,
+      "registration_uncertainty_m": null,
+      "dem_coverage": true,
+      "cell": [
+        433,
+        100
+      ],
+      "cell_traversability_under_25_degree_restriction": true,
+      "cell_center_displacement_m_not_engine_snap": 10.477797938144553,
+      "routing_eligible": false,
+      "attempted_route_result": "Server policy rejection tested independently for this site; no site route claimed.",
+      "requested_snapped_displacement_m": null,
+      "numerical_path_metrics": null,
+      "safety_limitations": [
+        "Published digits do not establish positional accuracy.",
+        "Absolute source-to-basemap/DEM registration is unverified.",
+        "No astronaut safety or access certification."
+      ],
+      "test_evidence": [
+        "tests/i4d-sites.test.tsx",
+        "tests/browser/i4d-sites.spec.ts"
+      ],
+      "decision": "Integrated as source-qualified context; automatic terrain waypoint unavailable",
+      "production_http_rejection": {
+        "site_id": "jezero-depot-rover-crosswind-lake",
+        "status": 400,
+        "error": "Automatic site-linked terrain routing unavailable pending independent source-to-grid registration and uncertainty evidence."
+      }
+    },
+    {
+      "site_id": "jezero-depot-rover-roubion",
+      "region": "jezero",
+      "objective_associations": [
+        "jezero-objective-3"
+      ],
+      "scientific_evidence": "Observed",
+      "source": {
+        "title": "PDS Three Forks sample_tube_locations",
+        "version": "1.0; release 2024-10-15",
+        "url": "https://pds-geosciences.wustl.edu/m2020/urn-nasa-pds-mars2020_sample_depot_three_forks/miscellaneous/sample_metadata/sample_tube_locations.csv",
+        "feature_id": "M2020-00164-02",
+        "locator": "Sample Designation M2020-00164-02; columns Rover Latitude/Rover Longitude",
+        "sha256": "089015bb25bc61415cfa69aea7160ddb7f1b5149446dd50dd84332c7660c5d59"
+      },
+      "published_coordinates": {
+        "latitude": 18.45276569,
+        "longitude_east": 77.40807823
+      },
+      "coordinate_frame": {
+        "body": "Mars",
+        "latitude_type": "planetocentric",
+        "longitude_direction": "east",
+        "longitude_range": "0-360",
+        "datum": "Mars PLACES cartographic reference; R=3396190 m, standard parallel 18.4663 degrees; MOLA/Airy-0 origin"
+      },
+      "original_precision": {
+        "latitude": "18.45276569",
+        "longitude_east": "77.40807823"
+      },
+      "source_coordinate_verified": true,
+      "source_processing_verified": null,
+      "registration_verified": false,
+      "registration_uncertainty_m": null,
+      "dem_coverage": true,
+      "cell": [
+        433,
+        100
+      ],
+      "cell_traversability_under_25_degree_restriction": true,
+      "cell_center_displacement_m_not_engine_snap": 14.203805174243708,
+      "routing_eligible": false,
+      "attempted_route_result": "Server policy rejection tested independently for this site; no site route claimed.",
+      "requested_snapped_displacement_m": null,
+      "numerical_path_metrics": null,
+      "safety_limitations": [
+        "Published digits do not establish positional accuracy.",
+        "Absolute source-to-basemap/DEM registration is unverified.",
+        "No astronaut safety or access certification."
+      ],
+      "test_evidence": [
+        "tests/i4d-sites.test.tsx",
+        "tests/browser/i4d-sites.spec.ts"
+      ],
+      "decision": "Integrated as source-qualified context; automatic terrain waypoint unavailable",
+      "production_http_rejection": {
+        "site_id": "jezero-depot-rover-roubion",
+        "status": 400,
+        "error": "Automatic site-linked terrain routing unavailable pending independent source-to-grid registration and uncertainty evidence."
+      }
+    },
+    {
+      "site_id": "jezero-depot-rover-coulettes",
+      "region": "jezero",
+      "objective_associations": [
+        "jezero-objective-3"
+      ],
+      "scientific_evidence": "Observed",
+      "source": {
+        "title": "PDS Three Forks sample_tube_locations",
+        "version": "1.0; release 2024-10-15",
+        "url": "https://pds-geosciences.wustl.edu/m2020/urn-nasa-pds-mars2020_sample_depot_three_forks/miscellaneous/sample_metadata/sample_tube_locations.csv",
+        "feature_id": "M2020-00271-06",
+        "locator": "Sample Designation M2020-00271-06; columns Rover Latitude/Rover Longitude",
+        "sha256": "089015bb25bc61415cfa69aea7160ddb7f1b5149446dd50dd84332c7660c5d59"
+      },
+      "published_coordinates": {
+        "latitude": 18.45272365,
+        "longitude_east": 77.4082
+      },
+      "coordinate_frame": {
+        "body": "Mars",
+        "latitude_type": "planetocentric",
+        "longitude_direction": "east",
+        "longitude_range": "0-360",
+        "datum": "Mars PLACES cartographic reference; R=3396190 m, standard parallel 18.4663 degrees; MOLA/Airy-0 origin"
+      },
+      "original_precision": {
+        "latitude": "18.45272365",
+        "longitude_east": "77.4082"
+      },
+      "source_coordinate_verified": true,
+      "source_processing_verified": null,
+      "registration_verified": false,
+      "registration_uncertainty_m": null,
+      "dem_coverage": true,
+      "cell": [
+        434,
+        100
+      ],
+      "cell_traversability_under_25_degree_restriction": true,
+      "cell_center_displacement_m_not_engine_snap": 8.26186879296702,
+      "routing_eligible": false,
+      "attempted_route_result": "Server policy rejection tested independently for this site; no site route claimed.",
+      "requested_snapped_displacement_m": null,
+      "numerical_path_metrics": null,
+      "safety_limitations": [
+        "Published digits do not establish positional accuracy.",
+        "Absolute source-to-basemap/DEM registration is unverified.",
+        "No astronaut safety or access certification."
+      ],
+      "test_evidence": [
+        "tests/i4d-sites.test.tsx",
+        "tests/browser/i4d-sites.spec.ts"
+      ],
+      "decision": "Integrated as source-qualified context; automatic terrain waypoint unavailable",
+      "production_http_rejection": {
+        "site_id": "jezero-depot-rover-coulettes",
+        "status": 400,
+        "error": "Automatic site-linked terrain routing unavailable pending independent source-to-grid registration and uncertainty evidence."
+      }
+    },
+    {
+      "site_id": "jezero-depot-rover-montdenier",
+      "region": "jezero",
+      "objective_associations": [
+        "jezero-objective-3"
+      ],
+      "scientific_evidence": "Observed",
+      "source": {
+        "title": "PDS Three Forks sample_tube_locations",
+        "version": "1.0; release 2024-10-15",
+        "url": "https://pds-geosciences.wustl.edu/m2020/urn-nasa-pds-mars2020_sample_depot_three_forks/miscellaneous/sample_metadata/sample_tube_locations.csv",
+        "feature_id": "M2020-00190-03",
+        "locator": "Sample Designation M2020-00190-03; columns Rover Latitude/Rover Longitude",
+        "sha256": "089015bb25bc61415cfa69aea7160ddb7f1b5149446dd50dd84332c7660c5d59"
+      },
+      "published_coordinates": {
+        "latitude": 18.45281322,
+        "longitude_east": 77.40824352
+      },
+      "coordinate_frame": {
+        "body": "Mars",
+        "latitude_type": "planetocentric",
+        "longitude_direction": "east",
+        "longitude_range": "0-360",
+        "datum": "Mars PLACES cartographic reference; R=3396190 m, standard parallel 18.4663 degrees; MOLA/Airy-0 origin"
+      },
+      "original_precision": {
+        "latitude": "18.45281322",
+        "longitude_east": "77.40824352"
+      },
+      "source_coordinate_verified": true,
+      "source_processing_verified": null,
+      "registration_verified": false,
+      "registration_uncertainty_m": null,
+      "dem_coverage": true,
+      "cell": [
+        434,
+        100
+      ],
+      "cell_traversability_under_25_degree_restriction": true,
+      "cell_center_displacement_m_not_engine_snap": 11.834860649535134,
+      "routing_eligible": false,
+      "attempted_route_result": "Server policy rejection tested independently for this site; no site route claimed.",
+      "requested_snapped_displacement_m": null,
+      "numerical_path_metrics": null,
+      "safety_limitations": [
+        "Published digits do not establish positional accuracy.",
+        "Absolute source-to-basemap/DEM registration is unverified.",
+        "No astronaut safety or access certification."
+      ],
+      "test_evidence": [
+        "tests/i4d-sites.test.tsx",
+        "tests/browser/i4d-sites.spec.ts"
+      ],
+      "decision": "Integrated as source-qualified context; automatic terrain waypoint unavailable",
+      "production_http_rejection": {
+        "site_id": "jezero-depot-rover-montdenier",
+        "status": 400,
+        "error": "Automatic site-linked terrain routing unavailable pending independent source-to-grid registration and uncertainty evidence."
+      }
+    },
+    {
+      "site_id": "jezero-depot-rover-bearwallow",
+      "region": "jezero",
+      "objective_associations": [
+        "jezero-objective-3"
+      ],
+      "scientific_evidence": "Observed",
+      "source": {
+        "title": "PDS Three Forks sample_tube_locations",
+        "version": "1.0; release 2024-10-15",
+        "url": "https://pds-geosciences.wustl.edu/m2020/urn-nasa-pds-mars2020_sample_depot_three_forks/miscellaneous/sample_metadata/sample_tube_locations.csv",
+        "feature_id": "M2020-00516-15",
+        "locator": "Sample Designation M2020-00516-15; columns Rover Latitude/Rover Longitude",
+        "sha256": "089015bb25bc61415cfa69aea7160ddb7f1b5149446dd50dd84332c7660c5d59"
+      },
+      "published_coordinates": {
+        "latitude": 18.45272753,
+        "longitude_east": 77.40833585
+      },
+      "coordinate_frame": {
+        "body": "Mars",
+        "latitude_type": "planetocentric",
+        "longitude_direction": "east",
+        "longitude_range": "0-360",
+        "datum": "Mars PLACES cartographic reference; R=3396190 m, standard parallel 18.4663 degrees; MOLA/Airy-0 origin"
+      },
+      "original_precision": {
+        "latitude": "18.45272753",
+        "longitude_east": "77.40833585"
+      },
+      "source_coordinate_verified": true,
+      "source_processing_verified": null,
+      "registration_verified": false,
+      "registration_uncertainty_m": null,
+      "dem_coverage": true,
+      "cell": [
+        434,
+        100
+      ],
+      "cell_traversability_under_25_degree_restriction": true,
+      "cell_center_displacement_m_not_engine_snap": 6.668970626953674,
+      "routing_eligible": false,
+      "attempted_route_result": "Server policy rejection tested independently for this site; no site route claimed.",
+      "requested_snapped_displacement_m": null,
+      "numerical_path_metrics": null,
+      "safety_limitations": [
+        "Published digits do not establish positional accuracy.",
+        "Absolute source-to-basemap/DEM registration is unverified.",
+        "No astronaut safety or access certification."
+      ],
+      "test_evidence": [
+        "tests/i4d-sites.test.tsx",
+        "tests/browser/i4d-sites.spec.ts"
+      ],
+      "decision": "Integrated as source-qualified context; automatic terrain waypoint unavailable",
+      "production_http_rejection": {
+        "site_id": "jezero-depot-rover-bearwallow",
+        "status": 400,
+        "error": "Automatic site-linked terrain routing unavailable pending independent source-to-grid registration and uncertainty evidence."
+      }
+    },
+    {
+      "site_id": "jezero-depot-rover-skyland",
+      "region": "jezero",
+      "objective_associations": [
+        "jezero-objective-3"
+      ],
+      "scientific_evidence": "Observed",
+      "source": {
+        "title": "PDS Three Forks sample_tube_locations",
+        "version": "1.0; release 2024-10-15",
+        "url": "https://pds-geosciences.wustl.edu/m2020/urn-nasa-pds-mars2020_sample_depot_three_forks/miscellaneous/sample_metadata/sample_tube_locations.csv",
+        "feature_id": "M2020-00495-12",
+        "locator": "Sample Designation M2020-00495-12; columns Rover Latitude/Rover Longitude",
+        "sha256": "089015bb25bc61415cfa69aea7160ddb7f1b5149446dd50dd84332c7660c5d59"
+      },
+      "published_coordinates": {
+        "latitude": 18.45300487,
+        "longitude_east": 77.4085047
+      },
+      "coordinate_frame": {
+        "body": "Mars",
+        "latitude_type": "planetocentric",
+        "longitude_direction": "east",
+        "longitude_range": "0-360",
+        "datum": "Mars PLACES cartographic reference; R=3396190 m, standard parallel 18.4663 degrees; MOLA/Airy-0 origin"
+      },
+      "original_precision": {
+        "latitude": "18.45300487",
+        "longitude_east": "77.4085047"
+      },
+      "source_coordinate_verified": true,
+      "source_processing_verified": null,
+      "registration_verified": false,
+      "registration_uncertainty_m": null,
+      "dem_coverage": true,
+      "cell": [
+        434,
+        99
+      ],
+      "cell_traversability_under_25_degree_restriction": true,
+      "cell_center_displacement_m_not_engine_snap": 11.780579164726852,
+      "routing_eligible": false,
+      "attempted_route_result": "Server policy rejection tested independently for this site; no site route claimed.",
+      "requested_snapped_displacement_m": null,
+      "numerical_path_metrics": null,
+      "safety_limitations": [
+        "Published digits do not establish positional accuracy.",
+        "Absolute source-to-basemap/DEM registration is unverified.",
+        "No astronaut safety or access certification."
+      ],
+      "test_evidence": [
+        "tests/i4d-sites.test.tsx",
+        "tests/browser/i4d-sites.spec.ts"
+      ],
+      "decision": "Integrated as source-qualified context; automatic terrain waypoint unavailable",
+      "production_http_rejection": {
+        "site_id": "jezero-depot-rover-skyland",
+        "status": 400,
+        "error": "Automatic site-linked terrain routing unavailable pending independent source-to-grid registration and uncertainty evidence."
+      }
+    },
+    {
+      "site_id": "jezero-depot-rover-atsah",
+      "region": "jezero",
+      "objective_associations": [
+        "jezero-objective-3"
+      ],
+      "scientific_evidence": "Observed",
+      "source": {
+        "title": "PDS Three Forks sample_tube_locations",
+        "version": "1.0; release 2024-10-15",
+        "url": "https://pds-geosciences.wustl.edu/m2020/urn-nasa-pds-mars2020_sample_depot_three_forks/miscellaneous/sample_metadata/sample_tube_locations.csv",
+        "feature_id": "M2020-00374-10",
+        "locator": "Sample Designation M2020-00374-10; columns Rover Latitude/Rover Longitude",
+        "sha256": "089015bb25bc61415cfa69aea7160ddb7f1b5149446dd50dd84332c7660c5d59"
+      },
+      "published_coordinates": {
+        "latitude": 18.45306554,
+        "longitude_east": 77.40860064
+      },
+      "coordinate_frame": {
+        "body": "Mars",
+        "latitude_type": "planetocentric",
+        "longitude_direction": "east",
+        "longitude_range": "0-360",
+        "datum": "Mars PLACES cartographic reference; R=3396190 m, standard parallel 18.4663 degrees; MOLA/Airy-0 origin"
+      },
+      "original_precision": {
+        "latitude": "18.45306554",
+        "longitude_east": "77.40860064"
+      },
+      "source_coordinate_verified": true,
+      "source_processing_verified": null,
+      "registration_verified": false,
+      "registration_uncertainty_m": null,
+      "dem_coverage": true,
+      "cell": [
+        435,
+        99
+      ],
+      "cell_traversability_under_25_degree_restriction": true,
+      "cell_center_displacement_m_not_engine_snap": 6.889470424738914,
+      "routing_eligible": false,
+      "attempted_route_result": "Server policy rejection tested independently for this site; no site route claimed.",
+      "requested_snapped_displacement_m": null,
+      "numerical_path_metrics": null,
+      "safety_limitations": [
+        "Published digits do not establish positional accuracy.",
+        "Absolute source-to-basemap/DEM registration is unverified.",
+        "No astronaut safety or access certification."
+      ],
+      "test_evidence": [
+        "tests/i4d-sites.test.tsx",
+        "tests/browser/i4d-sites.spec.ts"
+      ],
+      "decision": "Integrated as source-qualified context; automatic terrain waypoint unavailable",
+      "production_http_rejection": {
+        "site_id": "jezero-depot-rover-atsah",
+        "status": 400,
+        "error": "Automatic site-linked terrain routing unavailable pending independent source-to-grid registration and uncertainty evidence."
+      }
+    },
+    {
+      "site_id": "jezero-depot-rover-amalik-witness",
+      "region": "jezero",
+      "objective_associations": [
+        "jezero-objective-3"
+      ],
+      "scientific_evidence": "Observed",
+      "source": {
+        "title": "PDS Three Forks sample_tube_locations",
+        "version": "1.0; release 2024-10-15",
+        "url": "https://pds-geosciences.wustl.edu/m2020/urn-nasa-pds-mars2020_sample_depot_three_forks/miscellaneous/sample_metadata/sample_tube_locations.csv",
+        "feature_id": "M2020-00586-18",
+        "locator": "Sample Designation M2020-00586-18; columns Rover Latitude/Rover Longitude",
+        "sha256": "089015bb25bc61415cfa69aea7160ddb7f1b5149446dd50dd84332c7660c5d59"
+      },
+      "published_coordinates": {
+        "latitude": 18.45337179,
+        "longitude_east": 77.40844668
+      },
+      "coordinate_frame": {
+        "body": "Mars",
+        "latitude_type": "planetocentric",
+        "longitude_direction": "east",
+        "longitude_range": "0-360",
+        "datum": "Mars PLACES cartographic reference; R=3396190 m, standard parallel 18.4663 degrees; MOLA/Airy-0 origin"
+      },
+      "original_precision": {
+        "latitude": "18.45337179",
+        "longitude_east": "77.40844668"
+      },
+      "source_coordinate_verified": true,
+      "source_processing_verified": null,
+      "registration_verified": false,
+      "registration_uncertainty_m": null,
+      "dem_coverage": true,
+      "cell": [
+        434,
+        98
+      ],
+      "cell_traversability_under_25_degree_restriction": true,
+      "cell_center_displacement_m_not_engine_snap": 9.947995012028352,
+      "routing_eligible": false,
+      "attempted_route_result": "Server policy rejection tested independently for this site; no site route claimed.",
+      "requested_snapped_displacement_m": null,
+      "numerical_path_metrics": null,
+      "safety_limitations": [
+        "Published digits do not establish positional accuracy.",
+        "Absolute source-to-basemap/DEM registration is unverified.",
+        "No astronaut safety or access certification."
+      ],
+      "test_evidence": [
+        "tests/i4d-sites.test.tsx",
+        "tests/browser/i4d-sites.spec.ts"
+      ],
+      "decision": "Integrated as source-qualified context; automatic terrain waypoint unavailable",
+      "production_http_rejection": {
+        "site_id": "jezero-depot-rover-amalik-witness",
+        "status": 400,
+        "error": "Automatic site-linked terrain routing unavailable pending independent source-to-grid registration and uncertainty evidence."
+      }
+    },
+    {
+      "site_id": "jezero-skinner-ridge",
+      "region": "jezero",
+      "objective_associations": [
+        "jezero-objective-1",
+        "jezero-objective-2",
+        "jezero-objective-4"
+      ],
+      "scientific_evidence": "Observed",
+      "source": {
+        "title": "Mars 2020 Initial Reports, Volume 2, Release 2",
+        "version": "2023-02-15 volume; individual report 2022-08-29",
+        "url": "https://pds-geosciences.wustl.edu/missions/mars2020/Mars%202020%20Initial%20Reports%20Volume%202%20Release%202.pdf#page=14",
+        "feature_id": "M2020-490-11",
+        "locator": "PDF p.14; report 11-1",
+        "sha256": "7a9ed0e1ea15eb3ffa61c5c52082e42da0e884a2d1a11e92795f5265535c6469"
+      },
+      "published_coordinates": {
+        "latitude": 18.458931,
+        "longitude_east": 77.40617078
+      },
+      "coordinate_frame": {
+        "body": "Mars",
+        "latitude_type": null,
+        "longitude_direction": "east",
+        "longitude_range": "0-360",
+        "datum": null
+      },
+      "original_precision": {
+        "latitude": "18.458931",
+        "longitude_east": "77.40617078"
+      },
+      "source_coordinate_verified": true,
+      "source_processing_verified": null,
+      "registration_verified": false,
+      "registration_uncertainty_m": null,
+      "dem_coverage": null,
+      "cell": null,
+      "cell_traversability_under_25_degree_restriction": null,
+      "cell_center_displacement_m_not_engine_snap": null,
+      "routing_eligible": false,
+      "attempted_route_result": "Server policy rejection tested independently for this site; no site route claimed.",
+      "requested_snapped_displacement_m": null,
+      "numerical_path_metrics": null,
+      "safety_limitations": [
+        "Latitude convention/datum and exact coordinate reference point require source reconciliation.",
+        "No marker or waypoint is inferred until coordinate-frame compatibility is established.",
+        "Absolute registration and positional uncertainty are unknown."
+      ],
+      "test_evidence": [
+        "tests/i4d-sites.test.tsx",
+        "tests/browser/i4d-sites.spec.ts"
+      ],
+      "decision": "Integrated as source-qualified context; automatic terrain waypoint unavailable",
+      "production_http_rejection": {
+        "site_id": "jezero-skinner-ridge",
+        "status": 400,
+        "error": "Coordinate frame/reference-point reconciliation required before map placement or routing."
+      }
+    },
+    {
+      "site_id": "jezero-wildcat-ridge",
+      "region": "jezero",
+      "objective_associations": [
+        "jezero-objective-1",
+        "jezero-objective-2",
+        "jezero-objective-4"
+      ],
+      "scientific_evidence": "Observed",
+      "source": {
+        "title": "Mars 2020 Initial Reports, Volume 2, Release 2",
+        "version": "2023-02-15 volume; individual report 2022-09-21",
+        "url": "https://pds-geosciences.wustl.edu/missions/mars2020/Mars%202020%20Initial%20Reports%20Volume%202%20Release%202.pdf#page=58",
+        "feature_id": "M2020-509-14",
+        "locator": "PDF p.58; report 14-1",
+        "sha256": "7a9ed0e1ea15eb3ffa61c5c52082e42da0e884a2d1a11e92795f5265535c6469"
+      },
+      "published_coordinates": {
+        "latitude": 18.45863707,
+        "longitude_east": 77.40588851
+      },
+      "coordinate_frame": {
+        "body": "Mars",
+        "latitude_type": null,
+        "longitude_direction": "east",
+        "longitude_range": "0-360",
+        "datum": null
+      },
+      "original_precision": {
+        "latitude": "18.45863707",
+        "longitude_east": "77.40588851"
+      },
+      "source_coordinate_verified": true,
+      "source_processing_verified": null,
+      "registration_verified": false,
+      "registration_uncertainty_m": null,
+      "dem_coverage": null,
+      "cell": null,
+      "cell_traversability_under_25_degree_restriction": null,
+      "cell_center_displacement_m_not_engine_snap": null,
+      "routing_eligible": false,
+      "attempted_route_result": "Server policy rejection tested independently for this site; no site route claimed.",
+      "requested_snapped_displacement_m": null,
+      "numerical_path_metrics": null,
+      "safety_limitations": [
+        "Latitude convention/datum and exact coordinate reference point require source reconciliation.",
+        "No marker or waypoint is inferred until coordinate-frame compatibility is established.",
+        "Absolute registration and positional uncertainty are unknown."
+      ],
+      "test_evidence": [
+        "tests/i4d-sites.test.tsx",
+        "tests/browser/i4d-sites.spec.ts"
+      ],
+      "decision": "Integrated as source-qualified context; automatic terrain waypoint unavailable",
+      "production_http_rejection": {
+        "site_id": "jezero-wildcat-ridge",
+        "status": 400,
+        "error": "Coordinate frame/reference-point reconciliation required before map placement or routing."
+      }
+    },
+    {
+      "site_id": "jezero-hogwallow-flats",
+      "region": "jezero",
+      "objective_associations": [
+        "jezero-objective-1",
+        "jezero-objective-2",
+        "jezero-objective-4"
+      ],
+      "scientific_evidence": "Interpreted",
+      "source": {
+        "title": "Hazeltop Initial Report",
+        "version": "2022-09-21",
+        "url": "https://pds-geosciences.wustl.edu/missions/mars2020/Mars%202020%20Initial%20Reports%20Volume%202%20Release%202.pdf#page=59",
+        "feature_id": null,
+        "locator": "PDF p.59; report 14-2",
+        "sha256": null
+      },
+      "published_coordinates": null,
+      "coordinate_frame": {
+        "body": "Mars",
+        "latitude_type": null,
+        "longitude_direction": "east",
+        "longitude_range": "0-360",
+        "datum": null
+      },
+      "original_precision": null,
+      "source_coordinate_verified": false,
+      "source_processing_verified": null,
+      "registration_verified": false,
+      "registration_uncertainty_m": null,
+      "dem_coverage": null,
+      "cell": null,
+      "cell_traversability_under_25_degree_restriction": null,
+      "cell_center_displacement_m_not_engine_snap": null,
+      "routing_eligible": false,
+      "attempted_route_result": "Server policy rejection tested independently for this site; no site route claimed.",
+      "requested_snapped_displacement_m": null,
+      "numerical_path_metrics": null,
+      "safety_limitations": [
+        "Published digits do not establish positional accuracy.",
+        "Absolute source-to-basemap/DEM registration is unverified.",
+        "No astronaut safety or access certification."
+      ],
+      "test_evidence": [
+        "tests/i4d-sites.test.tsx",
+        "tests/browser/i4d-sites.spec.ts"
+      ],
+      "decision": "Integrated as source-qualified context; automatic terrain waypoint unavailable",
+      "production_http_rejection": {
+        "site_id": "jezero-hogwallow-flats",
+        "status": 400,
+        "error": "Waypoint differs from current source coordinates; association invalid."
+      }
+    },
+    {
+      "site_id": "jezero-three-forks-landing-circle",
+      "region": "jezero",
+      "objective_associations": [
+        "jezero-objective-3"
+      ],
+      "scientific_evidence": "Derived",
+      "source": {
+        "title": "Williams et al., LPSC 2023 abstract 2618",
+        "version": "2023",
+        "url": "https://www.hou.usra.edu/meetings/lpsc2023/pdf/2618.pdf",
+        "feature_id": "landing-circle center",
+        "locator": "Proposed landing site; F3 primary-source correction retained",
+        "sha256": null
+      },
+      "published_coordinates": {
+        "latitude": 18.45369687,
+        "longitude_east": 77.41359752
+      },
+      "coordinate_frame": {
+        "body": "Mars",
+        "latitude_type": "planetocentric",
+        "longitude_direction": "east",
+        "longitude_range": "0-360",
+        "datum": "Controlled HiRISE mapping / MOLA vertical reference; independent DEM tie unverified"
+      },
+      "original_precision": {
+        "latitude": "18.45369687",
+        "longitude_east": "77.41359752"
+      },
+      "source_coordinate_verified": true,
+      "source_processing_verified": null,
+      "registration_verified": false,
+      "registration_uncertainty_m": null,
+      "dem_coverage": true,
+      "cell": [
+        447,
+        97
+      ],
+      "cell_traversability_under_25_degree_restriction": true,
+      "cell_center_displacement_m_not_engine_snap": 15.264766540817401,
+      "routing_eligible": false,
+      "attempted_route_result": "Server policy rejection tested independently for this site; no site route claimed.",
+      "requested_snapped_displacement_m": null,
+      "numerical_path_metrics": null,
+      "safety_limitations": [
+        "Published digits do not establish positional accuracy.",
+        "Absolute source-to-basemap/DEM registration is unverified.",
+        "No astronaut safety or access certification."
+      ],
+      "test_evidence": [
+        "tests/i4d-sites.test.tsx",
+        "tests/browser/i4d-sites.spec.ts"
+      ],
+      "decision": "Integrated as source-qualified context; automatic terrain waypoint unavailable",
+      "production_http_rejection": {
+        "site_id": "jezero-three-forks-landing-circle",
+        "status": 400,
+        "error": "Automatic site-linked terrain routing unavailable pending independent source-to-grid registration and uncertainty evidence."
+      }
+    },
+    {
+      "site_id": "gale-aberlady",
+      "region": "gale",
+      "objective_associations": [
+        "gale-glen-torridon"
+      ],
+      "scientific_evidence": "Observed",
+      "source": {
+        "title": "Bennett et al., Glen Torridon campaign overview",
+        "version": "2022",
+        "url": "https://ntrs.nasa.gov/citations/20230001618",
+        "feature_id": null,
+        "locator": null,
+        "sha256": null
+      },
+      "published_coordinates": null,
+      "coordinate_frame": {
+        "body": "Mars",
+        "latitude_type": null,
+        "longitude_direction": "east",
+        "longitude_range": "0-360",
+        "datum": null
+      },
+      "original_precision": null,
+      "source_coordinate_verified": false,
+      "source_processing_verified": null,
+      "registration_verified": false,
+      "registration_uncertainty_m": null,
+      "dem_coverage": null,
+      "cell": null,
+      "cell_traversability_under_25_degree_restriction": null,
+      "cell_center_displacement_m_not_engine_snap": null,
+      "routing_eligible": false,
+      "attempted_route_result": "Server policy rejection tested independently for this site; no site route claimed.",
+      "requested_snapped_displacement_m": null,
+      "numerical_path_metrics": null,
+      "safety_limitations": [
+        "Published digits do not establish positional accuracy.",
+        "Absolute source-to-basemap/DEM registration is unverified.",
+        "No astronaut safety or access certification."
+      ],
+      "test_evidence": [
+        "tests/i4d-sites.test.tsx",
+        "tests/browser/i4d-sites.spec.ts"
+      ],
+      "decision": "Integrated as source-qualified context; automatic terrain waypoint unavailable",
+      "production_http_rejection": {
+        "site_id": "gale-aberlady",
+        "status": 400,
+        "error": "Waypoint differs from current source coordinates; association invalid."
+      }
+    },
+    {
+      "site_id": "gale-glen-etive",
+      "region": "gale",
+      "objective_associations": [
+        "gale-glen-torridon"
+      ],
+      "scientific_evidence": "Observed",
+      "source": {
+        "title": "NASA/JPL Curiosity at Glen Etive",
+        "version": "2019-10-11 acquisition, sol 2553",
+        "url": "https://science.nasa.gov/photojournal/curiosity-at-glen-etive/",
+        "feature_id": null,
+        "locator": null,
+        "sha256": null
+      },
+      "published_coordinates": null,
+      "coordinate_frame": {
+        "body": "Mars",
+        "latitude_type": null,
+        "longitude_direction": "east",
+        "longitude_range": "0-360",
+        "datum": null
+      },
+      "original_precision": null,
+      "source_coordinate_verified": false,
+      "source_processing_verified": null,
+      "registration_verified": false,
+      "registration_uncertainty_m": null,
+      "dem_coverage": null,
+      "cell": null,
+      "cell_traversability_under_25_degree_restriction": null,
+      "cell_center_displacement_m_not_engine_snap": null,
+      "routing_eligible": false,
+      "attempted_route_result": "Server policy rejection tested independently for this site; no site route claimed.",
+      "requested_snapped_displacement_m": null,
+      "numerical_path_metrics": null,
+      "safety_limitations": [
+        "Published digits do not establish positional accuracy.",
+        "Absolute source-to-basemap/DEM registration is unverified.",
+        "No astronaut safety or access certification."
+      ],
+      "test_evidence": [
+        "tests/i4d-sites.test.tsx",
+        "tests/browser/i4d-sites.spec.ts"
+      ],
+      "decision": "Integrated as source-qualified context; automatic terrain waypoint unavailable",
+      "production_http_rejection": {
+        "site_id": "gale-glen-etive",
+        "status": 400,
+        "error": "Waypoint differs from current source coordinates; association invalid."
+      }
+    },
+    {
+      "site_id": "gale-highfield",
+      "region": "gale",
+      "objective_associations": [
+        "gale-vera-rubin-ridge"
+      ],
+      "scientific_evidence": "Observed",
+      "source": {
+        "title": "NASA/JPL Highfield drill hole",
+        "version": null,
+        "url": "https://science.nasa.gov/photojournal/highfield-drill-hole/",
+        "feature_id": null,
+        "locator": null,
+        "sha256": null
+      },
+      "published_coordinates": null,
+      "coordinate_frame": {
+        "body": "Mars",
+        "latitude_type": null,
+        "longitude_direction": "east",
+        "longitude_range": "0-360",
+        "datum": null
+      },
+      "original_precision": null,
+      "source_coordinate_verified": false,
+      "source_processing_verified": null,
+      "registration_verified": false,
+      "registration_uncertainty_m": null,
+      "dem_coverage": null,
+      "cell": null,
+      "cell_traversability_under_25_degree_restriction": null,
+      "cell_center_displacement_m_not_engine_snap": null,
+      "routing_eligible": false,
+      "attempted_route_result": "Server policy rejection tested independently for this site; no site route claimed.",
+      "requested_snapped_displacement_m": null,
+      "numerical_path_metrics": null,
+      "safety_limitations": [
+        "Published digits do not establish positional accuracy.",
+        "Absolute source-to-basemap/DEM registration is unverified.",
+        "No astronaut safety or access certification."
+      ],
+      "test_evidence": [
+        "tests/i4d-sites.test.tsx",
+        "tests/browser/i4d-sites.spec.ts"
+      ],
+      "decision": "Integrated as source-qualified context; automatic terrain waypoint unavailable",
+      "production_http_rejection": {
+        "site_id": "gale-highfield",
+        "status": 400,
+        "error": "Waypoint differs from current source coordinates; association invalid."
+      }
+    },
+    {
+      "site_id": "gale-canaima",
+      "region": "gale",
+      "objective_associations": [
+        "gale-sulfate-units"
+      ],
+      "scientific_evidence": "Observed",
+      "source": {
+        "title": "CheMin decade review",
+        "version": "2024",
+        "url": "https://www.mdpi.com/2075-163X/14/6/568",
+        "feature_id": null,
+        "locator": null,
+        "sha256": null
+      },
+      "published_coordinates": null,
+      "coordinate_frame": {
+        "body": "Mars",
+        "latitude_type": null,
+        "longitude_direction": "east",
+        "longitude_range": "0-360",
+        "datum": null
+      },
+      "original_precision": null,
+      "source_coordinate_verified": false,
+      "source_processing_verified": null,
+      "registration_verified": false,
+      "registration_uncertainty_m": null,
+      "dem_coverage": null,
+      "cell": null,
+      "cell_traversability_under_25_degree_restriction": null,
+      "cell_center_displacement_m_not_engine_snap": null,
+      "routing_eligible": false,
+      "attempted_route_result": "Server policy rejection tested independently for this site; no site route claimed.",
+      "requested_snapped_displacement_m": null,
+      "numerical_path_metrics": null,
+      "safety_limitations": [
+        "Published digits do not establish positional accuracy.",
+        "Absolute source-to-basemap/DEM registration is unverified.",
+        "No astronaut safety or access certification."
+      ],
+      "test_evidence": [
+        "tests/i4d-sites.test.tsx",
+        "tests/browser/i4d-sites.spec.ts"
+      ],
+      "decision": "Integrated as source-qualified context; automatic terrain waypoint unavailable",
+      "production_http_rejection": {
+        "site_id": "gale-canaima",
+        "status": 400,
+        "error": "Waypoint differs from current source coordinates; association invalid."
+      }
+    },
+    {
+      "site_id": "gale-mammoth-lakes",
+      "region": "gale",
+      "objective_associations": [
+        "gale-gediz-vallis"
+      ],
+      "scientific_evidence": "Observed",
+      "source": {
+        "title": "NASA/JPL Mammoth Lakes campaign update",
+        "version": null,
+        "url": "https://science.nasa.gov/blog/sols-4234-4235-and-thats-nearly-a-wrap-on-mammoth-lakes/",
+        "feature_id": null,
+        "locator": null,
+        "sha256": null
+      },
+      "published_coordinates": null,
+      "coordinate_frame": {
+        "body": "Mars",
+        "latitude_type": null,
+        "longitude_direction": "east",
+        "longitude_range": "0-360",
+        "datum": null
+      },
+      "original_precision": null,
+      "source_coordinate_verified": false,
+      "source_processing_verified": null,
+      "registration_verified": false,
+      "registration_uncertainty_m": null,
+      "dem_coverage": null,
+      "cell": null,
+      "cell_traversability_under_25_degree_restriction": null,
+      "cell_center_displacement_m_not_engine_snap": null,
+      "routing_eligible": false,
+      "attempted_route_result": "Server policy rejection tested independently for this site; no site route claimed.",
+      "requested_snapped_displacement_m": null,
+      "numerical_path_metrics": null,
+      "safety_limitations": [
+        "Published digits do not establish positional accuracy.",
+        "Absolute source-to-basemap/DEM registration is unverified.",
+        "No astronaut safety or access certification."
+      ],
+      "test_evidence": [
+        "tests/i4d-sites.test.tsx",
+        "tests/browser/i4d-sites.spec.ts"
+      ],
+      "decision": "Integrated as source-qualified context; automatic terrain waypoint unavailable",
+      "production_http_rejection": {
+        "site_id": "gale-mammoth-lakes",
+        "status": 400,
+        "error": "Waypoint differs from current source coordinates; association invalid."
+      }
+    },
+    {
+      "site_id": "oxia-mineral-1",
+      "region": "oxia",
+      "objective_associations": [
+        "oxia-objective-1"
+      ],
+      "scientific_evidence": "Interpreted",
+      "source": {
+        "title": "NASA Trek Aqueous Mineral Distribution compilation",
+        "version": null,
+        "url": "https://trek.nasa.gov/mars/trekarcgis/rest/services/Aquieous_Mineral_Distribution_Options_clon0/MapServer/0",
+        "feature_id": null,
+        "locator": "F3 preserved source query and original catalog",
+        "sha256": null
+      },
+      "published_coordinates": {
+        "latitude": 18.22,
+        "longitude_east": 335.83
+      },
+      "coordinate_frame": {
+        "body": "Mars",
+        "latitude_type": "planetocentric",
+        "longitude_direction": "east",
+        "longitude_range": "0-360",
+        "datum": null
+      },
+      "original_precision": {
+        "latitude": "18.22",
+        "longitude_east": "335.83"
+      },
+      "source_coordinate_verified": true,
+      "source_processing_verified": null,
+      "registration_verified": false,
+      "registration_uncertainty_m": null,
+      "dem_coverage": null,
+      "cell": null,
+      "cell_traversability_under_25_degree_restriction": null,
+      "cell_center_displacement_m_not_engine_snap": null,
+      "routing_eligible": false,
+      "attempted_route_result": "Server policy rejection tested independently for this site; no site route claimed.",
+      "requested_snapped_displacement_m": null,
+      "numerical_path_metrics": null,
+      "safety_limitations": [
+        "Published precision 0.01 degree; spacing is not positional uncertainty.",
+        "Geometric planning only; terrain routing unavailable.",
+        "Independent absolute registration and positional uncertainty unknown."
+      ],
+      "test_evidence": [
+        "tests/i4d-sites.test.tsx",
+        "tests/browser/i4d-sites.spec.ts"
+      ],
+      "decision": "Integrated as source-qualified context; geometric-only stop supported",
+      "production_http_rejection": {
+        "site_id": "oxia-mineral-1",
+        "status": 400,
+        "error": "Geometric planning only; no Oxia terrain engine or validated science routing."
+      }
+    },
+    {
+      "site_id": "oxia-mineral-2",
+      "region": "oxia",
+      "objective_associations": [
+        "oxia-objective-2"
+      ],
+      "scientific_evidence": "Interpreted",
+      "source": {
+        "title": "NASA Trek Aqueous Mineral Distribution compilation",
+        "version": null,
+        "url": "https://trek.nasa.gov/mars/trekarcgis/rest/services/Aquieous_Mineral_Distribution_Options_clon0/MapServer/0",
+        "feature_id": null,
+        "locator": "F3 preserved source query and original catalog",
+        "sha256": null
+      },
+      "published_coordinates": {
+        "latitude": 17.84,
+        "longitude_east": 336.33
+      },
+      "coordinate_frame": {
+        "body": "Mars",
+        "latitude_type": "planetocentric",
+        "longitude_direction": "east",
+        "longitude_range": "0-360",
+        "datum": null
+      },
+      "original_precision": {
+        "latitude": "17.84",
+        "longitude_east": "336.33"
+      },
+      "source_coordinate_verified": true,
+      "source_processing_verified": null,
+      "registration_verified": false,
+      "registration_uncertainty_m": null,
+      "dem_coverage": null,
+      "cell": null,
+      "cell_traversability_under_25_degree_restriction": null,
+      "cell_center_displacement_m_not_engine_snap": null,
+      "routing_eligible": false,
+      "attempted_route_result": "Server policy rejection tested independently for this site; no site route claimed.",
+      "requested_snapped_displacement_m": null,
+      "numerical_path_metrics": null,
+      "safety_limitations": [
+        "Published precision 0.01 degree; spacing is not positional uncertainty.",
+        "Geometric planning only; terrain routing unavailable.",
+        "Independent absolute registration and positional uncertainty unknown."
+      ],
+      "test_evidence": [
+        "tests/i4d-sites.test.tsx",
+        "tests/browser/i4d-sites.spec.ts"
+      ],
+      "decision": "Integrated as source-qualified context; geometric-only stop supported",
+      "production_http_rejection": {
+        "site_id": "oxia-mineral-2",
+        "status": 400,
+        "error": "Geometric planning only; no Oxia terrain engine or validated science routing."
+      }
+    },
+    {
+      "site_id": "oxia-mineral-3",
+      "region": "oxia",
+      "objective_associations": [
+        "oxia-objective-3"
+      ],
+      "scientific_evidence": "Interpreted",
+      "source": {
+        "title": "NASA Trek Aqueous Mineral Distribution compilation",
+        "version": null,
+        "url": "https://trek.nasa.gov/mars/trekarcgis/rest/services/Aquieous_Mineral_Distribution_Options_clon0/MapServer/0",
+        "feature_id": null,
+        "locator": "F3 preserved source query and original catalog",
+        "sha256": null
+      },
+      "published_coordinates": {
+        "latitude": 18.22,
+        "longitude_east": 336.11
+      },
+      "coordinate_frame": {
+        "body": "Mars",
+        "latitude_type": "planetocentric",
+        "longitude_direction": "east",
+        "longitude_range": "0-360",
+        "datum": null
+      },
+      "original_precision": {
+        "latitude": "18.22",
+        "longitude_east": "336.11"
+      },
+      "source_coordinate_verified": true,
+      "source_processing_verified": null,
+      "registration_verified": false,
+      "registration_uncertainty_m": null,
+      "dem_coverage": null,
+      "cell": null,
+      "cell_traversability_under_25_degree_restriction": null,
+      "cell_center_displacement_m_not_engine_snap": null,
+      "routing_eligible": false,
+      "attempted_route_result": "Server policy rejection tested independently for this site; no site route claimed.",
+      "requested_snapped_displacement_m": null,
+      "numerical_path_metrics": null,
+      "safety_limitations": [
+        "Published precision 0.01 degree; spacing is not positional uncertainty.",
+        "Geometric planning only; terrain routing unavailable.",
+        "Independent absolute registration and positional uncertainty unknown."
+      ],
+      "test_evidence": [
+        "tests/i4d-sites.test.tsx",
+        "tests/browser/i4d-sites.spec.ts"
+      ],
+      "decision": "Integrated as source-qualified context; geometric-only stop supported",
+      "production_http_rejection": {
+        "site_id": "oxia-mineral-3",
+        "status": 400,
+        "error": "Geometric planning only; no Oxia terrain engine or validated science routing."
+      }
+    }
+  ]
+}

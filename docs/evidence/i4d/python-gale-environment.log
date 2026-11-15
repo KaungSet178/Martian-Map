@@ -1,0 +1,11 @@
+python : ....
+At line:47 char:1
++ python -m unittest discover -s tests/environment/gale -p 'test*.py' * ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (....:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+----------------------------------------------------------------------
+Ran 4 tests in 0.054s
+
+OK

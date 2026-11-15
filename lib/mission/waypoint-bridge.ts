@@ -1,3 +1,4 @@
+import { resolveSiteReference, sitePolicy, siteWaypointEvidence } from "@/lib/science/sites";
 import { terrainRequestKey } from "@/lib/routing/request-key";
 import type { RegionManifest } from "@/lib/contracts/region";
 import type { Mission } from "@/lib/mission/model";
@@ -35,6 +36,14 @@ export function initWaypointPlanFromMission(
     const parsed = waypointPlanSchema.safeParse({...mission.waypoint_plan,name:mission.waypoint_plan.name.trim() || "Untitled draft"});
     if (parsed.success) {
       return { ...parsed.data, name:mission.waypoint_plan.name, waypoints: orderedWaypoints(parsed.data).map(w => {
+        if (w.science_site) {
+          const resolved=resolveSiteReference(w.science_site,region.id,w.coordinates);
+          const policy=resolved.site ? sitePolicy(resolved.site) : null;
+          const inactive_reason=resolved.reason ?? (w.target_id && w.target_id!==w.science_site.objective_id ? "Site and objective identity mismatch." : undefined) ?? (region.id === "oxia" && policy?.geometricOnly ? undefined : policy?.terrainEligible ? undefined : policy?.reason ?? "Scientific site unavailable");
+          const current=resolved.site ? siteWaypointEvidence(resolved.site) : w.evidence;
+          const evidence=resolved.reason && current ? {...current,coordinate_verified:false,routing_eligible:false} : current;
+          return {...w,inactive_reason,evidence,previous_evidence:w.previous_evidence ?? (w.evidence && evidence && JSON.stringify(w.evidence)!==JSON.stringify(evidence) ? w.evidence : undefined)};
+        }
         if (!w.target_id) return w;
         const target = region.targets.find(t => t.id === w.target_id);
         const mismatch = target?.coordinates && (target.coordinates.latitude !== w.coordinates.latitude || target.coordinates.longitude_east !== w.coordinates.longitude_east);

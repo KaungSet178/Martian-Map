@@ -138,7 +138,7 @@ export function MissionEditor({
         <ol className="itinerary">
           {mission.target_ids.map((id, index) => {
             const target = region.targets.find((t) => t.id === id);
-            if (!target) return <li key={id}><strong>{id}</strong><p>Retired or unavailable objective; retained for historical context. Not a route destination.</p><button onClick={() => onChange({target_ids:mission.target_ids.filter(t => t !== id)})}>Remove objective {id}</button></li>;
+            if (!target) {const retired=mission.retired_objectives?.find(t=>t.id===id);return <li key={id}><strong>{retired?.title ?? id}</strong><p>{retired?.reason ?? "Retired or unavailable objective; retained for historical context. Not a route destination."}</p><button onClick={() => onChange({target_ids:mission.target_ids.filter(t => t !== id)})}>Remove objective {id}</button></li>;}
             return (
               <li key={id}>
                 <span className="stop-number mono">{index + 1}</span>

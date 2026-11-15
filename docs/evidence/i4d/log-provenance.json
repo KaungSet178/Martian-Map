@@ -1,0 +1,114 @@
+[
+  {
+    "file": "assets.log",
+    "raw_local_path": "output\\i4d-raw-logs\\assets.log",
+    "raw_sha256": "bae1d994199b1fd7462c9c5d099e11b4203151d9e03a5f4ebd8f435712f086ab",
+    "delivered_sha256": "3026fe469d9ba49445e6148ecccb1ac88998091380e3c8d13817270feaf37525",
+    "normalization": "UTF-8 / LF only; semantic output unchanged"
+  },
+  {
+    "file": "browser-all.log",
+    "raw_local_path": "output\\i4d-raw-logs\\browser-all.log",
+    "raw_sha256": "a05333ea1614dd580822d65679f00245afc3f147d131f9a88fae9e6071fee038",
+    "delivered_sha256": "9fa1e1af43803d95bccda8b21ac08bce551a0e2b4bfca0a92c23520cdddb4114",
+    "normalization": "UTF-8 / LF only; semantic output unchanged"
+  },
+  {
+    "file": "browser-final-sites-and-cleanup.log",
+    "raw_local_path": "output\\i4d-raw-logs\\browser-final-sites-and-cleanup.log",
+    "raw_sha256": "42d3468ccf483301abd96afd5f4f5d74738c76c518d992048e447d56419963f1",
+    "delivered_sha256": "4b9b335b62bf5b08288238fbdc09f65bd8bd0f898cb48d9d4422b443cfb70265",
+    "normalization": "UTF-8 / LF only; semantic output unchanged"
+  },
+  {
+    "file": "browser-smoke.log",
+    "raw_local_path": "output\\i4d-raw-logs\\browser-smoke.log",
+    "raw_sha256": "3b5e5172c370751737b220a3cbb20a1053347a889e10356f4310d715718a56b0",
+    "delivered_sha256": "ff38a2cf153f142d7392ce0813d8255901829b29fa5848588b07ee688b4438b1",
+    "normalization": "UTF-8 / LF only; semantic output unchanged"
+  },
+  {
+    "file": "build.log",
+    "raw_local_path": "output\\i4d-raw-logs\\build.log",
+    "raw_sha256": "53d1d0eefc040968752c57bb02cd8be52ada21afb8254aa1789a4f094fc913ae",
+    "delivered_sha256": "ef790f5c0ce4c759a4a6dc746236614c4d497ed8400c8bea0a0e5dd98064c1e5",
+    "normalization": "UTF-8 / LF only; semantic output unchanged"
+  },
+  {
+    "file": "lint.log",
+    "raw_local_path": "output\\i4d-raw-logs\\lint.log",
+    "raw_sha256": "85b34b3ffe42bbcf5bf14a98531eaea6f3a73578e2098afe19cf8540cd1f0477",
+    "delivered_sha256": "a1580bf857971fab99f44789a89cb2c4e7bf2653bc1652e923241c118742c1d7",
+    "normalization": "UTF-8 / LF only; semantic output unchanged"
+  },
+  {
+    "file": "numerical.log",
+    "raw_local_path": "output\\i4d-raw-logs\\numerical.log",
+    "raw_sha256": "f9d9a0f99723c279d153dd75752d3b1ea198df154ac4e42e3f93b079d66c7ef7",
+    "delivered_sha256": "e61769f1c721a6de989e86a696bd4429f6cfc653213410a4961ead8b08135d90",
+    "normalization": "UTF-8 / LF only; semantic output unchanged"
+  },
+  {
+    "file": "python-gale-environment.log",
+    "raw_local_path": "output\\i4d-raw-logs\\python-gale-environment.log",
+    "raw_sha256": "8b0393bdaf6bd280c718843249c935e9990064bdc8323ee399daa009139bdd5d",
+    "delivered_sha256": "4689b091b33317c1339fd98f529dc75128316a8dcfb979840e70c8359e653686",
+    "normalization": "UTF-8 / LF only; semantic output unchanged"
+  },
+  {
+    "file": "python-gale.log",
+    "raw_local_path": "output\\i4d-raw-logs\\python-gale.log",
+    "raw_sha256": "4981c5b849c5bbdf3c9ea13aaf8496393805ab7dce1c3b1925c0db4768c62d75",
+    "delivered_sha256": "8788c9f99d1f9e63786f7290e6ab203ecadedc597388d9f8445c8069d4ac9772",
+    "normalization": "UTF-8 / LF only; semantic output unchanged"
+  },
+  {
+    "file": "python-jezero-environment.log",
+    "raw_local_path": "output\\i4d-raw-logs\\python-jezero-environment.log",
+    "raw_sha256": "2d5a569fdec859f594eec1fc417cec16458ba29aaafab6ae5cbc5074b85d8c9e",
+    "delivered_sha256": "de13d17c6dff9eff9dc9ebf0b418cf6f0a2f3472fb6ff7a7e8e097dada0f1039",
+    "normalization": "UTF-8 / LF only; semantic output unchanged"
+  },
+  {
+    "file": "python-jezero-hillshade.log",
+    "raw_local_path": "output\\i4d-raw-logs\\python-jezero-hillshade.log",
+    "raw_sha256": "33f93df34b71028120a48b6f3b048138c677df70c9f8ba169ca00005bcdc0b2a",
+    "delivered_sha256": "1efe2838208021c9ab8777b0819356f8806e15028b3cd5e1f0ba0d92f08ac507",
+    "normalization": "UTF-8 / LF only; semantic output unchanged"
+  },
+  {
+    "file": "python-jezero-routing.log",
+    "raw_local_path": "output\\i4d-raw-logs\\python-jezero-routing.log",
+    "raw_sha256": "6b3e0d7848db5ecd4b7130bfa4b2690bc9debbf3bc149de4dbf0fc4fc5ecd415",
+    "delivered_sha256": "d9f4b032e3e6c2f91ec4c0111e270b8783146c5865a012743e40b4384d5784e1",
+    "normalization": "UTF-8 / LF only; semantic output unchanged"
+  },
+  {
+    "file": "routing-health.log",
+    "raw_local_path": "output\\i4d-raw-logs\\routing-health.log",
+    "raw_sha256": "58b870b38511291f9f0383e06019bae292117f3fb401e07aa9bbe360e2612aad",
+    "delivered_sha256": "1e52f74ffca246bdaba816998cf7a7387714fcc22d8ea2d6e0a5a80aa839e742",
+    "normalization": "UTF-8 / LF only; semantic output unchanged"
+  },
+  {
+    "file": "site-numerical.log",
+    "raw_local_path": "output\\i4d-raw-logs\\site-numerical.log",
+    "raw_sha256": "bbc889dae787e3de279afca8bc0e8d6814d8fa8f10863dfdac32066ebf02433e",
+    "delivered_sha256": "6b0afe3e9f0bedb6f8c4d35bc1f86d4aa6677ba59b77e13a5fa178703576b791",
+    "normalization": "UTF-8 / LF only; semantic output unchanged"
+  },
+  {
+    "file": "typecheck.log",
+    "raw_local_path": "output\\i4d-raw-logs\\typecheck.log",
+    "raw_sha256": "3da9ffe28eb6c3e895ea90bb60488ee6b89dceb01c7286acd11ce49cf9d4adb1",
+    "delivered_sha256": "1f89457b5e717e8beedebdf5ff09fab293aaffb343c6f44c4aeac96737fa6eda",
+    "normalization": "UTF-8 / LF only; semantic output unchanged"
+  },
+  {
+    "file": "unit-tests.log",
+    "raw_local_path": "output\\i4d-raw-logs\\unit-tests.log",
+    "raw_sha256": "fcff248ad8d1bd5feaf41d9c9772562bffdcff492ea852e6805c73fd5e7f1666",
+    "delivered_sha256": "da88fd5f40f7ae974d20e68706ff29667b24b9134f0bae5fccec6d85e64a2527",
+    "normalization": "UTF-8 / LF only; semantic output unchanged"
+  }
+]
