@@ -576,7 +576,16 @@ input[type="radio"] {
   justify-content: space-between;
   gap: 10px;
 }
+.target-actions > .small-button {
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+.target-actions > .small-button svg {
+  flex-shrink: 0;
+}
 .target-location-button {
+  flex: 1 1 0;
+  min-width: 0;
   background: none;
   border: 0;
   text-align: left;
@@ -585,7 +594,6 @@ input[type="radio"] {
   display: flex;
   flex-direction: column;
   gap: 2px;
-  max-width: calc(100% - 80px);
 }
 .target-location-button:hover .target-location-status {
   color: var(--color-science);
