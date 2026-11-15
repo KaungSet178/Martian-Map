@@ -109,7 +109,7 @@ Plan and Review use the canonical planning snapshot. JSON/save export that snaps
 
 ## 16. Scientific layer and asset preservation
 
-Elevation, Hillshade, Slope and Thermal remain active in all three regions. The required asset verifier confirms 7,282 identical map assets. Source URLs, data values, map tiles, authentic grids, coverage, legends, opacity, attribution, camera behavior, rover traverses and historical environmental adapters remain preserved. Only the explicitly requested Gale Scenario catalog records and retirement metadata change regional science content. No DEM or sensor value is adjusted to make a site routable.
+Elevation, Hillshade, Slope and Thermal remain active in all three regions. The required asset verifier confirms 7,282 identical map assets. Source URLs, data values, map tiles, authentic grids, coverage, legends, opacity, attribution, camera behavior, rover traverses and historical environmental adapters remain preserved. Only the explicitly requested Gale Scenario catalog records and retirement metadata change regional science content. Scoped Git attributes preserve the delivered evidence bytes, so source-table and normalized-log hashes remain valid after checkout; no repository-wide line-ending setting is changed. No DEM or sensor value is adjusted to make a site routable.
 
 ## 17. Independent numerical and unit validation
 

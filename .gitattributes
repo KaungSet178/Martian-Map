@@ -1,0 +1,2 @@
+# Preserve delivered scientific evidence bytes, including source-table and log hashes.
+docs/evidence/i4d/** -text
