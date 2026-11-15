@@ -84,6 +84,9 @@ export function layerState(
   id: string,
 ): LayerState {
   const layer = region.layers.find((l) => l.id === id);
+  // Gale's fixed USGS basemap always has an opaque internal CTX fallback.
+  // Legacy optical visibility/opacity preferences cannot replace that default.
+  if (region.id === "gale" && id === "gale-optical") return { visible: true, opacity: 100 };
   // Saved states must never reactivate products removed from the layer controls.
   if (layer && !isLayerSelectable(region, layer)) {
     return { visible: false, opacity: layer.default_opacity };

@@ -112,9 +112,9 @@ test("wider context stays hidden by default while its assets and provenance rema
   assert.ok(layer.attribution?.includes("NASA/JPL-Caltech/MSSS"));
   assert.match(layer.limitations ?? "", /display sample spacings/);
   assert.equal(readFileSync("public/maps/gale/context-tiles/11/1805/1050.png").length > 0, true);
-  // The optional setting restores context without disabling scientific layers.
+  // Retired context preferences cannot replace the automatic USGS basemap.
   const shown = updateLayerState(gale, {}, "gale-context", { visible: true });
-  assert.equal(shown["gale-context"].visible, true);
+  assert.equal(shown["gale-context"], undefined);
   assert.equal(layerState(gale, shown, "gale-optical").visible, true);
   for (const category of scientificCategories) {
     const layers = categoryLayers(gale, category);
@@ -122,7 +122,7 @@ test("wider context stays hidden by default while its assets and provenance rema
     assert.ok(layers.every((item) => layerState(gale, shown, item.id).visible === false));
   }
   const hiddenAgain = updateLayerState(gale, shown, "gale-context", { visible: false });
-  assert.equal(hiddenAgain["gale-context"].visible, false);
+  assert.equal(layerState(gale, hiddenAgain, "gale-context").visible, false);
 });
 
 test("detailed CTX source, mission view and complete-mission action are independent of context", () => {
@@ -188,9 +188,9 @@ test("Jezero and Oxia keep their untouched initial cameras and four-category cat
     layers: categoryLayers(gale, category).map((layer) => layer.id),
   }));
   assert.deepEqual(categories, [
-    { category: "Elevation", layers: ["gale-regional-elevation", "gale-global-elevation", "gale-terrain"] },
-    { category: "Hillshade", layers: ["gale-regional-hillshade", "gale-global-hillshade", "gale-hillshade"] },
-    { category: "Slope", layers: ["gale-regional-slope", "gale-global-slope", "gale-slope"] },
+    { category: "Elevation", layers: ["gale-regional-elevation"] },
+    { category: "Hillshade", layers: ["gale-regional-hillshade"] },
+    { category: "Slope", layers: ["gale-regional-slope"] },
     { category: "Thermal", layers: ["gale-thermal"] },
   ]);
 });

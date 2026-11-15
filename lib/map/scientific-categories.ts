@@ -24,6 +24,7 @@ export function categoryLayers(region: RegionManifest, category: ScientificCateg
 // Keep dataset metadata intact while limiting Gale's selectable display products.
 export function isLayerSelectable(region: RegionManifest, layer: ScientificLayer): boolean {
   if (region.id !== "gale") return true;
+  if (layer.kind === "optical") return false; // Internal fallback assets, not basemap choices.
   if (layer.zoom_extent) return false;
   return layer.kind !== "topography" || Object.values(datasets.gale).some((ids) => ids.includes(layer.id));
 }
@@ -32,7 +33,7 @@ export function layerGroups(region: RegionManifest) {
   const ids = new Set(scientific.flatMap((group) => group.layers.map((layer) => layer.id)));
   const remaining = region.layers.filter((layer) => !ids.has(layer.id) && !layer.zoom_extent && isLayerSelectable(region, layer));
   return [...scientific,
-    { title: "Basemaps", description: "Optical context and mission imagery.", layers: remaining.filter((layer) => layer.kind === "optical") },
+    ...(region.id === "gale" ? [] : [{ title: "Basemaps", description: "Optical context and mission imagery.", layers: remaining.filter((layer) => layer.kind === "optical") }]),
     { title: "Map overlays", description: "Recorded traverses and dataset coverage outlines; these do not establish waypoint eligibility.", layers: remaining.filter((layer) => layer.kind !== "optical") },
   ];
 }

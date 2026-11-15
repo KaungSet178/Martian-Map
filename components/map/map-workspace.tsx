@@ -88,7 +88,6 @@ export default function MapWorkspace({
   showMarkers,
   opacity,
   layerStates,
-  onLayerChange,
   presentationMode = "mission_view",
   coverageFocus,
   plan,
@@ -126,7 +125,9 @@ export default function MapWorkspace({
     (l) =>
       l.availability === "available" &&
       layerState(region, layerStates, l.id).visible,
-  );
+  ).map((layer) => region.id === "gale" && layer.id === "gale-optical"
+    ? { ...layer, display_name: "USGS Color (CTX fallback)", attribution: `${COLOR_BASEMAP.attribution} · CTX fallback: ${layer.attribution}` }
+    : layer);
   const incompleteLayers = activeLayers.filter((layer) =>
     failedSources.includes(`region-${layer.id}`),
   );
@@ -681,12 +682,7 @@ export default function MapWorkspace({
           Layers
         </button>
         {region.id === "gale" && scientificMap && !preview && (
-          <BasemapControl key={region.id} map={loadedMap}
-            visible={layerState(region, layerStates, "gale-optical").visible}
-            opacity={layerState(region, layerStates, "gale-optical").opacity}
-            contextVisible={layerState(region, layerStates, "gale-context").visible}
-            onContextVisibleChange={(visible) =>
-              onLayerChange?.("gale-context", { visible })} />
+          <BasemapControl key={region.id} map={loadedMap} />
         )}
       </div>
       {preview ? (
@@ -824,6 +820,13 @@ export default function MapWorkspace({
         </span>
       </div>
       <div className="map-attribution">
+        {region.id === "gale" && scientificMap && !preview && (
+          <details><summary>USGS Color · source and limitations</summary>
+            <p>{COLOR_BASEMAP.description}</p>
+            <p>{COLOR_BASEMAP.limitations}</p>
+            <a href={COLOR_BASEMAP.catalogue} target="_blank" rel="noreferrer">USGS source · Parker &amp; Calef</a>
+          </details>
+        )}
         {preview
           ? "Schematic interface artwork · no observations or routes"
           : scientificMap

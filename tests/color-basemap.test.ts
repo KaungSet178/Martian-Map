@@ -2,6 +2,24 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import type { Map as MapInstance } from "maplibre-gl";
 import { applyColorBasemap, COLOR_BASEMAP } from "../lib/map/color-basemap";
+import { regions } from "../lib/regions/registry";
+import { layerState, updateLayerState } from "../lib/map/region-layers";
+import { categoryLayers, layerGroups, scientificCategories } from "../lib/map/scientific-categories";
+
+test("Gale basemap rejects stale CTX settings while preserving fallback metadata and scientific controls", () => {
+  const stale = { "gale-optical": { visible: false, opacity: 0 }, "gale-context": { visible: true, opacity: 100 } };
+  assert.deepEqual(layerState(regions.gale, stale, "gale-optical"), { visible: true, opacity: 100 });
+  assert.equal(layerState(regions.gale, stale, "gale-context").visible, false);
+  for (const id of ["gale-optical", "gale-context"]) {
+    assert.equal(updateLayerState(regions.gale, stale, id, { visible: true }), stale);
+    assert.ok(regions.gale.layers.some(layer => layer.id === id));
+    assert.ok(!layerGroups(regions.gale).some(group => group.layers.some(layer => layer.id === id)));
+  }
+  for (const category of scientificCategories) assert.equal(categoryLayers(regions.gale, category).length, 1);
+  for (const id of ["jezero", "oxia"] as const) {
+    assert.ok(layerGroups(regions[id]).find(group => group.title === "Basemaps")!.layers.length);
+  }
+});
 
 test("color controller preserves CTX, all overlays, camera and mission; mounts once below terrain", () => {
   const layers = ["background", "region-gale-optical", "region-gale-dem", "region-gale-geology", "region-gale-traverse-recorded", "trajectory"];

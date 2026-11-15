@@ -10,6 +10,7 @@ export const COLOR_BASEMAP = {
   catalogue: "https://astrogeology.usgs.gov/search/map/mars_msl_gale_merged_orthophoto_mosaic_25cm",
   attribution: "USGS Astrogeology / NASA / JPL-Caltech / UArizona; Timothy Parker & Fred J. Calef III; processed LRGB; alignment unverified",
   description: "Processed color mosaic from real HiRISE observations. Color balance and sharpening applied by source authors; not guaranteed human-eye true color. CTX remains underneath as fallback. Local alignment with scientific overlays is unverified.",
+  limitations: "0.25 m source grid; spatially variable detail. Tiles sample a 2 m source overview within the reviewed mission footprint; outside coverage is unavailable. No validated positional uncertainty or terrain safety assessment.",
 } as const;
 
 export function applyColorBasemap(map: MapInstance, color: boolean, visible: boolean, opacity: number) {
