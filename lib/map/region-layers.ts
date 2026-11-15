@@ -4,6 +4,7 @@ import type {
   MarsGeographicCoordinates,
 } from "@/lib/contracts/region";
 import { missionTileTemplates, usesScientificClip } from "./scientific-clip";
+import { isLayerSelectable } from "./scientific-categories";
 
 export type CoverageFocusRequest = { region_id: string; layer_id: string; request_id: number };
 export type LayerState = { visible: boolean; opacity: number };
@@ -83,6 +84,10 @@ export function layerState(
   id: string,
 ): LayerState {
   const layer = region.layers.find((l) => l.id === id);
+  // Saved states must never reactivate products removed from the layer controls.
+  if (layer && !isLayerSelectable(region, layer)) {
+    return { visible: false, opacity: layer.default_opacity };
+  }
   return (
     states[id] ?? {
       visible: layer?.default_visible ?? false,
@@ -97,7 +102,7 @@ export function updateLayerState(
   change: Partial<LayerState>,
 ): LayerStates {
   const layer = region.layers.find((l) => l.id === id);
-  if (!layer || layer.availability !== "available") return states;
+  if (!layer || layer.availability !== "available" || !isLayerSelectable(region, layer)) return states;
   const next = {
     ...states,
     [id]: { ...layerState(region, states, id), ...change },

@@ -9,7 +9,7 @@ const geographicEvidenceSchema = z.object({
 const reviewedIds = new Set<string>([
   ...Object.keys(legacyObjectiveDecisions),
   ...[1,2,3,4,5].map(n => `jezero-objective-${n}`),
-  ...[1,2,3].map(n => `oxia-objective-${n}`),
+  ...[1,2,3,4].map(n => `oxia-objective-${n}`),
 ]);
 /** Maps only reviewed objective geography, never the associated Three Forks site.
  * Missing source/processing verification stays unknown in F1's evidence mapper.

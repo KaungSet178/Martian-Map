@@ -83,7 +83,7 @@ test("DEM derivatives retain audited bytes, bounded support, units and conservat
   assert.equal(gale.capabilities.terrain_coverage.status, "partial");
   for (const id of ["gale-terrain", "gale-hillshade", "gale-slope"]) {
     const state = updateLayerState(gale, updateLayerState(gale, {}, "gale-slope", {visible:true}), id, {visible:true});
-    assert.equal(gale.layers.filter((l) => l.kind === "topography" && (state[l.id]?.visible ?? l.default_visible)).length,1);
+    assert.equal(gale.layers.filter((l) => l.kind === "topography" && (state[l.id]?.visible ?? l.default_visible)).length,0);
   }
   for (const id of ["jezero", "oxia"]) assert.ok(getRegion(id)!.layers.every((l) => !l.source_id?.startsWith("gale-")));
 });

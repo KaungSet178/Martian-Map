@@ -114,6 +114,7 @@ export default function MapWorkspace({
   const [ready, setReady] = useState(false);
   const [loadedMap, setLoadedMap] = useState<MapInstance | null>(null);
   const [failed, setFailed] = useState(false);
+  const [failedSources, setFailedSources] = useState<string[]>([]);
   const scientificMap = region.map.visualization.status === "available";
   const resetView = useCallback((animate = false, initial = false) => {
     if (!map.current || !container.current) return;
@@ -125,6 +126,9 @@ export default function MapWorkspace({
     (l) =>
       l.availability === "available" &&
       layerState(region, layerStates, l.id).visible,
+  );
+  const incompleteLayers = activeLayers.filter((layer) =>
+    failedSources.includes(`region-${layer.id}`),
   );
 
   useEffect(() => {
@@ -176,16 +180,28 @@ export default function MapWorkspace({
           });
           instance.on("error", (event) => {
             if ("sourceId" in event && event.sourceId === COLOR_BASEMAP.id) return;
+            // MapLibre bubbles tile/GeoJSON errors through the map. A source
+            // outage does not mean the WebGL renderer has stopped working.
+            if ("sourceId" in event && typeof event.sourceId === "string" && event.sourceId) {
+              const sourceId = event.sourceId;
+              console.warn("Map source unavailable", sourceId, event.error);
+              if (!disposed) setFailedSources((sources) =>
+                sources.includes(sourceId) ? sources : [...sources, sourceId]);
+              return;
+            }
+            console.error("Map renderer error", event.error);
             if (!disposed) setFailed(true);
           });
           instance.on("movestart", (event) => {
             if (event.originalEvent) overview.current = false;
           });
-        } catch {
+        } catch (error) {
+          console.error("Map initialization failed", error);
           if (!disposed) setFailed(true);
         }
       })
-      .catch(() => {
+      .catch((error) => {
+        console.error("Map module could not load", error);
         if (!disposed) setFailed(true);
       });
     return () => {
@@ -771,6 +787,12 @@ export default function MapWorkspace({
         <p className="map-failure" role="status">
           Map renderer unavailable. The science catalog and mission editor
           remain accessible.
+        </p>
+      )}
+      {!failed && incompleteLayers.length > 0 && (
+        <p className="map-failure" role="status" data-testid="map-source-warning">
+          Some data for {incompleteLayers.map((layer) => layer.display_name).join(", ")} could not load;
+          map coverage may be incomplete. Map controls remain available.
         </p>
       )}
       <div className="map-bottomline">

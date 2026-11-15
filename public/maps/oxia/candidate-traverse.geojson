@@ -1,0 +1,156 @@
+{
+ "type": "FeatureCollection",
+ "features": [
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -24.175,
+      18.195
+     ],
+     [
+      -24.18,
+      18.2
+     ],
+     [
+      -24.17,
+      18.21
+     ],
+     [
+      -24.17,
+      18.22
+     ],
+     [
+      -24.17,
+      18.22
+     ]
+    ]
+   },
+   "properties": {
+    "leg": 1,
+    "name": "Start (Scenario midpoint) -> oxia-objective-1 Clay-rich bedrock study",
+    "from": "Start (Scenario midpoint)",
+    "to": "oxia-objective-1 Clay-rich bedrock study",
+    "distance_km": 1.819,
+    "ascent_m": 0,
+    "descent_m": 13.4,
+    "max_slope_deg": 0.96,
+    "walking_time_h_at_2kmh": 0.91,
+    "evidence": "Modeled",
+    "method": "8-connected grid nodes (0.01 deg), move cost = distance x (1 + K x move slope in degrees), K = 0.05; nodes with terrain slope > 20 deg are no-go (56 such nodes in the whole grid); end points joined to nearest nodes by straight connectors",
+    "k_per_degree": 0.05,
+    "no_go_slope_deg": 20,
+    "grid_source": "public/maps/oxia/elevation-grid.json (MGS MOLA, Global DEM, fetched 2026-11-14T07:12:11.793Z)",
+    "start_point": "Scenario midpoint, not a landing site"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -24.17,
+      18.22
+     ],
+     [
+      -24.17,
+      18.22
+     ],
+     [
+      -24.17,
+      18.21
+     ],
+     [
+      -24.18,
+      18.2
+     ],
+     [
+      -24.18,
+      18.19
+     ],
+     [
+      -24.18,
+      18.18
+     ],
+     [
+      -24.18,
+      18.17
+     ],
+     [
+      -24.18,
+      18.17
+     ]
+    ]
+   },
+   "properties": {
+    "leg": 2,
+    "name": "oxia-objective-1 Clay-rich bedrock study -> CRISM hydrous detection (Mars Trek, FID 773)",
+    "from": "oxia-objective-1 Clay-rich bedrock study",
+    "to": "CRISM hydrous detection (Mars Trek, FID 773)",
+    "distance_km": 3.189,
+    "ascent_m": 28.6,
+    "descent_m": 0,
+    "max_slope_deg": 1.09,
+    "walking_time_h_at_2kmh": 1.59,
+    "evidence": "Modeled",
+    "method": "8-connected grid nodes (0.01 deg), move cost = distance x (1 + K x move slope in degrees), K = 0.05; nodes with terrain slope > 20 deg are no-go (56 such nodes in the whole grid); end points joined to nearest nodes by straight connectors",
+    "k_per_degree": 0.05,
+    "no_go_slope_deg": 20,
+    "grid_source": "public/maps/oxia/elevation-grid.json (MGS MOLA, Global DEM, fetched 2026-11-14T07:12:11.793Z)",
+    "start_point": "Scenario midpoint, not a landing site"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -24.18,
+      18.17
+     ],
+     [
+      -24.18,
+      18.17
+     ],
+     [
+      -24.18,
+      18.18
+     ],
+     [
+      -24.18,
+      18.19
+     ],
+     [
+      -24.18,
+      18.2
+     ],
+     [
+      -24.175,
+      18.195
+     ]
+    ]
+   },
+   "properties": {
+    "leg": 3,
+    "name": "CRISM hydrous detection (Mars Trek, FID 773) -> Start (Scenario midpoint)",
+    "from": "CRISM hydrous detection (Mars Trek, FID 773)",
+    "to": "Start (Scenario midpoint)",
+    "distance_km": 2.187,
+    "ascent_m": 6.8,
+    "descent_m": 22.1,
+    "max_slope_deg": 1.09,
+    "walking_time_h_at_2kmh": 1.09,
+    "evidence": "Modeled",
+    "method": "8-connected grid nodes (0.01 deg), move cost = distance x (1 + K x move slope in degrees), K = 0.05; nodes with terrain slope > 20 deg are no-go (56 such nodes in the whole grid); end points joined to nearest nodes by straight connectors",
+    "k_per_degree": 0.05,
+    "no_go_slope_deg": 20,
+    "grid_source": "public/maps/oxia/elevation-grid.json (MGS MOLA, Global DEM, fetched 2026-11-14T07:12:11.793Z)",
+    "start_point": "Scenario midpoint, not a landing site"
+   }
+  }
+ ]
+}

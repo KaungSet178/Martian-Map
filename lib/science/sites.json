@@ -1046,5 +1046,54 @@
     "snap_displacement_m": null,
     "source_verified": true,
     "registration_evidence": null
+  },
+  {
+    "id": "oxia-mineral-4",
+    "region": "oxia",
+    "title": "Hydrous mineral detection (CRISM)",
+    "description": "Interpreted NASA Mars Trek CRISM hydrous-mineral detection (feature 773); the compilation does not identify a mineral class. Rounded location is not a surveyed outcrop.",
+    "objective_ids": [
+      "oxia-objective-4"
+    ],
+    "evidence": "Interpreted",
+    "source": {
+      "title": "NASA Trek Hydrous Mineral Detections OMEGA/CRISM compilation",
+      "version": null,
+      "url": "https://trek.nasa.gov/mars/trekarcgis/rest/services/Hydrous_Mineral_Detections_OMEGA_CRISM_clon0/MapServer/0",
+      "feature_id": "773",
+      "locator": "docs/evidence/f3/oxia-hydrous-query.json; response.features, FID 773; Latitude and Longitude attributes",
+      "sha256": "ecff122e79607876821d7226dbb96c861148c34d81cf9cbca9ced050ae947867"
+    },
+    "coordinates": {
+      "latitude": 18.17,
+      "longitude_east": 335.82
+    },
+    "coordinate_frame": {
+      "body": "Mars",
+      "latitude_type": "planetocentric",
+      "longitude_direction": "east",
+      "longitude_range": "0-360",
+      "datum": null
+    },
+    "original_precision": {
+      "latitude": "18.17",
+      "longitude_east": "335.82"
+    },
+    "source_coordinate_verified": true,
+    "source_processing_verified": null,
+    "interpretation": "Interpreted NASA Mars Trek CRISM hydrous-mineral detection (feature 773); the compilation does not identify a mineral class. Rounded location is not a surveyed outcrop.",
+    "limitations": [
+      "Published precision 0.01 degree; spacing is not positional uncertainty.",
+      "Geometric planning only; terrain routing unavailable.",
+      "Independent absolute registration and positional uncertainty unknown."
+    ],
+    "registration_verified": false,
+    "positional_uncertainty_m": null,
+    "operational_safety": "unverified",
+    "grid_coverage": null,
+    "cell_traversability": null,
+    "snap_displacement_m": null,
+    "source_verified": true,
+    "registration_evidence": null
   }
 ]

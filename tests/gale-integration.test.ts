@@ -1,11 +1,12 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { getRegion } from "../lib/regions/registry";
+import { isLayerSelectable } from "../lib/map/scientific-categories";
 import { layerState, updateLayerState, type LayerStates } from "../lib/map/region-layers";
 
 test("Gale terrain alternatives preserve optical imagery and traverse and reject retired geology in both directions", () => {
   const gale = getRegion("gale")!;
-  for (const terrain of gale.layers.filter((layer) => layer.kind === "topography")) {
+  for (const terrain of gale.layers.filter((layer) => layer.kind === "topography" && isLayerSelectable(gale, layer))) {
     let state = updateLayerState(gale, {}, "gale-geology", { visible: true, opacity: 47 });
     state = updateLayerState(gale, state, terrain.id, { visible: true, opacity: 63 });
     assert.equal(layerState(gale, state, "gale-geology").visible, false);

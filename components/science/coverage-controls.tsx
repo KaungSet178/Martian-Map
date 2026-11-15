@@ -1,6 +1,7 @@
 "use client";
 
 import type { RegionManifest } from "@/lib/contracts/region";
+import { isLayerSelectable } from "@/lib/map/scientific-categories";
 import { layerState, type LayerState, type LayerStates } from "@/lib/map/region-layers";
 
 export function CoverageControls({
@@ -20,7 +21,7 @@ export function CoverageControls({
   presentationMode?: "mission_view" | "full_coverage";
   onPresentationModeChange?: (mode: "mission_view" | "full_coverage") => void;
 }) {
-  const boundaries = region.layers.filter((layer) => layer.zoom_extent && layer.availability === "available");
+  const boundaries = region.layers.filter((layer) => layer.zoom_extent && layer.availability === "available" && isLayerSelectable(region, layer));
   if (!boundaries.length) return null;
   return <section className="coverage-controls" aria-label="Terrain data coverage">
     <h3>Terrain data coverage</h3>
