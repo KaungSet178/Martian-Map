@@ -5,7 +5,7 @@ import type { RegionManifest, Target } from "@/lib/contracts/region";
 import { Badge, Notice, EvidenceBadge } from "@/components/ui/primitives";
 import { objectiveLocationEvidence } from "@/regions/location-evidence";
 import { ScienceSites } from "./sites";
-import type { ScienceSite, SiteSelection } from "@/lib/science/sites";
+import { type ScienceSite, type SiteSelection, objectiveSiteSummary } from "@/lib/science/sites";
 import { PhotographEvidence } from "./photograph";
 
 export function TargetCatalog({
@@ -37,50 +37,61 @@ export function TargetCatalog({
         </Notice>
       )}
       <div className="target-list">
-        {region.targets.map((target) => (
-          <article
-            className={`target-row ${selected === target.id ? "selected" : ""}`}
-            key={target.id}
-          >
-            <div className="target-heading">
-              <span className="diamond" />
-              <EvidenceBadge value={target.evidence} />
-              <span className="supporting">
-                {stops.includes(target.id)
-                  ? `Stop ${stops.indexOf(target.id) + 1}`
-                  : "Not added"}
-              </span>
-            </div>
-            <button
-              className="target-title"
-              onClick={() => onInspect(target.id)}
+        {region.targets.map((target) => {
+          const summary = objectiveSiteSummary(region.id, target.id, target.coordinate_verified);
+          return (
+            <article
+              className={`target-row ${selected === target.id ? "selected" : ""}`}
+              key={target.id}
             >
-              {target.title}
-              <ArrowUpRight size={17} aria-hidden="true" />
-            </button>
-            <p>{target.scientific_goal}</p>
-            <div className="target-actions">
-              <span className="supporting">
-                {target.coordinate_verified
-                  ? "Location verified"
-                  : "Location unverified"}
-              </span>
+              <div className="target-heading">
+                <span className="diamond" />
+                <EvidenceBadge value={target.evidence} />
+                <span className="supporting">
+                  {stops.includes(target.id)
+                    ? `Stop ${stops.indexOf(target.id) + 1}`
+                    : "Not added"}
+                </span>
+              </div>
               <button
-                className="small-button"
-                aria-label={`${stops.includes(target.id) ? "Remove" : "Add"} ${target.title}`}
-                aria-pressed={stops.includes(target.id)}
-                onClick={() => onToggle(target.id)}
+                className="target-title"
+                onClick={() => onInspect(target.id)}
               >
-                {stops.includes(target.id) ? (
-                  <Check size={16} />
-                ) : (
-                  <Plus size={16} />
-                )}
-                {stops.includes(target.id) ? "Added" : "Add"}
+                {target.title}
+                <ArrowUpRight size={17} aria-hidden="true" />
               </button>
-            </div>
-          </article>
-        ))}
+              <p>{target.scientific_goal}</p>
+              <div className="target-actions">
+                <button
+                  type="button"
+                  className="target-location-button"
+                  onClick={() => onInspect(target.id)}
+                  aria-label={`Inspect ${target.title} sites and evidence`}
+                >
+                  <span className="supporting target-location-status">
+                    {summary.siteCountLabel} · {summary.sourceLocationLabel}
+                  </span>
+                  <span className="supporting target-registration-status">
+                    {summary.registrationStatus}
+                  </span>
+                </button>
+                <button
+                  className="small-button"
+                  aria-label={`${stops.includes(target.id) ? "Remove" : "Add"} ${target.title}`}
+                  aria-pressed={stops.includes(target.id)}
+                  onClick={() => onToggle(target.id)}
+                >
+                  {stops.includes(target.id) ? (
+                    <Check size={16} />
+                  ) : (
+                    <Plus size={16} />
+                  )}
+                  {stops.includes(target.id) ? "Added" : "Add"}
+                </button>
+              </div>
+            </article>
+          );
+        })}
       </div>
     </>
   );
@@ -99,6 +110,7 @@ export function TargetDetails({
   onToggle: () => void;
   siteSelections?: SiteSelection[]; onToggleSite?:(site:ScienceSite)=>void; onAddSite?:(site:ScienceSite)=>void;
 }) {
+  const summary = objectiveSiteSummary(region.id, target.id, target.coordinate_verified);
   return (
     <>
       <div className="inline-labels">
@@ -109,6 +121,9 @@ export function TargetDetails({
             ? "Location verified"
             : "Location unverified"}
         </Badge>
+        {summary.siteCount > 0 && <Badge>{summary.siteCountLabel}</Badge>}
+        {summary.sourceBadge && <Badge>{summary.sourceBadge}</Badge>}
+        <Badge>{summary.registrationBadge}</Badge>
       </div>
       <p className="lead">{target.scientific_goal}</p>
       {target.location_notes && (

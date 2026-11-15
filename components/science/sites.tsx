@@ -1,15 +1,32 @@
 "use client";
 import type { ScienceSite, SiteSelection } from "@/lib/science/sites";
-import { sitePolicy, sitesForObjective } from "@/lib/science/sites";
+import { sitePolicy, sitesForObjective, objectiveSiteSummary } from "@/lib/science/sites";
 import type { RegionManifest, Target } from "@/lib/contracts/region";
 import { EvidenceBadge, Notice } from "@/components/ui/primitives";
 export function ScienceSites({target,region,selections,onToggle,onAdd}:{target:Target;region:RegionManifest;selections:SiteSelection[];onToggle?:(site:ScienceSite)=>void;onAdd?:(site:ScienceSite)=>void}){
   const sites=sitesForObjective(region.id,target.id);
+  const summary=objectiveSiteSummary(region.id,target.id,target.coordinate_verified);
   return <section aria-label="Associated scientific sites" data-testid="science-sites"><h3>Associated scientific sites</h3>
     <p>Scientific goals and physical sites are separate. Including site context does not mark a site as visited.</p>
     {!sites.length && <p>No independently supported discrete site is associated with this objective.</p>}
+    {sites.length > 0 && (
+      <div className="science-sites-summary">
+        <p className="supporting">{summary.detailedSummary}</p>
+      </div>
+    )}
     {sites.map(site=>{const policy=sitePolicy(site);const selected=selections.some(s=>s.site_id===site.id);
-      return <details key={site.id} data-testid={`site-${site.id}`}><summary>{site.title}</summary>
+      return <details key={site.id} data-testid={`site-${site.id}`}>
+        <summary>
+          <span className="site-summary-title">{site.title}</span>
+          {site.coordinates ? (
+            <span className="site-summary-coords mono">
+              {site.original_precision?.latitude ?? site.coordinates.latitude}° N,{" "}
+              {site.original_precision?.longitude_east ?? site.coordinates.longitude_east}° E
+            </span>
+          ) : (
+            <span className="site-summary-coords supporting">Unlocated</span>
+          )}
+        </summary>
         <EvidenceBadge value={site.evidence}/><p>Associated objective: {target.title}</p><p>{site.description}</p>
         <dl className="metadata"><div><dt>Site ID</dt><dd>{site.id}</dd></div><div><dt>Source coordinates</dt><dd>{site.coordinates ? `${site.original_precision?.latitude ?? site.coordinates.latitude} degrees N, ${site.original_precision?.longitude_east ?? site.coordinates.longitude_east} degrees E` : "Unavailable; no point inferred"}</dd></div>
         <div><dt>Coordinate frame</dt><dd>{site.coordinate_frame.latitude_type ?? "Latitude convention unresolved"}; east-positive 0-360 degrees. {site.coordinate_frame.datum ?? "Datum not independently established"}</dd></div>

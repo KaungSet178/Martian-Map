@@ -65,3 +65,96 @@ export function siteWaypointEvidence(site:ScienceSite){return {
   precision_disclosure:`Site ${site.id}: ${site.title}. ${site.interpretation} Source: ${site.source.title} (${site.source.url}); ${site.source.version ?? "version unknown"}. ${site.limitations.join(" ")}`,
   routing_eligible:sitePolicy(site).terrainEligible,
 };}
+
+export interface ObjectiveSiteSummary {
+  siteCount: number;
+  siteCountLabel: string;
+  sourceCoordinatesVerified: boolean;
+  frameCompatibleCount: number;
+  unresolvedFrameCount: number;
+  unlocatedCount: number;
+  sourceLocationLabel: string;
+  registrationStatus: string;
+  sourceBadge: string | null;
+  registrationBadge: string;
+  detailedSummary: string;
+}
+
+export function objectiveSiteSummary(
+  regionId: string,
+  targetId: string,
+  targetCoordinateVerified = false,
+): ObjectiveSiteSummary {
+  const sites = sitesForObjective(regionId, targetId);
+  const siteCount = sites.length;
+  const frameCompatibleSites = sites.filter(s => siteFrameCompatible(s));
+  const frameCompatibleCount = frameCompatibleSites.length;
+  const unresolvedFrameSites = sites.filter(s => s.coordinates !== null && !siteFrameCompatible(s));
+  const unresolvedFrameCount = unresolvedFrameSites.length;
+  const unlocatedSites = sites.filter(s => s.coordinates === null);
+  const unlocatedCount = unlocatedSites.length;
+
+  const siteCountLabel = siteCount === 0
+    ? "No associated sites"
+    : `${siteCount} associated site${siteCount === 1 ? "" : "s"}`;
+
+  let sourceCoordinatesVerified = false;
+  let sourceLocationLabel = "Location unverified";
+  let sourceBadge: string | null = null;
+  let registrationStatus = "Registration unverified";
+  let registrationBadge = "Registration unverified";
+  let detailedSummary = "";
+
+  if (targetCoordinateVerified) {
+    sourceCoordinatesVerified = true;
+    sourceLocationLabel = "Source coordinates verified";
+    sourceBadge = "Source coordinates verified";
+    registrationStatus = regionId === "oxia" ? "Geometric planning only" : "Registration unverified";
+    registrationBadge = regionId === "oxia" ? "Geometric only" : "Registration unverified";
+    detailedSummary = regionId === "oxia"
+      ? "Interpreted orbital mineral detection from NASA Mars Trek compilation. Verified source coordinates; geometric planning only."
+      : "Verified source coordinate; independent terrain registration unverified.";
+  } else if (frameCompatibleCount > 0) {
+    sourceCoordinatesVerified = true;
+    sourceLocationLabel = `Source coordinates verified (${frameCompatibleCount} site${frameCompatibleCount === 1 ? "" : "s"})`;
+    sourceBadge = "Source coordinates verified";
+    registrationStatus = "Registration unverified · Routing blocked";
+    registrationBadge = "Registration unverified";
+    detailedSummary = `${frameCompatibleCount} qualified discrete site${frameCompatibleCount === 1 ? "" : "s"} tracked with verified source coordinates in Mars planetocentric latitude, east-positive longitude. Independent terrain registration to the routing grid is unverified; automatic terrain routing is unavailable.`;
+  } else if (unresolvedFrameCount > 0) {
+    sourceCoordinatesVerified = false;
+    sourceLocationLabel = "Coordinate frame unresolved";
+    sourceBadge = "Coordinate frame unresolved";
+    registrationStatus = "Registration unverified";
+    registrationBadge = "Registration unverified";
+    detailedSummary = `${siteCount} qualified discrete record${siteCount === 1 ? "" : "s"} tracked from published mission literature. ${unresolvedFrameCount} site${unresolvedFrameCount === 1 ? "" : "s"} have published coordinates with unresolved latitude frame/datum; ${unlocatedCount > 0 ? `${unlocatedCount} record is unlocated context. ` : ""}Independent terrain registration is unverified.`;
+  } else if (unlocatedCount > 0) {
+    sourceCoordinatesVerified = false;
+    sourceLocationLabel = "Location unverified (unlocated context)";
+    sourceBadge = "Unlocated context";
+    registrationStatus = "Registration unverified";
+    registrationBadge = "Registration unverified";
+    detailedSummary = `${siteCount} documented named investigation${siteCount === 1 ? "" : "s"} tracked from published literature. Reviewed sources establish named scientific context; verified point coordinates remain unlocated.`;
+  } else {
+    sourceCoordinatesVerified = false;
+    sourceLocationLabel = "Location unverified";
+    sourceBadge = null;
+    registrationStatus = "Registration unverified";
+    registrationBadge = "Registration unverified";
+    detailedSummary = "No independently supported discrete site is associated with this objective.";
+  }
+
+  return {
+    siteCount,
+    siteCountLabel,
+    sourceCoordinatesVerified,
+    frameCompatibleCount,
+    unresolvedFrameCount,
+    unlocatedCount,
+    sourceLocationLabel,
+    registrationStatus,
+    sourceBadge,
+    registrationBadge,
+    detailedSummary,
+  };
+}
