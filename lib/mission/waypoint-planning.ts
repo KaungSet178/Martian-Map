@@ -323,7 +323,7 @@ export function createWaypointPlan(
   const plan: Record<string, unknown> = {
     schema_version: 1,
     id: options.id ?? `plan-${crypto.randomUUID()}`,
-    name: options.name ?? "Proposed Marswalk Traverse",
+    name: options.name ?? "Proposed Aresian Traverse",
     mode: options.mode ?? "round_trip",
     waypoints: options.waypoints ? [...options.waypoints] : [],
     created_at: new Date().toISOString(),

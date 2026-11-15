@@ -1,6 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
+import Image from "next/image";
 import { selectScienceSite, sitePolicy, type ScienceSite } from "@/lib/science/sites";
 import {
   useCallback,
@@ -467,7 +468,7 @@ export function Planner() {
       );
     } catch {
       setStorageError(
-        "This file is not a supported Marswalk mission, or its objectives are missing from the current catalog. The current draft was preserved.",
+        "This file is not a supported Aresian mission, or its objectives are missing from the current catalog. The current draft was preserved.",
       );
     }
   }
@@ -509,12 +510,10 @@ export function Planner() {
         Skip to planning controls
       </a>
       <header className="app-header">
-        <a className="brand" href="?region=jezero" aria-label="Marswalk home">
-          <span className="brand-symbol" aria-hidden="true">
-            M
-          </span>
+        <a className="brand" href="?region=jezero" aria-label="Aresian home">
+          <Image className="brand-logo" src="/branding/aresian-logo.png" alt="Aresian logo" width={60} height={40} loading="eager" />
           <span>
-            Marswalk
+            Aresian
             <span className="brand-subtitle">Surface mission planner</span>
           </span>
         </a>

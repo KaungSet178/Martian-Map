@@ -3,7 +3,7 @@ import { EnvironmentalConditionsPanel } from "@/components/environment/jezero/En
 import { jezeroEnvironmentalDataset } from "@/lib/environment/jezero/dataset";
 
 export const metadata: Metadata = {
-  title: "Jezero Crater Environmental Conditions | Marswalk Planner",
+  title: "Jezero Crater Environmental Conditions | Aresian Planner",
   description:
     "Authentic historical environmental observations for Jezero Crater from Mars 2020 Perseverance MEDA surface weather and RDS solar radiation.",
 };
@@ -36,7 +36,7 @@ export default function JezeroEnvironmentPage() {
           }}
         >
           <span style={{ fontFamily: "var(--font-mono, monospace)" }}>
-            Marswalk Planner · NASA Space Apps Challenge
+            Aresian Planner · NASA Space Apps Challenge
           </span>
           <span
             style={{

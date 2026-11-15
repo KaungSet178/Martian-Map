@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { OxiaUnavailablePanel } from "@/components/environment/oxia/oxia-unavailable-panel";
 
 export const metadata: Metadata = {
-  title: "Oxia Planum Environmental Conditions | Marswalk Planner",
+  title: "Oxia Planum Environmental Conditions | Aresian Planner",
   description:
     "Scientific status of local surface meteorological observations for Oxia Planum.",
 };
@@ -35,7 +35,7 @@ export default function OxiaEnvironmentPage() {
           }}
         >
           <span style={{ fontFamily: "var(--font-mono, monospace)" }}>
-            Marswalk Planner · NASA Space Apps Challenge
+            Aresian Planner · NASA Space Apps Challenge
           </span>
           <span
             style={{

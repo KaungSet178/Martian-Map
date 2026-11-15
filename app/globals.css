@@ -342,17 +342,12 @@ input[type="radio"] {
   font-weight: 650;
   letter-spacing: -0.04em;
 }
-.brand-symbol {
-  display: grid;
-  place-items: center;
-  width: 40px;
+.brand-logo {
+  display: block;
+  width: 60px;
   height: 40px;
-  border: 1px solid var(--citrus);
-  border-radius: 0;
-  color: var(--citrus-ink);
-  font-size: 23px;
-  font-weight: 500;
-  letter-spacing: -0.08em;
+  object-fit: contain;
+  flex-shrink: 0;
 }
 .brand-subtitle {
   display: block;
@@ -1507,8 +1502,8 @@ details[data-testid^="site-"] summary {
     font-size: 19px;
     gap: 8px;
   }
-  .brand-symbol {
-    width: 36px;
+  .brand-logo {
+    width: 54px;
     height: 36px;
   }
   .region-picker {
@@ -2709,11 +2704,6 @@ input[type="radio"] {
   font-weight: 900;
   letter-spacing: -0.02em;
   text-transform: uppercase;
-}
-.app-header .brand-symbol {
-  border-color: var(--citrus);
-  color: var(--citrus);
-  background: transparent;
 }
 .app-header .brand-subtitle,
 .app-header .eyebrow,

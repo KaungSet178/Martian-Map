@@ -3,7 +3,7 @@ import { GaleEnvironmentalPanel } from "@/components/environment/gale/gale-envir
 import { sharedEnvironmentCss } from "@/components/environment/styles";
 
 export const metadata: Metadata = {
-  title: "Gale Crater Environmental Conditions | Marswalk Planner",
+  title: "Gale Crater Environmental Conditions | Aresian Planner",
   description:
     "Authentic historical environmental observations for Gale Crater from MSL Curiosity REMS surface weather and RAD ionizing radiation dosimetry.",
 };
@@ -37,7 +37,7 @@ export default function GaleEnvironmentPage() {
           }}
         >
           <span style={{ fontFamily: "var(--font-mono, monospace)" }}>
-            Marswalk Planner · NASA Space Apps Challenge
+            Aresian Planner · NASA Space Apps Challenge
           </span>
           <span
             style={{

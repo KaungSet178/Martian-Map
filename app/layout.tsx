@@ -11,7 +11,9 @@ import "maplibre-gl/dist/maplibre-gl.css";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Marswalk — Mission planner",
+  title: "Aresian — Mission planner",
+  applicationName: "Aresian",
+  icons: { icon: "/branding/aresian-logo.png", apple: "/branding/aresian-logo.png" },
   description:
     "Evidence-aware, pre-mission Mars exploration planning. A research interface, not operational navigation.",
 };
