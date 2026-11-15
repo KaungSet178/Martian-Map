@@ -425,7 +425,8 @@ for (const [width, height] of [[1440, 900], [1024, 768], [768, 1024], [390, 844]
     await expect.poll(() => assets.some((url) => url.includes("ctx-tiles"))).toBe(true);
     await expect(page.locator(".map-attribution")).toContainText("NASA/JPL-Caltech/MSSS");
     await expect(page.locator(".science-marker")).toHaveCount(0);
-    await expect(page.locator(".map-scale")).toContainText("Source footprint only");
+    // The "Scale unavailable" box was removed in the final UI pass.
+    await expect(page.locator(".map-scale")).toHaveCount(0);
     await page.getByLabel("Zoom map in", { exact: true }).click();
     await page.getByLabel("Fit complete mission area", { exact: true }).click();
     await page.getByRole("button", { name: "Layers", exact: true }).click();

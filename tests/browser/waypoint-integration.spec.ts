@@ -81,7 +81,7 @@ for (const [width, height] of [
       "spherical Mars approximation (R = 3,396,190 m)",
     );
     await expect(page.locator(".panel-scroll")).toContainText(
-      "Traversal feasibility remains Unverified",
+      "explicit resource assumptions",
     );
 
     // Capture screenshot for deliverables

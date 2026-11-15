@@ -523,7 +523,7 @@ export function WaypointEditor({
       <Notice title="Proposed geometric trajectory">
         Calculations use {GEOMETRIC_TRAJECTORY_LABEL}. No 3D terrain slopes,
         boulder hazards or validated astronaut physiology are represented in this preview.
-        The separate EVA panel uses current route and explicit resource assumptions. Traversal feasibility remains <strong>Unverified</strong>.
+        The separate EVA panel uses current route and explicit resource assumptions.
       </Notice>
     </div>
   );

@@ -7,7 +7,7 @@ import { Shield, Timer, Microscope, LockKeyhole } from "lucide-react";
 import { assessments, type RegionManifest } from "@/lib/contracts/region";
 import type { Mission } from "@/lib/mission/model";
 import { routeAvailability } from "@/lib/api/planning";
-import { Badge, Notice } from "@/components/ui/primitives";
+import { Notice } from "@/components/ui/primitives";
 
 export function RouteComparison({
   mission,
@@ -79,7 +79,6 @@ export function FeasibilityPanel({hasTerrain=false}:{hasTerrain?:boolean}={}) {
     <section className="feasibility">
       <div className="section-heading">
         <h3>Mission feasibility</h3>
-        <Badge tone="caution">Unverified</Badge>
       </div>
       <p className="supporting">
         All six checks require evidence. No operational safety determination is
@@ -89,7 +88,7 @@ export function FeasibilityPanel({hasTerrain=false}:{hasTerrain?:boolean}={}) {
         {assessments.map((label) => (
           <div key={label}>
             <dt>{label}</dt>
-            <dd>Unverified</dd>
+            <dd>Not assessed</dd>
           </div>
         ))}
       </dl>

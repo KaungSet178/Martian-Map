@@ -427,7 +427,7 @@ export function Planner() {
       setDirty(false);
       setStorageError("");
       setMessage(
-        "Mission saved in this browser. Scientific status remains Unverified.",
+        "Mission saved in this browser.",
       );
     } catch {
       setStorageError(
@@ -542,19 +542,12 @@ export function Planner() {
             ))}
           </select>
         </div>
-        <div className="header-status">
-          <span className="status-dot" />
-          <span>
-            Research interface
-            <span className="supporting">
-              {online
-                ? region.map.visualization.status === "available"
-                  ? "Map available · Planning unverified"
-                  : "Scientific data pending"
-                : "Offline · Local plans available"}
-            </span>
-          </span>
-        </div>
+        {!online && (
+          <div className="header-status">
+            <span className="status-dot" />
+            <span>Offline · Local plans available</span>
+          </div>
+        )}
         <nav className="header-actions" aria-label="Mission files">
           <button onClick={openSaved} aria-label="Open saved missions">
             <FolderOpen size={18} />
@@ -868,7 +861,6 @@ export function Planner() {
                   {planningSnapshot.countLabel}
                 </strong>
               </span>
-              <Badge tone="caution">Unverified</Badge>
             </div>
             <button
               className="primary full"
@@ -984,12 +976,7 @@ export function Planner() {
         />
       </main>
       <footer className="app-status">
-        <span>
-          <span className="status-dot" />
-          {dirty ? "Unsaved draft" : "Draft workspace"}
-          <span className="status-separator">/</span>Pre-mission planning only
-        </span>
-        <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
+        <div style={{ display: "flex", gap: "10px", alignItems: "center", marginLeft: "auto" }}>
           <button onClick={() => showPanel("environment")}>
             <Sun size={14} />
             Environment

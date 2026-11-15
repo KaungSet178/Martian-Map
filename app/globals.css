@@ -3059,3 +3059,27 @@ input[type="radio"] {
     gap:8px;
   }
 }
+
+/* Final UI pass (submission): header actions stay right-aligned now that the
+   research-status block is gone; on narrow screens the map controls stack in
+   a right-hand column so they never cover the region title card. */
+.header-actions { margin-left: auto; }
+@media (max-width: 850px) {
+  .workspace .map-workspace[data-region] .map-navigation {
+    display: flex;
+    flex-direction: column;
+    top: 72px;
+    right: 12px;
+    gap: 6px;
+  }
+  .workspace .map-workspace[data-region] .map-navigation .zoom-group {
+    flex-direction: column;
+  }
+}
+@media (max-width: 850px) {
+  /* Keep long source credits below the active-layer chip; the rest scrolls. */
+  .map-attribution {
+    max-height: 36px;
+    overflow-y: auto;
+  }
+}

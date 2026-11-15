@@ -829,9 +829,6 @@ export default function MapWorkspace({
             Proposed geometric trajectory — spherical Mars approximation (R = 3,396,190 m)
           </span>
         )}
-        <span className="map-scale mono">
-          Scale unavailable<span>{scientificMap && !preview ? "Source footprint only" : "Not georeferenced"}</span>
-        </span>
       </div>
       <div className="map-attribution">
         {region.id === "gale" && scientificMap && !preview && (
